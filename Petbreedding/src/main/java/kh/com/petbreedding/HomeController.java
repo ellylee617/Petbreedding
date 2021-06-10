@@ -38,4 +38,10 @@ public class HomeController {
 		return "index";
 	}
 	
+	//사업자 페이지로 이동
+	@RequestMapping(value = "/bIndex", method = RequestMethod.GET)
+	public String successPay(Locale locale, Model model) {
+		return "/bIndex";
+	}
+	
 }
