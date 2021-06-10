@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.com.petbreedding.board.model.vo.Board;
-import kh.com.petbreedding.board.service.BoardService;
+import kh.com.petbreedding.board.model.service.BoardService;
 
 
 @Controller

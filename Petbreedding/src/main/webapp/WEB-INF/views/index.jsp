@@ -56,11 +56,13 @@
 		            <li><a href="UNotice.html">공지사항</a></li>
 		            <li><a href="UQnA.html">자주묻는질문</a></li>
 		        </ul>
+	    	</div>
+		   <div class="footMenu2">
+		        <p>(주)펫브리띵</p>
+		        <p>서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</p>
+		        <p>사업자등록번호 : 123-01-12345</p>
+		        <p>Copyright &COPY; 2021 Petverything Institute All Right Reserved</p>
 		    </div>
-		    <p>(주)펫브리띵</p>
-		    <p>서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</p>
-		    <p>사업자등록번호 : 123-01-12345</p>
-		    <p>Copyright &COPY; 2021 Petbreedding Institute All Right Reserved</p>
 		</footer>
 	</div>
 </body>

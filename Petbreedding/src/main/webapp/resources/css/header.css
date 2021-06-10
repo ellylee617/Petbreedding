@@ -3,12 +3,12 @@
 /*header 높이 지정*/
 .Uheader{
     height: 180px;
+    overflow:hidden;
 }
 
 /*알림/고객명/로그인/회원가입/예약확인조회/고객센터*/
 .UserNav{
-    position: absolute;
-    right: 0;
+    float:right;
 }
 .UserNav li{
     float: left;
@@ -21,8 +21,8 @@
 
 /*로고*/
 .logo{
-    padding-top: 40px;
     height : 150px;
+    float:left;
 }
 
 /*메인메뉴*/
@@ -30,7 +30,8 @@
     clear: both;
 }
 .mainMenu .mainMenu1 {
-    display: inline-block;
+    float:left;
+    margin-top:80px;
 }
 .mainMenu .mainMenu1 li{
     float: left;
@@ -40,10 +41,8 @@
 
 /*자유게시판/제휴문의*/
 .mainMenu .mainMenu2{
-    position: absolute;
-    top: 140px;
-    right: 0;
-    display: inline-block;
+    float:right;
+    margin-top:80px;
 }
 .mainMenu .mainMenu2 li{
     float: left;
