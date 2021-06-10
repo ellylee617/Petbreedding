@@ -31,4 +31,14 @@ public class shopController {
 	public String shopReservation(Locale locale, Model model) {
 		return "/shop/salonReservation";
 	}
+	
+	@RequestMapping(value = "/shopPayment", method = RequestMethod.GET)
+	public String shopPayment(Locale locale, Model model) {
+		return "/shop/shopPayment";
+	}
+	
+	@RequestMapping(value = "/successPay", method = RequestMethod.GET)
+	public String successPay(Locale locale, Model model) {
+		return "/shop/successPay";
+	}
 }

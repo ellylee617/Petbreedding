@@ -1,13 +1,19 @@
 $("#checkService .menu_box").on("click",function(){
+    $(this).css("border","solid 2px var(--hover-color)");
     $("#secondChoose").fadeIn();
 });
 $("#secondChoose .dog_box").on("click",function(){
+    $(this).css("border","solid 2px var(--hover-color)");
     $("#thirdChoose").fadeIn();
 });
 $("#thirdChoose .menu_box").on("click",function(){
+    $(this).css("border","solid 2px var(--hover-color)");
     $("#fourthChoose").fadeIn();
 });
 $("#fourthChoose .time").on("click",function(){
+    $(this).css("background","var(--hover-color)");
+    $(this).css("color","var(--font-color)");
+    $(this).css("border","solid 1px var(--hover-color)");
     $("#fifthChoose").fadeIn();
     $("#btnBox").fadeIn();
 });

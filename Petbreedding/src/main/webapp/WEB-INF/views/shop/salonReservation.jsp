@@ -169,7 +169,19 @@
         <!--TOPBTN-->
         <a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
         </section>
-		<jsp:include page="../footer.jsp" />	
+		<jsp:include page="../footer.jsp" />
+		
+		
+		<!-- MODAL -->
+         <div id="my_modal">
+            <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
+            <div id="locCon">
+                <h1>바로 결제하시겠습니까?</h1>
+                <p>지금 결제 하지 않으셔도 Mypage에서 결제하실 수 있습니다.</p>
+                <button id="goTOPay">바로 결제할게요</button>
+                <button id="nextTime">다음에 할게요</button>
+            </div>
+        </div>	
 </div>
 	
 	 <!-- script -->
