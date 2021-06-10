@@ -23,7 +23,7 @@
         </nav>
         <nav class="mainMenu2">
             <ul>
-                <li><a href="board.html">자유게시판</a></li>
+                <li><a href="fboardlist">자유게시판</a></li>
                 <li><a href="business.html">제휴문의</a></li>
             </ul>
         </nav>
