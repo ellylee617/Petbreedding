@@ -15,15 +15,24 @@ public class ClientInfoCotroller {
 	@Autowired
 	private ClientInfoService clientInfoService;
 	
+	// 회원 정보 불러오기
+	@RequestMapping("/mypage/selectClienInfo")
+	public String selectClientInfo(HttpSession session) {
+		
+		//TODO
+		return null;
+		
+	}
+	
 	//	회원 정보 수정 
-	@RequestMapping("/updateClientInfo")
+	@RequestMapping("mypage/updateClientInfo")
 	public String updateClientInfo(Client client, HttpSession session) {
 		
 		//TODO
 		return null;
 		
 	} 
-	@RequestMapping("/deleteClient")
+	@RequestMapping("mypage/deleteClient")
 	//	회원 탈퇴
 	public String deleteClient(String cl_num, HttpSession session) {
 		
