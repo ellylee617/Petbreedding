@@ -41,7 +41,7 @@ body{
     max-width: 1190px;
     overflow: hidden;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 /*section실제 콘텐츠가 적히는 부분*/
 .section{
