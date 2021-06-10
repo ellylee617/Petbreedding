@@ -1,0 +1,80 @@
+@charset "UTF-8";
+@font-face {
+    font-family: "GmarketB";
+    src: url("../font/GmarketSansTTFBold.ttf");
+}
+@font-face {
+    font-family: "GmarketM";
+    src: url("../font/GmarketSansTTFMedium.ttf");
+}
+input::placeholder {
+	font-family: "GmarketM";
+}
+body * {
+	font-family: "GmarketM";
+}
+/* 컬러는 여기서 선택해 가세요 */
+:root {
+    --main-color: #000; /*기본 폰트색상*/
+    --hover-color: #ff9914; /*버튼 호버시 배경색상*/
+    --button-color:#4dbbff; /*버튼 기본 배경색상*/
+    --font-color:#fff;  /*버튼 기본 폰트색상*/
+    --trhover-color: #a5e6fc; /*tr호버컬러*/
+    --border-color:#aaa; /*박스 컬러*/
+}
+html,body{
+    height: 100% ;
+    min-height: 100% !important;
+}
+body{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: "GmarketM";
+}
+/*전체 가운데 정렬*/
+.wrapper{
+    min-height: 100% ;
+    position: relative;
+    max-width: 1190px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+/*section실제 콘텐츠가 적히는 부분*/
+.section{
+    width: 1130px;
+    padding-bottom: 250px;
+}
+
+/*ul 왼쪽 공백 padding 없애기*/
+ul {
+    -webkit-padding-start: 0px;
+}
+ul li {   
+    list-style: none;    
+}
+a {
+    text-decoration: none;
+    color: var(--main-color);
+}
+/* a:visited{
+    color: var(--main-color);
+} */
+
+/*TOP 버튼*/
+#MOVE_TOP_BTN {
+    position: fixed;
+    right: 2%;
+    bottom: 50px;
+    display: none;
+    z-index: 999;
+    background: #707070;
+    color: var(--font-color);
+    padding: 10px;
+    border-radius: 20px;
+    width: 50px;
+    text-align: center;
+}
