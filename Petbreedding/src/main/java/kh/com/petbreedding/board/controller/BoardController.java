@@ -74,6 +74,11 @@ public class BoardController {
 		return "/board/mypet";
 	}
 	
+	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
+	public String myboard(Locale locale, Model model) {
+		return "/mypage/myboard";
+	}
+	
 	
 	
 	
