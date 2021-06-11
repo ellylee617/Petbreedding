@@ -12,3 +12,13 @@ $(".que").click(function() {
    $(this).next(".anw2").siblings(".anw2").slideUp(300); // 1개씩 펼치기
  });
 });
+
+//myboard 전체선택
+function selectAll(selectAll)  {
+    const checkboxes 
+         = document.getElementsByName('board');
+    
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = selectAll.checked;
+    })
+  }
