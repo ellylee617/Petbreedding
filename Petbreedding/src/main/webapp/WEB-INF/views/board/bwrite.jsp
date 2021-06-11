@@ -19,7 +19,8 @@
 		<jsp:include page="../header.jsp" />
 		 <center>
         <section class="section">
-            
+            	<h1>1:1문의 작성</h1>
+            	
                 <div class="qnatitle">
                
                     
@@ -33,8 +34,8 @@
             </div> 
 
 
-            <input type="submit" value="취소" id="successbtn" onclick="#">
-            <input type="submit" value="글등록" id="successbtn">
+            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
+            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
                 
             
         </section>

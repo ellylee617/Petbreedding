@@ -1,10 +1,12 @@
 .qnatitle .qnacontent{
     text-align: center;
 }
-
+.qnatitle{
+	padding-top: 30px;
+}
 .qnacontent{
     margin-top: 30px;
-
+	margin-bottom: 30px;
 }
 .qnatitle input{
     width: 600px;
@@ -20,27 +22,10 @@
 #successbtn{
     width: 100px;
     height: 40px;
-    background: #4dbbff;
-    border: none;
-    color: #fff;
-    font-family: "GmarketB";
-    src: url("../font/GmarketSansTTFBold.ttf");
     border-radius: 10px;
     font-size: 15px;
-   
 }
-#successbtn:hover{
-    width: 100px;
-    height: 40px;
-    background: #ff9914;
-    border: none;
-    color: #fff;
-    font-family: "GmarketB";
-    src: url("../font/GmarketSansTTFBold.ttf");
-    border-radius: 10px;
-    font-size: 15px;
-   
-}
+
 
 
 
