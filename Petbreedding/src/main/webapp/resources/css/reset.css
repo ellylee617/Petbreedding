@@ -78,6 +78,14 @@ a {
 	background-color : var(--hover-color);
 }
 
+/*기본 input text class입니다! (로그인 화면 기준)*/
+.basicTextInput {
+  width: 600px;
+  padding: 20px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
 
 
 

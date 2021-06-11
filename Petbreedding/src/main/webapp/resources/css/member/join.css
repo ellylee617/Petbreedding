@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-input {
-  width: 600px;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
 td > span {
   display: block;
   margin-top: 20px;
@@ -19,17 +13,13 @@ td > span {
   margin: 0 auto;
 }
 
-.joinBtn {
+#joinBtn {
   width: 600px;
   padding: 20px;
   box-sizing: border-box;
   font-size: 16px;
   margin-top: 20px;
-  border: 0px;
   border-radius: 10px;
-  cursor: pointer;
-  color: #fff;
-  background: #4dbbff;
 }
 
 .errorMsg {
@@ -42,19 +32,15 @@ td > span {
   width: 100%;
 }
 
-.getChkMsg_btn {
+#getChkMsg_btn {
   width: 100%;
-  padding: 24px;
-  background: #4dbbff;
-  color: #fff;
+  padding: 26px;
   outline: none;
-  border: none;
   font-size: 16px;
   line-height: 11px;
-  cursor: pointer;
 }
 
-.chkNumBar {
+#chkNumBar {
   margin-top: 10px;
 }
 
