@@ -20,7 +20,9 @@
 .inside{
     padding: 30px;
 }
-
+.inside a:hover{
+	color: var(--hover-color);
+}
 .inside h2{
     color:#696969;
     font-weight: 100;

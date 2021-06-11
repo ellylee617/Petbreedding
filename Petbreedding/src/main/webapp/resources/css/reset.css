@@ -48,6 +48,7 @@ body{
     width: 1130px;
     padding-bottom: 250px;
     margin: 100px auto;
+    overflow:hidden;
 }
 
 /*ul 왼쪽 공백 padding 없애기*/
@@ -76,6 +77,14 @@ a {
 }
 .basicBtn:hover{
 	background-color : var(--hover-color);
+}
+
+/*기본 input text class입니다! (로그인 화면 기준)*/
+.basicTextInput {
+  width: 600px;
+  padding: 20px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
 

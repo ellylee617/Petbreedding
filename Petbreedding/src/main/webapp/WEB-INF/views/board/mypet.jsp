@@ -26,8 +26,8 @@
             <img src="http://placehold.it/250x150"/>
             <div class="petname"><a href="petdetail">또비</a></div>
             <div class="btnwrap">
-            <button class="btn"><a href="#">수정</a></button>
-            <button class="btn"><a href="#">삭제</a></button>
+            <button class="btn basicBtn"><a href="#">수정</a></button>
+            <button class="btn basicBtn"><a href="#">삭제</a></button>
         </div>
         </div>
         <div class="petrow">

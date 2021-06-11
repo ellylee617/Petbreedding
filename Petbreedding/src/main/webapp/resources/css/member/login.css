@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-input {
-  width: 600px;
-  height: 70px;
-  box-sizing: border-box;
-  font-size: 20px;
-  margin-top: 20px;
-}
-
 .loginContainer {
   display: flex;
   justify-content: center;
@@ -33,16 +25,18 @@ input {
   box-sizing: border-box;
 }
 
-.nomalLogin {
-  width: 600px;
-  height: 70px;
+.idPwBar {
   box-sizing: border-box;
-  font-size: 20px;
   margin-top: 20px;
-  border: 0px;
+}
+
+#nomalLogin {
+  width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-top: 20px;
   border-radius: 10px;
-  color: #fff;
-  background: #4dbbff;
 }
 
 .snsLogin {
@@ -62,14 +56,18 @@ input {
 }
 
 .searchIdPw_container a:visited {
-  color: black;
-  background: black;
+  color: var(--main-color);
+  background: var(--main-color);
 }
 
 .searchIdPw_container a {
-  color: black;
+  color: var(--main-color);
   text-decoration: none;
   margin-top: 20px;
+}
+
+#searchIdPw {
+	cursor: pointer;
 }
 
 /* The Modal (background) */
@@ -91,7 +89,7 @@ input {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 40px;
-  border: 1px solid #888;
+  border: 1px solid var(--border-color);
   width: 50%; /* Could be more or less, depending on screen size */
 }
 
@@ -114,7 +112,7 @@ input {
   padding: 10px 50px;
   text-align: center;
   font-size: 14px;
-  border: 1px solid #888;
+  border: 1px solid var(--main-color);
   cursor: pointer;
 }
 
@@ -123,12 +121,12 @@ input {
 }
 
 .searchLi:hover {
-  background: #ff9914;
-  color: #fff;
+  background: var(--hover-color);
+  color: var(--font-color);
   border: none;
 }
 
-.idPwBar {
+.model_idPwBar {
   width: 330px;
   height: 40px;
   display: block;
@@ -144,16 +142,11 @@ input {
   align-items: center;
 }
 
-.searchBtn {
+#searchBtn {
   width: 160px;
   height: 40px;
-  border: none;
   border-radius: 10px;
-  outline: none;
   margin-top: 20px;
-  cursor: pointer;
-  color: #fff;
-  background: #4dbbff;
 }
 
 #modalExit {

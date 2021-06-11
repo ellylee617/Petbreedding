@@ -6,23 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petbreedding::Login Page</title>
+<title>Petbreedding::로그인</title>
 <link href="${path}/resources/css/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/member/login.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(function () {
-            $("#searchIdPw").click(function () {
-                $("#modal").show();
-            });
-
-            $("#modalExit").click(function () {
-                $('.searchModal_Container').hide();
-            });
-        });
-    </script>
 </head>
 <body>
 
@@ -42,9 +31,9 @@
                             <form action="">
 
                                 <div class="searchBtn_container">
-                                    <input type="text" class="idPwBar" placeholder="이메일을 입력해주세요">
-                                    <input type="text" class="idPwBar" placeholder="등록하신 핸드폰 번호를 입력해주세요">
-                                    <button type="button" class="searchBtn">찾기</button>
+                                    <input type="text" class="model_idPwBar" placeholder="이메일을 입력해주세요">
+                                    <input type="text" class="model_idPwBar" placeholder="등록하신 핸드폰 번호를 입력해주세요">
+                                    <button type="button" id="searchBtn" class="basicBtn">찾기</button>
                                 </div>
 
                             </form>
@@ -57,9 +46,9 @@
 
         <section class="section">
             <form id="loginFrm" class="loginFrm">
-                <input type="text" placeholder="아이디">
-                <input type="text" placeholder="비밀번호">
-                <button class="nomalLogin" type="button">로그인</button>
+                <input type="text" placeholder="아이디" class="basicTextInput idPwBar">
+                <input type="text" placeholder="비밀번호" class="basicTextInput idPwBar">
+                <button id="nomalLogin" class="basicBtn" type="button">로그인</button>
                 <p class="txt_or">또는</p>
                 <button class="snsLogin" type="button">
                     <img src="<%=request.getContextPath() %>/resources/images/KakaoTalk_login.png" alt="img" />
@@ -68,14 +57,16 @@
                     <img src="${pageContext.request.contextPath}/resources/images/naver_login.png" alt="img" />
                 </button>
                 <div class="searchIdPw_container">
-                    <p id="searchIdPw">아이디/비밀번호 찾기</p>
-                    <a href="/join" id="join">회원가입</a>
+                    <p id="searchIdPw" class="joLoText">아이디/비밀번호 찾기</p>
+                    <a href="join" id="join" class="joLoText">회원가입</a>
                 </div>
             </form>
         </section>
 		<jsp:include page="../footer.jsp" />
     </div>
-
-<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	
+	<!-- 자바스크립트 -->
+	<script type="text/javascript" src="${path}/resources/js/login.js"></script>
+	<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </body>
 </html>
