@@ -22,6 +22,7 @@ ul {
     --font-color:#fff;  /*버튼 기본 폰트색상*/
     --trhover-color: #a5e6fc; /*tr호버컬러*/
     --border-color:#aaa; /*박스 컬러*/
+    --bmenu-color: #030e2e; /*비즈니스 aside 호버컬러*/
 }
 html,body{
     height: 100% ;
