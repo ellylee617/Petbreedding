@@ -78,6 +78,11 @@ public class BoardController {
 	public String myboard(Locale locale, Model model) {
 		return "/mypage/myboard";
 	}
+	@RequestMapping(value = "/myreply", method = RequestMethod.GET)
+	public String myreply(Locale locale, Model model) {
+		return "/mypage/myreply";
+	}
+	
 	
 	
 	

@@ -1,7 +1,6 @@
-
-/*내가 쓴글 */
 .myboardhead{
-    margin-bottom: 50px !important;
+    margin-bottom: 30px;
+    margin-left:30px;
 }
 .myboardhead h1{
     padding-left: 50px;
@@ -43,4 +42,14 @@
    .myboardrow{
        float: right;
    }
+   .basicBtn{
+    width: 80px;
+    height: 35px;
+    border-radius: 10px;
+   
+  }
+  .basicBtn a{
+      color: #fff;
+      font-family: "GmarketM"
+  }
 

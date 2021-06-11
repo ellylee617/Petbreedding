@@ -2,13 +2,13 @@
 .myPageAside{
     display: block;
     float: left;
-    padding-bottom:250px;
+    margin : 20px;
 }
 .divborder{
     border: 1px #aaa solid;
     border-collapse: collapse;
     width: 180px;
-    padding: 0px 20px;
+      padding : 20px
 }
 .myPageAside label{
     font-size: 15px;
@@ -39,4 +39,8 @@
 .pageTitle{
     text-align: left;
     font-size: 23px;
+}
+/* 네비 옆 페이지 공용 css */
+.mcontent{
+    padding-left:270px;
 }

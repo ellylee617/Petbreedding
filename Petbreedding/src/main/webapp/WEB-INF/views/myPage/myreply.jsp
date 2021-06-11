@@ -23,29 +23,29 @@
   <section class="section">
   <jsp:include page="myPageAside.jsp"/>
   <div class="myboardhead">
-        <h1>내가 쓴 글</h1>
+        <h1>내가 쓴 댓글</h1>
         <table class="myboard">
             <thead>
             <tr>
               <th scope="cols" width="200px"><input type="checkbox"  value='selectall'
                 onclick='selectAll(this)'>전체선택</th>
-              <th scope="cols"  width="1700px">제목</th>
+              <th scope="cols"  width="1200px">제목</th>
+              <th scope="cols" width="600px"></th>
               <th scope="cols" width="200px">작성일</th>
-              <th scope="cols" width="200px">조회수</th>
             </tr>
             </thead>
             <tbody>
             <tr>
               <td><input type="checkbox" name="board"></td>
               <td>살찌면 뒷목살도 접히나요?</td>
-              <td>2021-06-10</td>
-              <td>3</td>
+              <td><a href="#">원문보기▶</a></td>
+              <td>2021-06-11</td>
             </tr>
             <tr>
                 <td><input type="checkbox" name="board"></td>
                 <td>살찌면 뒷목살도 접히나요?</td>
-                <td>2021-06-10</td>
-                <td>3</td>
+                <td><a href="#">원문보기▶</a></td>
+                <td>2021-06-11</td>
               </tr>
             </tbody>
           </table>
