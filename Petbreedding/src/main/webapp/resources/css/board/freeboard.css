@@ -61,15 +61,12 @@
   .writebtn{
     width: 100px;
     height: 40px;
-    background: #4dbbff;
-    border: none;
     border-radius: 10px;
   }
   .writebtn a{
     color: #fff;
     font-size: 15px;
     font-family: "GmarketB";
-    src: url("../font/GmarketSansTTFBold.ttf");
   }
 
   /*SEARCH2*/
@@ -86,10 +83,7 @@
 	float: left;
 	text-align: left;
 	clear: both;
-	font-family: 'GmarketSansMedium';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-		format('woff');
+	font-family: 'GmarketM';
 	font-weight: normal;
 	font-style: normal;
     border-radius: 8px;

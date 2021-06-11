@@ -40,7 +40,7 @@
 		</form> -->
         </div>
              <div class="write">
-                <button class="writebtn"><a href="#">글쓰기</a></button>
+                <button class="writebtn basicBtn"><a href="#">글쓰기</a></button>
               </div>  
               <div class="boardlist">
                 <div class="subdiv">

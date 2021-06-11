@@ -64,15 +64,22 @@
     
    
 }
+.replycon{
+	width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+	
+}
 .reply .replycon input{
-    width: 90%;
+    width: 80%;
     height: 50px;
     float: left;
 }
 #submitbtn{
     width: 9%;
-    float: right;
+    float: left;
     border-radius: 10px;
     font-size: 13px;
+    margin-left: 30px;
 }
 

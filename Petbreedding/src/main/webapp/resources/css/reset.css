@@ -48,6 +48,7 @@ body{
     width: 1130px;
     padding-bottom: 250px;
     margin: 100px auto;
+    overflow:hidden;
 }
 
 /*ul 왼쪽 공백 padding 없애기*/
