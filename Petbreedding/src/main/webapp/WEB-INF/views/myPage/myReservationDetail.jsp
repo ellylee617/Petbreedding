@@ -13,9 +13,9 @@
 	type="text/css">
 <link href="${path}/resources/css/footer.css" rel="stylesheet"
 	type="text/css">
-<link href="${path}/resources/css/myPage/myPageAside.css"
+<link href="${path}/resources/css/mypage/myPageAside.css"
 	rel="stylesheet" type="text/css">
-<link href="${path}/resources/css/myPage/myReservationDetail.css"
+<link href="${path}/resources/css/mypage/myReservationDetail.css"
 	rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"
 	crossorigin="anonymous"></script>
