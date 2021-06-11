@@ -6,18 +6,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petbreedding::로그인</title>
+<title>Petbreedding::펫브리띵 사장님</title>
 <link href="${path}/resources/css/reset.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/header.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/bheader.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/member/login.css" rel="stylesheet" type="text/css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="${path}/resources/css/member/bLogin.css" rel="stylesheet" type="text/css" >
+<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
-
-    <div class="wrapper">
-		<jsp:include page="../header.jsp" />
-        <!--MODAL-->
+	<div class="wrapper">
+		<jsp:include page="../bheader.jsp" />
+        <section class="section">
+            <div class="loginBox">
+                <img class="IDlogo" src="${pageContext.request.contextPath}/resources/images/logo.png">
+                <form>
+                    <label>아이디</label>
+                    <input type="text" id="bId" class="inputArea" placeholder="아이디를 입력해주세요">
+                    <label>비밀번호</label>
+                    <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호를 입력해주세요">
+                    <input type="submit" class="basicBtn" id="loginBtn" value="로그인" src="#">
+                </form>
+                <span id="searchIdPw">아이디/비밀번호 찾기</span>
+            </div>
+        </section>
+		<jsp:include page="../footer.jsp" />
+		
+		<!--MODAL-->
         <div id="modal" class="searchModal_Container">
             <div class="searchModal_box">
                 <div class="searchModal_content">
@@ -49,30 +64,12 @@
                 <i class="fas fa-times fa-lg" id="modalExit"></i>
             </div>
         </div>
-
-        <section class="section">
-            <form id="loginFrm" class="loginFrm">
-                <input type="text" placeholder="아이디" class="basicTextInput idPwBar">
-                <input type="text" placeholder="비밀번호" class="basicTextInput idPwBar">
-                <button id="nomalLogin" class="basicBtn" type="button">로그인</button>
-                <p class="txt_or">또는</p>
-                <button class="snsLogin" type="button">
-                    <img src="<%=request.getContextPath() %>/resources/images/KakaoTalk_login.png" alt="img" />
-                </button>
-                <button class="snsLogin naverLogin" type="button">
-                    <img src="${pageContext.request.contextPath}/resources/images/naver_login.png" alt="img" />
-                </button>
-                <div class="searchIdPw_container">
-                    <p id="searchIdPw" class="joLoText">아이디/비밀번호 찾기</p>
-                    <a href="join" id="join" class="joLoText">회원가입</a>
-                </div>
-            </form>
-        </section>
-		<jsp:include page="../footer.jsp" />
-    </div>
-	
-	<!-- 자바스크립트 -->
-	<script type="text/javascript" src="${path}/resources/js/login.js"></script>
-	<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+		
+		
+		
+		
+	</div>	
+	<!-- script -->
+	<script type="text/javascript" src="${path}/resources/js/member/bLogin.js"></script>
 </body>
 </html>

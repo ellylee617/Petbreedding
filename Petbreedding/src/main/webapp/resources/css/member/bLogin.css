@@ -1,74 +1,42 @@
 @charset "UTF-8";
-
-.loginContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.loginBox{
+    width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.IDlogo{
+    width: 260px;
+    margin: 0 auto;
+    display: block;
+}
+.loginBox label{
+    padding-left: 180px;
+}
+.loginBox input{
+    display: block;
+    width: 400px;
+    padding: 20px;
+    margin: 0 auto;
+}
+.loginBox .inputArea{
+    margin-bottom: 10px;
 }
 
-.loginFrm {
-  width: 600px;
-  margin: 0 auto;
+#loginBtn{
+    margin-top: 30px;
+    font-size: 16px;
+    border-radius: 10px;
 }
 
-.loginFrm p {
-  display: flex;
-  flex-direction: row;
+#searchIdPw{
+    cursor: pointer;
+    padding-top: 20px;
+    display: inline-block;
+    float: right;
+    margin-right: 170px;
+    font-size: 14px;
 }
 
-.loginFrm p:before,
-.loginFrm p:after {
-  content: "";
-  flex: 1 1;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-  margin: auto;
-  box-sizing: border-box;
-}
-
-.idPwBar {
-  box-sizing: border-box;
-  margin-top: 20px;
-}
-
-#nomalLogin {
-  width: 600px;
-  padding: 20px;
-  box-sizing: border-box;
-  font-size: 16px;
-  margin-top: 20px;
-  border-radius: 10px;
-}
-
-.snsLogin {
-  border: 0px;
-  outline: none;
-  background: none;
-  padding: 0px;
-}
-
-.naverLogin {
-  margin-top: 10px;
-}
-
-.searchIdPw_container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.searchIdPw_container a:visited {
-  color: var(--main-color);
-  background: var(--main-color);
-}
-
-.searchIdPw_container a {
-  color: var(--main-color);
-  text-decoration: none;
-  margin-top: 20px;
-}
-
-#searchIdPw {
-	cursor: pointer;
-}
 
 /* MODAl */
 /* The Modal (background) */
@@ -178,4 +146,3 @@
     display: block;
     border-radius: 10px;
   }
-
