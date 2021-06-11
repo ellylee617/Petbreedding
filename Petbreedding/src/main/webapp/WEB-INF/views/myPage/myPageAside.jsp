@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
-	<link href="${path}/resources/css/mypage/myPageAside.css" rel="stylesheet" type="text/css">
 <aside class="myPageAside">
 	<div class="divborder">
 		<br>
@@ -31,8 +28,8 @@
 			<label>나의 활동</label>
 			<br>
 			<br>
-			<a href="myboard"><li>- 내가 쓴 글</li></a>
-			<a href="myreply"><li>- 내가 쓴 댓글</li></a>
+			<a href="#"><li>- 내가 쓴 글</li></a>
+			<a href="#"><li>- 내가 쓴 댓글</li></a>
 			<a href="#"><li>- 1:1문의</li></a>
 			<a href="#"><li>- 채팅 내역</li></a>
 			<a href="#"><li>- 알림 내역</li></a>

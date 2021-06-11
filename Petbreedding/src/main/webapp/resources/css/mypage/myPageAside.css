@@ -8,7 +8,7 @@
     border: 1px #aaa solid;
     border-collapse: collapse;
     width: 180px;
-      padding : 20px
+   	padding : 20px
 }
 .myPageAside label{
     font-size: 15px;
@@ -32,15 +32,11 @@
 
 /* 네비 옆 페이지 공용 css */
 .mcontent{
-    padding-left:250px;
+    padding-left:270px;
 }
 
 /* 타이틀 */
 .pageTitle{
     text-align: left;
     font-size: 23px;
-}
-/* 네비 옆 페이지 공용 css */
-.mcontent{
-    padding-left:270px;
 }
