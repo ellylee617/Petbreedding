@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/board/mypetRegister.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/mypage/myPageAside.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -25,20 +26,22 @@
                 <table class="petInfo_container">
                     <tr>
                         <td colspan="2">
-                            <img src="${path}/resources/images/logo.png" alt="img">
+                            <div class="img_container">
+                                <img src="#" alt="강아지 사진" class="m_20">
+                            </div>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="text" placeholder="이름을 입력해주세요" class="basicTextInput">
+                            <input type="text" placeholder="이름을 입력해주세요" class="basicTextInput m_20">
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <select name="selectPet" id="selectPet" class="selectBox">
+                            <select name="selectPet" id="selectPet" class="selectBox m_20">
                                 <option value="견종">견종</option>
                                 <option value="푸들">푸들</option>
                                 <option value="말티즈">말티즈</option>
@@ -65,26 +68,27 @@
                         <td colspan="2">
                             <select name="YEAR" id="YEAR" title="년도" class="selectBox selectTime"></select>
                             <select name="MONTH" id="MONTH" title="월" class="selectBox selectTime"></select>
-                            <select name="DATE" id="DATE" title="일" class="selectBox selectTime"></select>
+                            <select name="DATE" id="DATE" title="일" class="selectBox selectTime m_20"></select>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2" class="radioBox">
                             <ul>
+                                
                                 <li class="genderList">
+                                    <input type="radio" id="male" name="gender" value="male">
                                     <label for="male">남아</label><br>
                                 </li>
                                 <li class="genderList">
+                                    <input type="radio" id="female" name="gender" value="female">
                                     <label for="female">여아</label><br>
                                 </li>
-                                <li class="genderList list_neut">
+                                <li class="genderList list_neut m_20">
+                                    <input type="radio" id="neutrality" name="gender" value="neutrality">
                                     <label for="neutrality">중성화</label>
                                 </li>
                             </ul>
-                            <input type="radio" id="male" name="gender" value="male">
-                            <input type="radio" id="female" name="gender" value="female">
-                            <input type="radio" id="neutrality" name="gender" value="neutrality">
                         </td>
                     </tr>
 
@@ -96,7 +100,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <select name="selectBeautyEx" id="selectBeautyEx" class="selectBox">
+                            <select name="selectBeautyEx" id="selectBeautyEx" class="selectBox m_20">
                                 <option value="선택">선택</option>
                                 <option value="없음">없음</option>
                                 <option value="1회">1회</option>
@@ -113,7 +117,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <select name="selectInjectionEx" id="selectInjectionEx" class="selectBox">
+                            <select name="selectInjectionEx" id="selectInjectionEx" class="selectBox m_20">
                                 <option value="선택">선택</option>
                                 <option value="2차 이하">2차 이하</option>
                                 <option value="3차 완료">3차 완료</option>
@@ -130,7 +134,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <select name="selectBite" id="selectBite" class="selectBox">
+                            <select name="selectBite" id="selectBite" class="selectBox m_20">
                                 <option value="선택">선택</option>
                                 <option value="안해요">안해요</option>
                                 <option value="해요">해요</option>
@@ -158,7 +162,7 @@
                                 <li class="hateList">
                                     <label for="ear">귀</label><br>
                                 </li>
-                                <li class="hateList hateListL">
+                                <li class="hateList hateListL m_20">
                                     <label for="neck">목</label><br>
                                 </li>
 
@@ -175,7 +179,7 @@
                                 <li class="hateList">
                                     <label for="it">생식기</label>
                                 </li>
-                                <li class="hateList hateListL">
+                                <li class="hateList hateListL m_20">
                                     <label for="none">없음</label>
                                 </li>
 
@@ -200,8 +204,13 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <select name="selectKneecap" id="selectKneecap" class="selectBox">
-                                <option value="푸들">푸들</option>
+                            <select name="selectKneecap" id="selectKneecap" class="selectBox m_20">
+                                <option value="선택">선택</option>
+                                <option value="없음">없음</option>
+                                <option value="1기">1기</option>
+                                <option value="2기">2기</option>
+                                <option value="3기">3기</option>
+                                <option value="4기">4기</option>
                             </select>
                         </td>
                     </tr>
@@ -223,7 +232,7 @@
                                 <li class="otherslist">
                                     <label for="marking">마킹</label>
                                 </li>
-                                <li class="otherslist otherslistL">
+                                <li class="otherslist otherslistL m_10">
                                     <label for="moutinung">마운팅</label>
                                 </li>
                             </ul>
@@ -235,7 +244,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput">
+                            <input type="text" class="basicTextInput perInfo_text m_20">
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
                     </tr>
