@@ -10,12 +10,9 @@
 input::placeholder {
 	font-family: "GmarketM";
 }
-body * {
-  font-family: "GmarketM";
-  box-sizing: border-box;
-}
+
 ul {
-  margin-top: 0;
+  
 }
 /* 컬러는 여기서 선택해 가세요 */
 :root {
@@ -37,6 +34,7 @@ body{
     text-decoration: none;
     list-style: none;
     font-family: "GmarketM";
+    box-sizing: border-box;
 }
 /*전체 가운데 정렬*/
 .wrapper{
@@ -57,6 +55,7 @@ body{
 
 /*ul 왼쪽 공백 padding 없애기*/
 ul {
+	margin-top: 0;
     -webkit-padding-start: 0px;
 }
 ul li {   
