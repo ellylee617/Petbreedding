@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+input {
+  width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+td li {
+  float: left;
+  box-sizing: border-box;
+  margin-bottom: 32px;
+  width: 200px;
+}
+
+td ul {
+  box-sizing: border-box;
+}
+
+label {
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+}
+
+label:hover {
+  color: var(--font-color);
+  background: var(--hover-color);
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked {
+  color: var(--font-color);
+  background: var(--hover-color);
+}
+
+select {
+  margin-bottom: 20px;
+  width: 600px;
+  height: 30px;
+  border-radius: 0px;
+  border-color: var(--border-color);
+}
+
+td span {
+  text-align: left;
+  font-size: 10px;
+  font-weight: bold;
+  display: block;
+}
+
+#petImgBox {
+  margin-bottom: 25px;
+}
+
+.petInfoBox {
+  margin-bottom: 239px;
+}
+
+.genderList {
+  width: 200px;
+  margin-right: 10px;
+}
+
+.hateList1 {
+  padding: 10px 33.3px;
+  margin-right: 10px;
+}
+
+.hateList2 {
+  padding: 10px 24.1px;
+  margin-right: 10px;
+}
+
+.otherslist {
+  padding: 10px 29.7px;
+  margin-right: 10px;
+}
+
+.selectTime {
+  width: 150.3px;
+  height: 30px;
+}
+
+.petInfoRgs {
+  width: 600px;
+  height: 50px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border: 0px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+  background: #4dbbff;
+}
+
+.errorMsg {
+  margin: 0px;
+  padding: 10px 0;
+  display: none;
+}

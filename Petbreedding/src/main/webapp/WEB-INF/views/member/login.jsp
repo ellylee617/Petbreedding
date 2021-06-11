@@ -51,10 +51,10 @@
                 <button id="nomalLogin" class="basicBtn" type="button">로그인</button>
                 <p class="txt_or">또는</p>
                 <button class="snsLogin" type="button">
-                    <img src="<%=request.getContextPath() %>/resources/images/KakaoTalk_login.png" alt="img" />
+                    <img src="${path}/resources/images/KakaoTalk_login.png" alt="img" />
                 </button>
                 <button class="snsLogin naverLogin" type="button">
-                    <img src="${pageContext.request.contextPath}/resources/images/naver_login.png" alt="img" />
+                    <img src="${path}/resources/images/naver_login.png" alt="img" />
                 </button>
                 <div class="searchIdPw_container">
                     <p id="searchIdPw" class="joLoText">아이디/비밀번호 찾기</p>
@@ -66,7 +66,7 @@
     </div>
 	
 	<!-- 자바스크립트 -->
-	<script type="text/javascript" src="${path}/resources/js/login.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/member/login.js"></script>
 	<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </body>
 </html>

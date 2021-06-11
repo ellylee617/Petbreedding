@@ -73,6 +73,10 @@ public class BoardController {
 	public String mypet(Locale locale, Model model) {
 		return "/board/mypet";
 	}
+	@RequestMapping(value = "/mypetRegister", method = RequestMethod.GET)
+	public String mypetRegister(Locale locale, Model model) {
+		return "/board/mypetRegister";
+	}
 	
 	
 	
