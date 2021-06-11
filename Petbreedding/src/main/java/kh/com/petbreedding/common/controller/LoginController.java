@@ -36,6 +36,24 @@ public class LoginController {
 		return "/member/login";
 	}
 	
+	//  사장님로그인 페이지로 이동
+	@RequestMapping(value = "/blogin", method = RequestMethod.GET)
+	public String openbLogin(Locale locale, Model model) {
+		
+		// TODO Auto-generated method stub
+		return "/member/bLogin";
+	}
+	
+	//  사장님회원가입 페이지로 이동
+	@RequestMapping(value = "/bJoin", method = RequestMethod.GET)
+	public String bJoin(Locale locale, Model model) {
+		
+		// TODO Auto-generated method stub
+		return "/member/bJoin";
+	}
+	
+	
+	
 	// 로그인 처리
 	@RequestMapping("/member/login")
 	public String login(Client client, HttpSession session ,HttpServletResponse response) {
