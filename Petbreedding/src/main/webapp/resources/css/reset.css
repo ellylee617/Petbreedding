@@ -47,6 +47,7 @@ body{
 .section{
     width: 1130px;
     padding-bottom: 250px;
+    margin: 100px auto;
 }
 
 /*ul 왼쪽 공백 padding 없애기*/
@@ -63,6 +64,22 @@ a {
 /* a:visited{
     color: var(--main-color);
 } */
+
+
+/*버튼의 기본은 여기에 들어있습니다. border-radius랑 width padding만 알아서 설정해주세요*/
+.basicBtn{
+	background-color : var(--button-color);
+	color : var(--font-color);
+	outline: none;
+	border:none;
+	cursor:pointer;
+}
+.basicBtn:hover{
+	background-color : var(--hover-color);
+}
+
+
+
 
 /*TOP 버튼*/
 #MOVE_TOP_BTN {

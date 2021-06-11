@@ -33,9 +33,9 @@
 
                 </p>
 
-                <button class="backbtn">목록</button>
-                <button class="modifybtn">수정</button>
-                <button class="delbtn">삭제</button>
+                <button class="backbtn basicBtn">목록</button>
+                <button class="modifybtn basicBtn">수정</button>
+                <button class="delbtn basicBtn">삭제</button>
             </div>
         </div>
         <div class="reply">
@@ -44,7 +44,7 @@
                     <div class="replycon">
                
                  <input type="text" >
-                <input type="submit" id="submitbtn" value="등록"> 
+                <input type="submit" id="submitbtn" class="basicBtn" value="등록"> 
                     </div>    
             </form>
                 <!--AJAX로 댓글 구현 -->
