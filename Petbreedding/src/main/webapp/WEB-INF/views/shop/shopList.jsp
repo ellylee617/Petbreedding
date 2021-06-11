@@ -114,7 +114,7 @@
 	</div>
 	
 	 <!-- script -->
-     <script type="text/javascript" src="${path}/resources/js/shop/salonList.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/shop/shopList.js"></script>
      <script type="text/javascript" src="${path}/resources/js/topBtn.js"></script>
 </body>
 </html>
