@@ -14,47 +14,59 @@ public class ClientInfoCotroller {
 
 	@Autowired
 	private ClientInfoService clientInfoService;
-	
+
 	// 예약조회
 	@RequestMapping("/mypage")
 	public String myReservationList(HttpSession session) {
 		return "myPage/myReservationList";
 	}
-	
+
 	// 예약 자세히 보기
 	@RequestMapping("/mypage/reservationdetail")
 	public String myReservationDetail(HttpSession session) {
 		return "myPage/myReservationDetail";
 	}
-	
+
 	// 포인트내역
-		@RequestMapping("/mypage/point")
-		public String point(HttpSession session) {
-			return "myPage/point";
-		}
-	
+	@RequestMapping("/mypage/point")
+	public String point(HttpSession session) {
+		return "myPage/point";
+	}
+
+	// 1:1 문의 내역
+	@RequestMapping("/mypage/ask")
+	public String ask(HttpSession session) {
+		return "myPage/myAsk";
+	}
+
+	// 1:1 문의 자세히 보기
+	@RequestMapping("/mypage/askdetail")
+	public String askDetail(HttpSession session) {
+		return "myPage/myAskDetail";
+	}
+
 	// 회원 정보 불러오기
 	@RequestMapping("/mypage/selectClienInfo")
 	public String selectClientInfo(HttpSession session) {
-		
+
 		return null;
-		
+
 	}
-	
-	//	회원 정보 수정 
+
+	// 회원 정보 수정
 	@RequestMapping("mypage/updateClientInfo")
 	public String updateClientInfo(Client client, HttpSession session) {
-		
-		//TODO
+
 		return null;
-		
-	} 
+
+	}
+
 	@RequestMapping("mypage/deleteClient")
-	//	회원 탈퇴
+	// 회원 탈퇴
 	public String deleteClient(String cl_num, HttpSession session) {
-		
-		//TODO
+
+		// TODO
 		return null;
-		
+
 	}
 }
