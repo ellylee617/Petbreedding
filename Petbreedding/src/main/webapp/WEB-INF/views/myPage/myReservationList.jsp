@@ -13,11 +13,10 @@
 	type="text/css">
 <link href="${path}/resources/css/footer.css" rel="stylesheet"
 	type="text/css">
-<link href="${path}/resources/css/mypage/myPageAside.css"
+<link href="${path}/resources/css/myPage/myPageAside.css"
 	rel="stylesheet" type="text/css">
-<link href="${path}/resources/css/mypage/myReservationList.css"
+<link href="${path}/resources/css/myPage/myReservationList.css"
 	rel="stylesheet" type="text/css">
-	
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -38,14 +37,16 @@
 					<p class="presult presultth">0</p>
 					<p class="presult presultend">4</p>
 				</div>
+				<br>
 				<p class="pageTitle">예약 확인/조회</p>
+				<br>
 				<hr>
 				<table class="rtable">
 					<tr>
 						<td class="tdstart">기간별 조회</td>
 						<td><input type="date">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
 							type="date"></td>
-						<td class="tdend"><button type="button" class="rbutton">조회하기</button></td>
+						<td class="tdend"><button type="button rbtn" class="rbutton">조회하기</button></td>
 					</tr>
 				</table>
 				<hr>
