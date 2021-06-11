@@ -11,7 +11,11 @@ input::placeholder {
 	font-family: "GmarketM";
 }
 body * {
-	font-family: "GmarketM";
+  font-family: "GmarketM";
+  box-sizing: border-box;
+}
+ul {
+  margin-top: 0;
 }
 /* 컬러는 여기서 선택해 가세요 */
 :root {
@@ -77,6 +81,14 @@ a {
 }
 .basicBtn:hover{
 	background-color : var(--hover-color);
+}
+
+/*기본 input text class입니다! (로그인 화면 기준)*/
+.basicTextInput {
+  width: 600px;
+  padding: 20px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
 
