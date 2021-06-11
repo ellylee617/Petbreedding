@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="loginContainer">
+        <section class="section">
             <form id="loginFrm" class="loginFrm">
                 <input type="text" placeholder="아이디">
                 <input type="text" placeholder="비밀번호">
@@ -72,7 +72,7 @@
                     <a href="/join" id="join">회원가입</a>
                 </div>
             </form>
-        </div>
+        </section>
 		<jsp:include page="../footer.jsp" />
     </div>
 
