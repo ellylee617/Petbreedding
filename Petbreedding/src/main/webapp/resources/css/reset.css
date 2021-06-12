@@ -7,13 +7,7 @@
     font-family: "GmarketM";
     src: url("../font/GmarketSansTTFMedium.ttf");
 }
-input::placeholder {
-	font-family: "GmarketM";
-}
 
-ul {
-  
-}
 /* 컬러는 여기서 선택해 가세요 */
 :root {
     --main-color: #000; /*기본 폰트색상*/
@@ -24,11 +18,11 @@ ul {
     --border-color:#aaa; /*박스 컬러*/
     --bmenu-color: #030e2e; /*비즈니스 aside 호버컬러*/
 }
-html,body{
+html,body {
     height: 100% ;
     min-height: 100% !important;
 }
-body{
+body * {
     position: relative;
     margin: 0;
     padding: 0;

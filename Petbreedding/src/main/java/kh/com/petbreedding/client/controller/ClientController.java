@@ -23,14 +23,14 @@ public class ClientController {
 	private ClientService clientService;
 	
 	//이메일 회원가입 페이지로 이동
-	@RequestMapping(value = "/ujoin", method = RequestMethod.GET)
+	@RequestMapping(value = "/uJoin", method = RequestMethod.GET)
 	public String openClientJoin(Locale locale, Model model) {
 		
 		return "/member/uJoin";
 	}
 	
 	//이메일 회원가입 처리
-	@RequestMapping(value = "/client/ujoin", method = RequestMethod.POST)
+	@RequestMapping(value = "/client/uJoin", method = RequestMethod.POST)
 	public String ClientJoin(Client client, HttpSession session) {
 		
 		//TODO
@@ -38,7 +38,7 @@ public class ClientController {
 		
 	}
 	
-	@RequestMapping(value = "/umodify", method = RequestMethod.GET)
+	@RequestMapping(value = "/uModify", method = RequestMethod.GET)
 	public String openClientModify(Locale locale, Model model) {
 		
 		return "/member/uModify";

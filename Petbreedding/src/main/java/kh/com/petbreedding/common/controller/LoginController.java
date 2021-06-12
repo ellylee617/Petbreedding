@@ -29,7 +29,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	//  로그인 페이지로 이동
-	@RequestMapping(value = "/ulogin", method = RequestMethod.GET)
+	@RequestMapping(value = "/uLogin", method = RequestMethod.GET)
 	public String openLogin(Locale locale, Model model) {
 		
 		// TODO Auto-generated method stub
@@ -37,40 +37,26 @@ public class LoginController {
 	}
 	
 	//  사장님로그인 페이지로 이동
-	@RequestMapping(value = "/blogin", method = RequestMethod.GET)
+	@RequestMapping(value = "/bLogin", method = RequestMethod.GET)
 	public String openbLogin(Locale locale, Model model) {
 		
 		// TODO Auto-generated method stub
 		return "/member/bLogin";
 	}
 	
-	//  사장님회원가입 페이지로 이동
-	@RequestMapping(value = "/bJoin", method = RequestMethod.GET)
-	public String bJoin(Locale locale, Model model) {
+	
+	
+	// 유저 로그인 처리
+	@RequestMapping("/member/doLoginU")
+	public String doLoginU(Client client, HttpSession session ,HttpServletResponse response) {
 		
 		// TODO Auto-generated method stub
-		return "/member/bJoin";
-	}
-	
-	// 사장님 승인 대기 페이지로 이동
-	@RequestMapping(value = "/bJoinSuccess", method = RequestMethod.GET)
-	public String bjoinSuccess(Locale locale, Model model) {
-		return "/member/bJoinSuccess";
+		return null;
 		
 	}
-	
-	// 사장님 제휴문의 대기 페이지로 이동
-	@RequestMapping(value = "/bWait", method = RequestMethod.GET)
-	public String bWait(Locale locale, Model model) {
-		return "/member/bWait";
-		
-	}
-	
-	
-	
-	// 로그인 처리
-	@RequestMapping("/member/login")
-	public String login(Client client, HttpSession session ,HttpServletResponse response) {
+	// 사업자 로그인 처리
+	@RequestMapping("/member/doLoginB")
+	public String doLoginB(Client client, HttpSession session ,HttpServletResponse response) {
 		
 		// TODO Auto-generated method stub
 		return null;

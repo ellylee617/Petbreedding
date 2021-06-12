@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petbreedding::펫브리띵</title>
+<title>Petbreedding::펫브리띵 사장님</title>
 <link href="${path}/resources/css/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >

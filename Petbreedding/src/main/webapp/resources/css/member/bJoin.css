@@ -17,7 +17,7 @@
     margin-bottom: 50px;
 }
 .joinFrm{
-    width: 450px;
+    width: 400px;
     margin: 0 auto;
 }
 .inputBox{
@@ -37,7 +37,7 @@
 }
 #hpConfirm,#hpConfirm2{
     width: 120px;
-    padding: 10px;
+    padding: 11px;
 }
 #hpConfirm2{
     display: none;
