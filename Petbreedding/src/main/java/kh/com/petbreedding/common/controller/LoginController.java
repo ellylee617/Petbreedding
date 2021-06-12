@@ -52,6 +52,20 @@ public class LoginController {
 		return "/member/bJoin";
 	}
 	
+	// 사장님 승인 대기 페이지로 이동
+	@RequestMapping(value = "/bJoinSuccess", method = RequestMethod.GET)
+	public String bjoinSuccess(Locale locale, Model model) {
+		return "/member/bJoinSuccess";
+		
+	}
+	
+	// 사장님 제휴문의 대기 페이지로 이동
+	@RequestMapping(value = "/bWait", method = RequestMethod.GET)
+	public String bWait(Locale locale, Model model) {
+		return "/member/bWait";
+		
+	}
+	
 	
 	
 	// 로그인 처리
