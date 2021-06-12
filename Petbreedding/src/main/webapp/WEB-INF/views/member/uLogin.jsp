@@ -10,7 +10,7 @@
 <link href="${path}/resources/css/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/member/login.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/member/uLogin.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>

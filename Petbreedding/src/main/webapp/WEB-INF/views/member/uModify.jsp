@@ -6,29 +6,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petbreedding::회원가입</title>
+<title>Insert title here</title>
 <link href="${path}/resources/css/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/member/join.css" rel="stylesheet" type="text/css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<link href="${path}/resources/css/member/uModify.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/mypage/myPageAside.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="wrapper">
+	    <div class="wrapper">
         <jsp:include page="../header.jsp" />
 
         <section class="section">
-            <form action="" id="joinFrm" class="joinFrm">
+        <jsp:include page="../myPage/myPageAside.jsp" />
+
+            <h1 class="updTitle">회원 정보 수정</h1>
+
+            <form action="" id="updFrm" class="updFrm">
                 <table>
+
                     <tr>
                         <td>
-                            <span>이메일</span>
+                            <span>이름</span>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput">
+                            <input type="text">
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
                     </tr>
@@ -40,7 +44,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput">
+                            <input type="text">
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
                     </tr>
@@ -52,19 +56,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput">
-                            <p class="errorMsg">에이작스 메세지</p>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <span>이름</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input type="text" class="basicTextInput">
+                            <input type="text">
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
                     </tr>
@@ -76,7 +68,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput">
+                            <input type="text">
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
                     </tr>
@@ -88,22 +80,22 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" placeholder="전화번호를 입력해주세요" class="getChkMsg_bar basicTextInput">
+                            <input type="text" placeholder="전화번호를 입력해주세요" class="getPhone_bar">
                         </td>
                         <td>
-                            <button type="button" id="getChkMsg_btn" class="basicBtn">인증번호 받기</button>
+                            <button type="button" class="updPhobe_btn">휴대폰 번호 변경</button>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td colspan="2">
-                            <input type="text" placeholder="인증번호를 입력하세요" id="chkNumBar" class="basicTextInput">
+                            <input type="text" placeholder="인증번호를 입력하세요" class="chkNumBar">
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
-                    </tr>
+                    </tr> -->
 
                     <tr>
                         <td colspan="2">
-                            <button id="joinBtn" class="basicBtn" type="button">가입하기</button>
+                            <button class="updBtn" type="button">수정하기</button>
                         </td>
                     </tr>
                 </table>

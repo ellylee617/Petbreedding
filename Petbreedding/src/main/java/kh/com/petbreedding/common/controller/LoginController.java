@@ -29,11 +29,11 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	//  로그인 페이지로 이동
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/ulogin", method = RequestMethod.GET)
 	public String openLogin(Locale locale, Model model) {
 		
 		// TODO Auto-generated method stub
-		return "/member/login";
+		return "/member/uLogin";
 	}
 	
 	//  사장님로그인 페이지로 이동

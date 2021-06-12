@@ -23,15 +23,30 @@ public class ClientController {
 	private ClientService clientService;
 	
 	//이메일 회원가입 페이지로 이동
-	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	@RequestMapping(value = "/ujoin", method = RequestMethod.GET)
 	public String openClientJoin(Locale locale, Model model) {
 		
-		return "/member/join";
+		return "/member/uJoin";
 	}
 	
 	//이메일 회원가입 처리
-	@RequestMapping(value = "/client/join", method = RequestMethod.POST)
+	@RequestMapping(value = "/client/ujoin", method = RequestMethod.POST)
 	public String ClientJoin(Client client, HttpSession session) {
+		
+		//TODO
+		return null;
+		
+	}
+	
+	@RequestMapping(value = "/umodify", method = RequestMethod.GET)
+	public String openClientModify(Locale locale, Model model) {
+		
+		return "/member/uModify";
+	}
+	
+	//유저 정보 수정 처리
+	@RequestMapping(value = "/client/modify", method = RequestMethod.POST)
+	public String ClientModify(Client client, HttpSession session) {
 		
 		//TODO
 		return null;
