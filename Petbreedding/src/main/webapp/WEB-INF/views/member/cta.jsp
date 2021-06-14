@@ -18,13 +18,15 @@
     <jsp:include page="../bheader.jsp" />
         <section class="section">
         <jsp:include page="../myPage/bAside.jsp" />
+        	
+        	<div class="bContent">
         	<form class="ctaFrm">
 	            <div class="viewBox">
 		            <p class="viewText fs20">울트라콜</p>
 	                <span class="viewText views fs20">잔여 조회수</span>
 	                <span class="viewText views fs24">0회</span>
 	            </div>
-	
+		
 	            <article class="aContainer">
 	                <div class="aBox">
 	                    <div>
@@ -93,9 +95,14 @@
 	                </div>
 	            </article>
         	</form>
+        	</div>
         </section>
         <jsp:include page="../footer.jsp" />
     </div>
+    
+    <!-- script -->
     <script src="https://kit.fontawesome.com/6a57affb8e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/mypage/bAside.js"></script>
 </body>
 </html>

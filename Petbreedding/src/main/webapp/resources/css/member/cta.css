@@ -19,13 +19,8 @@
   margin: 30px 30px;
 }
 
-.viewBox {
-	margin-left: 130px;
-}
-
 .viewText {
   line-height: 30px;
-  margin-left: 30px;
 }
 
 .views {
@@ -34,7 +29,6 @@
 
 .aContainer {
 	width: 900px;
-	margin-left: 160px;
 }
 
 .aBox {
