@@ -52,4 +52,10 @@ public class shopController {
 	public String bReservationDetail(Locale locale, Model model) {
 		return "/shop/bReservationDetail";
 	}
+	
+//사업자 화상채팅하기
+	@RequestMapping(value = "/bFaceChat", method = RequestMethod.GET)
+	public String bFaceChat(Locale locale, Model model) {
+		return "/shop/bFaceChat";
+	}
 }
