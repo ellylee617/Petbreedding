@@ -46,6 +46,11 @@ public class BPController {
 		
 	}
 	
-	
+	// 사장님 업체 정보 페이지로 이동
+		@RequestMapping(value = "/bShop", method = RequestMethod.GET)
+		public String bShop(Locale locale, Model model) {
+			return "/myPage/bShopInfo";
+			
+		}
 
 }
