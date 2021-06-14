@@ -28,8 +28,8 @@
 			<label>나의 활동</label>
 			<br>
 			<br>
-			<a href="#"><li>- 내가 쓴 글</li></a>
-			<a href="#"><li>- 내가 쓴 댓글</li></a>
+			<a href="myboard"><li>- 내가 쓴 글</li></a>
+			<a href="myreply"><li>- 내가 쓴 댓글</li></a>
 			<a href="#"><li>- 1:1문의</li></a>
 			<a href="#"><li>- 채팅 내역</li></a>
 			<a href="#"><li>- 알림 내역</li></a>
