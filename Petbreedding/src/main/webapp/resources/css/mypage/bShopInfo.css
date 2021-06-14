@@ -3,10 +3,12 @@
 	text-align: center;
 	margin: 0;
 }
+/*정보 입력 테이블 */
 .tblInfo{
 	width: 100%;
 	text-align: left;
 	padding : 0 250px;
+	font-weight: 600;
 }
 
 .tblInfo tr{
@@ -24,7 +26,15 @@
 .basicBtn{
 	width: 100px;
 	height: 30px;
+	font-weight: 900;
 }
+
+.othercolorBtn{
+	background: var(--font-color);
+	color: var(--main-color);
+	border: 1px solid #aaa;
+}
+/* 주휴일 체크박스 */
 .wrap {
 	display: inline-block;
 	position: relative;
@@ -48,7 +58,10 @@ input[type="checkbox"]:checked+label .dayitem{
 	background-color: var(--hover-color);
 }
 
+/* 등록하기 버튼*/
 .InfoRegi{
 	width: 200px;
 	height: 50px;
+	border-radius: 10px;
+	font-size: 16px;
 }
