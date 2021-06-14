@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* 어사이드 넓이 지정 */
+.bAside{
+    width: 100px;
+    box-sizing: border-box;
+    margin-top: -9999px;
+	margin-bottom: -9999px;
+	padding-top: 9999px;
+	padding-bottom: 9999px;
+    float: left;
+}
+.bAside .menu p {
+    margin-top: 5px;
+}
+.bMenu{
+    width: 100px;
+    float: left;
+}
+.bAside .menu{
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid var(--bmenu-color);
+    padding-top: 20px;
+}
+
+.bAside .menu:hover{
+    color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+
+.activeMenu{
+    color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+
+.bSideMenu{
+    width: 200px;
+    float: left;
+    border: 1px solid var(--bmenu-color);
+    min-height: 100% !important;
+    display: none;
+}
+.bBox{
+    width: 150px;
+    margin: 0 auto;
+}
+.bBox p {
+    font-size: 24px;
+}
+.bBox .bs{
+    cursor: pointer;
+    padding-bottom: 20px;
+}
+.bBox .bs:hover{
+    color: var(--hover-color);
+}
+.bmp{
+    margin-bottom: 20px;
+}
+
+/* bContent 넓이 지정 */
+.bContent {
+	overflow: hidden;
+    width: 950px;
+    margin-top: 30px;
+    padding-left: 30px;
+}
+
+
+/* section padding 다시 설정 */
+.section{
+    padding-bottom: 126px;
+}
