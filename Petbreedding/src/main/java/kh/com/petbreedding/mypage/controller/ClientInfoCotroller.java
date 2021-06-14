@@ -44,6 +44,12 @@ public class ClientInfoCotroller {
 	public String askDetail(HttpSession session) {
 		return "myPage/myAskDetail";
 	}
+	
+	// 내 찜 목록
+		@RequestMapping("/mypage/myzzim")
+		public String myZzim(HttpSession session) {
+			return "myPage/myzzim";
+		}
 
 	// 회원 정보 불러오기
 	@RequestMapping("/mypage/selectClienInfo")
