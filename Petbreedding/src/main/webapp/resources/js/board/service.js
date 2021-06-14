@@ -13,7 +13,7 @@ $(".que").click(function() {
  });
 });
 
-//myboard 전체선택
+// myboard 전체선택
 function selectAll(selectAll)  {
     const checkboxes 
          = document.getElementsByName('board');
@@ -22,3 +22,27 @@ function selectAll(selectAll)  {
       checkbox.checked = selectAll.checked;
     })
   }
+
+// bmenu
+function tableCreate(){
+	  var tc = new Array();
+	  var html = '';
+	        
+	  var menu = $("#menu").val();
+	  var price = $("#price").val();
+	        
+	  html += '<tr>';
+	  html += '<td>'+menu+'</td>';
+	  html += '<td>'+price+'</td>';
+	 
+	  html += '</tr>';
+	        
+	  $("#dynamicTable").append(html);
+	        
+	  $("#menu").val('');
+	  $("#price").val('');
+	  }
+
+	  function tableDelete(){
+	    $('#dynamicTable tbody tr:last').remove();
+	    }

@@ -1,25 +1,26 @@
 @charset "UTF-8";
 /* 어사이드 넓이 지정 */
 .bAside{
-    width: 110px;
+    width: 100px;
     box-sizing: border-box;
+    margin-top: -9999px;
+	margin-bottom: -9999px;
+	padding-top: 9999px;
+	padding-bottom: 9999px;
     float: left;
-    /* overflow: hidden; */
+    margin-right:30px;
 }
 .bAside .menu p {
     margin-top: 5px;
 }
 .bMenu{
-    border: 1px solid var(--bmenu-color);
-    /* height: 100% !important; */
     width: 100px;
     float: left;
-    box-sizing: border-box;
 }
 .bAside .menu{
     text-align: center;
     cursor: pointer;
-    border-bottom: 1px solid var(--bmenu-color);
+    border: 1px solid var(--bmenu-color);
     padding-top: 20px;
 }
 
@@ -27,8 +28,8 @@
     color: var(--font-color);
     background-color: var(--bmenu-color);
 }
-/* 메뉴 액티브상태 */
-.nowOn , .activeMenu{
+
+.activeMenu{
     color: var(--font-color);
     background-color: var(--bmenu-color);
 }
@@ -37,6 +38,7 @@
     width: 200px;
     float: left;
     border: 1px solid var(--bmenu-color);
+    min-height: 100% !important;
     display: none;
 }
 .bBox{
@@ -60,11 +62,13 @@
 /* bContent 넓이 지정 */
 .bContent {
 	overflow: hidden;
-    width: 990px;
+    width: 950px;
     margin-top: 30px;
     padding-left: 30px;
-    margin-left: 100px;
 }
 
 
 /* section padding 다시 설정 */
+.section{
+    padding-bottom: 126px;
+}
