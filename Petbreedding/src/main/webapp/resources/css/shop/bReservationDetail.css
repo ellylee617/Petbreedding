@@ -1,4 +1,7 @@
-@charset "UTF-8";
+.section{
+    padding-bottom: 200px;
+}
+
 /* 공통박스작업 */
 .infoBox{
     border: 1px solid var(--border-color);

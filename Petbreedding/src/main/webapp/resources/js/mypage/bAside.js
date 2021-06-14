@@ -30,8 +30,8 @@ $(".menu").on("click",function(){
     }
 
     if($(".menu").hasClass("activeMenu") == false){
-        $(".bAside").css("width","110px");
-        $(".bContent").css("width","990px");
+        $(".bAside").css("width","100px");
+        $(".bContent").css("width","950px");
     }else{
         $(".bAside").css("width","320px");
         $(".bContent").css("width","780px");

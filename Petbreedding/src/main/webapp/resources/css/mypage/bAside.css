@@ -3,12 +3,9 @@
 .bAside{
     width: 100px;
     box-sizing: border-box;
-    margin-top: -9999px;
-	margin-bottom: -9999px;
-	padding-top: 9999px;
-	padding-bottom: 9999px;
     float: left;
     margin-right:30px;
+    
 }
 .bAside .menu p {
     margin-top: 5px;
@@ -16,11 +13,12 @@
 .bMenu{
     width: 100px;
     float: left;
+    border: 1px solid var(--bmenu-color);
 }
 .bAside .menu{
     text-align: center;
     cursor: pointer;
-    border: 1px solid var(--bmenu-color);
+    border-bottom: 1px solid var(--bmenu-color);
     padding-top: 20px;
 }
 
@@ -29,7 +27,7 @@
     background-color: var(--bmenu-color);
 }
 
-.activeMenu{
+.nowOn,.activeMenu{
     color: var(--font-color);
     background-color: var(--bmenu-color);
 }
@@ -38,7 +36,6 @@
     width: 200px;
     float: left;
     border: 1px solid var(--bmenu-color);
-    min-height: 100% !important;
     display: none;
 }
 .bBox{
