@@ -10,8 +10,8 @@
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/reset.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/header.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/footer.css">
-<link type="text/css" rel="stylesheet" href="${path}/resources/css//mypage/bAside.css">
-<link type="text/css" rel="stylesheet" href="${path}/resources/css//mypage/bShopInfo.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/mypage/bAside.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/shop/bShopInfo.css">
 </head>
 <body>
 	<div class="wrapper">
