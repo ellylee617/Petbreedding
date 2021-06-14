@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.bContent {
+	width: 500px;
+	height: 100%;
+	margin: 0px;
+	padding: 50px 0px 0px 100px;
+}
+
+.fa-angle-down {
+	font-size: 20px;
+	float: right;
+}
+
+.fa-angle-up {
+	font-size: 20px;
+	float: right;
+}
+
+#down:hover, #up:hover {
+	cursor: pointer;
+	background-color:var(- -hover-color);;
+}
+
+#content {
+	width: 100%;
+	display: none;
+}

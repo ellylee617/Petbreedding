@@ -9,19 +9,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class BMyPageController {
-	
+
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
 	public String bMyPageUpdate(Locale locale, Model model) {
-		
+
 		// TODO Auto-generated method stub
 		return "/myPage/bMyPageUpdate";
-}
+	}
+	
+	// 사장님 마이 페이지 공지사항 
+	@RequestMapping(value = "/bNotice", method = RequestMethod.GET)
+	public String bNotice(Locale locale, Model model) {
+
+		// TODO Auto-generated method stub
+		return "/myPage/bNotice";
+	}
+
 	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
 	public String bMenu(Locale locale, Model model) {
-		
+
 		// TODO Auto-generated method stub
 		return "/myPage/bmenu_manage";
-}
+	}
 
 }
