@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function() {
 $(".que").click(function() {
     $(this).next(".anw").stop().slideToggle(300);
    $(this).toggleClass('on').siblings().removeClass('on');

@@ -11,6 +11,7 @@
 <link href="${path}/resources/css/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/mypage/myPageAside.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/mypage/myboard.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/mypage/paging.css" rel="stylesheet" type="text/css" >
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
