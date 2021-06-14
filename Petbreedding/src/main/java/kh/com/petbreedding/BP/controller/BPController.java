@@ -39,6 +39,13 @@ public class BPController {
 		
 	}
 	
+	// 울트라콜 상품 조회
+	@RequestMapping(value = "/cta", method = RequestMethod.GET)
+	public String cta(Locale locale, Model model) {
+		return "/member/cta";
+		
+	}
+	
 	
 
 }

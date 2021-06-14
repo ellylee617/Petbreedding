@@ -11,21 +11,33 @@
   margin-top: 10px;
 }
 
+.ctaFrm {
+	margin-bottom: 100px;
+}
+
 .viewInfo {
-  float: left;
   margin: 30px 30px;
+}
+
+.viewBox {
+	margin-left: 130px;
 }
 
 .viewText {
   line-height: 30px;
+  margin-left: 30px;
 }
 
-.viewBox {
-  display: block;
+.views {
+  margin-left: 60px;
+}
+
+.aContainer {
+	width: 900px;
+	margin-left: 160px;
 }
 
 .aBox {
-  clear: both;
   display: flex;
   justify-content: space-between;
   padding: 40px;
