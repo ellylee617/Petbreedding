@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* 공통박스작업 */
+.infoBox{
+    border: 1px solid var(--border-color);
+    width: 900px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+}
+.infoBox tr{
+    display: block;
+}
+.infoTitle{
+    margin-bottom: 20px;
+    
+}
+.info{
+    margin-bottom: 10px;
+}
+.info td:nth-child(1){
+    width: 80px;
+}
+
+.dogInfo{
+    margin-bottom: 100px;
+}
+.dogInfo tr td {
+    display: inline-block;
+    border-right: 1px solid var(--border-color);
+    padding-right: 10px;
+    margin-right: 10px;
+}

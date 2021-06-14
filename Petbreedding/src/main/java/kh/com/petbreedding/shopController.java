@@ -41,4 +41,15 @@ public class shopController {
 	public String successPay(Locale locale, Model model) {
 		return "/shop/successPay";
 	}
+	
+//	사업자 예약관리
+	@RequestMapping(value = "/bReservation", method = RequestMethod.GET)
+	public String bReservation(Locale locale, Model model) {
+		return "/shop/bReservation";
+	}
+//	사업자 예약확인
+	@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
+	public String bReservationDetail(Locale locale, Model model) {
+		return "/shop/bReservationDetail";
+	}
 }
