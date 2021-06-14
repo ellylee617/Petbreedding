@@ -17,5 +17,11 @@ public class BMyPageController {
 		// TODO Auto-generated method stub
 		return "/myPage/bMyPageUpdate";
 }
+	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
+	public String bMenu(Locale locale, Model model) {
+		
+		// TODO Auto-generated method stub
+		return "/myPage/bmenu_manage";
+}
 
 }
