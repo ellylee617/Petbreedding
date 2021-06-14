@@ -80,11 +80,11 @@ public class BoardController {
 	
 	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
 	public String myboard(Locale locale, Model model) {
-		return "/mypage/myboard";
+		return "/myPage/myboard";
 	}
 	@RequestMapping(value = "/myreply", method = RequestMethod.GET)
 	public String myreply(Locale locale, Model model) {
-		return "/mypage/myreply";
+		return "/myPage/myreply";
 	}
 	
 	
