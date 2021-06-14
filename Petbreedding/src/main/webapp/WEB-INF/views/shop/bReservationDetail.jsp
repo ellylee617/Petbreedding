@@ -72,12 +72,27 @@
                         </tr>
                     </table>
                 </div>
+                <div class="btnBox">
+                    <button class="chatBtn basicBtn">1:1 채팅하기</button>
+                    <button class="cancleBtn basicBtn" id="cancleBtn">취소하기</button>
+                </div> 
             </div> 	
 	    </section>
 		<jsp:include page="../footer.jsp" />
+		
+        <!-- MODAL -->
+        <div id="my_modal">
+            <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
+            <div id="locCon">
+                <h1>정말 취소하시겠습니까?</h1>
+                <button id="goTOCancle" >네</button>
+                <button id="nextTime">아니오</button>
+            </div>
+        </div>
 	</div>
 	
 	<!-- script -->
     <script type="text/javascript" src="${path}/resources/js/mypage/bAside.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/shop/bReservationDetail.js"></script>
 </body>
 </html>
