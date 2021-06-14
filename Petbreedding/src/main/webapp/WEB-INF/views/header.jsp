@@ -12,7 +12,7 @@
         </ul>
     </nav>  
     <div class="mainMenu">   
-        <img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" >            
+        <a href="index"><img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" ></a>            
         <nav class="mainMenu1">                  
             <ul>
                 <li><a href="Uinfo.html">소개</a></li>
