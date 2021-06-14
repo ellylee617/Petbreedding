@@ -1,0 +1,54 @@
+@charset "UTF-8";
+.bContent{
+	text-align: center;
+	margin: 0;
+}
+.tblInfo{
+	width: 100%;
+	text-align: left;
+	padding : 0 250px;
+}
+
+.tblInfo tr{
+	height: 50px;
+}
+
+.tblInfo th input[type="text"] , .tblInfo td input[type="text"] {
+	width: 100%;
+}
+
+#sizeMod{
+	width: 200px;
+}
+
+.basicBtn{
+	width: 100px;
+	height: 30px;
+}
+.wrap {
+	display: inline-block;
+	position: relative;
+	margin: 5px
+}
+.dayitem{
+	width: 30px;
+	height: 30px;
+	position: relative;
+	cursor: pointer;
+	border: 1px solid #aaa;
+	text-align: center;
+	line-height: 30px;
+}
+
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"]:checked+label .dayitem{
+	background-color: var(--hover-color);
+}
+
+.InfoRegi{
+	width: 200px;
+	height: 50px;
+}
