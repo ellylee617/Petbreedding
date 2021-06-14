@@ -17,8 +17,12 @@
 	rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/mypage/myReservationList.css"
 	rel="stylesheet" type="text/css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+	rel="stylesheet" />
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"
 	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -84,24 +88,30 @@
 				</table>
 		</section>
 		<jsp:include page="../footer.jsp" />
-		<!-- 리뷰 작성 모달창 -->
-		<div id="ModalRe">
-			<a class="modal_close_btn"><i class="fas fa-times"></i></a> <br>
-			<form class="frmreview">
-				<select name="score">
-					<option value="1">아주 만족해요</option>
-					<option value="2">만족해요</option>
-					<option value="3">보통이에요</option>
-					<option value="4">아쉬워요</option>
-					<option value="5">많이 아쉬워요</option>
-				</select> <br>
-				<textarea placeholder="리뷰내용을 작성해주세요" name="id"></textarea>
-				<br> <i class="fa fa-camera"></i>
-				<button class="rbutton">등록하기</button>
-				<br>
-			</form>
-		</div>
-		<!-- 모달 끝! -->
 	</div>
+	<!-- 리뷰 작성 모달창 -->
+	<div id="modalRe" class="modalRe-Overlay">
+		<div id="modalRe-Win">
+			<a class="modal_close_btn"><i class="fas fa-times fa-lg"></i></a> <br><br>
+			<div class="select">
+				<span class="text">별점을 선택해주세요</span><span class="downArrow"></span>
+				<ul class="option-list">
+					<li class="option"><img src="${path}/resources/images/5.png">&nbsp;&nbsp;아주 만족해요</li>
+					<li class="option"><img src="${path}/resources/images/4.png">&nbsp;&nbsp;만족해요</li>
+					<li class="option"><img src="${path}/resources/images/3.png">&nbsp;&nbsp;보통이에요</li>
+					<li class="option"><img src="${path}/resources/images/2.png">&nbsp;&nbsp;조금 아쉬워요</li>
+					<li class="option"><img src="${path}/resources/images/1.png">&nbsp;&nbsp;많이 아쉬워요</li>
+				</ul>
+			</div>
+			<br>
+			<textarea placeholder="리뷰내용을 작성해주세요" name="recon" rows="15" cols="37"></textarea>
+			<br><br>
+			<a class="btnAddFile"><i class="fa fa-camera fa-2x"></i></a>
+			<button class="basicBtn btnReCom">등록하기</button>
+			<br>
+		</div>
+	</div>
+	<!-- 모달 끝! -->
+	<script src="${path}/resources/js/mypage/myReservationList.js"></script>
 </body>
 </html>
