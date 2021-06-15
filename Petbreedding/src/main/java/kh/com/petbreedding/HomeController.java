@@ -35,7 +35,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "index";
+		return "/common/index";
 	}
 	
 	//사업자 페이지로 이동
