@@ -86,7 +86,11 @@
   box-sizing: border-box;
   margin-top: 20px;
 }
-
+#errorText{
+	color:red;
+	margin-top: 10px;
+	font-size:14px;
+}
 
 
 

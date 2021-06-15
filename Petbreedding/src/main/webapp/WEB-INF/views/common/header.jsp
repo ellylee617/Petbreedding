@@ -1,21 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <header class="Uheader">
     <nav class="UserNav">
         <ul>
-            <li class="alertBell"><a href="#"><i class="fas fa-bell"></i><span class="alertCircle"></span></a></li>
-            <li id="userName"><a href="#">곽서현님</a></li>
-            <li><a href="ULogin.html">로그인</a></li>
-            <li><a href="USignUp.html">회원가입</a></li>
-            <li><a href="UCheckReservation.html">예약확인/조회</a></li>
-            <li><a href="UcustomerService">고객센터</a></li>
+        	<c:if test = "${!empty client }">
+	            <li class="alertBell"><a href="#"><i class="fas fa-bell"></i><span class="alertCircle"></span></a></li>
+	            <li id="userName"><a href="#">${client.nickname}</a></li>
+	            <li><a href="#">로그아웃</a></li>
+            </c:if>
+            <c:if test = "${empty client }">
+	            <li><a href="${pageContext.request.contextPath}/uLogin">로그인</a></li>
+	            <li><a href="${pageContext.request.contextPath}/uJoin">회원가입</a></li>
+            </c:if>
+            <li><a href="#">예약확인/조회</a></li>
+            <li><a href="#">고객센터</a></li>
         </ul>
     </nav>  
     <div class="mainMenu">   
-        <a href="index"><img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" ></a>            
+        <a href="/petbreedding"><img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" ></a>            
         <nav class="mainMenu1">                  
             <ul>
-                <li><a href="Uinfo.html">소개</a></li>
+                <li><a href="#">소개</a></li>
                 <li><a href="hospital.html">동물병원</a></li>
                 <li><a href="salon.html">미용실</a></li>
                 <li><a href="consult.html">1:1수의사 상담</a></li>

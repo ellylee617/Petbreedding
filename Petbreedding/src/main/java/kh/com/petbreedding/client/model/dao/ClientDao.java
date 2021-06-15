@@ -19,7 +19,6 @@ public class ClientDao {
 	}
 	
 	public int checkEmail(String email) {	// 이메일 중복 확인	
-		System.out.println("dao까지 왔음 "+ email);
 		return sqlSession.selectOne("ClientMap.checkEmail", email);	
 	}
 	

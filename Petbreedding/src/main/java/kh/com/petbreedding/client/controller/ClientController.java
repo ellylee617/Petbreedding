@@ -38,16 +38,11 @@ public class ClientController {
 	@RequestMapping(value = "/client/uJoin", method = RequestMethod.POST)
 	public String ClientJoin(Client client, HttpSession session) {
 		
+		logger.info(client.toString());
+		
 		int result = clientService.insertClient(client);
-		
-		try {
-			
-		} catch (Exception e) {
-			
-		}
-		
-		//TODO
-		return null;
+
+		return String.valueOf(result);
 		
 	}
 	
@@ -79,9 +74,7 @@ public class ClientController {
 	@RequestMapping("checkNickName")
 	@ResponseBody
 	public int  checkNickName(String nickname) {
-		System.out.println("컨트롤러 : "+ nickname);
 		int result = clientService.checkNickName(nickname);
-		System.out.println("result : "+ result);
 		return result;
 	}
 	

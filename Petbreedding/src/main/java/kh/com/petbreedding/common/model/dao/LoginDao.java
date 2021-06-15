@@ -15,10 +15,9 @@ public class LoginDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 이메일 로그인
-	public Client login(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
+	// 사용자 이메일 로그인
+	public Client login(Client client) {
+		return sqlSession.selectOne("Login.loginMember", client);
 		
 	}
 	

@@ -12,9 +12,7 @@
 	
 	<!-- 사용자 회원가입 -->
 	<insert id="insertClient" parameterType="Client">
-		<![CDATA[ 
-			INSERT INTO client VALUES(SEQ_CLIENT.NEXTVAL, #{email},#{password},#{nickname},#{name},#{tel});
-		]]>
+		INSERT INTO client VALUES(SEQ_CLIENT.NEXTVAL, #{email},#{password},#{nickname},#{name},#{tel})
 	</insert>
 	
 

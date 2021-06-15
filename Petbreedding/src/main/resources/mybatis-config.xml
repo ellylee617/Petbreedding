@@ -17,6 +17,7 @@
 	
 	<mappers>
 		<mapper resource="mappers/Client/client-mapper.xml" />
+		<mapper resource="mappers/common/login-mapper.xml" />
 	</mappers>
 	
 </configuration>

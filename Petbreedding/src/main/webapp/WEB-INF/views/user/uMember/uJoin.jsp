@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput" id="email" required>
+                            <input type="text" class="basicTextInput" id="email" required name="email">
                             <div class="check_font" id="id_check"></div>
                         </td>
                     </tr>
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="password" class="basicTextInput" id="pwd" required >
+                            <input type="password" class="basicTextInput" id="pwd" required name="password">
                             <div class="check_font" id="pw_check"></div>
                         </td>
                     </tr>
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput" id="name" required>                         
+                            <input type="text" class="basicTextInput" id="name" required name="name">                         
                         </td>
                     </tr>
 
@@ -76,7 +76,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput" id="nickName" required>
+                            <input type="text" class="basicTextInput" id="nickName" required name="nickname">
                             <div class="check_font" id="nickName_check"></div>
                         </td>
                     </tr>
@@ -88,7 +88,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" placeholder="핸드폰 번호를 '-'없이 입력해주세요." id="hp" class="getChkMsg_bar basicTextInput" required>                            
+                            <input type="text" placeholder="핸드폰 번호를 '-'없이 입력해주세요." id="hp" class="getChkMsg_bar basicTextInput" required name="tel">                            
                         </td>
                         <td>
                             <button type="button" id="hpConfirm" class="basicBtn">인증번호 받기</button>
@@ -104,7 +104,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <button id="joinBtn" class="basicBtn" type="button">가입하기</button>
+                            <input id="joinBtn" class="basicBtn" type="submit" value="가입하기">
                         </td>
                     </tr>
                 </table>
