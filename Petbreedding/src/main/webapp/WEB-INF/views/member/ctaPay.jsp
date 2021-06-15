@@ -21,8 +21,8 @@
 			<jsp:include page="../myPage/bAside.jsp" />
 
 			<div class="bContent">
+					<p class="title">울트라콜 결제</p>
 				<form action="#" id="cpFrm">
-					<p class="mb20">울트라콜 결제</p>
 					<div class="container">
 						<div class="mb30">
 							<span>구매자 정보</span>
@@ -77,13 +77,13 @@
 								<div>
 									<input type="checkbox" id="agr2"> <label for="agr2">취소/변경/환불/
 										수수료 및 기한을 확인 후 동의(필수)</label>
-									<p>자세히 보기</p>
+									<p class="detail">자세히 보기</p>
 								</div>
 
 								<div>
 									<input type="checkbox" id="agr3"> <label for="agr3">개인
 										정보 수집에 동의</label>
-									<p>자세히 보기</p>
+									<p class="detail">자세히 보기</p>
 								</div>
 
 							</div>
