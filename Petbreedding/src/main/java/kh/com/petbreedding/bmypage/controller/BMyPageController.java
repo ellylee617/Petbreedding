@@ -33,6 +33,14 @@ public class BMyPageController {
 		// TODO Auto-generated method stub
 		return "/myPage/bFAQ";
 	}
+	
+	// 사장님 마이 페이지 1:1문의 내역
+	@RequestMapping(value = "/bQna", method = RequestMethod.GET)
+	public String bQna(Locale locale, Model model) {
+
+		// TODO Auto-generated method stub
+		return "/myPage/bQna";
+	}	
 
 	// 사장님 메뉴관리
 	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
