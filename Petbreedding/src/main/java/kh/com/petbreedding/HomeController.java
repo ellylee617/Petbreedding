@@ -41,19 +41,19 @@ public class HomeController {
 	//사업자 페이지로 이동
 	@RequestMapping(value = "/bIndex", method = RequestMethod.GET)
 	public String successPay(Locale locale, Model model) {
-		return "/bIndex";
+		return "/bPartner/bIndex";
 	}
 	
 	//관리자 회원관리
 	@RequestMapping(value = "/mClient", method = RequestMethod.GET)
 	public String mClient(Locale locale, Model model) {
-		return "/member/mClient";
+		return "/admin/aSales/mClient";
 	}
 	
 	//관리자 매출관리
 	@RequestMapping(value = "/mSales", method = RequestMethod.GET)
 	public String mSales(Locale locale, Model model) {
-		return "/myPage/mSales";
+		return "/admin/aSales/mSales";
 	}
 	
 	
