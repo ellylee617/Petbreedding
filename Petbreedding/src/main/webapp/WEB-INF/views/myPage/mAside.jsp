@@ -26,9 +26,9 @@
         <div class="mBox">
             <ul>
                 <p>게시물 관리</p>
-                <li class="bs">자유게시판</li>
-                <li class="bs">공지사항게시판</li>
-                <li class="bs">문의게시판</li>
+                <li class="bs"><a href="mfreeboard">자유게시판</a></li>
+                <li class="bs"><a href="mservice">공지사항게시판</a></li>
+                <li class="bs"><a href="mboard">문의게시판</a></li>
             </ul>
         </div>
     </div>  
