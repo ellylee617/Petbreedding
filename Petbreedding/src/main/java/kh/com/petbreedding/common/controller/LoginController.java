@@ -44,7 +44,13 @@ public class LoginController {
 		return "/member/bLogin";
 	}
 	
-	
+	//관리자 로그인 페이지로 이동
+	@RequestMapping(value = "/mLogin", method = RequestMethod.GET)
+	public String openmLogin(Locale locale, Model model) {
+		
+		// TODO Auto-generated method stub
+		return "/member/mLogin";
+	}
 	
 	// 유저 로그인 처리
 	@RequestMapping("/member/doLoginU")

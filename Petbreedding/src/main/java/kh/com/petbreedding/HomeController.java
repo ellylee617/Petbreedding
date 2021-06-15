@@ -44,4 +44,17 @@ public class HomeController {
 		return "/bIndex";
 	}
 	
+	//관리자 회원관리
+	@RequestMapping(value = "/mClient", method = RequestMethod.GET)
+	public String mClient(Locale locale, Model model) {
+		return "/member/mClient";
+	}
+	
+	//관리자 매출관리
+	@RequestMapping(value = "/mSales", method = RequestMethod.GET)
+	public String mSales(Locale locale, Model model) {
+		return "/myPage/mSales";
+	}
+	
+	
 }
