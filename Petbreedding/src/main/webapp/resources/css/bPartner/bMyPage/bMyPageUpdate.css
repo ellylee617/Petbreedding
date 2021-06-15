@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+.bAside .menu{
+	border-right: 0px;
+}
+
+.bContent{
+    width: 500px;
+    height:900px;
+    margin: 0;
+    padding: 50px 0px 0px 250px ;
+}
+
+.bContent label{
+    display: block;
+    margin-top: 20px;
+}
+
+.inputBox{
+    display: block;
+    width: 400px;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+}
+
+
+.hpBox{
+    width: 275px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.bankbox{
+	width: 150px;
+	padding: 10px;
+    margin-bottom: 10px;
+}
+
+.inputBox:focus, .hpBox:focus, .bankbox:focus{
+    outline: 1px solid var(--hover-color);
+    border: 1px solid var(--hover-color);
+}
+
+.hpBtn{
+    width: 120px;
+    padding: 11px;
+    font-family: "GmarketB";
+    src: url("../font/GmarketSansTTFBold.ttf");
+}
+
+.submitBtn{
+    padding: 20px;
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 50px;
+    font-family: "GmarketB";
+    src: url("../font/GmarketSansTTFBold.ttf");
+}
+
+

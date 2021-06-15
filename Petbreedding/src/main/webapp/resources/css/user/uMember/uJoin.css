@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+td > span {
+  display: block;
+  margin-top: 20px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.joinFrm {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#joinBtn {
+  width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.errorMsg {
+  margin: 0px;
+  padding: 10px 0;
+  display: none;
+}
+
+.getChkMsg_bar {
+  width: 100%;
+}
+
+#getChkMsg_btn {
+  width: 100%;
+  padding: 26px;
+  outline: none;
+  font-size: 16px;
+  line-height: 11px;
+}
+
+#chkNumBar {
+  margin-top: 10px;
+}
+

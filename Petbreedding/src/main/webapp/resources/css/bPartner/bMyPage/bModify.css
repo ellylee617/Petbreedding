@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.updBox {
+  width: 800px;
+  margin: 0 auto;
+}
+.updBox label {
+  display: block;
+  margin-top: 20px;
+}
+.updBox2 {
+  width: 500px;
+  margin: 0 auto;
+}
+.updBox2 h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.bmFrm {
+  width: 400px;
+  margin-bottom: 70px;
+}
+.inputBox {
+  display: block;
+  width: 400px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.inputBox:focus,
+.hpBox:focus {
+  outline: 1px solid var(--hover-color);
+  border: 1px solid var(--hover-color);
+}
+.hpBox {
+  width: 275px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#hpConfirm {
+  padding: 10px 10px 12px 9px;
+}
+
+#selectBank {
+  height: 40px;
+  width: 131px;
+}
+
+#submitBtn {
+  padding: 10px;
+  display: block;
+  width: 300px;
+  margin: 0 auto;
+  font-size: 16px;
+  border-radius: 10px;
+  margin-top: 30px;
+}

@@ -1,0 +1,39 @@
+@charset "UTF-8";
+.bMyPageAside{
+	border: 1px solid var(--bmenu-color);
+	width: 222.22px;
+    box-sizing: border-box;
+    float: left;
+    padding-bottom: 100%;
+}
+
+.divBolder{
+	border-top: 1px solid var(--bmenu-color);
+    width: 180px;
+   	padding : 20px;
+   	padding-bottom: 13px;
+   	margin: 0px;
+   	margin-right: 0px;
+}
+
+.bMyPageAside label {
+	font-size: 24px;
+}
+
+.bMyPageAside li{
+	font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.bMyPageAside a:hover{
+	color: var(--hover-color);
+    cursor: pointer;
+}
+
+.bMyPageAside ul a:hover{
+	color: var(--hover-color);
+    cursor: pointer;
+}
+
+
+

@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+.myzzimhead{
+    margin-bottom: 20px;
+}
+.myzzimhead h1{
+    padding-left: 30px;
+    padding-top: 20px;
+    font-size: 24px;
+    font-weight: 200;
+    margin-bottom: 40px;
+   
+}
+
+.zzimlist{
+    border: 1px solid #aaa;
+    padding: 30px 100px;
+    height: auto;
+    overflow:hidden;
+    border-left: none;
+    border-right: none;
+    
+}
+
+.zzimlist .subdiv .img{
+    float: left;
+    margin-left: -100px;
+}
+.zzimlist .subdiv .title{
+   
+    height: 100px;
+    
+}
+.zzimlist .subdiv .title h1{
+    float: left;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 0px;
+    margin-top:-5px;
+
+}
+.zzimlist .subdiv .title h3{
+    float: left;
+    font-size: 13px;
+    clear: both;
+    margin-left: 130px;
+    margin-top: -60px;
+
+
+}
+.zzimlist .subdiv .con{
+    float: left;
+}
+.zzimdel{
+    float: right;
+    display: inline-block;
+    line-height: 0em;
+    margin-top: -60px;
+    
+
+}
+#zzimdelBtn{
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 20px;
+    font-family: "GmarketM";
+}
+.myzzimrow{
+  text-align: center;
+}
+#moreBtn{
+    width: 120px;
+    height: 40px;
+    font-family: "GmarketM";
+    border-radius: 10px;
+}

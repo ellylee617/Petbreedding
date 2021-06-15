@@ -1,0 +1,85 @@
+
+.bheader{
+    height: 120px;
+ 
+}
+.bheader .title{
+    margin-bottom: 40px;
+}
+.bheader .title p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.writer, .regdate, .count{
+    font-size: 15px;
+    float: left;
+}
+.regdate, .count{
+    margin-left: 60px;
+}
+.bcon{
+    clear: both;
+}
+.con{
+    margin-bottom: 100px;
+}
+.bcon .img{
+    clear: both;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bcon .img img{
+    display: flex;
+    width: 500px;
+    height: 300px;
+    text-align: center;
+   border: 1px solid #000;
+}
+.con p{
+    font-weight: 100;
+}
+.backbtn{
+    float: left;
+}
+.backbtn, .modifybtn, .delbtn{
+    width:90px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.modifybtn, .delbtn{
+    float: right;
+    margin-left: 20px;
+}
+
+.reply{
+    border-top: 1px solid #000;
+    overflow:hidden;
+    height:100%;
+    clear: both;
+    
+   
+}
+.replycon{
+	width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+	
+}
+.reply .replycon input{
+    width: 80%;
+    height: 50px;
+    float: left;
+}
+#submitbtn{
+    width: 9%;
+    float: left;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-left: 30px;
+}
+
