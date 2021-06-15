@@ -46,6 +46,15 @@ public class BPController {
 
 	}
 
+	
+	// 울트라콜 결제
+	@RequestMapping(value = "/ctaPay", method = RequestMethod.GET)
+	public String ctaPay(Locale locale, Model model) {
+		return "/member/ctaPay";
+		
+	}
+	
+
 	// 사장님 업체 정보 페이지로 이동
 	@RequestMapping(value = "/bShop", method = RequestMethod.GET)
 	public String bShop(Locale locale, Model model) {

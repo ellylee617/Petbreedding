@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .updBox {
   width: 800px;
   margin: 0 auto;
@@ -15,9 +16,9 @@
   text-align: center;
   margin-bottom: 50px;
 }
-.joinFrm {
+.bmFrm {
   width: 400px;
-  margin: 0 auto;
+  margin-bottom: 70px;
 }
 .inputBox {
   display: block;
@@ -36,8 +37,7 @@
   margin-bottom: 10px;
 }
 #hpConfirm {
-  width: 120px;
-  padding: 11px;
+  padding: 10px 10px 12px 9px;
 }
 
 #selectBank {
@@ -52,5 +52,5 @@
   margin: 0 auto;
   font-size: 16px;
   border-radius: 10px;
-  margin-top: 50px;
+  margin-top: 30px;
 }

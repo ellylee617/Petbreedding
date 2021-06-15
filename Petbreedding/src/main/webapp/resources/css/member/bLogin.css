@@ -1,4 +1,10 @@
 @charset "UTF-8";
+
+.blFrm {
+	width: 400px;
+	margin: 0 auto;
+}
+
 .loginBox{
     width: 800px;
     margin: 0 auto;
@@ -9,9 +15,7 @@
     margin: 0 auto;
     display: block;
 }
-.loginBox label{
-    padding-left: 180px;
-}
+
 .loginBox input{
     display: block;
     width: 400px;
@@ -33,7 +37,6 @@
     padding-top: 20px;
     display: inline-block;
     float: right;
-    margin-right: 170px;
     font-size: 14px;
 }
 

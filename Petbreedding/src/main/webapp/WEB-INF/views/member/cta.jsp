@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/member/cta.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/mypage/bAside.css" rel="stylesheet" type="text/css" >
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -102,7 +103,6 @@
     
     <!-- script -->
     <script src="https://kit.fontawesome.com/6a57affb8e.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="${path}/resources/js/mypage/bAside.js"></script>
 </body>
 </html>
