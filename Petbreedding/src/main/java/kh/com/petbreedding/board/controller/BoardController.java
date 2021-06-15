@@ -49,42 +49,42 @@ public class BoardController {
 	
 	@RequestMapping(value = "/fboardlist", method = RequestMethod.GET)
 	public String fboardlist(Locale locale, Model model) {
-		return "/board/fboardList";
+		return "/user/uBoard/fboardList";
 	}
 	
 	@RequestMapping(value = "/fboardcon", method = RequestMethod.GET)
 	public String fboardcon(Locale locale, Model model) {
-		return "/board/fboardcon";
+		return "/user/uBoard/fboardcon";
 	}
 	
 	@RequestMapping(value = "/UcustomerService", method = RequestMethod.GET)
 	public String UcustomerService(Locale locale, Model model) {
-		return "/board/UcustomerService";
+		return "/user/uBoard/UcustomerService";
 	}
 	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
 	public String bwrite(Locale locale, Model model) {
-		return "/board/bwrite";
+		return "/user/uBoard/bwrite";
 	}
 	@RequestMapping(value = "/oftenqna", method = RequestMethod.GET)
 	public String oftenqna(Locale locale, Model model) {
-		return "/board/oftenqna";
+		return "/user/uBoard/oftenqna";
 	}
 	@RequestMapping(value = "/mypet", method = RequestMethod.GET)
 	public String mypet(Locale locale, Model model) {
-		return "/board/mypet";
+		return "/user/uMyPage/mypet";
 	}
 	@RequestMapping(value = "/mypetRegister", method = RequestMethod.GET)
 	public String mypetRegister(Locale locale, Model model) {
-		return "/board/mypetRegister";
+		return "/user/uMyPage/mypetRegister";
 	}
 	
 	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
 	public String myboard(Locale locale, Model model) {
-		return "/myPage/myboard";
+		return "/user/uMyPage/myboard";
 	}
 	@RequestMapping(value = "/myreply", method = RequestMethod.GET)
 	public String myreply(Locale locale, Model model) {
-		return "/myPage/myreply";
+		return "/user/uMyPage/myreply";
 	}
 	
 	
