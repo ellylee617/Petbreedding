@@ -41,6 +41,14 @@ public class BMyPageController {
 		// TODO Auto-generated method stub
 		return "/bPartner/bBoard/bQna";
 	}
+	
+	// 사장님 마이 페이지 1:1문의하기
+	@RequestMapping(value = "/bQna/write", method = RequestMethod.GET)
+	public String bQnaWrite(Locale locale, Model model) {
+
+		// TODO Auto-generated method stub
+		return "/bPartner/bBoard/bQnaWrite";
+	}
 
 	// 사장님 메뉴관리
 	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
