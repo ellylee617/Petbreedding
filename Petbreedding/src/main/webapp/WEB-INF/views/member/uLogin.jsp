@@ -17,7 +17,35 @@
 
     <div class="wrapper">
 		<jsp:include page="../header.jsp" />
-        <!--MODAL-->
+
+        <section class="section">
+      		<img class="IDlogo" src="${pageContext.request.contextPath}/resources/images/logo.png">      
+             <form  id="loginFrm" class="loginFrm">
+             	<div class="loginBox">
+	                 <label>아이디</label>
+	                 <input type="text" id="bId" class="inputArea" placeholder="아이디를 입력해주세요">
+	                 <label>비밀번호</label>
+	                 <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호를 입력해주세요">
+	                 <input type="submit" class="basicBtn" id="loginBtn" value="로그인" src="#">
+	                 <p class="txt_or">또는</p>
+	                <button class="snsLogin" type="button">
+	                    <img src="${path}/resources/images/KakaoTalk_login.png" alt="img" />
+	                </button>
+	                <button class="snsLogin naverLogin" type="button">
+	                    <a><img src="${path}/resources/images/naver_login.png" alt="img" /></a>
+	                </button>
+	                <div class="searchIdPw_container">
+	                    <p id="searchIdPw" class="joLoText">아이디/비밀번호 찾기</p>
+	                    <p id="join" class="joLoText"><a href="join" >회원가입</a></p>
+	                </div>
+                 </div> 
+             </form>
+            
+        </section>
+		<jsp:include page="../footer.jsp" />
+		
+		
+		<!--MODAL-->
         <div id="modal" class="searchModal_Container">
             <div class="searchModal_box">
                 <div class="searchModal_content">
@@ -49,26 +77,6 @@
                 <i class="fas fa-times fa-lg" id="modalExit"></i>
             </div>
         </div>
-
-        <section class="section">
-            <form id="loginFrm" class="loginFrm">
-                <input type="text" placeholder="아이디" class="basicTextInput idPwBar">
-                <input type="text" placeholder="비밀번호" class="basicTextInput idPwBar">
-                <button id="nomalLogin" class="basicBtn" type="button">로그인</button>
-                <p class="txt_or">또는</p>
-                <button class="snsLogin" type="button">
-                    <img src="${path}/resources/images/KakaoTalk_login.png" alt="img" />
-                </button>
-                <button class="snsLogin naverLogin" type="button">
-                    <img src="${path}/resources/images/naver_login.png" alt="img" />
-                </button>
-                <div class="searchIdPw_container">
-                    <p id="searchIdPw" class="joLoText">아이디/비밀번호 찾기</p>
-                    <a href="join" id="join" class="joLoText">회원가입</a>
-                </div>
-            </form>
-        </section>
-		<jsp:include page="../footer.jsp" />
     </div>
 	
 	<!-- 자바스크립트 -->

@@ -1,74 +1,94 @@
 @charset "UTF-8";
-
-.loginContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.IDlogo{
+    width: 260px;
+    margin: 0 auto;
+    display: block;
 }
 
+/* 로그인 form */
 .loginFrm {
-  width: 600px;
+  width: 400px;
   margin: 0 auto;
 }
+/* 아이디 비번 입력 input */
 
-.loginFrm p {
-  display: flex;
-  flex-direction: row;
+.loginBox input{
+    display: block;
+    width: 400px;
+    padding: 20px;
+    margin: 0 auto;
 }
 
-.loginFrm p:before,
-.loginFrm p:after {
-  content: "";
-  flex: 1 1;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-  margin: auto;
-  box-sizing: border-box;
+.loginBox .inputArea{
+    margin-bottom: 10px;
 }
 
-.idPwBar {
-  box-sizing: border-box;
-  margin-top: 20px;
-}
-
-#nomalLogin {
-  width: 600px;
-  padding: 20px;
-  box-sizing: border-box;
-  font-size: 16px;
-  margin-top: 20px;
-  border-radius: 10px;
-}
-
+/* 로그인버튼 */
 .snsLogin {
   border: 0px;
   outline: none;
   background: none;
   padding: 0px;
+  cursor: pointer;
+  display: block;
+  width: 400px;
+  margin: 0 auto;
 }
 
 .naverLogin {
   margin-top: 10px;
 }
 
-.searchIdPw_container {
+#loginBtn{
+    margin-top: 30px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+/* 또는 */
+.txt_or {
   display: flex;
-  justify-content: space-between;
+  flex-basis: 100%;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 12px;
+  margin: 20px 0px;
+}
+.txt_or::before,
+.txt_or::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 1px;
+  font-size: 0px;
+  line-height: 0px;
+  margin: 0px 16px;
 }
 
-.searchIdPw_container a:visited {
-  color: var(--main-color);
-  background: var(--main-color);
+/* 회원가입. 아이디/비번찾기 */
+.joLoText{
+	cursor: pointer;
+    padding-top: 10px;
+    display: inline-block;
+    font-size: 14px;
+}
+#searchIdPw{
+    float: right;
+/*     margin-right: 100px;    */
+}
+#join{
+	float: left;
+	/* margin-left: 100px; */
 }
 
-.searchIdPw_container a {
-  color: var(--main-color);
-  text-decoration: none;
+
+.idPwBar {
+  box-sizing: border-box;
   margin-top: 20px;
 }
 
-#searchIdPw {
-	cursor: pointer;
-}
+
+
 
 /* MODAl */
 /* The Modal (background) */
