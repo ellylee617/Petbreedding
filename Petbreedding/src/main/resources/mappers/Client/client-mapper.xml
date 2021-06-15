@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ClientMap">
+	<resultMap type="Client" id="Client">
+		<id column="CL_NUM" property="cl_num" />
+		<result  column="CL_EMAIL" property="email"/>
+		<result  column="CL_PWD" property="password"/>
+		<result  column="CL_NICKNAME" property="nickname"/>
+		<result  column="CL_NAME" property="name"/>
+		<result  column="CL_TEL" property="tel"/>
+	</resultMap>
+	
+	<!-- 사용자 회원가입 -->
+	<insert id="insertClient" parameterType="Client">
+		<![CDATA[ 
+			INSERT INTO client VALUES(SEQ_CLIENT.NEXTVAL, #{email},#{password},#{nickname},#{name},#{tel});
+		]]>
+	</insert>
+	
+	
+	
+	
+	
+	<!-- 아이디 중복체크 -->
+	<select id="checkEmail" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM client WHERE CL_EMAIL = #{email}
+	</select>
+	
+	
+	
+</mapper>

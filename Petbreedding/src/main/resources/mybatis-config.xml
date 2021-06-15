@@ -16,7 +16,7 @@
 	</typeAliases>
 	
 	<mappers>
-		<!-- TODO -->
+		<mapper resource="mappers/Client/client-mapper.xml" />
 	</mappers>
 	
 </configuration>

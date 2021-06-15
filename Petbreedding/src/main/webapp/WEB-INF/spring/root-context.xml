@@ -13,7 +13,7 @@
 		 
 		 <!-- destroy-method 옵션으로 사용한 SqlSession을 자동으로 Close 시킨다 -->
 		 <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		 <property name="url" value="jdbc:oracle:thin:@112.221.156.36:xe" />
+		 <property name="url" value="jdbc:oracle:thin:@112.221.156.36:1521:xe" />
 		 <property name="username" value="pet" />
 		 <property name="password" value="PET" />
 		 </bean>
@@ -22,12 +22,12 @@
 		 class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		 <property name="dataSource" ref="dataSource" />
 		 </bean>
-		 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		 <property name="configLocation" value="classpath:mybatis-config.xml" />
 		 <property name="dataSource" ref="dataSource" />
 		  </bean>
-		 <bean class="org.mybatis.spring.SqlSessionTemplate">
-		 <constructor-arg ref="sqlSession" />
+		 <bean  id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		 <constructor-arg ref="sqlSessionFactory" />
 		 </bean>
 		 <!-- Transaction 시점 등록 -->
 		 <tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -48,4 +48,6 @@
 		 advice-ref="txAdvice" />
 		 </aop:config>
 		
+
+
 </beans>

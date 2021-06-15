@@ -6,11 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.com.petbreedding.client.model.service.ClientService;
@@ -18,6 +22,8 @@ import kh.com.petbreedding.client.model.vo.Client;
 
 @Controller
 public class ClientController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ClientController.class);
 	
 	@Autowired
 	private ClientService clientService;
@@ -32,6 +38,15 @@ public class ClientController {
 	//이메일 회원가입 처리
 	@RequestMapping(value = "/client/uJoin", method = RequestMethod.POST)
 	public String ClientJoin(Client client, HttpSession session) {
+		logger.info(client.toString());
+		
+		int result = clientService.insertClient(client);
+		
+		try {
+			
+		} catch (Exception e) {
+			
+		}
 		
 		//TODO
 		return null;
@@ -47,19 +62,23 @@ public class ClientController {
 	//유저 정보 수정 처리
 	@RequestMapping(value = "/client/modify", method = RequestMethod.POST)
 	public String ClientModify(Client client, HttpSession session) {
-		
-		//TODO
-		return null;
-		
+		return null;		
 	}
 	
 	
 	//회원가입 - 이메일 중복 확인
-	@RequestMapping("/checkEmail")
-	public String  checkEmail(Client client, HttpSession session, HttpServletResponse response) {
-		//TODO
-		return null;
+	@RequestMapping("checkEmail")
+	@ResponseBody
+	public int  checkEmail(String email) {
+		System.out.println("컨트롤러 : "+ email);
+		int result = clientService.checkEmail(email);
+		System.out.println("result : "+ result);
+		return result;
 	}
+	
+	
+	
+	
 	
 	//휴대전화 인증번호 받기 
 	@RequestMapping(value = "/phone", method = RequestMethod.POST)

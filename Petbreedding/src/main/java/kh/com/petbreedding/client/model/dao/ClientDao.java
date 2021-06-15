@@ -8,20 +8,19 @@ import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.client.model.vo.Client;
 
-@Repository
+@Repository("clientDao")
 public class ClientDao {
 
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void insertClient(Client client) { // 이메일 회원가입
-		
+	public int insertClient(Client client) { // 이메일 회원가입
+		return sqlSession.insert("ClientMap.insertClient", client);
 	}
 	
-	public int checkEmail(Client client) {				// 이메일 중복 확인
-		
-		return 0;
-		
+	public int checkEmail(String email) {	// 이메일 중복 확인	
+		System.out.println("dao까지 왔음 "+ email);
+		return sqlSession.selectOne("ClientMap.checkEmail", email);	
 	}
 	
 	public void createAuthKey(String email, String authCode) {	// 이메일 인증번호 생성

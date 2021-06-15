@@ -64,6 +64,10 @@ table img{
 	line-height:28px;
 }
 
+.page_nation a:hover {
+	color: var(--hover-color)
+}
+
 .page_nation .arrow {
     font-weight: bold;
 }
