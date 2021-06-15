@@ -15,11 +15,12 @@
 </head>
 <body>
 	<div class="wrapper">
+
 		<jsp:include page="../bheader.jsp" />
+		<section id="section" class="section">
 
-		<section class="section">
-			<jsp:include page="../myPage/bAside.jsp" />
-
+		<jsp:include page="../myPage/bAside.jsp" />
+		
 			<div class="bContent">
 					<p class="title pm">울트라콜 결제</p>
 				<form action="#" id="cpFrm">

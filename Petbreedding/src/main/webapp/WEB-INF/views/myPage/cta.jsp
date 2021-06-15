@@ -17,85 +17,85 @@
 <body>
     <div class="wrapper">
     <jsp:include page="../bheader.jsp" />
-        <section class="section">
+        <section id="section" class="section">
         <jsp:include page="../myPage/bAside.jsp" />
         	
         	<div id="bContent" class="bContent">
-        	<form class="ctaFrm">
-	            <div class="viewBox">
-		            <p class="viewText fs20">울트라콜</p>
-	                <span class="viewText views fs20">잔여 조회수</span>
-	                <span class="viewText views fs24">0회</span>
-	            </div>
+	        	<form class="ctaFrm">
+		            <div class="viewBox">
+			            <p class="viewText fs20">울트라콜</p>
+		                <span class="viewText views fs20">잔여 조회수</span>
+		                <span class="viewText views fs24">0회</span>
+		            </div>
+			
+		            <article class="aContainer">
+		                <div class="aBox">
+		                    <div>
+		                        <p class="fs20">울트라콜 30회권</p>
+		                        <ul>
+		                            <li class="CTA_inst mt10">
+		                                <span>최상단 노출</span>
+		                            </li>
+		                            <li class="CTA_inst mt10">
+		                                <span>울트라콜은 차감 방식으로 진행됩니다.</span>
+		                            </li>
+		                            <li class="CTA_inst mt10">
+		                                <span>고객에 따라, 때에 따라 내 점포가 보일 수도 있고 안보일 수도 있습니다.</span>
+		                            </li>
+		                        </ul>
+		                    </div>
+		    
+		                    <div>
+		                        <p class=" price fs20">20,000원</p>
+		                        <button class="basicBtn CTAPayBtn">결제하기</button>
+		                    </div>
+		                </div>
 		
-	            <article class="aContainer">
-	                <div class="aBox">
-	                    <div>
-	                        <p class="fs20">울트라콜 30회권</p>
-	                        <ul>
-	                            <li class="CTA_inst mt10">
-	                                <span>최상단 노출</span>
-	                            </li>
-	                            <li class="CTA_inst mt10">
-	                                <span>울트라콜은 차감 방식으로 진행됩니다.</span>
-	                            </li>
-	                            <li class="CTA_inst mt10">
-	                                <span>고객에 따라, 때에 따라 내 점포가 보일 수도 있고 안보일 수도 있습니다.</span>
-	                            </li>
-	                        </ul>
-	                    </div>
-	    
-	                    <div>
-	                        <p class=" price fs20">20,000원</p>
-	                        <button class="basicBtn CTAPayBtn">결제하기</button>
-	                    </div>
-	                </div>
-	
-	                <div class="aBox">
-	                    <div>
-	                        <p class="fs20">울트라콜 50회권</p>
-	                        <ul>
-	                            <li class="CTA_inst mt10">
-	                                <span>최상단 노출</span>
-	                            </li>
-	                            <li class="CTA_inst mt10">
-	                                <span>울트라콜은 차감 방식으로 진행됩니다.</span>
-	                            </li>
-	                            <li class="CTA_inst mt10">
-	                                <span>고객에 따라, 때에 따라 내 점포가 보일 수도 있고 안보일 수도 있습니다.</span>
-	                            </li>
-	                        </ul>
-	                    </div>
-	    
-	                    <div>
-	                        <p class=" price fs20">35,000원</p>
-	                        <button class="basicBtn CTAPayBtn">결제하기</button>
-	                    </div>
-	                </div>
-	
-	                <div class="aBox">
-	                    <div>
-	                        <p class="fs20">울트라콜 100회권</p>
-	                        <ul>
-	                            <li class="CTA_inst mt10">
-	                                <span>최상단 노출</span>
-	                            </li>
-	                            <li class="CTA_inst mt10">
-	                                <span>울트라콜은 차감 방식으로 진행됩니다.</span>
-	                            </li>
-	                            <li class="CTA_inst mt10">
-	                                <span>고객에 따라, 때에 따라 내 점포가 보일 수도 있고 안보일 수도 있습니다.</span>
-	                            </li>
-	                        </ul>
-	                    </div>
-	    
-	                    <div>
-	                        <p class=" price fs20">50,000원</p>
-	                        <button class="basicBtn CTAPayBtn">결제하기</button>
-	                    </div>
-	                </div>
-	            </article>
-        	</form>
+		                <div class="aBox">
+		                    <div>
+		                        <p class="fs20">울트라콜 50회권</p>
+		                        <ul>
+		                            <li class="CTA_inst mt10">
+		                                <span>최상단 노출</span>
+		                            </li>
+		                            <li class="CTA_inst mt10">
+		                                <span>울트라콜은 차감 방식으로 진행됩니다.</span>
+		                            </li>
+		                            <li class="CTA_inst mt10">
+		                                <span>고객에 따라, 때에 따라 내 점포가 보일 수도 있고 안보일 수도 있습니다.</span>
+		                            </li>
+		                        </ul>
+		                    </div>
+		    
+		                    <div>
+		                        <p class=" price fs20">35,000원</p>
+		                        <button class="basicBtn CTAPayBtn">결제하기</button>
+		                    </div>
+		                </div>
+		
+		                <div class="aBox">
+		                    <div>
+		                        <p class="fs20">울트라콜 100회권</p>
+		                        <ul>
+		                            <li class="CTA_inst mt10">
+		                                <span>최상단 노출</span>
+		                            </li>
+		                            <li class="CTA_inst mt10">
+		                                <span>울트라콜은 차감 방식으로 진행됩니다.</span>
+		                            </li>
+		                            <li class="CTA_inst mt10">
+		                                <span>고객에 따라, 때에 따라 내 점포가 보일 수도 있고 안보일 수도 있습니다.</span>
+		                            </li>
+		                        </ul>
+		                    </div>
+		    
+		                    <div>
+		                        <p class=" price fs20">50,000원</p>
+		                        <button class="basicBtn CTAPayBtn">결제하기</button>
+		                    </div>
+		                </div>
+		            </article>
+	        	</form>
         	</div>
         </section>
         <jsp:include page="../footer.jsp" />

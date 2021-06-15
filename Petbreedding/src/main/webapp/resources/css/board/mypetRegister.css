@@ -1,8 +1,11 @@
+input[type="checkbox"],
 input[type="radio"] {
   display: none;
 }
 
 ul label {
+  width: 100%;
+  display: inline-block;
   cursor: pointer;
 }
 
@@ -51,9 +54,10 @@ ul label {
   border: 1px solid var(--border-color);
   margin-right: 15px;
   width: 188px;
-  padding: 20px 0px;
   text-align: center;
   cursor: pointer;
+  height: 60px;
+  line-height: 60px;
 }
 
 .hateList {
@@ -61,9 +65,10 @@ ul label {
   border: 1px solid var(--border-color);
   width: 102px;
   margin-right: 20px;
-  padding: 20px 0px;
   text-align: center;
   cursor: pointer;
+  height: 60px;
+  line-height: 60px;
 }
 
 .otherslist {
@@ -71,16 +76,10 @@ ul label {
   border: 1px solid var(--border-color);
   width: 136px;
   margin-right: 16px;
-  padding: 20px 0px;
   text-align: center;
   cursor: pointer;
-}
-
-.genderList:hover,
-.hateList:hover,
-.otherslist:hover {
-  background: var(--hover-color);
-  color: var(--font-color);
+  height: 60px;
+  line-height: 60px;
 }
 
 .list_neut,
@@ -99,4 +98,10 @@ ul label {
   width: 600px;
   padding: 20px;
   font-size: 16px;
+}
+
+.selectOpt input:checked + li {
+  background: var(--hover-color);
+  color: var(--font-color);
+  border: 1px solid var(--hover-color);
 }
