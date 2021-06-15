@@ -32,11 +32,5 @@ public class BPController {
 
 	}
 
-	// 사장님 제휴문의 대기 페이지로 이동
-	@RequestMapping(value = "/bModify", method = RequestMethod.GET)
-	public String bModify(Locale locale, Model model) {
-		return "/bPartner/bMyPage/bModify";
-
-	}
 
 }
