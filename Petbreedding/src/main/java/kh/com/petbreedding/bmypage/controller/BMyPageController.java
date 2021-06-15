@@ -15,7 +15,7 @@ public class BMyPageController {
 	public String bMyPageUpdate(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/myPage/bMyPageUpdate";
+		return "/bPartner/bMyPage/bMyPageUpdate";
 	}
 
 	// 사장님 마이 페이지 공지사항
@@ -23,7 +23,7 @@ public class BMyPageController {
 	public String bNotice(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/myPage/bNotice";
+		return "/bPartner/bBoard/bNotice";
 	}
 
 	// 사장님 마이 페이지 자주 묻는 질문
@@ -31,23 +31,15 @@ public class BMyPageController {
 	public String bFAQ(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/myPage/bFAQ";
+		return "/bPartner/bBoard/bFAQ";
 	}
-	
+
 	// 사장님 마이 페이지 1:1문의 내역
 	@RequestMapping(value = "/bQna", method = RequestMethod.GET)
 	public String bQna(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/myPage/bQna";
-	}	
-	
-	// 사장님 마이 페이지 1:1 문의하기 
-	@RequestMapping(value = "/bQna/write", method = RequestMethod.GET)
-	public String bQnaWrite(Locale locale, Model model) {
-
-		// TODO Auto-generated method stub
-		return "/myPage/bQnaWrite";
+		return "/bPartner/bBoard/bQna";
 	}
 
 	// 사장님 메뉴관리
@@ -55,7 +47,7 @@ public class BMyPageController {
 	public String bMenu(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/myPage/bmenu_manage";
+		return "/bPartner/bShop/bmenu_manage";
 	}
 
 	// 사장님 매출관리
@@ -63,35 +55,33 @@ public class BMyPageController {
 	public String bCalculate(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/myPage/bcalculate";
+		return "/bPartner/bSales/bcalculate";
 	}
-	
+
 	// 울트라콜 상품 조회
 	@RequestMapping(value = "/cta", method = RequestMethod.GET)
 	public String cta(Locale locale, Model model) {
-		return "/myPage/cta";
+		return "/bPartner/bSales/cta";
 
 	}
 
-	
 	// 울트라콜 결제
 	@RequestMapping(value = "/ctaPay", method = RequestMethod.GET)
 	public String ctaPay(Locale locale, Model model) {
-		return "/myPage/ctaPay";
-		
+		return "/bPartner/bSales/ctaPay";
+
 	}
-	
 
 	// 사장님 업체 정보 페이지로 이동
 	@RequestMapping(value = "/bShop", method = RequestMethod.GET)
 	public String bShop(Locale locale, Model model) {
-		return "/shop/bShopInfo";
+		return "/bPartner/bShop/bShopInfo";
 	}
 
 	// 업체 리뷰 관리 페이지로 이동
 	@RequestMapping(value = "/bReview", method = RequestMethod.GET)
 	public String bReview(Locale locale, Model model) {
-		return "/shop/bReview";
+		return "/bPartner/bShop/bReview";
 	}
 
 }
