@@ -12,8 +12,15 @@ public class AdminController {
 
 	// 사업장관리 - 제휴 승인 대기 페이지로 이동
 	@RequestMapping(value = "/mwait", method = RequestMethod.GET)
-	public String bWait(Locale locale, Model model) {
-		return "/shop/mWaitForPartner";
+	public String mWait(Locale locale, Model model) {
+		return "/shop/mWaitforPartner";
 	}
+	
+	// 사업장관리 - 제휴 취소 대기 페이지로 이동
+		@RequestMapping(value = "/mcancel", method = RequestMethod.GET)
+		public String mCancel(Locale locale, Model model) {
+			return "/shop/mCancelPartner";
+		}
+		
 
 }
