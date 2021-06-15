@@ -22,7 +22,6 @@ public class LoginDao {
 		
 	}
 	
-	
 	//카카오 로그인
 	public int loginKakao(Client client) {
 		// TODO Auto-generated method stub
@@ -36,4 +35,9 @@ public class LoginDao {
 		return 0;
 	}
 	
+	
+	
+	
+	
 }
+
