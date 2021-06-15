@@ -14,10 +14,6 @@
 	type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet"
 	type="text/css">
-<link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/bPartner/bMyPageAside.css"
-	rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bBoard/bQnaWrite.css" rel="stylesheet"
 	type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -27,8 +23,6 @@
 	<div class="wrapper">
 		<section class="section">
 			<jsp:include page="../bheader.jsp" />
-			<jsp:include page="../bAside.jsp" />
-			<jsp:include page="../bMyPageAside.jsp" />
 			<div class="bContent">
             	
                 <div class="qnatitle">
@@ -41,7 +35,7 @@
             </div> 
             <div class="qanbtn">
             <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
-            <inRput type="submit" value="글등록" id="successbtn" class="basicBtn">
+            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
             </div>
 			
 			</div>

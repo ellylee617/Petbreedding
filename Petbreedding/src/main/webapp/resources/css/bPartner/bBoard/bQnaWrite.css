@@ -1,20 +1,19 @@
 @charset "UTF-8";
 
-
-.bContent{
-	width: 600px;
+.section{
+	height: 1000px;
 }
 
 
 #h1{
-	padding: 0px;
+	padding-top: 10px;
 	margin: 0px;
 	width: 10%;
 	float: left;
 }
 
 #h2{
-	padding: 0px;
+	padding-top: 10px;
 	margin: 0px;
 	width: 10%;
 	float: left;
@@ -22,6 +21,7 @@
 
 #title{
 	width: 50%;	
+	height: 40px;
 }
 
 #content{
@@ -30,24 +30,24 @@
 }
 
 .qnatitle{
-	width: 80%;
+	width: 100%;
 	position: absolute;
-	top:15%;
-	left: 40%;
+	top:20%;
+	left: 25%;
 }
 
 .qnacontent{
-	width: 80%;
+	width: 100%;
 	position: absolute;
-	top:19%;
-	left: 40%;
+	top:25%;
+	left: 25%;
 }
 
 .qanbtn{
 	width: 80%;
 	position: absolute;
-	top:46%;
-	left: 60%;
+	top:65%;
+	left: 50%;
 
 }
 
