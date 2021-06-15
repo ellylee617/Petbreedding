@@ -33,7 +33,7 @@ public class LoginController {
 	public String openLogin(Locale locale, Model model) {
 		
 		// TODO Auto-generated method stub
-		return "/member/uLogin";
+		return "/user/uMember/uLogin";
 	}
 	
 	//  사장님로그인 페이지로 이동
@@ -41,7 +41,7 @@ public class LoginController {
 	public String openbLogin(Locale locale, Model model) {
 		
 		// TODO Auto-generated method stub
-		return "/member/bLogin";
+		return "/bPartner/bMember/bLogin";
 	}
 	
 	//관리자 로그인 페이지로 이동
@@ -49,7 +49,7 @@ public class LoginController {
 	public String openmLogin(Locale locale, Model model) {
 		
 		// TODO Auto-generated method stub
-		return "/member/mLogin";
+		return "/admin/aMember/mLogin";
 	}
 	
 	// 유저 로그인 처리
