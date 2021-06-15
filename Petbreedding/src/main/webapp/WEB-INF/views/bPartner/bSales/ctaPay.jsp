@@ -103,6 +103,6 @@
 	<script src="https://kit.fontawesome.com/6a57affb8e.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
-    <script type="text/javascript" src="${path}/resources/js/bPartner/bSalesctaPay.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/bPartner/bSales/ctaPay.js"></script>
 </body>
 </html>

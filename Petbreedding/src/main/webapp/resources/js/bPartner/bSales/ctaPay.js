@@ -16,11 +16,11 @@ window.onload = function () {
 
     var args = document.getElementsByName("args");
     for (var i = 0; i < args.length; i++) {
-        args[i].onclick = f1;
+        args[i].onclick = aClick;
     }
 };
 
-function f1() {
+function aClick() {
     var cnt = 0;
     var args = document.getElementsByName("args");
     for (var i = 0; i < args.length; i++) {

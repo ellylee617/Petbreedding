@@ -1,9 +1,9 @@
-/**
- * 
- */
-
 $(document).ready(function(){
     setDateBox();
+    
+    $("#browseBtn").bind("click", function() {
+        insertImg();
+    });
 });    
 
 // select box 연도 , 월 표시
@@ -28,4 +28,8 @@ function setDateBox(){
     for(var i = 1; i <= 31; i++) {
         $("#DATE").append("<option value='일'>" + i + "일" + "</option>");
     }
+}
+
+function insertImg() {
+    $("#realInput").trigger("click");
 }
