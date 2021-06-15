@@ -65,24 +65,24 @@
 							<div class="container">
 								<p>이용 동의</p>
 								<div>
-									<input type="checkbox" id="allAgr" class="mb30"> <label
+									<input type="checkbox" id="allAgr" class="mb30" name="allAgr"> <label
 										for="allAgr">모두 동의</label>
 								</div>
 
 								<div>
-									<input type="checkbox" id="agr1" class="mb30"> <label
-										for="agr1">상기 결제 내역을 확인, 결제 진행에 동의(필수)</label>
+									<input type="checkbox" id="agr1" class="mb30"  name="args">
+									<label for="agr1">상기 결제 내역을 확인, 결제 진행에 동의(필수)</label>
 								</div>
 
 								<div>
-									<input type="checkbox" id="agr2"> <label for="agr2">취소/변경/환불/
-										수수료 및 기한을 확인 후 동의(필수)</label>
+									<input type="checkbox" id="agr2" name="args">
+									<label for="agr2">취소/변경/환불/수수료 및 기한을 확인 후 동의(필수)</label>
 									<p class="detail">자세히 보기</p>
 								</div>
 
 								<div>
-									<input type="checkbox" id="agr3"> <label for="agr3">개인
-										정보 수집에 동의</label>
+									<input type="checkbox" id="agr3" name="args">
+									<label for="agr3">개인 정보 수집에 동의</label>
 									<p class="detail">자세히 보기</p>
 								</div>
 
@@ -103,5 +103,6 @@
 	<script src="https://kit.fontawesome.com/6a57affb8e.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="${path}/resources/js/mypage/bAside.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/mypage/ctaPay.js"></script>
 </body>
 </html>
