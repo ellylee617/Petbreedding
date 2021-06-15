@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petverything::펫브리띵</title>
+<title>Petbreedding::펫브리띵</title>
 <link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
@@ -23,9 +23,10 @@
              <form  id="loginFrm" class="loginFrm">
              	<div class="loginBox">
 	                 <label>아이디</label>
-	                 <input type="text" id="bId" class="inputArea" placeholder="아이디를 입력해주세요">
+	                 <input type="text" id="bId" class="inputArea" placeholder="아이디를 입력해주세요" name="email">
 	                 <label>비밀번호</label>
-	                 <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호를 입력해주세요">
+	                 <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호를 입력해주세요" name="password">
+	                 <div id="errorText">${msg}</div>
 	                 <input type="submit" class="basicBtn" id="loginBtn" value="로그인" src="#">
 	                 <p class="txt_or">또는</p>
 	                <button class="snsLogin" type="button">

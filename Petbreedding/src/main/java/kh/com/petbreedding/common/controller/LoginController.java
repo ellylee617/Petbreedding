@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.com.petbreedding.HomeController;
 import kh.com.petbreedding.client.model.vo.Client;
@@ -31,7 +33,7 @@ public class LoginController {
 	//  로그인 페이지로 이동
 	@RequestMapping(value = "/uLogin", method = RequestMethod.GET)
 	public String openLogin(Locale locale, Model model) {
-		
+	
 		// TODO Auto-generated method stub
 		return "/user/uMember/uLogin";
 	}
@@ -53,13 +55,31 @@ public class LoginController {
 	}
 	
 	// 유저 로그인 처리
-	@RequestMapping("/member/doLoginU")
-	public String doLoginU(Client client, HttpSession session ,HttpServletResponse response) {
+	@RequestMapping( value="/member/doLoginU", method = RequestMethod.POST)
+	@ResponseBody
+	public String doLoginU(Client client, HttpSession session ,HttpServletRequest req, RedirectAttributes rttr) {
+
+		Client result = loginService.login(client);
+		session = req.getSession();
 		
-		// TODO Auto-generated method stub
-		return null;
+		if(result == null) {
+			System.out.println("로그인 실패");
+			session.setAttribute("client", null);
+			rttr.addFlashAttribute("msg", "아이디와 비밀번호가 맞지 않습니다.");
+			return "uLogin";
+		}else {
+			System.out.println("로그인 성공!");
+			session.setAttribute("client", result);
+		}
+		System.out.println("email : "+ client.getEmail());
+		System.out.println("password : "+ client.getPassword());
+		System.out.println("result : "+ result);
+		
+		return "/";
 		
 	}
+	
+	
 	// 사업자 로그인 처리
 	@RequestMapping("/member/doLoginB")
 	public String doLoginB(Client client, HttpSession session ,HttpServletResponse response) {
@@ -89,12 +109,13 @@ public class LoginController {
 		
 	}
 	
-	// 로그아웃
+	// 사용자 로그아웃
 	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(Client client, HttpSession session) {
 		
-		// TODO Auto-generated method stub
-		return null;
+		session.invalidate();
+		
+		return "redirect:/";
 		
 	}
 	

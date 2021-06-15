@@ -98,7 +98,8 @@ $("#nickName").blur(function(){
 	});
 });
 
-//휴대폰번호 유효성 체크
+//휴대폰번호 유효성 체크  
+//TODO 중복체크
 $("#hp").blur(function(){
 	var hp = $("#hp").val();
 
@@ -120,21 +121,19 @@ $("#hp").blur(function(){
 //TODO
 //휴대폰번호 인증번호
 
-$("#submitBtn").on("click",function(){
+
+//회원가입
+$("#joinBtn").on("click",function(){
 	
-	var dataString = $("#frmJoin").serialize();
+	var dataString = $("#joinFrm").serialize();
+	
 	$.ajax({
-		url:"doJoin",
+		url:"client/uJoin",
 		type:"POST",
 		data: dataString,
 		success: function(data){
-			if(data> 0){
-				alert("회원가입되었습니다. 로그인페이지로 이동합니다.");
-				location.href="uLogin";
-			}else{
-				alert("회원가입이 실패했습니다. 아이디, 비밀번호를 다시 입력해주세요.");
-				$("#memberId").val("").focus();
-			}
+			alert("회원가입되었습니다. 로그인페이지로 이동합니다.");
+			location.href="uLogin";
 		},
 		error : function(){}
 	});

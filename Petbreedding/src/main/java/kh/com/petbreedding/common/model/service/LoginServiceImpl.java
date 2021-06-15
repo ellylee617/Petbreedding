@@ -17,9 +17,9 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDao loginDao;
 
 	@Override
-	public Client login(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client login(Client client) {
+		Client result = loginDao.login(client);
+		return result;
 	}
 
 	@Override
