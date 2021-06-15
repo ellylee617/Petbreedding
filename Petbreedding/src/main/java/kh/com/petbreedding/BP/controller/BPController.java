@@ -39,32 +39,4 @@ public class BPController {
 
 	}
 
-	// 울트라콜 상품 조회
-	@RequestMapping(value = "/cta", method = RequestMethod.GET)
-	public String cta(Locale locale, Model model) {
-		return "/member/cta";
-
-	}
-
-	
-	// 울트라콜 결제
-	@RequestMapping(value = "/ctaPay", method = RequestMethod.GET)
-	public String ctaPay(Locale locale, Model model) {
-		return "/member/ctaPay";
-		
-	}
-	
-
-	// 사장님 업체 정보 페이지로 이동
-	@RequestMapping(value = "/bShop", method = RequestMethod.GET)
-	public String bShop(Locale locale, Model model) {
-		return "/shop/bShopInfo";
-	}
-
-	// 업체 리뷰 관리 페이지로 이동
-	@RequestMapping(value = "/bReview", method = RequestMethod.GET)
-	public String bReview(Locale locale, Model model) {
-		return "/shop/bReview";
-	}
-
 }
