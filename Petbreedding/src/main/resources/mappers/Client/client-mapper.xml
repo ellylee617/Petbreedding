@@ -17,15 +17,14 @@
 		]]>
 	</insert>
 	
-	
-	
-	
-	
+
 	<!-- 아이디 중복체크 -->
 	<select id="checkEmail" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM client WHERE CL_EMAIL = #{email}
 	</select>
-	
-	
+	<!-- 닉네임 중복체크 -->
+	<select id="checkNickName" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM client WHERE CL_NICKNAME = #{nickname} 
+	</select>
 	
 </mapper>

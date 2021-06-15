@@ -23,6 +23,10 @@ public class ClientDao {
 		return sqlSession.selectOne("ClientMap.checkEmail", email);	
 	}
 	
+	public int checkNickName(String nickname) {	// 닉네임 중복 확인	
+		return sqlSession.selectOne("ClientMap.checkNickName", nickname);	
+	}
+	
 	public void createAuthKey(String email, String authCode) {	// 이메일 인증번호 생성
 		
 	}

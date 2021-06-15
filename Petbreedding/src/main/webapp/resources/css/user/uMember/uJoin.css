@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+.basicTextInput{
+	width: 400px;
+	padding: 10px;
+}
+.basicTextInput:focus{
+	outline : none;
+	border: 1px solid var(--hover-color);
+}
 td > span {
   display: block;
   margin-top: 20px;
@@ -9,12 +17,15 @@ td > span {
 }
 
 .joinFrm {
-  width: 600px;
+  width: 400px;
   margin: 0 auto;
+}
+.joinFrm h1{
+	text-align: center;
 }
 
 #joinBtn {
-  width: 600px;
+  width: 400px;
   padding: 20px;
   box-sizing: border-box;
   font-size: 16px;
@@ -22,25 +33,27 @@ td > span {
   border-radius: 10px;
 }
 
-.errorMsg {
-  margin: 0px;
-  padding: 10px 0;
-  display: none;
-}
 
 .getChkMsg_bar {
   width: 100%;
 }
-
-#getChkMsg_btn {
-  width: 100%;
-  padding: 26px;
-  outline: none;
-  font-size: 16px;
-  line-height: 11px;
+#hpConfirm,#hpConfirm2{
+ 	 width: 100%;
+    padding: 9px 9px 12px 9px;
+}
+#hpConfirm2{
+    display: none;
 }
 
 #chkNumBar {
   margin-top: 10px;
 }
 
+#hp::placeholder, #hp2::placeholder{
+	font-size: 12px;
+}
+
+.check_font{
+	padding-top: 10px;
+	font-size: 14px;
+}
