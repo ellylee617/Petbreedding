@@ -15,27 +15,27 @@ public class BPController {
 	public String bJoin(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/member/bJoin";
+		return "/bPartner/bMember/bJoin";
 	}
 
 	// 사장님 승인 대기 페이지로 이동
 	@RequestMapping(value = "/bJoinSuccess", method = RequestMethod.GET)
 	public String bjoinSuccess(Locale locale, Model model) {
-		return "/member/bJoinSuccess";
+		return "/bPartner/bMember/bJoinSuccess";
 
 	}
 
 	// 사장님 제휴문의 대기 페이지로 이동
 	@RequestMapping(value = "/bWait", method = RequestMethod.GET)
 	public String bWait(Locale locale, Model model) {
-		return "/member/bWait";
+		return "/bPartner/bMember/bWait";
 
 	}
 
 	// 사장님 제휴문의 대기 페이지로 이동
 	@RequestMapping(value = "/bModify", method = RequestMethod.GET)
 	public String bModify(Locale locale, Model model) {
-		return "/member/bModify";
+		return "/bPartner/bMyPage/bModify";
 
 	}
 
