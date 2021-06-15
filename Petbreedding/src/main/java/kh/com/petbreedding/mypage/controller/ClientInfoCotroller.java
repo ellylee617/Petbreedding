@@ -18,37 +18,37 @@ public class ClientInfoCotroller {
 	// 예약조회
 	@RequestMapping("/mypage")
 	public String myReservationList(HttpSession session) {
-		return "myPage/myReservationList";
+		return "/user/uMyPage/myReservationList";
 	}
 
 	// 예약 자세히 보기
 	@RequestMapping("/mypage/reservationdetail")
 	public String myReservationDetail(HttpSession session) {
-		return "myPage/myReservationDetail";
+		return "/user/uMyPage/myReservationDetail";
 	}
 
 	// 포인트내역
 	@RequestMapping("/mypage/point")
 	public String point(HttpSession session) {
-		return "myPage/point";
+		return "/user/uMyPage/point";
 	}
 
 	// 1:1 문의 내역
 	@RequestMapping("/mypage/ask")
 	public String ask(HttpSession session) {
-		return "myPage/myAsk";
+		return "/user/uMyPage/myAsk";
 	}
 
 	// 1:1 문의 자세히 보기
 	@RequestMapping("/mypage/askdetail")
 	public String askDetail(HttpSession session) {
-		return "myPage/myAskDetail";
+		return "/user/uMyPage/myAskDetail";
 	}
 	
 	// 내 찜 목록
 		@RequestMapping("/mypage/myzzim")
 		public String myZzim(HttpSession session) {
-			return "myPage/myzzim";
+			return "/user/uMyPage/myzzim";
 		}
 
 	// 회원 정보 불러오기
