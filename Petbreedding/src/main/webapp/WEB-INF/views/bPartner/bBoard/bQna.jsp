@@ -15,8 +15,6 @@
 	type="text/css">
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet"
 	type="text/css">
-<link href="${path}/resources/css/bPartner/bMyPageAside.css"
-	rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bBoard/bQna.css" rel="stylesheet"
 	type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -27,7 +25,6 @@
 		<section class="section">
 			<jsp:include page="../bheader.jsp" />
 			<jsp:include page="../bAside.jsp" />
-			<jsp:include page="../bMyPageAside.jsp" />
 			<div class="bContent">
 				<h1>1:1 문의 내역</h1>
 					<button class="basicBtn">1:1문의하기</button>
@@ -64,6 +61,6 @@
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
-
+	<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 </body>
 </html>
