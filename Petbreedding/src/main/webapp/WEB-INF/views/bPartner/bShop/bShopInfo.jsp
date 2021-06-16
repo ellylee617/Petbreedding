@@ -7,11 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Petbreedding::펫브리띵 사장님</title>
-<link type="text/css" rel="stylesheet" href="${path}/resources/css/reset.css">
-<link type="text/css" rel="stylesheet" href="${path}/resources/css/header.css">
-<link type="text/css" rel="stylesheet" href="${path}/resources/css/footer.css">
-<link type="text/css" rel="stylesheet" href="${path}/resources/css/mypage/bAside.css">
-<link type="text/css" rel="stylesheet" href="${path}/resources/css/shop/bShopInfo.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/common/reset.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bheader.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/common/footer.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bAside.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bShop/bShopInfo.css">
+<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -19,6 +21,7 @@
 		<section class="section">
 		<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
+			
 				<h2>사업장 등록</h2>
 				<br>
 				<table class="tblInfo">
@@ -33,11 +36,14 @@
 					</tr>
 					<tr>
 						<th>매장 주소</th>
-						<td colspan="2"><input type="text" id="sizeMod">&nbsp;&nbsp;<button class="basicBtn">주소 찾기</button></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td colspan="2"><input type="text"></td>
+						<td colspan="2">
+						<input type="text" id="postcode"
+							placeholder="우편번호"> <input id="postcodebtn" class="basicBtn" type="button" onclick="exePostCode()" value="우편번호 찾기">
+							<br>
+							<input type="text" id="address" placeholder="주소">
+							<br>
+							<input type="text" id="detailAddress" placeholder="상세주소">
+							<input type="text" id="extraAddress" placeholder="참고항목">
 					</tr>
 					<tr>
 						<th>매장 전화번호</th>
@@ -58,13 +64,13 @@
 					<tr>
 						<th>주휴일</th>
 						<th colspan="2">
-						<div class="wrap"><input type="checkbox" id="mon"><label for="mon"><div class="dayitem">월</div></label></div>
-						<div class="wrap"><input type="checkbox" id="tue"><label for="tue"><div class="dayitem">화</div></label></div>
-						<div class="wrap"><input type="checkbox" id="wed"><label for="wed"><div class="dayitem">수</div></label></div>
-						<div class="wrap"><input type="checkbox" id="thu"><label for="thu"><div class="dayitem">목</div></label></div>
-						<div class="wrap"><input type="checkbox" id="fri"><label for="fri"><div class="dayitem">금</div></label></div>
-						<div class="wrap"><input type="checkbox" id="sat"><label for="sat"><div class="dayitem">토</div></label></div>
-						<div class="wrap"><input type="checkbox" id="sun"><label for="sun"><div class="dayitem">일</div></label></div>						
+						<div class="wrap"><input type="checkbox" id="mon" name="1"><label for="mon"><div class="dayitem">월</div></label></div>
+						<div class="wrap"><input type="checkbox" id="tue" name="2"><label for="tue"><div class="dayitem">화</div></label></div>
+						<div class="wrap"><input type="checkbox" id="wed" name="3"><label for="wed"><div class="dayitem">수</div></label></div>
+						<div class="wrap"><input type="checkbox" id="thu" name="4"><label for="thu"><div class="dayitem">목</div></label></div>
+						<div class="wrap"><input type="checkbox" id="fri" name="5"><label for="fri"><div class="dayitem">금</div></label></div>
+						<div class="wrap"><input type="checkbox" id="sat" name="6"><label for="sat"><div class="dayitem">토</div></label></div>
+						<div class="wrap"><input type="checkbox" id="sun" name="7"><label for="sun"><div class="dayitem">일</div></label></div>						
 						</th>
 					</tr>					
 				</table>
@@ -74,5 +80,11 @@
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
+	
+		<!-- 스크립트 -->
+		<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
+		<script type="text/javascript" src="${path}/resources/js/bPartner/bPostcode.js"></script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		
 </body>
 </html>

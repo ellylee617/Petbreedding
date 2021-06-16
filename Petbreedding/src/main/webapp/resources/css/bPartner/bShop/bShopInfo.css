@@ -3,11 +3,13 @@
 	text-align: center;
 	margin: 0;
 }
+
+
 /*정보 입력 테이블 */
 .tblInfo{
 	width: 100%;
 	text-align: left;
-	padding : 0 250px;
+	padding : 0 150px;
 	font-weight: 600;
 }
 
@@ -19,9 +21,7 @@
 	width: 100%;
 }
 
-#sizeMod{
-	width: 200px;
-}
+
 
 .basicBtn{
 	width: 100px;
@@ -50,6 +50,11 @@
 	line-height: 30px;
 }
 
+input[type="text"] {
+	height: 35px;	
+	margin-bottom: 10px;
+} 
+
 input[type="checkbox"] {
 	display: none;
 }
@@ -64,4 +69,21 @@ input[type="checkbox"]:checked+label .dayitem{
 	height: 50px;
 	border-radius: 10px;
 	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+#postcode{
+	width: 50%;
+}
+
+#address{
+	width: 70%;
+}
+
+#detailAddress{
+	width: 70%;
+}
+
+#extraAddress{
+	width: 70%;
 }
