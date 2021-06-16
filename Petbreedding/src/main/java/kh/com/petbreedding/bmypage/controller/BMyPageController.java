@@ -66,19 +66,6 @@ public class BMyPageController {
 		return "/bPartner/bSales/bcalculate";
 	}
 
-	// 울트라콜 상품 조회
-	@RequestMapping(value = "/cta", method = RequestMethod.GET)
-	public String cta(Locale locale, Model model) {
-		return "/bPartner/bSales/cta";
-
-	}
-
-	// 울트라콜 결제
-	@RequestMapping(value = "/ctaPay", method = RequestMethod.GET)
-	public String ctaPay(Locale locale, Model model) {
-		return "/bPartner/bSales/ctaPay";
-
-	}
 
 	// 사장님 업체 정보 페이지로 이동
 	@RequestMapping(value = "/bShop", method = RequestMethod.GET)
