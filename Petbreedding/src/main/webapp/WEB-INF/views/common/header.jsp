@@ -7,8 +7,8 @@
         <ul>
         	<c:if test = "${!empty client }">
 	            <li class="alertBell"><a href="#"><i class="fas fa-bell"></i><span class="alertCircle"></span></a></li>
-	            <li id="userName"><a href="#">${client.nickname}</a></li>
-	            <li><a href="#">로그아웃</a></li>
+	            <li id="userName"><a href="#">${client.nickname}님</a></li>
+	            <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
             </c:if>
             <c:if test = "${empty client }">
 	            <li><a href="${pageContext.request.contextPath}/uLogin">로그인</a></li>

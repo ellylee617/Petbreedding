@@ -1,5 +1,6 @@
 package kh.com.petbreedding.common.controller;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Map;
 
@@ -57,25 +58,23 @@ public class LoginController {
 	// 유저 로그인 처리
 	@RequestMapping( value="/member/doLoginU", method = RequestMethod.POST)
 	@ResponseBody
-	public String doLoginU(Client client, HttpSession session ,HttpServletRequest req, RedirectAttributes rttr) {
+	public String doLoginU(Client client, HttpSession session ,HttpServletRequest req,HttpServletResponse res, RedirectAttributes rttr) {
 
 		Client result = loginService.login(client);
 		session = req.getSession();
-		
+
 		if(result == null) {
 			System.out.println("로그인 실패");
 			session.setAttribute("client", null);
-			rttr.addFlashAttribute("msg", "아이디와 비밀번호가 맞지 않습니다.");
-			return "uLogin";
+			return "/uLogin";
+			
 		}else {
 			System.out.println("로그인 성공!");
 			session.setAttribute("client", result);
+			return "/";
 		}
-		System.out.println("email : "+ client.getEmail());
-		System.out.println("password : "+ client.getPassword());
-		System.out.println("result : "+ result);
+	
 		
-		return "/";
 		
 	}
 	

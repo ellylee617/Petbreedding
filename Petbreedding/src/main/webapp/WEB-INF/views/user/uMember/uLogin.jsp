@@ -26,8 +26,8 @@
 	                 <input type="text" id="bId" class="inputArea" placeholder="아이디를 입력해주세요" name="email">
 	                 <label>비밀번호</label>
 	                 <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호를 입력해주세요" name="password">
-	                 <div id="errorText">${msg}</div>
-	                 <input type="submit" class="basicBtn" id="loginBtn" value="로그인" src="#">
+	                 <div id="errorText"></div>
+	                 <input type="button" class="basicBtn" id="loginBtn" value="로그인">
 	                 <p class="txt_or">또는</p>
 	                <button class="snsLogin" type="button">
 	                    <img src="${path}/resources/images/KakaoTalk_login.png" alt="img" />
@@ -37,7 +37,7 @@
 	                </button>
 	                <div class="searchIdPw_container">
 	                    <p id="searchIdPw" class="joLoText">아이디/비밀번호 찾기</p>
-	                    <p id="join" class="joLoText"><a href="join" >회원가입</a></p>
+	                    <p id="join" class="joLoText"><a href="${pageContext.request.contextPath}/uJoin" >회원가입</a></p>
 	                </div>
                  </div> 
              </form>
