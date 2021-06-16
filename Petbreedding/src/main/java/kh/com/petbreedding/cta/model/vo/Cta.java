@@ -4,6 +4,8 @@ public class Cta {
 private String CM_CODE;
 private String CM_TYPE;
 private int PRICE;
+
+
 public String getCM_CODE() {
 	return CM_CODE;
 }

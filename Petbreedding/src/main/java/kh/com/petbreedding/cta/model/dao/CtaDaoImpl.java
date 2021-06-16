@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.cta.model.vo.Cta;
+import kh.com.petbreedding.cta.model.vo.CtaPay;
 
 @Repository("ctaDao")
 public class CtaDaoImpl implements CtaDao {
@@ -21,6 +22,16 @@ public class CtaDaoImpl implements CtaDao {
 	@Override
 	public Cta read(String CM_TYPE) throws Exception {
 		return sqlSession.selectOne("Cta.ctacon", CM_TYPE);
+	}
+
+	@Override
+	public int insertpay(CtaPay pay) throws Exception {
+		return sqlSession.insert("Cta.paydata", pay);
+	}
+
+	@Override
+	public int insertCta(CtaPay pay) throws Exception {
+		return sqlSession.insert("Cta.insertcta", pay);
 	}
 
 }

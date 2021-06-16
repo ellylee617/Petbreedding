@@ -31,7 +31,7 @@
 							<span>구매자 정보</span>
 						</div>
 						<div class="mt15">
-							<span>구매자명</span> <span id="name">곽서현</span>
+							<span>구매자명</span> <span id="BP_ID">곽서현</span>
 						</div>
 						<div class="mt15">
 							<span>연락처</span> <span id="tel">010-0000-0000</span>
@@ -44,7 +44,8 @@
 					<main>
 						<div>
 							<div class="container spaceBw">
-								<span>결제 상품</span> <span id="type">${vo.CM_TYPE}</span>
+								<span>결제 상품</span> <span id="CM_TYPE">${vo.CM_TYPE}</span>
+								<input type="hidden" id="CM_CODE" value="${vo.CM_CODE}".-/>
 							</div>
 
 							<div class="container spaceBw">

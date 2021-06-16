@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.cta.model.dao.CtaDao;
 import kh.com.petbreedding.cta.model.vo.Cta;
+import kh.com.petbreedding.cta.model.vo.CtaPay;
 
 @Service("ctaService")
 public class CtaServiceImpl implements CtaService {
@@ -37,6 +38,45 @@ public class CtaServiceImpl implements CtaService {
 			e.printStackTrace();
 		}
 		return vo;
+	}
+
+	@Override
+	public int insertpay(CtaPay pay) throws Exception {
+		String CM_CODE = pay.getCM_CODE();
+		String BP_ID = pay.getBP_ID();
+		
+		CM_CODE = CM_CODE.replace("<", "&lt;");
+		CM_CODE = CM_CODE.replace("<", "&gt;");
+		BP_ID = BP_ID.replace("<", "&lt;");
+		BP_ID = BP_ID.replace("<", "&gt;");
+		
+		//공백처리
+		CM_CODE = CM_CODE.replace(" ", "&nbsp;&nbsp;");
+		BP_ID = BP_ID.replace(" ", "&nbsp;&nbsp;");
+		
+		pay.setBP_ID(BP_ID);
+		pay.setCM_CODE(CM_CODE);
+	    return ctaDao.insertpay(pay);
+	}
+
+	@Override
+	public int insertCta(CtaPay pay) throws Exception {
+		String CM_CODE = pay.getCM_CODE();
+		String BP_ID = pay.getBP_ID();
+		
+		CM_CODE = CM_CODE.replace("<", "&lt;");
+		CM_CODE = CM_CODE.replace("<", "&gt;");
+		BP_ID = BP_ID.replace("<", "&lt;");
+		BP_ID = BP_ID.replace("<", "&gt;");
+		
+		//공백처리
+		CM_CODE = CM_CODE.replace(" ", "&nbsp;&nbsp;");
+		BP_ID = BP_ID.replace(" ", "&nbsp;&nbsp;");
+		
+		pay.setBP_ID(BP_ID);
+		pay.setCM_CODE(CM_CODE);
+		
+		return ctaDao.insertCta(pay);
 	}
 	
 	
