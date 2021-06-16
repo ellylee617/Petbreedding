@@ -13,6 +13,8 @@
 <link href="${path}/resources/css/bPartner/bSales/ctaPay.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -29,38 +31,27 @@
 							<span>구매자 정보</span>
 						</div>
 						<div class="mt15">
-							<span>구매자명</span> <span>곽서현</span>
+							<span>구매자명</span> <span id="name">곽서현</span>
 						</div>
 						<div class="mt15">
-							<span>연락처</span> <span>010-0000-0000</span>
+							<span>연락처</span> <span id="tel">010-0000-0000</span>
+						</div>
+						<div class="mt15">
+							<span>이메일</span> <span id="email">${client.email}</span>
 						</div>
 					</div>
 
 					<main>
 						<div>
 							<div class="container spaceBw">
-								<span>결제 상품</span> <span>${vo.CM_TYPE}</span>
+								<span>결제 상품</span> <span id="type">${vo.CM_TYPE}</span>
 							</div>
 
 							<div class="container spaceBw">
 								<span>결제 금액</span>
 								<div>
-									<span class="totalPrice">총 결제 금액</span> <span>${vo.PRICE}원</span>
+									<span class="totalPrice">총 결제 금액</span> <span id="price">${vo.PRICE}원</span>
 								</div>
-							</div>
-
-							<div class="container">
-								<p>결제 방법 선택</p>
-								<label for="creditCard">신용카드</label> <input type="radio"
-									id="creditCard" class="mr30" name="pay"> <label
-									for="noneAccount">무통장 입금</label> <input type="radio"
-									id="creditCard" class="mr30" name="pay"> <label
-									for="account">계좌 이체</label> <input type="radio" id="account"
-									class="mr30" name="pay"> <label for="phone">휴대폰
-									결제</label> <input type="radio" id="phone" class="mr30" name="pay">
-								<label for="kakao">카카오 페이</label> <input type="radio" id="kakao"
-									class="mr30" name="pay"> <label for="naver">네이버
-									페이</label> <input type="radio" id="naver" class="mr30" name="pay">
 							</div>
 
 							<div class="container">
@@ -91,7 +82,9 @@
 						</div>
 					</main>
 
-					<button class="basicBtn payBtn">결제하기</button>
+					<button class="basicBtn payBtn" type="button" id="check_module">결제하기</button>
+					<p>
+
 				</form>
 
 
@@ -105,5 +98,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
     <script type="text/javascript" src="${path}/resources/js/bPartner/bSales/ctaPay.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/bPartner/bSales/ctaPay2.js"></script>
 </body>
 </html>
