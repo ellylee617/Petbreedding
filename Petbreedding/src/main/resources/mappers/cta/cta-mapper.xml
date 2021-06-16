@@ -13,4 +13,33 @@
 		SELECT * FROM CTA
 		WHERE CM_TYPE = #{CM_TYPE}
 	</select>
+	<!-- 결제정보 저장 -->
+	<insert id="paydata" parameterType="Ctapay" >
+		INSERT INTO cta_charge (
+			CHRG_NUM,
+			CM_CODE,
+			BP_ID,
+			CHRG_DATE
+		) VALUES (
+		SEQ_CTA_CHARGE.NEXTVAL,
+		#{CM_CODE},
+		#{BP_ID},
+		DEFAULT
+		)
+	</insert>
+	
+	<insert id="insertcta" parameterType="Ctapay">
+		INSERT INTO MY_CTA(
+			BP_ID,
+			CTA_NUMBER
+		) VALUES (
+			#{BP_ID},
+			#{CM_TYPE}
+		)
+	</insert>
+	
+	<update id="">
+	
+	</update>
 </mapper>
+	

@@ -1,14 +1,16 @@
-var name =   $("#name").text();
+var name =   $("#BP_ID").text();
 var tel =   $("#tel").text();
-var type =   $("#type").text();
+var type =   $("#CM_TYPE").text();
 var price =   $("#price").text();
 var email = $("#email").text();
+var cmcode = $("#CM_CODE").val();
 price = parseInt(price);
 console.log(name);
 console.log(tel);
 console.log(type);
 console.log(price);
 console.log(email);
+console.log(cmcode);
 $("#check_module").click(function () {
 var IMP = window.IMP; // 생략가능
 IMP.init('imp92318493');
@@ -67,6 +69,8 @@ msg += '상점 거래ID : ' + rsp.merchant_uid;
 msg += '결제 금액 : ' + rsp.paid_amount;
 msg += '카드 승인번호 : ' + rsp.apply_num;
 location.href = '/petbreedding/successPay';
+paysuceess();
+
 
 } else {
 var msg = '결제에 실패하였습니다.';
@@ -81,4 +85,62 @@ alert(msg);
 
 /*ajax*/
 
+
 });
+
+function paysuceess() {
+	$.ajax({
+	    url:"ctapaydata",
+	    data:{BP_ID: 1,
+	    	  CM_CODE : cmcode, 
+	    	  CM_TYPE : type
+	    },
+	    type:"post",
+	    success:function(data){
+	        console.log(data);
+	        console.log("성공");
+	        insertcount();
+	        
+	    },
+	    error:function(jqxhr, textStatus, errorThrown){
+	        console.log("ajax 처리 실패");
+	    }
+	});
+	
+	function updatecount() {
+		$.ajax({
+		    url:"updatemycta",
+		    data:{BP_ID: 1,
+		    	  CM_CODE : cmcode 	
+		    },
+		    type:"post",
+		    success:function(data){
+		        console.log(data);
+		        console.log("성공");
+		        
+		    },
+		    error:function(jqxhr, textStatus, errorThrown){
+		        console.log("ajax 처리 실패");
+		    }
+		});
+		
+		function insertcount() {
+			$.ajax({
+			    url:"insertmycta",
+			    //TODO
+			    data:{BP_ID: 1,
+			    	CTA_NUMBER : cmcode 	
+			    },
+			    type:"post",
+			    success:function(data){
+			        console.log(data);
+			        console.log("성공");
+			        
+			    },
+			    error:function(jqxhr, textStatus, errorThrown){
+			        console.log("ajax 처리 실패");
+			    }
+			});
+		}
+	}
+}

@@ -13,6 +13,7 @@
 		<typeAlias type="kh.com.petbreedding.common.model.vo.Likes" alias="Likes"/>
 		<typeAlias type="kh.com.petbreedding.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="kh.com.petbreedding.cta.model.vo.Cta" alias="Cta"/>
+		<typeAlias type="kh.com.petbreedding.cta.model.vo.CtaPay" alias="Ctapay"/>
 		<!-- TODO -->
 	</typeAliases>
 	
