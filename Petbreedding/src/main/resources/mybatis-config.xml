@@ -12,12 +12,14 @@
 		<typeAlias type="kh.com.petbreedding.mypage.model.vo.MyPet" alias="MyPet"/>
 		<typeAlias type="kh.com.petbreedding.common.model.vo.Likes" alias="Likes"/>
 		<typeAlias type="kh.com.petbreedding.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="kh.com.petbreedding.cta.model.vo.Cta" alias="Cta"/>
 		<!-- TODO -->
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/Client/client-mapper.xml" />
 		<mapper resource="mappers/common/login-mapper.xml" />
+		<mapper resource="mappers/cta/cta-mapper.xml" />
 	</mappers>
 	
 </configuration>
