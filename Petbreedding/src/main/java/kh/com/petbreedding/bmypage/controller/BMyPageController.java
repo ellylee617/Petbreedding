@@ -41,6 +41,14 @@ public class BMyPageController {
 		// TODO Auto-generated method stub
 		return "/bPartner/bBoard/bQna";
 	}
+	
+	// 사장님 마이 페이지 1:1문의하기
+	@RequestMapping(value = "/bQna/write", method = RequestMethod.GET)
+	public String bQnaWrite(Locale locale, Model model) {
+
+		// TODO Auto-generated method stub
+		return "/bPartner/bBoard/bQnaWrite";
+	}
 
 	// 사장님 메뉴관리
 	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
@@ -58,19 +66,6 @@ public class BMyPageController {
 		return "/bPartner/bSales/bcalculate";
 	}
 
-	// 울트라콜 상품 조회
-	@RequestMapping(value = "/cta", method = RequestMethod.GET)
-	public String cta(Locale locale, Model model) {
-		return "/bPartner/bSales/cta";
-
-	}
-
-	// 울트라콜 결제
-	@RequestMapping(value = "/ctaPay", method = RequestMethod.GET)
-	public String ctaPay(Locale locale, Model model) {
-		return "/bPartner/bSales/ctaPay";
-
-	}
 
 	// 사장님 업체 정보 페이지로 이동
 	@RequestMapping(value = "/bShop", method = RequestMethod.GET)

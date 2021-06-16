@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+.section{
+	height: 1000px;
+}
+
+
+#h1{
+	padding-top: 10px;
+	margin: 0px;
+	width: 10%;
+	float: left;
+}
+
+#h2{
+	padding-top: 10px;
+	margin: 0px;
+	width: 10%;
+	float: left;
+}
+
+#title{
+	width: 50%;	
+	height: 40px;
+}
+
+#content{
+	width: 50%;	
+	height: 500px;
+}
+
+.qnatitle{
+	width: 100%;
+	position: absolute;
+	top:20%;
+	left: 25%;
+}
+
+.qnacontent{
+	width: 100%;
+	position: absolute;
+	top:25%;
+	left: 25%;
+}
+
+.qanbtn{
+	width: 80%;
+	position: absolute;
+	top:65%;
+	left: 50%;
+
+}
+
+.basicBtn{
+	font-family: "GmarketB";
+    src: url("../font/GmarketSansTTFBold.ttf");
+    padding: 10px 30px 10px 30px;
+    border-radius: 5px;
+    margin: 2px;
+}
+

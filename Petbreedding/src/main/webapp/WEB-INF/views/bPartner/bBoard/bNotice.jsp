@@ -14,8 +14,6 @@
 	type="text/css">
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet"
 	type="text/css">
-<link href="${path}/resources/css/bPartner/bMyPageAside.css"
-	rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bBoard/bNotice.css" rel="stylesheet"
 	type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -26,7 +24,6 @@
 		<section class="section">
 			<jsp:include page="../bheader.jsp" />
 			<jsp:include page="../bAside.jsp" />
-			<jsp:include page="../bMyPageAside.jsp" />
 			<div class="bContent">
 				<h1>공지사항</h1>
 				<div id="title1" class="title">
@@ -73,5 +70,6 @@
 	</div>
 	<!-- script -->
 	<script type="text/javascript" src="${path}/resources/js/bBoard/bNotice.js"></script>
+		<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 </body>
 </html>

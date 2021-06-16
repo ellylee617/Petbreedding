@@ -45,6 +45,12 @@
   font-size: 16px;
   border-radius: 10px;
   margin-top: 33px;
+ 
+}
+.CTAPayBtn a{
+	 font-family: "GmarketB";
+	 src: url("../font/GmarketSansTTFBold.ttf");
+	 color: #fff;
 }
 
 .price {
