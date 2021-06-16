@@ -24,5 +24,8 @@
 	<select id="checkNickName" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM client WHERE CL_NICKNAME = #{nickname} 
 	</select>
-	
+	<!-- 휴대폰 중복체크 -->
+	<select id="checkHp" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM client WHERE CL_TEL = #{tel} 
+	</select>
 </mapper>

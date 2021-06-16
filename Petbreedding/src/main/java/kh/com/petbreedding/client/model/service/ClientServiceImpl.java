@@ -47,10 +47,24 @@ public class ClientServiceImpl implements ClientService{
 	}
 	
 	@Override
+	public int checkHp(String tel) {
+		int result = 0;
+		try {
+			result = clientDao.checkHp(tel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	@Override
 	public void clientAuth(Client cleint) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 
 

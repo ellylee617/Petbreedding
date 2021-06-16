@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.com.petbreedding.client.model.service.ClientService;
+import kh.com.petbreedding.client.model.service.MessageService;
 import kh.com.petbreedding.client.model.vo.Client;
 
 @Controller
@@ -27,6 +28,9 @@ public class ClientController {
 	@Autowired
 	private ClientService clientService;
 	
+	@Autowired
+	private MessageService messageService;
+	
 	//이메일 회원가입 페이지로 이동
 	@RequestMapping(value = "/uJoin", method = RequestMethod.GET)
 	public String openClientJoin(Locale locale, Model model) {
@@ -36,6 +40,7 @@ public class ClientController {
 	
 	//이메일 회원가입 처리
 	@RequestMapping(value = "/client/uJoin", method = RequestMethod.POST)
+	@ResponseBody
 	public String ClientJoin(Client client, HttpSession session) {
 		
 		logger.info(client.toString());
@@ -60,8 +65,7 @@ public class ClientController {
 		return null;
 		
 	}
-	
-	
+		
 	//회원가입 - 이메일 중복 확인
 	@RequestMapping("checkEmail")
 	@ResponseBody
@@ -78,17 +82,26 @@ public class ClientController {
 		return result;
 	}
 	
-	//휴대전화 인증번호 받기 
-	@RequestMapping(value = "/phone", method = RequestMethod.POST)
-	public void sendSms(HttpServletRequest request) {
-		//TODO
+	//회원가입 - 휴대폰 중복 확인
+	@RequestMapping("checkHp")
+	@ResponseBody
+	public int  checkHp(String tel) {
+		System.out.println("tel : "+ tel);
+		int result = clientService.checkHp(tel);
+		return result;
 	}
 	
-	@RequestMapping("/sendMail")
-	//가입 확인 이메일 전송
-	public String sendMail(Client client ,RedirectAttributes rttr) {
+	//휴대전화 인증번호 받기 
+	@RequestMapping(value = "phone", method = RequestMethod.POST)
+	@ResponseBody
+	public String sendSms(String tel) {
+		int num = (int)(Math.random() * (9999 - 1000 + 1)) + 1000;
+		String randomNumber = String.valueOf(num);
+		/* messageService.sendMessage(tel, randomNumber); */
 		
-		//TODO
-		return null;
+		System.out.println(randomNumber);
+		return randomNumber;
 	}
+	
+	
 }

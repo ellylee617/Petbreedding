@@ -26,6 +26,10 @@ public class ClientDao {
 		return sqlSession.selectOne("ClientMap.checkNickName", nickname);	
 	}
 	
+	public int checkHp(String tel) {	// 휴대폰 중복 확인	
+		return sqlSession.selectOne("ClientMap.checkHp", tel);	
+	}
+	
 	public void createAuthKey(String email, String authCode) {	// 이메일 인증번호 생성
 		
 	}

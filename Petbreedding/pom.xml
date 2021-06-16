@@ -195,6 +195,14 @@
 			<version>2.9.3</version>
 		</dependency>
 
+
+		<!-- coolSMS SDK v2.2 -->
+		<dependency>
+		    <groupId>net.nurigo</groupId>
+		    <artifactId>javaSDK</artifactId>
+		    <version>2.2</version>
+		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>
