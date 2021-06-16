@@ -25,6 +25,19 @@ public class CtaServiceImpl implements CtaService {
 		}
 		return list;
 	}
+
+	@Override
+	public Cta read(String CM_TYPE) throws Exception {
+		Cta vo = null;
+		System.out.println("read service 들어옴");
+		try {
+			vo = ctaDao.read(CM_TYPE);
+			System.out.println("read들어옴");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
 	
 	
 }

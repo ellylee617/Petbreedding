@@ -18,4 +18,9 @@ public class CtaDaoImpl implements CtaDao {
 		return sqlSession.selectList("Cta.ctalist");
 	}
 
+	@Override
+	public Cta read(String CM_TYPE) throws Exception {
+		return sqlSession.selectOne("Cta.ctacon", CM_TYPE);
+	}
+
 }

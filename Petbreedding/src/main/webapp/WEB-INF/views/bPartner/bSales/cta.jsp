@@ -13,6 +13,7 @@
 <link href="${path}/resources/css/bPartner/bSales/cta.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css" >
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -49,7 +50,9 @@
 	    
 	                    <div>
 	                        <p class=" price fs20">${list.PRICE}원</p>
-	                        <button class="basicBtn CTAPayBtn">결제하기</button>
+	                        <button class="basicBtn CTAPayBtn">
+	                        <a href="ctapay?CM_TYPE=${list.CM_TYPE}">
+	                        	결제하기</a></button>
 	                    </div>
 	                </div>
 	                </c:forEach>

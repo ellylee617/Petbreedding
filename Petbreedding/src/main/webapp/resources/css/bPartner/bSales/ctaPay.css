@@ -47,6 +47,10 @@ p {
   margin: 30px auto;
   font-size: 16px;
 }
+.payBtn{
+	 font-family: "GmarketB";
+	  src: url("../font/GmarketSansTTFBold.ttf");
+}
 
 .detail {
 	padding-left: 24px;

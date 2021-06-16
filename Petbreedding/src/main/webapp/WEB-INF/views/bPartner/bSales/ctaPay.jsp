@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bSales/ctaPay.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css">
+<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -38,13 +39,13 @@
 					<main>
 						<div>
 							<div class="container spaceBw">
-								<span>결제 상품</span> <span>울트라콜30회</span>
+								<span>결제 상품</span> <span>${vo.CM_TYPE}</span>
 							</div>
 
 							<div class="container spaceBw">
 								<span>결제 금액</span>
 								<div>
-									<span class="totalPrice">총 결제 금액</span> <span>20,000원</span>
+									<span class="totalPrice">총 결제 금액</span> <span>${vo.PRICE}원</span>
 								</div>
 							</div>
 
