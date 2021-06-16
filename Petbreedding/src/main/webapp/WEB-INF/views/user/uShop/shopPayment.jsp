@@ -7,10 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Petverything::펫브리띵</title>
-<link href="${path}/resources/css/reset.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/header.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/footer.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/shop/shopPayment.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/user/uShop/shopPayment.css" rel="stylesheet" type="text/css" >
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
@@ -131,7 +131,7 @@
 </div>
 	
 	 <!-- script -->
-     <script type="text/javascript" src="${path}/resources/js/shop/shopPayment.js"></script>
-     <script type="text/javascript" src="${path}/resources/js/topBtn.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/user/uShop/shopPayment.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
 </body>
 </html>
