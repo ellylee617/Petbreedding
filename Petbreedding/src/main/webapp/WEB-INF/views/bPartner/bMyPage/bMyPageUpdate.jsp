@@ -21,7 +21,6 @@
 		<section class="section">
 		<jsp:include page="../bheader.jsp" />
 		<jsp:include page="../bAside.jsp" />
-		<jsp:include page="../bMyPageAside.jsp" />
 			<div class="bContent">
 				<form class="updateFrm">
 					<label>이메일</label> <input type="text" class="inputBox" id="email">
