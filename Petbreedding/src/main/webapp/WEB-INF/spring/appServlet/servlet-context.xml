@@ -23,6 +23,8 @@
 	
 	<context:component-scan base-package="kh.com.petbreedding" />
 	
-	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="kh.com.petbreedding.common.model.vo.NaverLogin" />
+
 	
 </beans:beans>

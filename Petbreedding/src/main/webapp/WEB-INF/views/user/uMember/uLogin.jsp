@@ -33,7 +33,7 @@
 	                    <img src="${path}/resources/images/KakaoTalk_login.png" alt="img" />
 	                </button>
 	                <button class="snsLogin naverLogin" type="button">
-	                    <a><img src="${path}/resources/images/naver_login.png" alt="img" /></a>
+	                    <a href="${url}"><img src="${path}/resources/images/naver_login.png" alt="img" /></a>
 	                </button>
 	                <div class="searchIdPw_container">
 	                    <p id="searchIdPw" class="joLoText">아이디/비밀번호 찾기</p>
