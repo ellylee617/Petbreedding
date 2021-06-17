@@ -2,13 +2,21 @@ package kh.com.petbreedding.bmypage.controller;
 
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kh.com.petbreedding.bmypage.model.service.ShopService;
+import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+
 @Controller
 public class BMyPageController {
+	
+	@Autowired
+	private ShopService shopService;
 
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
@@ -67,11 +75,24 @@ public class BMyPageController {
 	}
 
 
-	// 사장님 업체 정보 페이지로 이동
+	// 사장님 사업장 관리 - 사업자 등록 페이지 이동
 	@RequestMapping(value = "/bShop", method = RequestMethod.GET)
-	public String bShop(Locale locale, Model model) {
+	public String bShop() {
 		return "/bPartner/bShop/bShopInfo";
 	}
+	
+	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) 
+	@RequestMapping(value = "/bShop/write", method = RequestMethod.GET)
+	public String bShopWrite(HairSalon vo) {
+		
+		
+		System.out.println(vo.toString());
+		shopService.insertHarInfo(vo);
+		
+		
+		return "/bPartner/bIndex";	//TODO:수정해야됨!!!!
+	}
+	
 
 	// 업체 리뷰 관리 페이지로 이동
 	@RequestMapping(value = "/bReview", method = RequestMethod.GET)

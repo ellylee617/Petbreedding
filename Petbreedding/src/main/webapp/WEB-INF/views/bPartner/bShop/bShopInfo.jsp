@@ -21,18 +21,18 @@
 		<section class="section">
 		<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
-			
+			<form id="shopForm">
 				<h2>사업장 등록</h2>
 				<br>
 				<table class="tblInfo">
 					<tr>
 						<th>서비스 구분</th>
-						<th><input type="radio" name="shop" id="bshop"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
-						<th><input type="radio" name="shop" id="hshop"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
+						<th><input type="radio" name="shop" id="bshop" value="0"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
+						<th><input type="radio" name="shop" id="hshop" value="1"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
 					</tr>
 					<tr>
 						<th>매장명</th>
-						<td colspan="2"><input type="text" placeholder="사업자 등록증에 명시된 매장명을 입력해주세요."></td>
+						<td colspan="2"><input id="shopName" type="text" placeholder="사업자 등록증에 명시된 매장명을 입력해주세요." name="shopName"></td>
 					</tr>
 					<tr>
 						<th>매장 주소</th>
@@ -40,22 +40,22 @@
 						<input type="text" id="postcode"
 							placeholder="우편번호"> <input id="postcodebtn" class="basicBtn" type="button" onclick="exePostCode()" value="우편번호 찾기">
 							<br>
-							<input type="text" id="address" placeholder="주소">
+							<input type="text" id="shopAddress" placeholder="주소" name="shopAddr">
 							<br>
 							<input type="text" id="detailAddress" placeholder="상세주소">
 							<input type="text" id="extraAddress" placeholder="참고항목">
 					</tr>
 					<tr>
 						<th>매장 전화번호</th>
-						<td colspan="2"><input type="text" placeholder="'-'를 포함해서 입력해주세요"></td>
+						<td colspan="2"><input id="shopTel" type="text" placeholder="'-'를 포함해서 입력해주세요" name="shopTel"></td>
 					</tr>
 					<tr>
 						<th>영업시간</th>
-						<td colspan="2"><input type="text"></td>
+						<td colspan="2"><input id="shopTime" type="text" name="shopTime"></td>
 					</tr>
 					<tr>
 						<th>간단소개</th>
-						<td colspan="2"><input type="text"></td>
+						<td colspan="2"><input id="shopMInfo" type="text" name="shopMInfo"></td>
 					</tr>
 					<tr>
 						<th>대표이미지</th>
@@ -76,6 +76,7 @@
 				</table>
 				<br><br>
 				<button class="basicBtn InfoRegi">등록하기</button>
+			</form>
 			</div>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
@@ -84,6 +85,7 @@
 		<!-- 스크립트 -->
 		<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 		<script type="text/javascript" src="${path}/resources/js/bPartner/bPostcode.js"></script>
+		<script type="text/javascript" src="${path}/resources/js/bPartner/bBoard/bShopInfo.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		
 </body>

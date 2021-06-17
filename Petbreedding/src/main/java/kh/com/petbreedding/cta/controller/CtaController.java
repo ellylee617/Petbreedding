@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< HEAD
 /*import com.siot.IamportRestClient.response.Payment;*/
+=======
+//import com.siot.IamportRestClient.response.Payment;
+>>>>>>> 22cc2ddd9adbf2e4ca602b795810e1ee32056048
 
 import kh.com.petbreedding.cta.model.service.CtaService;
 import kh.com.petbreedding.cta.model.vo.Cta;
