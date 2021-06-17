@@ -26,6 +26,14 @@
 	<result column="BP_APRVE" property="bp_aprve"/>
   </resultMap>
 
+   <!-- 관리자 resultMap -->
+  <resultMap type="Admin" id="mLogin">
+	<result column="ADMIN_ID" property="admin_id"/>
+	<result column="ADMIN_PWD" property="admin_pwd"/>
+  </resultMap>
+
+
+
 	<!-- 사용자 로그인 -->
 	<select id="loginMember" parameterType="Client" statementType="PREPARED" resultMap="uLogin">
 		SELECT * 
@@ -39,5 +47,13 @@
 		FROM business_partner 
 		WHERE BP_EMAIL = #{bp_email} AND BP_PWD = #{bp_pwd}
 	</select>
+  
+  	<!-- 관리자 로그인 -->
+	<select id="loginAdmin" parameterType="Admin" statementType="PREPARED" resultMap="mLogin">
+		SELECT * 
+		FROM ADMIN 
+		WHERE ADMIN_ID = #{admin_id} AND ADMIN_PWD = #{admin_pwd}
+	</select>
+  
   
 </mapper>

@@ -17,6 +17,7 @@
 		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.HairSalon" alias="HairSalon"/>
 		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.HairDayOff" alias="HairDayOff"/>
 		<typeAlias type="kh.com.petbreedding.BP.model.vo.BPartner" alias="BPartner"/>
+		<typeAlias type="kh.com.petbreedding.Admin.model.vo.Admin" alias="Admin"/>
 		<!-- TODO -->
 	</typeAliases>
 	

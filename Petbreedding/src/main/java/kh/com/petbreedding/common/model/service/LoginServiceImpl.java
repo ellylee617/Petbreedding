@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.dao.LoginDao;
@@ -37,6 +38,19 @@ public class LoginServiceImpl implements LoginService {
 		
 		try {
 			result = loginDao.blogin(bP);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public Admin mLogin(Admin admin) {
+		Admin result = null;
+		
+		try {
+			result = loginDao.mLogin(admin);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

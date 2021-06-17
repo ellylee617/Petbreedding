@@ -11,7 +11,7 @@
 <link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/admin/mAside.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/aSales/mClient.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/admin/aSales/mClient.css" rel="stylesheet" type="text/css" >
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>

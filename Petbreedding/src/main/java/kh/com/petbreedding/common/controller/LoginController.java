@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kh.com.petbreedding.HomeController;
+import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.service.LoginService;
@@ -135,6 +136,28 @@ public class LoginController {
 		
 	}
 	
+	// 관리자 로그인 처리
+	@RequestMapping("/member/doLoginM")
+	@ResponseBody
+	public String doLoginM(Admin admin, HttpSession session ,HttpServletRequest req,HttpServletResponse res, RedirectAttributes rttr) {
+		System.out.println("admin : "+ admin);
+		Admin result = loginService.mLogin(admin);
+		session = req.getSession();
+		System.out.println("result : "+ result);
+		
+		if(result == null) {
+			System.out.println("로그인 실패");
+			session.setAttribute("admin", null);
+			return "/mLogin";
+		}else {
+			System.out.println("로그인 성공!");
+			session.setAttribute("admin", result);
+			return "/mClient";
+		}
+		
+	}
+	
+	
 	
 	// 카카오 로그인
 	@RequestMapping(value = "/kakaoLogin",produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
@@ -232,6 +255,14 @@ public class LoginController {
 			
 		}
 	
-	
+		// 관리자 로그아웃
+		@RequestMapping("/mlogout")
+		public String mlogout(Admin admin, HttpSession session) {
+			
+			session.invalidate();
+			
+			return "redirect:/mLogin";
+			
+		}
 	
 }

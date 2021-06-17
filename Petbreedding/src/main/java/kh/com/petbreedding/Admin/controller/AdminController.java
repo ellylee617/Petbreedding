@@ -10,6 +10,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminController {
 
+	//관리자 회원관리
+		@RequestMapping(value = "/mClient", method = RequestMethod.GET)
+		public String mClient(Locale locale, Model model) {
+			return "/admin/aSales/mClient";
+		}
+		
+	//관리자 매출관리
+	@RequestMapping(value = "/mSales", method = RequestMethod.GET)
+	public String mSales(Locale locale, Model model) {
+		return "/admin/aSales/mSales";
+	}
+	
+	
 	// 사업장관리 - 제휴 승인 대기 페이지로 이동
 	@RequestMapping(value = "/mwait", method = RequestMethod.GET)
 	public String mWait(Locale locale, Model model) {

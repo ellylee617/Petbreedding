@@ -4,7 +4,6 @@
 <header class="Bheader">
     <nav class="UserNav">
         <ul>
-        <!-- 사업자 ver 변경예쩡 -->
         	<c:if test = "${!empty bP }">
 	            <li class="alertBell"><a href="#"><i class="fas fa-bell"></i><span class="alertCircle"></span></a></li>
 	            <li id="userName"><a href="#">${bP.bp_name}님</a></li>
