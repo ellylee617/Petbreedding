@@ -17,12 +17,25 @@ public class LikesServiceImpl implements LikesService{
 	@Override
 	public String addLikes(String like_num) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = null;
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override
 	public void cancelLikes(String like_num) {
 		// TODO Auto-generated method stub
+		
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

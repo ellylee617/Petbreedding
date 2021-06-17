@@ -26,7 +26,7 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public int checkEmail(String email) {
-		int result = 0;
+		int result = -1;
 		try {
 			result = clientDao.checkEmail(email);
 		} catch (Exception e) {
@@ -37,7 +37,7 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public int checkNickName(String nickname) {
-		int result = 0;
+		int result = -1;
 		try {
 			result = clientDao.checkNickName(nickname);
 		} catch (Exception e) {
@@ -48,7 +48,7 @@ public class ClientServiceImpl implements ClientService{
 	
 	@Override
 	public int checkHp(String tel) {
-		int result = 0;
+		int result = -1;
 		try {
 			result = clientDao.checkHp(tel);
 		} catch (Exception e) {
@@ -62,6 +62,11 @@ public class ClientServiceImpl implements ClientService{
 	public void clientAuth(Client cleint) {
 		// TODO Auto-generated method stub
 		
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 

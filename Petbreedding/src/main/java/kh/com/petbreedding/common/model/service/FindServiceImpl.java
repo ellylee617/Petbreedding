@@ -15,13 +15,27 @@ public class FindServiceImpl implements FindService{
 	@Override
 	public String findId(Client client) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = null;
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override
 	public String findPwd(Client client) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = null;
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	

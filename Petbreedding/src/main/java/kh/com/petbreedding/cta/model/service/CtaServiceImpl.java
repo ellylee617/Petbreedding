@@ -15,7 +15,7 @@ public class CtaServiceImpl implements CtaService {
 	private CtaDao ctaDao;
 
 	@Override
-	public List<Cta> listAll() throws Exception {
+	public List<Cta> listAll() {
 		List<Cta> list = null;
 		System.out.println("service들어옴");
 		try {
@@ -28,7 +28,7 @@ public class CtaServiceImpl implements CtaService {
 	}
 
 	@Override
-	public Cta read(String CM_TYPE) throws Exception {
+	public Cta read(String CM_TYPE) {
 		Cta vo = null;
 		System.out.println("read service 들어옴");
 		try {
@@ -41,7 +41,9 @@ public class CtaServiceImpl implements CtaService {
 	}
 
 	@Override
-	public int insertpay(CtaPay pay) throws Exception {
+	public int insertpay(CtaPay pay) {
+		int result = -1;
+		
 		String CM_CODE = pay.getCM_CODE();
 		String BP_ID = pay.getBP_ID();
 		
@@ -56,11 +58,19 @@ public class CtaServiceImpl implements CtaService {
 		
 		pay.setBP_ID(BP_ID);
 		pay.setCM_CODE(CM_CODE);
-	    return ctaDao.insertpay(pay);
+		
+	    try {
+	    	result = ctaDao.insertpay(pay);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return result;
 	}
 
 	@Override
-	public int insertCta(CtaPay pay) throws Exception {
+	public int insertCta(CtaPay pay) {
+		int result = -1;
+		
 		String CM_CODE = pay.getCM_CODE();
 		String BP_ID = pay.getBP_ID();
 		
@@ -76,7 +86,12 @@ public class CtaServiceImpl implements CtaService {
 		pay.setBP_ID(BP_ID);
 		pay.setCM_CODE(CM_CODE);
 		
-		return ctaDao.insertCta(pay);
+		try {
+			result = ctaDao.insertCta(pay);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	

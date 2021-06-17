@@ -18,20 +18,45 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public Client login(Client client) {
-		Client result = loginDao.login(client);
+		Client result = null;
+		
+		try {
+			result = loginDao.login(client);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 
 	@Override
 	public int loginKakao(Client client) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		int result = -1;
+		
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int loginNaver(Client client) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		int result = -1;
+		
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 }
