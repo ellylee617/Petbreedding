@@ -12,78 +12,33 @@ import kh.com.petbreedding.mypage.model.vo.MyPet;
 public class MyPetServiceImpl implements MyPetService{
 
 	@Autowired
-	private MyPetDao myPetDao;
-	
+	private MyPetDao mypetDao;
+
 	@Override
 	public MyPet selectPetInfo(String pet_num) {
-		// TODO Auto-generated method stub
-		MyPet myPet = null;
-		try {
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return myPet;
+		return null;
 	}
 
 	@Override
-	public void insertPetInfo(MyPet pet_info) {
-		// TODO Auto-generated method stub
-		
+	public void insertPetInfo(MyPet mypet) {
+		System.out.println("mypet service들어옴");
 		try {
-			
-		} catch(Exception e) {
+		mypetDao.insertPetInfo(mypet);
+		System.out.println("mypet service db 갔다옴");
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	}
-
-	@Override
-	public void insertPetIMG(String pet_img, MultipartHttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
-		try {
-			
-		} catch(Exception e) {
-			e.printStackTrace();
 		}
-		
-	}
-
-	@Override
-	public void deletePetIMG(String pet_img) {
-		// TODO Auto-generated method stub
-		
-		try {
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 
 	@Override
 	public void updatePetInfo(MyPet pet_info) {
-		// TODO Auto-generated method stub
-		
-		try {
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 		
 	}
 
 	@Override
 	public void deletePetInfo(MyPet pet_info) {
-		// TODO Auto-generated method stub
-		
-		try {
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 		
 	}
+	
 
 }

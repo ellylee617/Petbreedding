@@ -20,8 +20,9 @@
 
 		<section class="section">
 		<jsp:include page="../myPageAside.jsp" />
-            <form action="" id="petInfoFrm" class="petInfo_container">
-
+            <form action="${path}/Mypage/addmypet" method="POST" id="petInfoFrm" class="petInfo_container" enctype="multipart/form-data">
+				<input type="hidden" name="cl_num" value="${client.cl_num}">
+				${client.cl_num}
                 <table class="petInfo_container">
                     <tr>
                         <td colspan="2" class="imgTd">
@@ -29,7 +30,7 @@
                                 <div class="imgBox">
                                     <img src="">
                                 </div>
-                                <input type="file" id="realInput" class="image_inputType_file" accept="img/*" required multiple>
+                                <input type="file" id="realInput" name="pet_img" class="image_inputType_file" value="파일선택">
                             </div>
                             <i id="browseBtn" class="fas fa-plus"></i>
                         </td>
@@ -37,15 +38,15 @@
 
                     <tr>
                         <td colspan="2">
-                            <input type="text" placeholder="이름을 입력해주세요" class="basicTextInput m_20 mt_20">
+                            <input type="text" placeholder="이름을 입력해주세요" class="basicTextInput m_20 mt_20" name="pet_name">
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <select name="selectPet" id="selectPet" class="selectBox m_20">
-                                <option value="견종">견종</option>
+                            <select name="pet_kind" id="selectPet" class="selectBox m_20" >
+                                <option value="견종" name="">견종</option>
                                 <option value="골든두들">골든두들</option>
                                 <option value="골든리트리버">골든리트리버</option>
                                 <option value="그레이하운드">그레이하운드</option>
@@ -91,9 +92,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <select name="YEAR" id="YEAR" title="년도" class="selectBox selectTime"></select>
-                            <select name="MONTH" id="MONTH" title="월" class="selectBox selectTime"></select>
-                            <select name="DATE" id="DATE" title="일" class="selectBox selectTime m_20"></select>
+							   <input type="text" name="pet_birth" placeholder="반려견 나이를 입력해주세요" class="basicTextInput perInfo_text m_20">
                         </td>
                     </tr>
 
@@ -101,15 +100,15 @@
                         <td colspan="2" class="radioBox">
                             <ul class="selectOpt">
                                 
-                                <input type="radio" id="male" name="gender" value="male">
+                                <input type="radio" id="male" name="pet_gen" value="male">
                                 <li class="genderList" >
                                     <label for="male">남아</label><br>
                                 </li>
-                                <input type="radio" id="female" name="gender" value="female">
+                                <input type="radio" id="female" name="pet_gen" value="female">
                                 <li class="genderList">
                                     <label for="female">여아</label><br>
                                 </li>
-                                <input type="radio" id="neutrality" name="gender" value="neutrality">
+                                <input type="radio" id="neutrality" name="pet_neut" value="1" >
                                 <li class="genderList list_neut m_20">
                                     <label for="neutrality">중성화</label>
                                 </li>
@@ -125,7 +124,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <select name="selectBeautyEx" id="selectBeautyEx" class="selectBox m_20">
+                            <select name="selectBeautyEx" id="selectBeautyEx" class="selectBox m_20" name="pet_exper">
                                 <option value="선택">선택</option>
                                 <option value="없음">없음</option>
                                 <option value="1회">1회</option>
@@ -142,7 +141,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <select name="selectInjectionEx" id="selectInjectionEx" class="selectBox m_20">
+                            <select name="pet_vaccin" id="selectInjectionEx" class="selectBox m_20">
                                 <option value="선택">선택</option>
                                 <option value="2차 이하">2차 이하</option>
                                 <option value="3차 완료">3차 완료</option>
@@ -159,7 +158,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <select name="selectBite" id="selectBite" class="selectBox m_20">
+                            <select name="pet_bite" id="selectBite" class="selectBox m_20">
                                 <option value="선택">선택</option>
                                 <option value="안해요">안해요</option>
                                 <option value="해요">해요</option>
@@ -175,45 +174,45 @@
                     <tr>
                         <td colspan="2" class="radioBox">
                             <ul class="selectOpt">
-                                <input type="checkbox" id="eye" name="hate" value="eye">
+                                <input type="checkbox" id="eye" name="dislike" value="eye">
                                 <li class="hateList">
                                     <label for="eye">눈</label><br>
                                 </li>
-                                <input type="checkbox" id="nose" name="hate" value="nose">
+                                <input type="checkbox" id="nose" name="dislike" value="nose">
                                 <li class="hateList">
                                     <label for="nose">코</label><br>
                                 </li>
-                                <input type="checkbox" id="mouth" name="hate" value="mouth">
+                                <input type="checkbox" id="mouth" name="dislike" value="mouth">
                                 <li class="hateList">
                                     <label for="mouth">입</label>
                                 </li>
-                                <input type="checkbox" id="ear" name="hate" value="ear">
+                                <input type="checkbox" id="ear" name="dislike" value="ear">
                                 <li class="hateList">
                                     <label for="ear">귀</label><br>
                                 </li>
-                                <input type="checkbox" id="neck" name="hate" value="neck">
+                                <input type="checkbox" id="neck" name="dislike" value="neck">
                                 <li class="hateList hateListL m_20">
                                     <label for="neck">목</label><br>
                                 </li>
 
 
-                                <input type="checkbox" id="body" name="hate" value="body">
+                                <input type="checkbox" id="body" name="dislike" value="body">
                                 <li class="hateList">
                                     <label for="body">몸통</label>
                                 </li>
-                                <input type="checkbox" id="leg" name="hate" value="leg">
+                                <input type="checkbox" id="leg" name="dislike" value="leg">
                                 <li class="hateList">
                                     <label for="leg">다리</label><br>
                                 </li>
-                                <input type="checkbox" id="tail" name="hate" value="tail">
+                                <input type="checkbox" id="tail" name="dislike" value="tail">
                                 <li class="hateList">
                                     <label for="tail">꼬리</label><br>
                                 </li>
-                                <input type="checkbox" id="it" name="hate" value="it">
+                                <input type="checkbox" id="it" name="dislike" value="it">
                                 <li class="hateList">
                                     <label for="it">생식기</label>
                                 </li>
-                                <input type="checkbox" id="none" name="hate" value="none">
+                                <input type="checkbox" id="none" name="dislike" value="none">
                                 <li class="hateList hateListL m_20">
                                     <label for="none">없음</label>
                                 </li>
@@ -229,7 +228,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <select name="selectKneecap" id="selectKneecap" class="selectBox m_20">
+                            <select name="kneecap" id="selectKneecap" class="selectBox m_20">
                                 <option value="선택">선택</option>
                                 <option value="없음">없음</option>
                                 <option value="1기">1기</option>
@@ -269,7 +268,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" class="basicTextInput perInfo_text m_20">
+                            <input type="text" class="basicTextInput perInfo_text m_20" name="pet_others" >
                             <p class="errorMsg">에이작스 메세지</p>
                         </td>
                     </tr>
@@ -277,7 +276,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <button id="petInfo_register" class="basicBtn" type="button">등록하기</button>
+                            <button id="petInfo_register" class="basicBtn" type="submit">등록하기</button>
                         </td>
                     </tr>
                 </table>
