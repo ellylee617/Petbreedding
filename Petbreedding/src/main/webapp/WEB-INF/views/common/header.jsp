@@ -10,7 +10,12 @@
 	            <li id="userName"><a href="#">${client.nickname}님</a></li>
 	            <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
             </c:if>
-            <c:if test = "${empty client }">
+            <c:if test = "${!empty kakaoEmail }">
+	            <li class="alertBell"><a href="#"><i class="fas fa-bell"></i><span class="alertCircle"></span></a></li>
+	            <li id="userName"><a href="#">${nickname}님</a></li>
+	            <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
+            </c:if>
+            <c:if test = "${empty client && empty kakaoEmail}">
 	            <li><a href="${pageContext.request.contextPath}/uLogin">로그인</a></li>
 	            <li><a href="${pageContext.request.contextPath}/uJoin">회원가입</a></li>
             </c:if>

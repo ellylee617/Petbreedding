@@ -24,7 +24,7 @@ public class NaverLogin {
 		//state: 애플리케이션이 생성한 상태 토큰
 		private final static String CLIENT_ID = "hjIRBEMHD9caNkO_IECs";
 		private final static String CLIENT_SECRET = "dTx8pluJr6";
-		private final static String REDIRECT_URI = "http://localhost:8090/petbreedding/callback";
+		private final static String REDIRECT_URI = "http://localhost:8090/petbreedding/naverLogin";
 		private final static String SESSION_STATE = "oauth_state";
 		
 		/* 프로필 조회 API URL */

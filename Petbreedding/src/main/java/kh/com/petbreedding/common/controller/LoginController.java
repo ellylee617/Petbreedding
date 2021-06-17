@@ -1,6 +1,8 @@
 package kh.com.petbreedding.common.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -21,13 +23,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kh.com.petbreedding.HomeController;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.service.LoginService;
+import kh.com.petbreedding.common.model.vo.KakaoLogin;
 import kh.com.petbreedding.common.model.vo.NaverLogin;
 
 @Controller
@@ -36,6 +41,9 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
+	
+	@Autowired
+	KakaoLogin kakaoLogin;
 	/* NaverLoginBO */
 	private NaverLogin naverLogin;
 	private String apiResult = null;
@@ -44,6 +52,8 @@ public class LoginController {
 	private void setNaverLogin(NaverLogin naverLogin) {
 		this.naverLogin = naverLogin;
 	}
+	
+	
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -54,12 +64,18 @@ public class LoginController {
 		
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLogin클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
-		
-		System.out.println("네이버:" + naverAuthUrl);
+		String kakaoUrl = KakaoLogin.getAuthorizationUrl(session);
+
+		/* System.out.println("네이버:" + naverAuthUrl); */
 		
 		//네이버
 		model.addAttribute("url", naverAuthUrl);
+		
+		// 카카오 
+		model.addAttribute("kakao_url", kakaoUrl);
 
+
+        
 		return "/user/uMember/uLogin";
 	}
 	
@@ -111,26 +127,51 @@ public class LoginController {
 	
 	
 	// 카카오 로그인
-	@RequestMapping(value = "kakaoLogin", method = RequestMethod.POST)
-	public String kakaoLogin(HttpServletRequest request, @RequestBody Map<String, Object> param) {
+	@RequestMapping(value = "/kakaoLogin",produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 		
-		// TODO Auto-generated method stub
-		return null;
+		ModelAndView mv = new ModelAndView();
+		//결과값을 node에 담아줌
+		JsonNode node = KakaoLogin.getAccessToken(code);
+		//accessToken에 사용자의 로그인 정보가 들어있음
+		JsonNode accessToken = node.get("access_token");
+		//사용자 정보
+		JsonNode userInfo = KakaoLogin.getKakaoUserInfo(accessToken); 
+		String email = null; 
+		String nickname = null;
 		
+		
+		// 유저정보 카카오에서 가져오기 Get properties 
+		JsonNode properties = userInfo.path("properties"); 
+		JsonNode kakao_account = userInfo.path("kakao_account"); 
+		
+		System.out.println("properties : "+ userInfo);
+//		System.out.println("kakao_account : "+ kakao_account);
+		
+		email = kakao_account.path("email").asText(); 
+		nickname = properties.path("nickname").asText(); 
+			
+		
+		session.setAttribute("kakaoEmail", email);
+		session.setAttribute("nickname", nickname); 
+		/* session.setAttribute("kname", kname); */
+		
+		mv.setViewName("/common/index");
+
+		return mv;
 	}
 	
 	
 	//네이버 로그인 성공시 callback호출 메소드
-	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "naverLogin", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
 		
-		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLogin.getAccessToken(session, code, state);
 		
 		//1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLogin.getUserProfile(oauthToken); //String형식의 json데이터
-		System.out.println("apiResult : "+ apiResult);
+		/* System.out.println("apiResult : "+ apiResult); */
 		/** apiResult json 구조
 		{"resultcode":"00",
 		"message":"success",

@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/user/uMember/uLogin.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
 
@@ -29,10 +30,12 @@
 	                 <div id="errorText"></div>
 	                 <input type="button" class="basicBtn" id="loginBtn" value="로그인">
 	                 <p class="txt_or">또는</p>
-	                <button class="snsLogin" type="button">
-	                    <img src="${path}/resources/images/KakaoTalk_login.png" alt="img" />
+	                <button class="snsLogin" type="button"id="kakao">
+	                    <a href="${kakao_url}">
+	                    	<img src="${path}/resources/images/KakaoTalk_login.png" alt="img" />
+	                    </a>
 	                </button>
-	                <button class="snsLogin naverLogin" type="button">
+	                <button class="snsLogin naverLogin" type="button" >
 	                    <a href="${url}"><img src="${path}/resources/images/naver_login.png" alt="img" /></a>
 	                </button>
 	                <div class="searchIdPw_container">
