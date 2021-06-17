@@ -7,67 +7,75 @@ import org.springframework.stereotype.Component;
 @Component
 public class Board {
 	
-	private String bo_num;
-	private String bo_title;
-	private String bo_cont;
-	private String  bo_img;
-	private Date bo_date; 
-	private int bo_view;
+	private String boNum;
+	private String clNum;
+	private String boTitle;
+	private String boCont;
+	private String boImg;
+	private String boDate; 
+	private int boView;
 	
 	@Override
 	public String toString() {
-		return "Board [bo_num=" + bo_num + ", bo_title=" + bo_title + ", bo_cont=" + bo_cont + ", bo_img=" + bo_img
-				+ ", bo_date=" + bo_date + ", bo_view=" + bo_view + "]";
+		return "Board [boNum=" + boNum + ", clNum=" + clNum + ", boTitle=" + boTitle + ", boCont=" + boCont + ", boImg="
+				+ boImg + ", boDate=" + boDate + ", boView=" + boView + "]";
 	}
 
-	public String getBo_num() {
-		return bo_num;
+	public String getBoNum() {
+		return boNum;
 	}
 
-	public void setBo_num(String bo_num) {
-		this.bo_num = bo_num;
+	public void setBoNum(String boNum) {
+		this.boNum = boNum;
 	}
 
-	public String getBo_title() {
-		return bo_title;
+	public String getClNum() {
+		return clNum;
 	}
 
-	public void setBo_title(String bo_title) {
-		this.bo_title = bo_title;
+	public void setClNum(String clNum) {
+		this.clNum = clNum;
 	}
 
-	public String getBo_cont() {
-		return bo_cont;
+	public String getBoTitle() {
+		return boTitle;
 	}
 
-	public void setBo_cont(String bo_cont) {
-		this.bo_cont = bo_cont;
+	public void setBoTitle(String boTitle) {
+		this.boTitle = boTitle;
 	}
 
-	public String getBo_img() {
-		return bo_img;
+	public String getBoCont() {
+		return boCont;
 	}
 
-	public void setBo_img(String bo_img) {
-		this.bo_img = bo_img;
+	public void setBoCont(String boCont) {
+		this.boCont = boCont;
 	}
 
-	public Date getBo_date() {
-		return bo_date;
+	public String getBoImg() {
+		return boImg;
 	}
 
-	public void setBo_date(Date bo_date) {
-		this.bo_date = bo_date;
+	public void setBoImg(String boImg) {
+		this.boImg = boImg;
 	}
 
-	public int getBo_view() {
-		return bo_view;
+	public String getBoDate() {
+		return boDate;
 	}
 
-	public void setBo_view(int bo_view) {
-		this.bo_view = bo_view;
+	public void setBoDate(String boDate) {
+		this.boDate = boDate;
 	}
-	
+
+	public int getBoView() {
+		return boView;
+	}
+
+	public void setBoView(int boView) {
+		this.boView = boView;
+	}
 	
 	
 }

@@ -1,5 +1,6 @@
 package kh.com.petbreedding.board.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.sun.media.jfxmedia.logging.Logger;
 
 import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.service.BoardService;
@@ -39,22 +43,29 @@ public class BoardController {
 		
 	}
 	
-	//게시글 목록 + 페이징 + 검색
-//	@RequestMapping("/bordlist")
-//	public  String listBoard(RedirectAttributes attr, int currentPage, String searchValue) {
-//		
-//		//TODO
-//		return "null"
-//	}
-	
+	//	게시글 목록 + 페이징 + 검색
 	@RequestMapping(value = "/fboardlist", method = RequestMethod.GET)
-	public String fboardlist(Locale locale, Model model) {
-		return "/user/uBoard/fboardList";
+	public ModelAndView fboardlist(Locale locale, ModelAndView mv) {
+		List<Board> boardList = boarService.selectBoardList(1, 10);
+		mv.addObject("boardList", boardList);
+		mv.setViewName("/user/uBoard/fboardList");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value = "/fboardcon", method = RequestMethod.GET)
-	public String fboardcon(Locale locale, Model model) {
-		return "/user/uBoard/fboardcon";
+	public ModelAndView fboardcon(
+			Locale locale,
+			ModelAndView mv,
+			@RequestParam(name="boNum") String boNum
+			) {
+		
+		Board board = boarService.selectBoardDetail(boNum);
+		System.out.println("컨트롤러 서비스 다녀왔음 : " + board);
+		mv.setViewName("/user/uBoard/fboardcon");
+		mv.addObject("board", board);
+		
+		return mv;
 	}
 	
 	@RequestMapping(value = "/UcustomerService", method = RequestMethod.GET)

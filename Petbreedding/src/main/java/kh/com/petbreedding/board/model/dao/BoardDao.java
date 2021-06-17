@@ -1,13 +1,14 @@
 package kh.com.petbreedding.board.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.board.model.vo.Board;
-import kh.com.petbreedding.board.model.vo.BoardPaging;
 
 @Repository("boardDao")
 public class BoardDao {
@@ -33,14 +34,17 @@ public class BoardDao {
 		}
 		
 		// 게시글 보기
-		public Board selectBoardDetail(String bo_num) {
-			//TODO
-			return null;
+		public Board selectBoardDetail(String boNum) {
+			Board board = null;
+			board = sqlSession.selectOne("Board.selectOneBoard", boNum);
+			return board;
 		} 
 		
-		public BoardPaging selectBoardList(int currentPage, HashMap<String, String> map) {
-			//TODO
-			return null;
+		// 게시글 리스트 조회
+		public List<Board> selectBoardList(int currentPage, int limit) {
+			int startRow = (currentPage -1) * limit;
+			RowBounds row = new RowBounds(startRow, limit);
+			return sqlSession.selectList("Board.selectBoardList", null, row);
 		}
 		
 		public int totalCount(HashMap<String, String> map) {
