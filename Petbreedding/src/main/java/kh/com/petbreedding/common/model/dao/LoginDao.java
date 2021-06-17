@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.client.model.vo.Client;
 
 @Repository("loginDao")
@@ -21,17 +22,10 @@ public class LoginDao {
 		
 	}
 	
-	//카카오 로그인
-	public int loginKakao(Client client) {
-		// TODO Auto-generated method stub
-		return 0;
+	// 사업자 이메일 로그인
+	public BPartner blogin(BPartner bP) {
+		return sqlSession.selectOne("Login.loginBMember", bP);
 		
-	}
-	
-	//네이버 로그인
-	public int loginNaver(Client client) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 	
 	

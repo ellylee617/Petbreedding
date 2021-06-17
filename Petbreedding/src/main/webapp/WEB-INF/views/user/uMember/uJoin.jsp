@@ -32,7 +32,8 @@
 					<tr>
 						<td colspan="2"><input type="text" class="basicTextInput"
 							id="email" required name="email">
-							<div class="check_font" id="id_check"></div></td>
+							<div class="check_font" id="id_check"></div>
+						</td>
 					</tr>
 
 					<tr>
@@ -41,7 +42,8 @@
 					<tr>
 						<td colspan="2"><input type="password" class="basicTextInput"
 							id="pwd" required name="password">
-							<div class="check_font" id="pw_check"></div></td>
+							<div class="check_font" id="pw_check"></div>
+						</td>
 					</tr>
 
 					<tr>
@@ -50,7 +52,8 @@
 					<tr>
 						<td colspan="2"><input type="password" class="basicTextInput"
 							id="pwdCheck" required>
-							<div class="check_font" id="pw_check2"></div></td>
+							<div class="check_font" id="pw_check2"></div>
+						</td>
 					</tr>
 
 					<tr>
@@ -58,7 +61,8 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="text" class="basicTextInput"
-							id="name" required name="name"></td>
+							id="name" required name="name">
+						</td>
 					</tr>
 
 					<tr>
@@ -67,7 +71,8 @@
 					<tr>
 						<td colspan="2"><input type="text" class="basicTextInput"
 							id="nickName" required name="nickname">
-							<div class="check_font" id="nickName_check"></div></td>
+							<div class="check_font" id="nickName_check"></div>
+						</td>
 					</tr>
 
 					<tr>
@@ -85,12 +90,14 @@
 					<tr>
 						<td colspan="2"><input type="text" placeholder="인증번호를 입력하세요"
 							id="hp2" id="chkNumBar" class="basicTextInput" required>
-							<div class="check_font" id="hp2_check"></div></td>
+							<div class="check_font" id="hp2_check"></div>
+						</td>
 					</tr>
 
 					<tr>
 						<td colspan="2"><input id="joinBtn" class="basicBtn"
-							type="button" value="가입하기"></td>
+							type="button" value="가입하기">
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -100,7 +107,6 @@
 	</div>
 
 	<!-- script -->
-	<script type="text/javascript"
-		src="${path}/resources/js/user/uMember/uJoin.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/user/uMember/uJoin.js"></script>
 </body>
 </html>

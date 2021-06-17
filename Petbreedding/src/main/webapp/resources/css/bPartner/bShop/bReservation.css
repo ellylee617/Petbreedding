@@ -1,13 +1,25 @@
 @charset "UTF-8";
 
+#res{
+	color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+#res a{
+	display:block;
+	color: var(--font-color);
+}
+
+.bContent{
+	width: 1000px;
+}
+
 .calendarBox{
     float: left;
 }
 .calendar{
     width: 500px;
     height: 500px;
-    border: 1px solid var(--main-color);
-    
+    border: 1px solid var(--main-color);  
 }
 
 .resBox{
@@ -18,7 +30,7 @@
 .resBox select{
     width: 100px;
     padding: 5px;
-    background:url('../../images/arrow.jpg') no-repeat 95% 50%;
+    background:url('../../../images/arrow.jpg') no-repeat 95% 50%;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;

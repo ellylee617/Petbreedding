@@ -13,7 +13,7 @@
 <link href="${path}/resources/css/bPartner/bSales/cta.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css" >
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -22,43 +22,43 @@
         <jsp:include page="../../bPartner/bAside.jsp" />
         	
         	<div id="bContent" class="bContent">
-        	<form class="ctaFrm">
-	            <div class="viewBox">
-		            <p class="viewText fs20">울트라콜</p>
-	                <span class="viewText views fs20">잔여 조회수</span>
-	                <span class="viewText views fs24">0회</span>
-	            </div>
-		
-	            <article class="aContainer">
-	               
-	               <c:forEach var="list" items="${list }">
-	                <div class="aBox">
-	                    <div>
-	                        <p class="fs20">${list.CM_TYPE}</p>
-	                        <ul>
-	                            <li class="CTA_inst mt10">
-	                                <span>최상단 노출</span>
-	                            </li>
-	                            <li class="CTA_inst mt10">
-	                                <span>울트라콜은 차감 방식으로 진행됩니다.</span>
-	                            </li>
-	                            <li class="CTA_inst mt10">
-	                                <span>고객에 따라, 때에 따라 내 점포가 보일 수도 있고 안보일 수도 있습니다.</span>
-	                            </li>
-	                        </ul>
-	                    </div>
-	    
-	                    <div>
-	                        <p class=" price fs20">${list.PRICE}원</p>
-	                        <button class="basicBtn CTAPayBtn">
-	                        <a href="ctapay?CM_TYPE=${list.CM_TYPE}">
-	                        	결제하기</a></button>
-	                    </div>
-	                </div>
-	                </c:forEach>
-	            </article>
-	    
-        	</form>
+	        	<form class="ctaFrm">
+		            <div class="viewBox">
+			            <p class="viewText fs20">울트라콜</p>
+		                <span class="viewText views fs20">잔여 조회수</span>
+		                <span class="viewText views fs24">0회</span>
+		            </div>
+			
+		            <article class="aContainer">
+		               
+		               <c:forEach var="list" items="${list }">
+		                <div class="aBox">
+		                    <div>
+		                        <p class="fs20">${list.CM_TYPE}</p>
+		                        <ul>
+		                            <li class="CTA_inst mt10">
+		                                <span>최상단 노출</span>
+		                            </li>
+		                            <li class="CTA_inst mt10">
+		                                <span>울트라콜은 차감 방식으로 진행됩니다.</span>
+		                            </li>
+		                            <li class="CTA_inst mt10">
+		                                <span>고객에 따라, 때에 따라 내 점포가 보일 수도 있고 안보일 수도 있습니다.</span>
+		                            </li>
+		                        </ul>
+		                    </div>
+		    
+		                    <div>
+		                        <p class=" price fs20">${list.PRICE}원</p>
+		                        <button class="basicBtn CTAPayBtn">
+		                        <a href="ctapay?CM_TYPE=${list.CM_TYPE}">
+		                        	결제하기</a></button>
+		                    </div>
+		                </div>
+		                </c:forEach>
+		            </article>
+		    
+	        	</form>
         	</div>
         </section>
          <jsp:include page="../../common/footer.jsp" />

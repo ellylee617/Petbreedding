@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
 <script src="${path}/resources/js/user/uBoard/service.js"></script>
-<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -28,27 +28,29 @@
 	<jsp:include page="../bheader.jsp" />
 	 <section class="section">
 	 <jsp:include page="../bAside.jsp"/>
-	 <div class="calhead">
-        <p>6월 총 매출액</p>
-        <p>(1일전 영업일 기준)</p><br>
-        
-    </div>
-    <div class="calrow">
-    <h1>1,681,111원</h1>
-    <div class="calbtn">
-        <button class="timeBtn">최근 3개월</button>
-        <button class="timeBtn">최근 6개월</button>
-        <button class="timeBtn">최근 1년</button>
-    </div>
-    <div class="timeOption">
-        <p>기간별 조회</p>
-     <div class="timeOptionRow">  
-        <label>&nbsp;<input type="text" id="startDate" name=startDate></label>
-		<label><input type="text" id="endDate" name="endDate"></label>			
-    </div> 
-    </div>
-    <button class="basicBtn" id="inquiryBtn">조회</button>
-    </div>
+	 <div class="bContent">
+	 	<div class="calhead">
+	        <p>6월 총 매출액</p>
+	        <p>(1일전 영업일 기준)</p><br>    
+	    </div>
+	    <div class="calrow">
+	    <h1>1,681,111원</h1>
+	    <div class="calbtn">
+	        <button class="timeBtn">최근 3개월</button>
+	        <button class="timeBtn">최근 6개월</button>
+	        <button class="timeBtn">최근 1년</button>
+	    </div>
+	    <div class="timeOption">
+	        <p>기간별 조회</p>
+	     <div class="timeOptionRow">  
+	        <label>&nbsp;<input type="text" id="startDate" name=startDate></label>
+			<label><input type="text" id="endDate" name="endDate"></label>			
+	    </div> 
+	    </div>
+	    <button class="basicBtn" id="inquiryBtn">조회</button>
+	    </div>
+	 </div>
+	 
     
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />

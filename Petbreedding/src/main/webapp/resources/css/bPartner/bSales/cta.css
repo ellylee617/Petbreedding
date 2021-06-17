@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
+#cta{
+	color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+#cta a{
+	display:block;
+	color: var(--font-color);
+}
+
+.bContent{
+	width: 1000px;
+	margin-top:0;
+}
+
+.section {
+    padding-bottom: 140px !important;
+}
+
+
+
+
 .fs20 {
   font-size: 20px;
 }

@@ -1,3 +1,4 @@
+
 var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 var getCheck= RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/); 
 var getPhone = RegExp(/^[0-9]{2,3}[0-9]{3,4}[0-9]{4}/);
@@ -173,25 +174,30 @@ $("#joinBtn").on("click",function(){
 	
 	var dataString = $("#joinFrm").serialize();
 	
-	$.ajax({
-		url:"client/uJoin",
-		type:"POST",
-		data: dataString,
-		success: function(data){
-			console.log("data : "+ data);
-			if(data > 0){
-				alert("회원가입되었습니다. 로그인페이지로 이동합니다.");
-				location.href="/petbreedding/uLogin";
-			}else {
-				alert("회원가입 실패");
-				return false;
+	if($("#hp2_check").text()== "인증번호가 확인되었습니다"){
+		$.ajax({
+			url:"client/uJoin",
+			type:"POST",
+			data: dataString,
+			success: function(data){
+				console.log("data : "+ data);
+				if(data > 0){
+					alert("회원가입되었습니다. 로그인페이지로 이동합니다.");
+					location.href="/petbreedding/uLogin";
+				}else {
+					alert("회원가입 실패");
+					return false;
+				}
+			},
+			error : function(error){
+				console.log(error);
+				alert("안되버림");
 			}
-		},
-		error : function(error){
-			console.log(error);
-			alert("안되버림");
-		}
-	});
+		});
+	}else{
+		alert("모든 정보를 확인해주세요");
+	}
+	
 	return false;
    
 });

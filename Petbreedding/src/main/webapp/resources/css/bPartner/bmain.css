@@ -22,9 +22,11 @@
     padding-bottom: 0px;
 }
 .joinPartner{
-    margin-top: 450px;
+    margin-top: 400px;
 }
-
+.joinPartner a{
+	color : var(--font-color);
+}
 .joinPartner{
     border: none;
     outline: none;

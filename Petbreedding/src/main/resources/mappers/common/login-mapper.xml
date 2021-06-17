@@ -12,7 +12,19 @@
 	<result  column="CL_TEL" property="tel"/>
   </resultMap>
 
-
+	<!-- 사업자 resultMap -->
+  <resultMap type="BPartner" id="bLogin">
+	<id column="BP_ID" property="bp_Id"/>
+	<result column="BP_PWD" property="bp_pwd"/>
+	<result column="BP_NAME" property="bp_name"/>
+	<result column="BP_TEL" property="bp_tel"/>
+	<result column="BP_BANK" property="bp_bank"/>
+	<result column="BP_ACNT" property="bp_acnt"/>
+	<result column="BP_EMAIL" property="bp_email"/>
+	<result column="BP_NUM" property="bp_num"/>
+	<result column="BP_TYPE" property="bp_type"/>
+	<result column="BP_APRVE" property="bp_aprve"/>
+  </resultMap>
 
 	<!-- 사용자 로그인 -->
 	<select id="loginMember" parameterType="Client" statementType="PREPARED" resultMap="uLogin">
@@ -21,5 +33,11 @@
 		WHERE CL_EMAIL = #{email} AND CL_PWD = #{password}
 	</select>
 	
+	<!-- 사업자 로그인 -->
+	<select id="loginBMember" parameterType="BPartner" statementType="PREPARED" resultMap="bLogin">
+		SELECT * 
+		FROM business_partner 
+		WHERE BP_EMAIL = #{bp_email} AND BP_PWD = #{bp_pwd}
+	</select>
   
 </mapper>

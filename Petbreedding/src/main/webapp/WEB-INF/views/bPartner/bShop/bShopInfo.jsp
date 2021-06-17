@@ -12,7 +12,7 @@
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/common/footer.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bAside.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bShop/bShopInfo.css">
-<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.dao.LoginDao;
 
@@ -29,33 +30,16 @@ public class LoginServiceImpl implements LoginService {
 		return result;
 	}
 
-	@Override
-	public int loginKakao(Client client) {
-		// TODO Auto-generated method stub
-		
-		int result = -1;
-		
-		try {
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
 
 	@Override
-	public int loginNaver(Client client) {
-		// TODO Auto-generated method stub
-		
-		int result = -1;
+	public BPartner blogin(BPartner bP) {
+		BPartner result = null;
 		
 		try {
-			
-		} catch(Exception e) {
+			result = loginDao.blogin(bP);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 

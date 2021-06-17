@@ -1,3 +1,22 @@
+
+/* 페이지마다 바뀌는 항목 */
+#menuOP{
+	color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+#menuOP a{
+	display:block;
+	color: var(--font-color);
+}
+
+.bContent{
+	width: 950px;
+}
+.section {
+    padding-bottom: 150px;
+}
+
+
 #addItemBtn{
     float: right;
     margin-bottom: 30px;
@@ -74,5 +93,8 @@
     width: 300px;
     height: 25px;
     border: 1px solid #aaa;
+}
 
+.menucon{
+	margin-left
 }

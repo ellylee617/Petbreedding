@@ -1,5 +1,22 @@
 @charset "UTF-8";
 
+#bCal{
+	color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+#bCal a{
+	display:block;
+	color: var(--font-color);
+}
+
+.bContent{
+	width: 1000px;
+}
+.section{
+	padding-bottom:150px;
+}
+
+
 .calhead{
     height: 40px;
 }

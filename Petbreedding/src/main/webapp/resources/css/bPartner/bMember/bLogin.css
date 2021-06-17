@@ -39,7 +39,11 @@
     float: right;
     font-size: 14px;
 }
-
+#errorText{
+	color:red;
+	margin-top: 10px;
+	font-size:14px;
+}
 
 /* MODAl */
 /* The Modal (background) */

@@ -36,7 +36,7 @@
         <nav class="mainMenu2">
             <ul>
                 <li><a href="fboardlist">자유게시판</a></li>
-                <li><a href="business.html">제휴문의</a></li>
+                <li><a href="/petbreedding/bIndex">제휴문의</a></li>
             </ul>
         </nav>
     </div>

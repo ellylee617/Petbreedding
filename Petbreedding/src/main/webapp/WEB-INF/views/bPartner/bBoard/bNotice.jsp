@@ -16,7 +16,7 @@
 	type="text/css">
 <link href="${path}/resources/css/bPartner/bBoard/bNotice.css" rel="stylesheet"
 	type="text/css">
-<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>

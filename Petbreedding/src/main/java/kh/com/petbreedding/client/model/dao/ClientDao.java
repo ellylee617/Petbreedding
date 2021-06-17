@@ -30,12 +30,5 @@ public class ClientDao {
 		return sqlSession.selectOne("ClientMap.checkHp", tel);	
 	}
 	
-	public void createAuthKey(String email, String authCode) {	// 이메일 인증번호 생성
-		
-	}
-	
-	
-	
-	
 	
 }

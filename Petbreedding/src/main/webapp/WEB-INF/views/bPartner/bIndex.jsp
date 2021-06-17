@@ -18,7 +18,7 @@
 		<div class="wrapper">
 			<jsp:include page="bheader.jsp" />
 			<section class="section">
-               	<button class="joinPartner">제휴 문의하기</button>
+               	<button class="joinPartner" ><a href="/petbreedding/bJoin">제휴 문의하기</a></button>
         	</section>
 			<jsp:include page="../common/footer.jsp" />
 		</div>

@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kh.com.petbreedding.HomeController;
+import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.service.LoginService;
 import kh.com.petbreedding.common.model.vo.KakaoLogin;
@@ -82,8 +83,6 @@ public class LoginController {
 	//  사장님로그인 페이지로 이동
 	@RequestMapping(value = "/bLogin", method = RequestMethod.GET)
 	public String openbLogin(Locale locale, Model model) {
-		
-		// TODO Auto-generated method stub
 		return "/bPartner/bMember/bLogin";
 	}
 	
@@ -118,10 +117,21 @@ public class LoginController {
 	
 	// 사업자 로그인 처리
 	@RequestMapping("/member/doLoginB")
-	public String doLoginB(Client client, HttpSession session ,HttpServletResponse response) {
+	@ResponseBody
+	public String doLoginB(BPartner bP, HttpSession session ,HttpServletRequest req,HttpServletResponse res, RedirectAttributes rttr) {
 		
-		// TODO Auto-generated method stub
-		return null;
+		BPartner result = loginService.blogin(bP);
+		session = req.getSession();
+		
+		if(result == null) {
+			System.out.println("로그인 실패");
+			session.setAttribute("bP", null);
+			return "/bLogin";
+		}else {
+			System.out.println("로그인 성공!");
+			session.setAttribute("bP", result);
+			return "/bReservation";
+		}
 		
 	}
 	
@@ -212,6 +222,15 @@ public class LoginController {
 		
 	}
 	
+	// 사업자 로그아웃
+		@RequestMapping("/blogout")
+		public String blogout(BPartner bP, HttpSession session) {
+			
+			session.invalidate();
+			
+			return "redirect:/bIndex";
+			
+		}
 	
 	
 	
