@@ -8,7 +8,7 @@ public class MyPet {
 	private String pet_kind; //품종
 	private String pet_birth; //반려동물 생일
 	private String pet_gen; //반려동물 성별
-	private int pet_neut; //반려동물 중성화 여부
+	private String pet_neut; //반려동물 중성화 여부
 	private String pet_exper; // 반려동물 미용경험 횟수?
 	private String pet_vaccin; //반려동물 예방접종 기록
 	private String pet_bite; // 반려동물 입질 여부
@@ -62,11 +62,11 @@ public class MyPet {
 	public void setPet_gen(String pet_gen) {
 		this.pet_gen = pet_gen;
 	}
-	public int getPet_neut() {
+	public String getPet_neut() {
 		return pet_neut;
 	}
-	public void setPet_neut(int pet_neut) {
-		this.pet_neut = pet_neut;
+	public void setPet_neut(String string) {
+		this.pet_neut = string;
 	}
 	public String getPet_exper() {
 		return pet_exper;
