@@ -7,20 +7,23 @@ import org.springframework.stereotype.Component;
 public class HairSalonImg {
 	
 	private String imgNum; // 이미지 번호 
-	private String harNum;	// 미용실번호
-	private String shopImg;	// 미용실 메인이미지
-	
+	private String harNumImg;	// 미용실번호
+	private String shopImg;	// 미용실 매장 이미지 (파일명)
+	@Override
+	public String toString() {
+		return "HairSalonImg [imgNum=" + imgNum + ", harNumImg=" + harNumImg + ", shopImg=" + shopImg + "]";
+	}
 	public String getImgNum() {
 		return imgNum;
 	}
 	public void setImgNum(String imgNum) {
 		this.imgNum = imgNum;
 	}
-	public String getHarNum() {
-		return harNum;
+	public String getHarNumImg() {
+		return harNumImg;
 	}
-	public void setHarNum(String harNum) {
-		this.harNum = harNum;
+	public void setHarNumImg(String harNumImg) {
+		this.harNumImg = harNumImg;
 	}
 	public String getShopImg() {
 		return shopImg;
@@ -28,10 +31,7 @@ public class HairSalonImg {
 	public void setShopImg(String shopImg) {
 		this.shopImg = shopImg;
 	}
-	@Override
-	public String toString() {
-		return "HairSalonImg [imgNum=" + imgNum + ", harNum=" + harNum + ", shopImg=" + shopImg + "]";
-	}
+	
 	
 	
 	
