@@ -70,6 +70,6 @@
 	</div>
 	<!-- script -->
 	<script type="text/javascript" src="${path}/resources/js/bBoard/bNotice.js"></script>
-		<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 </body>
 </html>

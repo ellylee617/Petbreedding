@@ -14,6 +14,10 @@
             </c:if>
         </ul>
     </nav>
-    <!-- 사업자 ver 변경예쩡 -->
-    <a href="/petbreedding/bIndex"><img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" ></a>          
+    <c:if test = "${empty bP }">
+    	<a href="/petbreedding/bIndex"><img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" ></a>
+    </c:if>
+    <c:if test = "${!empty bP }">
+    	<a href="/petbreedding/bReservation"><img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" ></a>
+    </c:if>       
 </header>

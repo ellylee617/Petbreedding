@@ -72,7 +72,7 @@
                     <li class="bs">1:1 문의하기</li>
                 </div>
                 <div class="bmp"> 
-                    <a id="cancel"><li class="bs">제휴취소 신청</li></a>
+                    <a id="cancleM"><li class="bs">제휴취소 신청</li></a>
                 </div>
             </ul>
         </div>
@@ -81,6 +81,7 @@
 <!-- 제휴 취소 모달 -->
 <div id="cancel-modal" class="modal">
 	<div class="cancel-content">
+	<input type="hidden" value="${bP.bp_Id}" id="bp_Id" />
 		<p class="boldtext">제휴를 취소 하시겠습니까?</p> 
 		<p class="text">
 		<br>
@@ -88,9 +89,9 @@
 		<br>
 		정산이 완료 되면 탈퇴 처리됩니다.<br><br></p>
 		<div class="btn">
-			<button class="yes basicBtn">네</button>
-			<button class="no basicBtn">아니오</button>
+			<button class="basicBtn" id="yesCalncle">네</button>
+			<button class="basicBtn" id="noCalncle">아니오</button>
 		</div>
-</div>
+	</div>
 </aside>
 

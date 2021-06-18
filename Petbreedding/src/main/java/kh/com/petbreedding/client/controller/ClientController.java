@@ -78,13 +78,25 @@ public class ClientController {
 
 	}
 
-	@RequestMapping("mypage/deleteClient")
+	@RequestMapping("uDelete")
 	// 회원 탈퇴
-	public String deleteClient(String cl_num, HttpSession session) {
+	public String deleteClient(Locale locale, Model model) {
 
-		// TODO
-		return null;
+		return "/user/uMember/uDelete";
 
+	}
+	
+	@RequestMapping("uDeleteDo")
+	@ResponseBody
+	// 회원 탈퇴
+	public int deleteClientDo(String cl_num, HttpSession session) {
+
+		int result = clientService.deleteClient(cl_num);
+		if(result >0) {
+			session.invalidate();		
+		}
+		
+		return result;
 	}
 		
 	//회원가입 - 이메일 중복 확인

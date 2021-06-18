@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.bmypage.model.service.BInfoService;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
@@ -30,10 +29,10 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 
 @Controller
 public class BMyPageController {
-	
+
 	@Autowired
 	private ShopService shopService;
-	
+
 	@Autowired
 	private BInfoService bInfoService;
 
@@ -44,19 +43,19 @@ public class BMyPageController {
 		// TODO Auto-generated method stub
 		return "/bPartner/bMyPage/bMyPageUpdate";
 	}
-	
+
 	// 사장님 마이 페이지 내정보 수정 처리
 	@RequestMapping(value = "bP/bMyPageUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public int bMyPageUpdateDo(BPartner bP, HttpSession session) {
 
 		int result = bInfoService.updateBPInfo(bP);
-		if(result>0) {
+		if (result > 0) {
 			session.setAttribute("bP", bP);
 		}
 		return result;
 	}
-	
+
 	// 사장님 마이 페이지 공지사항
 	@RequestMapping(value = "/bNotice", method = RequestMethod.GET)
 	public String bNotice(Locale locale, Model model) {
@@ -80,7 +79,7 @@ public class BMyPageController {
 		// TODO Auto-generated method stub
 		return "/bPartner/bBoard/bQna";
 	}
-	
+
 	// 사장님 마이 페이지 1:1문의하기
 	@RequestMapping(value = "/bQna/write", method = RequestMethod.GET)
 	public String bQnaWrite(Locale locale, Model model) {
@@ -105,75 +104,64 @@ public class BMyPageController {
 		return "/bPartner/bSales/bcalculate";
 	}
 
-
-	
-	
 	// 사장님 사업장 관리 - 사업자 등록 페이지 이동
 	@RequestMapping(value = "/bShop", method = RequestMethod.GET)
 	public String bShop() {
 		return "/bPartner/bShop/bShopInfo";
 	}
-	
-	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지 
+
+	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지
 	@RequestMapping(value = "/bShop/write", method = RequestMethod.POST)
 	public ModelAndView bShopWrite(HairSalon vo, MultipartHttpServletRequest request) {
-		
-		
+
 		System.out.println(vo.toString());
-		
+
 		// 미용실 기본 정보 등록
 		shopService.insertHarInfo(vo);
-		
-		
-		// 미용실  매장 사진 등록
-		
+
+		// 미용실 매장 사진 등록
+
 		// 파일 업로드
-		
-		String savePath = request.getRealPath("resources/uploadFile/hairsalon"); //파일이 저장될 위치
+
+		String savePath = request.getRealPath("resources/uploadFile/hairsalon"); // 파일이 저장될 위치
 
 		// 넘어온 파일을 리스트로 저장
-        List<MultipartFile> mf = request.getFiles("shopImg");//업로드 파라미터 
-		
-		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+		List<MultipartFile> mf = request.getFiles("shopImg");// 업로드 파라미터
+
+		if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
 
 		} else {
-			for(int i = 0; i < mf.size(); i++) {
-				
-				//TODO: 파일 중복 처리 
-				
-                
-                String originalfileName = mf.get(i).getOriginalFilename(); // 본래 파일명
-                File uploadFile = new File(savePath+"//"+originalfileName); //복사될 위치 
-                
-             // 파일 저장
-                try {
-					
-                	mf.get(i).transferTo(uploadFile);
-					
+			for (int i = 0; i < mf.size(); i++) {
+
+				// TODO: 파일 중복 처리
+
+				String originalfileName = mf.get(i).getOriginalFilename(); // 본래 파일명
+				File uploadFile = new File(savePath + "//" + originalfileName); // 복사될 위치
+
+				// 파일 저장
+				try {
+
+					mf.get(i).transferTo(uploadFile);
+
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
-				} 
+				}
 
-                System.out.println("파일명:"+originalfileName);
-                
-                HairSalonImg vo2 = new HairSalonImg();
-                vo2.setShopImg(originalfileName);	// HAIR_SALON_IMG 테이블 HAR_IMG 컬럼에 파일명 삽입 
-                shopService.insertHarImg(vo2);
-                
-                System.out.println(vo2.toString());
-                
+				System.out.println("파일명:" + originalfileName);
+
+				HairSalonImg vo2 = new HairSalonImg();
+				vo2.setShopImg(originalfileName); // HAIR_SALON_IMG 테이블 HAR_IMG 컬럼에 파일명 삽입
+				shopService.insertHarImg(vo2);
+
+				System.out.println(vo2.toString());
+
 			}
 		}
-		
-		
-		return new ModelAndView("redirect:"); //TODO:수정해야됨!!!!
+
+		return new ModelAndView("redirect:"); // TODO:수정해야됨!!!!
 	}
-	
-	
-	
-	
 
 	// 업체 리뷰 관리 페이지로 이동
 	@RequestMapping(value = "/bReview", method = RequestMethod.GET)

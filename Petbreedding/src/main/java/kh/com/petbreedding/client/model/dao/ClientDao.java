@@ -30,6 +30,8 @@ public class ClientDao {
 		return sqlSession.selectOne("ClientMap.checkHp", tel);	
 	}
 	
-	
+	public int deleteClient(String cl_num) {
+		return sqlSession.delete("ClientMap.deleteClient", cl_num);
+	}
 	
 }

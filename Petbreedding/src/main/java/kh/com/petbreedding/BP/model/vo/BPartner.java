@@ -11,12 +11,15 @@ public class BPartner {
 	private String bp_num;		//사업자번호
 	private int bp_type;		//사업장 구분( 0 : 미용실, 1 :동물병원)
 	private int bp_aprve;		//사업자 승인여부( 0 : false / 1: true)
+	private int bp_delete;		//사업자 제휴취소여부( 0 : false / 1: true)
+	
+
 	
 	@Override
 	public String toString() {
 		return "BPartner [bp_Id=" + bp_Id + ", bp_pwd=" + bp_pwd + ", bp_name=" + bp_name + ", bp_tel=" + bp_tel
 				+ ", bp_bank=" + bp_bank + ", bp_acnt=" + bp_acnt + ", bp_email=" + bp_email + ", bp_num=" + bp_num
-				+ ", bp_type=" + bp_type + ", bp_aprve=" + bp_aprve + "]";
+				+ ", bp_type=" + bp_type + ", bp_aprve=" + bp_aprve + ", bp_delete=" + bp_delete + "]";
 	}
 	
 	public String getBp_Id() {
@@ -78,6 +81,14 @@ public class BPartner {
 	}
 	public void setBp_aprve(int bp_aprve) {
 		this.bp_aprve = bp_aprve;
+	}
+
+	public int getBp_delete() {
+		return bp_delete;
+	}
+
+	public void setBp_delete(int bp_delete) {
+		this.bp_delete = bp_delete;
 	}
 	
 	

@@ -56,17 +56,17 @@ public class ClientServiceImpl implements ClientService{
 		}
 		return result;
 	}
-	
-	
+
 	@Override
-	public void clientAuth(Client cleint) {
-		// TODO Auto-generated method stub
-		
+	public int deleteClient(String cl_num) {
+		int result = -1;
 		try {
-			
-		} catch(Exception e) {
+			result = clientDao.deleteClient(cl_num);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+			
+		return result;
 	}
 
 

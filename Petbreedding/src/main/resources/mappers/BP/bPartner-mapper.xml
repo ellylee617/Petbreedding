@@ -12,12 +12,13 @@
 		<result column="BP_NUM" property="bp_num"/>
 		<result column="BP_TYPE" property="bp_type"/>
 		<result column="BP_APRVE" property="bp_aprve"/>
+		<result column="BP_DELETE" property="bp_delete"/>
 	</resultMap>
   	
 	<!-- 사업자 회원가입 -->
 	<insert id="insertBP" parameterType="Client">
-		INSERT INTO business_partner (BP_ID ,BP_PWD ,BP_NAME ,BP_TEL ,BP_EMAIL ,BP_NUM ,BP_TYPE ,BP_APRVE) 
-		VALUES(SEQ_BUSINESS_PARTNER.NEXTVAL, #{bp_pwd},#{bp_name},#{bp_tel},#{bp_email},#{bp_num},#{bp_type}, 0)
+		INSERT INTO business_partner (BP_ID ,BP_PWD ,BP_NAME ,BP_TEL ,BP_EMAIL ,BP_NUM ,BP_TYPE ,BP_APRVE,BP_DELETE ) 
+		VALUES(SEQ_BUSINESS_PARTNER.NEXTVAL, #{bp_pwd},#{bp_name},#{bp_tel},#{bp_email},#{bp_num},#{bp_type}, 0,0)
 	</insert>
 	
 	<!-- 아이디 중복체크 -->
@@ -32,5 +33,11 @@
 	<select id="checkBpNum" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM business_partner WHERE BP_NUM = #{bp_num} 
 	</select>
+	
+	<!-- 사업자 회원탈퇴 신청-->
+	<update id="deleteBP" parameterType="string">
+		UPDATE business_partner SET BP_DELETE = 1 WHERE BP_ID = #{bp_Id}
+	</update>
+	
 	
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <aside class="myPageAside">
 	<div class="divborder">
 		<br>
@@ -42,8 +43,8 @@
 			<label>나의 정보</label>
 			<br>
 			<br>
-			<a href="#"><li>- 회원 정보 수정</li></a>
-			<a href="#"><li>- 회원 탈퇴</li></a>
+			<a href="${pageContext.request.contextPath}/uModify"><li>- 회원 정보 수정</li></a>
+			<a href="${pageContext.request.contextPath}/uDelete"><li>- 회원 탈퇴</li></a>
 		</ul>
 	</div>
 </aside>

@@ -88,4 +88,18 @@ public class BPController {
 		System.out.println(randomNumber);
 		return randomNumber;
 	}
+	
+
+	//회원탈퇴
+	@RequestMapping(value = "bDeleteDo")
+	@ResponseBody
+	public int deleteBPDo(String bp_Id, HttpSession session) {
+		
+		int result = bService.deleteBP(bp_Id);
+		if(result>0) {
+			session.invalidate();
+		}
+		return result;
+	}
+	
 }
