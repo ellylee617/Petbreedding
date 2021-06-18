@@ -30,11 +30,9 @@
 		<mapper resource="mappers/Shop/shop-mapper.xml"/>
 		<mapper resource="mappers/board/board-mapper.xml"/>
 		<mapper resource="mappers/BP/bPartner-mapper.xml"/>
-<<<<<<< HEAD
 		<mapper resource="mappers/common/memberInfoModify-mapper.xml" />
-=======
 		<mapper resource="mappers/Mypage/pet-mapper.xml"/>
->>>>>>> 800c1134322c3d3ab6d7ae3b59d5522217a7fa5a
+
 	</mappers>
 	
 </configuration>
