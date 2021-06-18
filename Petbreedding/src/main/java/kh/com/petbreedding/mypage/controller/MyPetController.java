@@ -58,7 +58,7 @@ public class MyPetController {
 		
 		//파일업로드 
 		MultipartFile mf = request.getFile("pet_img"); //업로드 파라미터
-		String path = request.getRealPath("uploadFile/mypet"); //자징될 위치
+		String path = request.getRealPath("/resources/uploadFile/mypet"); //자징될 위치
 		String fileName = mf.getOriginalFilename(); // 업로듶 파일이름
 		File uploadFile = new File(path+"//"+fileName); //복사될 위치 
 		try {
