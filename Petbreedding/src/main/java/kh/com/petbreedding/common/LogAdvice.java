@@ -23,9 +23,9 @@ public class LogAdvice {
 			System.out.println("[LOG] Parameter is NULL");
 		else {
 			for(int i = 0; i < args.length; i++) {
-				System.out.println(args[i].toString());
+				System.out.println("[LOG] [around-before] " + methodName + "() args: " + args[i].toString());
 			}
-			System.out.println("[LOG] [around-before] " + methodName + "() args: " + args.toString());
+
 		}
 		StopWatch stopwatch = new StopWatch(); // target Object 부분 실행에 소요되는 시간 확인
 		stopwatch.start();

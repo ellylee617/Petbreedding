@@ -20,6 +20,7 @@
 		<typeAlias type="kh.com.petbreedding.BP.model.vo.BPartner" alias="BPartner"/>
 		<typeAlias type="kh.com.petbreedding.Admin.model.vo.Admin" alias="Admin"/>
 		<typeAlias type="kh.com.petbreedding.mypage.model.vo.MyPet" alias="Pet"/>
+		<typeAlias type="kh.com.petbreedding.board.model.vo.Review" alias="Review"/>
 		<!-- TODO -->
 	</typeAliases>
 	
@@ -33,6 +34,7 @@
 		<mapper resource="mappers/common/memberInfoModify-mapper.xml" />
 		<mapper resource="mappers/Mypage/pet-mapper.xml"/>
 
+		<mapper resource="mappers/board/review-mapper.xml"/>
 	</mappers>
 	
 </configuration>

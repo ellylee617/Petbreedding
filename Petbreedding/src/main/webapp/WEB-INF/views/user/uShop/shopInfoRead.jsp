@@ -105,28 +105,33 @@
                         </div> 
                         <hr> 
                         <div class="reviews">
+                            	<c:forEach items="${reviewList }" var="reviewList">
                             <div class="review">
-                                <div class="reviewWord">
-                                    <div class="star_img">
-                                        <i class="fas fa-star rate"></i>
-                                        <i class="fas fa-star rate"></i>
-                                        <i class="fas fa-star rate"></i>
-                                        <i class="fas fa-star rate"></i>
-                                        <i class="far fa-star rate"></i>
-                                        <span class="reviewScore">4.0</span>
-                                    </div>
-                                    <div class="reviewCon">
-                                        <p>잘 잘라줘요</p>
-                                    </div>
-                                    <div class="reviewInfo">
-                                        <span>또비언니</span>
-                                        <span class="reviewDate">2021-05-31 방문</span>
-                                    </div>
-                                </div>
-                                <div class="review_img">
-                                    <img src="http://placehold.it/150x100">
-                                </div>
+                            
+                            
+	                                <div class="reviewWord">
+	                                    <div class="star_img">
+	                                        <i class="fas fa-star rate"></i>
+	                                        <i class="fas fa-star rate"></i>
+	                                        <i class="fas fa-star rate"></i>
+	                                        <i class="fas fa-star rate"></i>
+	                                        <i class="far fa-star rate"></i>
+	                                        <span class="reviewScore">${reviewList.revVal }.0</span>
+	                                    </div>
+	                                    <div class="reviewCon">
+	                                        <p>${reviewList.revCont }</p>
+	                                    </div>
+	                                    <div class="reviewInfo">
+	                                        <span>또비언니</span>
+	                                        <span class="reviewDate">${reviewList.revDate } 방문</span>
+	                                    </div>
+	                                </div>
+	                                <div class="review_img">
+	                                    <img src="http://placehold.it/150x100">
+	                                </div>
+                                
                             </div>
+                                </c:forEach>
                             <div class="reply">
                                 <div class="replyCon">
                                     <p>또비언니님 찾아주셔서 감사합니다.</p>

@@ -1,15 +1,19 @@
 package kh.com.petbreedding;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import kh.com.petbreedding.board.model.service.ReviewService;
+import kh.com.petbreedding.board.model.vo.Review;
 
 @Controller
 public class shopController {
@@ -20,10 +24,20 @@ public class shopController {
 	public String shopList(Locale locale, Model model) {
 		return "/user/uShop/shopList";
 	}
+	
+	@Autowired
+	private ReviewService reviewService;
 
 	@RequestMapping(value = "/shopPage", method = RequestMethod.GET)
-	public String shopPage(Locale locale, Model model) {
-		return "/user/uShop/shopInfoRead";
+	public ModelAndView shopPage(Locale locale, ModelAndView mv) {
+		System.out.println("컨트롤러 진입");
+		List<Review> reviewList = reviewService.reviewSelectList(1, 5);
+		System.out.println("리뷰 리스트 가져왔다면 보여줘 --> " + reviewList);
+		mv.addObject("reviewList", reviewList);
+		mv.setViewName("/user/uShop/shopInfoRead");
+		
+		System.out.println("컨트롤러 끝");
+		return mv;
 	}
 
 	@RequestMapping(value = "/shopReservation", method = RequestMethod.GET)
