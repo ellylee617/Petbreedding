@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="Board">
+	<resultMap type="Board" id="BoardMap">
+		<id column="BO_NUM" property="boNum"/>
+		<result column="CL_NUM" property="clNum"/>
+		<result column="BO_TITLE" property="boTitle"/>
+		<result column="BO_CONT" property="boCont"/>
+		<result column="BO_IMG" property="boImg"/>
+		<result column="BO_DATE" property="boDate"/>
+		<result column="BO_VIEW" property="boView"/>
+	</resultMap>
+	
+	<select id="selectBoardList" parameterType="Board" resultMap="BoardMap">
+		SELECT * FROM BOARD
+	</select>
+	
+	<select id="selectOneBoard" parameterType="Board" resultMap="BoardMap">
+		SELECT * FROM BOARD WHERE BO_NUM = #{boNum}
+	</select>
+</mapper>
