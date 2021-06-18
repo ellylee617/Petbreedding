@@ -106,7 +106,7 @@ public class BMyPageController {
 		
 		// 파일 업로드
 		
-		String savePath = request.getRealPath("uploadFile/hairsalon"); //파일이 저장될 위치
+		String savePath = request.getRealPath("resources/uploadFile/hairsalon"); //파일이 저장될 위치
 
 		// 넘어온 파일을 리스트로 저장
         List<MultipartFile> mf = request.getFiles("shopImg");//업로드 파라미터 
