@@ -2,13 +2,18 @@ package kh.com.petbreedding.bmypage.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.bmypage.model.service.BInfoService;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 
@@ -17,6 +22,9 @@ public class BMyPageController {
 	
 	@Autowired
 	private ShopService shopService;
+	
+	@Autowired
+	private BInfoService bInfoService;
 
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
@@ -25,7 +33,19 @@ public class BMyPageController {
 		// TODO Auto-generated method stub
 		return "/bPartner/bMyPage/bMyPageUpdate";
 	}
+	
+	// 사장님 마이 페이지 내정보 수정 처리
+	@RequestMapping(value = "bP/bMyPageUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public int bMyPageUpdateDo(BPartner bP, HttpSession session) {
 
+		int result = bInfoService.updateBPInfo(bP);
+		if(result>0) {
+			session.setAttribute("bP", bP);
+		}
+		return result;
+	}
+	
 	// 사장님 마이 페이지 공지사항
 	@RequestMapping(value = "/bNotice", method = RequestMethod.GET)
 	public String bNotice(Locale locale, Model model) {

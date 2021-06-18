@@ -55,5 +55,4 @@
 		WHERE ADMIN_ID = #{admin_id} AND ADMIN_PWD = #{admin_pwd}
 	</select>
   
-  
 </mapper>

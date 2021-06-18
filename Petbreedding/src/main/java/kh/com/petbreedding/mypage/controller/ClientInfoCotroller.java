@@ -59,20 +59,6 @@ public class ClientInfoCotroller {
 
 	}
 
-	// 회원 정보 수정
-	@RequestMapping("mypage/updateClientInfo")
-	public String updateClientInfo(Client client, HttpSession session) {
-
-		return null;
-
-	}
-
-	@RequestMapping("mypage/deleteClient")
-	// 회원 탈퇴
-	public String deleteClient(String cl_num, HttpSession session) {
-
-		// TODO
-		return null;
-
-	}
+	
+	//회원정보 수정 탈퇴는 ClientController
 }

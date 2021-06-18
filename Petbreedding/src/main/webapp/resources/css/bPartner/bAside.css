@@ -32,6 +32,7 @@
     float: left;
     border: 1px solid var(--bmenu-color);
     display: none;
+    border-left: none;
 }
 .bBox{
     width: 150px;

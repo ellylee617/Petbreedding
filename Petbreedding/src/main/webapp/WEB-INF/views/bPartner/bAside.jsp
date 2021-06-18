@@ -62,7 +62,7 @@
             <ul>
                 <div class="bmp"> 
                     <p>마이페이지</p>
-                    <li class="bs">내정보 수정</li>
+                    <a href="${pageContext.request.contextPath}/bMyPageUpdate"><li class="bs">내정보 수정</li></a>
                 </div>
                 <div class="bmp"> 
                     <p>고객센터</p>

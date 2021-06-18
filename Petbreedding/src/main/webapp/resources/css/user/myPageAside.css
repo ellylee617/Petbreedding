@@ -3,6 +3,7 @@
     display: block;
     float: left;
     margin : 20px;
+    width:220px;
 }
 .divborder{
     border: 1px #aaa solid;

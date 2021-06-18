@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
     font-family: "GmarketB";
-    src: url("../font/GmarketSansTTFBold.ttf");
+    src: url("../../font/GmarketSansTTFBold.ttf");
 }
 @font-face {
     font-family: "GmarketM";

@@ -27,6 +27,7 @@
 		<mapper resource="mappers/cta/cta-mapper.xml" />
 		<mapper resource="mappers/Shop/shop-mapper.xml"/>
 		<mapper resource="mappers/BP/bPartner-mapper.xml"/>
+		<mapper resource="mappers/common/memberInfoModify-mapper.xml" />
 	</mappers>
 	
 </configuration>

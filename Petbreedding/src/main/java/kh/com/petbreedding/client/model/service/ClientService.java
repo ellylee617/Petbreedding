@@ -9,4 +9,5 @@ public interface ClientService {
 	public int checkNickName(String nickname); //닉네임 중복 확인
 	public int checkHp(String tel); //휴대폰번호 중복 확인
 	public void clientAuth(Client cleint);	// 이메일 인증
+	
 }

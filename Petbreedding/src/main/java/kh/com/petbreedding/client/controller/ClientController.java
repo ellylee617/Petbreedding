@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kh.com.petbreedding.client.model.service.ClientService;
 import kh.com.petbreedding.client.model.service.MessageService;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.mypage.model.service.ClientInfoService;
 
 @Controller
 public class ClientController {
@@ -30,6 +31,9 @@ public class ClientController {
 	
 	@Autowired
 	private MessageService messageService;
+	
+	@Autowired
+	private ClientInfoService clientInfoService;
 	
 	//이메일 회원가입 페이지로 이동
 	@RequestMapping(value = "/uJoin", method = RequestMethod.GET)
@@ -51,18 +55,36 @@ public class ClientController {
 		
 	}
 	
-	@RequestMapping(value = "/uModify", method = RequestMethod.GET)
+
+	// 회원 정보 수정 페이지
+	@RequestMapping("uModify")
 	public String openClientModify(Locale locale, Model model) {
 		
-		return "/user/uMember/uModify";
-	}
-	
-	//유저 정보 수정 처리
-	@RequestMapping(value = "/client/modify", method = RequestMethod.POST)
-	public String ClientModify(Client client, HttpSession session) {
 		
-		//TODO
+		return "/user/uMember/uModify";
+
+	}
+		
+	// 회원 정보 수정 처리
+	@RequestMapping("mypage/uModify")
+	@ResponseBody
+	public int updateClientInfo(Client client, HttpSession session) {
+		
+		int result = clientInfoService.updateClientInfo(client);
+		if(result>0) {
+			session.setAttribute("client", client);
+		}
+		return result;
+
+	}
+
+	@RequestMapping("mypage/deleteClient")
+	// 회원 탈퇴
+	public String deleteClient(String cl_num, HttpSession session) {
+
+		// TODO
 		return null;
+
 	}
 		
 	//회원가입 - 이메일 중복 확인
