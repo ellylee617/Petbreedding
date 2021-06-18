@@ -8,4 +8,5 @@ public interface BPartnerService {
 	public int checkEmail(String bp_email);
 	public int checkHp(String bp_tel);
 	public int checkBpNum(String bp_num);
+	public int deleteBP(String bp_Id);
 }

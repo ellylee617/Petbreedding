@@ -24,6 +24,7 @@
 	<result column="BP_NUM" property="bp_num"/>
 	<result column="BP_TYPE" property="bp_type"/>
 	<result column="BP_APRVE" property="bp_aprve"/>
+	<result column="BP_DELETE" property="bp_delete"/>
   </resultMap>
 
    <!-- 관리자 resultMap -->

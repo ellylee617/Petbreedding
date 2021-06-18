@@ -23,26 +23,39 @@ if ( getSidebarHeight > getContentHeight ) {
 }
 
 
-var modal = document.getElementById("cancel-modal");
 
 //제휴 취소 신청 누르면 모달창 띄움
-var cancel = document.getElementById("cancel");
+$("#cancleM").on("click",function(){
+	$("#cancel-modal").css("display","block");
+});
 
-//[네] [아니오] 버튼
-var no = document.getElementsByClassName("no")[0];
-var yes = document.getElementsByClassName("yes")[0];
 
-cancel.onclick = function() {
-modal.style.display = "block";
-}
+$("#noCalncle").on("click",function(){
+	$("#cancel-modal").css("display","none");
+});
 
-no.onclick = function() {
-modal.style.display = "none";
-}
 
-//When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-if (event.target == modal) {
- modal.style.display = "block";
-}
-}
+$("#yesCalncle").on("click",function(){
+	var bp_Id = $("#bp_Id").val();
+	
+	$.ajax({
+		url: "bDeleteDo",
+		type : "POST",
+		data : {bp_Id : bp_Id},
+		success : function(data){
+			if(data >0){
+				alert("정상적으로 탈퇴신청처리 되었습니다.");
+				location.href = "/petbreedding/bIndex";
+			}else{
+				alert("오류가 발생했습니다. 관리자에게 문의해주세요.");
+				
+			}
+		},
+		error : function(error){
+			alert("오류가 발생했습니다. 관리자에게 문의해주세요.");
+		}
+	});
+	
+	
+	
+});

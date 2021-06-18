@@ -32,5 +32,8 @@ public class BPartnerDao {
 		return sqlSession.selectOne("BParterMap.checkBpNum", bp_num);	
 	}
 	
-	
+	//회원탈퇴신청
+	public int deleteBP(String bp_Id) {
+		return sqlSession.update("BParterMap.deleteBP", bp_Id);
+	}
 }

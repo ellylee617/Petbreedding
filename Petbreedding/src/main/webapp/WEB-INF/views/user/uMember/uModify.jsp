@@ -160,6 +160,7 @@
     
     <!-- script -->
     <script type="text/javascript" src="${path}/resources/js/user/uMember/uModify.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/user/uMember/uDelete.js"></script>
     <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
     
 </body>

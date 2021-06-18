@@ -57,4 +57,15 @@ public class BPartnerServiceImpl implements BPartnerService{
 		return result;
 	}
 
+	@Override
+	public int deleteBP(String bp_Id) {
+		int result = -1;
+		try {
+			result = bDao.deleteBP(bp_Id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }
