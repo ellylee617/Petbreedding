@@ -16,8 +16,10 @@
 		<typeAlias type="kh.com.petbreedding.cta.model.vo.CtaPay" alias="Ctapay"/>
 		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.HairSalon" alias="HairSalon"/>
 		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.HairDayOff" alias="HairDayOff"/>
+		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.HairSalonImg" alias="HairSalonImg"/>
 		<typeAlias type="kh.com.petbreedding.BP.model.vo.BPartner" alias="BPartner"/>
 		<typeAlias type="kh.com.petbreedding.Admin.model.vo.Admin" alias="Admin"/>
+		<typeAlias type="kh.com.petbreedding.mypage.model.vo.MyPet" alias="Pet"/>
 		<!-- TODO -->
 	</typeAliases>
 	
@@ -26,8 +28,13 @@
 		<mapper resource="mappers/common/login-mapper.xml" />
 		<mapper resource="mappers/cta/cta-mapper.xml" />
 		<mapper resource="mappers/Shop/shop-mapper.xml"/>
+		<mapper resource="mappers/board/board-mapper.xml"/>
 		<mapper resource="mappers/BP/bPartner-mapper.xml"/>
+<<<<<<< HEAD
 		<mapper resource="mappers/common/memberInfoModify-mapper.xml" />
+=======
+		<mapper resource="mappers/Mypage/pet-mapper.xml"/>
+>>>>>>> 800c1134322c3d3ab6d7ae3b59d5522217a7fa5a
 	</mappers>
 	
 </configuration>

@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/user/uMyPage/mypetRegister.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/user/myPageAside.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -22,7 +23,7 @@
 		<jsp:include page="../myPageAside.jsp" />
             <form action="${path}/Mypage/addmypet" method="POST" id="petInfoFrm" class="petInfo_container" enctype="multipart/form-data">
 				<input type="hidden" name="cl_num" value="${client.cl_num}">
-				${client.cl_num}
+
                 <table class="petInfo_container">
                     <tr>
                         <td colspan="2" class="imgTd">
@@ -38,8 +39,8 @@
 
                     <tr>
                         <td colspan="2">
-                            <input type="text" placeholder="이름을 입력해주세요" class="basicTextInput m_20 mt_20" name="pet_name">
-                            <p class="errorMsg">에이작스 메세지</p>
+                            <input type="text" placeholder="이름을 입력해주세요" class="basicTextInput m_20 mt_20" name="pet_name" id="pet_name">
+                            <div class="check_font" id="pet_namechk"></div>
                         </td>
                     </tr>
 
@@ -86,18 +87,19 @@
                                 <option value="폼피츠">폼피츠</option>
                                 <option value="화이트테리어">화이트테리어</option>
                             </select>
-                            <p class="errorMsg">에이작스 메세지</p>
+                              <div class="check_font" id="pet_kindchk"></div>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-							   <input type="text" name="pet_birth" placeholder="반려견 나이를 입력해주세요" class="basicTextInput perInfo_text m_20">
+							   <input type="text" id="pet_birth" name="pet_birth" placeholder="반려견 나이를 입력해주세요" class="basicTextInput perInfo_text m_20">
+                        		  <div class="check_font" id="pet_birthchk"></div>
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2" class="radioBox">
+                        <td colspan="2" class="radioBox" id="gen">
                             <ul class="selectOpt">
                                 
                                 <input type="radio" id="male" name="pet_gen" value="male">
@@ -112,7 +114,9 @@
                                 <li class="genderList list_neut m_20">
                                     <label for="neutrality">중성화</label>
                                 </li>
+                        <div class="check_font" id="pet_genchk"></div>
                             </ul>
+                             
                         </td>
                     </tr>
 
@@ -285,6 +289,7 @@
 
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
+	<!-- script -->
 	<script src="https://kit.fontawesome.com/6a57affb8e.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${path}/resources/js/user/uMyPage/mypetRegister.js"></script>

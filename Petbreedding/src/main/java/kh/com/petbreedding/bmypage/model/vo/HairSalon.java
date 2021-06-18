@@ -1,5 +1,7 @@
 package kh.com.petbreedding.bmypage.model.vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,61 +15,88 @@ public class HairSalon {
 	private String shopTime; // 미용실 영업시간
 	private String shopMInfo; // 미용실 메인 소개
 	private String harClick; // 미용실 잔여 클릭수
-	public String getHarNum() {
-		return harNum;
-	}
-	public void setHarNum(String harNum) {
-		this.harNum = harNum;
-	}
-	public String getBpId() {
-		return bpId;
-	}
-	public void setBpId(String bpId) {
-		this.bpId = bpId;
-	}
-	public String getShopName() {
-		return shopName;
-	}
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
-	}
-	public String getShopAddr() {
-		return shopAddr;
-	}
-	public void setShopAddr(String shopAddr) {
-		this.shopAddr = shopAddr;
-	}
-	public String getShopTel() {
-		return shopTel;
-	}
-	public void setShopTel(String shopTel) {
-		this.shopTel = shopTel;
-	}
-	public String getShopTime() {
-		return shopTime;
-	}
-	public void setShopTime(String shopTime) {
-		this.shopTime = shopTime;
-	}
-	public String getShopMInfo() {
-		return shopMInfo;
-	}
-	public void setShopMInfo(String shopMInfo) {
-		this.shopMInfo = shopMInfo;
-	}
-	public String getHarClick() {
-		return harClick;
-	}
-	public void setHarClick(String harClick) {
-		this.harClick = harClick;
-	}
+	
+	private List<HairSalonImg> shopImgList;	// 미용실 대표사진들. 미용실 하나가 여러 개의 사진을 가짐.
+
 	@Override
 	public String toString() {
 		return "HairSalon [harNum=" + harNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
 				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", harClick="
-				+ harClick + "]";
+				+ harClick + ", shopImgList=" + shopImgList + "]";
 	}
-	
+
+	public String getHarNum() {
+		return harNum;
+	}
+
+	public void setHarNum(String harNum) {
+		this.harNum = harNum;
+	}
+
+	public String getBpId() {
+		return bpId;
+	}
+
+	public void setBpId(String bpId) {
+		this.bpId = bpId;
+	}
+
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+
+	public String getShopAddr() {
+		return shopAddr;
+	}
+
+	public void setShopAddr(String shopAddr) {
+		this.shopAddr = shopAddr;
+	}
+
+	public String getShopTel() {
+		return shopTel;
+	}
+
+	public void setShopTel(String shopTel) {
+		this.shopTel = shopTel;
+	}
+
+	public String getShopTime() {
+		return shopTime;
+	}
+
+	public void setShopTime(String shopTime) {
+		this.shopTime = shopTime;
+	}
+
+	public String getShopMInfo() {
+		return shopMInfo;
+	}
+
+	public void setShopMInfo(String shopMInfo) {
+		this.shopMInfo = shopMInfo;
+	}
+
+	public String getHarClick() {
+		return harClick;
+	}
+
+	public void setHarClick(String harClick) {
+		this.harClick = harClick;
+	}
+
+	public List<HairSalonImg> getShopImgList() {
+		return shopImgList;
+	}
+
+	public void setShopImgList(List<HairSalonImg> shopImgList) {
+		this.shopImgList = shopImgList;
+	}
+
 
 	
 }

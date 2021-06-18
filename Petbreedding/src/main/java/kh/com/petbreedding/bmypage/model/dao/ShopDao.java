@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 
 @Repository("shopDao")
 public class ShopDao {
@@ -15,11 +16,16 @@ public class ShopDao {
 	// 미용실 기본 회원정보 입력 
 	public int insertHarInfo(HairSalon vo) {
 		
-		System.out.println(" ShopDao - insertHarInfo() 실행");
+		System.out.println(" !! ShopDao - insertHarInfo() 실행 !!");
 		return sqlSession.insert("Shop.insertHarInfo", vo);
 		
 	}
 	
-	// TODO: 미용실 이미지 정보 입력 
+	//미용실 이미지 첨부
+	public int insertHarImg(HairSalonImg vo) {
+		
+		System.out.println(" !! ShopDao - insertHarImg() 실행 !!");
+		return  sqlSession.insert("Shop.insertHarImg", vo);
+	}
 	
 }

@@ -33,3 +33,49 @@ function setDateBox(){
 function insertImg() {
     $("#realInput").trigger("click");
 }
+
+$("#pet_name").blur(function() {
+
+	if ($("#pet_name").val() == "") {
+		// 빈칸일시
+		$("#pet_namechk").text("필수입력칸입니다. 펫 이름을 입력해주세요");
+		$("#pet_namechk").css("color", "red");
+	} else {
+		$("#pet_namechk").text("펫 이름 입력이 완료되었습니다.");
+		$("#pet_namechk").css("color", "green");
+	}
+});
+
+$("#selectPet").blur(function() {
+	if ($("#selectPet").val() == "견종") {
+		// 빈칸일시
+		$("#pet_kindchk").text("필수입력칸입니다. 견종을 선택해주세요");
+		$("#pet_kindchk").css("color", "red");
+	} else {
+		$("#pet_kindchk").text("견종이 선택되었습니다.");
+		$("#pet_kindchk").css("color", "green");
+	}
+});
+
+$("#selectPet").blur(function() {
+	if ($("#selectPet").val() == "견종") {
+		// 빈칸일시
+		$("#pet_kindchk").text("필수입력칸입니다. 견종을 선택해주세요");
+		$("#pet_kindchk").css("color", "red");
+	} else {
+		$("#pet_kindchk").text("견종이 선택되었습니다.");
+		$("#pet_kindchk").css("color", "green");
+	}
+});
+
+$("#pet_birth").blur(function() {
+	if ($("#pet_birth").val() == "") {
+		// 빈칸일시
+		$("#pet_birthchk").text("필수입력칸입니다. 펫 나이를 입력해주세요");
+		$("#pet_birthchk").css("color", "red");
+	} else {
+		$("#pet_birthchk").text("나이가 입력되었습니다.");
+		$("#pet_birthchk").css("color", "green");
+	}
+});
+

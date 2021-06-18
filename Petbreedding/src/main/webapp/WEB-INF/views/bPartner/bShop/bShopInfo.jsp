@@ -12,7 +12,7 @@
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/common/footer.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bAside.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bShop/bShopInfo.css">
-<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
+<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
@@ -21,14 +21,15 @@
 		<section class="section">
 		<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
-			<form id="shopForm">
+			<form action="${path}/bShop/write" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
+				<!-- TODO: input type="hidden"으로 사업자 고객번호   -->
 				<h2>사업장 등록</h2>
 				<br>
 				<table class="tblInfo">
 					<tr>
 						<th>서비스 구분</th>
-						<th><input type="radio" name="shop" id="bshop" value="0"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
-						<th><input type="radio" name="shop" id="hshop" value="1"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
+						<th><input  readonly="readonly" type="radio" name="shop" id="bshop" value="0"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
+						<th><input  readonly="readonly" type="radio" name="shop" id="hshop" value="1"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
 					</tr>
 					<tr>
 						<th>매장명</th>
@@ -59,7 +60,14 @@
 					</tr>
 					<tr>
 						<th>대표이미지</th>
-						<th colspan="2"><button class="basicBtn">첨부하기</button></th>
+						<th colspan="2">
+							  <div class="imgContainer">
+                                <div class="imgBox">
+                                    <img src="">
+                                </div>
+                                <input type="file" id="inputShopImg" name="shopImg" multiple="multiple" accept=".jpg, .jpeg, .png" value="파일선택">
+                            </div>
+						</th>
 					</tr>
 					<tr>
 						<th>주휴일</th>

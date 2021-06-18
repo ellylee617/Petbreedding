@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.bmypage.model.dao.ShopDao;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
@@ -24,5 +25,21 @@ public class ShopServiceImpl implements ShopService {
 		}
 		return result;
 	}
+
+	@Override
+	public int insertHarImg(HairSalonImg vo) {
+		
+		int result = -1;
+		
+		try {
+			result = shopDao.insertHarImg(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
 
 }
