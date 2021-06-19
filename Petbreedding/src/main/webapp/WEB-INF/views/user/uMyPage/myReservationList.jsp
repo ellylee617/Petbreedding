@@ -11,7 +11,7 @@
 <link href="${path}/resources/css/common/header.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/user/myPageAside.css"	rel="stylesheet" type="text/css">
-<link href="${path}/resources/css/user/Mypage/myReservationList.css"	rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/user/uMyPage/myReservationList.css"	rel="stylesheet" type="text/css">
 <link	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"	rel="stylesheet" />
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
@@ -84,26 +84,29 @@
 	<!-- 리뷰 작성 모달창 -->
 	<div id="modalRe" class="modalRe-Overlay">
 		<div id="modalRe-Win">
-			<a class="modal_close_btn"><i class="fas fa-times fa-lg"></i></a> <br><br>
-			<div class="select">
-				<span class="text">별점을 선택해주세요</span><span class="downArrow"></span>
-				<ul class="option-list">
-					<li class="option"><img src="${path}/resources/images/5.png">&nbsp;&nbsp;아주 만족해요</li>
-					<li class="option"><img src="${path}/resources/images/4.png">&nbsp;&nbsp;만족해요</li>
-					<li class="option"><img src="${path}/resources/images/3.png">&nbsp;&nbsp;보통이에요</li>
-					<li class="option"><img src="${path}/resources/images/2.png">&nbsp;&nbsp;조금 아쉬워요</li>
-					<li class="option"><img src="${path}/resources/images/1.png">&nbsp;&nbsp;많이 아쉬워요</li>
-				</ul>
-			</div>
-			<br>
-			<textarea placeholder="리뷰내용을 작성해주세요" name="recon" rows="15" cols="37"></textarea>
-			<br><br>
-			<a class="btnAddFile"><i class="fa fa-camera fa-2x"></i></a>
-			<button class="basicBtn btnReCom">등록하기</button>
-			<br>
+			<form id="frm">
+				<a class="modal_close_btn"><i class="fas fa-times fa-lg"></i></a> <br><br>
+				<div class="select">
+					<span class="text">별점을 선택해주세요</span><span class="downArrow"></span>
+					<ul class="option-list">
+						<li class="option" value="5"><img src="${path}/resources/images/5.png">&nbsp;&nbsp;아주 만족해요</li>
+						<li class="option" value="4"><img src="${path}/resources/images/4.png">&nbsp;&nbsp;만족해요</li>
+						<li class="option" value="3"><img src="${path}/resources/images/3.png">&nbsp;&nbsp;보통이에요</li>
+						<li class="option" value="2"><img src="${path}/resources/images/2.png">&nbsp;&nbsp;조금 아쉬워요</li>
+						<li class="option" value="1"><img src="${path}/resources/images/1.png">&nbsp;&nbsp;많이 아쉬워요</li>
+					</ul>
+						<input type="number" id="selectedVal" name="selectedVal" style="display:none" readonly>
+				</div>
+				<br>
+				<textarea placeholder="리뷰내용을 작성해주세요" id="revCont" name="revCont" rows="15" cols="37"></textarea>
+				<br><br>
+				<a class="btnAddFile"><i class="fa fa-camera fa-2x"></i></a>
+				<button id="regBtn" class="basicBtn btnReCom">등록하기</button>
+				<br>
+			</form>
 		</div>
 	</div>
 	<!-- 모달 끝! -->
-	<script src="${path}/resources/js/user/uMypage/myReservationList.js"></script>
+	<script src="${path}/resources/js/user/uMyPage/myReservationList.js"></script>
 </body>
 </html>

@@ -111,11 +111,32 @@
                             
 	                                <div class="reviewWord">
 	                                    <div class="star_img">
-	                                        <i class="fas fa-star rate"></i>
-	                                        <i class="fas fa-star rate"></i>
-	                                        <i class="fas fa-star rate"></i>
-	                                        <i class="fas fa-star rate"></i>
-	                                        <i class="far fa-star rate"></i>
+	                                    <c:if test="${reviewList.revVal eq 1}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${reviewList.revVal eq 2}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${reviewList.revVal eq 3}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${reviewList.revVal eq 4}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${reviewList.revVal eq 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+
 	                                        <span class="reviewScore">${reviewList.revVal }.0</span>
 	                                    </div>
 	                                    <div class="reviewCon">

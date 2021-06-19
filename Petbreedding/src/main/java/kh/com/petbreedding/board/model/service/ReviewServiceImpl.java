@@ -33,4 +33,18 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewList;
 	}
 
+	@Override
+	public int insertReview(Review rv) {
+		System.out.println("리뷰 등록 서비스 진입");
+		int result = -1;
+		
+		try {
+			result = reviewDao.insertReview(rv);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
 }

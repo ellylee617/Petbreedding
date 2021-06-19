@@ -7,22 +7,18 @@ public class Review {
 	private String revNum;
 	private String bpId;
 	private String clNum;
+	private String clNickName;
 	private String revCont;
 	private String revImg;
 	private String revDate;
 	private int revVal;
 	private int revView;
-	private String clNickName;
 	
-	
-
-
-
 	@Override
 	public String toString() {
-		return "Review [revNum=" + revNum + ", bpId=" + bpId + ", clNum=" + clNum + ", revCont=" + revCont + ", revImg="
-				+ revImg + ", revDate=" + revDate + ", revVal=" + revVal + ", revView=" + revView + ", clNickName="
-				+ clNickName + "]";
+		return "Review [revNum=" + revNum + ", bpId=" + bpId + ", clNum=" + clNum + ", clNickName=" + clNickName
+				+ ", revCont=" + revCont + ", revImg=" + revImg + ", revDate=" + revDate + ", revVal=" + revVal
+				+ ", revView=" + revView + "]";
 	}
 
 	public String getRevNum() {
@@ -47,6 +43,14 @@ public class Review {
 
 	public void setClNum(String clNum) {
 		this.clNum = clNum;
+	}
+
+	public String getClNickName() {
+		return clNickName;
+	}
+
+	public void setClNickName(String clNickName) {
+		this.clNickName = clNickName;
 	}
 
 	public String getRevCont() {
@@ -88,16 +92,6 @@ public class Review {
 	public void setRevView(int revView) {
 		this.revView = revView;
 	}
-
-	public String getClNickName() {
-		return clNickName;
-	}
-
-	public void setClNickName(String clNickName) {
-		this.clNickName = clNickName;
-	}
-
-	
 	
 	
 }
