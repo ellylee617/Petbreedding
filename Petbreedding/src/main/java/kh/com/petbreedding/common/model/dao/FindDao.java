@@ -12,18 +12,19 @@ public class FindDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 아이디 찾기
-	public String findId(Client client) {
-		
-		// TODO Auto-generated method stub
-		return null;
-		
+	//사용자 아이디 찾기
+	public String findId(Client client) {	
+		return sqlSession.selectOne("Login.searchId", client);		
 	}
 	
-	// 비밀번호 찾기 
-	public String findPwd(Client client) {
-		
-		// TODO Auto-generated method stub
-		return null;
+	//사용자 비밀번호 찾기 
+	public int findPwd(Client client) {	
+		return sqlSession.selectOne("Login.searchPwd", client);
+	}
+	
+	//사용자 비밀번호 재설정
+	public int changePwd(Client client) {	
+		int result = sqlSession.update("Login.changePwd", client);
+		return result;
 	}
 }

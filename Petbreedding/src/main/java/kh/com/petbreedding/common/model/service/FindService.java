@@ -5,7 +5,7 @@ import kh.com.petbreedding.client.model.vo.Client;
 
 public interface FindService {
 
-	String findId(Client client); // 아이디 찾기
-	String findPwd(Client client); // 비밀번호 찾기
-
+	public String findId(Client client); // 아이디 찾기
+	public int findPwd(Client client); // 비밀번호 찾기
+	public int changePwd(Client client); //비밀번호 재설정
 }

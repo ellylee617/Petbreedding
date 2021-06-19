@@ -55,5 +55,29 @@
 		FROM ADMIN 
 		WHERE ADMIN_ID = #{admin_id} AND ADMIN_PWD = #{admin_pwd}
 	</select>
+	
+	
+	<!-- 사용자 아이디 찾기  -->
+	<select id="searchId" parameterType="Client" statementType="PREPARED" resultType="string">
+		SELECT CL_EMAIL as email 
+		FROM client
+		WHERE CL_NAME = #{name} AND CL_TEL = #{tel}
+	</select>
+	
+	<!-- 사용자 비밀번호 찾기  -->
+	<select id="searchPwd" parameterType="Client" statementType="PREPARED" resultType="int">
+		SELECT COUNT(*)
+		FROM client
+		WHERE CL_EMAIL = #{email} AND CL_TEL = #{tel}
+	</select>
+  
+  	<!-- 사용자 비밀번호 변경 -->
+  	<update id="changePwd" parameterType="Client" statementType="PREPARED">
+  		UPDATE client 
+  		SET  CL_PWD = #{password} 
+  		WHERE CL_EMAIL = #{email}
+  	</update>
+  
+  
   
 </mapper>

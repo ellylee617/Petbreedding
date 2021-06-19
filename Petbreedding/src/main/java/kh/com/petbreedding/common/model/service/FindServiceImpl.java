@@ -14,27 +14,34 @@ public class FindServiceImpl implements FindService{
 	
 	@Override
 	public String findId(Client client) {
-		// TODO Auto-generated method stub
 		String result = null;
 		try {
-			
+			result = findDao.findId(client);
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		return result;
 	}
 
 	@Override
-	public String findPwd(Client client) {
-		// TODO Auto-generated method stub
-		String result = null;
+	public int findPwd(Client client) {
+		int result = -1;
 		try {
-			
-		} catch(Exception e) {
+			result = findDao.findPwd(client);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		return result;
+	}
+
+	@Override
+	public int changePwd(Client client) {
+		int result = -1;
+		try {
+			result = findDao.changePwd(client);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
