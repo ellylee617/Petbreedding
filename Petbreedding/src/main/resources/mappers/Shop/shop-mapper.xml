@@ -25,25 +25,31 @@
 				<result column="HAR_IMG" property="shopImg"/>
 			</collection>
 		 -->
-		
+		 
+		 <!-- BP 테이블 -->
+		 <resultMap type="BPartner" id="BPartner">
+			<id column="BP_ID" property="bp_Id"/>
+		</resultMap>
+	
 		<!-- HAIR_SALON_IMG 테이블 -->
 		<resultMap type="HairSalonImg" id="HairSalonImg">
 			<id column="IMG_NUM" property="imgNum"/>
 			<result column="HAR_NUM" property="harNum"/>
 			<result column="HAR_IMG" property="shopImg"/>
 		</resultMap>
-	
+			
+			
+			<!-- TODO:작업중 -->
 		<!-- 미용실 기본 정보 기입 -->
-		<!-- TODO:HAR_NUM, BP_ID 수정 !!!!!!!!!!!!!! -->
+		<!-- TODO:BP_ID 수정 !!!!!!!!!!!!!! -->
+		<!-- 로그인한 사업주 정보 연동.. -->
 		<insert id="insertHarInfo" parameterType="HairSalon">
 		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, HAR_CLICK)
-		VALUES (SEQ_HAIR_SALON.NEXTVAL, 1, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, 0)
-		
+		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, 0)
 		</insert>
 		
-		<!-- **TODO:작업중** -->
+		
 		<!--미용실 이미지 첨부 -->
-		<!-- TODO:HAR_NUM 수정!!!!!!!!!!!!!!!!!! -->
 		<insert id="insertHarImg" parameterType="HairSalonImg">
 		<selectKey keyProperty="harNumImg" resultType="string" order="BEFORE">
        	 SELECT SEQ_HAIR_SALON.CURRVAL FROM DUAL
@@ -52,7 +58,7 @@
 		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNumImg},#{shopImg})
 		</insert>
 		
-		<!-- ************************************************* -->
+
 		
 
 

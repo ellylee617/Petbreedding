@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* aside 색입히기~ */
-.mMenu li:nth-child(2){
+#mSales{
     color: var(--font-color);
     background-color: var(--bmenu-color);
 }

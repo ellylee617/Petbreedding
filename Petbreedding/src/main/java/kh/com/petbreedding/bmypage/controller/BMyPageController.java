@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,15 +111,24 @@ public class BMyPageController {
 		return "/bPartner/bShop/bShopInfo";
 	}
 
+	/*TODO:작업중*/
 	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지
 	@RequestMapping(value = "/bShop/write", method = RequestMethod.POST)
-	public ModelAndView bShopWrite(HairSalon vo, MultipartHttpServletRequest request) {
+	public ModelAndView bShopWrite(HttpServletRequest hrequest, HairSalon vo, MultipartHttpServletRequest request) {
 
+		// 세션에 있는 로그인 정보 가져오기
+		HttpSession session = hrequest.getSession();
+		BPartner bp = (BPartner) session.getAttribute("bP");
+		String bpId = bp.getBp_Id();
+		
+		vo.setBpId(bpId);
+		
 		System.out.println(vo.toString());
 
 		// 미용실 기본 정보 등록
 		shopService.insertHarInfo(vo);
 
+		
 		// 미용실 매장 사진 등록
 
 		// 파일 업로드

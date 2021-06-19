@@ -1,34 +1,3 @@
-$(".menu").on("click",function(){
-    
-    if($(this).hasClass("nowOn") == false){
-        $(".menu").removeClass("nowOn");
-        $(this).addClass("nowOn");
-    }else{
-        $(".menu").removeClass("nowOn");
-    }
-
-    if($(this).hasClass("hs") && $("#mBoard").hasClass("activeMenu") == false){      
-        $(".menu").removeClass("activeMenu");
-        $(this).addClass("activeMenu");
-    }else{
-        $(".menu").removeClass("activeMenu");
-    }
-    
-    if($("#mBoard").hasClass("activeMenu") == false){
-        $("#mBoardm").css("display","none");
-    }else{
-        $("#mBoardm").css("display","block");
-    }
-
-    if($(".menu").hasClass("activeMenu") == false){
-        $(".mAside").css("width","100px");
-        $(".mContent").css("width","950px");
-    }else{
-        $(".mAside").css("width","320px");
-        $(".mContent").css("width","760px");
-    }
-});
-
 
 // placing objects inside variables
 var content = $('.mContent');

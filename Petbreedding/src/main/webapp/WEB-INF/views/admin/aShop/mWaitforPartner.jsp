@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Petbreedding::펫브리띵 사장님</title>
-<link type="text/css" rel="stylesheet"	href="${path}/resources/css/common/reset.css">
+<link href="${path}/resources/css/common/reset.css" type="text/css" rel="stylesheet">
 <link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css" >
-<link type="text/css" rel="stylesheet"	href="${path}/resources/css/common/footer.css">
-<link type="text/css" rel="stylesheet"	href="${path}/resources/css/admin/mAside.css">
-<link type="text/css" rel="stylesheet"	href="${path}/resources/css/shop/mWaitforPartner.css">
+<link href="${path}/resources/css/common/footer.css"  type="text/css" rel="stylesheet">
+<link href="${path}/resources/css/admin/mAside.css"  type="text/css" rel="stylesheet">
+<link href="${path}/resources/css/admin/aShop/mWaitforPartner.css"  type="text/css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -31,86 +31,15 @@
 						<th>연락처</th>
 						<th>상태</th>
 					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
+					<tr class="checkTR">
+						<td class="inputBox"><input type="checkbox"></td>
 						<td>미용</td>
 						<td>곽서현</td>
 						<td>123-12-4567890</td>
 						<td>010-111-2345</td>
 						<td>대기</td>
 					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
+					
 				</table>
 				<br>
 				<div class="partnerbtns">
@@ -131,7 +60,8 @@
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
-<script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
-<script type="text/javascript" src="${path}/resources/js/admin/aShop/mWaitforPartner.js"></script>
+	<!-- script -->
+	<script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/admin/aShop/mWaitforPartner.js"></script>
 </body>
 </html>
