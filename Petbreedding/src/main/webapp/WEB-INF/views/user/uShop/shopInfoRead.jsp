@@ -122,7 +122,7 @@
 	                                        <p>${reviewList.revCont }</p>
 	                                    </div>
 	                                    <div class="reviewInfo">
-	                                        <span>또비언니</span>
+	                                        <span>${reviewList.clNickName }</span>
 	                                        <span class="reviewDate">${reviewList.revDate } 방문</span>
 	                                    </div>
 	                                </div>

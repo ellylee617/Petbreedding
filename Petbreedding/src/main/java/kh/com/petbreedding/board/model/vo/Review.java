@@ -12,11 +12,17 @@ public class Review {
 	private String revDate;
 	private int revVal;
 	private int revView;
+	private String clNickName;
 	
+	
+
+
+
 	@Override
 	public String toString() {
 		return "Review [revNum=" + revNum + ", bpId=" + bpId + ", clNum=" + clNum + ", revCont=" + revCont + ", revImg="
-				+ revImg + ", revDate=" + revDate + ", revVal=" + revVal + ", revView=" + revView + "]";
+				+ revImg + ", revDate=" + revDate + ", revVal=" + revVal + ", revView=" + revView + ", clNickName="
+				+ clNickName + "]";
 	}
 
 	public String getRevNum() {
@@ -82,6 +88,16 @@ public class Review {
 	public void setRevView(int revView) {
 		this.revView = revView;
 	}
+
+	public String getClNickName() {
+		return clNickName;
+	}
+
+	public void setClNickName(String clNickName) {
+		this.clNickName = clNickName;
+	}
+
+	
 	
 	
 }
