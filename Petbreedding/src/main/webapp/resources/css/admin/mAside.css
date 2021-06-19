@@ -36,6 +36,7 @@
     width: 200px;
     float: left;
     border: 1px solid var(--bmenu-color);
+    border-left:none;
     display: none;
 }
 .mBox{
@@ -52,7 +53,6 @@
 .mBox .bs:hover{
     color: var(--hover-color);
 }
-
 
 /* bContent 넓이 지정 */
 .mContent {
