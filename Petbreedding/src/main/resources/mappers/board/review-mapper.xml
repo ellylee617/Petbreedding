@@ -11,9 +11,14 @@
 		<result column="REV_DATE" property="revDate"/>
 		<result column="REV_VAL" property="revVal"/>
 		<result column="REV_VIEW" property="revView"/>
+		<result column="CL_NICKNAME" property="clNickName"/>
 	</resultMap>
 	
 	<select id="reviewSelectList" parameterType="Review" resultMap="ReviewMap">
-		SELECT * FROM REVIEW
+		<![CDATA[
+			SELECT r.REV_NUM, r.BP_ID, CL_NUM, r.REV_CONT, r.REV_IMG, r.REV_DATE, r.REV_VAL, r.REV_VIEW, c.CL_NICKNAME
+			FROM REVIEW r JOIN CLIENT c
+			USING (CL_NUM)
+		 ]]>
 	</select>
 </mapper>
