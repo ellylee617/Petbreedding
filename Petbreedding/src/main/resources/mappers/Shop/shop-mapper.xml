@@ -16,11 +16,19 @@
 			<result column="HOPEN_TIME" property="shopTime"/>
 			<result column="HAR_MINFO" property="shopMInfo"/>
 			<result column="HAR_CLICK" property="harClick"/>
-			<collection property="shopImgList" resultMap="HairSalonImg"/>
 		</resultMap>
+		
+		<!-- 
+			<collection property="shopImgList" column="SHOP_IMG_LIST" ofType="HairSalonImg" columnPrefix="IMG_">
+				<id column="IMG_NUM" property="imgNum"/>
+				<result column="HAR_NUM" property="harNumImg"/>
+				<result column="HAR_IMG" property="shopImg"/>
+			</collection>
+		 -->
 		
 		<!-- HAIR_SALON_IMG 테이블 -->
 		<resultMap type="HairSalonImg" id="HairSalonImg">
+			<id column="IMG_NUM" property="imgNum"/>
 			<result column="HAR_NUM" property="harNum"/>
 			<result column="HAR_IMG" property="shopImg"/>
 		</resultMap>
@@ -30,16 +38,21 @@
 		<insert id="insertHarInfo" parameterType="HairSalon">
 		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, HAR_CLICK)
 		VALUES (SEQ_HAIR_SALON.NEXTVAL, 1, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, 0)
+		
 		</insert>
 		
+		<!-- **TODO:작업중** -->
 		<!--미용실 이미지 첨부 -->
 		<!-- TODO:HAR_NUM 수정!!!!!!!!!!!!!!!!!! -->
 		<insert id="insertHarImg" parameterType="HairSalonImg">
+		<selectKey keyProperty="harNumImg" resultType="string" order="BEFORE">
+       	 SELECT SEQ_HAIR_SALON.CURRVAL FROM DUAL
+  		</selectKey>
 		INSERT INTO HAIR_SALON_IMG (IMG_NUM, HAR_NUM, HAR_IMG)
-		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,10,#{shopImg})
+		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNumImg},#{shopImg})
 		</insert>
 		
-		
+		<!-- ************************************************* -->
 		
 
 
