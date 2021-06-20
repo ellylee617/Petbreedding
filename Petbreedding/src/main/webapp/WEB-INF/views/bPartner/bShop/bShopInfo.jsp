@@ -22,14 +22,20 @@
 		<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
 			<form action="${path}/bShop/write" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
-				<!-- TODO: input type="hidden"으로 사업자 고객번호   -->
+				<!-- ******* TODO: 서비스 구분 작업중~~~ ******   -->
 				<h2>사업장 등록</h2>
 				<br>
 				<table class="tblInfo">
 					<tr>
 						<th>서비스 구분</th>
-						<th><input  readonly="readonly" type="radio" name="shop" id="bshop" value="0"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
-						<th><input  readonly="readonly" type="radio" name="shop" id="hshop" value="1"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
+						<c:if test="${bP.bp_type == 0 }">
+						<th><input  onClick="return false;" type="radio" name="shop" id="bshop" value="0" checked="checked"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
+						<th><input  onClick="return false;" type="radio" name="shop" id="hshop" value="1"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
+						</c:if>
+						<c:if test="${bP.bp_type == 1 }">
+						<th><input onClick="return false;" type="radio" name="shop" id="bshop" value="0"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
+						<th><input onClick="return false;" type="radio" name="shop" id="hshop" value="1" checked="checked"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
+						</c:if>
 					</tr>
 					<tr>
 						<th>매장명</th>
