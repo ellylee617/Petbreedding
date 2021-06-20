@@ -54,6 +54,15 @@ public class AdminController {
 		return result;
 	}
 	
+	//제휴 거절 처리
+	@RequestMapping(value = "/refuseBP", method = RequestMethod.POST)
+	@ResponseBody
+	public int refuseBP(@RequestParam(value = "arr[]") List<String> list) {
+		
+		int result = adminService.refuseBP(list);
+		
+		return result;
+	}
 	
 	
 	

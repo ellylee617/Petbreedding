@@ -21,19 +21,6 @@ $(".inputBox").on("click", function(){
 	}
 });
 
-//tr 눌러도 선택하기 및 하나해지 각각 눌러서 전체선택
-/*$(".checkTR").on("click", function(){
-	var thisInput = $(this).children(".inputBox").children(".checkBox");
-	checkedBox = $("input[name=bP]:checked").length;
-	
-	if($(thisInput).prop("checked") == false){
-		$(thisInput).prop("checked", true);		
-	}else {
-		$(thisInput).prop("checked", false);
-	}	
-
-});*/
-
 
 //승인버튼 눌렀을때  //사업자번호로 체크
 $("#confirmBP").on("click",function(){
@@ -42,9 +29,7 @@ $("#confirmBP").on("click",function(){
 	$("input[name=bP]:checked").each(function(item){
 		arr.push($(this).parent().next().next().next().html());
 	});
-	console.log("arr : "+ arr );
 	var allData = {"bp_num" : arr};
-	console.log("allData : "+ allData );
 	
 	$.ajax({
 		url : "confirmBP",
@@ -64,3 +49,34 @@ $("#confirmBP").on("click",function(){
 		
 	});
 });
+
+
+//거절버튼 눌렀을때  //사업자번호로 체크
+$("#refuseBP").on("click",function(){
+
+	var arr = [];
+	$("input[name=bP]:checked").each(function(item){
+		arr.push($(this).parent().next().next().next().html());
+	});
+	var allData = {"bp_num" : arr};
+	
+	$.ajax({
+		url : "refuseBP",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("승인 거절이 완료되었습니다.");
+				location.reload();
+			}else{
+				alert("승인 거절처리 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});
+
+

@@ -25,4 +25,8 @@ public class AdminDao {
 		return sqlSession.update("mWait.confirmBP", list);
 	}
 	
+	//제휴승인 대기 거절
+	public int refuseBP(List<String> list){
+		return sqlSession.delete("mWait.refuseBP", list);
+	}
 }

@@ -38,4 +38,16 @@ public class AdminServiceImpl implements AdminService{
 		return result;
 	}
 
+	@Override
+	public int refuseBP(List<String> list) {
+		int result = -1;
+		try {
+			result = aDao.refuseBP(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 }

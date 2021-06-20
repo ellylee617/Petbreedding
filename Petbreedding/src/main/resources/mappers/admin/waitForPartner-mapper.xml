@@ -34,4 +34,19 @@
 	</foreach>
 	AND BP_APRVE = 0
   </update>
+  
+  
+  <!-- 제휴 거절 처리  -->
+  <delete id="refuseBP" statementType="PREPARED" >
+  	DELETE FROM business_partner 
+  	WHERE BP_NUM = ANY
+  	<foreach collection="list" item="value" open="(" close=")" separator=",">
+		 #{value}  		
+	</foreach>
+	AND BP_APRVE = 0
+  </delete>
+  
+  
+  
+  
 </mapper>
