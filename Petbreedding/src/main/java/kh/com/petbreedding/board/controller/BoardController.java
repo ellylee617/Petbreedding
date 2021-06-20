@@ -3,6 +3,9 @@ package kh.com.petbreedding.board.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.media.jfxmedia.logging.Logger;
 
 import kh.com.petbreedding.board.model.vo.Board;
+import kh.com.petbreedding.board.model.vo.Review;
+import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.board.model.service.BoardService;
+import kh.com.petbreedding.board.model.service.ReviewService;
 
 
 @Controller
@@ -23,26 +29,7 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boarService;
-	
-	// 게시글 작성 등록
-	@RequestMapping("/boardwrite")
-	public String boardWrite(Board board, RedirectAttributes attr) {
 		
-		//TODO
-		return null;
-		
-	}
-	
-	// 게시글 상세
-	
-	@RequestMapping("/boarddetail")
-	public ModelAndView boardModify(String bo_num) {
-		
-		//TODO
-		return null;
-		
-	}
-	
 	//	게시글 목록 + 페이징 + 검색
 	@RequestMapping(value = "/fboardlist", method = RequestMethod.GET)
 	public ModelAndView fboardlist(Locale locale, ModelAndView mv) {
@@ -53,6 +40,7 @@ public class BoardController {
 		return mv;
 	}
 	
+	// 게시글 상세
 	@RequestMapping(value = "/fboardcon", method = RequestMethod.GET)
 	public ModelAndView fboardcon(
 			Locale locale,
@@ -66,6 +54,48 @@ public class BoardController {
 		mv.addObject("board", board);
 		
 		return mv;
+	}
+	
+	@Autowired
+	private ReviewService reviewService;
+	
+	// 리뷰 작성
+	@RequestMapping(value = "/rwrite", method = RequestMethod.POST)
+	public String rwrite(
+			Locale locale,
+			HttpSession session,
+			HttpServletRequest request,
+			Client cl,
+			@RequestParam(name="revCont") String revCont
+//			@RequestParam(name="selectedVal") int revVal
+			) {
+		System.out.println("리뷰 등록 컨트롤러 진입");
+		cl = (Client) session.getAttribute("client");
+		String clNum = cl.getCl_num();
+		String clNickName = cl.getNickname();
+//		int revVal = Integer.parseInt(request.getParameter("selectedVal"));
+		
+		Review rv = new Review();
+		System.out.println(clNum);
+		System.out.println(clNickName);
+		System.out.println(revCont);
+		System.out.println("이게 안된다고 왜!!!!!!!!!!!!!!!!!" + request.getParameter("selectedVal"));
+		
+		rv.setClNickName(clNickName.replaceAll("\r\n", "<br>"));
+		rv.setClNum(clNum.replaceAll("\r\n", "<br>"));
+		rv.setRevCont(revCont);
+//		rv.setRevVal(Integer.parseInt(revVal));
+//		rv.setRevVal(revVal);
+		
+		int result = reviewService.insertReview(rv);
+		
+		if(result == 1) {
+			System.out.println("리뷰 등록 성공");
+		} else {
+			System.out.println("리뷰 등록 실패");
+		}
+		
+		return "redirect:mypage";
 	}
 	
 	@RequestMapping(value = "/UcustomerService", method = RequestMethod.GET)

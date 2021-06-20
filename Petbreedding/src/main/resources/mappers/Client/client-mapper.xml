@@ -33,5 +33,6 @@
 	<delete id="deleteClient" parameterType="string">
 		DELETE FROM client WHERE CL_NUM = #{cl_num}
 	</delete>
-	
+
+
 </mapper>

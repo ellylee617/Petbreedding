@@ -16,6 +16,9 @@
 		 <property name="url" value="jdbc:oracle:thin:@112.221.156.36:1521:xe" />
 		 <property name="username" value="pet" />
 		 <property name="password" value="PET" />
+<!-- 		 <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
+<!-- 		 <property name="username" value="petLc" /> -->
+<!-- 		 <property name="password" value="PETLC" /> -->
 		 </bean>
 		 
 		 <bean id="transactionManager"

@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
+/*  */
+.mContent{
+    padding-left: 10px !important;
+	margin-bottom: 70px;
+	float: left;
+	width: 780px;
+}
+#mBoardm{
+	display:inline-block;
+}
+.mAside{
+	width: 310px;
+}
+#mBoard{
+	background-color:var(--bmenu-color);
+	color:var(--font-color);
+}
+
+
+
+
 .myboardhead{
     margin-bottom: 50px;
 }
@@ -24,29 +45,33 @@
        
    }
 
-   .myboard tr:hover{
-    border-bottom: 1px solid #aaa;
-    border-top: 1px solid #aaa;
-    height: 50px;
-    text-align: center;
-    background-color: #a5e6fc; /*tr호버컬러*/;
-    border-collapse: collapse;
-       
-   }
-   .myboardrow{
-       float: right;
-       margin-top: -40px;
-   }
-   .basicBtn{
-    width: 80px;
-    height: 35px;
-    border-radius: 10px;
-   
-  }
-  .basicBtn a{
-      color: #fff;
-      font-family: "GmarketM"
-  }
+.checkTR:hover{
+ border-bottom: 1px solid #aaa;
+ border-top: 1px solid #aaa;
+ height: 50px;
+ text-align: center;
+ background-color: #a5e6fc; /*tr호버컬러*/;
+ border-collapse: collapse;   
+}
+.inputBox{
+	padding-right: 63px;
+}
+
+
+ .myboardrow{
+     float: right;
+     margin-top: -40px;
+ }
+ .basicBtn{
+  width: 80px;
+  height: 35px;
+  border-radius: 10px;
+ 
+}
+.basicBtn a{
+    color: #fff;
+    font-family: "GmarketM"
+}
 
   /* PAGING 공통으로 쓸거면 빼고 사용해도 될 것 같음 */
 

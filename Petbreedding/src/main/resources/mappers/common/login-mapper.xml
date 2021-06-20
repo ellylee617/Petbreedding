@@ -55,5 +55,48 @@
 		FROM ADMIN 
 		WHERE ADMIN_ID = #{admin_id} AND ADMIN_PWD = #{admin_pwd}
 	</select>
+	
+	
+	<!-- 사용자 아이디 찾기  -->
+	<select id="searchId" parameterType="Client" statementType="PREPARED" resultType="string">
+		SELECT CL_EMAIL as email 
+		FROM client
+		WHERE CL_NAME = #{name} AND CL_TEL = #{tel}
+	</select>
+	
+	<!-- 사용자 비밀번호 찾기  -->
+	<select id="searchPwd" parameterType="Client" statementType="PREPARED" resultType="int">
+		SELECT COUNT(*)
+		FROM client
+		WHERE CL_EMAIL = #{email} AND CL_TEL = #{tel}
+	</select>
+  
+  	<!-- 사용자 비밀번호 변경 -->
+  	<update id="changePwd" parameterType="Client" statementType="PREPARED">
+  		UPDATE client 
+  		SET  CL_PWD = #{password} 
+  		WHERE CL_EMAIL = #{email}
+  	</update>
+  
+  	<!-- 사업자 아이디 찾기  -->
+	<select id="searchBId" parameterType="BPartner" statementType="PREPARED" resultType="string">
+		SELECT BP_EMAIL as bp_email 
+		FROM business_partner
+		WHERE BP_NAME = #{bp_name} AND BP_TEL = #{bp_tel}
+	</select>
+	
+	<!-- 사업자 비밀번호 찾기  -->
+	<select id="searchBPwd" parameterType="BPartner" statementType="PREPARED" resultType="int">
+		SELECT COUNT(*)
+		FROM business_partner
+		WHERE BP_EMAIL = #{bp_email} AND BP_TEL = #{bp_tel}
+	</select>
+  
+  	<!-- 사업자 비밀번호 변경 -->
+  	<update id="changeBPwd" parameterType="BPartner" statementType="PREPARED">
+  		UPDATE business_partner 
+  		SET  BP_PWD = #{bp_pwd} 
+  		WHERE BP_EMAIL = #{bp_email}
+  	</update>
   
 </mapper>

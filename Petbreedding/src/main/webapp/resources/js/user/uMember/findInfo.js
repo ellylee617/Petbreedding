@@ -1,41 +1,4 @@
-var getCheck= RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/);
-
-$(function() {
-	$("#searchIdPw").click(function() {
-		$("#modal").show();
-	});
-
-	$("#modalExit").click(function() {
-		$('.searchModal_Container').hide();
-	});
-});
-
-
-$("#loginBtn").on("click", function() {
-
-	var dataString = $(".blFrm").serialize();
-	
-	$.ajax({
-		url : "member/doLoginB",
-		type : "POST",
-		data : dataString,
-		success : function(data) {
-			if (data == "/bLogin") {
-				$("#errorText").text("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
-			} else if (data == "/bReservation") {
-				location.href = "/petbreedding/bReservation";
-			} else {
-				alert("에러");
-			}
-		},
-		error : function(error) {
-			$("#errorText").text("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
-		}
-	});
-
-	return false;
-
-});
+var getCheck= RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/); 
 
 //아이디 찾기
 $("#findIdBtn").on("click",function(){
@@ -43,7 +6,7 @@ $("#findIdBtn").on("click",function(){
 	var formData = $("#searchIdFrm").serialize();
 	
 	$.ajax({
-		url : "findBId",
+		url : "findId",
 		type : "post",
 		data : formData,
 		success : function(data){
@@ -74,7 +37,7 @@ $("#findPwdBtn").on("click",function(){
 	var email = $("#sendEmail").val();
 	
 	$.ajax({
-		url : "findBPwd",
+		url : "findPwd",
 		type : "post",
 		data : formData,
 		success : function(data){
@@ -100,7 +63,7 @@ $("#changePwd").on("click",function(){
 	
 	if($("#pw_check").text()=="사용가능한 비밀번호입니다." && $("#pw_check2").text()=="비밀번호가 일치합니다."){
 		$.ajax({
-			url : "changeBPwd",
+			url : "changePwd",
 			type : "post",
 			data : formData,
 			success : function(data){
@@ -161,5 +124,3 @@ $("#pwdCheck").blur(function(){
 		$("#pw_check2").css("height","20px");
 	}	
 });
-
-

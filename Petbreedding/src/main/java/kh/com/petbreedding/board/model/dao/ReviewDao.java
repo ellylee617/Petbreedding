@@ -22,4 +22,9 @@ public class ReviewDao {
 		System.out.println("다오 끝");
 		return sqlSession.selectList("Review.reviewSelectList", null, row);
 	}
+	
+	public int insertReview(Review rv) {
+		System.out.println("리뷰 등록 다오 진입");
+		return sqlSession.insert("Review.insertReview", rv);
+	}
 }

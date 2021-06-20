@@ -11,8 +11,8 @@
 <link href="${path}/resources/css/common/header.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/user/myPageAside.css"	rel="stylesheet" type="text/css">
-<link href="${path}/resources/css/user/uMypage/myReservationDetail.css"	rel="stylesheet" type="text/css">
-<script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
+<link href="${path}/resources/css/user/uMyPage/myReservationDetail.css"	rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/aca84cf3fb.js"></script>
 </head>
 <body>
 	<div class="wrapper">
