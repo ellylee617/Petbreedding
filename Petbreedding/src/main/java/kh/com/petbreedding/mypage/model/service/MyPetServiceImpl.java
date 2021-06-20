@@ -16,6 +16,8 @@ public class MyPetServiceImpl implements MyPetService{
 	@Autowired
 	private MyPetDao mypetDao;
 
+
+
 	
 
 	@Override
@@ -28,7 +30,25 @@ public class MyPetServiceImpl implements MyPetService{
 			e.printStackTrace();
 		}
 		}
+	@Override
+	public List<MyPet> eachPetInfo(String cl_num) {
+		System.out.println("개별 mypet service들어옴");
+		List<MyPet> list = null;
+		try {
+			list = mypetDao.eachPetInfo(cl_num);
+			if(list != null) {
+				System.out.println("mypet info 있음");
+			}else {
+				System.out.println("mypet info 없음");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 
+	
 	@Override
 	public List<MyPet> selectPetInfo() {
 		System.out.println("mypet service list 들어옴");
@@ -42,17 +62,15 @@ public class MyPetServiceImpl implements MyPetService{
 		return list;
 	}
 	
-	@Override
-	public void updatePetInfo(MyPet pet_info) {
-		
-	}
+//	@Override
+//	public void updatePetInfo(MyPet pet_info) {
+//		
+//	}
+//
+//	@Override
+//	public void deletePetInfo(MyPet pet_info) {
+//		
+//	}
 
-	@Override
-	public void deletePetInfo(MyPet pet_info) {
-		
-	}
-
-	
-	
 
 }

@@ -24,16 +24,22 @@ public void insertPetInfo(MyPet mypet) {
 }
 
 @Override
-public void updatePetInfo(MyPet pet_info) {
-	// TODO Auto-generated method stub
-	
+public List<MyPet> eachPetInfo(String cl_num) {
+	return sqlSession.selectList("pet.eachpet", cl_num);
 }
 
-@Override
-public void deletePetInfo(String pet_num) {
-	// TODO Auto-generated method stub
-	
-}
+
+//@Override
+//public void updatePetInfo(MyPet pet_info) {
+//	// TODO Auto-generated method stub
+//	
+//}
+//
+//@Override
+//public void deletePetInfo(String pet_num) {
+//	// TODO Auto-generated method stub
+//	
+//}
  
  
 }

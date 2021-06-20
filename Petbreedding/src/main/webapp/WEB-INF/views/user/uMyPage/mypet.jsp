@@ -23,8 +23,8 @@
 	<jsp:include page="../../common/header.jsp" />
 	 <section class="section">
 	 <jsp:include page="../myPageAside.jsp"/>
-	  <c:forEach var="list" items="${list}">
 	  <div class="pethead">
+	  <c:forEach var="list" items="${list}">
             <h1>반려동물 정보</h1>
             <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
             <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
