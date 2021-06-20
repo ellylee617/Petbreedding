@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.com.petbreedding.bmypage.model.vo.HairDayOff;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 
@@ -19,6 +20,12 @@ public class ShopDao {
 		System.out.println(" !! ShopDao - insertHarInfo() 실행 !!");
 		return sqlSession.insert("Shop.insertHarInfo", vo);
 		
+	}
+	
+	// 미용실 주휴일 입력
+	public int insertHarDayOff(HairDayOff vo) {
+		System.out.println(" !! ShopDao - insertHarDayOff() 실행 !!");
+		return sqlSession.insert("Shop.insertHarDayOff", vo);
 	}
 	
 	//미용실 이미지 첨부

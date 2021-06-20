@@ -72,13 +72,13 @@
 					<tr>
 						<th>주휴일</th>
 						<th colspan="2">
-						<div class="wrap"><input type="checkbox" id="mon" name="1"><label for="mon"><div class="dayitem">월</div></label></div>
-						<div class="wrap"><input type="checkbox" id="tue" name="2"><label for="tue"><div class="dayitem">화</div></label></div>
-						<div class="wrap"><input type="checkbox" id="wed" name="3"><label for="wed"><div class="dayitem">수</div></label></div>
-						<div class="wrap"><input type="checkbox" id="thu" name="4"><label for="thu"><div class="dayitem">목</div></label></div>
-						<div class="wrap"><input type="checkbox" id="fri" name="5"><label for="fri"><div class="dayitem">금</div></label></div>
-						<div class="wrap"><input type="checkbox" id="sat" name="6"><label for="sat"><div class="dayitem">토</div></label></div>
-						<div class="wrap"><input type="checkbox" id="sun" name="7"><label for="sun"><div class="dayitem">일</div></label></div>						
+						<div class="wrap"><input type="checkbox" id="mon" name="shopDayOff" value="1"><label for="mon"><div class="dayitem">월</div></label></div>
+						<div class="wrap"><input type="checkbox" id="tue" name="shopDayOff" value="2"><label for="tue"><div class="dayitem">화</div></label></div>
+						<div class="wrap"><input type="checkbox" id="wed" name="shopDayOff" value="3"><label for="wed"><div class="dayitem">수</div></label></div>
+						<div class="wrap"><input type="checkbox" id="thu" name="shopDayOff" value="4"><label for="thu"><div class="dayitem">목</div></label></div>
+						<div class="wrap"><input type="checkbox" id="fri" name="shopDayOff" value="5"><label for="fri"><Rdiv class="dayitem">금</div></label></div>
+						<div class="wrap"><input type="checkbox" id="sat" name="shopDayOff" value="6"><label for="sat"><div class="dayitem">토</div></label></div>
+						<div class="wrap"><input type="checkbox" id="sun" name="shopDayOff" value="7"><label for="sun"><div class="dayitem">일</div></label></div>						
 						</th>
 					</tr>					
 				</table>

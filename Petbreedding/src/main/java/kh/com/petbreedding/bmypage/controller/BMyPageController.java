@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.bmypage.model.service.BInfoService;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
+import kh.com.petbreedding.bmypage.model.vo.HairDayOff;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 
@@ -111,10 +112,15 @@ public class BMyPageController {
 		return "/bPartner/bShop/bShopInfo";
 	}
 
-	/*TODO:작업중*/
-	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지
+	/*TODO*/
+	/*주휴일 부분 작업중~~~*/
+	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지 + 로그인 연동 
 	@RequestMapping(value = "/bShop/write", method = RequestMethod.POST)
-	public ModelAndView bShopWrite(HttpServletRequest hrequest, HairSalon vo, MultipartHttpServletRequest request) {
+	public ModelAndView bShopWrite(
+			HttpServletRequest hrequest,
+			HairSalon vo,
+			@RequestParam(value="shopDayOff") List<String> dayOffList, 
+			MultipartHttpServletRequest request) {
 
 		// 세션에 있는 로그인 정보 가져오기
 		HttpSession session = hrequest.getSession();
@@ -123,11 +129,23 @@ public class BMyPageController {
 		
 		vo.setBpId(bpId);
 		
-		System.out.println(vo.toString());
 
+		
+		
 		// 미용실 기본 정보 등록
 		shopService.insertHarInfo(vo);
-
+		vo.toString();
+		
+		// 미용실 주휴일 설정
+		
+		HairDayOff vo3 = new HairDayOff();
+		System.out.println("주휴일 LIST::"+dayOffList);
+		
+		for(String dayoff : dayOffList) {
+			vo3.setShopDayOff(dayoff);
+			System.out.println("LIST 타입 변환중~~ dayoff 값::"+dayoff);
+			shopService.insertHarDayOff(vo3);
+		}
 		
 		// 미용실 매장 사진 등록
 

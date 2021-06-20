@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.bmypage.model.dao.ShopDao;
+import kh.com.petbreedding.bmypage.model.vo.HairDayOff;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 
@@ -25,6 +26,20 @@ public class ShopServiceImpl implements ShopService {
 		}
 		return result;
 	}
+	
+	@Override
+	public int insertHarDayOff(HairDayOff vo) {
+		
+		int result = -1;
+
+		try {
+			result = shopDao.insertHarDayOff(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 
 	@Override
 	public int insertHarImg(HairSalonImg vo) {
@@ -40,6 +55,8 @@ public class ShopServiceImpl implements ShopService {
 		
 		return result;
 	}
+
+
 
 
 }

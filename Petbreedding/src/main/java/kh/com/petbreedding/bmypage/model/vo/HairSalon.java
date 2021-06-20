@@ -17,86 +17,76 @@ public class HairSalon {
 	private String harClick; // 미용실 잔여 클릭수
 	
 	private List<HairSalonImg> shopImgList;	// 미용실 대표사진들. 미용실 하나가 여러 개의 사진을 가짐.
-
+	private List<String> shopDayOffList;	// 미용실 주휴일
 	@Override
 	public String toString() {
 		return "HairSalon [harNum=" + harNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
 				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", harClick="
-				+ harClick + ", shopImgList=" + shopImgList + "]";
+				+ harClick + ", shopImgList=" + shopImgList + ", shopDayOffList=" + shopDayOffList + "]";
 	}
-
 	public String getHarNum() {
 		return harNum;
 	}
-
 	public void setHarNum(String harNum) {
 		this.harNum = harNum;
 	}
-
 	public String getBpId() {
 		return bpId;
 	}
-
 	public void setBpId(String bpId) {
 		this.bpId = bpId;
 	}
-
 	public String getShopName() {
 		return shopName;
 	}
-
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-
 	public String getShopAddr() {
 		return shopAddr;
 	}
-
 	public void setShopAddr(String shopAddr) {
 		this.shopAddr = shopAddr;
 	}
-
 	public String getShopTel() {
 		return shopTel;
 	}
-
 	public void setShopTel(String shopTel) {
 		this.shopTel = shopTel;
 	}
-
 	public String getShopTime() {
 		return shopTime;
 	}
-
 	public void setShopTime(String shopTime) {
 		this.shopTime = shopTime;
 	}
-
 	public String getShopMInfo() {
 		return shopMInfo;
 	}
-
 	public void setShopMInfo(String shopMInfo) {
 		this.shopMInfo = shopMInfo;
 	}
-
 	public String getHarClick() {
 		return harClick;
 	}
-
 	public void setHarClick(String harClick) {
 		this.harClick = harClick;
 	}
-
 	public List<HairSalonImg> getShopImgList() {
 		return shopImgList;
 	}
-
 	public void setShopImgList(List<HairSalonImg> shopImgList) {
 		this.shopImgList = shopImgList;
 	}
+	public List<String> getShopDayOffList() {
+		return shopDayOffList;
+	}
+	public void setShopDayOffList(List<String> shopDayOffList) {
+		this.shopDayOffList = shopDayOffList;
+	}
+	
 
+	
 
 	
 }
