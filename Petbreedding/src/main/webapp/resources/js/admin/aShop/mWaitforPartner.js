@@ -21,6 +21,7 @@ $(".inputBox").on("click", function(){
 	}
 });
 
+//승인 대기 게시판
 
 //승인버튼 눌렀을때  //사업자번호로 체크
 $("#confirmBP").on("click",function(){
@@ -80,3 +81,60 @@ $("#refuseBP").on("click",function(){
 });
 
 
+//제휴 취소 대기 게시판
+
+//승인버튼 눌렀을때  //사업자번호로 체크
+$("#deleteBP").on("click",function(){
+
+	var arr = [];
+	$("input[name=bP]:checked").each(function(item){
+		arr.push($(this).parent().next().next().next().html());
+	});
+	var allData = {"bp_num" : arr};
+	
+	$.ajax({
+		url : "deleteBP",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("제휴 취소 처리가 완료되었습니다.");
+				location.reload();
+			}else{
+				alert("제휴 취소 처리 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});
+
+//취소 눌렀을때  //사업자번호로 체크
+$("#backBP").on("click",function(){
+
+	var arr = [];
+	$("input[name=bP]:checked").each(function(item){
+		arr.push($(this).parent().next().next().next().html());
+	});
+	var allData = {"bp_num" : arr};
+	
+	$.ajax({
+		url : "backBP",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("제휴 취소가 정상 철회되었습니다.");
+				location.reload();
+			}else{
+				alert("취소처리 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});

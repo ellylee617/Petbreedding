@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Petbreedding::펫브리띵 사장님</title>
-<link type="text/css" rel="stylesheet"	href="${path}/resources/css/common/reset.css">
+<link href="${path}/resources/css/common/reset.css" type="text/css" rel="stylesheet">
 <link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css" >
-<link type="text/css" rel="stylesheet"	href="${path}/resources/css/common/footer.css">
-<link type="text/css" rel="stylesheet"	href="${path}/resources/css/admin/mAside.css">
-<link type="text/css" rel="stylesheet"	href="${path}/resources/css/shop/mWaitforPartner.css">
+<link href="${path}/resources/css/common/footer.css" type="text/css" rel="stylesheet">
+<link href="${path}/resources/css/admin/mAside.css" type="text/css" rel="stylesheet">
+<link href="${path}/resources/css/admin/aShop/mWaitforPartner.css"  type="text/css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -31,91 +31,35 @@
 						<th>연락처</th>
 						<th>상태</th>
 					</tr>
+					<c:if test="${empty bP}">
 					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
+						<td colspan="6">처리할 데이터가 없습니다.</td>
 					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
-					</tr>
+					</c:if>
+					<c:forEach items="${bP}" var="bP">
+						<tr class="checkTR">
+							<td class="inputBox">
+								<input type="checkbox" class="checkBox" name="bP">
+							</td>
+							<c:if test="${bP.bp_type eq 0}">
+								<td>미용</td>
+							</c:if>
+							<c:if test="${bP.bp_type eq 1}">
+								<td>병원</td>
+							</c:if>
+							<td>${bP.bp_name}</td>
+							<td>${bP.bp_num}</td>
+							<td>${bP.bp_tel}</td>
+							<c:if test="${bP.bp_delete eq 1}">
+								<td>대기</td>
+							</c:if>
+						</tr>			
+					</c:forEach>
 				</table>
 				<br>
 				<div class="partnerbtns">
-					<button class="basicBtn">승인</button>
-					<button class="basicBtn">취소</button>
+					<button class="basicBtn" id="deleteBP">승인</button>
+					<button class="basicBtn" id="backBP">취소</button>
 				</div>
 				<br><br><br><br>
 				<!-- 페이징 시작-->

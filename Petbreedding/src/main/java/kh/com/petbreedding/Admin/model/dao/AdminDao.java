@@ -29,4 +29,26 @@ public class AdminDao {
 	public int refuseBP(List<String> list){
 		return sqlSession.delete("mWait.refuseBP", list);
 	}
-}
+	
+	
+	
+	//제휴취소대기 목록 조회
+	public List<BPartner> deleteList() {
+		return sqlSession.selectList("mWait.selectMdelete");
+	}
+
+	//제휴취소 승인
+	public int deleteBP(List<String> list){
+		return sqlSession.delete("mWait.deleteBP", list);
+	}
+	
+	
+	//제휴취소 취소
+	public int backBP(List<String> list){
+		return sqlSession.update("mWait.backBP", list);
+	}
+	
+}	
+	
+	
+	

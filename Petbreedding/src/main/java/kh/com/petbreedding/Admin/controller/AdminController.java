@@ -34,7 +34,7 @@ public class AdminController {
 		return "/admin/aSales/mSales";
 	}
 
-	//제휴 승인 목록조회
+	// 사업장관리 - 제휴 승인 목록조회
 	@RequestMapping(value = "/mwaitList", method = RequestMethod.GET)
 	public String waitList( Model model) {
 		
@@ -64,14 +64,36 @@ public class AdminController {
 		return result;
 	}
 	
-	
-	
 	// 사업장관리 - 제휴 취소 대기 페이지로 이동
 	@RequestMapping(value = "/mcancel", method = RequestMethod.GET)
 	public String mCancel(Locale locale, Model model) {
+		
+		List<BPartner> list = adminService.deleteList();
+		model.addAttribute("bP", list);
+		
 		return "/admin/aShop/mCancelPartner";
 	}
 
+	//제휴 취소 승인
+	@RequestMapping(value = "/deleteBP", method = RequestMethod.POST)
+	@ResponseBody
+	public int deleteBP(@RequestParam(value = "arr[]") List<String> list) {
+		
+		int result = adminService.deleteBP(list);
+		
+		return result;
+	}
+	
+	//제휴 취소 취소
+	@RequestMapping(value = "/backBP", method = RequestMethod.POST)
+	@ResponseBody
+	public int backBP(@RequestParam(value = "arr[]") List<String> list) {
+		
+		int result = adminService.backBP(list);
+		
+		return result;
+	}
+	
 	// 게시글 관리 (문의게시판 목록)
 	@RequestMapping(value = "/mboard", method = RequestMethod.GET)
 	public String mboard(Locale locale, Model model) {

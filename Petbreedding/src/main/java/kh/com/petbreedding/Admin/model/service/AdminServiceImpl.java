@@ -50,4 +50,40 @@ public class AdminServiceImpl implements AdminService{
 		return result;
 	}
 
+	@Override
+	public List<BPartner> deleteList() {
+		List<BPartner> list = null;
+		try {
+			list = aDao.deleteList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int deleteBP(List<String> list) {
+		int result = -1;
+		try {
+			result = aDao.deleteBP(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int backBP(List<String> list) {
+		int result = -1;
+		try {
+			result = aDao.backBP(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 }
