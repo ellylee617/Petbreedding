@@ -1,44 +1,66 @@
-var cnt = 0;
-// 체크박스 갯수 체크용
-// tr로 check되도록 클릭 이벤트
-/*$(".checkTR").click(function() {
-	// 클릭된 tr의 td의 체크 박스를 찾아서
-	var checkbox = $(this).find('td:first-child :checkbox');
-	// td가 아닌 th(전체선택)은 $(this).find('td:first-child :checkbox');에서
-	// find 되어지지 않으므로 length==0
-	if (checkbox.length == 0) {
-		checkAll();
+var totalCheckbox = $("input[name=bP]").length;
+var checkedBox = $("input[name=bP]:checked").length;
+
+//전체선택시
+$("#checkall").on("click", function(){
+	
+	if ($("#checkall").prop("checked") == false) {
+		$("input[name=bP]").prop("checked", false);		
 	} else {
-		// 체크가 안되어있다면 체크
-		if (checkbox.prop("checked") == false) {
-			checkbox.prop("checked", true);
-			cnt++;
-			if (cnt == 10) {
-				$("#checkall").prop("checked", true);
-			} else {
-				$("#checkall").prop("checked", false);
-			}
-		} else {
-			// 체크 되어있는데 클릭했다면 해제
-			checkbox.prop("checked", false);
-			cnt--;
-			if (cnt == 10) {
-				$("#checkall").prop("checked", true);
-			} else {
-				$("#checkall").prop("checked", false);
-			}
-		}
+		$("input[name=bP").prop("checked", true);		
 	}
+});
+
+//하나라도 해지 or 각각 checkbox 눌러서
+$(".inputBox").on("click", function(){
+	checkedBox = $("input[name=bP]:checked").length;
+	if(totalCheckbox>checkedBox){
+		$("#checkall").prop("checked", false);	
+	}else if(totalCheckbox == checkedBox){
+		$("#checkall").prop("checked", true);
+	}
+});
+
+//tr 눌러도 선택하기 및 하나해지 각각 눌러서 전체선택
+/*$(".checkTR").on("click", function(){
+	var thisInput = $(this).children(".inputBox").children(".checkBox");
+	checkedBox = $("input[name=bP]:checked").length;
+	
+	if($(thisInput).prop("checked") == false){
+		$(thisInput).prop("checked", true);		
+	}else {
+		$(thisInput).prop("checked", false);
+	}	
+
 });*/
 
 
-function checkAll() {
-	// 전체 선택일때만 진입
-	if ($("#checkall").prop("checked") == false) {
-		$("input[type=checkbox]").prop("checked", true);
-		cnt = 10;
-	} else {
-		$("input[type=checkbox").prop("checked", false);
-		cnt = 0;
-	}
-}
+//승인버튼 눌렀을때  //사업자번호로 체크
+$("#confirmBP").on("click",function(){
+
+	var arr = [];
+	$("input[name=bP]:checked").each(function(item){
+		arr.push($(this).parent().next().next().next().html());
+	});
+	console.log("arr : "+ arr );
+	var allData = {"bp_num" : arr};
+	console.log("allData : "+ allData );
+	
+	$.ajax({
+		url : "confirmBP",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("승인 처리가 완료되었습니다.");
+				location.reload();
+			}else{
+				alert("승인처리 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});

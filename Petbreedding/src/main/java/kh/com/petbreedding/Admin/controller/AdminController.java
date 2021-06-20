@@ -1,14 +1,26 @@
 package kh.com.petbreedding.Admin.controller;
 
+import java.util.List;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kh.com.petbreedding.Admin.model.service.AdminService;
+import kh.com.petbreedding.BP.model.vo.BPartner;
 
 @Controller
 public class AdminController {
+	
+	@Autowired
+	private AdminService adminService;
+	
+	
 
 	//관리자 회원관리
 		@RequestMapping(value = "/mClient", method = RequestMethod.GET)
@@ -21,14 +33,30 @@ public class AdminController {
 	public String mSales(Locale locale, Model model) {
 		return "/admin/aSales/mSales";
 	}
-	
-	
-	// 사업장관리 - 제휴 승인 대기 페이지로 이동
-	@RequestMapping(value = "/mwait", method = RequestMethod.GET)
-	public String mWait(Locale locale, Model model) {
+
+	//제휴 승인 목록조회
+	@RequestMapping(value = "/mwaitList", method = RequestMethod.GET)
+	public String waitList( Model model) {
+		
+		List<BPartner> list = adminService.waitList();
+		model.addAttribute("bP", list);
+		
 		return "/admin/aShop/mWaitforPartner";
 	}
-
+	
+	//제휴 승인 처리
+	@RequestMapping(value = "/confirmBP", method = RequestMethod.POST)
+	@ResponseBody
+	public int confirmBP(@RequestParam(value = "arr[]") List<String> list) {
+		
+		int result = adminService.confirmBP(list);
+		
+		return result;
+	}
+	
+	
+	
+	
 	// 사업장관리 - 제휴 취소 대기 페이지로 이동
 	@RequestMapping(value = "/mcancel", method = RequestMethod.GET)
 	public String mCancel(Locale locale, Model model) {
