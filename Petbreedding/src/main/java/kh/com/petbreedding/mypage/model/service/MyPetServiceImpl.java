@@ -1,6 +1,8 @@
 package kh.com.petbreedding.mypage.model.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -14,10 +16,7 @@ public class MyPetServiceImpl implements MyPetService{
 	@Autowired
 	private MyPetDao mypetDao;
 
-	@Override
-	public MyPet selectPetInfo(String pet_num) {
-		return null;
-	}
+	
 
 	@Override
 	public void insertPetInfo(MyPet mypet) {
@@ -31,6 +30,19 @@ public class MyPetServiceImpl implements MyPetService{
 		}
 
 	@Override
+	public List<MyPet> selectPetInfo() {
+		System.out.println("mypet service list 들어옴");
+		List<MyPet> list = null;
+		try {
+			list = mypetDao.selectPetInfo();
+			System.out.println("select db 갔다옴");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@Override
 	public void updatePetInfo(MyPet pet_info) {
 		
 	}
@@ -39,6 +51,8 @@ public class MyPetServiceImpl implements MyPetService{
 	public void deletePetInfo(MyPet pet_info) {
 		
 	}
+
+	
 	
 
 }

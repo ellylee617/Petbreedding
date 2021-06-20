@@ -2,6 +2,7 @@ package kh.com.petbreedding.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,7 +32,6 @@ public class MyPetController {
 	// 마이펫 수첩 메인 페이지 + 정보 불러오기
 	@RequestMapping("openMyPet")
 	public String openMyPet(HttpSession session) {
-		
 		//TODO
 		return "user/uMyPage/mypetRegister";
 	}
@@ -70,7 +70,22 @@ public class MyPetController {
 		mypet.setPet_img(fileName);
 		
 		myPetService.insertPetInfo(mypet);
-		return "user/uMyPage/mypet"; 
+		return "redirect:petlist"; 
+		
+		
+	}
+	
+	//반려동물 목록 불러오기
+	@RequestMapping("petlist")
+	public ModelAndView MyPet() throws Exception {
+		System.out.println("컨트롤러들어옴");
+			List<MyPet> list = myPetService.selectPetInfo();
+			//모델앤뷰
+			ModelAndView mav = new ModelAndView();
+			System.out.println("db들고옴");
+			mav.setViewName("user/uMyPage/mypet");
+			mav.addObject("list", list);
+			return mav;
 		
 		
 	}

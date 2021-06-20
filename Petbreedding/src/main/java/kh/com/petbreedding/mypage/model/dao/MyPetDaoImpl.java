@@ -1,5 +1,7 @@
 package kh.com.petbreedding.mypage.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,9 +14,8 @@ public class MyPetDaoImpl implements MyPetDao {
  private SqlSession sqlSession;
 
 @Override
-public MyPet selectPetInfo(String pet_num) {
-	// TODO Auto-generated method stub
-	return null;
+public List<MyPet> selectPetInfo() {
+	return sqlSession.selectList("pet.petlist");
 }
 
 @Override

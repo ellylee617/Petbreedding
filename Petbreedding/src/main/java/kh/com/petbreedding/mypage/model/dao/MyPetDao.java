@@ -1,5 +1,7 @@
 package kh.com.petbreedding.mypage.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,7 +12,7 @@ public interface MyPetDao {
 	
 
 	// 반려동물 정보 보기
-	public MyPet selectPetInfo(String pet_num);
+	public List<MyPet> selectPetInfo();
 	
 	// 반려동물 정보 등록
 	public void insertPetInfo(MyPet mypet);
