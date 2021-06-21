@@ -21,8 +21,8 @@
 			<p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫미용실</a>></span><span><a href="salonReservation.html">예약하기</a>></span>결제하기</p>
              <div class="finishedPage">
                 <div class="pageContent">
-                    <h1>결제가 완료되었습니다.</h1>
-                    <p>정상적으로 결제가 완료되었습니다.</p>
+                    <h1>예약이 완료되었습니다.</h1>
+                    <p>정상적으로 예약이 완료되었습니다.</p>
                     <p>이용해주셔서 감사합니다.</p>
                     <button id="goRev">예약 내역 확인하러 가기</button>
                 </div>
@@ -30,7 +30,7 @@
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 		
-		<script type="text/javascript" src="${path}/resources/js/user/uShop/successPay.js"></script>
+		 <script type="text/javascript" src="${path}/resources/js/user/uShop/successPay.js"></script>
 </div>
 </body>
 </html>

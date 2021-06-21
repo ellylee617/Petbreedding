@@ -55,7 +55,11 @@ public class shopController {
 	public String successPay(Locale locale, Model model) {
 		return "/user/uShop/successPay";
 	}
-
+	@RequestMapping(value = "/successRev", method = RequestMethod.GET)
+	public String successRev(Locale locale, Model model) {
+		return "/user/uShop/successRev";
+	}
+	
 	//사업자 예약관리
 	@RequestMapping(value = "/bReservation", method = RequestMethod.GET)
 	public String bReservation(Locale locale, Model model) {

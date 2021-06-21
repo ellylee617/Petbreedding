@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ShopRev">
-  	<!-- HAR_SARLON 테이블  -->
-	<resultMap type="HairSalon" id="HairSalon">
-		<id column="HAR_NUM" property="harNum"/>
-		<result column="BP_ID" property="bpId"/>
-		<result column="HAR_NAME" property="shopName"/>
-		<result column="HAR_ADDR" property="shopAddr"/>
-		<result column="HAR_TEL" property="shopTel"/>
-		<result column="HOPEN_TIME" property="shopTime"/>
-		<result column="HAR_MINFO" property="shopMInfo"/>
-		<result column="HAR_CLICK" property="harClick"/>
-		<collection property="style" resultMap="Style" />
-	</resultMap>
-
+	<!-- 펫정보 -->
 	<resultMap type="Pet" id="Pet">
 		<id column="PET_NUM" property="pet_num" />
 		<result column="PET_NAME" property="pet_name"/>
@@ -21,7 +9,7 @@
 		<result column="PET_NUM" property="pet_num"/>
 	</resultMap>
 
-	<!--salonMenu  -->
+	<!--스타일  -->
 	<resultMap type="Style" id="Style">
 		<id column="STYLE_NUM" property="style_num"/>
 		<result column="HAR_NUM" property="harNum"/>
@@ -31,30 +19,50 @@
 		<result column="STYLE_DEEP" property="style_deep"/>
 	</resultMap>
 	
-	<!-- 메인 메뉴 -->
-	<select id="revPage" resultMap="Style" parameterType="string">
-			SELECT * 
-			FROM style  
-			WHERE HAR_NUM = #{harNum} AND STYLE_DEEP = 0
-			ORDER BY style_num ASC
-	</select> 
-
-	<!-- 펫정보 -->
-	<select id="revPage2" resultMap="Pet" parameterType="string">
-			SELECT pet_num,pet_name,pet_img 
-			FROM pet_info  
-			WHERE cl_num = #{cl_num}
-			ORDER BY pet_num ASC
-	</select> 
+	<!-- 미용실 예약VO -->
+	<resultMap type="HairRev" id="HairRev">
+		<id column="HAR_RNUM" property="har_rnum"/>
+		<result column="MSG_NUM" property="msg_num" />
+		<result column="CL_NUM" property="cl_num" />
+		<result column="PET_NUM" property="pet_num" />
+		<result column="STYLE_NUM" property="style_num" />
+		<result column="HAR_NUM" property="har_num" />
+		<result column="RES_NUM" property="res_date" />
+		<result column="RES_STATUS" property="res_status" />
+		<result column="RES_TIME" property="res_time" />
+		<result column="STYLE_NUM2" property="style_num2" />
+	</resultMap>
 	
-	<!-- 추가 메뉴 -->
-	<select id="revPage3" resultMap="Style" parameterType="string">
-			SELECT * 
-			FROM style  
-			WHERE HAR_NUM = #{harNum} AND STYLE_DEEP = 1
-			ORDER BY style_num ASC
-	</select> 
+	<!-- 미용실 예약 등록 -->
+		<!-- 메인 메뉴 -->
+		<select id="revPage" resultMap="Style" parameterType="string">
+				SELECT * 
+				FROM style  
+				WHERE HAR_NUM = #{harNum} AND STYLE_DEEP = 0
+				ORDER BY style_num ASC
+		</select> 
 	
+		<!-- 펫정보 -->
+		<select id="revPage2" resultMap="Pet" parameterType="string">
+				SELECT pet_num,pet_name,pet_img 
+				FROM pet_info  
+				WHERE cl_num = #{cl_num}
+				ORDER BY pet_num ASC
+		</select> 
+		
+		<!-- 추가 메뉴 -->
+		<select id="revPage3" resultMap="Style" parameterType="string">
+				SELECT * 
+				FROM style  
+				WHERE HAR_NUM = #{harNum} AND STYLE_DEEP = 1
+				ORDER BY style_num ASC
+		</select> 
+		
+		<!-- 예약등록 -->
+		<insert id="insertHairRev" parameterType="HairRev">
+			INSERT INTO HAR_RESERVATION 
+			VALUES('HAR000' || SEQ_HAR_RESERVATION.NEXTVAL,'M1', #{cl_num}, #{pet_num},#{style_num}, #{har_num},#{res_date},0,#{res_time},#{style_num2})
+		</insert>
 	
 	
 	
