@@ -15,7 +15,7 @@ public class ReviewServiceImpl implements ReviewService {
 	private ReviewDao reviewDao;
 
 	@Override
-	public List<Review> reviewSelectList(int currentPage, int limit) {
+	public List<Review> reviewSelectList(String bpId, int currentPage, int limit) {
 		System.out.println("서비스 진입1");
 		
 		List<Review> reviewList = null;
@@ -23,7 +23,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 		try {
 			System.out.println("서비스 진입3");
-			reviewList = reviewDao.reviewSelectList(currentPage, limit);
+			reviewList = reviewDao.reviewSelectList(bpId, currentPage, limit);
 			System.out.println("다오 다녀왔다면 보여줘 --> " + reviewList);
 		} catch(Exception e) {
 			e.printStackTrace();

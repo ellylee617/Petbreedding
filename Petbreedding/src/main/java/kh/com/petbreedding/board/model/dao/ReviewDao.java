@@ -15,12 +15,12 @@ public class ReviewDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Review> reviewSelectList(int currentPage, int limit) {
+	public List<Review> reviewSelectList(String bpId, int currentPage, int limit) {
 		System.out.println("다오 진입");
 		int startRow = (currentPage -1) * limit;
 		RowBounds row = new RowBounds(startRow, limit);
 		System.out.println("다오 끝");
-		return sqlSession.selectList("Review.reviewSelectList", null, row);
+		return sqlSession.selectList("Review.reviewSelectList", bpId, row);
 	}
 	
 	public int insertReview(Review rv) {

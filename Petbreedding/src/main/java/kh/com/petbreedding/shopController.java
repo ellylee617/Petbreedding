@@ -3,6 +3,8 @@ package kh.com.petbreedding;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.petbreedding.bmypage.model.service.ShopService;
+import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.Review;
 
@@ -19,19 +23,36 @@ import kh.com.petbreedding.board.model.vo.Review;
 public class shopController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
-	public String shopList(Locale locale, Model model) {
-		return "/user/uShop/shopList";
-	}
+	public final int STARTPAGE = 1; 
 	
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private ShopService shopService;
 
-	@RequestMapping(value = "/shopPage", method = RequestMethod.GET)
-	public ModelAndView shopPage(Locale locale, ModelAndView mv) {
-		System.out.println("컨트롤러 진입");
-		List<Review> reviewList = reviewService.reviewSelectList(1, 5);
+	@RequestMapping(value = "/salonList", method = RequestMethod.GET)
+	public ModelAndView salonList(Locale locale, ModelAndView mv) {
+		List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+		System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+		
+		mv.addObject("salonList", salonList);
+		mv.setViewName("/user/uShop/salonList");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/shopPage")
+	public ModelAndView shopPage(Locale locale, ModelAndView mv, HttpServletRequest request) {
+		System.out.println("[세훈]");
+		System.out.println("shopPage 컨트롤러 진입");
+		String bpId = request.getParameter("bpId"); 
+//		try {
+//			bpId = Integer.parseInt(request.getParameter("bpId"));
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+		List<Review> reviewList = reviewService.reviewSelectList(bpId, STARTPAGE, 5);
 		System.out.println("리뷰 리스트 가져왔다면 보여줘 --> " + reviewList);
 		mv.addObject("reviewList", reviewList);
 		mv.setViewName("/user/uShop/shopInfoRead");

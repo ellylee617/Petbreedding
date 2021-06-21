@@ -12,7 +12,7 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/user/uShop/shopList.css" rel="stylesheet" type="text/css" >
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div class="wrapper">    
@@ -52,25 +52,40 @@
                 </ul>
             </div>
             <div class="storeS">
+            	<c:forEach items="${salonList}" var="item">
+            	
                 <ul>
                     <div class="Store">                     
                         <li class="storeList">
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="storeList_title_area"><a href="#">쿨펫 동물병원</a></div>
-                                <div class="storeList_info_area"><a href="#">가위컷 전문 미용실입니다.</a></div>
+                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
-                                <div class="storeList_button">
-                                    <a href="storeInfoRead.html" class="goList">정보보기</a>
-                                </div>
+                                <form class="frmShopInfo" >
+	                                <%-- <input type="hidden" value="${item.bpId }" name="bpId"> --%>
+	                                <div class="storeList_button">
+                                    	<a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
+                                	</div>
+                                </form>
+                                <script>
+<%--                                 $(".storeList_button").click("on", function(){
+                                	var frm = $(this).parent(".frmShopInfo");
+                                	frm.action = "<%=request.getContextPath()%>/shopPage";
+                                	frm.method = "post";
+                                	frm.submit();
+                                	return true;
+                                }); --%>
+                                </script>
                             </div>                                                            
                         </li>
                     </div>
                 </ul>
+                </c:forEach>
             </div>
             <!--TOPBTN-->
             <a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>

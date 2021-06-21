@@ -4,7 +4,7 @@ import java.util.List;
 import kh.com.petbreedding.board.model.vo.Review;
 
 public interface ReviewService {
-	public List<Review> reviewSelectList(int currentPage, int limit);
+	public List<Review> reviewSelectList(String bpId, int currentPage, int limit);
 	public int insertReview(Review rv);
 }
 

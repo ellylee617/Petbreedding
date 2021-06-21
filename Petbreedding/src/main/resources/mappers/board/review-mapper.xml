@@ -17,7 +17,7 @@
 	<!-- TODO HAR_NUM에 파라미터로 가져온 미용실 넘버 넣어줘야함 -->
 	<select id="reviewSelectList" parameterType="Review" resultMap="ReviewMap">
 		<![CDATA[
-			SELECT * FROM REVIEW WHERE BP_ID = 1
+			SELECT * FROM REVIEW WHERE BP_ID = #{BP_ID}
 		 ]]>
 	</select>
 	

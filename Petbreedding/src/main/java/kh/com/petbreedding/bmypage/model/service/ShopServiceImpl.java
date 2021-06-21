@@ -1,5 +1,7 @@
 package kh.com.petbreedding.bmypage.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,18 @@ public class ShopServiceImpl implements ShopService {
 
 	@Autowired
 	private ShopDao shopDao;
+	
+	@Override
+	public List<HairSalon> selectHarList(int currentPage, int limit) {
+		List<HairSalon> salonList = null;
+		System.out.println("서비스 미용실 리스트 진입");
+		try {
+			salonList = shopDao.selectHarList(currentPage, limit);
+		} catch(Exception e) {
+		}
+		System.out.println("서비스 미용실 리스트 리턴 전 : " + salonList);
+		return salonList;
+	}
 
 	@Override
 	public int insertHarInfo(HairSalon vo) {
