@@ -16,11 +16,14 @@
     margin-left: 50px;
     cursor: pointer;
 }
-.menu_box:hover, .dog_box:hover{
-    border: 2px solid var(--hover-color);
+.chooseMenu{
+	border: 2px solid var(--hover-color);
 }
-
+.normalMenu{
+	border: 2px solid var(--border-color)!important;
+}
 .menu_time{font-size: 14px; text-align: right;}
+
 
 /*반려견 선택*/
 .dog_box{
@@ -41,7 +44,17 @@
     height: 100px;
     position: relative;
 }
+.chooseDog{border: 2px solid var(--hover-color);}
+.normalDog{border: 2px solid var(--border-color)!important;}
 #addDogBox{
+	display: inline-block;
+    border: 2px solid var(--border-color);
+    width: 160px !important;
+    margin-left: 50px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     border: 2px dashed var(--border-color);
 }
 #addDogBox:hover{
@@ -54,38 +67,60 @@
     left: 55px;
 }
 
-
+/* 추가메뉴 */
+.plus{
+	display: inline-block;
+    box-sizing: border-box;
+    border: 2px solid var(--border-color);
+    padding: 10px;
+    width: 160px !important;
+    margin-left: 50px;
+    cursor: pointer;
+}
+.choosePlus{
+	border: 2px solid var(--hover-color);
+}
+.normalPlus{
+	border: 2px solid var(--border-color)!important;
+}
 
 
 /*달력*/
-.calendar_box{
+#calendar_box{
     float: left;
+    width: 500px;
 }
 .calendar{
-    width: 500px;
-    height: 500px;
-    border: 1px solid var(--border-color);
+    height: auto;
     margin-left: 50px;
-    
+    padding-left: 90px;
+    padding-bottom: 10px;
 }
+
 .choose_date{
     margin-left: 40px;
     float: left;
+    display:none;
 }
 .time{
-    width: 80px;
+ 	width: 80px;
     border: 1px solid var(--border-color);
     border-radius: 20px;
     text-align: center;
     padding: 8px;
     float: left;
     margin-left: 30px;
-    cursor: pointer;
+    cursor: pointer; 
 }
-.time:hover{
-    background-color: var(--hover-color);
+.chooseTime{
+	background-color: var(--hover-color);
     border: 1px solid var(--hover-color);
     color: var(--font-color);
+}
+.normalTime{
+	background-color: none;
+    border: 1px solid var(--border-color);
+    color: var(--main-color);
 }
 .times{
     padding-bottom: 50px;

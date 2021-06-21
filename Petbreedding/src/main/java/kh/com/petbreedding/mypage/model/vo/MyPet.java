@@ -1,5 +1,7 @@
 package kh.com.petbreedding.mypage.model.vo;
 
+import kh.com.petbreedding.bmypage.model.vo.Style;
+
 public class MyPet {
 
 	private String pet_num; //반려동물 번호
@@ -17,14 +19,16 @@ public class MyPet {
 	private String pet_others; // 반려동물 기타 특이사항
 	private String pet_img; // 반려동물 사진
 	private String mbti; //멍BTI
+	private Style style;
+	
 	
 	@Override
 	public String toString() {
-		return "Pet_info [pet_num=" + pet_num + ", cl_num=" + cl_num + ", pet_name=" + pet_name + ", pet_kind="
-				+ pet_kind + ", pet_birth=" + pet_birth + ", pet_gen=" + pet_gen + ", pet_neut=" + pet_neut
-				+ ", pet_exper=" + pet_exper + ", pet_vaccin=" + pet_vaccin + ", pet_bite=" + pet_bite + ", kneecap="
-				+ kneecap + ", dislike=" + dislike + ", pet_others=" + pet_others + ", pet_img=" + pet_img + ", mbti="
-				+ mbti + "]";
+		return "MyPet [pet_num=" + pet_num + ", cl_num=" + cl_num + ", pet_name=" + pet_name + ", pet_kind=" + pet_kind
+				+ ", pet_birth=" + pet_birth + ", pet_gen=" + pet_gen + ", pet_neut=" + pet_neut + ", pet_exper="
+				+ pet_exper + ", pet_vaccin=" + pet_vaccin + ", pet_bite=" + pet_bite + ", kneecap=" + kneecap
+				+ ", dislike=" + dislike + ", pet_others=" + pet_others + ", pet_img=" + pet_img + ", mbti=" + mbti
+				+ ", style=" + style + "]";
 	}
 	public String getPet_num() {
 		return pet_num;
@@ -116,7 +120,12 @@ public class MyPet {
 	public void setMbti(String mbti) {
 		this.mbti = mbti;
 	}
+	public Style getStyle() {
+		return style;
+	}
+	public void setStyle(Style style) {
+		this.style = style;
+	}
 
-	
 
 }

@@ -1,22 +1,103 @@
 $("#checkService .menu_box").on("click",function(){
-    $(this).css("border","solid 2px var(--hover-color)");
     $("#secondChoose").fadeIn();
 });
 $("#secondChoose .dog_box").on("click",function(){
-    $(this).css("border","solid 2px var(--hover-color)");
     $("#thirdChoose").fadeIn();
 });
-$("#thirdChoose .menu_box").on("click",function(){
-    $(this).css("border","solid 2px var(--hover-color)");
+$("#thirdChoose .plus").on("click",function(){
     $("#fourthChoose").fadeIn();
 });
 $("#fourthChoose .time").on("click",function(){
-    $(this).css("background","var(--hover-color)");
-    $(this).css("color","var(--font-color)");
-    $(this).css("border","solid 1px var(--hover-color)");
     $("#fifthChoose").fadeIn();
     $("#btnBox").fadeIn();
 });
+
+//메뉴 클릭
+$(".menu_box").on("click",function(){
+	if($(this).hasClass("chooseMenu") == false){
+		$(".menu_box").removeClass("chooseMenu");
+		$(".menu_box").addClass("normalMenu");
+		$(this).addClass('chooseMenu');	
+		$(this).removeClass('normalMenu');	
+	}else{
+		$(this).removeClass('chooseMenu');
+		$(this).addClass('normalMenu');	
+	}
+});
+
+//반려견 선택
+$(".dog_box").on("click",function(){
+	if($(this).hasClass("chooseDog") == false){
+		$(".dog_box").removeClass("chooseDog");
+		$(".dog_box").addClass("normalDog");
+		$(this).addClass('chooseDog');	
+		$(this).removeClass('normalDog');	
+	}else{
+		$(this).removeClass('chooseDog');
+		$(this).addClass('normalDog');	
+	}
+});
+$("#addDogBox").on("click", function(){
+	location.href = "/petbreedding/Mypage/openMyPet";
+});
+
+//기타 추가요금
+$(".plus").on("click",function(){
+	if($(this).hasClass("choosePlus") == false){
+		$(".plus").removeClass("choosePlus");
+		$(".plus").addClass("normalPlus");
+		$(this).addClass('choosePlus');	
+		$(this).removeClass('normalPlus');	
+	}else{
+		$(this).removeClass('choosePlus');
+		$(this).addClass('normalPlus');	
+	}
+});
+
+
+//시간 클릭
+$(".time").on("click",function(){
+	if($(this).hasClass("chooseTime") == false){
+		$(".time").removeClass("chooseTime");
+		$(".time").addClass("normalTime");
+		$(this).addClass('chooseTime');	
+		$(this).removeClass('normalTime');	
+	}else{
+		$(this).removeClass('chooseTime');
+		$(this).addClass('normalTime');	
+	}
+});
+var style_name2;
+$("#noPlus").on("click", function(){
+	style_name2 = $("#noPlus").find(".menu_item").text();
+});
+
+//예약하기
+$("#reservation_btn").on("click", function(){
+	var style_name = $(".chooseMenu").find(".menu_item").text();
+	var dog_name = $(".chooseDog").find(".dog_name").text();
+	style_name2 = $(".choosePlus").find(".menu_item").text();
+	var selectDate  = $("#choDate").text();  //연월일
+	var revTime = $(".chooseTime").text(); //시간
+	var revDate = selectDate +" " + revTime;
+	
+	console.log("style_name : "+ style_name);
+	console.log("dog_name : "+ dog_name);
+	console.log("style_name2 : "+ style_name2);
+	console.log("selectDate : "+ selectDate);
+	console.log("revTime : "+ revTime);
+	console.log("revDate : "+ revDate);
+	
+	$.ajax({
+		url: doReservation,
+		type: post,
+		data : {
+		}
+	});
+	
+	
+});
+
 
 
 // 모달

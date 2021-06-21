@@ -40,10 +40,11 @@ public class shopController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/shopReservation", method = RequestMethod.GET)
-	public String shopReservation(Locale locale, Model model) {
-		return "/user/uShop/salonReservation";
-	}
+	/*
+	 * @RequestMapping(value = "/shopReservation", method = RequestMethod.GET)
+	 * public String shopReservation(Locale locale, Model model) { return
+	 * "/user/uShop/salonReservation"; }
+	 */
 
 	@RequestMapping(value = "/shopPayment", method = RequestMethod.GET)
 	public String shopPayment(Locale locale, Model model) {

@@ -17,6 +17,11 @@
 <!-- Swiper -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+
+<!-- Calendar -->
+<link href="${path}/resources/css/user/uShop/datepicker.css" rel="stylesheet" type="text/css" >
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
 <div class="wrapper">    
@@ -26,32 +31,13 @@
             <div class="swiper-container" id="checkService">
                 <p class="rev_text">이용하실 서비스를 선택해주세요</p>
                 <div class="swiper-wrapper">
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">클리퍼미용</p>
-                            <p class="menu_time">60분 소요</p>
-                            <p class="menu_price">30,000원</p>
+               		<c:forEach items="${style}" var="style">
+                		<div class="menu_box swiper-slide">
+                            <p class="menu_item">${style.style_name}</p>
+                            <p class="menu_time">${style.style_time }분 소요</p>
+                            <p class="menu_price">${style.price}원</p>
                         </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">가위컷</p>
-                            <p class="menu_time">180분 소요</p>
-                            <p class="menu_price">50,000원</p>
-                        </div>
-                        <div class="menu_box swiper-slide" >
-                            <p class="menu_item">목욕</p>
-                            <p class="menu_time">40분 소요</p>
-                            <p class="menu_price">20,000원</p>
-                        </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">스파</p>
-                            <p class="menu_time">60분 소요</p>
-                            <p class="menu_price">40,000원</p>
-                        </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">스포팅 미용</p>
-                            <p class="menu_time">60분 소요</p>
-                            <p class="menu_price">30,000원</p>
-                        </div>
-                    </ul>
+               		</c:forEach>
                 </div>
                 <div class="swiper-button-next swpBtn"></div>
                 <div class="swiper-button-prev swpBtn"></div>
@@ -59,13 +45,16 @@
             <div class="selectService " id="secondChoose">
                 <p class="rev_text">서비스를 이용할 아이를 선택해주세요</p>
                 <div class="store_menues">
-                    <div class="dog_box">
+                	<c:forEach items="${pet}" var="pet">
+                		<div class="dog_box">
                         <div class="dog_img_area">
                             <img src="http://placehold.it/160x100">
                         </div>
-                        <p class="dog_name">또비</p>
-                    </div>
-                    <div class="dog_box" id="addDogBox">
+                        <p class="dog_name">${pet.pet_name }</p>
+                    	</div>
+                	</c:forEach>
+                    
+                    <div id="addDogBox">
                         <div class="dog_img_area">
                             <i class="fas fa-plus addDog"></i>
                         </div>
@@ -76,42 +65,18 @@
             <div class="swiper-container " id="thirdChoose">
                 <p class="rev_text">기타 추가 요금</p>
                 <div class="store_menues swiper-wrapper">
-                        <div class="menu_box swiper-slide">
+                        <div class="plus swiper-slide" id="noPlus">
                             <p class="menu_item">선택안함</p>
                             <p class="menu_time">+0분</p>
                             <p class="menu_price">0원</p>
                         </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">디자인컷</p>
-                            <p class="menu_time">+0분</p>
-                            <p class="menu_price">20,000원</p>
-                        </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">얼굴컷</p>
-                            <p class="menu_time">+0분</p>
-                            <p class="menu_price">50,000원</p>
-                        </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">탄산스파</p>
-                            <p class="menu_time">+30분</p>
-                            <p class="menu_price">20,000원</p>
-                        </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">귀/발톱만</p>
-                            <p class="menu_time">+0분</p>
-                            <p class="menu_price">10,000원</p>
-                        </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">위생 미용</p>
-                            <p class="menu_time">+0분</p>
-                            <p class="menu_price">10,000원</p>
-                        </div>
-                        <div class="menu_box swiper-slide">
-                            <p class="menu_item">슬개골 마사지</p>
-                            <p class="menu_time">+40분</p>
-                            <p class="menu_price">15,000원</p>
-                        </div>
-                        </ul>  
+                        <c:forEach items="${style2}" var="style2">
+	                        <div class="plus swiper-slide">
+	                            <p class="menu_item">${style2.style_name}</p>
+	                            <p class="menu_time">+${style2.style_time }분</p>
+	                            <p class="menu_price">${style2.price}원</p>
+	                        </div>
+                        </c:forEach>
                     </div>
                     <div class="swiper-button-next swpBtn"></div>
                     <div class="swiper-button-prev swpBtn"></div>
@@ -119,10 +84,11 @@
                 <div class="selectService " id="fourthChoose">
                     <p class="rev_text">예약일 선택</p>
                     <div class="store_menues">
-                        <div class="calendar_box">
-                            <div class="calendar"></div>
+                        <div id="calendar_box">
+                            <div class="calendar" id="calendar"></div>
                         </div>
                         <div class="choose_date">
+                        	선택날짜 : <span id="choDate"></span>
                             <div class="times">
                                 <ul>
                                     <li class="time">10:00</li>
@@ -186,6 +152,7 @@
 	
 	 <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/user/uShop/shopReservation.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/user/uShop/resCalendar.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
 </body>
 </html>
