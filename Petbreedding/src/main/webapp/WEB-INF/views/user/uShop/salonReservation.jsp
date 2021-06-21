@@ -28,11 +28,18 @@
 		<jsp:include page="../../common/header.jsp" />
 			<section class="section">
             <p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫미용실</a>></span>예약하기</p>
+            
+            <!-- 넘길 정보 -->
+            <!-- TODO -->
+            <input type="hidden" value="40" id="clNum"/> 
+            <input type="hidden" value="1" id="harNum"/>
+            
             <div class="swiper-container" id="checkService">
                 <p class="rev_text">이용하실 서비스를 선택해주세요</p>
                 <div class="swiper-wrapper">
                		<c:forEach items="${style}" var="style">
                 		<div class="menu_box swiper-slide">
+                			<input type="hidden" value="${style.style_num }" class="styleNum" />
                             <p class="menu_item">${style.style_name}</p>
                             <p class="menu_time">${style.style_time }분 소요</p>
                             <p class="menu_price">${style.price}원</p>
@@ -50,6 +57,7 @@
                         <div class="dog_img_area">
                             <img src="http://placehold.it/160x100">
                         </div>
+                        <input type="hidden" class="petNum" value="${pet.pet_num}" />
                         <p class="dog_name">${pet.pet_name }</p>
                     	</div>
                 	</c:forEach>
@@ -66,12 +74,14 @@
                 <p class="rev_text">기타 추가 요금</p>
                 <div class="store_menues swiper-wrapper">
                         <div class="plus swiper-slide" id="noPlus">
+                        	<input type="hidden" value="선택안함" class="styleNum" />
                             <p class="menu_item">선택안함</p>
                             <p class="menu_time">+0분</p>
                             <p class="menu_price">0원</p>
                         </div>
                         <c:forEach items="${style2}" var="style2">
 	                        <div class="plus swiper-slide">
+	                       		<input type="hidden" value="${style2.style_num }" class="styleNum" />
 	                            <p class="menu_item">${style2.style_name}</p>
 	                            <p class="menu_time">+${style2.style_time }분</p>
 	                            <p class="menu_price">${style2.price}원</p>

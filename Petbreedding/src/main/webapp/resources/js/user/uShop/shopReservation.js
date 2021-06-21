@@ -67,36 +67,45 @@ $(".time").on("click",function(){
 		$(this).addClass('normalTime');	
 	}
 });
-var style_name2;
+var style_num2;
 $("#noPlus").on("click", function(){
-	style_name2 = $("#noPlus").find(".menu_item").text();
+	style_num2 = $("#noPlus").find(".styleNum").val();
 });
 
 //예약하기
 $("#reservation_btn").on("click", function(){
-	var style_name = $(".chooseMenu").find(".menu_item").text();
-	var dog_name = $(".chooseDog").find(".dog_name").text();
-	style_name2 = $(".choosePlus").find(".menu_item").text();
-	var selectDate  = $("#choDate").text();  //연월일
-	var revTime = $(".chooseTime").text(); //시간
-	var revDate = selectDate +" " + revTime;
-	
-	console.log("style_name : "+ style_name);
-	console.log("dog_name : "+ dog_name);
-	console.log("style_name2 : "+ style_name2);
-	console.log("selectDate : "+ selectDate);
-	console.log("revTime : "+ revTime);
-	console.log("revDate : "+ revDate);
+	var style_num = $(".chooseMenu").find(".styleNum").val();
+	var pet_num = $(".chooseDog").find(".petNum").val();
+	style_num2 = $(".choosePlus").find(".styleNum").val();
+	var res_date  = $("#choDate").text();  //연월일
+	var res_time = $(".chooseTime").text(); //시간
+	var cl_num = $("#clNum").val();
+	var har_num = $("#harNum").val();
 	
 	$.ajax({
-		url: doReservation,
-		type: post,
+		url: "doReservation",
+		type: "POST",
 		data : {
+			cl_num : cl_num,
+			pet_num : pet_num,
+			style_num : style_num,
+			har_num : har_num,
+			res_date : res_date,
+			res_time : res_time,
+			style_num2 : style_num2
 		}
 	});
-	
-	
 });
+
+//결제 안해요~~
+$("#nextTime").on("click",function(){
+	location.href="/petbreedding/successRev";
+});
+
+//바로결제!!
+
+
+
 
 
 

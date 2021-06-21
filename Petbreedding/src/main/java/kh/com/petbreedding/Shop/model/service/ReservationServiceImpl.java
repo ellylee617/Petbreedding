@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.Shop.model.dao.ReservationDao;
+import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
@@ -46,6 +47,17 @@ public class ReservationServiceImpl implements ReservationService{
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public int insertHairRev(HairShopReservation hrv) {
+		int result = -1;
+		try {
+			result = revDao.insertHairRev(hrv);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

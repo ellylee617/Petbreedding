@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
@@ -27,4 +28,22 @@ public class ReservationDao {
 	public List<Style> revList3(String har_num) {
 		return sqlSession.selectList("ShopRev.revPage3", har_num);
 	}
+	
+	public int insertHairRev(HairShopReservation hrv) {
+		return sqlSession.insert("ShopRev.insertHairRev", hrv);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
