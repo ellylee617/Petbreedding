@@ -26,11 +26,12 @@
 	  <div class="pethead">
 	  <c:forEach var="list" items="${list}">
             <h1>반려동물 정보</h1>
+            <input type="hidden" value="${list.pet_num}" name="pet_num"> 
             <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
             <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
             <div class="btnwrap">
-            <button class="btn basicBtn"><a href="#">수정</a></button>
-            <button class="btn basicBtn"><a href="#">삭제</a></button>
+            <button id="updateBtn" class="btn basicBtn"><a href="mypetupdate?pet_num=${list.pet_num}">수정</a></button>
+            <button id="delBtn" class="btn basicBtn"><a href="#">삭제</a></button>
         </div>
         </c:forEach>
         </div>
@@ -41,4 +42,7 @@
         </div> 
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
+	<!-- script -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/user/uMyPage/mypet.js"></script>
 	</div>

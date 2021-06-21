@@ -11,6 +11,7 @@ public interface MyPetService {
 	public List<MyPet> selectPetInfo();  // 반려동물 정보 보기
 	public void insertPetInfo(MyPet mypet);
 	public List<MyPet> eachPetInfo(String cl_num);
-//	void updatePetInfo(MyPet pet_info); // 반려동물 정보 수정
-//	void deletePetInfo(MyPet pet_info); // 반려동물 정보 삭제
+	public int updatePetInfo(MyPet mypet) throws Exception;
+	public MyPet read(String pet_num);
+	//	void deletePetInfo(MyPet pet_info); // 반려동물 정보 삭제
 }

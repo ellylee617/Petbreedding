@@ -12,17 +12,20 @@ public interface MyPetDao {
 	
 
 	// 반려동물 정보 보기
-	public List<MyPet> selectPetInfo();
+	public List<MyPet> selectPetInfo()throws Exception;
 	
 	// 반려동물 정보 등록
-	public void insertPetInfo(MyPet mypet);
+	public void insertPetInfo(MyPet mypet)throws Exception;
 	
 	//아이디에 해당하는 반려동물 정보 보기
-	public List<MyPet> eachPetInfo(String cl_num);
+	public List<MyPet> eachPetInfo(String cl_num) throws Exception;
 	
 	
 //	// 반려동물 정보 수정
-//	public void updatePetInfo(MyPet pet_info);
+	public int updatePetInfo(MyPet mypet) throws Exception;
+	
+	//펫 상세보기
+	public MyPet read(String pet_num) throws Exception;
 //	
 //	// 반려동물 정보 삭제
 //	public void deletePetInfo(String pet_num);

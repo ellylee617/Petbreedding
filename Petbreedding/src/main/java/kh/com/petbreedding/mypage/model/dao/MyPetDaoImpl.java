@@ -28,12 +28,19 @@ public List<MyPet> eachPetInfo(String cl_num) {
 	return sqlSession.selectList("pet.eachpet", cl_num);
 }
 
+@Override
+public int updatePetInfo(MyPet mypet) throws Exception {
+	System.out.println("update dao들어옴");
+	return sqlSession.update("pet.updatepet", mypet);
+}
 
-//@Override
-//public void updatePetInfo(MyPet pet_info) {
-//	// TODO Auto-generated method stub
-//	
-//}
+@Override
+public MyPet read(String pet_num) {
+	return sqlSession.selectOne("pet.petread", pet_num);
+}
+
+
+
 //
 //@Override
 //public void deletePetInfo(String pet_num) {
