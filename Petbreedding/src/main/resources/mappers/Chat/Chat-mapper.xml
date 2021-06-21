@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Chat">
+	<resultMap type="chatroom" id="chatroom">
+		<id column="chatroom_id" property="chatId" />
+		<result column="cl_num" property="clNum" />
+		<result column="bp_id" property="bpId" />
+	</resultMap>
+
+	<resultMap type="chatmessage" id="chatmessage">
+		<id column="message_id" property="mId" />
+		<result column="message_sender" property="mSender" />
+		<result column="message_receiver" property="mReceiver" />
+		<result column="message_content" property="mContent" />
+		<result column="message_sendTime" property="mSendTime" />
+		<result column="chatroom_id" property="chatId" />
+		<result column="message_readTime" property="mReadTime" />
+		<result column="cl_num" property="clNum" />
+		<result column="bp_id" property="bpId" />
+	</resultMap>
+
+	<insert id="createRoom">
+		INSERT INTO CHATROOM VALUES(SEQ_CROOMID, #{clnNum},
+		#{bpId})
+	</insert>
+
+	<select id="isRoom" resultMap="chatroom">
+		SELECT * FROM CHATROOM WHERE
+		CL_NUM = #{clNum} and bp_id=#{bpId}
+	</select>
+
+	<insert id="insertMessage">
+		INSERT INTO MESSAGE (MESSAGE_ID, MESSAGE_SENDER,
+		MESSAGE_RECEIVER, MESSAGE_CONTENT, CHATROOM_ID, CL_NUM, BP_ID)
+		VALUES(SEQ_CMESSAGE, #{mSender}, #{mReceiver}, #{mContent}, #{chatId},
+		#{clNum}, #{bpId})
+	</insert>
+
+	<select id="getRoomList" resultMap="chatroom">
+		SELECT * FROM CHATROOM
+		WHERE CL_NUM = #{clNum}
+	</select>
+
+	<select id="getRoomListBpId" resultMap="chatroom">
+		SELECT * FROM CHATROOM
+		WHERE BP_ID = #{bpId}
+	</select>
+
+	<select id="getMessageList" resultMap="chatmessage">
+		SELECT M.*, C.CL_NUM FROM CHATMESSAGE M LEFT OUTER JOIN CLIENT C
+		ON M.MESSAGE_RECEIVER = C.CL_NUM
+		WHERE CHATROOM_ID=#{chatId}
+	</select>
+
+	<select id="getMessageListBpId" resultMap="chatmessage">
+		SELECT M.*, B.BP_ID	FROM CHATMESSAGE M LEFT OUTER JOIN BUSINESS_PARTNER B
+		ON M.MESSAGE_SENDER = B.BP_ID 
+		WHERE CHATROOM_ID=#{chatId}
+	</select>
+
+	<select id="getRecentMessage" resultMap="chatmessage">
+		SELECT * FROM CHATMESSAGE M
+		WHERE CHATROOM_ID = #{chatId} ORDER BY MESSAGE_ID DESC LIMIT 1;
+	</select>
+
+	<update id="updateReadTime">
+		UPDATE MESSGE SET MESSAGE_READTIME = CURRENT_TIMESTAMP
+		WHERE BP_ID=#{bpId} AND MESSAGE_SENDER = #{bpId} AND CL_NUM = #{clNum};
+	</update>
+
+	<update id="updateReadTimeBpId">
+		UPDATE MESSAGE SET MESSAGE_READTIME = CURRENT_TIMESTAMP
+		WHERE BP_ID=#{bpId} AND MESSAGE_SENDER = #{clNum} AND CL_NUM = #{clNum};
+	</update>
+
+	<select id="getUnreadCount" resultType="int">
+		SELECT COUNT(*) FROM CHATMESSAGE
+		WHERE CL_NUM = #{clNum} AND MESSAGE_SENDTIME = NULL AND CHATROOM_ID=#{chatId};
+	</select>
+
+	<select id="getUnreadCountBpId" resultType="int">
+		SELECT COUNT(*) FROM CHATMESSAGE 
+		WHERE BP_ID = #{bpId} AND MESSAGE_SENDTIME = NULL AND CHATROOM_ID=#{chatId};
+	</select>
+	
+	<select id="getAllCount" resultType="int">
+		SELECT COUNT(*) FROM CHATMESSAGE
+		WHERE (BP_ID=#{bpId} AND MESSAGE_SENDER ^=#{clNum})) OR (CL_NUM=#{clNum} AND MESSAGE_SENDER ^=#{CL_NUM})
+	</select>
+</mapper>
