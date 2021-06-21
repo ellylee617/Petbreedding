@@ -16,10 +16,6 @@ public class MyPetServiceImpl implements MyPetService{
 	@Autowired
 	private MyPetDao mypetDao;
 
-
-
-	
-
 	@Override
 	public void insertPetInfo(MyPet mypet) {
 		System.out.println("mypet service들어옴");
@@ -61,16 +57,55 @@ public class MyPetServiceImpl implements MyPetService{
 		}
 		return list;
 	}
+	@Override
+	public int updatePetInfo(MyPet mypet) throws Exception {
+		System.out.println("pet update들어옴");
+		int result = 0;
+		try {
+			result = mypetDao.updatePetInfo(mypet);
+			if(result > 0) {
+				System.out.println("update db 갔다옴");
+			}else {
+				System.out.println("update db 못감 ");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	@Override
+	public MyPet read(String pet_num) {
+		MyPet vo = null;
+		try {
+			vo = mypetDao.read(pet_num);
+			if(vo != null) {
+				System.out.println("펫 읽기 들어옴");
+			}else {
+				System.out.println("펫 읽기 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+	@Override
+	public int deletePetInfo(String pet_num) {
+		System.out.println("pet delete service 들어옴");
+		int result = 0;
+		try {
+			result = mypetDao.deletePetInfo(pet_num);
+			if(result > 0) {
+				System.out.println("펫 삭제 성공");
+			}else {
+				System.out.println("펫 삭제 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
-//	@Override
-//	public void updatePetInfo(MyPet pet_info) {
-//		
-//	}
-//
-//	@Override
-//	public void deletePetInfo(MyPet pet_info) {
-//		
-//	}
+
 
 
 }

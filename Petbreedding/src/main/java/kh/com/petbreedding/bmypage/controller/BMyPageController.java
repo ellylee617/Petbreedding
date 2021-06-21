@@ -28,6 +28,9 @@ import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairDayOff;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
+import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
+import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 
 @Controller
 public class BMyPageController {
@@ -113,12 +116,12 @@ public class BMyPageController {
 	}
 
 	/*TODO*/
-	/*주휴일 부분 작업중~~~*/
 	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지 + 로그인 연동 
 	@RequestMapping(value = "/bShop/write", method = RequestMethod.POST)
 	public ModelAndView bShopWrite(
 			HttpServletRequest hrequest,
-			HairSalon vo,
+			HairSalon harVO,
+			Hospital hosVO,
 			@RequestParam(value="shopDayOff") List<String> dayOffList, 
 			MultipartHttpServletRequest request) {
 
@@ -127,27 +130,56 @@ public class BMyPageController {
 		BPartner bp = (BPartner) session.getAttribute("bP");
 		String bpId = bp.getBp_Id();
 		
-		vo.setBpId(bpId);
+		int bPType = bp.getBp_type();
 		
 
-		
-		
-		// 미용실 기본 정보 등록
-		shopService.insertHarInfo(vo);
-		vo.toString();
-		
-		// 미용실 주휴일 설정
-		
-		HairDayOff vo3 = new HairDayOff();
-		System.out.println("주휴일 LIST::"+dayOffList);
-		
-		for(String dayoff : dayOffList) {
-			vo3.setShopDayOff(dayoff);
-			System.out.println("LIST 타입 변환중~~ dayoff 값::"+dayoff);
-			shopService.insertHarDayOff(vo3);
+		// ******** 작업중 ***************
+		// bPType이 0이면 미용실, 1이면동 물병원
+		if(bPType==0) {
+			
+			
+//			HairSalon harVO = new HairSalon();
+			harVO.setBpId(bpId);
+			
+			
+			// 미용실 기본 정보 등록
+			shopService.insertHarInfo(harVO);
+			harVO.toString();
+			
+			// 미용실 주휴일 설정
+			// 1:월요일 ~ 7:일요일
+			HairDayOff harVO2 = new HairDayOff();
+			System.out.println("미용실 주휴일 LIST::"+dayOffList);
+			
+			for(String dayoff : dayOffList) {
+				harVO2.setShopDayOff(dayoff);
+				System.out.println("LIST 타입 변환중~~ dayoff 값::"+dayoff);
+				shopService.insertHarDayOff(harVO2);
+			}
+			
+			
+		} else {
+			
+//			Hospital hosVO = new Hospital();
+			hosVO.setBpId(bpId);
+			
+			// 동물병원 기본 정보 등록
+			shopService.insertHosInfo(hosVO);
+			hosVO.toString();
+			
+			// 동물병원 주휴일 설정
+			// 1:월요일 ~ 7:일요일
+			HosDayOff hosVO2 = new HosDayOff();
+			System.out.println("동물병원 주휴일 LIST::"+dayOffList);
+			
+			for(String dayoff : dayOffList) {
+				hosVO2.setShopDayOff(dayoff);
+				System.out.println("LIST 타입 변환중~~ dayoff 값::"+dayoff);
+				shopService.insertHosDayOff(hosVO2);
+			}
+			
 		}
 		
-		// 미용실 매장 사진 등록
 
 		// 파일 업로드
 
@@ -178,15 +210,31 @@ public class BMyPageController {
 				}
 
 				System.out.println("파일명:" + originalfileName);
+				
+				
+				if(bPType==0) { // 미용실 매장 사진 등록 
+					
+					HairSalonImg harVO3 = new HairSalonImg();
+					harVO3.setShopImg(originalfileName); // HAIR_SALON_IMG 테이블 HAR_IMG 컬럼에 파일명 삽입
+					shopService.insertHarImg(harVO3);
+					
+					System.out.println(harVO3.toString());
+					
+				} else { // 동물병원 매장 사진 등록
+					
+					HospitalImg hosVO3 = new HospitalImg();
+					hosVO3.setShopImg(originalfileName);
+					shopService.insertHosImg(hosVO3);
+					
+					System.out.println(hosVO3.toString());
+				}
+				
 
-				HairSalonImg vo2 = new HairSalonImg();
-				vo2.setShopImg(originalfileName); // HAIR_SALON_IMG 테이블 HAR_IMG 컬럼에 파일명 삽입
-				shopService.insertHarImg(vo2);
-
-				System.out.println(vo2.toString());
 
 			}
 		}
+		
+
 
 		return new ModelAndView("redirect:"); // TODO:수정해야됨!!!!
 	}
