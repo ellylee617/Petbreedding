@@ -27,6 +27,6 @@ public interface MyPetDao {
 	//펫 상세보기
 	public MyPet read(String pet_num) throws Exception;
 //	
-//	// 반려동물 정보 삭제
-//	public void deletePetInfo(String pet_num);
+	// 반려동물 정보 삭제
+	public int deletePetInfo(String pet_num);
 }

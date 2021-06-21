@@ -88,12 +88,24 @@ public class MyPetServiceImpl implements MyPetService{
 		}
 		return vo;
 	}
+	@Override
+	public int deletePetInfo(String pet_num) {
+		System.out.println("pet delete service 들어옴");
+		int result = 0;
+		try {
+			result = mypetDao.deletePetInfo(pet_num);
+			if(result > 0) {
+				System.out.println("펫 삭제 성공");
+			}else {
+				System.out.println("펫 삭제 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 
-//	@Override
-//	public void deletePetInfo(MyPet pet_info) {
-//		
-//	}
 
 
 }

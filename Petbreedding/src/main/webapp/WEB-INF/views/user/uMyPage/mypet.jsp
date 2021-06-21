@@ -26,20 +26,36 @@
 	  <div class="pethead">
 	  <c:forEach var="list" items="${list}">
             <h1>반려동물 정보</h1>
-            <input type="hidden" value="${list.pet_num}" name="pet_num"> 
+            <input type="hidden" value="${list.pet_num}" name="pet_num" id="pet_num"> 
             <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
             <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
             <div class="btnwrap">
             <button id="updateBtn" class="btn basicBtn"><a href="mypetupdate?pet_num=${list.pet_num}">수정</a></button>
-            <button id="delBtn" class="btn basicBtn"><a href="#">삭제</a></button>
+            <button id="delBtn" class="btn basicBtn"><a id="cancleM">삭제</a></button>
         </div>
-        </c:forEach>
-        </div>
+	 </c:forEach>
+         </div>
         <div class="petrow">
                 <a href="openMyPet"><i id="plus" class="fas fa-plus-circle"></i>
                 <p class="plusp">새 동물 등록</p></a>
             </button>
         </div> 
+        
+        <!-- 펫 삭제 모달 -->
+	<div id="cancel-modal" class="modal">
+	<div class="cancel-content">
+		<p class="boldtext">제휴를 취소 하시겠습니까?</p> 
+		<p class="text">
+		<br>
+		펫과 관련된 모든 정보가 삭제됩니다.
+		</p>
+		<div class="btn2">
+			<button class="basicBtn" id="yesCalncle">네</button>
+			<button class="basicBtn" id="noCalncle">아니오</button>
+		</div>
+	</div>
+	
+        
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
 	<!-- script -->

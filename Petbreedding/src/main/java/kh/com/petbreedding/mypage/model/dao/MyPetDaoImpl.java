@@ -41,12 +41,11 @@ public MyPet read(String pet_num) {
 
 
 
-//
-//@Override
-//public void deletePetInfo(String pet_num) {
-//	// TODO Auto-generated method stub
-//	
-//}
+
+@Override
+public int deletePetInfo(String pet_num) {
+	return sqlSession.delete("pet.petdelete", pet_num);
+}
  
  
 }

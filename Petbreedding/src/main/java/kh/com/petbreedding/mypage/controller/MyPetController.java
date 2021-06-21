@@ -70,7 +70,7 @@ public class MyPetController {
 			e.printStackTrace();
 		}
 
-		mypet.setPet_img(fileName);
+		mypet.setPet_img(saveName);
 
 		myPetService.insertPetInfo(mypet);
 		return "redirect:petlist";
@@ -142,7 +142,7 @@ public class MyPetController {
 			e.printStackTrace();
 		}
 
-		mypet.setPet_img(fileName);
+		mypet.setPet_img(saveName);
 
 
 		myPetService.updatePetInfo(mypet);
@@ -150,20 +150,14 @@ public class MyPetController {
 	}
 //	
 
-	// 반려동물 정보 수정하기
-	@RequestMapping("/mypage/updatePet")
-	public String reviewupdate(String pet_num, RedirectAttributes attr) {
-
-		// TODO
-		return null;
-	}
 
 	// 반려동물 정보 삭제
-	@RequestMapping("/deletePet")
-	public String resvCancel(String pet_num) {
+	@RequestMapping(value = "deletepet", method = RequestMethod.POST)
+	public String resvCancel(MyPet mypet) throws Exception {
+		System.out.println("반려동물 ctrl 들어옴");
 
-		// TODO
-		return null;
+		myPetService.deletePetInfo(mypet.getPet_num());
+		return "redirect:petlist";
 
 	}
 

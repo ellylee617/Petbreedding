@@ -13,5 +13,5 @@ public interface MyPetService {
 	public List<MyPet> eachPetInfo(String cl_num);
 	public int updatePetInfo(MyPet mypet) throws Exception;
 	public MyPet read(String pet_num);
-	//	void deletePetInfo(MyPet pet_info); // 반려동물 정보 삭제
+	public int deletePetInfo(String pet_num);
 }
