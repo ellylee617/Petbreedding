@@ -32,6 +32,7 @@ public class BoardController {
 		
 	//	게시글 목록 + 페이징 + 검색
 	@RequestMapping(value = "/fboardlist", method = RequestMethod.GET)
+	// TODO 병원 번호, 미용실 번호 GET 방식으로 들고 들어와서 파라미터로 넣어줘야함 - @RequestParam(name="harNum") String harNum
 	public ModelAndView fboardlist(Locale locale, ModelAndView mv) {
 		List<Board> boardList = boarService.selectBoardList(1, 10);
 		mv.addObject("boardList", boardList);
@@ -60,32 +61,31 @@ public class BoardController {
 	private ReviewService reviewService;
 	
 	// 리뷰 작성
+	// TODO 리뷰 등록 버튼을 눌렀을 때 미용실 또는 병원 번호를 받아와야함
 	@RequestMapping(value = "/rwrite", method = RequestMethod.POST)
 	public String rwrite(
-			Locale locale,
-			HttpSession session,
-			HttpServletRequest request,
-			Client cl,
-			@RequestParam(name="revCont") String revCont
-//			@RequestParam(name="selectedVal") int revVal
+			Locale locale
+			,HttpSession session
+			,HttpServletRequest request
+			,Client cl
+			,@RequestParam(name="revCont") String revCont
+			,@RequestParam(name="selectedVal") int revVal
 			) {
 		System.out.println("리뷰 등록 컨트롤러 진입");
 		cl = (Client) session.getAttribute("client");
 		String clNum = cl.getCl_num();
 		String clNickName = cl.getNickname();
-//		int revVal = Integer.parseInt(request.getParameter("selectedVal"));
+		System.out.println("리퀘스트 겟 파라메타" + request.getParameter("selectedVal"));
 		
 		Review rv = new Review();
 		System.out.println(clNum);
 		System.out.println(clNickName);
 		System.out.println(revCont);
-		System.out.println("이게 안된다고 왜!!!!!!!!!!!!!!!!!" + request.getParameter("selectedVal"));
 		
 		rv.setClNickName(clNickName.replaceAll("\r\n", "<br>"));
 		rv.setClNum(clNum.replaceAll("\r\n", "<br>"));
 		rv.setRevCont(revCont);
-//		rv.setRevVal(Integer.parseInt(revVal));
-//		rv.setRevVal(revVal);
+		rv.setRevVal(revVal);
 		
 		int result = reviewService.insertReview(rv);
 		

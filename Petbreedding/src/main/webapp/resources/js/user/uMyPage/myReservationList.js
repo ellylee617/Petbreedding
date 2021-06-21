@@ -1,7 +1,7 @@
 var modal = document.getElementById("modalRe");
 var modalReWin = document.getElementById("modalRe-Win");
 var btnReWr = document.getElementById("btnReWr")
-var selectedVal = document.getElementById("selectedVal").value;
+var selectedEle = document.getElementById("selectedVal");
 
 $(function() {
 	
@@ -19,9 +19,9 @@ $(function() {
 	function onClickOption(e) {
 		const selectedValue = e.currentTarget.innerHTML;
 		document.querySelector(".text").innerHTML = selectedValue;
-        selectedVal = e.currentTarget.value;
-        console.log(selectedVal);
-        console.log(typeof(selectedVal));
+		selectedEle.value = e.currentTarget.value;
+        console.log(selectedEle.value);
+        console.log(typeof(selectedEle.value));
 	}
 
     btnReWr.addEventListener("click", function() {
@@ -44,8 +44,6 @@ $(function() {
     $("#regBtn").on("click", function() {
         $("#frm").attr("action", "rwrite");
         $("#frm").attr("method", "POST");
-        console.log(selectedVal);
-        console.log(typeof(selectedVal));
         $("#frm").submit();
     });
 	

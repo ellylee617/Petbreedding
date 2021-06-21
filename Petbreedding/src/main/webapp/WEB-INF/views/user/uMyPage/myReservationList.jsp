@@ -95,7 +95,7 @@
 						<li class="option" value="2"><img src="${path}/resources/images/2.png">&nbsp;&nbsp;조금 아쉬워요</li>
 						<li class="option" value="1"><img src="${path}/resources/images/1.png">&nbsp;&nbsp;많이 아쉬워요</li>
 					</ul>
-						<input type="number" id="selectedVal" name="selectedVal" style="display:none" readonly>
+						<input type="number" id="selectedVal" name="selectedVal" style="display:none"  readonly>
 				</div>
 				<br>
 				<textarea placeholder="리뷰내용을 작성해주세요" id="revCont" name="revCont" rows="15" cols="37"></textarea>

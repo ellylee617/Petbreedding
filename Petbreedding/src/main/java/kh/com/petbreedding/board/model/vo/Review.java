@@ -5,20 +5,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class Review {
 	private String revNum;
-	private String bpId;
+	private String harNum;
 	private String clNum;
 	private String clNickName;
 	private String revCont;
 	private String revImg;
 	private String revDate;
 	private int revVal;
-	private int revView;
 	
 	@Override
 	public String toString() {
-		return "Review [revNum=" + revNum + ", bpId=" + bpId + ", clNum=" + clNum + ", clNickName=" + clNickName
-				+ ", revCont=" + revCont + ", revImg=" + revImg + ", revDate=" + revDate + ", revVal=" + revVal
-				+ ", revView=" + revView + "]";
+		return "Review [revNum=" + revNum + ", harNum=" + harNum + ", clNum=" + clNum + ", clNickName=" + clNickName
+				+ ", revCont=" + revCont + ", revImg=" + revImg + ", revDate=" + revDate + ", revVal=" + revVal + "]";
 	}
 
 	public String getRevNum() {
@@ -29,12 +27,12 @@ public class Review {
 		this.revNum = revNum;
 	}
 
-	public String getBpId() {
-		return bpId;
+	public String getHarNum() {
+		return harNum;
 	}
 
-	public void setBpId(String bpId) {
-		this.bpId = bpId;
+	public void setHarNum(String harNum) {
+		this.harNum = harNum;
 	}
 
 	public String getClNum() {
@@ -84,14 +82,7 @@ public class Review {
 	public void setRevVal(int revVal) {
 		this.revVal = revVal;
 	}
-
-	public int getRevView() {
-		return revView;
-	}
-
-	public void setRevView(int revView) {
-		this.revView = revView;
-	}
+	
 	
 	
 }

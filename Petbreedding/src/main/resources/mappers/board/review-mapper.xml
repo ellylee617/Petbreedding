@@ -4,30 +4,29 @@
 <mapper namespace="Review">
 	<resultMap type="Review" id="ReviewMap">
 		<id column="REV_NUM" property="revNum"/>
-		<result column="BP_ID" property="bpId"/>
+		<result column="HAR_NUM" property="harNum"/>
+		<result column="HOS_NUM" property="hosNum"/>
 		<result column="CL_NUM" property="clNum"/>
 		<result column="CL_NICKNAME" property="clNickName"/>
 		<result column="REV_CONT" property="revCont"/>
 		<result column="REV_IMG" property="revImg"/>
 		<result column="REV_DATE" property="revDate"/>
 		<result column="REV_VAL" property="revVal"/>
-		<result column="REV_VIEW" property="revView"/>
 	</resultMap>
 	
+	<!-- TODO HAR_NUM에 파라미터로 가져온 미용실 넘버 넣어줘야함 -->
 	<select id="reviewSelectList" parameterType="Review" resultMap="ReviewMap">
 		<![CDATA[
-			SELECT r.REV_NUM, r.BP_ID, CL_NUM, r.REV_CONT, r.REV_IMG, r.REV_DATE, r.REV_VAL, r.REV_VIEW, c.CL_NICKNAME
-			FROM REVIEW r JOIN CLIENT c
-			USING (CL_NUM)
+			SELECT * FROM REVIEW WHERE HAR_NUM = 1
 		 ]]>
 	</select>
 	
 	<insert id="insertReview" parameterType="Review">
 		<![CDATA[
 			INSERT INTO REVIEW VALUES(
-			SEQ_REVIEW.NEXTVAL, #{bpId},
+			SEQ_REVIEW.NEXTVAL, #{harNum}, #{hosNum},
 			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
-			TO_CHAR(SYSDATE, 'YYYYMMDD'), #{revVal}, #{revView}
+			TO_CHAR(SYSDATE, 'YYYYMMDD'), #{revVal}
 			)
 		]]>
  	</insert>
