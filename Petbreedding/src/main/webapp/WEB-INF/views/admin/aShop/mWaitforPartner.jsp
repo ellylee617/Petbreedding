@@ -31,20 +31,35 @@
 						<th>연락처</th>
 						<th>상태</th>
 					</tr>
-					<tr class="checkTR">
-						<td class="inputBox"><input type="checkbox"></td>
-						<td>미용</td>
-						<td>곽서현</td>
-						<td>123-12-4567890</td>
-						<td>010-111-2345</td>
-						<td>대기</td>
+					<c:if test="${empty bP}">
+					<tr>
+						<td colspan="6">처리할 데이터가 없습니다.</td>
 					</tr>
-					
+					</c:if>
+					<c:forEach items="${bP}" var="bP">
+						<tr class="checkTR">
+							<td class="inputBox">
+								<input type="checkbox" class="checkBox" name="bP">
+							</td>
+							<c:if test="${bP.bp_type eq 0}">
+								<td>미용</td>
+							</c:if>
+							<c:if test="${bP.bp_type eq 1}">
+								<td>병원</td>
+							</c:if>
+							<td>${bP.bp_name}</td>
+							<td>${bP.bp_num}</td>
+							<td>${bP.bp_tel}</td>
+							<c:if test="${bP.bp_aprve eq 0}">
+								<td>대기</td>
+							</c:if>
+						</tr>			
+					</c:forEach>
 				</table>
 				<br>
 				<div class="partnerbtns">
-					<button class="basicBtn">승인</button>
-					<button class="basicBtn">취소</button>
+					<button class="basicBtn" id="confirmBP">승인</button>
+					<button class="basicBtn" id="refuseBP">거절</button>
 				</div>
 				<br><br><br><br>
 				<!-- 페이징 시작-->

@@ -1,44 +1,140 @@
-var cnt = 0;
-// 체크박스 갯수 체크용
-// tr로 check되도록 클릭 이벤트
-/*$(".checkTR").click(function() {
-	// 클릭된 tr의 td의 체크 박스를 찾아서
-	var checkbox = $(this).find('td:first-child :checkbox');
-	// td가 아닌 th(전체선택)은 $(this).find('td:first-child :checkbox');에서
-	// find 되어지지 않으므로 length==0
-	if (checkbox.length == 0) {
-		checkAll();
-	} else {
-		// 체크가 안되어있다면 체크
-		if (checkbox.prop("checked") == false) {
-			checkbox.prop("checked", true);
-			cnt++;
-			if (cnt == 10) {
-				$("#checkall").prop("checked", true);
-			} else {
-				$("#checkall").prop("checked", false);
-			}
-		} else {
-			// 체크 되어있는데 클릭했다면 해제
-			checkbox.prop("checked", false);
-			cnt--;
-			if (cnt == 10) {
-				$("#checkall").prop("checked", true);
-			} else {
-				$("#checkall").prop("checked", false);
-			}
-		}
-	}
-});*/
+var totalCheckbox = $("input[name=bP]").length;
+var checkedBox = $("input[name=bP]:checked").length;
 
-
-function checkAll() {
-	// 전체 선택일때만 진입
+//전체선택시
+$("#checkall").on("click", function(){
+	
 	if ($("#checkall").prop("checked") == false) {
-		$("input[type=checkbox]").prop("checked", true);
-		cnt = 10;
+		$("input[name=bP]").prop("checked", false);		
 	} else {
-		$("input[type=checkbox").prop("checked", false);
-		cnt = 0;
+		$("input[name=bP").prop("checked", true);		
 	}
-}
+});
+
+//하나라도 해지 or 각각 checkbox 눌러서
+$(".inputBox").on("click", function(){
+	checkedBox = $("input[name=bP]:checked").length;
+	if(totalCheckbox>checkedBox){
+		$("#checkall").prop("checked", false);	
+	}else if(totalCheckbox == checkedBox){
+		$("#checkall").prop("checked", true);
+	}
+});
+
+//승인 대기 게시판
+
+//승인버튼 눌렀을때  //사업자번호로 체크
+$("#confirmBP").on("click",function(){
+
+	var arr = [];
+	$("input[name=bP]:checked").each(function(item){
+		arr.push($(this).parent().next().next().next().html());
+	});
+	var allData = {"bp_num" : arr};
+	
+	$.ajax({
+		url : "confirmBP",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("승인 처리가 완료되었습니다.");
+				location.reload();
+			}else{
+				alert("승인처리 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});
+
+
+//거절버튼 눌렀을때  //사업자번호로 체크
+$("#refuseBP").on("click",function(){
+
+	var arr = [];
+	$("input[name=bP]:checked").each(function(item){
+		arr.push($(this).parent().next().next().next().html());
+	});
+	var allData = {"bp_num" : arr};
+	
+	$.ajax({
+		url : "refuseBP",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("승인 거절이 완료되었습니다.");
+				location.reload();
+			}else{
+				alert("승인 거절처리 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});
+
+
+//제휴 취소 대기 게시판
+
+//승인버튼 눌렀을때  //사업자번호로 체크
+$("#deleteBP").on("click",function(){
+
+	var arr = [];
+	$("input[name=bP]:checked").each(function(item){
+		arr.push($(this).parent().next().next().next().html());
+	});
+	var allData = {"bp_num" : arr};
+	
+	$.ajax({
+		url : "deleteBP",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("제휴 취소 처리가 완료되었습니다.");
+				location.reload();
+			}else{
+				alert("제휴 취소 처리 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});
+
+//취소 눌렀을때  //사업자번호로 체크
+$("#backBP").on("click",function(){
+
+	var arr = [];
+	$("input[name=bP]:checked").each(function(item){
+		arr.push($(this).parent().next().next().next().html());
+	});
+	var allData = {"bp_num" : arr};
+	
+	$.ajax({
+		url : "backBP",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("제휴 취소가 정상 철회되었습니다.");
+				location.reload();
+			}else{
+				alert("취소처리 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});

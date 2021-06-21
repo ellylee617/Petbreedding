@@ -36,8 +36,8 @@
 		<mapper resource="mappers/BP/bPartner-mapper.xml"/>
 		<mapper resource="mappers/common/memberInfoModify-mapper.xml" />
 		<mapper resource="mappers/Mypage/pet-mapper.xml"/>
-
 		<mapper resource="mappers/board/review-mapper.xml"/>
+		<mapper resource="mappers/admin/waitForPartner-mapper.xml"/>
 	</mappers>
 	
 </configuration>
