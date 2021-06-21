@@ -7,6 +7,9 @@ import kh.com.petbreedding.bmypage.model.dao.ShopDao;
 import kh.com.petbreedding.bmypage.model.vo.HairDayOff;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
+import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
+import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
@@ -48,6 +51,48 @@ public class ShopServiceImpl implements ShopService {
 		
 		try {
 			result = shopDao.insertHarImg(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
+	@Override
+	public int insertHosInfo(Hospital vo) {
+		int result = -1;
+		
+		try {
+			result = shopDao.insertHosInfo(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
+	@Override
+	public int insertHosDayOff(HosDayOff vo) {
+		int result = -1;
+		
+		try {
+			result = shopDao.insertHosDayOff(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
+	@Override
+	public int insertHosImg(HospitalImg vo) {
+		int result = -1;
+		
+		try {
+			result = shopDao.insertHosImg(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
