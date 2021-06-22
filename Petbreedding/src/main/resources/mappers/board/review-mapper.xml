@@ -4,8 +4,7 @@
 <mapper namespace="Review">
 	<resultMap type="Review" id="ReviewMap">
 		<id column="REV_NUM" property="revNum"/>
-		<result column="HAR_NUM" property="harNum"/>
-		<result column="HOS_NUM" property="hosNum"/>
+		<result column="BP_NUM" property="bpNum"/>
 		<result column="CL_NUM" property="clNum"/>
 		<result column="CL_NICKNAME" property="clNickName"/>
 		<result column="REV_CONT" property="revCont"/>
@@ -14,17 +13,18 @@
 		<result column="REV_VAL" property="revVal"/>
 	</resultMap>
 	
-	<!-- TODO HAR_NUM에 파라미터로 가져온 미용실 넘버 넣어줘야함 -->
 	<select id="reviewSelectList" parameterType="Review" resultMap="ReviewMap">
 		<![CDATA[
 			SELECT * FROM REVIEW WHERE BP_ID = #{BP_ID}
 		 ]]>
 	</select>
 	
+<!-- 	#{bpNum} 일단 1로 고정-->
+	
 	<insert id="insertReview" parameterType="Review">
 		<![CDATA[
 			INSERT INTO REVIEW VALUES(
-			SEQ_REVIEW.NEXTVAL, #{harNum}, #{hosNum},
+			'REV'||SEQ_REVIEW.NEXTVAL, 1,
 			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
 			TO_CHAR(SYSDATE, 'YYYYMMDD'), #{revVal}
 			)

@@ -105,31 +105,31 @@
                         </div> 
                         <hr> 
                         <div class="reviews">
-                            	<c:forEach items="${reviewList }" var="reviewList">
+                            	<c:forEach items="${reviewList }" var="items">
                             <div class="review">
                             
                             
 	                                <div class="reviewWord">
 	                                    <div class="star_img">
-	                                    <c:if test="${reviewList.revVal eq 1}">
+	                                    <c:if test="${items.revVal eq 1}">
 	                                   		<i class="fas fa-star rate"></i>
 	                                    </c:if>
-	                                    <c:if test="${reviewList.revVal eq 2}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                    </c:if>
-	                                    <c:if test="${reviewList.revVal eq 3}">
-	                                   		<i class="fas fa-star rate"></i>
+	                                    <c:if test="${items.revVal eq 2}">
 	                                   		<i class="fas fa-star rate"></i>
 	                                   		<i class="fas fa-star rate"></i>
 	                                    </c:if>
-	                                    <c:if test="${reviewList.revVal eq 4}">
-	                                   		<i class="fas fa-star rate"></i>
+	                                    <c:if test="${items.revVal eq 3}">
 	                                   		<i class="fas fa-star rate"></i>
 	                                   		<i class="fas fa-star rate"></i>
 	                                   		<i class="fas fa-star rate"></i>
 	                                    </c:if>
-	                                    <c:if test="${reviewList.revVal eq 5}">
+	                                    <c:if test="${items.revVal eq 4}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${items.revVal eq 5}">
 	                                   		<i class="fas fa-star rate"></i>
 	                                   		<i class="fas fa-star rate"></i>
 	                                   		<i class="fas fa-star rate"></i>
@@ -137,20 +137,25 @@
 	                                   		<i class="fas fa-star rate"></i>
 	                                    </c:if>
 
-	                                        <span class="reviewScore">${reviewList.revVal }.0</span>
+	                                        <span class="reviewScore">${items.revVal }.0</span>
 	                                    </div>
 	                                    <div class="reviewCon">
-	                                        <p>${reviewList.revCont }</p>
+	                                        <p>${items.revCont }</p>
 	                                    </div>
 	                                    <div class="reviewInfo">
-	                                        <span>${reviewList.clNickName }</span>
-	                                        <span class="reviewDate">${reviewList.revDate } 방문</span>
+	                                        <span>${items.clNickName }</span>
+	                                        <span class="reviewDate">${items.revDate } 방문</span>
 	                                    </div>
 	                                </div>
-	                                <div class="review_img">
-	                                    <img src="http://placehold.it/150x100">
-	                                </div>
-                                
+	                                <c:if test="${items.revImg eq null}">
+	                                	<div class="review_imgBox">
+	                                    	<img class="review_img" src="${pageContext.request.contextPath}/resources/images/logo.png">
+	                                	</div>
+	                                </c:if>
+		                                <div class="review_imgBox">
+		                                    <img class="review_img" src="${path}/resources/uploadFile/review/${items.revImg}">
+		                                </div>
+	                                
                             </div>
                                 </c:forEach>
                             <div class="reply">
