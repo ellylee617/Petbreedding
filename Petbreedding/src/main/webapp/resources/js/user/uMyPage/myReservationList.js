@@ -3,6 +3,26 @@ var modalReWin = document.getElementById("modalRe-Win");
 var btnReWr = document.getElementById("btnReWr")
 var selectedEle = document.getElementById("selectedVal");
 
+$(function(){
+	currentDay();
+	$("#searchDate").trigger("click");
+});
+function currentDay(){
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;    //1월이 0으로 되기때문에 +1을 함.
+    var date = now.getDate();
+
+    month = month >=10 ? month : "0" + month;
+    date  = date  >= 10 ? date : "0" + date;
+     // ""을 빼면 year + month (숫자+숫자) 됨.. ex) 2018 + 12 = 2030이 리턴됨.
+
+    var today = ""+year+"-" + month+"-" + date;
+    
+    $("#start").val(today);
+    $("#end").val(today);
+}
+
 function onClickSelect (e) {
 	const isActive = e.currentTarget.className.indexOf("active") !== -1;
 	if (isActive) {
@@ -128,11 +148,7 @@ $("#searchDate").on("click",function(){
 		        	 td += "<td colspan='4'>해당 기간에 예약하신 내역이 없습니다.</td>";
 		        	 td += "</tr>";
 		        	 $(".rlist").append(td);
-		         }   
-				
-				
-				
-				
+		         }   			
 			}
 		});
 	}
