@@ -20,53 +20,59 @@
 		<section class="section">
 			<jsp:include page="../myPageAside.jsp" />
 			<div class="mcontent">
-			<div class="point">
-                    <p class="ptitle">보유포인트</p>
-                    <br>
-                    <p class="presult">1000P</p>
-                </div>
-                <br>
-                <div class="selectOpt">
-                    <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최근 3개월</label>
-                    <input type="radio" id="distance" name="selectOpt"><label for="distance">최근 6개월</label>
-                    <input type="radio" id="rating" name="selectOpt"><label for="rating">최근 1년</label>
-                </div>
-                <div class="timetblP">
-                    <span>기간별 조회</span>&nbsp;&nbsp;&nbsp;
-                    <span><input type="date">&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"></span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="basicBtn">조회하기</button></span>
-                </div>
-                <br><br><br><br>
-                <table class="pointtable">
-                    <tr class="pointline">
-                        <td class="pgreen"><div class="circleg">적립</div></td>
-                        <td>2021-06-10</td>
-                        <td>쿨펫 미용실</td>
-                        <td class="pgreen">+5300p</td>
-                    </tr>
-                    <tr></tr>
-                    <tr class="pointline">
-                        <td class="pred"><div class="circlep">사용</div></td>
-                        <td>2021-06-10</td>
-                        <td>쿨펫 미용실</td>
-                        <td class="pred">-5300p</td>
-                    </tr>
-                    <tr class="pointline">
-                        <td class="pgreen"><div class="circleg">적립</div></td>
-                        <td>2021-06-10</td>
-                        <td>쿨펫 미용실</td>
-                        <td class="pgreen">+5300p</td>
-                    </tr>
-                    <tr class="pointline">
-                        <td class="pred"><div class="circlep">사용</div></td>
-                        <td>2021-06-10</td>
-                        <td>쿨펫 미용실</td>
-                        <td class="pred">-5300p</td>
-                    </tr>
-                </table>
-                <div class="divmore">
-                <button class="btnmore">더보기</button>
-                </div>
+				
+				,${pointList},
+				<c:forEach items="${pointList}" var="items">
+				
+					<div class="point">
+	                    <p class="ptitle">보유포인트</p>
+	                    <br>
+	                    <p class="presult">${items.currPoint }P</p>
+	                </div>
+	                <br>
+	                <div class="selectOpt">
+	                    <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최근 3개월</label>
+	                    <input type="radio" id="distance" name="selectOpt"><label for="distance">최근 6개월</label>
+	                    <input type="radio" id="rating" name="selectOpt"><label for="rating">최근 1년</label>
+	                </div>
+	                <div class="timetblP">
+	                    <span>기간별 조회</span>&nbsp;&nbsp;&nbsp;
+	                    <span><input type="date">&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"></span>
+	                    <span>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="basicBtn">조회하기</button></span>
+	                </div>
+	                <br><br><br><br>
+	                <table class="pointtable">
+	                
+	                    <tr class="pointline">
+	                        <td class="pgreen"><div class="circleg">${items.expType }</div></td>
+	                        <td>${items.expDate }</td>
+	                        <td>${items.expFrom }</td>
+	                        <td class="pgreen">${items.expPoint }p</td>
+	                    </tr>
+<!-- 	                    <tr class="pointline">
+	                        <td class="pred"><div class="circlep">사용</div></td>
+	                        <td>2021-06-10</td>
+	                        <td>쿨펫 미용실</td>
+	                        <td class="pred">-5300p</td>
+	                    </tr>
+	                    <tr class="pointline">
+	                        <td class="pgreen"><div class="circleg">적립</div></td>
+	                        <td>2021-06-10</td>
+	                        <td>쿨펫 미용실</td>
+	                        <td class="pgreen">+5300p</td>
+	                    </tr>
+	                    <tr class="pointline">
+	                        <td class="pred"><div class="circlep">사용</div></td>
+	                        <td>2021-06-10</td>
+	                        <td>쿨펫 미용실</td>
+	                        <td class="pred">-5300p</td>
+	                    </tr> -->
+	                </table>
+	                <div class="divmore">
+	                <button class="btnmore">더보기</button>
+	                </div>
+	                
+                </c:forEach>
             </div>
         </section>
         <jsp:include page="../../common/footer.jsp"/>

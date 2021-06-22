@@ -2,6 +2,7 @@ package kh.com.petbreedding.mypage.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,17 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.mypage.model.service.ClientInfoService;
+import kh.com.petbreedding.mypage.model.service.MyPointService;
+import kh.com.petbreedding.mypage.model.vo.MyPoint;
 
 @Controller
 public class ClientInfoCotroller {
 
 	@Autowired
 	private ClientInfoService clientInfoService;
+	
+	@Autowired
+	private MyPointService myPointService;
 
 	// 예약조회
 	@RequestMapping("/mypage")
@@ -58,8 +64,24 @@ public class ClientInfoCotroller {
 
 	// 포인트내역
 	@RequestMapping("/mypage/point")
-	public String point(HttpSession session) {
-		return "/user/uMyPage/point";
+	public ModelAndView point(
+			HttpSession session
+			,HttpServletRequest req
+			,Client cl
+			,ModelAndView mv
+			) {
+		
+		cl = (Client) session.getAttribute("client");
+		String clNum = cl.getCl_num();
+		MyPoint myPoint = new MyPoint();
+		myPoint.setClNum(clNum);
+		
+		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
+		System.out.println("[세훈] 컨트롤러 pointList : " + pointList);
+		mv.addObject("pointList", pointList);
+		mv.setViewName("/user/uMyPage/point");
+		
+		return mv;
 	}
 
 	// 1:1 문의 내역
