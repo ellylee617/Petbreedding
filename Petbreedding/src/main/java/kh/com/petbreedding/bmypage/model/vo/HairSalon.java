@@ -18,11 +18,8 @@ public class HairSalon {
 	
 	private Style style;
 	
-	
 	private List<HairSalonImg> shopImgList;	// 미용실 대표사진들. 미용실 하나가 여러 개의 사진을 가짐.
 	private List<String> shopDayOffList;	// 미용실 주휴일
-
-	
 	@Override
 	public String toString() {
 		return "HairSalon [harNum=" + harNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
@@ -90,14 +87,13 @@ public class HairSalon {
 	public void setShopDayOffList(List<String> shopDayOffList) {
 		this.shopDayOffList = shopDayOffList;
 	}
+	
 	public Style getStyle() {
 		return style;
 	}
 	public void setStyle(Style style) {
 		this.style = style;
 	}
-	
-
 	
 
 	

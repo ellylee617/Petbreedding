@@ -40,20 +40,38 @@
 
 		<!-- HAIR_DAYOFF 테이블 -->
 		<resultMap type="HairDayOff" id="HairDayOff">
+			<id column="DAY_NUM" property="dayNum"/>
 			<result column="HAR_NUM" property="harNumDayOff"/>
 			<result column="HAR_DAYOFF" property="harDayOff"/>
 		</resultMap>
-		
-		<!-- 미용실 리스트 -->
-		<select id="selectHarList" parameterType="HairSalon" resultMap="HairSalon">
-			SELECT * FROM HAIR_SALON
-		</select>
+			
 			
 		<!-- 미용실 기본 정보 기입 -->
 		<insert id="insertHarInfo" parameterType="HairSalon">
 		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, HAR_CLICK)
 		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, 0)
 		</insert>
+		
+		
+		<!-- 미용실 기본 정보 불러오기 -->
+		<select id="selectHarInfo" parameterType="string" resultMap="HairSalon">
+		SELECT *
+		FROM HAIR_SALON
+		WHERE BP_ID = #{bpId}
+		</select>
+		
+		
+		<!-- 미용실 정보 수정 -->
+		<update id="updateHarInfo" parameterType="HairSalon">
+		UPDATE HAIR_SALON 
+		SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO)
+			= (
+				SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}
+				FROM dual
+			)
+		WHERE BP_ID = #{bpId}
+		</update>
+		
 		
 		<!--미용실 이미지 첨부 -->
 		<insert id="insertHarImg" parameterType="HairSalonImg">
@@ -63,37 +81,153 @@
 		INSERT INTO HAIR_SALON_IMG (IMG_NUM, HAR_NUM, HAR_IMG)
 		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNumImg},#{shopImg})
 		</insert>
-
-		<!-- TODO:작업중 -->
+		
+		<!-- 미용실 이미지 정보 불러오기 -->
+		<select id="selectInfo" parameterType="HairSalonImg">
+		SELECT *
+		FROM HAIR_SALON
+		WHERE BP_ID = #{bpId}
+		</select>
+		
+		<!-- 미용실 이미지 수정(삭제) -->
+		<delete id="deleteHarImg" parameterType="HairSalonImg">
+			DELETE 
+			FROM HAIR_SALON_IMG img
+			WHERE EXISTS
+			(
+				SELECT 1
+				FROM HAIR_SALON info
+				WHERE info.HAR_NUM = #{harNum}
+			)
+		</delete>
+		
+			<!-- 수정된 미용실 이미지 추가 -->
+			<insert id="insertNewHarImg" parameterType="HairSalonImg">
+		INSERT INTO HAIR_SALON_IMG (IMG_NUM, HAR_NUM, HAR_IMG)
+		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNumImg},#{shopImg})
+		</insert>
+		
 		<!-- 미용실 주휴일 추가 -->
 		<insert id="insertHarDayOff" parameterType="HairDayOff">
 			<selectKey keyProperty="harNumDayOff" resultType="string" order="BEFORE">
        	 		SELECT SEQ_HAIR_SALON.CURRVAL FROM DUAL
   			</selectKey>
-		INSERT INTO HAIR_DAYOFF (HAR_NUM, HAR_DAYOFF)
-		VALUES (#{harNumDayOff},#{shopDayOff})
+		INSERT INTO HAIR_DAYOFF (DAY_NUM, HAR_NUM, HAR_DAYOFF)
+		VALUES (SEQ_HAIR_SALON_DAYOFF.NEXTVAL, #{harNumDayOff},#{shopDayOff})
 		</insert>
 	
+		<!-- 미용실 주휴일 수정(삭제) -->
+		<delete id="deleteHarDayOff" parameterType="string">
+			DELETE FROM HAIR_DAYOFF
+			WHERE HAR_NUM = #{harNumDayOff}
+		</delete>
 		
+		<!-- 수정된 미용실 주휴일 추가 -->
+		<insert id="insertNewHarDayOff" parameterType="HairDayOff">
+		INSERT INTO HAIR_DAYOFF (DAY_NUM, HAR_NUM, HAR_DAYOFF)
+		VALUES (SEQ_HAIR_SALON_DAYOFF.NEXTVAL, #{harNumDayOff},#{shopDayOff})
+		</insert>
 	
 	<!-- 동물병원 -->
-	
-	<!-- 
-	
-		<resultMap type="Hospital" id="resultHos">
+		<resultMap type="Hospital" id="Hospital">
 		<id column="HOS_NUM" property="hosNum"/>
 		<result column="BP_ID" property="bpId"/>
-		<result column="HOS_NAME" property="hosName"/>
-		<result column="HOS_ADDR" property="hosAddr"/>
-		<result column="HOS_TEL" property="hosTel"/>
-		<result column="OPEN_TIME" property="openTime"/>
-		<result column="HOS_MINFO" property="hosMInfo"/>
-		<result column="HOS_DINFO" property="hosDInfo"/>
+		<result column="HOS_NAME" property="shopName"/>
+		<result column="HOS_ADDR" property="shopAddr"/>
+		<result column="HOS_TEL" property="shopTel"/>
+		<result column="OPEN_TIME" property="shopTime"/>
+		<result column="HOS_MINFO" property="shopMInfo"/>
 		<result column="HOS_CONN" property="hosConn"/>
 		<result column="HOS_CLICK" property="hosClick"/>
 	</resultMap>
-	 -->	
-
 	
+	<!-- HOSPITAL_IMAGE 테이블-->
+		<resultMap type="HospitalImg" id="HospitalImg">
+			<id column="IMG_NUM" property="imgNum"/>
+			<result column="HAR_NUM" property="hosNumImg"/>
+			<result column="HAR_IMG" property="shopImg"/>
+		</resultMap>
+		
+			
+	<!-- HOSPITAL_DAYOFF 테이블 -->
+		<resultMap type="HosDayOff" id="HosDayOff">
+			<id column="DAY_NUM" property="dayNum"/>
+			<result column="HOS_NUM" property="hosNumDayOff"/>
+			<result column="HOS_DAYOFF" property="hosDayOff"/>
+		</resultMap>
+		
+	<!-- TODO -->	
+	<!-- 동물병원 기본 정보 기입 -->
+	<insert id="insertHosInfo" parameterType="Hospital">
+	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, HOS_CONN, HOS_CLICK )
+	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, 0, 0)
+	</insert>
 	
+	<!-- 동물병원 기본 정보 불러오기 -->
+		<select id="selectHosInfo" parameterType="string" resultMap="Hospital">
+		SELECT *
+		FROM HOSPITAL
+		WHERE BP_ID = #{bpId}
+		</select>	
+	
+	<!-- 동물병원 기본 정보 수정 -->
+	<update id="updateHosInfo" parameterType="Hospital">
+		UPDATE HOSPITAL 
+		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO) 
+		= (
+			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}
+			FROM dual
+		)
+		WHERE BP_ID = #{bpId}	
+	</update>
+	
+	<!--동물병원 이미지 첨부 -->
+	<insert id="insertHosImg" parameterType="HospitalImg">
+			<selectKey keyProperty="hosNumImg" resultType="string" order="BEFORE">
+	       	 SELECT SEQ_HOSPITAL.CURRVAL FROM DUAL
+	  		</selectKey>
+		INSERT INTO HOSPITAL_IMAGE (IMG_NUM, HOS_NUM, HOS_IMG)
+		VALUES (SEQ_HOSPITAL_IMG.NEXTVAL,#{hosNumImg},#{shopImg})
+		</insert>
+		
+		<!-- 동물병원 이미지 수정(삭제) -->
+		<delete id="deleteHosImg" parameterType="HospitalImg">
+			DELETE 
+			FROM HOSPITAL_IMAGE img
+			WHERE EXISTS
+			(
+				SELECT 1
+				FROM HOSPITAL info
+				WHERE info.HOS_NUM = #{hosNumDayOff}
+			)
+		</delete>
+		
+		<!-- 수정된 동물병원 이미지 추가 -->
+		<insert id="insertNewHosImg" parameterType="HospitalImg">
+		INSERT INTO HOSPITAL_IMAGE (IMG_NUM, HOS_NUM, HOS_IMG)
+		VALUES (SEQ_HOSPITAL_IMG.NEXTVAL,#{hosNumImg},#{shopImg})
+		</insert>
+		
+		<!-- 동물병원 주휴일 추가 -->
+			<insert id="insertHosDayOff" parameterType="HosDayOff">
+			<selectKey keyProperty="hosNumDayOff" resultType="string" order="BEFORE">
+       	 		SELECT SEQ_HOSPITAL.CURRVAL FROM DUAL
+  			</selectKey>
+		INSERT INTO HOSPITAL_DAYOFF (DAY_NUM, HOS_NUM, HOS_DAYOFF)
+		VALUES (SEQ_HOSPITAL_DAYOFF.NEXTVAL, #{hosNumDayOff},#{shopDayOff})
+		</insert>
+	
+		<!-- 동물병원 주휴일 수정(삭제) -->
+			<delete id="deleteHosDayOff" parameterType="string">
+			DELETE FROM HOSPITAL_DAYOFF
+			WHERE HOS_NUM = #{hosNumDayOff}
+		</delete>
+		
+		<!-- 수정된 동물병원 주휴일 추가 -->
+			<insert id="insertNewHosDayOff" parameterType="HosDayOff">
+		INSERT INTO HOSPITAL_DAYOFF (DAY_NUM, HOS_NUM, HOS_DAYOFF)
+		VALUES (SEQ_HOSPITAL_DAYOFF.NEXTVAL, #{hosNumDayOff},#{shopDayOff})
+		</insert>
+		
+		
 </mapper>

@@ -21,9 +21,14 @@
 		<section class="section">
 		<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
-			<form action="${path}/bShop/write" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
-				<!-- ******* TODO: 서비스 구분 작업중~~~ ******   -->
+				<!-- 
+						******* TODO: 사업장 수정 페이지 작업중~~~ ******   
+				-->
+			<!-- 입력된 사업장 정보가 없으면 사업장 등록 -->
+			
+				<c:if test="${empty list}">
 				<h2>사업장 등록</h2>
+			<form action="${path}/bp/bShop/write" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
 				<br>
 				<table class="tblInfo">
 					<tr>
@@ -39,7 +44,7 @@
 					</tr>
 					<tr>
 						<th>매장명</th>
-						<td colspan="2"><input id="shopName" type="text" placeholder="사업자 등록증에 명시된 매장명을 입력해주세요." name="shopName"></td>
+						<td colspan="2"><input id="shopName" type="text" placeholder="사업자 등록증에 명시된 매장명을 입력해주세요." name="shopName" ></td>
 					</tr>
 					<tr>
 						<th>매장 주소</th>
@@ -82,7 +87,7 @@
 						<div class="wrap"><input type="checkbox" id="tue" name="shopDayOff" value="2"><label for="tue"><div class="dayitem">화</div></label></div>
 						<div class="wrap"><input type="checkbox" id="wed" name="shopDayOff" value="3"><label for="wed"><div class="dayitem">수</div></label></div>
 						<div class="wrap"><input type="checkbox" id="thu" name="shopDayOff" value="4"><label for="thu"><div class="dayitem">목</div></label></div>
-						<div class="wrap"><input type="checkbox" id="fri" name="shopDayOff" value="5"><label for="fri"><Rdiv class="dayitem">금</div></label></div>
+						<div class="wrap"><input type="checkbox" id="fri" name="shopDayOff" value="5"><label for="fri"><div class="dayitem">금</div></label></div>
 						<div class="wrap"><input type="checkbox" id="sat" name="shopDayOff" value="6"><label for="sat"><div class="dayitem">토</div></label></div>
 						<div class="wrap"><input type="checkbox" id="sun" name="shopDayOff" value="7"><label for="sun"><div class="dayitem">일</div></label></div>						
 						</th>
@@ -91,6 +96,89 @@
 				<br><br>
 				<button class="basicBtn InfoRegi">등록하기</button>
 			</form>
+			</c:if>
+			
+			<c:if test="${!empty list}">
+			<c:forEach items="${list}" var="item">
+						<h2>사업장 수정</h2>
+			<form action="${path}/bp/bShop/update" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
+					<c:if test="${bP.bp_type == 0 }">
+					<input type="hidden" name="harNum" value="${item.harNum}"/>
+					</c:if>
+					<c:if test="${bP.bp_type == 1 }">
+					<input type="hidden" name="hosNum" value="${item.hosNum}"/>
+					</c:if>
+					<input type="hidden" name="bpId" value="${item.bpId}"/>
+				<br>
+				<table class="tblInfo">
+					<tr>
+						<th>서비스 구분</th>
+						<c:if test="${bP.bp_type == 0 }">
+						<th><input  onClick="return false;" type="radio" name="shop" id="bshop" value="0" checked="checked"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
+						<th><input  onClick="return false;" type="radio" name="shop" id="hshop" value="1"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
+						</c:if>
+						<c:if test="${bP.bp_type == 1 }">
+						<th><input onClick="return false;" type="radio" name="shop" id="bshop" value="0"><label for ="bshop">&nbsp;&nbsp;미용실</label></th>
+						<th><input onClick="return false;" type="radio" name="shop" id="hshop" value="1" checked="checked"><label for ="hshop">&nbsp;&nbsp;동물병원</label></th>
+						</c:if>
+					</tr>
+					<tr>
+						<th>매장명</th>
+						<td colspan="2"><input id="shopName" type="text" placeholder="사업자 등록증에 명시된 매장명을 입력해주세요." name="shopName" value="${item.shopName }"></td>
+					</tr>
+					<tr>
+						<th>매장 주소</th>
+						<td colspan="2">
+						<input type="text" id="postcode"
+							placeholder="우편번호"> <input id="postcodebtn" class="basicBtn" type="button" onclick="exePostCode()" value="우편번호 찾기">
+							<br>
+							<input type="text" id="shopAddress" placeholder="주소" name="shopAddr" value="${item.shopAddr }">
+							<br>
+							<input type="text" id="detailAddress" placeholder="상세주소">
+							<input type="text" id="extraAddress" placeholder="참고항목">
+					</tr>
+					<tr>
+						<th>매장 전화번호</th>
+						<td colspan="2"><input id="shopTel" type="text" placeholder="'-'를 포함해서 입력해주세요" name="shopTel" value="${item.shopTel }"></td>
+					</tr>
+					<tr>
+						<th>영업시간</th>
+						<td colspan="2"><input id="shopTime" type="text" name="shopTime" value="${item.shopTime }"></td>
+					</tr>
+					<tr>
+						<th>간단소개</th>
+						<td colspan="2"><input id="shopMInfo" type="text" name="shopMInfo" value="${item.shopMInfo }"></td>
+					</tr>
+					<tr>
+						<th>대표이미지</th>
+						<th colspan="2">
+							  <div class="imgContainer">
+                                <div class="imgBox">
+                                    <img src="">
+                                </div>
+                                <input type="file" id="inputShopImg" name="shopImg" multiple="multiple" accept=".jpg, .jpeg, .png" value="파일선택">
+                            </div>
+						</th>
+					</tr>
+					<tr>
+						<th>주휴일</th>
+						<th colspan="2">
+						<div class="wrap"><input type="checkbox" id="mon" name="shopDayOff" value="1"><label for="mon"><div class="dayitem">월</div></label></div>
+						<div class="wrap"><input type="checkbox" id="tue" name="shopDayOff" value="2"><label for="tue"><div class="dayitem">화</div></label></div>
+						<div class="wrap"><input type="checkbox" id="wed" name="shopDayOff" value="3"><label for="wed"><div class="dayitem">수</div></label></div>
+						<div class="wrap"><input type="checkbox" id="thu" name="shopDayOff" value="4"><label for="thu"><div class="dayitem">목</div></label></div>
+						<div class="wrap"><input type="checkbox" id="fri" name="shopDayOff" value="5"><label for="fri"><div class="dayitem">금</div></label></div>
+						<div class="wrap"><input type="checkbox" id="sat" name="shopDayOff" value="6"><label for="sat"><div class="dayitem">토</div></label></div>
+						<div class="wrap"><input type="checkbox" id="sun" name="shopDayOff" value="7"><label for="sun"><div class="dayitem">일</div></label></div>						
+						</th>
+					</tr>					
+				</table>
+				<br><br>
+				<button class="basicBtn InfoRegi">등록하기</button>
+			</form>
+			</c:forEach>
+			</c:if>
+			
 			</div>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />

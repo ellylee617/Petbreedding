@@ -47,12 +47,9 @@
         <div class="bBox">
             <ul>
                 <p>사업장 관리</p>
-                <c:if test = "${empty bP.bp_bank }">
-                	<li class="bs">사업장 등록</li>
-                </c:if>
-                <c:if test = "${!empty bP.bp_bank }">
-                	<li class="bs">사업장 수정</li>
-                </c:if>
+                <!-- TODO: c:if 조건 뭘 줘야 할지 모르겠음 ........-->
+                	<a href="${pageContext.request.contextPath}/bShop"><li class="bs">사업장 등록</li></a>
+                	<a href="${pageContext.request.contextPath}/bShop/update"><li class="bs">사업장 수정</li></a>
                 <li class="bs">리뷰 관리</li>
             </ul>
         </div>

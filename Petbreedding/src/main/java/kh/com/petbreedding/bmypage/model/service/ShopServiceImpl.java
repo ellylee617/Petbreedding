@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.bmypage.model.dao.ShopDao;
 import kh.com.petbreedding.bmypage.model.vo.HairDayOff;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
@@ -18,19 +19,19 @@ public class ShopServiceImpl implements ShopService {
 
 	@Autowired
 	private ShopDao shopDao;
-	
+
 	@Override
 	public List<HairSalon> selectHarList(int currentPage, int limit) {
 		List<HairSalon> salonList = null;
-		System.out.println("¼­ºñ½º ¹Ì¿ë½Ç ¸®½ºÆ® ÁøÀÔ");
+		System.out.println("Â¼Â­ÂºÃ±Â½Âº Â¹ÃŒÂ¿Ã«Â½Ã‡ Â¸Â®Â½ÂºÃ†Â® ÃÃ¸Ã€Ã”");
 		try {
 			salonList = shopDao.selectHarList(currentPage, limit);
 		} catch(Exception e) {
 		}
-		System.out.println("¼­ºñ½º ¹Ì¿ë½Ç ¸®½ºÆ® ¸®ÅÏ Àü : " + salonList);
+		System.out.println("Â¼Â­ÂºÃ±Â½Âº Â¹ÃŒÂ¿Ã«Â½Ã‡ Â¸Â®Â½ÂºÃ†Â® Â¸Â®Ã…Ã Ã€Ã¼ : " + salonList);
 		return salonList;
 	}
-
+	
 	@Override
 	public int insertHarInfo(HairSalon vo) {
 
@@ -115,6 +116,150 @@ public class ShopServiceImpl implements ShopService {
 		return result;
 	}
 
+	@Override
+	public int updateHarInfo(HairSalon vo) {
+		int result = -1;
+		
+		try {
+			result = shopDao.updateHarInfo(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
+	@Override
+	public int deleteHarImg(String harNum) {
+		int result = -1;
+		
+		try {
+			result = shopDao.deleteHarImg(harNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteHarDayOff(String harNum) {
+		int result = -1;
+		
+		try {
+			result = shopDao.deleteHarDayOff(harNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int updateHosInfo(Hospital vo) {
+		int result = -1;
+		
+		try {
+			result = shopDao.updateHosInfo(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteHosImg(String hosNum) {
+		int result = -1;
+		
+		try {
+			result = shopDao.deleteHosImg(hosNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteHosDayOff(String hosNum) {
+		int result = -1;
+		
+		try {
+			result = shopDao.deleteHosDayOff(hosNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<HairSalon> selectHarInfo(String bpId) {
+		
+		List<HairSalon> list = null;
+		
+		list = shopDao.selectHarInfo(bpId);
+		
+		System.out.println("List<HairSalon> list::"+list);
+		
+		return list;
+	}
+
+	@Override
+	public int insertNewHarDayOff(HairDayOff vo) {
+	int result = -1;
+		
+		try {
+			result = shopDao.insertNewHarDayOff(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int insertNewHarImg(HairSalonImg vo) {
+	int result = -1;
+		
+		try {
+			result = shopDao.insertNewHarImg(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<Hospital> selectHosInfo(String bpId) {
+		List<Hospital> list = null;
+		
+		list = shopDao.selectHosInfo(bpId);
+		
+		System.out.println("List<Hospital> list::"+list);
+		
+		return list;
+	}
+
+	@Override
+	public int insertNewHosImg(HospitalImg vo) {
+		int result = -1;
+		
+		try {
+			result = shopDao.insertNewHosImg(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int insertNewHosDayOff(HosDayOff vo) {
+		int result = -1;
+		
+		try {
+			result = shopDao.insertNewHosDayOff(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 
 
