@@ -9,20 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Petbreedding::펫브리띵</title>
-<link href="${path}/resources/css/common/reset.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/common/header.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/common/footer.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/user/myPageAside.css" rel="stylesheet"
-	type="text/css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+<link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/user/myPageAside.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/user/uMyPage/myChatList.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -39,10 +33,122 @@
 							name="tabmenu" id="tabmenu2" class="Tmenu"> <label
 							for="tabmenu2">읽지 않음</label></li>
 					</ul>
+				</div>
+			<div class="listwrap">
+					<table class="openchatwin">
+						<tr>
+							<td rowspan="2"><img src="http://placehold.it/50X50">
+							<td>쿨펫 동물병원</td>
+							<td>오전 10:54</td>
+							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+						</tr>
+						<tr>
+							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td colspan="2">1</td>
+						</tr>
+					</table>
+					<table class="openchatwin">
+						<tr>
+							<td rowspan="2"><img src="http://placehold.it/50X50">
+							<td>쿨펫 동물병원</td>
+							<td>오전 10:54</td>
+							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+						</tr>
+						<tr>
+							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td colspan="2">1</td>
+						</tr>
+					</table>
+					<table class="openchatwin">
+						<tr>
+							<td rowspan="2"><img src="http://placehold.it/50X50">
+							<td>쿨펫 동물병원</td>
+							<td>오전 10:54</td>
+							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+						</tr>
+						<tr>
+							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td colspan="2">1</td>
+						</tr>
+					</table>
+					<table class="openchatwin">
+						<tr>
+							<td rowspan="2"><img src="http://placehold.it/50X50">
+							<td>쿨펫 동물병원</td>
+							<td>오전 10:54</td>
+							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+						</tr>
+						<tr>
+							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td colspan="2">1</td>
+						</tr>
+					</table>
+					<table class="openchatwin">
+						<tr>
+							<td rowspan="2"><img src="http://placehold.it/50X50">
+							<td>쿨펫 동물병원</td>
+							<td>오전 10:54</td>
+							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+						</tr>
+						<tr>
+							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td colspan="2">1</td>
+						</tr>
+					</table>
+					<table class="openchatwin">
+						<tr>
+							<td rowspan="2"><img src="http://placehold.it/50X50">
+							<td>쿨펫 동물병원</td>
+							<td>오전 10:54</td>
+							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+						</tr>
+						<tr>
+							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td colspan="2">1</td>
+						</tr>
+					</table>
+					<table class="openchatwin">
+						<tr>
+							<td rowspan="2"><img src="http://placehold.it/50X50">
+							<td>쿨펫 동물병원</td>
+							<td>오전 10:54</td>
+							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+						</tr>
+						<tr>
+							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td colspan="2">1</td>
+						</tr>
+					</table>
+					<table class="openchatwin">
+						<tr>
+							<td rowspan="2"><img src="http://placehold.it/50X50">
+							<td>쿨펫 동물병원</td>
+							<td>오전 10:54</td>
+							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+						</tr>
+						<tr>
+							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td colspan="2">1</td>
+						</tr>
+					</table>							
 			</div>
-		</div>
+			</div>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
+	<!-- 대화 삭제 모달 -->
+	<div id="cancel-modal" class="modal">
+	<div class="cancel-content">
+	<input type="hidden" value="${bP.bp_Id}" id="bp_Id" />
+		<p class="boldtext">대화를 지우시겠습니까?</p> 
+		<p class="text">
+		<br>
+		기존의 모든 대화가 삭제됩니다.<br><br></p>
+		<div class="btn">
+			<button class="basicBtn" id="yesCalncle">네</button>
+			<button class="basicBtn" id="noCalncle">아니오</button>
+		</div>
+	</div>
 </body>
+<script type="text/javascript" src="${path}/resources/js/user/uMyPage/myChatList.js"></script>
 </html>
