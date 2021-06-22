@@ -1,11 +1,11 @@
 $('.openchatwin').click(function() {
-	window.open('/petbreedding/chat', '_blank', 'width=555px, height=700px')
+	window.open('/petbreedding/chat', '_blank', 'width=555px, height=700px');
 });
 
 // 삭제 버튼 누르면 모달창 띄움
 $(".cancleM").on("click", function(e) {
 	$("#cancel-modal").css("display", "block");
-	e.preventDefault();
+	e.stopPropagation();
 });
 
 $("#noCalncle").on("click", function() {

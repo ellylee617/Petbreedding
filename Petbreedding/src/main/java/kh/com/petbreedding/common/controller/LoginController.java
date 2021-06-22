@@ -226,6 +226,8 @@ public class LoginController {
 		 * System.out.println(nickname);
 		 */
 		
+		
+		//TODO
 		//4.파싱 닉네임 세션으로 저장
 		session.setAttribute("client",response_obj); //세션 생성
 		model.addAttribute("result", apiResult);

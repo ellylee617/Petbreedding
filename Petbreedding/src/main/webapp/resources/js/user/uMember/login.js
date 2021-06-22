@@ -39,3 +39,13 @@ $("#loginBtn").on("click", function() {
 
 });
 
+//카카오톡
+$(document).ready(function(){
+		Kakao.init('b2612abb65e5e0ec8f032250bf0aaa8f'); 
+		Kakao.isInitialized(); 
+	});
+function loginWithKakao() { 
+	Kakao.Auth.authorize({ 
+		redirectUri: 'http://localhost:8090/petbreedding/kakaoLogin' 
+	}); }
+
