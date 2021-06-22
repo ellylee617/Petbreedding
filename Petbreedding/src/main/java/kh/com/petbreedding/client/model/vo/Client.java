@@ -8,6 +8,8 @@ public class Client {
 	private String nickname;
 	private String name;
 	private String tel;
+	private String naverlogin;
+	private String kakaologin;
 	
 	@Override
 	public String toString() {
@@ -61,6 +63,22 @@ public class Client {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	public String getNaverlogin() {
+		return naverlogin;
+	}
+
+	public void setNaverlogin(String naverlogin) {
+		this.naverlogin = naverlogin;
+	}
+
+	public String getKakaologin() {
+		return kakaologin;
+	}
+
+	public void setKakaologin(String kakaologin) {
+		this.kakaologin = kakaologin;
 	}
 
 	

@@ -55,7 +55,18 @@ public class ClientController {
 		
 	}
 	
-
+	//sns 회원가입 페이지 이동
+	@RequestMapping(value = "snsJoin")
+	@ResponseBody
+	public String SnsJoin(Client client, HttpSession session) {
+		
+		return "/user/uMember/snsJoin";
+		
+	}
+	
+	
+	
+	
 	// 회원 정보 수정 페이지
 	@RequestMapping("uModify")
 	public String openClientModify(Locale locale, Model model) {

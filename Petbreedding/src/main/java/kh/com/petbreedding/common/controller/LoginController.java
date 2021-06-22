@@ -2,6 +2,7 @@ package kh.com.petbreedding.common.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -32,6 +33,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import kh.com.petbreedding.HomeController;
 import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.client.model.service.ClientService;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.service.LoginService;
 import kh.com.petbreedding.common.model.vo.KakaoLogin;
@@ -43,6 +45,8 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
+	@Autowired
+	private ClientService clientService;
 	
 	@Autowired
 	KakaoLogin kakaoLogin;
@@ -180,15 +184,28 @@ public class LoginController {
 		
 		System.out.println("properties : "+ userInfo);
 //		System.out.println("kakao_account : "+ kakao_account);
-		
+		Map <String, Object> resultMap = new HashMap<String, Object>();
+
 		email = kakao_account.path("email").asText(); 
 		nickname = properties.path("nickname").asText(); 
+		
+		resultMap.put("email", email);
+		resultMap.put("nickname", nickname);
+		
+		int checkEmail = clientService.checkEmail(email);
+		
+		if(checkEmail == 0 ) { //일치하는 이메일 없으면 가입
 			
-		
-		session.setAttribute("kakaoEmail", email);
-		session.setAttribute("nickname", nickname); 
-		/* session.setAttribute("kname", kname); */
-		
+			mv.addObject("email",email);
+			mv.addObject("nickname", nickname);
+			mv.setViewName("/user/uMember/snsJoin2");
+			return mv;
+			
+		}else { //모두 연동 되어있을시
+			session.setAttribute("client",resultMap);
+			mv.addObject("result", apiResult);
+		}	
+	
 		mv.setViewName("/common/index");
 
 		return mv;
@@ -221,17 +238,31 @@ public class LoginController {
 		JSONObject response_obj = (JSONObject)jsonObj.get("response");
 		
 		//response의 nickname값 파싱
+		 String nickname = (String)response_obj.get("nickname");
+		 String email = (String)response_obj.get("email");
+		 String name = (String)response_obj.get("name");
+		 String tel = (String)response_obj.get("mobile");
+		 System.out.println(nickname);
+		 
+		 int checkEmail = clientService.checkEmail(email);
+		
+		if(checkEmail == 0) { //일치하는 이메일 없으면 가입
+			
+			model.addAttribute("email",email);
+			model.addAttribute("name",name);
+			model.addAttribute("nickname", nickname);
+			
+			return "/user/uMember/snsJoin";
+			
+		}else { //모두 연동 되어있을시
+			session.setAttribute("client",response_obj);
+			model.addAttribute("result", apiResult);
+		}
+		
 		/*
-		 * String nickname = (String)response_obj.get("nickname");
-		 * System.out.println(nickname);
+		 * //4.파싱 닉네임 세션으로 저장 session.setAttribute("client",response_obj); //세션 생성
+		 * model.addAttribute("result", apiResult);
 		 */
-		
-		
-		//TODO
-		//4.파싱 닉네임 세션으로 저장
-		session.setAttribute("client",response_obj); //세션 생성
-		model.addAttribute("result", apiResult);
-		
 		
 		return "/common/index";
 	}

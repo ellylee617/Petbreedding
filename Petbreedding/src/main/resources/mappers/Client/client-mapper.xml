@@ -8,11 +8,13 @@
 		<result  column="CL_NICKNAME" property="nickname"/>
 		<result  column="CL_NAME" property="name"/>
 		<result  column="CL_TEL" property="tel"/>
+		<result  column="NAVERLOGIN" property="naverlogin"/>
+		<result  column="KAKAOLOGIN" property="kakaologin"/>
 	</resultMap>
 	
 	<!-- 사용자 회원가입 -->
 	<insert id="insertClient" parameterType="Client">
-		INSERT INTO client VALUES('CL000' || SEQ_CLIENT.NEXTVAL, #{email},#{password},#{nickname},#{name},#{tel})
+			INSERT INTO client VALUES('CL000' || SEQ_CLIENT.NEXTVAL, #{email},#{password},#{nickname},#{name},#{tel},#{naverlogin},#{kakaologin})	
 	</insert>
 	
 
