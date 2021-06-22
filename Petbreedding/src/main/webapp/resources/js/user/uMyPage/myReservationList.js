@@ -3,50 +3,48 @@ var modalReWin = document.getElementById("modalRe-Win");
 var btnReWr = document.getElementById("btnReWr")
 var selectedEle = document.getElementById("selectedVal");
 
-$(function() {
-	
-	function onClickSelect (e) {
-		const isActive = e.currentTarget.className.indexOf("active") !== -1;
-		if (isActive) {
-			e.currentTarget.className = "select";
-			document.querySelector(".downArrow").innerHTML = "";
-		} else {
-			e.currentTarget.className = "select active";
-			document.querySelector(".downArrow").innerHTML += "&#9660;"
-		}
+function onClickSelect (e) {
+	const isActive = e.currentTarget.className.indexOf("active") !== -1;
+	if (isActive) {
+		e.currentTarget.className = "select";
+		document.querySelector(".downArrow").innerHTML = "";
+	} else {
+		e.currentTarget.className = "select active";
+		document.querySelector(".downArrow").innerHTML += "&#9660;"
 	}
-	
-	function onClickOption(e) {
-		const selectedValue = e.currentTarget.innerHTML;
-		document.querySelector(".text").innerHTML = selectedValue;
-		selectedEle.value = e.currentTarget.value;
-        console.log(selectedEle.value);
-        console.log(typeof(selectedEle.value));
-	}
+}
 
-    btnReWr.addEventListener("click", function() {
-		modal.style.display = "flex";
-	});
-	
-	var closeBtn = modal.querySelector(".modal_close_btn")
-	closeBtn.addEventListener("click", function() {
-		modal.style.display = "none";
-	});
+function onClickOption(e) {
+	const selectedValue = e.currentTarget.innerHTML;
+	document.querySelector(".text").innerHTML = selectedValue;
+	selectedEle.value = e.currentTarget.value;
+    console.log(selectedEle.value);
+    console.log(typeof(selectedEle.value));
+}
 
-    document.querySelector(".select").addEventListener("click", onClickSelect);
+$("#btnReWr").on("click", function(){
+	modal.style.display = "flex";
+});
+
+var closeBtn = modal.querySelector(".modal_close_btn")
+closeBtn.addEventListener("click", function() {
+	modal.style.display = "none";
+});
+
+document.querySelector(".select").addEventListener("click", onClickSelect);
 	
 	var optionList = document.querySelectorAll(".option");
 	for (var i = 0; i < optionList.length; i++) {
 		var option = optionList[i];
 		option.addEventListener("click", onClickOption);
-	}
+}
 
-    $("#regBtn").on("click", function() {
-        $("#frm").attr("action", "rwrite");
-        $("#frm").attr("method", "POST");
-        $("#frm").submit();
-    });
-	
+$("#regBtn").on("click", function() {
+    $("#frm").attr("action", "rwrite");
+    $("#frm").attr("method", "POST");
+    $("#frm").submit();
+});
+
 //	$("#regBtn").on("click", function(){
 //		var dataString = $("#frm").serialize(); 
 //		// {memberId: 입력값, memberPwd:입력값.... }
@@ -73,6 +71,5 @@ $(function() {
 //		});
 //	});
 
-});
 
 

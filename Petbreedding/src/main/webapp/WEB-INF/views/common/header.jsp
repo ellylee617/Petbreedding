@@ -19,7 +19,7 @@
 	            <li><a href="${pageContext.request.contextPath}/uLogin">로그인</a></li>
 	            <li><a href="${pageContext.request.contextPath}/uJoin">회원가입</a></li>
             </c:if>
-            <li><a href="#">예약확인/조회</a></li>
+            <li><a href="${pageContext.request.contextPath}/mypage?cl_num=${client.cl_num}">예약확인/조회</a></li>
             <li><a href="#">고객센터</a></li>
         </ul>
     </nav>  
@@ -29,7 +29,7 @@
             <ul>
                 <li><a href="#">소개</a></li>
                 <li><a href="hospital.html">동물병원</a></li>
-                <li><a href="salon.html">미용실</a></li>
+                <li><a href="${pageContext.request.contextPath}/salonList">미용실</a></li>
                 <li><a href="consult.html">1:1수의사 상담</a></li>
             </ul>
         </nav>

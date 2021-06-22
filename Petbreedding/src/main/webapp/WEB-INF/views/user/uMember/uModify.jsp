@@ -22,7 +22,6 @@
         <jsp:include page="../myPageAside.jsp" />
 			<div class="uContent">
             <h1 class="updTitle">회원 정보 수정</h1>
-            <c:out value="${client}"></c:out>
             <form action="" id="updFrm" class="updFrm">
                 <table>
 					<tr>

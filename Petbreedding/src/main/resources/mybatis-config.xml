@@ -41,6 +41,7 @@
 		<mapper resource="mappers/board/review-mapper.xml"/>
 		<mapper resource="mappers/admin/waitForPartner-mapper.xml"/>
 		<mapper resource="mappers/Shop/shopRev-mapper.xml"/>
+		<mapper resource="mappers/Mypage/myRev-mapper.xml"/>
 	</mappers>
 	
 </configuration>

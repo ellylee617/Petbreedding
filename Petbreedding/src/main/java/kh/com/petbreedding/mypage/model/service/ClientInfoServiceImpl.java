@@ -1,8 +1,11 @@
 package kh.com.petbreedding.mypage.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.mypage.model.dao.ClientInfoDao;
 
@@ -34,6 +37,60 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 	public void deleteClient(String email) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<HairShopReservation> myReservationList(String cl_num) {
+		List<HairShopReservation> result = null;
+		try {
+			result = clientInfoDao.myReservationList(cl_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int status0(String cl_num) {
+		int result = -1;
+		try {
+			result = clientInfoDao.status0(cl_num);
+			if(result == -1 ) {
+				result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int status1(String cl_num) {
+		int result = -1;
+		try {
+			result = clientInfoDao.status1(cl_num);
+			if(result == -1) {
+				result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int status2(String cl_num) {
+		int result = -1;
+		try {
+			result = clientInfoDao.status2(cl_num);
+			if(result == -1) {
+				result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

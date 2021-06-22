@@ -8,16 +8,19 @@ public class HairShopReservation {
 	private int style_num; //메인 스타일 번호
 	private String har_num; //헤어샵 번호
 	private String res_date; //예약날짜 (YYYY-MM-DD)
-	private int res_status; //예약상태
+	private int res_status; //예약상태  (0 : 결제대기, 1 : 결제완료, 2: 이용완료 , 3: 결제취소)
 	private String res_time; //예약시간( HH:MM)
 	private String style_num2; //추가 스타일 번호
+	private String har_name;
+	
+	
 	
 	@Override
 	public String toString() {
 		return "HairShopReservation [har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", style_num=" + style_num + ", har_num=" + har_num + ", res_date="
 				+ res_date + ", res_status=" + res_status + ", res_time=" + res_time + ", style_num2=" + style_num2
-				+ "]";
+				+ ", shopName=" + har_name + "]";
 	}
 	
 	public String getHar_rnum() {
@@ -80,5 +83,14 @@ public class HairShopReservation {
 	public void setStyle_num2(String style_num2) {
 		this.style_num2 = style_num2;
 	}
+
+	public String getHar_name() {
+		return har_name;
+	}
+
+	public void setHar_name(String har_name) {
+		this.har_name = har_name;
+	}
+
 	
 }

@@ -25,13 +25,13 @@
 				<div class="point">
 					<p class="ptitle">보유포인트</p>
 					<p class="ptitle">결제대기</p>
-					<p class="ptitle">예약확정</p>
+					<p class="ptitle">결제완료</p>
 					<p class="ptitle">이용완료</p>
 					<br>
 					<p class="presult">1000P</p>
-					<p class="presult">1</p>
-					<p class="presult presultth">0</p>
-					<p class="presult presultend">4</p>
+					<p class="presult">${status0 }</p>
+					<p class="presult presultth">${status1 }</p>
+					<p class="presult presultend">${status2}</p>
 				</div>
 				<br>
 				<p class="pageTitle">예약 확인/조회</p>
@@ -42,41 +42,45 @@
 						<td class="tdstart">기간별 조회</td>
 						<td><input type="date">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
 							type="date"></td>
-						<td class="tdend"><button type="button rbtn" class="rbutton">조회하기</button></td>
+						<td class="tdend"><button type="button" class="basicBtn rbutton">조회하기</button></td>
 					</tr>
 				</table>
 				<hr>
 				<br> <br>
 				<table class="rtable rlist">
-					<tr onclick="location.href='#'">
+					<tr>
 						<td>예약일</td>
 						<td>예약정보</td>
 						<td colspan="2">상태</td>
 					</tr>
-					<tr onclick="location.href='#'">
-						<td>2021-06-04</td>
-						<td>쿨펫 미용실</a></td>
-						<td>결제대기</td>
-					</tr>
-					<tr onclick="location.href='#'">
-						<td>2021-06-03</td>
-						<td>쿨펫 동물병원</a></td>
-						<td>결제취소</td>
-					</tr>
-					<tr onclick="location.href='#'">
-						<td>2021-06-03</td>
-						<td>쿨펫 미용실</td>
-						<td>이용완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="button" class="basicBtn review" id="btnReWr">리뷰작성</button>
-						</td>
-					</tr>
-					<tr onclick="location.href='#'">
-						<td>2021-06-01</td>
-						<td>쿨펫 동물병원</td>
-						<td>이용완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<c:if test="${empty myRev }">
+						<tr onclick="location.href='#'">
+							<td colspan='4'>예약하신 내역이 없습니다.</td>
+						<tr>
+					</c:if>
+					<c:forEach items="${myRev}" var="myRev">
+						<tr onclick="location.href='#'">
+							<td>${myRev.res_date }</td>
+							<td>${myRev.har_name }</a></td>
+							<c:if test="${myRev. res_status eq 0}">
+								<td>결제대기</td>						
+							</c:if>
+							<c:if test="${myRev. res_status eq 1}">
+								<td>결제완료</td>						
+							</c:if>
+							<c:if test="${myRev. res_status eq 2}">
+								<td>이용완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<button type="button" class="basicBtn review" id="btnReWr">리뷰작성</button>
+								</td>						
+							</c:if>
+							<c:if test="${myRev. res_status eq 3}">
+								<td>결제취소</td>						
+							</c:if>
+						</tr>
+					</c:forEach>
+<!-- 					<td>이용완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<button type="button" class="basicBtn rbuttoncom">작성완료</button>
-						</td>
-					</tr>
+						</td> -->
 				</table>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />

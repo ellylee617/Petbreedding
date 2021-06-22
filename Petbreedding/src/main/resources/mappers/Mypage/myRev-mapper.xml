@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myRev">
+	
+	<!-- 미용실 예약VO -->
+	<resultMap type="HairRev" id="HairRev">
+		<id column="HAR_RNUM" property="har_rnum"/>
+		<result column="MSG_NUM" property="msg_num" />
+		<result column="CL_NUM" property="cl_num" />
+		<result column="PET_NUM" property="pet_num" />
+		<result column="STYLE_NUM" property="style_num" />
+		<result column="HAR_NUM" property="har_num" />
+		<result column="RES_DATE" property="res_date" />
+		<result column="RES_STATUS" property="res_status" />
+		<result column="RES_TIME" property="res_time" />
+		<result column="STYLE_NUM2" property="style_num2" />
+		<result column="HAR_NAME" property="har_name"/>
+	</resultMap>
+	
+	
+	<!-- 예약확인/조회 페이지 -->
+	<select id="myRevList" parameterType="string" resultMap="HairRev">
+        SELECT HAR_RESERVATION.* , hair_salon.har_name
+		FROM HAR_RESERVATION LEFT JOIN hair_salon
+		ON CL_NUM = #{cl_num} AND hair_salon.har_num = har_reservation.har_num
+	</select>
+	
+	<!-- 결제대기 상태 카운트 -->
+	<select id="status0" resultType="int" parameterType="string">
+		SELECT COUNT(RES_STATUS) 
+		FROM HAR_RESERVATION
+		WHERE CL_NUM = #{cl_num} AND RES_STATUS = 0
+	</select>
+	<!-- 결제완료 상태 카운트 -->
+	<select id="status1" resultType="int" parameterType="string">
+		SELECT COUNT(RES_STATUS) 
+		FROM HAR_RESERVATION
+		WHERE CL_NUM = #{cl_num} AND RES_STATUS = 1
+	</select>
+	<!-- 이용완료 상태 카운트 -->
+	<select id="status2" resultType="int" parameterType="string">
+		SELECT COUNT(RES_STATUS) 
+		FROM HAR_RESERVATION
+		WHERE CL_NUM = #{cl_num} AND RES_STATUS = 2
+	</select>
+	
+	<!-- 날짜로 목록조회하기 -->
+	<select id="myRevListDate" parameterType="list" resultMap="HairRev">
+		SELECT HAR_RESERVATION.* , hair_salon.har_name
+		FROM HAR_RESERVATION left join hair_salon
+		on CL_NUM = #{cl_num} AND hair_salon.har_num = har_reservation.har_num 
+        WHERE RES_DATE BETWEEN #{res_date} AND #{res_date2}
+	</select>
+	
+</mapper>
