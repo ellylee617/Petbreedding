@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- CL_NUM              VARCHAR2(20)  -->
+<!-- POINT_NUM           VARCHAR2(20)  -->
+<!-- INDEXS     NOT NULL NUMBER(1)     -->
+<!-- EXP_DATE   NOT NULL VARCHAR2(20)  -->
+<!-- EXP_TYPE   NOT NULL VARCHAR2(20)  -->
+<!-- EXP_FROM   NOT NULL VARCHAR2(20)  -->
+<!-- EXP_ID     NOT NULL VARCHAR2(20)  -->
+<!-- EXP_POINT  NOT NULL NUMBER(5)     -->
+<!-- CURR_POINT NOT NULL NUMBER(5)    -->
+
+<!-- 	private String clNum; -->
+<!-- 	private String pointNum; -->
+<!-- 	private int indexs; -->
+<!-- 	private String expDate; -->
+<!-- 	private String expType; -->
+<!-- 	private String expFrom; -->
+<!-- 	private String expId; -->
+<!-- 	private int expPoint; -->
+<!-- 	private int currPoint; -->
+
+<mapper namespace="MyPoint">
+	<resultMap type="MyPoint" id="MyPointMap">
+		<id column="CL_NUM" property="clNum"/>
+		<result column="POINT_NUM" property="pointNum"/>
+		<result column="INDEXS" property="indexs"/>
+		<result column="EXP_DATE" property="expDate"/>
+		<result column="EXP_TYPE" property="expType"/>
+		<result column="EXP_FROM" property="expFrom"/>
+		<result column="EXP_ID" property="expId"/>
+		<result column="EXP_POINT" property="expPoint"/>
+		<result column="CURR_POINT" property="currPoint"/>
+	</resultMap>
+	
+	<select id="myPointSelectList" parameterType="MyPoint" resultMap="MyPointMap">
+		<![CDATA[
+			SELECT * FROM MYPOINT WHERE CL_NUM = #{clNum}
+		 ]]>
+	</select>
+	
+</mapper>

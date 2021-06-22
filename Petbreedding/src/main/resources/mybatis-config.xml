@@ -26,6 +26,7 @@
 		<typeAlias type="kh.com.petbreedding.board.model.vo.Review" alias="Review"/>
 		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.Style" alias="Style"/>
 		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HairShopReservation" alias="HairRev"/>
+		<typeAlias type="kh.com.petbreedding.mypage.model.vo.MyPoint" alias="MyPoint"/>
 		<!-- TODO -->
 	</typeAliases>
 	
@@ -42,6 +43,7 @@
 		<mapper resource="mappers/admin/waitForPartner-mapper.xml"/>
 		<mapper resource="mappers/Shop/shopRev-mapper.xml"/>
 		<mapper resource="mappers/Mypage/myRev-mapper.xml"/>
+		<mapper resource="mappers/Mypage/myPoint-mapper.xml"/>
 	</mappers>
 	
 </configuration>
