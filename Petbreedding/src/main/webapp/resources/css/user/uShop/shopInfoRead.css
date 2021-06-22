@@ -160,10 +160,14 @@
 .reviewWord{
     display: inline-block;
 }
-.review_img{
+.review_imgBox{
     display: inline-block;
     position: absolute;
     right: 0;
+}
+.review_img {
+	width: 150px;
+	height: 100px;
 }
 
 /*답글*/

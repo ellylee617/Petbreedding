@@ -1,9 +1,14 @@
 package kh.com.petbreedding.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -66,7 +73,8 @@ public class BoardController {
 	public String rwrite(
 			Locale locale
 			,HttpSession session
-			,HttpServletRequest request
+			,MultipartHttpServletRequest req
+			,HttpServletResponse res
 			,Client cl
 			,@RequestParam(name="revCont") String revCont
 			,@RequestParam(name="selectedVal") int revVal
@@ -75,7 +83,7 @@ public class BoardController {
 		cl = (Client) session.getAttribute("client");
 		String clNum = cl.getCl_num();
 		String clNickName = cl.getNickname();
-		System.out.println("리퀘스트 겟 파라메타" + request.getParameter("selectedVal"));
+		System.out.println("리퀘스트 겟 파라메타" + req.getParameter("selectedVal"));
 		
 		Review rv = new Review();
 		System.out.println(clNum);
@@ -87,13 +95,48 @@ public class BoardController {
 		rv.setRevCont(revCont);
 		rv.setRevVal(revVal);
 		
+		// 파일업로드
+		MultipartFile mf = req.getFile("reviewImg"); // 업로드 파라미터
+		String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
+		UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
+		String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
+		String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
+		File uploadFile = new File(path + "//" + saveName); // 복사될 위치
+		
+		try {
+			mf.transferTo(uploadFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		rv.setRevImg(saveName);
+		
+		System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
+		
 		int result = reviewService.insertReview(rv);
 		
-		if(result == 1) {
-			System.out.println("리뷰 등록 성공");
-		} else {
-			System.out.println("리뷰 등록 실패");
+		PrintWriter out = null;
+		
+		String msg1 = "Upload has been successed";
+		String msg2 = "Upload has been failed";
+		
+		try {
+			out = res.getWriter();
+			if(result == 1) {
+				out.println("<script>alert('" + msg1 + "');</script>");
+				System.out.println("[세훈] 리뷰 등록 성공");
+				
+			} else {
+				out.println("<script>alert('" + msg2 + "');</script>");
+				System.out.println("[세훈] 리뷰 등록 실패");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.flush();
+			out.close();
 		}
+		
 		
 		return "redirect:mypage";
 	}
