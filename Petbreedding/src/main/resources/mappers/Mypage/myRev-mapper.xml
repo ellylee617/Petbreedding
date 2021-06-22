@@ -15,6 +15,7 @@
 		<result column="RES_TIME" property="res_time" />
 		<result column="STYLE_NUM2" property="style_num2" />
 		<result column="HAR_NAME" property="har_name"/>
+		<result column="RES_DATE2" property="res_date2" />
 	</resultMap>
 	
 	
@@ -45,11 +46,16 @@
 	</select>
 	
 	<!-- 날짜로 목록조회하기 -->
-	<select id="myRevListDate" parameterType="list" resultMap="HairRev">
+	<select id="myRevListDate" parameterType="HairRev" resultMap="HairRev">
+	
 		SELECT HAR_RESERVATION.* , hair_salon.har_name
 		FROM HAR_RESERVATION left join hair_salon
 		on CL_NUM = #{cl_num} AND hair_salon.har_num = har_reservation.har_num 
-        WHERE RES_DATE BETWEEN #{res_date} AND #{res_date2}
+		<if test="#{res_date2} != null">
+			<![CDATA[
+	        WHERE RES_DATE >= #{res_date} AND RES_DATE <= #{res_date2}
+	   		 ]]>
+		</if>
 	</select>
 	
 </mapper>

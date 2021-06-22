@@ -14,7 +14,7 @@
 <link href="${path}/resources/css/user/uMyPage/myReservationList.css"	rel="stylesheet" type="text/css">
 <link	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"	rel="stylesheet" />
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -22,6 +22,7 @@
 		<section class="section">
 			<jsp:include page="../myPageAside.jsp" />
 			<div class="mcontent">
+				<input type="hidden" id="cl_num" value="${client.cl_num }">
 				<div class="point">
 					<p class="ptitle">보유포인트</p>
 					<p class="ptitle">결제대기</p>
@@ -40,15 +41,15 @@
 				<table class="rtable">
 					<tr>
 						<td class="tdstart">기간별 조회</td>
-						<td><input type="date">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-							type="date"></td>
-						<td class="tdend"><button type="button" class="basicBtn rbutton">조회하기</button></td>
+						<td><input type="date" id="start">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+							type="date" id="end"></td>
+						<td class="tdend" ><button type="button" class="basicBtn rbutton" id="searchDate">조회하기</button></td>
 					</tr>
 				</table>
 				<hr>
 				<br> <br>
 				<table class="rtable rlist">
-					<tr>
+					<tr id="rListHead">
 						<td>예약일</td>
 						<td>예약정보</td>
 						<td colspan="2">상태</td>
@@ -70,7 +71,7 @@
 							</c:if>
 							<c:if test="${myRev. res_status eq 2}">
 								<td>이용완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<button type="button" class="basicBtn review" id="btnReWr">리뷰작성</button>
+									<button type="button" class="basicBtn review btnReWr">리뷰작성</button>
 								</td>						
 							</c:if>
 							<c:if test="${myRev. res_status eq 3}">

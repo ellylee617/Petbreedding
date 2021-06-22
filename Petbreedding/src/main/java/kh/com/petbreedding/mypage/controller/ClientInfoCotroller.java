@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.client.model.vo.Client;
@@ -21,7 +24,7 @@ public class ClientInfoCotroller {
 
 	// 예약조회
 	@RequestMapping("/mypage")
-	public String myReservationList(String cl_num, HttpSession session, Model model) {
+	public String myReservationList(String cl_num, Model model) {
 		
 		List<HairShopReservation> result = clientInfoService.myReservationList(cl_num);
 		int status0 = clientInfoService.status0(cl_num);
@@ -34,7 +37,19 @@ public class ClientInfoCotroller {
 		
 		return "/user/uMyPage/myReservationList";
 	}
+	
+	//리스트 조회 결과
+	@RequestMapping("/mypage2")
+	@ResponseBody
+	public List<HairShopReservation> myRevDateList(HairShopReservation hsr) {
+		
+		List<HairShopReservation> result = clientInfoService.myRevDateList(hsr);
 
+		return result;
+	}
+	
+	
+	
 	// 예약 자세히 보기
 	@RequestMapping("/mypage/reservationdetail")
 	public String myReservationDetail(HttpSession session) {

@@ -61,7 +61,7 @@
 		<!-- 예약등록 -->
 		<insert id="insertHairRev" parameterType="HairRev">
 			INSERT INTO HAR_RESERVATION 
-			VALUES('HAR000' || SEQ_HAR_RESERVATION.NEXTVAL,'M1', #{cl_num}, #{pet_num},#{style_num}, #{har_num},#{res_date},0,#{res_time},#{style_num2})
+			VALUES('HAR000' || SEQ_HAR_RESERVATION.NEXTVAL,'M1', #{cl_num}, #{pet_num},#{style_num}, #{har_num},#{res_date},0,#{res_time},#{style_num2},null)
 		</insert>
 	
 	

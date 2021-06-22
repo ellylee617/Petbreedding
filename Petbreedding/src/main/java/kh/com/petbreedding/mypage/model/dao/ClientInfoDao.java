@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.client.model.vo.Client;
@@ -37,6 +38,11 @@ public class ClientInfoDao {
 	//예약확인/조회 리스트
 	public List<HairShopReservation> myReservationList(String cl_num) {
 		return sqlSession.selectList("myRev.myRevList", cl_num);
+	}
+	
+	//예약확인/조회 날짜 검색 리스트
+	public List<HairShopReservation> myRevDateList(HairShopReservation hsr) {
+		return sqlSession.selectList("myRev.myRevListDate", hsr);
 	}
 	
 	//결제대기 상태 카운트

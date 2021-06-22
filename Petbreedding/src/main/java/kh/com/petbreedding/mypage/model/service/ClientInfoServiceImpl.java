@@ -52,6 +52,20 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 	}
 
 	@Override
+	public List<HairShopReservation> myRevDateList(HairShopReservation hsr) {
+		List<HairShopReservation> result = null;
+		try {
+			result = clientInfoDao.myRevDateList(hsr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
+	
+	@Override
 	public int status0(String cl_num) {
 		int result = -1;
 		try {
@@ -93,4 +107,5 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 		return result;
 	}
 
+	
 }
