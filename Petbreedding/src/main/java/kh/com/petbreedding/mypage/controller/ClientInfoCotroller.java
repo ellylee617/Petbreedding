@@ -49,7 +49,6 @@ public class ClientInfoCotroller {
 	}
 	
 	
-	
 	// 예약 자세히 보기
 	@RequestMapping("/mypage/reservationdetail")
 	public String myReservationDetail(HttpSession session) {
