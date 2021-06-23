@@ -95,49 +95,31 @@
                 <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
             </div>
             <div class="ultraS">
+           	 <c:forEach items="${salonList}" var="item">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <ul>
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
                                 <div class="ultraList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="ultraList_title_area"><a href="#">쿨펫 미용실</a></div>
-                                <div class="ultraList_info_area"><a href="#">가위컷 전문 미용실입니다.</a></div>
+                                <div class="ultraList_title_area"><a href="#">${item.shopName }</a></div>
+                                <div class="ultraList_info_area"><a href="#">${item.shopMInfo }</a></div>
                                 <div class="ultraList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
+                                 <form class="frmShopInfo" >
                                 <div class="ultraList_button">
-                                    <a href="storeInfoRead.html" class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
                                 </div>
+                               </form>
                             </div>                                                            
                         </li>
                     </div>
                 </ul>
+                </c:forEach>
             </div>
-            
-            <div class="storeS">
-                <ul>
-                    <div class="Store">                     
-                        <li class="storeList">
-                            <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="storeList_title_area"><a href="#">쿨펫 동물병원</a></div>
-                                <div class="storeList_info_area"><a href="#">가위컷 전문 미용실입니다.</a></div>
-                                <div class="storeList_etc_area">
-                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
-                                    <a href="#">구매건수<small>999+</small></a>
-                                    <a href="#">찜하기<small>999+</small></a>
-                                </div>
-                                <div class="storeList_button">
-                                    <a href="storeInfoRead.html" class="goList">정보보기</a>
-                                </div>
-                            </div>                                                            
-                        </li>
-                    </div>
-                </ul>
-            </div>            
             </c:if>
         </section>
 	
