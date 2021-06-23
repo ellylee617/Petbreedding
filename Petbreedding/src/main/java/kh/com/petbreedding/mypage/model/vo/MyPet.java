@@ -20,28 +20,14 @@ public class MyPet {
 	private String pet_img; // 반려동물 사진
 	private String pet_weight; //반료동물 몸무게
 	private String mbti; //멍BTI
-	private String pet_weight;
-	
-	
 	
 	@Override
 	public String toString() {
 		return "MyPet [pet_num=" + pet_num + ", cl_num=" + cl_num + ", pet_name=" + pet_name + ", pet_kind=" + pet_kind
 				+ ", pet_birth=" + pet_birth + ", pet_gen=" + pet_gen + ", pet_neut=" + pet_neut + ", pet_exper="
 				+ pet_exper + ", pet_vaccin=" + pet_vaccin + ", pet_bite=" + pet_bite + ", kneecap=" + kneecap
-<<<<<<< HEAD
-				+ ", dislike=" + dislike + ", pet_others=" + pet_others + ", pet_img=" + pet_img + ", mbti=" + mbti
-				+ ", pet_weight=" + pet_weight + "]";
-=======
 				+ ", dislike=" + dislike + ", pet_others=" + pet_others + ", pet_img=" + pet_img + ", pet_weight="
-				+ pet_weight + ", mbti=" + mbti + ", style=" + style + "]";
-	}
-	public String getPet_weight() {
-		return pet_weight;
-	}
-	public void setPet_weight(String pet_weight) {
-		this.pet_weight = pet_weight;
->>>>>>> c1733a4bbaf79e4f579d3285c8d90af345d29225
+				+ pet_weight + ", mbti=" + mbti + "]";
 	}
 	public String getPet_num() {
 		return pet_num;
@@ -139,6 +125,7 @@ public class MyPet {
 	public void setPet_weight(String pet_weight) {
 		this.pet_weight = pet_weight;
 	}
+
 	
 
 
