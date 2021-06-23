@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kh.com.petbreedding.Shop.model.service.ReservationService;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.bmypage.model.vo.Style;
+import kh.com.petbreedding.mypage.model.service.ClientInfoService;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
 @Controller
@@ -20,6 +21,9 @@ public class ReservationController {
 	
 	@Autowired
 	private ReservationService revService;
+	
+	@Autowired
+	private ClientInfoService clientInfoService;
 	
 	//미용실 예약하기
 	@RequestMapping(value = "shopReservation", method = RequestMethod.GET)
@@ -45,8 +49,20 @@ public class ReservationController {
 		return result;
 	}
 	
-	//미용실 결제 처리
-	
+	//미용실 결제화면
+	@RequestMapping(value = "/shopPayment", method = RequestMethod.GET)
+	public String shopPayment(String har_rnum, Model model) {
+		
+		List<HairShopReservation> list = revService.shopPayment(har_rnum);
+		String result2 = clientInfoService.anotherMenu(har_rnum);
+		int getPrice = clientInfoService.getPrice(har_rnum);
+			
+		model.addAttribute("myRev", list);
+		model.addAttribute("another", result2);
+		model.addAttribute("totalPrice", getPrice);
+		
+		return "/user/uShop/shopPayment";
+	}
 	
 	
 

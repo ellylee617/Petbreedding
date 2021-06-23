@@ -20,7 +20,7 @@
 
 <!-- Calendar -->
 <link href="${path}/resources/css/user/uShop/datepicker.css" rel="stylesheet" type="text/css" >
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 </head>
 <body>
@@ -156,13 +156,16 @@
                 <p>지금 결제 하지 않으셔도 Mypage에서 결제하실 수 있습니다.</p>
                 <button id="goTOPay">바로 결제할게요</button>
                 <button id="nextTime">다음에 할게요</button>
+                <input type="hidden" id="har_rnum">
             </div>
         </div>	
 </div>
 	
 	 <!-- script -->
+	 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
      <script type="text/javascript" src="${path}/resources/js/user/uShop/shopReservation.js"></script>
      <script type="text/javascript" src="${path}/resources/js/user/uShop/resCalendar.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
+     
 </body>
 </html>

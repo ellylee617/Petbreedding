@@ -57,7 +57,7 @@ public class ClientInfoCotroller {
 	
 	// 예약 자세히 보기
 	@RequestMapping("/mypage/revdetail")
-	public String myReservationDetail(String har_rnum, HttpSession session, Model model) {
+	public String myReservationDetail(String har_rnum, Model model) {
 		
 		List<HairShopReservation> result = clientInfoService.myRevDetail(har_rnum);
 		String result2 = clientInfoService.anotherMenu(har_rnum);
@@ -69,6 +69,13 @@ public class ClientInfoCotroller {
 		return "/user/uMyPage/myReservationDetail";
 	}
 
+	//미용실 예약 취소
+	@RequestMapping("cancleRev")
+	public int cancleRev(String har_rnum) {
+		
+		int result = clientInfoService.cancleRev(har_rnum);
+		return result;
+	}
 
 	// 포인트내역
 	@RequestMapping("/mypage/point")

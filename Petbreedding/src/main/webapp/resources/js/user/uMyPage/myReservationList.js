@@ -157,10 +157,12 @@ $("#searchDate").on("click",function(){
 	
 });
 
-
+//상세보기페이지 진입
 function goDetail(value){
 	location.href = "/petbreedding/mypage/revdetail?har_rnum="+value+"";
 }
+
+
 
 
 //	$("#regBtn").on("click", function(){

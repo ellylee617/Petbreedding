@@ -81,7 +81,7 @@ $("#reservation_btn").on("click", function(){
 	var res_time = $(".chooseTime").text(); //시간
 	var cl_num = $("#clNum").val();
 	var har_num = $("#harNum").val();
-	
+
 	$.ajax({
 		url: "doReservation",
 		type: "POST",
@@ -93,6 +93,10 @@ $("#reservation_btn").on("click", function(){
 			res_date : res_date,
 			res_time : res_time,
 			style_num2 : style_num2
+		},
+		success: function(data){
+			var har_rnum = data.har_rnum;
+			$("#har_rnum").val(har_rnum);
 		}
 	});
 });
@@ -103,7 +107,10 @@ $("#nextTime").on("click",function(){
 });
 
 //바로결제!!
-
+$("#goTOPay").on("click",function(){
+	var text = $("#har_rnum").val();
+	location.href="/petbreedding/shopPayment?har_rnum="+text+"";
+});
 
 
 
