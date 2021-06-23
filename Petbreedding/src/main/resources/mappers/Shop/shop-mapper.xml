@@ -45,6 +45,10 @@
 			<result column="HAR_DAYOFF" property="harDayOff"/>
 		</resultMap>
 			
+		<!-- 미용실 리스트 -->
+		<select id="selectHarList" parameterType="HairSalon" resultMap="HairSalon">
+			SELECT * FROM HAIR_SALON
+		</select>
 			
 		<!-- 미용실 기본 정보 기입 -->
 		<insert id="insertHarInfo" parameterType="HairSalon">
