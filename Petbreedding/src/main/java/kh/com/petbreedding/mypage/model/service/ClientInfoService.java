@@ -16,4 +16,8 @@ public interface ClientInfoService {
 	public int status0(String cl_num); //결제대기 카운트
 	public int status1(String cl_num); //결제완료 카운트
 	public int status2(String cl_num); //이용완료 카운트
+	
+	public List<HairShopReservation> myRevDetail(String har_rnum); //예약 상세조회
+	public String anotherMenu(String har_rnum); //추가 메뉴
+	public int getPrice(String har_rnum); //총합
 }

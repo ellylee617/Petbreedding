@@ -20,14 +20,15 @@
 		<section class="section">
 			<jsp:include page="../myPageAside.jsp" />
 			<div class="mcontent">
-				
-				,${pointList},
-				<c:forEach items="${pointList}" var="items">
+		
+					,${currPoint},
 				
 					<div class="point">
+<%-- 						<c:forEach items="${pointList}" var="items"> --%>
 	                    <p class="ptitle">보유포인트</p>
 	                    <br>
-	                    <p class="presult">${items.currPoint }P</p>
+	                    <p class="presult">${currPoint}값이 안들오는 상태P</p>
+<%-- 	                    </c:forEach> --%>
 	                </div>
 	                <br>
 	                <div class="selectOpt">
@@ -41,13 +42,23 @@
 	                    <span>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="basicBtn">조회하기</button></span>
 	                </div>
 	                <br><br><br><br>
-	                <table class="pointtable">
-	                
+							<c:forEach items="${pointList}" var="items">
+	                		<table class="pointtable">
 	                    <tr class="pointline">
-	                        <td class="pgreen"><div class="circleg">${items.expType }</div></td>
-	                        <td>${items.expDate }</td>
-	                        <td>${items.expFrom }</td>
-	                        <td class="pgreen">${items.expPoint }p</td>
+	                
+		                    <c:if test="${items.pointNum eq 'PO1' or 'PO2'}">
+		                        <td class="pred"><div class="circlep">${items.expType }</div></td>
+		                        <td>${items.expDate }</td>
+		                        <td>${items.expFrom }</td>
+		                        <td class="pred">${items.expPoint }p</td>
+		                    </c:if>
+		                    <c:if test="${items.pointNum ne 'PO1' or 'PO2'}">
+		                  		<td class="pgreen"><div class="circleg">${items.expType }</div></td>
+		                        <td>${items.expDate }</td>
+		                        <td>${items.expFrom }</td>
+		                        <td class="pgreen">${items.expPoint }p</td>
+		                    </c:if>
+		                    
 	                    </tr>
 <!-- 	                    <tr class="pointline">
 	                        <td class="pred"><div class="circlep">사용</div></td>
@@ -68,11 +79,11 @@
 	                        <td class="pred">-5300p</td>
 	                    </tr> -->
 	                </table>
+	                </c:forEach>
 	                <div class="divmore">
 	                <button class="btnmore">더보기</button>
 	                </div>
-	                
-                </c:forEach>
+	               
             </div>
         </section>
         <jsp:include page="../../common/footer.jsp"/>

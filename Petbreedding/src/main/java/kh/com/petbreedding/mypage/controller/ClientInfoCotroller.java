@@ -56,10 +56,19 @@ public class ClientInfoCotroller {
 	
 	
 	// 예약 자세히 보기
-	@RequestMapping("/mypage/reservationdetail")
-	public String myReservationDetail(HttpSession session) {
+	@RequestMapping("/mypage/revdetail")
+	public String myReservationDetail(String har_rnum, HttpSession session, Model model) {
+		
+		List<HairShopReservation> result = clientInfoService.myRevDetail(har_rnum);
+		String result2 = clientInfoService.anotherMenu(har_rnum);
+		int getPrice = clientInfoService.getPrice(har_rnum);
+		model.addAttribute("myRev", result);
+		model.addAttribute("another", result2);
+		model.addAttribute("totalPrice", getPrice);
+		
 		return "/user/uMyPage/myReservationDetail";
 	}
+
 
 	// 포인트내역
 	@RequestMapping("/mypage/point")
@@ -75,13 +84,21 @@ public class ClientInfoCotroller {
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(clNum);
 		
+		String currPoint = myPointService.CurrPointSelectOne(clNum);
 		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
+		
 		System.out.println("[세훈] 컨트롤러 pointList : " + pointList);
+		System.out.println("[세훈] 컨트롤러 currPoint : " + currPoint);
 		mv.addObject("pointList", pointList);
+		mv.addObject("currPoint", currPoint);
+		
+
+		//		req.setAttribute("currPoint", currPoint);
 		mv.setViewName("/user/uMyPage/point");
 		
 		return mv;
 	}
+	
 
 	// 1:1 문의 내역
 	@RequestMapping("/mypage/ask")

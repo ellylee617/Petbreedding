@@ -60,7 +60,7 @@
 						<tr>
 					</c:if>
 					<c:forEach items="${myRev}" var="myRev">
-						<tr onclick="location.href='#'">
+						<tr onclick="location.href='${path}/mypage/revdetail?har_rnum=${myRev.har_rnum}'">
 							<td>${myRev.res_date }</td>
 							<td>${myRev.har_name }</a></td>
 							<c:if test="${myRev. res_status eq 0}">
@@ -77,7 +77,7 @@
 							<c:if test="${myRev. res_status eq 3}">
 								<td>결제취소</td>						
 							</c:if>
-						</tr>
+						</tr>			
 					</c:forEach>
 <!-- 					<td>이용완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<button type="button" class="basicBtn rbuttoncom">작성완료</button>

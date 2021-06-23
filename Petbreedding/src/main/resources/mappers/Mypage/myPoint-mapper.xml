@@ -39,5 +39,15 @@
 			SELECT * FROM MYPOINT WHERE CL_NUM = #{clNum}
 		 ]]>
 	</select>
+	<select id="CurrPointSelectOne" parameterType="string" resultType="string">
+		<![CDATA[
+			SELECT CURR_POINT
+			FROM (
+			SELECT * FROM MYPOINT ORDER BY INDEXS DESC
+			)
+			WHERE CL_NUM = 'CL1' AND ROWNUM = 1
+			;
+		]]>
+	</select>
 	
 </mapper>

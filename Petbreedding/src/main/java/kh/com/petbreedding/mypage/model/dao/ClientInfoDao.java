@@ -16,24 +16,10 @@ public class ClientInfoDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	// 회원 정보 불러오기
-	public Client selectClientInfo(String email) {
-		
-		// TODO Auto-generated method stub
-		return null;
-		
-	}
-	
 	// 회원 정보 수정 
 	public int updateClientInfo(Client client) {
 		return sqlSession.update("Modify.modifyClient", client);
 	} 
-	
-
-	// 회원 탈퇴
-	public void deleteClient(String email) {
-		
-	}
 	
 	//예약확인/조회 리스트
 	public List<HairShopReservation> myReservationList(String cl_num) {
@@ -60,4 +46,14 @@ public class ClientInfoDao {
 		return sqlSession.selectOne("myRev.status2", cl_num);
 	}
 	
+	//예약확인 상세조회
+	public List<HairShopReservation> myRevDetail(String har_rnum){
+		return sqlSession.selectList("myRev.myRevDetail", har_rnum);
+	}
+	public String anotherMenu(String har_rnum){
+		return sqlSession.selectOne("myRev.anotherMenu", har_rnum);
+	}
+	public int getPrice(String har_rnum){
+		return sqlSession.selectOne("myRev.getPrice", har_rnum);
+	}
 }

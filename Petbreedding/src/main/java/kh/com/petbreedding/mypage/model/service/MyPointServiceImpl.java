@@ -18,15 +18,28 @@ public class MyPointServiceImpl implements MyPointService {
 	@Override
 	public List<MyPoint> myPointSelectList(MyPoint myPoint) {
 		List<MyPoint> myPointList = null;
-		System.out.println("[세훈] 포인트 서비스 myPointList : " + myPointList);
 		
 		try {
 			myPointList = myPointDao.myPointSelectList(myPoint);
-			System.out.println("[세훈] 포인트 서비스 리턴 이후 : " + myPointList);
 		} catch(Exception e) {
 			
 		}
 		return myPointList;
+	}
+
+	@Override
+	public String CurrPointSelectOne(String clNum) {
+		String result = null;
+		System.out.println("[세훈] 보유 포인트 서비스 clNum : " + clNum);
+		
+		try {
+			result = myPointDao.CurrPointSelectOne(clNum);
+			System.out.println("[세훈] 보유 포인트 서비스 리턴 이후 result : " + result);
+		} catch(Exception e) {
+			
+		}
+		
+		return result;
 	}
 	
 
