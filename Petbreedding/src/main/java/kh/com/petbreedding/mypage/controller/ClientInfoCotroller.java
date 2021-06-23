@@ -60,7 +60,11 @@ public class ClientInfoCotroller {
 	public String myReservationDetail(String har_rnum, HttpSession session, Model model) {
 		
 		List<HairShopReservation> result = clientInfoService.myRevDetail(har_rnum);
+		String result2 = clientInfoService.anotherMenu(har_rnum);
+		int getPrice = clientInfoService.getPrice(har_rnum);
 		model.addAttribute("myRev", result);
+		model.addAttribute("another", result2);
+		model.addAttribute("totalPrice", getPrice);
 		
 		return "/user/uMyPage/myReservationDetail";
 	}

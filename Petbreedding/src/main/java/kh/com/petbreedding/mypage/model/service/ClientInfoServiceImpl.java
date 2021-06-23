@@ -119,5 +119,27 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 		return result;
 	}
 
+	@Override
+	public String anotherMenu(String har_rnum) {
+		String result = null;
+		try {
+			result = clientInfoDao.anotherMenu(har_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getPrice(String har_rnum) {
+		int result = -1;
+		try {
+			result = clientInfoDao.getPrice(har_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	
 }
