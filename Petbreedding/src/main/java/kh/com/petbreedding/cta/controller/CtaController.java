@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,15 +43,15 @@ public class CtaController {
 		String bp_Id =  vo.getBp_Id();
 		System.out.println(bp_Id);
 		List<Cta> list = ctaService.listAll();
-		List<CtaPay> list2 = ctaService.mycta(bp_Id);
 		System.out.println("db갔다옴");
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("bPartner/bSales/cta");
 		mav.addObject("list", list);
-		mav.addObject("cta", list2);
+		mav.addObject("cta", ctaService.mycta(bp_Id));
 		return mav;
 	}
-	//울트라콜 페이지 조회
+	//울트라콜 결제 페이지 조회
 	@RequestMapping(value="ctapay", method = RequestMethod.GET)
 	public ModelAndView ctapay(
 			@RequestParam String CM_TYPE,
@@ -66,66 +67,44 @@ public class CtaController {
 	@RequestMapping(value="ctapaydata", method = RequestMethod.POST)
 	public String ctapaydata(
 			CtaPay pay,
-			 HttpServletResponse response,
-			 HttpServletRequest request
-			) throws Exception {
-		int result = 0;
-		int result2 = 0;
-		try {
-			result = ctaService.insertpay(pay);
-			result2 = ctaService.insertCta(pay);
-			System.out.println(result);
-			if(result==0) {
-				result = ctaService.insertCta(pay);
-				result2 = ctaService.insertCta(pay);
-				System.out.println("ctapay ctrl들어옴");
-			}else if(result > 0) {
-				//TODO
-				
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "";
-	}
-	
-	@RequestMapping(value="insertmycta", method = RequestMethod.POST)
-	public String updatemycta(
-			CtaPay pay,
-			 HttpServletResponse response,
-			 HttpServletRequest request
-			) throws Exception {
-		int result = 0;
-		try {
-			if(pay.getBP_ID() == null) {
-			result = ctaService.insertCta(pay);
-			System.out.println("mycta ctrl들어옴");
-			}else {
-				System.out.println("아이디있음");
-			}
-			}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "";
-	}
-	@RequestMapping("mycta")
-	public ModelAndView mycta(
 			HttpSession session,
 			HttpServletResponse res
 			) throws Exception {
 		BPartner vo = (BPartner) session.getAttribute("bP");
 		String bp_id =  vo.getBp_Id();
-		ModelAndView mav = new ModelAndView();
 		
-		if(bp_id == null) {
-			System.out.println("사업자 로그인 안됨");
+		//울트라콜 기존에 있는지 조회하기 위해 존재
+		CtaPay cta = null;
+		cta = ctaService.mycta(bp_id);
+		
+		ctaService.mycta(bp_id);
+		
+		ctaService.insertpay(pay);
+		//울트라콜 충전 이력이 없으면 처음 insert
+		if(cta == null) {
+			ctaService.insertCta(pay);
+			System.out.println("mycta 없음 ctrl");
+		//이미 충전 이력이 있다면 콜수 업데이트 
 		}else {
-			List<CtaPay> list = ctaService.mycta(bp_id);
-			System.out.println("db들고옴");
-			mav.setViewName("bPartner/bSales/cta");
-			mav.addObject("cta", list);
-			
+			System.out.println("이미있음");
+			//update문 
+			 ctaService.updatecta(pay);
 		}
-		return mav;
+		return "";
 	}
+	
+	//울트라콜 1씩 차감 
+	@RequestMapping("ctadel")
+	public String delcta(
+			HttpSession session,
+			HttpServletResponse res
+			) throws Exception{
+		BPartner vo = (BPartner) session.getAttribute("bP");
+		String bp_id =  vo.getBp_Id();
+		System.out.println("ctadel ctrl 들어옴");
+		ctaService.delcta(bp_id);
+		
+		return "redirect:cta";
+	}
+
 }

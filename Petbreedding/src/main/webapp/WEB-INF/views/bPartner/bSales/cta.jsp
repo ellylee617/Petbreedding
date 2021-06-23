@@ -26,12 +26,11 @@
 		            <div class="viewBox">
 			            <p class="viewText fs20">울트라콜</p>
 		                <span class="viewText views fs20">잔여 조회수</span>
-			            <c:forEach var="cta" items="${cta}">
 		                <span class="viewText views fs24">
 		                ${cta.CTA_NUMBER}
 		                </span>
-						</c:forEach>
 		            </div>
+		            <button><a href="ctadel?BP_ID=${bP.bp_Id}">차감 테스트 </a></button>
 		            <article class="aContainer">
 		               
 		               <c:forEach var="list" items="${list }">

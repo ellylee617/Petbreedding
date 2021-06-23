@@ -35,8 +35,18 @@ public class CtaDaoImpl implements CtaDao {
 	}
 
 	@Override
-	public List<CtaPay> mycta(String bp_id) throws Exception {
-		return sqlSession.selectList("Cta.mycta", bp_id);
+	public CtaPay mycta(String bp_id) throws Exception {
+		return sqlSession.selectOne("Cta.mycta", bp_id);
+	}
+
+	@Override
+	public int updatecta(CtaPay cta) throws Exception {
+		return sqlSession.update("Cta.pluscta", cta);
+	}
+
+	@Override
+	public int delcta(String BP_ID) throws Exception {
+		return sqlSession.update("Cta.delcta", BP_ID);
 	}
 
 }
