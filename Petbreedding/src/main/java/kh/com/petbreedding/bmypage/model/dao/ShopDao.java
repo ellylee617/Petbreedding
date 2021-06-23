@@ -39,12 +39,12 @@ public class ShopDao {
 	}
 	
 	// 미용실 기본 정보 불러오기
-	public List<HairSalon> selectHarInfo(String bpId) {
+	public HairSalon selectHarInfo(String bpId) {
 		
 		System.out.println(" !! ShopDao - selectHarInfo() 실행 !!");
 		System.out.println("bp id:"+bpId);
 		
-		return sqlSession.selectList("Shop.selectHarInfo", bpId);
+		return sqlSession.selectOne("Shop.selectHarInfo", bpId);
 		
 		
 	}
@@ -102,12 +102,12 @@ public class ShopDao {
 	}
 	
 	// 동물병원 기본 정보 불러오기
-	public List<Hospital> selectHosInfo(String bpId){
+	public Hospital selectHosInfo(String bpId){
 
 		System.out.println(" !! ShopDao - selectHosInfo() 실행 !!");
 		System.out.println("bp id:"+bpId);
 		
-		return sqlSession.selectList("Shop.selectHosInfo", bpId);
+		return sqlSession.selectOne("Shop.selectHosInfo", bpId);
 		
 	}
 	

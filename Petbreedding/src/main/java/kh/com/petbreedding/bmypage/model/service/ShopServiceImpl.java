@@ -191,15 +191,15 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<HairSalon> selectHarInfo(String bpId) {
+	public HairSalon selectHarInfo(String bpId) {
 		
-		List<HairSalon> list = null;
+		HairSalon vo = null;
 		
-		list = shopDao.selectHarInfo(bpId);
+		vo = shopDao.selectHarInfo(bpId);
 		
-		System.out.println("List<HairSalon> list::"+list);
+		System.out.println("HairSalon vo::"+ vo);
 		
-		return list;
+		return vo;
 	}
 
 	@Override
@@ -227,14 +227,14 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<Hospital> selectHosInfo(String bpId) {
-		List<Hospital> list = null;
+	public Hospital selectHosInfo(String bpId) {
 		
-		list = shopDao.selectHosInfo(bpId);
+		Hospital vo = null;
+		vo = shopDao.selectHosInfo(bpId);
 		
-		System.out.println("List<Hospital> list::"+list);
+		System.out.println("Hospital vo::"+vo);
 		
-		return list;
+		return vo;
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public interface ShopService {
 	
 	public List<HairSalon> selectHarList(int currentPage, int limit); // 미용실 리스트 조회
 	public int insertHarInfo(HairSalon vo);	// 미용실 기본 정보 입력 
-	public List<HairSalon> selectHarInfo(String bpId); // 미용실 기본 정보 불러오기
+	public HairSalon selectHarInfo(String bpId); // 미용실 기본 정보 불러오기
 	public int updateHarInfo(HairSalon vo) ; // 미용실 기본 정보 수정
 	public int insertHarImg(HairSalonImg vo); // 미용실 이미지 첨부
 	public int deleteHarImg(String harNum); // 미용실 이미지 수정 (삭제)
@@ -24,7 +24,7 @@ public interface ShopService {
 	
 	
 	public int insertHosInfo(Hospital vo);	// 동물병원 기본 정보 입력
-	public List<Hospital> selectHosInfo(String bpId); //동물병원 기본 정보 불러오기
+	public Hospital selectHosInfo(String bpId); //동물병원 기본 정보 불러오기
 	public int updateHosInfo(Hospital vo); // 동물병원 기본 정보 수정
 	public int insertHosImg(HospitalImg vo); // 동물병원 이미지 첨부
 	public int deleteHosImg(String hosNum); // 동물병원 이미지 수정 (삭제) 
