@@ -134,7 +134,7 @@ $("#searchDate").on("click",function(){
 		            var param = "'"+$har_rnum+"'";  // 예약번호
 		            var param_double_quot = '"'+$har_num+'"';  // 미용실번호
 		            var td = "";
-		            //td += '<tr onclick="goDetail('+param+')">';
+		            //td += '<tr onclick="goDetail('+param+')">'; // 리뷰 작성 버튼과 겹치기 때문에 onClick 보다 우선 순위가 더 낮은 id를 통해 페이지 이동
 		            td += "<tr id="+param+" class='resInfoBox'>";
 		            td += "<td>"+$res_date+"</td>";
 		            td += "<td>"+$har_name+"</td>";

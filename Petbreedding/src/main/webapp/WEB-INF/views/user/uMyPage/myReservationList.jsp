@@ -53,6 +53,7 @@
 코드에 혼선을 주지 않기 위해 삭제  
 페이지 로드 시 
 $("#searchDate").trigger("click"); 
+JS에서 html 태그 생성
 되므로
  -->
 				</table>
