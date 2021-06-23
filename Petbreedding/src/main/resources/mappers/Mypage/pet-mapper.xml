@@ -18,7 +18,8 @@
 		kneecap,
 		dislike,
 		pet_others,
-		pet_img
+		pet_img,
+		pet_weight
 		)VALUES(
 		SEQ_CTA_CHARGE.NEXTVAL,
 		#{cl_num},
@@ -33,7 +34,8 @@
 		#{kneecap},
 		#{dislike},
 		#{pet_others},
-		#{pet_img}
+		#{pet_img},
+		#{pet_weight}
 		)
 	</insert>
 	
@@ -67,7 +69,8 @@
 		kneecap = #{kneecap},
 		dislike = #{dislike},
 		pet_others = #{pet_others},
-		pet_img = #{pet_img}
+		pet_img = #{pet_img},
+		pet_weight = #{pet_weight}
 		WHERE pet_num = #{pet_num}
 		
 	</update>

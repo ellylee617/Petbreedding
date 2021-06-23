@@ -100,6 +100,13 @@
                         		  <div class="check_font" id="pet_birthchk"></div>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2">
+							   <input type="text" id="pet_weight" name="pet_weight" placeholder="${list.pet_weight}" 
+							   value="${list.pet_weight}"
+							    class="basicTextInput perInfo_text m_20">
+                        </td>
+                    </tr>
 
                     <tr>
                         <td colspan="2" class="radioBox" id="gen">

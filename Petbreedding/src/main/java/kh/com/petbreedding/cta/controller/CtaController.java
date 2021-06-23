@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.cta.model.service.CtaService;
 import kh.com.petbreedding.cta.model.vo.Cta;
 import kh.com.petbreedding.cta.model.vo.CtaPay;
@@ -31,13 +32,22 @@ public class CtaController {
 	
 	//울트라콜 페이지 조회
 	@RequestMapping("cta")
-	public ModelAndView ctalist() throws Exception {
-		System.out.println("ctrl들어옴");
+	public ModelAndView ctalist(
+			HttpSession session,
+			HttpServletResponse res
+			) throws Exception {
+		BPartner vo = (BPartner) session.getAttribute("bP");
+		CtaPay pay = new CtaPay();
+		System.out.println("view ctrl들어옴");
+		String bp_Id =  vo.getBp_Id();
+		System.out.println(bp_Id);
 		List<Cta> list = ctaService.listAll();
+		List<CtaPay> list2 = ctaService.mycta(bp_Id);
 		System.out.println("db갔다옴");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("bPartner/bSales/cta");
 		mav.addObject("list", list);
+		mav.addObject("cta", list2);
 		return mav;
 	}
 	//울트라콜 페이지 조회
@@ -60,12 +70,13 @@ public class CtaController {
 			 HttpServletRequest request
 			) throws Exception {
 		int result = 0;
-		int result2=0;
-		int result3=0;
+		int result2 = 0;
 		try {
 			result = ctaService.insertpay(pay);
+			result2 = ctaService.insertCta(pay);
 			System.out.println(result);
 			if(result==0) {
+				result = ctaService.insertCta(pay);
 				result2 = ctaService.insertCta(pay);
 				System.out.println("ctapay ctrl들어옴");
 			}else if(result > 0) {
@@ -96,5 +107,25 @@ public class CtaController {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	@RequestMapping("mycta")
+	public ModelAndView mycta(
+			HttpSession session,
+			HttpServletResponse res
+			) throws Exception {
+		BPartner vo = (BPartner) session.getAttribute("bP");
+		String bp_id =  vo.getBp_Id();
+		ModelAndView mav = new ModelAndView();
+		
+		if(bp_id == null) {
+			System.out.println("사업자 로그인 안됨");
+		}else {
+			List<CtaPay> list = ctaService.mycta(bp_id);
+			System.out.println("db들고옴");
+			mav.setViewName("bPartner/bSales/cta");
+			mav.addObject("cta", list);
+			
+		}
+		return mav;
 	}
 }

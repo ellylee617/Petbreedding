@@ -18,8 +18,10 @@ public class MyPet {
 	private String dislike; // 반려동물이 예민하게 생각하는 부위 (진료, 미용시 주의해야될 요소)
 	private String pet_others; // 반려동물 기타 특이사항
 	private String pet_img; // 반려동물 사진
+	private String pet_weight; //반료동물 몸무게
 	private String mbti; //멍BTI
 	private String pet_weight;
+	
 	
 	
 	@Override
@@ -27,8 +29,19 @@ public class MyPet {
 		return "MyPet [pet_num=" + pet_num + ", cl_num=" + cl_num + ", pet_name=" + pet_name + ", pet_kind=" + pet_kind
 				+ ", pet_birth=" + pet_birth + ", pet_gen=" + pet_gen + ", pet_neut=" + pet_neut + ", pet_exper="
 				+ pet_exper + ", pet_vaccin=" + pet_vaccin + ", pet_bite=" + pet_bite + ", kneecap=" + kneecap
+<<<<<<< HEAD
 				+ ", dislike=" + dislike + ", pet_others=" + pet_others + ", pet_img=" + pet_img + ", mbti=" + mbti
 				+ ", pet_weight=" + pet_weight + "]";
+=======
+				+ ", dislike=" + dislike + ", pet_others=" + pet_others + ", pet_img=" + pet_img + ", pet_weight="
+				+ pet_weight + ", mbti=" + mbti + ", style=" + style + "]";
+	}
+	public String getPet_weight() {
+		return pet_weight;
+	}
+	public void setPet_weight(String pet_weight) {
+		this.pet_weight = pet_weight;
+>>>>>>> c1733a4bbaf79e4f579d3285c8d90af345d29225
 	}
 	public String getPet_num() {
 		return pet_num;

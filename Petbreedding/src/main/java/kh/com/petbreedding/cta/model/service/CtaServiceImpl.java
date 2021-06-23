@@ -93,6 +93,22 @@ public class CtaServiceImpl implements CtaService {
 		}
 		return result;
 	}
-	
+
+	@Override
+	public List<CtaPay> mycta(String bp_id) throws Exception {
+		System.out.println("mycta 조회 들어옴");
+		List<CtaPay> list = null;
+		try {
+			list = ctaDao.mycta(bp_id);
+			if(list != null) {
+				System.out.println("mycta 있음");
+			}else {
+				System.out.println("mycta 없음");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 }

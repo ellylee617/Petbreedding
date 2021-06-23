@@ -31,16 +31,29 @@ public class shopController {
 	@Autowired
 	private ShopService shopService;
 
-	@RequestMapping(value = "/salonList", method = RequestMethod.GET)
-	public ModelAndView salonList(Locale locale, ModelAndView mv) {
+	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
+	public ModelAndView shopList(Locale locale, ModelAndView mv) {
+		
 		List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
 		System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 		
 		mv.addObject("salonList", salonList);
-		mv.setViewName("/user/uShop/salonList");
+		mv.setViewName("/user/uShop/shopList");
 		
 		return mv;
+		
 	}
+	
+//	@RequestMapping(value = "/salonList", method = RequestMethod.GET)	// *********** TODO "/shopList"에 합쳐줘야 됨!!*******
+//	public ModelAndView salonList(Locale locale, ModelAndView mv) {
+//		List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+//		System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+//		
+//		mv.addObject("salonList", salonList);
+//		mv.setViewName("/user/uShop/salonList");
+//		
+//		return mv;
+//	}
 	
 	@RequestMapping(value = "/shopPage")
 	public ModelAndView shopPage(Locale locale, ModelAndView mv, HttpServletRequest request) {
