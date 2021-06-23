@@ -26,15 +26,18 @@
 		            <div class="viewBox">
 			            <p class="viewText fs20">울트라콜</p>
 		                <span class="viewText views fs20">잔여 조회수</span>
-		                <span class="viewText views fs24">0회</span>
+			            <c:forEach var="cta" items="${cta}">
+		                <span class="viewText views fs24">
+		                ${cta.CTA_NUMBER}
+		                </span>
+						</c:forEach>
 		            </div>
-			
 		            <article class="aContainer">
 		               
 		               <c:forEach var="list" items="${list }">
 		                <div class="aBox">
 		                    <div>
-		                        <p class="fs20">${list.CM_TYPE}</p>
+		                        <p class="fs20">${list.CM_TYPE}회</p>
 		                        <ul>
 		                            <li class="CTA_inst mt10">
 		                                <span>최상단 노출</span>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Cta">
-
 	<!-- 울트라콜 목록 가져오기 -->
 	<select id="ctalist"  resultType="Cta">
 		SELECT CM_TYPE,PRICE
@@ -27,7 +26,7 @@
 		DEFAULT
 		)
 	</insert>
-	
+	<!-- 울트라콜 적립 -->
 	<insert id="insertcta" parameterType="Ctapay">
 		INSERT INTO MY_CTA(
 			BP_ID,
@@ -37,6 +36,12 @@
 			#{CM_TYPE}
 		)
 	</insert>
+	
+	<!-- 내 울트라콜 조회 -->
+	<select id="mycta" resultType="Ctapay" parameterType="Ctapay" >
+		SELECT * FROM MY_CTA 
+		WHERE BP_ID = #{BP_ID}
+	</select>	
 	
 	<update id="">
 	
