@@ -23,6 +23,7 @@
 			<div class="rborder r1 rOrderTitle">
                     <i class="far fa-check-circle"></i>
                     <c:forEach items="${myRev}" var="myRev">
+                    <input type="hidden" value="${myRev.har_rnum }" id="har_rnum">
                     <c:if test="${myRev.res_status eq 0}">
 						&nbsp;결제 대기					
 					</c:if>
@@ -62,9 +63,11 @@
                     <c:forEach items="${myRev}" var="myRev">
 	                    <c:if test="${myRev.res_status eq 0 or myRev.res_status eq 1}">
 		                    <div class="buttons">
-		                    <button type="button" class="basicBtn" id="1and1">1:1문의</button>
-		                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                    <button type="button" class="basicBtn" id="pay">결제하기</button>
+		                    <button type="button" class="basicBtn" id="1and1">1:1문의</button>&nbsp;&nbsp;&nbsp;&nbsp;
+		                    <c:if test="${myRev.res_status eq 0 }">
+		                    <button type="button" class="basicBtn" id="pay">결제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+		                    </c:if>
+		                    <button type="button" class="basicBtn" id="cancle">취소하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
 		                    </div>
 	                    </c:if>
                     </c:forEach>
@@ -132,6 +135,21 @@
             </div>
         </section>
         <jsp:include page="../../common/footer.jsp"/>
+        
+        
+        <!-- MODAL -->
+         <div id="my_modal">
+            <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
+            <div id="locCon">
+                <h1>취소하시겠습니까?</h1>
+                <button id="goCancle">네</button>
+                <button id="nextTime">아니오</button>
+            </div>
+        </div>	
     </div>
+    
+    
+    <!-- script -->
+    <script src="${path}/resources/js/user/uMyPage/myReservationDetail.js"></script>
 </body>
 </html>

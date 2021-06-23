@@ -33,6 +33,9 @@ public class ReservationDao {
 		return sqlSession.insert("ShopRev.insertHairRev", hrv);
 	}
 	
+	public List<HairShopReservation> shopPayment(String har_rnum){
+		return sqlSession.selectList("shopPay.myRevPay", har_rnum);
+	}	
 
 	
 	

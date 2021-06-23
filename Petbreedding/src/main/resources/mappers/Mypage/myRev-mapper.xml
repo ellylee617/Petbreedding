@@ -25,42 +25,22 @@
 	<resultMap type="Client" id="Client">
 		<id column="CL_NUM" property="cl_num" />
 		<result  column="CL_EMAIL" property="email"/>
-		<result  column="CL_PWD" property="password"/>
-		<result  column="CL_NICKNAME" property="nickname"/>
 		<result  column="CL_NAME" property="name"/>
 		<result  column="CL_TEL" property="tel"/>
-		<result  column="NAVERLOGIN" property="naverlogin"/>
-		<result  column="KAKAOLOGIN" property="kakaologin"/>
 	</resultMap>
 	
 	<!-- HAR_SARLON 테이블  -->
 	<resultMap type="HairSalon" id="HairSalon">
 		<id column="HAR_NUM" property="harNum"/>
-		<result column="BP_ID" property="bpId"/>
 		<result column="HAR_NAME" property="shopName"/>
 		<result column="HAR_ADDR" property="shopAddr"/>
 		<result column="HAR_TEL" property="shopTel"/>
-		<result column="HOPEN_TIME" property="shopTime"/>
-		<result column="HAR_MINFO" property="shopMInfo"/>
-		<result column="HAR_CLICK" property="harClick"/>
 	</resultMap>
 	
 	<resultMap type="Pet" id="Pet">
 		<id column="PET_NUM" property="pet_num"/>
-		<result column="CL_NUM" property="cl_num"/>
 		<result column="PET_NAME" property="pet_name"/>
-		<result column="PET_KIND" property="pet_kind"/>
 		<result column="PET_BIRTH" property="pet_birth"/>
-		<result column="PET_GEN" property="pet_gen"/>
-		<result column="PET_NEUT" property="pet_neut"/>
-		<result column="PET_EXPER" property="pet_exper"/>
-		<result column="PET_VACCIN" property="pet_vaccin"/>
-		<result column="PET_BITE" property="pet_bite"/>
-		<result column="KNEECAP" property="kneecap"/>
-		<result column="DISLIKE" property="dislike"/>
-		<result column="PET_OTHERS" property="pet_others"/>
-		<result column="PET_IMG" property="pet_img"/>
-		<result column="MBTI" property="mbti"/>
 		<result column="PET_WEIGHT" property="pet_weight"/>
 	</resultMap>
 	
@@ -70,8 +50,6 @@
 		<result column="HAR_NUM" property="harNum"/>
 		<result column="STYLE_NAME" property="style_name"/>
 		<result column="PRICE" property="price"/>
-		<result column="STYLE_TIME" property="style_time"/>
-		<result column="STYLE_DEEP" property="style_deep"/>
 	</resultMap>
 	
 	
@@ -132,6 +110,7 @@
 		LEFT JOIN STYLE s2 ON h.style_num2 = s2.style_num2
 		WHERE h.har_rnum = #{har_rnum}
 	</select>
+	
 	<!-- 가격조회 -->
 	<select id="getPrice" parameterType="string" resultType="int">
 		SELECT (s.price+ NVL(s2.price,0)) as totalPrice
@@ -140,4 +119,13 @@
 		LEFT JOIN STYLE s2 ON h.style_num2 = s2.style_num2
 		WHERE h.har_rnum = #{har_rnum}
 	</select>
+	
+	
+	<!-- 결제취소 -->
+	<select id="cancleRev" parameterType="string" resultType="int">
+		UPDATE HAR_RESERVATION SET RES_STATUS = 3 WHERE HAR_RNUM = #{har_rnum}
+	</select>
+	
+	
+	
 </mapper>

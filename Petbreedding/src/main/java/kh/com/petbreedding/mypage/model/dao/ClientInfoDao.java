@@ -46,7 +46,7 @@ public class ClientInfoDao {
 		return sqlSession.selectOne("myRev.status2", cl_num);
 	}
 	
-	//예약확인 상세조회
+	//미용실 예약확인 상세조회
 	public List<HairShopReservation> myRevDetail(String har_rnum){
 		return sqlSession.selectList("myRev.myRevDetail", har_rnum);
 	}
@@ -56,4 +56,14 @@ public class ClientInfoDao {
 	public int getPrice(String har_rnum){
 		return sqlSession.selectOne("myRev.getPrice", har_rnum);
 	}
+	
+	//미용실 결제 취소
+	public int cancleRev(String har_rnum){
+		return sqlSession.update("myRev.cancleRev", har_rnum);
+	}
+	
+	
+	
+	
+	
 }

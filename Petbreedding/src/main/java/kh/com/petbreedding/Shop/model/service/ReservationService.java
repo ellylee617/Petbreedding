@@ -11,4 +11,6 @@ public interface ReservationService {
 	public List<MyPet> revList2(String cl_num);
 	public List<Style> revList3(String har_num);
 	public int insertHairRev(HairShopReservation hrv);
+	
+	public List<HairShopReservation> shopPayment(String har_rnum);
 }

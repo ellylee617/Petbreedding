@@ -60,4 +60,15 @@ public class ReservationServiceImpl implements ReservationService{
 		return 0;
 	}
 
+	@Override
+	public List<HairShopReservation> shopPayment(String har_rnum) {
+		List<HairShopReservation> result = null;
+		try {
+			result = revDao.shopPayment(har_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

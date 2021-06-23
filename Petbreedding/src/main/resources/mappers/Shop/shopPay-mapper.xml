@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shopPay">
+
+	<!-- 미용실 예약VO -->
+	<resultMap type="HairRev" id="HairRev">
+		<id column="HAR_RNUM" property="har_rnum"/>
+		<result column="MSG_NUM" property="msg_num" />
+		<result column="CL_NUM" property="cl_num" />
+		<result column="PET_NUM" property="pet_num" />
+		<result column="STYLE_NUM" property="style_num" />
+		<result column="HAR_NUM" property="har_num" />
+		<result column="RES_DATE" property="res_date" />
+		<result column="RES_STATUS" property="res_status" />
+		<result column="RES_TIME" property="res_time" />
+		<result column="STYLE_NUM2" property="style_num2" />
+		<result column="HAR_NAME" property="har_name"/>
+		<result column="RES_DATE2" property="res_date2" />
+		<collection property="hairSalon" resultMap="HairSalon" />
+		<collection property="style" resultMap="Style" />
+	</resultMap>
+	
+	<!-- HAR_SARLON 테이블  -->
+	<resultMap type="HairSalon" id="HairSalon">
+		<id column="HAR_NUM" property="harNum"/>
+		<result column="HAR_NAME" property="shopName"/>
+		<result column="HAR_ADDR" property="shopAddr"/>
+		<result column="HAR_TEL" property="shopTel"/>
+	</resultMap>
+	<!--스타일  -->
+	<resultMap type="Style" id="Style">
+		<id column="STYLE_NUM" property="style_num"/>
+		<result column="HAR_NUM" property="harNum"/>
+		<result column="STYLE_NAME" property="style_name"/>
+		<result column="PRICE" property="price"/>
+	</resultMap>
+
+	<!-- 결제 페이지 조회-->
+	<select id="myRevPay" parameterType="string" resultMap="HairRev">
+        SELECT h.*, s.style_name, hs.har_name, hs.har_addr, hs.har_tel
+		FROM HAR_RESERVATION h 
+		LEFT JOIN STYLE s ON h.style_num = s.style_num 
+		LEFT JOIN HAIR_SALON hs ON h.har_num = hs.har_num
+		WHERE h.har_rnum = #{har_rnum}
+	</select>
+	
+	
+	
+</mapper>

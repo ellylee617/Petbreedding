@@ -94,10 +94,6 @@ public class shopController {
 	 * "/user/uShop/salonReservation"; }
 	 */
 
-	@RequestMapping(value = "/shopPayment", method = RequestMethod.GET)
-	public String shopPayment(Locale locale, Model model) {
-		return "/user/uShop/shopPayment";
-	}
 
 	@RequestMapping(value = "/successPay", method = RequestMethod.GET)
 	public String successPay(Locale locale, Model model) {

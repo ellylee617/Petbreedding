@@ -141,5 +141,15 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 		return result;
 	}
 
-	
+	@Override
+	public int cancleRev(String har_rnum) {
+		int result = -1;
+		try {
+			result = clientInfoDao.cancleRev(har_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }
