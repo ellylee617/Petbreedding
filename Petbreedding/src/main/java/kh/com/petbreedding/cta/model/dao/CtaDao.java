@@ -12,5 +12,7 @@ public interface CtaDao {
 	public Cta read(String CM_TYPE) throws Exception;
 	public int insertpay(CtaPay pay) throws Exception;
 	public int insertCta(CtaPay pay) throws Exception;
-	public List<CtaPay> mycta (String bp_id) throws Exception; 
+	public CtaPay mycta (String bp_id) throws Exception; 
+	public int updatecta(CtaPay cta) throws Exception;
+	public int delcta(String BP_ID) throws Exception;
 }
