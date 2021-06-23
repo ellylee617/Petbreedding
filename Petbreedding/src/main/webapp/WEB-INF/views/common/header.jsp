@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <header class="Uheader">
     <nav class="UserNav">
         <ul>
@@ -25,11 +26,11 @@
     </nav>  
     <div class="mainMenu">   
         <a href="/petbreedding"><img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" ></a>            
-        <nav class="mainMenu1">                  
-            <ul>
+        <nav class="mainMenu1">
+			<ul>
                 <li><a href="#">소개</a></li>
-                <li><a href="hospital.html">동물병원</a></li>
-                <li><a href="${pageContext.request.contextPath}/salonList">미용실</a></li>
+                <li><a href="${pageContext.request.contextPath}/shopList?shoptype=hos">동물병원</a></li>
+                <li><a href="${pageContext.request.contextPath}/shopList?shoptype=hair">미용실</a></li>
                 <li><a href="consult.html">1:1수의사 상담</a></li>
             </ul>
         </nav>
@@ -40,4 +41,6 @@
             </ul>
         </nav>
     </div>
+    
+    
 </header> 
