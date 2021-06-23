@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Review {
 	private String revNum;
-	private String bpNum;
+	private String bpId;
 	private String clNum;
 	private String clNickName;
 	private String revCont;
@@ -15,7 +15,7 @@ public class Review {
 	
 	@Override
 	public String toString() {
-		return "Review [revNum=" + revNum + ", bpNum=" + bpNum + ", clNum=" + clNum + ", clNickName=" + clNickName
+		return "Review [revNum=" + revNum + ", bpId=" + bpId + ", clNum=" + clNum + ", clNickName=" + clNickName
 				+ ", revCont=" + revCont + ", revImg=" + revImg + ", revDate=" + revDate + ", revVal=" + revVal + "]";
 	}
 
@@ -27,12 +27,12 @@ public class Review {
 		this.revNum = revNum;
 	}
 
-	public String getBpNum() {
-		return bpNum;
+	public String getBpId() {
+		return bpId;
 	}
 
-	public void setBpNum(String bpNum) {
-		this.bpNum = bpNum;
+	public void setBpId(String bpId) {
+		this.bpId = bpId;
 	}
 
 	public String getClNum() {

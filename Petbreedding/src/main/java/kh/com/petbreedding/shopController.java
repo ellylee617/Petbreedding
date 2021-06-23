@@ -12,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.Review;
 
@@ -32,13 +34,25 @@ public class shopController {
 	private ShopService shopService;
 
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
-	public ModelAndView shopList(Locale locale, ModelAndView mv) {
+	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) {
 		
-		List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
-		System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+		// shopType 0은 미용실, 1은 동물병원
 		
-		mv.addObject("salonList", salonList);
-		mv.setViewName("/user/uShop/shopList");
+		if(shopType==0) {
+			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+			
+			mv.addObject("shopList", salonList);
+			mv.setViewName("/user/uShop/shopList");
+		} else {
+			
+			List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
+			System.out.println("컨트롤러 동물병원 리스트:"+hosList);
+			
+			mv.addObject("shopList", hosList);
+			mv.setViewName("/user/uShop/shopList");
+		}
+		
 		
 		return mv;
 		

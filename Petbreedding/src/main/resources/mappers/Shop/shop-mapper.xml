@@ -45,11 +45,17 @@
 			<result column="HAR_DAYOFF" property="harDayOff"/>
 		</resultMap>
 			
-		<!-- 미용실 리스트 -->
+		<!-- 미용실 전체 리스트 -->
 		<select id="selectHarList" parameterType="HairSalon" resultMap="HairSalon">
 			SELECT * FROM HAIR_SALON
 		</select>
 			
+		<!-- TODO -->
+		<!-- 미용실 리스트 : 인기순  -->
+		<!-- 미용실 리스트 : 거리순  -->
+		<!-- 미용실 리스트 : 별점순  -->
+		
+		
 		<!-- 미용실 기본 정보 기입 -->
 		<insert id="insertHarInfo" parameterType="HairSalon">
 		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, HAR_CLICK)
@@ -160,7 +166,17 @@
 			<result column="HOS_DAYOFF" property="hosDayOff"/>
 		</resultMap>
 		
-	<!-- TODO -->	
+	<!-- TODO -->
+	<!-- 동물병원 전체 리스트 -->
+	<select id="selectHosList" parameterType="Hospital" resultMap="Hospital">
+		SELECT * FROM HOSPITAL
+	</select>	
+	
+		<!-- TODO -->
+		<!-- 동물병원 리스트 : 인기순  -->
+		<!-- 동물병원 리스트 : 거리순  -->
+		<!-- 동물병원 리스트 : 별점순  -->
+	
 	<!-- 동물병원 기본 정보 기입 -->
 	<insert id="insertHosInfo" parameterType="Hospital">
 	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, HOS_CONN, HOS_CLICK )
@@ -233,5 +249,10 @@
 		VALUES (SEQ_HOSPITAL_DAYOFF.NEXTVAL, #{hosNumDayOff},#{shopDayOff})
 		</insert>
 		
+		
+		<!-- 미용실 리스트 -->
+		<select id="searchBpId" parameterType="string" resultType="string">
+			SELECT bp_id FROM HAIR_SALON where har_num=#{har_num}
+		</select>
 		
 </mapper>

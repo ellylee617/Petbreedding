@@ -49,39 +49,12 @@
 				<hr>
 				<br> <br>
 				<table class="rtable rlist">
-					<tr id="rListHead">
-						<td>예약일</td>
-						<td>예약정보</td>
-						<td colspan="2">상태</td>
-					</tr>
-					<c:if test="${empty myRev }">
-						<tr onclick="location.href='#'">
-							<td colspan='4'>예약하신 내역이 없습니다.</td>
-						<tr>
-					</c:if>
-					<c:forEach items="${myRev}" var="myRev">
-						<tr onclick="location.href='${path}/mypage/revdetail?har_rnum=${myRev.har_rnum}'">
-							<td>${myRev.res_date }</td>
-							<td>${myRev.har_name }</a></td>
-							<c:if test="${myRev. res_status eq 0}">
-								<td>결제대기</td>						
-							</c:if>
-							<c:if test="${myRev. res_status eq 1}">
-								<td>결제완료</td>						
-							</c:if>
-							<c:if test="${myRev. res_status eq 2}">
-								<td>이용완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<button type="button" class="basicBtn review btnReWr">리뷰작성</button>
-								</td>						
-							</c:if>
-							<c:if test="${myRev. res_status eq 3}">
-								<td>결제취소</td>						
-							</c:if>
-						</tr>			
-					</c:forEach>
-<!-- 					<td>이용완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="button" class="basicBtn rbuttoncom">작성완료</button>
-						</td> -->
+<!-- 
+코드에 혼선을 주지 않기 위해 삭제  
+페이지 로드 시 
+$("#searchDate").trigger("click"); 
+되므로
+ -->
 				</table>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
@@ -89,7 +62,7 @@
 	<!-- 리뷰 작성 모달창 -->
 	<div id="modalRe" class="modalRe-Overlay">
 		<div id="modalRe-Win">
-			<form id="frm">
+			<form id="frmReviewInput" enctype="multipart/form-data">
 				<a class="modal_close_btn"><i class="fas fa-times fa-lg"></i></a> <br><br>
 				<div class="select">
 					<span class="text">별점을 선택해주세요</span><span class="downArrow"></span>
@@ -100,7 +73,9 @@
 						<li class="option" value="2"><img src="${path}/resources/images/2.png">&nbsp;&nbsp;조금 아쉬워요</li>
 						<li class="option" value="1"><img src="${path}/resources/images/1.png">&nbsp;&nbsp;많이 아쉬워요</li>
 					</ul>
-						<input type="number" id="selectedVal" name="selectedVal" style="display:none"  readonly>
+					<input type="number" id="selectedVal" name="selectedVal" style="display:none"  readonly>
+					<input type="hidden" name="har_num" id="for_value_har_num" > 
+<%-- 						<input type="hidden" name="harNum" value="${myRev.har_num}"> --%>
 				</div>
 				<br>
 				<textarea placeholder="리뷰내용을 작성해주세요" id="revCont" name="revCont" rows="15" cols="37"></textarea>

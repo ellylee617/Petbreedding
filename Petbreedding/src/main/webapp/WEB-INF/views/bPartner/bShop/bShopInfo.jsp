@@ -26,7 +26,7 @@
 				-->
 			<!-- 입력된 사업장 정보가 없으면 사업장 등록 -->
 			
-				<c:if test="${empty list}">
+				<c:if test="${empty vo}">
 				<h2>사업장 등록</h2>
 			<form action="${path}/bp/bShop/write" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
 				<br>
@@ -98,17 +98,16 @@
 			</form>
 			</c:if>
 			
-			<c:if test="${!empty list}">
-			<c:forEach items="${list}" var="item">
+			<c:if test="${!empty vo}">
 						<h2>사업장 수정</h2>
 			<form action="${path}/bp/bShop/update" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
 					<c:if test="${bP.bp_type == 0 }">
-					<input type="hidden" name="harNum" value="${item.harNum}"/>
+					<input type="hidden" name="harNum" value="${vo.harNum}"/>
 					</c:if>
 					<c:if test="${bP.bp_type == 1 }">
-					<input type="hidden" name="hosNum" value="${item.hosNum}"/>
+					<input type="hidden" name="hosNum" value="${vo.hosNum}"/>
 					</c:if>
-					<input type="hidden" name="bpId" value="${item.bpId}"/>
+					<input type="hidden" name="bpId" value="${vo.bpId}"/>
 				<br>
 				<table class="tblInfo">
 					<tr>
@@ -124,7 +123,7 @@
 					</tr>
 					<tr>
 						<th>매장명</th>
-						<td colspan="2"><input id="shopName" type="text" placeholder="사업자 등록증에 명시된 매장명을 입력해주세요." name="shopName" value="${item.shopName }"></td>
+						<td colspan="2"><input id="shopName" type="text" placeholder="사업자 등록증에 명시된 매장명을 입력해주세요." name="shopName" value="${vo.shopName }"></td>
 					</tr>
 					<tr>
 						<th>매장 주소</th>
@@ -132,22 +131,22 @@
 						<input type="text" id="postcode"
 							placeholder="우편번호"> <input id="postcodebtn" class="basicBtn" type="button" onclick="exePostCode()" value="우편번호 찾기">
 							<br>
-							<input type="text" id="shopAddress" placeholder="주소" name="shopAddr" value="${item.shopAddr }">
+							<input type="text" id="shopAddress" placeholder="주소" name="shopAddr" value="${vo.shopAddr }">
 							<br>
 							<input type="text" id="detailAddress" placeholder="상세주소">
 							<input type="text" id="extraAddress" placeholder="참고항목">
 					</tr>
 					<tr>
 						<th>매장 전화번호</th>
-						<td colspan="2"><input id="shopTel" type="text" placeholder="'-'를 포함해서 입력해주세요" name="shopTel" value="${item.shopTel }"></td>
+						<td colspan="2"><input id="shopTel" type="text" placeholder="'-'를 포함해서 입력해주세요" name="shopTel" value="${vo.shopTel }"></td>
 					</tr>
 					<tr>
 						<th>영업시간</th>
-						<td colspan="2"><input id="shopTime" type="text" name="shopTime" value="${item.shopTime }"></td>
+						<td colspan="2"><input id="shopTime" type="text" name="shopTime" value="${vo.shopTime }"></td>
 					</tr>
 					<tr>
 						<th>간단소개</th>
-						<td colspan="2"><input id="shopMInfo" type="text" name="shopMInfo" value="${item.shopMInfo }"></td>
+						<td colspan="2"><input id="shopMInfo" type="text" name="shopMInfo" value="${vo.shopMInfo }"></td>
 					</tr>
 					<tr>
 						<th>대표이미지</th>
@@ -176,7 +175,6 @@
 				<br><br>
 				<button class="basicBtn InfoRegi">등록하기</button>
 			</form>
-			</c:forEach>
 			</c:if>
 			
 			</div>
