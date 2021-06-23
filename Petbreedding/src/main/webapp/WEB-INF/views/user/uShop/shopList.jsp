@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<c:set var="param.shoptype" value="${param.shoptype}"/>
+<c:set var="shopType" value="${param.shopType}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +22,7 @@
 		<section class="section">
 		
 		<!-- 동물병원 -->
-		<c:if test="${param.shoptype eq 1}">
+		<c:if test="${shopType eq 1}">
             <h1>동물병원</h1>
             <div class="nowLocation">
                 <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
@@ -35,6 +35,7 @@
             </div>
             <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
+                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
                     <div class="ultraStore">                     
                         <li class="ultraList">
@@ -57,13 +58,14 @@
             </div>
             
             <div class="storeS">
+            	<c:forEach items="${shopList}" var="item">
                 <ul>
                     <div class="Store">                     
                         <li class="storeList">
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="storeList_title_area"><a href="#">쿨펫 동물병원</a></div>
-                                <div class="storeList_info_area"><a href="#">슬개골 수술 전문 병원입니다.</a></div>
+                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
@@ -76,6 +78,7 @@
                         </li>
                     </div>
                 </ul>
+                </c:forEach>
             </div>
             
             <!--TOPBTN-->
@@ -83,7 +86,7 @@
             </c:if>
             
             <!-- 미용실 -->
-            <c:if test="${param.shoptype eq 0}">
+            <c:if test="${shopType eq 0}">
             <h1>미용실</h1>
             <div class="nowLocation">
                 <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
@@ -96,6 +99,7 @@
             </div>
 		<div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
+                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
                     <div class="ultraStore">                     
                         <li class="ultraList">
@@ -118,7 +122,7 @@
             </div>
             
            <div class="storeS">
-           	 <c:forEach items="${salonList}" var="item">
+           	 <c:forEach items="${shopList}" var="item">
                 <ul>
                     <div class="Store">                      
                        <li class="storeList">

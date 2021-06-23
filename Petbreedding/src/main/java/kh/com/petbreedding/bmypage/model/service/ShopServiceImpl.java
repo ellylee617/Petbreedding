@@ -23,12 +23,12 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<HairSalon> selectHarList(int currentPage, int limit) {
 		List<HairSalon> salonList = null;
-		System.out.println("¼­ºñ½º ¹Ì¿ë½Ç ¸®½ºÆ® ÁøÀÔ");
+		System.out.println("서비스 진입");
 		try {
 			salonList = shopDao.selectHarList(currentPage, limit);
 		} catch(Exception e) {
 		}
-		System.out.println("¼­ºñ½º ¹Ì¿ë½Ç ¸®½ºÆ® ¸®ÅÏ Àü : " + salonList);
+		System.out.println("List<HairSalon> salonList ::" + salonList);
 		return salonList;
 	}
 	
@@ -259,6 +259,18 @@ public class ShopServiceImpl implements ShopService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<Hospital> selectHosList(int currentPage, int limit) {
+		List<Hospital> hosList = null;
+		System.out.println("서비스 진입");
+		try {
+			hosList = shopDao.selectHosList(currentPage, limit);
+		} catch(Exception e) {
+		}
+		System.out.println("List<Hospital> hosList ::" + hosList);
+		return hosList;
 	}
 
 
