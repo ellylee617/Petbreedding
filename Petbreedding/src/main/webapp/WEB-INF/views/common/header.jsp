@@ -29,8 +29,8 @@
         <nav class="mainMenu1">
 			<ul>
                 <li><a href="#">소개</a></li>
-                <li><a href="${pageContext.request.contextPath}/shopList?shoptype=hos">동물병원</a></li>
-                <li><a href="${pageContext.request.contextPath}/shopList?shoptype=hair">미용실</a></li>
+                <li><a href="${pageContext.request.contextPath}/shopList?shoptype=1">동물병원</a></li>
+                <li><a href="${pageContext.request.contextPath}/shopList?shoptype=0">미용실</a></li>
                 <li><a href="consult.html">1:1수의사 상담</a></li>
             </ul>
         </nav>
