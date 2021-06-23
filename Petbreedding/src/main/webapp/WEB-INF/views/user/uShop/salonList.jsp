@@ -69,6 +69,7 @@
                                 <form class="frmShopInfo" >
 	                                <%-- <input type="hidden" value="${item.bpId }" name="bpId"> --%>
 	                                <div class="storeList_button">
+	                                	BPID: ${item.bpId }
                                     	<a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
                                 	</div>
                                 </form>

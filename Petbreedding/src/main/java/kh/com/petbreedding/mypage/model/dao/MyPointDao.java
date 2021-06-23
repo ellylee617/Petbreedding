@@ -16,8 +16,12 @@ public class MyPointDao {
 	
 	//	포인트 조회
 	public List<MyPoint> myPointSelectList(MyPoint myPoint) {
-		System.out.println("[세훈] 포인트 다오 진입");
-		System.out.println("[세훈] 포인트 다오 clNum : " + myPoint);
 		return sqlSession.selectList("MyPoint.myPointSelectList", myPoint);
+	}
+	
+	public String CurrPointSelectOne(String clNum) {
+		System.out.println("[세훈] 보유 포인트 다오 진입");
+		System.out.println("[세훈] 보유 포인트 다오 clNum : " + clNum);
+		return sqlSession.selectOne("MyPoint.CurrPointSelectOne", clNum);
 	}
 }

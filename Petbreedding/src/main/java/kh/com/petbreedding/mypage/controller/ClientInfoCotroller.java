@@ -75,13 +75,21 @@ public class ClientInfoCotroller {
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(clNum);
 		
+		String currPoint = myPointService.CurrPointSelectOne(clNum);
 		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
+		
 		System.out.println("[세훈] 컨트롤러 pointList : " + pointList);
+		System.out.println("[세훈] 컨트롤러 currPoint : " + currPoint);
 		mv.addObject("pointList", pointList);
+		mv.addObject("currPoint", currPoint);
+		
+
+		//		req.setAttribute("currPoint", currPoint);
 		mv.setViewName("/user/uMyPage/point");
 		
 		return mv;
 	}
+	
 
 	// 1:1 문의 내역
 	@RequestMapping("/mypage/ask")
