@@ -1,9 +1,10 @@
-var name =   $("#BP_ID").text();
+var name =  $("#name").text();
 var tel =   $("#tel").text();
-var type =   $("#CM_TYPE").text();
+var type =  $("#CM_TYPE").text();
 var price =   $("#price").text();
 var email = $("#email").text();
 var cmcode = $("#CM_CODE").val();
+var bpid =  $("#BP_ID").val();
 price = parseInt(price);
 console.log(name);
 console.log(tel);
@@ -11,6 +12,8 @@ console.log(type);
 console.log(price);
 console.log(email);
 console.log(cmcode);
+console.log(bpid);
+
 $("#check_module").click(function () {
 var IMP = window.IMP; // 생략가능
 IMP.init('imp92318493');
@@ -91,7 +94,7 @@ alert(msg);
 function paysuceess() {
 	$.ajax({
 	    url:"ctapaydata",
-	    data:{BP_ID: 1,
+	    data:{BP_ID: bpid,
 	    	  CM_CODE : cmcode, 
 	    	  CM_TYPE : type
 	    },

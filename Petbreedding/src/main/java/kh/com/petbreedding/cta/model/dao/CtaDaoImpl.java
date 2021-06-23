@@ -34,4 +34,9 @@ public class CtaDaoImpl implements CtaDao {
 		return sqlSession.insert("Cta.insertcta", pay);
 	}
 
+	@Override
+	public List<CtaPay> mycta(String bp_id) throws Exception {
+		return sqlSession.selectList("Cta.mycta", bp_id);
+	}
+
 }
