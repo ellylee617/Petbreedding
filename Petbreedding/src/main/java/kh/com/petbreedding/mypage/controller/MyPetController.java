@@ -56,6 +56,7 @@ public class MyPetController {
 		mypet.setPet_neut(request.getParameter("pet_neut"));
 		mypet.setPet_others(request.getParameter("pet_others"));
 		mypet.setPet_vaccin(request.getParameter("pet_vaccin"));
+		mypet.setPet_weight(request.getParameter("pet_weight"));
 
 		// 파일업로드
 		MultipartFile mf = request.getFile("pet_img"); // 업로드 파라미터
