@@ -22,83 +22,113 @@
 			<div class="mcontent">
 			<div class="rborder r1 rOrderTitle">
                     <i class="far fa-check-circle"></i>
-                    &nbsp;결제 대기
+                    <c:forEach items="${myRev}" var="myRev">
+                    <c:if test="${myRev.res_status eq 0}">
+						&nbsp;결제 대기					
+					</c:if>
+                    <c:if test="${myRev.res_status eq 1}">
+						&nbsp;결제 완료						
+					</c:if>
+					<c:if test="${myRev.res_status eq 2}">
+						&nbsp;이용 완료					
+					</c:if>
+					<c:if test="${myRev.res_status eq 3}">
+						&nbsp;결제 취소						
+					</c:if>
+					</c:forEach>
                 </div>
                 <div class="rborder">
+                	<c:forEach items="${myRev}" var="myRev">
                     <span id="rOrderNum">주문번호 202106101234</span>
                     <br><br>
-                    <span class="rOrderTitle">쿨펫미용실</span>
+                    <span class="rOrderTitle">${myRev.har_name }</span>
                     <br><br>
                     <table>
                         <tr>
                             <td>일정</td>
-                            <td>2021-06-10 목요일 오후 4:30</td>
+                            <td>${myRev.res_date }&nbsp;&nbsp;&nbsp;|&nbsp; ${myRev.res_time }</td>
                         </tr>
                         <tr>
                             <td>내역</td>
-                            <td>가위컷(+)디자인컷</td>
+                            <td>${myRev.style.style_name }                            
+	                           <c:if test="${!empty another }">
+	                           	(+)${another }
+	                           </c:if>      
+                            </td>
                         </tr>
                     </table>
+                    </c:forEach>
                     <br><br>
-                    <div class="buttons">
-                    <button type="button" class="basicBtn" id="1and1">1:1문의</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="button" class="basicBtn" id="pay">결제하기</button>
-                    </div>
+                    <c:forEach items="${myRev}" var="myRev">
+	                    <c:if test="${myRev.res_status eq 0 or myRev.res_status eq 1}">
+		                    <div class="buttons">
+		                    <button type="button" class="basicBtn" id="1and1">1:1문의</button>
+		                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                    <button type="button" class="basicBtn" id="pay">결제하기</button>
+		                    </div>
+	                    </c:if>
+                    </c:forEach>
                 </div>
                 <div class="rborder">
                     <span class="rOrderTitle">예약자 정보</span>
                     <br><br>
                     <table>
+                    <c:forEach items="${myRev}" var="myRev">
                         <tr>
                             <td>예약자명</td>
-                            <td>곽서현</td>
+                            <td>${myRev.client.name }</td>
                         </tr>
                         <tr>
                             <td>연락처</td>
-                            <td>010-1234-5678</td>
+                            <td>${myRev.client.tel }</td>
                         </tr>
                         <tr>
                             <td>이메일</td>
-                            <td>email@email.com</td>
-                        </tr>
+                            <td>${myRev.client.email }</td>
+                        </tr> 
+                    </c:forEach>
                     </table>
                 </div>
                 <div class="rborder">
                     <span class="rOrderTitle">반려견 정보</span>
                     <br><br>
                     <table>
-                        <tr>
+                    <c:forEach items="${myRev}" var="myRev">
+                     <tr>
                             <td>이름</td>
-                            <td>또비</td>
+                            <td>${myRev.pet.pet_name }</td>
                         </tr>
                         <tr>
                             <td>나이</td>
-                            <td>7살</td>
+                            <td>${myRev.pet.pet_birth }살</td>
                         </tr>
                         <tr>
                             <td>몸무게</td>
-                            <td>5.5kg</td>
+                            <td>${myRev.pet.pet_weight }kg</td>
                         </tr>
+                     </c:forEach>
                     </table>
                 </div>
                 <div class="rborder">
                     <span class="rOrderTitle">결제 금액</span>
-                    <span id="rOrderAmount">40,000원</span>
+                    <span id="rOrderAmount">${totalPrice }원</span>
                 </div>
                 <div class="rborder dmap">
                     <p class="rOrderTitle">오시는 길</p>
                     <br>
                     <div class="map">지도공간~!</div>
                     <div class="rText">
+                    	<c:forEach items="${myRev}" var="myRev">
                         <p class="rTextBold">업체명</p>
-                        <p>쿨펫미용실</p>
+                        <p>${myRev.hairSalon.shopName }</p>
                         <p class="rTextBold">주소</p>
-                        <p>경기도 고양시 고양시 고양빌라 101호</p>
+                        <p>${myRev.hairSalon.shopAddr }</p>
                         <p class="rTextBold">전화번호</p>
-                        <p>031-123-1234</p>
+                        <p>${myRev.hairSalon.shopTel }</p>
+                        </c:forEach>
                     </div>
                 </div>
+                
             </div>
         </section>
         <jsp:include page="../../common/footer.jsp"/>

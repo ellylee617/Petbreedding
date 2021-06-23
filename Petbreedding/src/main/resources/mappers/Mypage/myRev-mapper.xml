@@ -117,15 +117,27 @@
 	
 	<!-- 예약 상세 페이지 -->
 	<select id="myRevDetail" parameterType="string" resultMap="HairRev">
-		SELECT h.*, s.style_name, s2.style_name as style_name2, (s.price+s2.price) as totalPrice, c.cl_name, c.cl_tel, c.cl_email, p.pet_name, p.pet_birth, p.pet_weight, hs.har_name, hs.har_addr, hs.har_tel
+		SELECT h.*, s.style_name, c.cl_name, c.cl_tel, c.cl_email, p.pet_name, p.pet_birth, p.pet_weight, hs.har_name, hs.har_addr, hs.har_tel
 		FROM HAR_RESERVATION h 
 		LEFT JOIN STYLE s ON h.style_num = s.style_num 
-		LEFT JOIN STYLE s2 ON h.style_num2 = s2.style_num2
 		LEFT JOIN CLIENT c ON h.cl_num = c.cl_num
 		LEFT JOIN PET_INFO p ON h.pet_num = p.pet_num
 		LEFT JOIN HAIR_SALON hs ON h.har_num = hs.har_num
 		WHERE h.har_rnum = #{har_rnum}
 	</select>
-	
-	
+	<!-- 메뉴조회 -->
+	<select id="anotherMenu" parameterType="string" resultType="string">
+		SELECT s2.style_name
+		FROM HAR_RESERVATION h 
+		LEFT JOIN STYLE s2 ON h.style_num2 = s2.style_num2
+		WHERE h.har_rnum = #{har_rnum}
+	</select>
+	<!-- 가격조회 -->
+	<select id="getPrice" parameterType="string" resultType="int">
+		SELECT (s.price+ NVL(s2.price,0)) as totalPrice
+		FROM HAR_RESERVATION h 
+		LEFT JOIN STYLE s ON h.style_num = s.style_num 
+		LEFT JOIN STYLE s2 ON h.style_num2 = s2.style_num2
+		WHERE h.har_rnum = #{har_rnum}
+	</select>
 </mapper>

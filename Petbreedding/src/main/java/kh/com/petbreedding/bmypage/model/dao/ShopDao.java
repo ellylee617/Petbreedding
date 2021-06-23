@@ -21,7 +21,7 @@ public class ShopDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 미용실 리스트 조회 (shopController)
+	// 미용실 전체 리스트 조회 (shopController)
 	public List<HairSalon> selectHarList(int currentPage, int limit) {
 		System.out.println("다오 진입");
 		int startRow = (currentPage -1) * limit;
@@ -29,6 +29,12 @@ public class ShopDao {
 		System.out.println("다오 끝");
 		return sqlSession.selectList("Shop.selectHarList", null, row);
 	}
+	
+	//	TODO
+	//	미용실 리스트 : 인기순
+	//	미용실 리스트 : 거리순
+	//	미용실 리스트 : 별점순	
+	
 	
 	// 미용실 기본 정보 입력 
 	public int insertHarInfo(HairSalon vo) {
@@ -39,12 +45,12 @@ public class ShopDao {
 	}
 	
 	// 미용실 기본 정보 불러오기
-	public List<HairSalon> selectHarInfo(String bpId) {
+	public HairSalon selectHarInfo(String bpId) {
 		
 		System.out.println(" !! ShopDao - selectHarInfo() 실행 !!");
 		System.out.println("bp id:"+bpId);
 		
-		return sqlSession.selectList("Shop.selectHarInfo", bpId);
+		return sqlSession.selectOne("Shop.selectHarInfo", bpId);
 		
 		
 	}
@@ -93,6 +99,28 @@ public class ShopDao {
 		return sqlSession.insert("Shop.insertNewHarDayOff", vo);	
 	}
 	
+	
+	
+	
+	
+	
+	// 동물병원 전체 리스트 조회 (shopController)
+	public List<Hospital> selectHosList(int currentPage, int limit) {
+		System.out.println("DAO 진입");
+		int startRow = (currentPage -1) * limit;
+		RowBounds row = new RowBounds(startRow, limit);
+		System.out.println("DAO 끝");
+		return sqlSession.selectList("Shop.selectHosList", null, row);
+	}
+	
+	//	TODO
+	//	동물병원 리스트 : 인기순
+	//	동물병원 리스트 : 거리순
+	//	동물병원 리스트 : 별점순	
+	
+	
+	
+	
 	// 동물병원 기본 정보 입력
 	public int insertHosInfo(Hospital vo) {
 		
@@ -102,12 +130,12 @@ public class ShopDao {
 	}
 	
 	// 동물병원 기본 정보 불러오기
-	public List<Hospital> selectHosInfo(String bpId){
+	public Hospital selectHosInfo(String bpId){
 
 		System.out.println(" !! ShopDao - selectHosInfo() 실행 !!");
 		System.out.println("bp id:"+bpId);
 		
-		return sqlSession.selectList("Shop.selectHosInfo", bpId);
+		return sqlSession.selectOne("Shop.selectHosInfo", bpId);
 		
 	}
 	

@@ -44,20 +44,6 @@ public class CtaServiceImpl implements CtaService {
 	public int insertpay(CtaPay pay) {
 		int result = -1;
 		
-		String CM_CODE = pay.getCM_CODE();
-		String BP_ID = pay.getBP_ID();
-		
-		CM_CODE = CM_CODE.replace("<", "&lt;");
-		CM_CODE = CM_CODE.replace("<", "&gt;");
-		BP_ID = BP_ID.replace("<", "&lt;");
-		BP_ID = BP_ID.replace("<", "&gt;");
-		
-		//공백처리
-		CM_CODE = CM_CODE.replace(" ", "&nbsp;&nbsp;");
-		BP_ID = BP_ID.replace(" ", "&nbsp;&nbsp;");
-		
-		pay.setBP_ID(BP_ID);
-		pay.setCM_CODE(CM_CODE);
 		
 	    try {
 	    	result = ctaDao.insertpay(pay);
@@ -70,21 +56,7 @@ public class CtaServiceImpl implements CtaService {
 	@Override
 	public int insertCta(CtaPay pay) {
 		int result = -1;
-		
-		String CM_CODE = pay.getCM_CODE();
-		String BP_ID = pay.getBP_ID();
-		
-		CM_CODE = CM_CODE.replace("<", "&lt;");
-		CM_CODE = CM_CODE.replace("<", "&gt;");
-		BP_ID = BP_ID.replace("<", "&lt;");
-		BP_ID = BP_ID.replace("<", "&gt;");
-		
-		//공백처리
-		CM_CODE = CM_CODE.replace(" ", "&nbsp;&nbsp;");
-		BP_ID = BP_ID.replace(" ", "&nbsp;&nbsp;");
-		
-		pay.setBP_ID(BP_ID);
-		pay.setCM_CODE(CM_CODE);
+	
 		
 		try {
 			result = ctaDao.insertCta(pay);
@@ -95,9 +67,9 @@ public class CtaServiceImpl implements CtaService {
 	}
 
 	@Override
-	public List<CtaPay> mycta(String bp_id) throws Exception {
+	public CtaPay mycta(String bp_id) throws Exception {
 		System.out.println("mycta 조회 들어옴");
-		List<CtaPay> list = null;
+		CtaPay list = null;
 		try {
 			list = ctaDao.mycta(bp_id);
 			if(list != null) {
@@ -109,6 +81,41 @@ public class CtaServiceImpl implements CtaService {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public int updatecta(CtaPay cta) throws Exception {
+		int result = -1;
+		System.out.println("cta업데이트 들어옴 ");
+		
+		try {
+			result = ctaDao.updatecta(cta);
+			if(result > 0) {
+				System.out.println("cta 충전 됨");
+			}else {
+				System.out.println("cta 충전 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int delcta(String BP_ID) throws Exception {
+		int result = -1;
+		System.out.println("cta 차감 들어옴");
+		try {
+			result = ctaDao.delcta(BP_ID);
+			if(result > 0) {
+				System.out.println("차감 성공");
+			}else {
+				System.out.println("차감 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 }

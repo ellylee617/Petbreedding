@@ -50,6 +50,10 @@ public class ClientInfoDao {
 	public List<HairShopReservation> myRevDetail(String har_rnum){
 		return sqlSession.selectList("myRev.myRevDetail", har_rnum);
 	}
-	
-	
+	public String anotherMenu(String har_rnum){
+		return sqlSession.selectOne("myRev.anotherMenu", har_rnum);
+	}
+	public int getPrice(String har_rnum){
+		return sqlSession.selectOne("myRev.getPrice", har_rnum);
+	}
 }

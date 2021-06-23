@@ -43,8 +43,16 @@
 		WHERE BP_ID = #{BP_ID}
 	</select>	
 	
-	<update id="">
+	<!-- 울트라콜 수정 -->
+	<update id="pluscta" parameterType="Ctapay">
+	UPDATE MY_CTA SET CTA_NUMBER = ( CTA_NUMBER + #{CM_TYPE}) 
+	WHERE BP_ID = #{BP_ID}
 	
+	</update>
+	<!-- 울트라콜 차감 -->
+	<update id="delcta" parameterType="string">
+		UPDATE MY_CTA SET CTA_NUMBER = ( CTA_NUMBER - 1) 
+	WHERE BP_ID = #{BP_ID}
 	</update>
 </mapper>
 	

@@ -262,13 +262,13 @@ public class BMyPageController {
 			
 			
 			if(bPType==0) {	// 미용실
-				List<HairSalon> list = shopService.selectHarInfo(bpId);
+				HairSalon vo = shopService.selectHarInfo(bpId);
 				mav.setViewName("/bPartner/bShop/bShopInfo");
-				mav.addObject("list", list);
+				mav.addObject("vo", vo);
 			} else {	// 동물병원
-				List<Hospital> list = shopService.selectHosInfo(bpId);
+				Hospital vo = shopService.selectHosInfo(bpId);
 				mav.setViewName("/bPartner/bShop/bShopInfo");
-				mav.addObject("list", list);
+				mav.addObject("vo", vo);
 			}
 			
 
