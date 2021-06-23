@@ -31,13 +31,14 @@
 							<span>구매자 정보</span>
 						</div>
 						<div class="mt15">
-							<span>구매자명</span> <span id="BP_ID">곽서현</span>
+							<span>구매자명</span> <span id="name" >${bP.bp_name}</span>
+							<input type="text" id="BP_ID" value="${bP.bp_Id}"/>
 						</div>
 						<div class="mt15">
-							<span>연락처</span> <span id="tel">010-0000-0000</span>
+							<span>연락처</span> <span id="tel">${bP.bp_tel}</span>
 						</div>
 						<div class="mt15">
-							<span>이메일</span> <span id="email">${client.email}</span>
+							<span>이메일</span> <span id="email">${bP.bp_email}</span>
 						</div>
 					</div>
 
@@ -45,7 +46,7 @@
 						<div>
 							<div class="container spaceBw">
 								<span>결제 상품</span> <span id="CM_TYPE">${vo.CM_TYPE}</span>
-								<input type="hidden" id="CM_CODE" value="${vo.CM_CODE}".-/>
+								<input type="hidden" id="CM_CODE" value="${vo.CM_CODE}"/>
 							</div>
 
 							<div class="container spaceBw">
@@ -98,7 +99,7 @@
 	<script src="https://kit.fontawesome.com/6a57affb8e.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
-    <script type="text/javascript" src="${path}/resources/js/bPartner/bSales/ctaPay.js"></script>
     <script type="text/javascript" src="${path}/resources/js/bPartner/bSales/ctaPay2.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/bPartner/bSales/ctaPay.js"></script>
 </body>
 </html>

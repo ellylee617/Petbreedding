@@ -2,11 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:out value="${param.shoptype}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petverything::펫브리띵</title>
+<title>Petbreedding::펫브리띵</title>
 <link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
@@ -19,7 +20,10 @@
 		<jsp:include page="../../common/header.jsp" />
 		
 		<section class="section">
-            <h1>미용실</h1>
+		
+		<!-- 동물병원 -->
+		<c:if test="${param.shoptype eq 1}">
+            <h1>동물병원</h1>
             <div class="nowLocation">
                 <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
@@ -37,6 +41,67 @@
                             <div class="ultraList_inner">
                                 <div class="ultraList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
                                 <div class="ultraList_title_area"><a href="#">쿨펫 동물병원</a></div>
+                                <div class="ultraList_info_area"><a href="#">슬개골 수술 전문 병원입니다.</a></div>
+                                <div class="ultraList_etc_area">
+                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                    <a href="#">찜하기<small>999+</small></a>
+                                </div>
+                                <div class="ultraList_button">
+                                    <a href="storeInfoRead.html" class="goList">정보보기</a>
+                                </div>
+                            </div>                                                            
+                        </li>
+                    </div>
+                </ul>
+            </div>
+            
+            <div class="storeS">
+                <ul>
+                    <div class="Store">                     
+                        <li class="storeList">
+                            <div class="storeList_inner">
+                                <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
+                                <div class="storeList_title_area"><a href="#">쿨펫 동물병원</a></div>
+                                <div class="storeList_info_area"><a href="#">슬개골 수술 전문 병원입니다.</a></div>
+                                <div class="storeList_etc_area">
+                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                    <a href="#">찜하기<small>999+</small></a>
+                                </div>
+                                <div class="storeList_button">
+                                    <a href="storeInfoRead.html" class="goList">정보보기</a>
+                                </div>
+                            </div>                                                            
+                        </li>
+                    </div>
+                </ul>
+            </div>
+            
+            <!--TOPBTN-->
+            <a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
+            </c:if>
+            
+            <!-- 미용실 -->
+            <c:if test="${param.shoptype eq 0}">
+            <h1>미용실</h1>
+            <div class="nowLocation">
+                <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+            </div>
+            <hr id="storeLine">
+            <div class="selectOpt">
+                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">인기순</label>
+                <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
+                <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
+            </div>
+            <div class="ultraS">
+                <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
+                <ul>
+                    <div class="ultraStore">                     
+                        <li class="ultraList">
+                            <div class="ultraList_inner">
+                                <div class="ultraList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
+                                <div class="ultraList_title_area"><a href="#">쿨펫 미용실</a></div>
                                 <div class="ultraList_info_area"><a href="#">가위컷 전문 미용실입니다.</a></div>
                                 <div class="ultraList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
@@ -51,6 +116,7 @@
                     </div>
                 </ul>
             </div>
+            
             <div class="storeS">
                 <ul>
                     <div class="Store">                     
@@ -71,12 +137,23 @@
                         </li>
                     </div>
                 </ul>
-            </div>
-            <!--TOPBTN-->
-            <a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
+            </div>            
+            </c:if>
         </section>
 	
 		<jsp:include page="../../common/footer.jsp" />	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		 <!-- MODAL -->
         <div id="my_modal">

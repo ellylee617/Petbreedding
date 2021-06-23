@@ -97,6 +97,11 @@
                         		  <div class="check_font" id="pet_birthchk"></div>
                         </td>
                     </tr>
+                      <tr>
+                        <td colspan="2">
+							   <input type="text" id="pet_weight" name="pet_weight" placeholder="반려견 몸무게를 입력해주세요" class="basicTextInput perInfo_text m_20">
+                        </td>
+                    </tr>
 
                     <tr>
                         <td colspan="2" class="radioBox" id="gen">
