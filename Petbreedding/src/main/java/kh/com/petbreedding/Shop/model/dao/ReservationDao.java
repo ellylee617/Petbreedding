@@ -33,11 +33,9 @@ public class ReservationDao {
 		return sqlSession.insert("ShopRev.insertHairRev", hrv);
 	}
 	
-<<<<<<< HEAD
 	public List<HairShopReservation> shopPayment(String har_rnum){
 		return sqlSession.selectList("shopPay.myRevPay", har_rnum);
 	}	
-=======
 
 	
 	
@@ -50,6 +48,5 @@ public class ReservationDao {
 	
 	
 	
->>>>>>> fd765c89b426a4f1639f0b60f3f994cd9b21a316
 	
 }

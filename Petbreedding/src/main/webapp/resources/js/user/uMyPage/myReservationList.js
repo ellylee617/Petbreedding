@@ -177,12 +177,9 @@ $("#searchDate").on("click",function(){
 	
 });
 
-<<<<<<< HEAD
 //상세보기페이지 진입
-=======
 
 
->>>>>>> fd765c89b426a4f1639f0b60f3f994cd9b21a316
 function goDetail(value){
 	
 	location.href = "/petbreedding/mypage/revdetail?har_rnum="+value+"";
