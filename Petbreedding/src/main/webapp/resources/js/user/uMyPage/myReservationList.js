@@ -114,6 +114,7 @@ $("#searchDate").on("click",function(){
 		            var $har_name = data[i].har_name; 
 		            var $res_status = data[i].res_status;
 		            var res_status;
+		            var $har_rnum = data[i].har_rnum;
 		            if($res_status == 0){
 		            	res_status = "결제대기";
 		            }else if($res_status == 1){
@@ -124,9 +125,9 @@ $("#searchDate").on("click",function(){
 		            }else if($res_status == 3){
 		            	res_status = "결제취소";
 		            }
-		            
+		            var param = "'"+$har_rnum+"'";
 		            var td = "";
-		            td += "<tr>";
+		            td += '<tr onclick="goDetail('+param+')">';
 		            td += "<td>"+$res_date+"</td>";
 		            td += "<td>"+$har_name+"</td>";
 		            if(res_status == "이용완료"){
@@ -155,6 +156,12 @@ $("#searchDate").on("click",function(){
 	
 	
 });
+
+
+function goDetail(value){
+	location.href = "/petbreedding/mypage/revdetail?har_rnum="+value+"";
+}
+
 
 //	$("#regBtn").on("click", function(){
 //		var dataString = $("#frm").serialize(); 

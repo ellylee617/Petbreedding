@@ -21,7 +21,8 @@
 			<jsp:include page="../myPageAside.jsp" />
 			<div class="mcontent">
 			<div class="rborder r1 rOrderTitle">
-                    <i class="far fa-check-circle"></i>&nbsp;결제 대기
+                    <i class="far fa-check-circle"></i>
+                    &nbsp;결제 대기
                 </div>
                 <div class="rborder">
                     <span id="rOrderNum">주문번호 202106101234</span>

@@ -19,7 +19,7 @@ public class MyPet {
 	private String pet_others; // 반려동물 기타 특이사항
 	private String pet_img; // 반려동물 사진
 	private String mbti; //멍BTI
-	private Style style;
+	private String pet_weight;
 	
 	
 	@Override
@@ -28,7 +28,7 @@ public class MyPet {
 				+ ", pet_birth=" + pet_birth + ", pet_gen=" + pet_gen + ", pet_neut=" + pet_neut + ", pet_exper="
 				+ pet_exper + ", pet_vaccin=" + pet_vaccin + ", pet_bite=" + pet_bite + ", kneecap=" + kneecap
 				+ ", dislike=" + dislike + ", pet_others=" + pet_others + ", pet_img=" + pet_img + ", mbti=" + mbti
-				+ ", style=" + style + "]";
+				+ ", pet_weight=" + pet_weight + "]";
 	}
 	public String getPet_num() {
 		return pet_num;
@@ -120,12 +120,13 @@ public class MyPet {
 	public void setMbti(String mbti) {
 		this.mbti = mbti;
 	}
-	public Style getStyle() {
-		return style;
+	public String getPet_weight() {
+		return pet_weight;
 	}
-	public void setStyle(Style style) {
-		this.style = style;
+	public void setPet_weight(String pet_weight) {
+		this.pet_weight = pet_weight;
 	}
+	
 
 
 }

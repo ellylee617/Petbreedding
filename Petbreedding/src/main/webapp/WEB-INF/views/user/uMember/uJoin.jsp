@@ -93,7 +93,8 @@
 							<div class="check_font" id="hp2_check"></div>
 						</td>
 					</tr>
-
+					<input type="hidden" name="naverlogin" value="N" />
+					<input type="hidden" name="kakaologin" value="N" />
 					<tr>
 						<td colspan="2"><input id="joinBtn" class="basicBtn"
 							type="button" value="가입하기">

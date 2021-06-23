@@ -107,5 +107,17 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 		return result;
 	}
 
+	@Override
+	public List<HairShopReservation> myRevDetail(String har_rnum) {
+		List<HairShopReservation> result = null;
+		try {
+			result = clientInfoDao.myRevDetail(har_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 	
 }

@@ -1,5 +1,10 @@
 package kh.com.petbreedding.Shop.model.vo;
 
+import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Style;
+import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.mypage.model.vo.MyPet;
+
 public class HairShopReservation {
 	private String har_rnum; //미용실 예약번호
 	private String msg_num; //알림번호 (M1~M5)
@@ -13,7 +18,11 @@ public class HairShopReservation {
 	private String style_num2; //추가 스타일 번호
 	private String har_name;
 	private String res_date2; //검색일2
-	
+	private int totalPrice;
+	private Client client;
+	private MyPet pet;
+	private Style style;
+	private HairSalon hairSalon;
 	
 	
 	@Override
@@ -21,7 +30,7 @@ public class HairShopReservation {
 		return "HairShopReservation [har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", style_num=" + style_num + ", har_num=" + har_num + ", res_date="
 				+ res_date + ", res_status=" + res_status + ", res_time=" + res_time + ", style_num2=" + style_num2
-				+ ", har_name=" + har_name + ", res_date2=" + res_date2 + "]";
+				+ ", har_name=" + har_name + ", res_date2=" + res_date2 + ", totalPrice=" + totalPrice + "]";
 	}
 	public String getHar_rnum() {
 		return har_rnum;
@@ -98,6 +107,36 @@ public class HairShopReservation {
 
 	public void setRes_date2(String res_date2) {
 		this.res_date2 = res_date2;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public MyPet getPet() {
+		return pet;
+	}
+	public void setPet(MyPet pet) {
+		this.pet = pet;
+	}
+	public Style getStyle() {
+		return style;
+	}
+	public void setStyle(Style style) {
+		this.style = style;
+	}
+	public HairSalon getHairSalon() {
+		return hairSalon;
+	}
+	public void setHairSalon(HairSalon hairSalon) {
+		this.hairSalon = hairSalon;
 	}
 	
 	

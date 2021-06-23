@@ -56,10 +56,15 @@ public class ClientInfoCotroller {
 	
 	
 	// 예약 자세히 보기
-	@RequestMapping("/mypage/reservationdetail")
-	public String myReservationDetail(HttpSession session) {
+	@RequestMapping("/mypage/revdetail")
+	public String myReservationDetail(String har_rnum, HttpSession session, Model model) {
+		
+		List<HairShopReservation> result = clientInfoService.myRevDetail(har_rnum);
+		model.addAttribute("myRev", result);
+		
 		return "/user/uMyPage/myReservationDetail";
 	}
+
 
 	// 포인트내역
 	@RequestMapping("/mypage/point")
