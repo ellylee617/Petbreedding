@@ -155,4 +155,6 @@ public class ShopDao {
 		System.out.println(" !! ShopDao - insertNewHosDayOff() 실행 !!");
 		return  sqlSession.insert("Shop.insertNewHosDayOff", vo);
 	}		
+	
+
 }

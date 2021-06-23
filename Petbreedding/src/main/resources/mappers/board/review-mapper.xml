@@ -4,7 +4,7 @@
 <mapper namespace="Review">
 	<resultMap type="Review" id="ReviewMap">
 		<id column="REV_NUM" property="revNum"/>
-		<result column="BP_NUM" property="bpNum"/>
+		<result column="BP_IP" property="bpId"/>
 		<result column="CL_NUM" property="clNum"/>
 		<result column="CL_NICKNAME" property="clNickName"/>
 		<result column="REV_CONT" property="revCont"/>
@@ -19,12 +19,12 @@
 		 ]]>
 	</select>
 	
-<!-- 	#{bpNum} 일단 1로 고정-->
+<!-- 	#{bpId} 일단 1로 고정-->
 	
 	<insert id="insertReview" parameterType="Review">
 		<![CDATA[
 			INSERT INTO REVIEW VALUES(
-			'REV'||SEQ_REVIEW.NEXTVAL, 1,
+			'REV'||SEQ_REVIEW.NEXTVAL, #{bpId},
 			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
 			TO_CHAR(SYSDATE, 'YYYYMMDD'), #{revVal}
 			)

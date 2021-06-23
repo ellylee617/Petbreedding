@@ -41,14 +41,18 @@ function onClickOption(e) {
     console.log(selectedEle.value);
     console.log(typeof(selectedEle.value));
 }
-
-$(".btnReWr").on("click", function(){
+// modal 창 열기
+function modalOn(param) {
 	modal.style.display = "flex";
-});
-
+	$("#for_value_har_num").val(param);
+}
+//modal 창 닫기
+function modalOff() {
+	modal.style.display = "none";
+}
 var closeBtn = modal.querySelector(".modal_close_btn")
 closeBtn.addEventListener("click", function() {
-	modal.style.display = "none";
+	modalOff();
 });
 
 document.querySelector(".select").addEventListener("click", onClickSelect);
@@ -67,9 +71,10 @@ document.querySelector(".select").addEventListener("click", onClickSelect);
 }
 
 $("#regBtn").on("click", function() {
-    $("#frm").attr("action", "rwrite");
-    $("#frm").attr("method", "POST");
-    $("#frm").submit();
+	modalOff(); //modal 창 닫기
+    $("#frmReviewInput").attr("action", "rwrite");
+    $("#frmReviewInput").attr("method", "POST");
+    $("#frmReviewInput").submit();
 });
 
 
@@ -115,6 +120,7 @@ $("#searchDate").on("click",function(){
 		            var $res_status = data[i].res_status;
 		            var res_status;
 		            var $har_rnum = data[i].har_rnum;
+		            var $har_num = data[i].har_num;
 		            if($res_status == 0){
 		            	res_status = "결제대기";
 		            }else if($res_status == 1){
@@ -125,14 +131,16 @@ $("#searchDate").on("click",function(){
 		            }else if($res_status == 3){
 		            	res_status = "결제취소";
 		            }
-		            var param = "'"+$har_rnum+"'";
+		            var param = "'"+$har_rnum+"'";  // 예약번호
+		            var param_double_quot = '"'+$har_num+'"';  // 미용실번호
 		            var td = "";
-		            td += '<tr onclick="goDetail('+param+')">';
+		            //td += '<tr onclick="goDetail('+param+')">';
+		            td += "<tr id="+param+" class='resInfoBox'>";
 		            td += "<td>"+$res_date+"</td>";
 		            td += "<td>"+$har_name+"</td>";
 		            if(res_status == "이용완료"){
 		            	 td += "<td>"+res_status+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-		            	 "<button type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
+		            	 "<button onClick='modalOn("+param_double_quot+"); return true;' type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
 		            	 +"</td>";
 		            }else{
 		            	td+= "<td>"+res_status+"</td>";
@@ -141,6 +149,17 @@ $("#searchDate").on("click",function(){
 
 		            $(".rlist").append(td);
 
+
+		            $(".resInfoBox").click(function() {
+		            	var idVar = $(this).attr("id");
+		            	var th = $(this).find('.btnReWr');
+		            	console.log(th);
+		            	console.log('콘솔로그');
+		            	if(th.length < 1) {
+		            		goDetail(idVar);
+		            	}
+		            });
+		             	
 		          }
 		          
 		         }else{
@@ -149,7 +168,8 @@ $("#searchDate").on("click",function(){
 		        	 td += "<td colspan='4'>해당 기간에 예약하신 내역이 없습니다.</td>";
 		        	 td += "</tr>";
 		        	 $(".rlist").append(td);
-		         }   			
+		         } 
+				
 			}
 		});
 	}
@@ -158,7 +178,9 @@ $("#searchDate").on("click",function(){
 });
 
 
+
 function goDetail(value){
+	
 	location.href = "/petbreedding/mypage/revdetail?har_rnum="+value+"";
 }
 

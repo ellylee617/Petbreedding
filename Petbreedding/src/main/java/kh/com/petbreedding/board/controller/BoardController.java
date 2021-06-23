@@ -81,9 +81,15 @@ public class BoardController {
 			) {
 		System.out.println("리뷰 등록 컨트롤러 진입");
 		cl = (Client) session.getAttribute("client");
+		if(cl==null) {
+			//TODO: 로그인 안됐다는 경고.또는 이동 위치 변경
+			return "redirect:/";
+		}
 		String clNum = cl.getCl_num();
 		String clNickName = cl.getNickname();
 		System.out.println("리퀘스트 겟 파라메타" + req.getParameter("selectedVal"));
+		String har_num = req.getParameter("har_num");
+		System.out.println("[세훈] har_num:"+ har_num);
 		
 		Review rv = new Review();
 		System.out.println(clNum);
@@ -97,23 +103,27 @@ public class BoardController {
 		
 		// 파일업로드
 		MultipartFile mf = req.getFile("reviewImg"); // 업로드 파라미터
-		String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
-		UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
-		String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
-		String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
-		File uploadFile = new File(path + "//" + saveName); // 복사될 위치
-		
-		try {
-			mf.transferTo(uploadFile);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(mf != null) {
+			
+			String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
+			UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
+			String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
+			String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
+			File uploadFile = new File(path + "//" + saveName); // 복사될 위치
+			
+			try {
+				mf.transferTo(uploadFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			rv.setRevImg(saveName);
+			
+			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
 		}
 		
-		rv.setRevImg(saveName);
-		
-		System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
-		
-		int result = reviewService.insertReview(rv);
+		System.out.println("[세훈 ]" + rv.toString());
+		int result = reviewService.insertReview(rv, har_num);
 		
 		PrintWriter out = null;
 		
@@ -138,7 +148,7 @@ public class BoardController {
 		}
 		
 		
-		return "redirect:mypage";
+		return "redirect:/mypage?cl_num=CL1";
 	}
 	
 	@RequestMapping(value = "/UcustomerService", method = RequestMethod.GET)
