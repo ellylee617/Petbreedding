@@ -31,6 +31,7 @@ public class ReservationDao {
 	
 	public int insertHairRev(HairShopReservation hrv) {
 		return sqlSession.insert("ShopRev.insertHairRev", hrv);
+		
 	}
 	
 	public List<HairShopReservation> shopPayment(String har_rnum){
