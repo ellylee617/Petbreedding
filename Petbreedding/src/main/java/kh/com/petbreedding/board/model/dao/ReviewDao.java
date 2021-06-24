@@ -38,4 +38,5 @@ public class ReviewDao {
 	public String searchBpId(String har_num) {
 		return sqlSession.selectOne("Shop.searchBpId", har_num);
 	}
+	
 }

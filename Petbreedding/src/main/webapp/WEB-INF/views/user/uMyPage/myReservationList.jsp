@@ -76,6 +76,7 @@ JS에서 html 태그 생성
 					</ul>
 					<input type="number" id="selectedVal" name="selectedVal" style="display:none"  readonly>
 					<input type="hidden" name="har_num" id="for_value_har_num" >
+					<input type="hidden" name="har_name" id="for_value_har_name" >
 					<!-- hidden에 미용실 번호 담음 from js파일 -->
 <%-- 						<input type="hidden" name="harNum" value="${myRev.har_num}"> --%>
 				</div>

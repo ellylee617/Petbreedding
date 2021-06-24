@@ -39,7 +39,7 @@
 			SELECT * FROM MYPOINT WHERE CL_NUM = #{clNum}
 		 ]]>
 	</select>
-	<select id="CurrPointSelectOne" parameterType="string" resultType="string">
+	<select id="CurrPointSelectOne" parameterType="string" resultType="int">
 		<![CDATA[
 			SELECT CURR_POINT
 			FROM (
@@ -48,5 +48,30 @@
 			WHERE CL_NUM = #{clNum} AND ROWNUM = 1
 		]]>
 	</select>
+	
+<!-- 	INSERT INTO MYPOINT VALUES('CL1', 'PO2', SEQ_MYPOINT.NEXTVAL, TO_CHAR(SYSDATE, 'YYYYMMDD'), '취소', '미용실3', 'HAP1', 1000, 1000); -->
+
+
+	<insert id="myPointInsert" parameterType="MyPoint">
+		<![CDATA[
+			
+			insert into mypoint values (#{clNum}, #{pointNum}, seq_mypoint.nextval, to_char(sysdate, 'yyyy-mm-dd'), 
+			#{expType}, #{expFrom}, #{expId}, (select score from point where point_num=#{pointNum}), 
+			(select 
+			(
+			SELECT CURR_POINT
+			         FROM (
+			         SELECT * FROM MYPOINT ORDER BY INDEXS DESC
+			         )
+			         WHERE CL_NUM = #{clNum}  AND ROWNUM = 1
+			) 
+			+ 
+			(select score from point where point_num=#{pointNum})
+			 from dual)
+			)
+	
+		]]>
+		
+	</insert>
 	
 </mapper>

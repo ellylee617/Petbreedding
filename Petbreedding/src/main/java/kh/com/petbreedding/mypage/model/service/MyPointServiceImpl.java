@@ -28,8 +28,8 @@ public class MyPointServiceImpl implements MyPointService {
 	}
 
 	@Override
-	public String CurrPointSelectOne(String clNum) {
-		String result = null;
+	public int CurrPointSelectOne(String clNum) {
+		int result = 0;
 		System.out.println("[세훈] 보유 포인트 서비스 clNum : " + clNum);
 		
 		try {
@@ -41,6 +41,7 @@ public class MyPointServiceImpl implements MyPointService {
 		
 		return result;
 	}
+
 	
 
 }

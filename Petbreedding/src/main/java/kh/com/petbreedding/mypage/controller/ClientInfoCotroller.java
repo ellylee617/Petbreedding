@@ -91,7 +91,7 @@ public class ClientInfoCotroller {
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(cl_num);
 		
-		String currPoint = myPointService.CurrPointSelectOne(cl_num);
+		int currPoint = myPointService.CurrPointSelectOne(cl_num);
 		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
 		
 		System.out.println("[세훈] 컨트롤러 pointList : " + pointList);
