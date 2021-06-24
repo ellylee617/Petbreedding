@@ -45,7 +45,10 @@ public class ReviewServiceImpl implements ReviewService {
 			System.out.println("[shkim]har_num" + har_num);
 			String bp_id = reviewDao.searchBpId(har_num); 
 			rv.setBpId(bp_id);
+			String rev_num = reviewDao.getRevNumFromSeq();
+			rv.setRevNum(rev_num);
 			result = reviewDao.insertReview(rv);
+			// TODO 마이포인트 VO에 인서트
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
