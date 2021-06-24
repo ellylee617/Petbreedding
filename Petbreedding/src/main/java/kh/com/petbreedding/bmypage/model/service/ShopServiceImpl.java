@@ -13,6 +13,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.Style;
 
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
@@ -289,6 +290,41 @@ public class ShopServiceImpl implements ShopService {
 		}
 		System.out.println("List<Hospital> hosList ::" + hosList);
 		return hosList;
+	}
+
+
+
+
+	@Override
+	public int insertStyleMAinMenu(Style vo) { 	// 미용실 메뉴 추가
+		
+		System.out.println(" ~ Shoservice  insertStyleMAinMenu() 실행  ~");
+		int result = -1;
+		
+		try {
+			result = shopDao.insertStyleMAinMenu(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+	//미용실 서브메뉴 추가
+	@Override
+	public int insertStyleSubMenu(Style vo) {
+		System.out.println(" ~ Shoservice  insertStyleSubMenu() 실행  ~");
+		int result = -1;
+		
+		try {
+			result = shopDao.insertStyleSubMenu(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
 	}
 
 

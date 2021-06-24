@@ -8,6 +8,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.Style;
 
 public interface ShopService {
 	
@@ -26,7 +27,8 @@ public interface ShopService {
 	public int insertHarDayOff(HairDayOff vo); // 미용실 주휴일 입력
 	public int deleteHarDayOff(String harNum); // 미용실 주휴일 수정 (삭제)
 	public int insertNewHarDayOff(HairDayOff vo); // 수정된 미용실 주휴일 추가
-
+	public int insertStyleMAinMenu(Style vo);	// 미용실 메인메뉴 추가
+	public int insertStyleSubMenu(Style vo); //미용실 서브메뉴 추가
 	
 	public List<Hospital> selectHosList(int currentPage, int limit); // 동물병원 전체 리스트 조회 //*********TODO:위치이동***********
 	

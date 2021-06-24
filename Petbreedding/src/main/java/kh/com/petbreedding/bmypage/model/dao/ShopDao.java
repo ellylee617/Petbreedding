@@ -14,6 +14,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.Style;
 
 @Repository("shopDao")
 public class ShopDao {
@@ -21,12 +22,20 @@ public class ShopDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	
+
 	// 사업장 등록 - BP 테이블에서 사업장 등록여부 상태 1로 바꾸기
 	public int updateBpReg(String bpId) {
 		System.out.println(" !! ShopDao - updateBpReg() 실행 !!");
 		return sqlSession.insert("Shop.updateBpReg", bpId);
 	}
+
+	
+	/* 
+	 * 미용실
+	 * 
+	 * 
+	 * */
+	
 	
 	// 미용실 전체 리스트 조회 (shopController)
 	public List<HairSalon> selectHarList(int currentPage, int limit) {
@@ -106,9 +115,26 @@ public class ShopDao {
 		return sqlSession.insert("Shop.insertNewHarDayOff", vo);	
 	}
 	
+	// 미용실 주메뉴 추가
+	public int insertStyleMAinMenu(Style vo) {
+		System.out.println(" !! ShopDao - insertStyleMAinMenu() 실행 !!");
+		vo.toString();
+		return sqlSession.insert("ShopMenu.insertStyleMAinMenu", vo);
+	}
+	
+	// 미용실 서브메뉴 추가
+	public int insertStyleSubMenu(Style vo) {
+		System.out.println(" !! ShopDao - insertStyleSubMenu() 실행 !!");
+		vo.toString();
+		return sqlSession.insert("ShopMenu.insertStyleSubMenu", vo);
+	}
 	
 	
-	
+	/* 
+	 * 동물병원
+	 * 
+	 * 
+	 * */
 	
 	
 	// 동물병원 전체 리스트 조회 (shopController)

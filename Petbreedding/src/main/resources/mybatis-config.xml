@@ -44,7 +44,8 @@
 		<mapper resource="mappers/Shop/shopRev-mapper.xml"/>
 		<mapper resource="mappers/Mypage/myRev-mapper.xml"/>
 		<mapper resource="mappers/Mypage/myPoint-mapper.xml"/>
-		<mapper resource="mappers/Shop/shopPay-mapper.xml"/>		
+		<mapper resource="mappers/Shop/shopPay-mapper.xml"/>	
+		<mapper resource="mappers/Shop/shopMenu-mapper.xml"/>	
 	</mappers>
 	
 </configuration>

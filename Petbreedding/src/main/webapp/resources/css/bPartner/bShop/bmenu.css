@@ -87,12 +87,29 @@
 }
 
 .insert{
-    clear: right;
+	clear: both;
+	}
+
+.insert label input {
+	width: 5%;
+	height: 10px;
 }
+
+.insert {
+	margin: 0px;
+	width: 800px;
+	clear: both;
+}
+
 .insert input{
-    width: 300px;
+    width: 15%;
     height: 25px;
     border: 1px solid #aaa;
+}
+
+button[type=submit]{
+	clear: both;
+	float: none;
 }
 
 .menucon{
