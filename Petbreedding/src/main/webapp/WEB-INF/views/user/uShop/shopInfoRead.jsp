@@ -38,7 +38,7 @@
                     <div class="store_btn">
                         <a href="#" id="goChat" class="sBtn">문의하기</a>
                         <!-- TODO -->
-                        <a href="${path}/shopReservation?har_num=1&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>
+                        <a href="${path}/shopReservation?har_num=HA1&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>
                         <a href="#" id="zzim"><i class="far fa-heart"></i><i class="fas fa-heart"></i></a>
                     </div>
                 </div> <!--store_info_article-->

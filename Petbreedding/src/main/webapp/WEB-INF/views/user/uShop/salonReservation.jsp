@@ -32,7 +32,7 @@
             <!-- 넘길 정보 -->
             <!-- TODO -->
             <input type="hidden" value="40" id="clNum"/> 
-            <input type="hidden" value="1" id="harNum"/>
+            <input type="hidden" value="HA1" id="harNum"/>
             
             <div class="swiper-container" id="checkService">
                 <p class="rev_text">이용하실 서비스를 선택해주세요</p>

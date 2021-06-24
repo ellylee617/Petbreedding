@@ -16,20 +16,20 @@
 
 </head>
 <body>
-	<div class="wrapper">    
-		<jsp:include page="../../common/header.jsp" />
-		
-		<section class="section">
-		
-		<!-- 동물병원 -->
-		<c:if test="${shopType eq 1}">
+   <div class="wrapper">    
+      <jsp:include page="../../common/header.jsp" />
+      
+      <section class="section">
+      
+      <!-- 동물병원 -->
+      <c:if test="${shopType eq 1}">
             <h1>동물병원</h1>
             <div class="nowLocation">
                 <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
             <hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">인기순</label>
+                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최신순</label>
                 <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
                 <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
             </div>
@@ -58,7 +58,7 @@
             </div>
             
             <div class="storeS">
-            	<c:forEach items="${shopList}" var="item">
+               <c:forEach items="${shopList}" var="item">
                 <ul>
                     <div class="Store">                     
                         <li class="storeList">
@@ -93,20 +93,21 @@
             </div>
             <hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">인기순</label>
+                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최신순</label>
                 <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
                 <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
             </div>
-		<div class="ultraS">
+      <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
+                   <c:forEach var="cta" items="${cta}">
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
                                 <div class="ultraList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="ultraList_title_area"><a href="#">쿨펫 동물병원</a></div>
-                                <div class="ultraList_info_area"><a href="#">슬개골 수술 전문 병원입니다.</a></div>
+                                <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
+                                <div class="ultraList_info_area"><a href="#">${cta.shopMInfo}</a></div>
                                 <div class="ultraList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
@@ -120,9 +121,10 @@
                     </div>
                 </ul>
             </div>
+            </c:forEach>
             
            <div class="storeS">
-           	 <c:forEach items="${shopList}" var="item">
+               <c:forEach items="${shopList}" var="item">
                 <ul>
                     <div class="Store">                      
                        <li class="storeList">
@@ -148,22 +150,13 @@
             </div>
             </c:if>
         </section>
-	
-		<jsp:include page="../../common/footer.jsp" />	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		 <!-- MODAL -->
+   
+      <jsp:include page="../../common/footer.jsp" />   
+      
+      
+      
+      
+       <!-- MODAL -->
         <div id="my_modal">
             <p>주소 검색</p>
             <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
@@ -194,11 +187,11 @@
                 <button id="changeLoc">확인</button>
             </div>
         </div>
-		
-		
-	</div>
-	
-	 <!-- script -->
+      
+      
+   </div>
+   
+    <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/user/uShop/shopList.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
 </body>
