@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Cta">
+
+	<!-- HAR_SARLON 테이블  -->
+		<resultMap type="HairSalon" id="HairSalon">
+			<id column="HAR_NUM" property="harNum"/>
+			<result column="BP_ID" property="bpId"/>
+			<result column="HAR_NAME" property="shopName"/>
+			<result column="HAR_ADDR" property="shopAddr"/>
+			<result column="HAR_TEL" property="shopTel"/>
+			<result column="HOPEN_TIME" property="shopTime"/>
+			<result column="HAR_MINFO" property="shopMInfo"/>
+			<result column="HAR_CLICK" property="harClick"/>
+		</resultMap>
+
+
+
 	<!-- 울트라콜 목록 가져오기 -->
 	<select id="ctalist"  resultType="Cta">
 		SELECT CM_TYPE,PRICE
@@ -54,5 +69,13 @@
 		UPDATE MY_CTA SET CTA_NUMBER = ( CTA_NUMBER - 1) 
 	WHERE BP_ID = #{BP_ID}
 	</update>
+	
+	<!-- 울트라콜 충전된 매장 상단 노출  -->
+	<select id="ctashop" resultMap="HairSalon">
+	select hair_salon.*, my_cta.cta_number
+	from hair_salon join my_cta
+	on hair_salon.bp_id = my_cta.bp_id
+	
+	</select>
 </mapper>
 	
