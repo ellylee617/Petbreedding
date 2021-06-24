@@ -182,7 +182,7 @@ $("#searchDate").on("click",function(){
 
 function goDetail(value){
 	
-	location.href = "/petbreedding/mypage/revdetail?har_rnum="+value+"";
+	location.href = "/petbreedding/revdetail?har_rnum="+value+"";
 }
 
 
