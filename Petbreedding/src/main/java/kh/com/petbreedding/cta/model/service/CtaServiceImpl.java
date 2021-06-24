@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.cta.model.dao.CtaDao;
 import kh.com.petbreedding.cta.model.vo.Cta;
 import kh.com.petbreedding.cta.model.vo.CtaPay;
@@ -116,6 +117,25 @@ public class CtaServiceImpl implements CtaService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<HairSalon> ctabuylist() throws Exception {
+		List<HairSalon> list = null;
+		System.out.println("울트라콜 결제 매장 리스트 들어옴");
+		try {
+			list = ctaDao.ctabuylist();
+			if(list != null) {
+				System.out.println("울트라 결제 매장 리스트 조회 성공");
+			}else {
+				System.out.println("울트라 결제매장 리스트 조회 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
 	}
 	
 }

@@ -8,30 +8,31 @@ $("#pay").on("click",function(){
 //취소하기
 $("#goCancle").on("click",function(){
 	var har_rnum = $("#har_rnum").val();
+	
 	$.ajax({
-		url:"cancleRev",
+		url: "cancleRev",
 		type:"POST",
 		data:{har_rnum : har_rnum},
 		success:function(data){
-			console.log(data);
-			location.href="/petbreedding/mypage";
+			close();
+	        location.href="/petbreedding/mypage";
 		}
 	});
 	
 });
 
 
-
-
-
 //모달
-
 function modal(id) {
     var zIndex = 9999;
     var modal = document.getElementById(id);
 
     // 모달 div 뒤에 희끄무레한 레이어
     var bg = document.createElement('div');
+    function close(){
+    	 bg.remove();
+         modal.style.display = 'none';
+    }
     bg.setStyle({
         position: 'fixed',
         zIndex: zIndex,
@@ -47,12 +48,10 @@ function modal(id) {
 
     // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
     modal.querySelector('.modal_close_btn').addEventListener('click', function () {
-        bg.remove();
-        modal.style.display = 'none';
+    	close();
     });
     $("#nextTime").on("click",function(){
-    	 bg.remove();
-         modal.style.display = 'none';
+    	close();
     });
     modal.setStyle({
         position: 'fixed',

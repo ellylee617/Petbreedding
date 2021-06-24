@@ -87,11 +87,15 @@ public class BoardController {
 		}
 		String clNum = cl.getCl_num();
 		String clNickName = cl.getNickname();
-		System.out.println("리퀘스트 겟 파라메타" + req.getParameter("selectedVal"));
 		String har_num = req.getParameter("har_num");
+		String har_name = req.getParameter("har_name");
+		
+		System.out.println("리퀘스트 겟 파라메타" + req.getParameter("selectedVal"));
 		System.out.println("[세훈] har_num:"+ har_num);
+		System.out.println("[세훈] har_name:"+ har_name);
 		
 		Review rv = new Review();
+		
 		System.out.println(clNum);
 		System.out.println(clNickName);
 		System.out.println(revCont);
@@ -123,7 +127,7 @@ public class BoardController {
 		}
 		
 		System.out.println("[세훈 ]" + rv.toString());
-		int result = reviewService.insertReview(rv, har_num);
+		int result = reviewService.insertReview(rv, har_num, har_name);
 		
 		PrintWriter out = null;
 		

@@ -95,7 +95,7 @@ $("#reservation_btn").on("click", function(){
 			style_num2 : style_num2
 		},
 		success: function(data){
-			var har_rnum = data.har_rnum;
+			console.log(data);
 			$("#har_rnum").val(har_rnum);
 		}
 	});
@@ -108,7 +108,9 @@ $("#nextTime").on("click",function(){
 
 //바로결제!!
 $("#goTOPay").on("click",function(){
-	var text = $("#har_rnum").val();
+	var text= "HAR000";
+	text += $("#har_rnum").val();
+	console.log("text : " + text);
 	location.href="/petbreedding/shopPayment?har_rnum="+text+"";
 });
 

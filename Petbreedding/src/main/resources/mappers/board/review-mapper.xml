@@ -24,10 +24,15 @@
 	<insert id="insertReview" parameterType="Review">
 		<![CDATA[
 			INSERT INTO REVIEW VALUES(
-			'REV'||SEQ_REVIEW.NEXTVAL, #{bpId},
+			#{revNum}, #{bpId},
 			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
 			TO_CHAR(SYSDATE, 'YYYYMMDD'), #{revVal}
 			)
 		]]>
  	</insert>
+ 	<select id="getRevNumFromSeq" resultType="string">
+		<![CDATA[
+			select 'REV'||SEQ_REVIEW.NEXTVAL from dual
+		]]>
+ 	</select>
 </mapper>

@@ -56,7 +56,7 @@ public class ClientInfoCotroller {
 	
 	
 	// 예약 자세히 보기
-	@RequestMapping("/mypage/revdetail")
+	@RequestMapping("/revdetail")
 	public String myReservationDetail(String har_rnum, Model model) {
 		
 		List<HairShopReservation> result = clientInfoService.myRevDetail(har_rnum);
@@ -70,9 +70,8 @@ public class ClientInfoCotroller {
 	}
 
 	//미용실 예약 취소
-	@RequestMapping("cancleRev")
-	public int cancleRev(String har_rnum) {
-		
+	@RequestMapping("/cancleRev")
+	public int cancleRev(String har_rnum) {	
 		int result = clientInfoService.cancleRev(har_rnum);
 		return result;
 	}
@@ -92,7 +91,7 @@ public class ClientInfoCotroller {
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(cl_num);
 		
-		String currPoint = myPointService.CurrPointSelectOne(cl_num);
+		int currPoint = myPointService.CurrPointSelectOne(cl_num);
 		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
 		
 		System.out.println("[세훈] 컨트롤러 pointList : " + pointList);

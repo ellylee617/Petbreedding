@@ -42,9 +42,11 @@ function onClickOption(e) {
     console.log(typeof(selectedEle.value));
 }
 // modal 창 열기
-function modalOn(param) {
+function modalOn(har_num, har_name) {
 	modal.style.display = "flex";
-	$("#for_value_har_num").val(param);	// param == har_num (미용실 번호)
+	$("#for_value_har_num").val(har_num);	// param == har_num (미용실 번호)
+	$("#for_value_har_name").val(har_name);	// param == har_num (미용실 이름)
+	
 }
 //modal 창 닫기
 function modalOff() {
@@ -132,7 +134,9 @@ $("#searchDate").on("click",function(){
 		            	res_status = "결제취소";
 		            }
 		            var param = "'"+$har_rnum+"'";  // 예약번호
-		            var param_double_quot = '"'+$har_num+'"';  // 미용실번호
+		            var param_har_num = '"'+$har_num+'"';  // 미용실번호
+		            var param_har_name = '"'+$har_name+'"';  // 미용실이름
+		            
 		            var td = "";
 		            //td += '<tr onclick="goDetail('+param+')">'; // 리뷰 작성 버튼과 겹치기 때문에 onClick 보다 우선 순위가 더 낮은 id를 통해 페이지 이동
 		            td += "<tr id="+param+" class='resInfoBox'>";
@@ -140,7 +144,7 @@ $("#searchDate").on("click",function(){
 		            td += "<td>"+$har_name+"</td>";
 		            if(res_status == "이용완료"){
 		            	 td += "<td>"+res_status+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-		            	 "<button onClick='modalOn("+param_double_quot+"); return true;' type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
+		            	 "<button onClick='modalOn("+param_har_num+", "+param_har_name+"); return true;' type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
 		            	 +"</td>";
 		            }else{
 		            	td+= "<td>"+res_status+"</td>";
@@ -184,7 +188,7 @@ $("#searchDate").on("click",function(){
 
 function goDetail(value){
 	
-	location.href = "/petbreedding/mypage/revdetail?har_rnum="+value+"";
+	location.href = "/petbreedding/revdetail?har_rnum="+value+"";
 }
 
 
