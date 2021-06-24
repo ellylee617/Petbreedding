@@ -8,7 +8,12 @@
                 <i class="far fa-calendar-alt"></i>
                 <p>예약관리</p>
             </li></a>
+            <c:if test="${bP.bp_reg == 0 }">
             <a href="${pageContext.request.contextPath}/bShop"><li class="menu hs" id="bShop">
+            </c:if>
+            <c:if test="${bP.bp_reg == 1 }">
+            <a href="${pageContext.request.contextPath}/bShop/update"><li class="menu hs" id="bShop">
+            </c:if>
                 <i class="fas fa-home"></i>
                 <p>사업장관리</p>
             </li></a>
@@ -47,9 +52,12 @@
         <div class="bBox">
             <ul>
                 <p>사업장 관리</p>
-                <!-- TODO: c:if 조건 뭘 줘야 할지 모르겠음 ........-->
+                <c:if test="${bP.bp_reg == 0 }">
                 	<a href="${pageContext.request.contextPath}/bShop"><li class="bs">사업장 등록</li></a>
+                </c:if>
+                <c:if test="${bP.bp_reg == 1 }">
                 	<a href="${pageContext.request.contextPath}/bShop/update"><li class="bs">사업장 수정</li></a>
+                </c:if>
                 <li class="bs">리뷰 관리</li>
             </ul>
         </div>

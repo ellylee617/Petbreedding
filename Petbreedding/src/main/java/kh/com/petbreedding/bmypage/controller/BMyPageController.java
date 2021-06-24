@@ -116,7 +116,8 @@ public class BMyPageController {
 		return "/bPartner/bShop/bShopInfo";
 	}
 
-	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지 + 로그인 연동
+	
+	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지 + 로그인 연동 + BP 테이블에서 사업장 등록여부 상태 1로 바꾸기 
 	@RequestMapping(value = "bp/bShop/write")
 	public String bShopWrite(HttpServletRequest hrequest, HairSalon harVO, Hospital hosVO,
 			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest request) {
@@ -235,9 +236,13 @@ public class BMyPageController {
 
 			}
 		}
+		
+		shopService.updateBpReg(bpId);
 
 		System.out.println("!! 사업장 등록 완료 !!");
-
+		
+		//TODO:alert 추가하기
+		
 		return "bPartner/bShop/bReservation"; // TODO:수정해야됨!!!!
 	}
 	

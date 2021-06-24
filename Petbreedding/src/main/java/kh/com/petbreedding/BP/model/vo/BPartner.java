@@ -12,16 +12,23 @@ public class BPartner {
 	private int bp_type;		//사업장 구분( 0 : 미용실, 1 :동물병원)
 	private int bp_aprve;		//사업자 승인여부( 0 : false / 1: true)
 	private int bp_delete;		//사업자 제휴취소여부( 0 : false / 1: true)
-	
+	private int bp_reg;			//사업장 등록 여부 (0:false / 1:true)	
 
 	
 	@Override
 	public String toString() {
 		return "BPartner [bp_Id=" + bp_Id + ", bp_pwd=" + bp_pwd + ", bp_name=" + bp_name + ", bp_tel=" + bp_tel
 				+ ", bp_bank=" + bp_bank + ", bp_acnt=" + bp_acnt + ", bp_email=" + bp_email + ", bp_num=" + bp_num
-				+ ", bp_type=" + bp_type + ", bp_aprve=" + bp_aprve + ", bp_delete=" + bp_delete + "]";
+				+ ", bp_type=" + bp_type + ", bp_aprve=" + bp_aprve + ", bp_delete=" + bp_delete + ", bp_reg=" + bp_reg
+				+ "]";
 	}
 	
+	public int getBp_reg() {
+		return bp_reg;
+	}
+	public void setBp_reg(int bp_reg) {
+		this.bp_reg = bp_reg;
+	}
 	public String getBp_Id() {
 		return bp_Id;
 	}

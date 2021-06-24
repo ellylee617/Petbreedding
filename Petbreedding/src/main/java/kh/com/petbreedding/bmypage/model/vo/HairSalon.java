@@ -14,19 +14,20 @@ public class HairSalon {
 	private String shopTel; // 미용실 전화번호
 	private String shopTime; // 미용실 영업시간
 	private String shopMInfo; // 미용실 메인 소개
-	private String harClick; // 미용실 잔여 클릭수
 	
 	private Style style;
 	
 	private List<HairSalonImg> shopImgList;	// 미용실 대표사진들. 미용실 하나가 여러 개의 사진을 가짐.
 	private List<String> shopDayOffList;	// 미용실 주휴일
+
+	
 	@Override
 	public String toString() {
 		return "HairSalon [harNum=" + harNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
-				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", harClick="
-				+ harClick + ", style=" + style + ", shopImgList=" + shopImgList + ", shopDayOffList=" + shopDayOffList
-				+ "]";
+				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", style=" + style
+				+ ", shopImgList=" + shopImgList + ", shopDayOffList=" + shopDayOffList + "]";
 	}
+	
 	public String getHarNum() {
 		return harNum;
 	}
@@ -68,12 +69,6 @@ public class HairSalon {
 	}
 	public void setShopMInfo(String shopMInfo) {
 		this.shopMInfo = shopMInfo;
-	}
-	public String getHarClick() {
-		return harClick;
-	}
-	public void setHarClick(String harClick) {
-		this.harClick = harClick;
 	}
 	public List<HairSalonImg> getShopImgList() {
 		return shopImgList;

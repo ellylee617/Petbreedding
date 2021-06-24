@@ -20,6 +20,24 @@ public class ShopServiceImpl implements ShopService {
 	@Autowired
 	private ShopDao shopDao;
 
+	
+	@Override
+	public int updateBpReg(String bpId) {
+		int result = -1;
+		
+		try {
+			result = shopDao.updateBpReg(bpId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
+
+	
+	
 	@Override
 	public List<HairSalon> selectHarList(int currentPage, int limit) {
 		List<HairSalon> salonList = null;

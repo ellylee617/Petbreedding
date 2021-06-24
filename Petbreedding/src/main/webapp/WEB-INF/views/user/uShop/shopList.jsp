@@ -29,7 +29,7 @@
             </div>
             <hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">인기순</label>
+                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최신순</label>
                 <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
                 <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
             </div>
@@ -93,7 +93,7 @@
             </div>
             <hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">인기순</label>
+                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최신순</label>
                 <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
                 <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
             </div>

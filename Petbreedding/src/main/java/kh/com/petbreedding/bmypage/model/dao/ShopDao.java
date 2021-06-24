@@ -21,6 +21,13 @@ public class ShopDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
+	// 사업장 등록 - BP 테이블에서 사업장 등록여부 상태 1로 바꾸기
+	public int updateBpReg(String bpId) {
+		System.out.println(" !! ShopDao - updateBpReg() 실행 !!");
+		return sqlSession.insert("Shop.updateBpReg", bpId);
+	}
+	
 	// 미용실 전체 리스트 조회 (shopController)
 	public List<HairSalon> selectHarList(int currentPage, int limit) {
 		System.out.println("다오 진입");
@@ -31,7 +38,7 @@ public class ShopDao {
 	}
 	
 	//	TODO
-	//	미용실 리스트 : 인기순
+	//	미용실 리스트 : 최신순
 	//	미용실 리스트 : 거리순
 	//	미용실 리스트 : 별점순	
 	
@@ -114,7 +121,7 @@ public class ShopDao {
 	}
 	
 	//	TODO
-	//	동물병원 리스트 : 인기순
+	//	동물병원 리스트 : 최신순
 	//	동물병원 리스트 : 거리순
 	//	동물병원 리스트 : 별점순	
 	
