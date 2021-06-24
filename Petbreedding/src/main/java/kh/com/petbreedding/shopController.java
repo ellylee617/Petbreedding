@@ -14,11 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.cta.model.service.CtaService;
@@ -39,30 +41,35 @@ public class shopController {
 	@Autowired
 	private CtaService ctaService;
 	
-	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
-	public ModelAndView shopList(Locale locale,
-			ModelAndView mv,
-			HttpSession session,
-			HttpServletResponse res
-			) throws Exception {
-		
-		List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
-		List<HairSalon> ultra = ctaService.ctabuylist();
-		System.out.println("컨트롤러 미용실 리스트 : " + salonList);
-		
-		BPartner vo = (BPartner) session.getAttribute("bP");
-		System.out.println("울트라 리스트 들어옴");
-		
-		
-		
-		
-		mv.addObject("salonList", salonList);
-		mv.addObject("cta", ultra);
-		mv.setViewName("/user/uShop/shopList");
-		
-		return mv;
-		
-	}
+
+	   @RequestMapping(value = "/shopList", method = RequestMethod.GET)
+	   public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception {
+	      
+	      // shopType 0은 미용실, 1은 동물병원
+	      
+	      if(shopType==0) {
+	         List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+	         System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+	         List<HairSalon> ultra = ctaService.ctabuylist();
+	         
+	         
+	         mv.addObject("shopList", salonList);
+	         mv.addObject("cta", ultra);
+	         mv.setViewName("/user/uShop/shopList");
+	      } else {
+	         
+	         List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
+	         System.out.println("컨트롤러 동물병원 리스트:"+hosList);
+	         
+	         mv.addObject("shopList", hosList);
+	         mv.setViewName("/user/uShop/shopList");
+	      }
+	      
+	      
+	      return mv;
+	      
+	   }
+	
 	
 //	@RequestMapping(value = "/salonList", method = RequestMethod.GET)	// *********** TODO "/shopList"에 합쳐줘야 됨!!*******
 //	public ModelAndView salonList(Locale locale, ModelAndView mv) {
@@ -94,11 +101,6 @@ public class shopController {
 		return mv;
 	}
 
-	/*
-	 * @RequestMapping(value = "/shopReservation", method = RequestMethod.GET)
-	 * public String shopReservation(Locale locale, Model model) { return
-	 * "/user/uShop/salonReservation"; }
-	 */
 
 
 	@RequestMapping(value = "/successPay", method = RequestMethod.GET)
