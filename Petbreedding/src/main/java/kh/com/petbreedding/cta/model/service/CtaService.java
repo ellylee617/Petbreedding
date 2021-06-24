@@ -2,6 +2,7 @@ package kh.com.petbreedding.cta.model.service;
 
 import java.util.List;
 
+import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.cta.model.vo.Cta;
 import kh.com.petbreedding.cta.model.vo.CtaPay;
 
@@ -13,4 +14,5 @@ public interface CtaService {
 	public CtaPay mycta(String bp_id) throws Exception;
 	public int updatecta(CtaPay cta) throws Exception;
 	public int delcta(String BP_ID) throws Exception;
+	public List<HairSalon> ctabuylist() throws Exception;
 }

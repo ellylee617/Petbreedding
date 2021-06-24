@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<c:set var="shopType" value="${param.shopType}"/>
+<c:out value="${param.shoptype}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +22,7 @@
 		<section class="section">
 		
 		<!-- 동물병원 -->
-		<c:if test="${shopType eq 1}">
+		<c:if test="${param.shoptype eq 1}">
             <h1>동물병원</h1>
             <div class="nowLocation">
                 <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
@@ -35,21 +35,20 @@
             </div>
             <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
-                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
                                 <div class="ultraList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="ultraList_title_area"><a href="#">쿨펫 동물병원</a></div>
-                                <div class="ultraList_info_area"><a href="#">슬개골 수술 전문 병원입니다.</a></div>
+                                <div class="ultraList_title_area"><a href="#"># </a></div>
+                                <div class="ultraList_info_area"><a href="#">#</a></div>
                                 <div class="ultraList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
+                                    <a href="storeInfoRead.html" class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -58,27 +57,25 @@
             </div>
             
             <div class="storeS">
-            	<c:forEach items="${shopList}" var="item">
                 <ul>
                     <div class="Store">                     
                         <li class="storeList">
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
-                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
+                                <div class="storeList_title_area"><a href="#">쿨펫 동물병원</a></div>
+                                <div class="storeList_info_area"><a href="#">슬개골 수술 전문 병원입니다.</a></div>
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
+                                    <a href="storeInfoRead.html" class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
                     </div>
                 </ul>
-                </c:forEach>
             </div>
             
             <!--TOPBTN-->
@@ -86,7 +83,7 @@
             </c:if>
             
             <!-- 미용실 -->
-            <c:if test="${shopType eq 0}">
+            <c:if test="${param.shoptype eq 0}">
             <h1>미용실</h1>
             <div class="nowLocation">
                 <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
@@ -97,46 +94,49 @@
                 <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
                 <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
             </div>
-		<div class="ultraS">
+            <!-- 울트라콜  미용실 리스트 -->
+			 <div class="ultraS">
+                 	 <c:forEach items="${cta }" var="cta">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
-                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
                                 <div class="ultraList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="ultraList_title_area"><a href="#">쿨펫 동물병원</a></div>
-                                <div class="ultraList_info_area"><a href="#">슬개골 수술 전문 병원입니다.</a></div>
+                                <div class="ultraList_title_area"><a href="#">${cta.shopName} </a></div>
+                                <div class="ultraList_info_area"><a href="#">${cta.shopMInfo}</a></div>
                                 <div class="ultraList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
+                                    <a href="storeInfoRead.html" class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
                     </div>
                 </ul>
+                </c:forEach>
             </div>
             
-           <div class="storeS">
-           	 <c:forEach items="${shopList}" var="item">
+            <!-- 울트라콜 아닌 미용실 -->
+            <div class="ultraS">
+           	 <c:forEach items="${salonList}" var="item">
                 <ul>
-                    <div class="Store">                      
-                       <li class="storeList">
-                            <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
-                                <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
-                                <div class="storeList_etc_area">
+                    <div class="ultraStore">                     
+                        <li class="ultraList">
+                            <div class="ultraList_inner">
+                                <div class="ultraList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
+                                <div class="ultraList_title_area"><a href="#">${item.shopName }</a></div>
+                                <div class="ultraList_info_area"><a href="#">${item.shopMInfo }</a></div>
+                                <div class="ultraList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
-                                 <div class="storeList_button">
+                                <div class="ultraList_button">
                                     <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
                                 </div>
                                </form>
@@ -150,7 +150,6 @@
         </section>
 	
 		<jsp:include page="../../common/footer.jsp" />	
-		
 		
 		
 		

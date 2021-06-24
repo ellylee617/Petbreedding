@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.cta.model.vo.Cta;
 import kh.com.petbreedding.cta.model.vo.CtaPay;
 
@@ -47,6 +48,11 @@ public class CtaDaoImpl implements CtaDao {
 	@Override
 	public int delcta(String BP_ID) throws Exception {
 		return sqlSession.update("Cta.delcta", BP_ID);
+	}
+
+	@Override
+	public List<HairSalon> ctabuylist() throws Exception {
+		return sqlSession.selectList("Cta.ctashop");
 	}
 
 }

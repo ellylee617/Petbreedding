@@ -23,7 +23,7 @@
 
 <mapper namespace="MyPoint">
 	<resultMap type="MyPoint" id="MyPointMap">
-		<id column="CL_NUM" property="clNum"/>
+		<result column="CL_NUM" property="clNum"/>
 		<result column="POINT_NUM" property="pointNum"/>
 		<result column="INDEXS" property="indexs"/>
 		<result column="EXP_DATE" property="expDate"/>
@@ -45,8 +45,7 @@
 			FROM (
 			SELECT * FROM MYPOINT ORDER BY INDEXS DESC
 			)
-			WHERE CL_NUM = 'CL1' AND ROWNUM = 1
-			;
+			WHERE CL_NUM = #{clNum} AND ROWNUM = 1
 		]]>
 	</select>
 	

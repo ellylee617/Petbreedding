@@ -44,7 +44,7 @@ function onClickOption(e) {
 // modal 창 열기
 function modalOn(param) {
 	modal.style.display = "flex";
-	$("#for_value_har_num").val(param);
+	$("#for_value_har_num").val(param);	// param == har_num (미용실 번호)
 }
 //modal 창 닫기
 function modalOff() {
@@ -134,7 +134,7 @@ $("#searchDate").on("click",function(){
 		            var param = "'"+$har_rnum+"'";  // 예약번호
 		            var param_double_quot = '"'+$har_num+'"';  // 미용실번호
 		            var td = "";
-		            //td += '<tr onclick="goDetail('+param+')">';
+		            //td += '<tr onclick="goDetail('+param+')">'; // 리뷰 작성 버튼과 겹치기 때문에 onClick 보다 우선 순위가 더 낮은 id를 통해 페이지 이동
 		            td += "<tr id="+param+" class='resInfoBox'>";
 		            td += "<td>"+$res_date+"</td>";
 		            td += "<td>"+$har_name+"</td>";
@@ -151,11 +151,13 @@ $("#searchDate").on("click",function(){
 
 
 		            $(".resInfoBox").click(function() {
-		            	var idVar = $(this).attr("id");
-		            	var th = $(this).find('.btnReWr');
+		            	var idVar = $(this).attr("id");	//	클릭된 행의 id
+		            	var th = $(this).find('.btnReWr');	//	클릭된 행의 리뷰 작성 버튼
+		            	
 		            	console.log(th);
 		            	console.log('콘솔로그');
-		            	if(th.length < 1) {
+		            	
+		            	if(th.length < 1) {	//	버튼이 있는 행은 길이가 1, 없는 행은 길이가 0이므로 1보다 작으면 goDetail 함수를 실행해서 상세페이지로 이동
 		            		goDetail(idVar);
 		            	}
 		            });
@@ -184,35 +186,6 @@ function goDetail(value){
 	
 	location.href = "/petbreedding/revdetail?har_rnum="+value+"";
 }
-
-
-
-
-//	$("#regBtn").on("click", function(){
-//		var dataString = $("#frm").serialize(); 
-//		// {memberId: 입력값, memberPwd:입력값.... }
-//		$.ajax({
-//			url:"rwrite",
-//			type:"POST",
-//			data:dataString,
-//			
-//			success: function(data) {
-//				if(data > 0) {
-//					alert("리뷰 등록이 완료되었습니다.");
-//					location.href="mypage";
-//				} else {
-//					alert("리뷰 등록 실패.");
-//					$("#revCont").val("").focus();
-//				}
-//			},
-//			error : function( jqXHR, textStatus, errorThrown ) {
-//				alert( jqXHR.status );
-//				alert( jqXHR.statusText );
-//				alert( jqXHR.responseText );
-//				alert( jqXHR.readyState );
-//				}
-//		});
-//	});
 
 
 

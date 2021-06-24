@@ -35,7 +35,7 @@
 			<a href="#"><li>- 채팅 내역</li></a>
 			<a href="#"><li>- 알림 내역</li></a>
 			<a href="#"><li>- 찜 목록</li></a>
-			<a href="#"><li>- 포인트 내역</li></a>
+			<a href="${pageContext.request.contextPath}/mypage/point?cl_num=${client.cl_num}"><li>- 포인트 내역</li></a>
 		</ul>
 	</div>
 	<div class="divborder">

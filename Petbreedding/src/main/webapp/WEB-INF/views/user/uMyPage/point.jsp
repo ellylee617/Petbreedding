@@ -27,7 +27,7 @@
 <%-- 						<c:forEach items="${pointList}" var="items"> --%>
 	                    <p class="ptitle">보유포인트</p>
 	                    <br>
-	                    <p class="presult">${currPoint}값이 안들오는 상태P</p>
+	                    <p class="presult">${currPoint}P</p>
 <%-- 	                    </c:forEach> --%>
 	                </div>
 	                <br>
