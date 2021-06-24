@@ -79,31 +79,32 @@ public class ClientInfoCotroller {
 
 	// 포인트내역
 	@RequestMapping("/mypage/point")
-	public ModelAndView point(
-			HttpSession session
+	public String point(
+//			HttpSession session
+			String cl_num
 			,HttpServletRequest req
 			,Client cl
-			,ModelAndView mv
+			,Model md
 			) {
 		
-		cl = (Client) session.getAttribute("client");
-		String clNum = cl.getCl_num();
+//		cl = (Client) session.getAttribute("client");
+//		String clNum = cl.getCl_num();
 		MyPoint myPoint = new MyPoint();
-		myPoint.setClNum(clNum);
+		myPoint.setClNum(cl_num);
 		
-		String currPoint = myPointService.CurrPointSelectOne(clNum);
+		String currPoint = myPointService.CurrPointSelectOne(cl_num);
 		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
 		
 		System.out.println("[세훈] 컨트롤러 pointList : " + pointList);
 		System.out.println("[세훈] 컨트롤러 currPoint : " + currPoint);
-		mv.addObject("pointList", pointList);
-		mv.addObject("currPoint", currPoint);
+		md.addAttribute("pointList", pointList);
+		md.addAttribute("currPoint", currPoint);
 		
 
 		//		req.setAttribute("currPoint", currPoint);
-		mv.setViewName("/user/uMyPage/point");
+//		mv.setViewName("/user/uMyPage/point");
 		
-		return mv;
+		return "/user/uMyPage/point";
 	}
 	
 
