@@ -35,102 +35,23 @@
 					</ul>
 				</div>
 			<div class="listwrap">
-					<table class="openchatwin">
+			<c:if test="${not empty Roomlist }">
+			<c:forEach items="${Roomlist }" var="r" varStatus="status">
+					<table onClick="openchatwin('${r.bp_id }','${r.shopName}');">
 						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50">
-							<td>쿨펫 동물병원</td>
-							<td>오전 10:54</td>
+							<td rowspan="2"><img src="http://placehold.it/50X50"></td>
+							<td>${r.shopName }
+							</td>
+							<td>${r.mSendTime }</td>
 							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
 						</tr>
 						<tr>
-							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
+							<td>${r.mContent }</td>
 							<td colspan="2">1</td>
 						</tr>
 					</table>
-					<table class="openchatwin">
-						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50">
-							<td>쿨펫 동물병원</td>
-							<td>오전 10:54</td>
-							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
-						</tr>
-						<tr>
-							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
-							<td colspan="2">1</td>
-						</tr>
-					</table>
-					<table class="openchatwin">
-						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50">
-							<td>쿨펫 동물병원</td>
-							<td>오전 10:54</td>
-							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
-						</tr>
-						<tr>
-							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
-							<td colspan="2">1</td>
-						</tr>
-					</table>
-					<table class="openchatwin">
-						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50">
-							<td>쿨펫 동물병원</td>
-							<td>오전 10:54</td>
-							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
-						</tr>
-						<tr>
-							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
-							<td colspan="2">1</td>
-						</tr>
-					</table>
-					<table class="openchatwin">
-						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50">
-							<td>쿨펫 동물병원</td>
-							<td>오전 10:54</td>
-							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
-						</tr>
-						<tr>
-							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
-							<td colspan="2">1</td>
-						</tr>
-					</table>
-					<table class="openchatwin">
-						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50">
-							<td>쿨펫 동물병원</td>
-							<td>오전 10:54</td>
-							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
-						</tr>
-						<tr>
-							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
-							<td colspan="2">1</td>
-						</tr>
-					</table>
-					<table class="openchatwin">
-						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50">
-							<td>쿨펫 동물병원</td>
-							<td>오전 10:54</td>
-							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
-						</tr>
-						<tr>
-							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
-							<td colspan="2">1</td>
-						</tr>
-					</table>
-					<table class="openchatwin">
-						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50">
-							<td>쿨펫 동물병원</td>
-							<td>오전 10:54</td>
-							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
-						</tr>
-						<tr>
-							<td>안녕하세요. 문의 드린 내용 답변 드립니다...</td>
-							<td colspan="2">1</td>
-						</tr>
-					</table>							
+					</c:forEach>
+				</c:if>
 			</div>
 			</div>
 		</section>

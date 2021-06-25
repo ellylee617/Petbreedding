@@ -35,7 +35,40 @@
 	<!-- 채팅 내용 -->
 	<div class="col-12">
 		<div class="col-11" id="chatArea">
-			<div id="chatMessageArea"></div>
+			<div id="chatMessageArea">
+			<c:if test="${not empty chatlist }">
+			<c:forEach items="${chatlist }" var="c" varStatus="status">
+				<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>
+				<c:if test="${c.cl_num eq c.mSender }">
+				<div class='col-2' style = 'float:right; padding-right:0px; padding-left : 0px;'>
+				<div style='font-size:9px; display:block;'>${nickName}</div></div><br>
+					<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'>
+					<div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'>
+					<span style = 'font-size : 12px;'>
+					${c.mContent}</span></div>
+					<div col-12 style = 'font-size:9px; text-align:right; clear:both;'><br>
+					<div style ='font-size:9px; text-align:right; clear:both' >${c.mSendTime }</div></div>
+					</div>
+					</div><br><br>
+				</c:if>
+				<c:if test="${c.cl_num ne c.mSender }">
+					<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>
+					<div style='font-size:9px; display:block;'>${ShopName}</div></div><br>
+					<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left;'>
+					<div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'>
+					<span style = 'font-size : 12px;'>
+					${c.mContent}</span></div>
+					<div col-12 style = 'font-size:9px; text-align:right; clear:both;'><br>
+					<div style ='font-size:9px; text-align:right; clear:both;' >${c.mSendTime }</div></div>
+					</div>
+					</div><br><br>
+				</c:if>
+			</c:forEach>
+			</c:if>
+			<c:if test="${empty chatlist }">
+			 대화내용이 없어용
+			</c:if>
+			</div>
 		</div>
 	</div>
 	<!-- 채팅 입력창 -->
