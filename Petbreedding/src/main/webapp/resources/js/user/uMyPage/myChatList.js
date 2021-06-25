@@ -1,6 +1,10 @@
-$('.openchatwin').click(function() {
-	window.open('/petbreedding/chat', '_blank', 'width=555px, height=700px');
-});
+function openchatwin(inbpId,inbname) {
+
+	var inbpId = inbpId;
+	var inbname = inbname;
+	var url = '/petbreedding/chat?inbpId='+inbpId+'&inbname='+inbname;
+	window.open(url, '_blank', 'width=555px, height=700px');
+}
 
 // 삭제 버튼 누르면 모달창 띄움
 $(".cancleM").on("click", function(e) {
