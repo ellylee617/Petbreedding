@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.com.petbreedding.Chat.model.vo.ChatList;
 import kh.com.petbreedding.Chat.model.vo.ChatMessage;
 import kh.com.petbreedding.Chat.model.vo.ChatRoom;
 
@@ -16,8 +17,8 @@ public class ChatDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public void createRoom(ChatRoom cr) throws Exception {
-		sqlSession.insert("Chat.createRoom", cr);
+	public int createRoom(ChatRoom cr) throws Exception {
+		return sqlSession.insert("Chat.createRoom", cr);
 	}
 
 	public ChatRoom isRoom(ChatRoom cr) throws Exception {
@@ -28,30 +29,34 @@ public class ChatDao {
 		return room;
 	}
 
-	public void insertMessage(ChatMessage cm) throws Exception {
-		sqlSession.insert("Chat.insertMessage", cm);
+	public int insertMessage(ChatMessage cm) throws Exception {
+		return sqlSession.insert("Chat.insertMessage", cm);
 	}
 //	
 //	public String getPartner(ChatRoom vo) throws Exception {
 //		List<ChatMessage> mvo = sqlSession.selectList("Chat.getPartner", vo);
-//		return mvo.get(0).getClNum();
+//		return mvo.get(0).getcl_num();
 //	}
 //	
-
-	public List<ChatRoom> getRoomList(String clNum) throws Exception {
-		return sqlSession.selectList("Chat.getRoomList", clNum);
+	
+	public List<ChatList> getList(String cl_num) throws Exception {
+		return sqlSession.selectList("Chat.getList", cl_num);
 	}
 
-	public List<ChatRoom> getRoomListBpId(String bpId) throws Exception {
-		return sqlSession.selectList("Chat.getRoomList2", bpId);
+	public List<ChatRoom> getRoomList(String cl_num) throws Exception {
+		return sqlSession.selectList("Chat.getRoomList", cl_num);
+	}
+
+	public List<ChatRoom> getRoomListbp_id(String bp_id) throws Exception {
+		return sqlSession.selectList("Chat.getRoomListbp_id", bp_id);
 	}
 
 	public List<ChatMessage> getMessageList(String chatId) throws Exception {
 		return sqlSession.selectList("Chat.getMessageList", chatId);
 	}
 
-	public List<ChatMessage> getMessageListBpId(String chatId) throws Exception {
-		return sqlSession.selectList("Chat.getMessageListBpId", chatId);
+	public List<ChatMessage> getMessageListbp_id(String chatId) throws Exception {
+		return sqlSession.selectList("Chat.getMessageListbp_id", chatId);
 	}
 
 	public ChatMessage getRecentMessage(String chatId) throws Exception {
@@ -59,41 +64,41 @@ public class ChatDao {
 	}
 //	
 //	public String getId(String str) throws Exception {
-//		return sqlSession.selectOne("Chat.getBpId" , str) ;
+//		return sqlSession.selectOne("Chat.getbp_id" , str) ;
 //	}
 
-	public void updateReadTime(String clNum, String bpId) throws Exception {
+	public int updateReadTime(String cl_num, String bp_id) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("bpId", bpId);
-		map.put("clNUM", clNum);
-		sqlSession.update("Chat.updateReadTime", map);
+		map.put("bp_id", bp_id);
+		map.put("cl_num", cl_num);
+		return sqlSession.update("Chat.updateReadTime", map);
 	}
 	
-	public void updateReadTimeBpId(String clNum, String bpId) throws Exception {
+	public int updateReadTimebp_id(String cl_num, String bp_id) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("clNUM", clNum);
-		map.put("bpId", bpId);
-		sqlSession.update("Chat.updateReadTimeBpId", map);
+		map.put("cl_num", cl_num);
+		map.put("bp_id", bp_id);
+		return sqlSession.update("Chat.updateReadTimebp_id", map);
 	}
 
-	public int getUnReadCount(String clNum, String bpId) throws Exception {
+	public int getUnreadCount(String cl_num, String bp_id) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("bpId", bpId);
-		map.put("clNUM", clNum);
+		map.put("bp_id", bp_id);
+		map.put("cl_num", cl_num);
 		return sqlSession.selectOne("Chat.getUnreadCount", map);
 	}
 	
-	public int getUnReadCountTutor(String clNum, String bpId) throws Exception {
+	public int getUnreadCountbp_id(String cl_num, String bp_id) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("clNUM", clNum);
-		map.put("bpId", bpId);
-		return sqlSession.selectOne("Chat.getUnreadCountBpId", map);
+		map.put("cl_num", cl_num);
+		map.put("bp_id", bp_id);
+		return sqlSession.selectOne("Chat.getUnreadCountbp_id", map);
 	}
 
-	public int getAllCount(String clNum, String bpId) {
+	public int getAllCount(String cl_num, String bp_id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("clNUM", clNum);
-		map.put("bpId", bpId);
+		map.put("cl_num", cl_num);
+		map.put("bp_id", bp_id);
 		if (sqlSession.selectOne("Chat.getAllCount", map) == null) {
 			return 0;
 		} else {
