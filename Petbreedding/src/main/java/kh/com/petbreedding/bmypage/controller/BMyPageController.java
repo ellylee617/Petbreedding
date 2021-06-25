@@ -103,7 +103,7 @@ public class BMyPageController {
 	public String bMenu(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/bPartner/bShop/bmenu_manage";
+		return "/bPartner/bShop/bMenu";
 	}
 
 	

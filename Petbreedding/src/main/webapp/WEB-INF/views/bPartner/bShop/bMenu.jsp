@@ -12,7 +12,7 @@
 <link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/bPartner/bShop/bmenu.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/bPartner/bShop/bMenu.css" rel="stylesheet" type="text/css" >
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${path}/resources/js/user/uBoard/service.js"></script>
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
