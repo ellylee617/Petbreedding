@@ -150,8 +150,8 @@ public class BMyPageController {
 			//2-2.서브메뉴 등록
 			// 조건: style_deep 1, STYLE_NUM=STYLE_NUM2
 			if(styleDeep==1) {
-				//TODO: 메인 메뉴 style_num 값 가져오기
-				
+				shopService.insertStyleSubMenu(styleVO);
+				System.out.println("미용실 서브메뉴::"+styleVO);
 			}
 		} else {
 			

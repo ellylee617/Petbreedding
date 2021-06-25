@@ -55,7 +55,9 @@
 	        <div class="insert">
 	        <!-- style_deep (0 : 메인메뉴  1: 서브메뉴) -->
 	        <form action="${path}/bp/bMenu/write" method="POST">
+	        <!-- 예약 페이지: 이용하실 서비스를 입력해주세요 -->
  			<label><input type="radio" name="style_deep" value="0" >메인메뉴</label>
+ 			<!-- 예약 페이지: 기타 추가요금 -->
   			<label><input type="radio" name="style_deep" value="1">서브메뉴</label>
 	        <input  type="text" placeholder="메뉴" id="menu" name="style_name">
 	        <input  type="text" placeholder="가격" id="price" name="price"> 

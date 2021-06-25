@@ -27,7 +27,7 @@
 	<!-- ShopDao.java -->
 	<insert id="insertStyleSubMenu" parameterType="Style">
 	INSERT INTO STYLE (STYLE_NUM,HAR_NUM,STYLE_NAME,PRICE,STYLE_TIME,STYLE_DEEP,STYLE_NUM2)
-	VALUES	(#{style_num},#{harNum},#{style_name},#{price},#{style_time},1,#{style_num})
+	VALUES	(SEQ_STYLE.NEXTVAL,#{harNum},#{style_name},#{price},#{style_time},1,SEQ_STYLE.NEXTVAL)
 	</insert>
 	
 	<!-- 미용실 메뉴(메인+서브) 조회 -->
