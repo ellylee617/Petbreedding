@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Chat">
-	<resultMap type="chatroom" id="chatroom">
+	<resultMap type="Chatroom" id="chatroom">
 		<id column="chatroom_id" property="chatId" />
-		<result column="cl_num" property="clNum" />
-		<result column="bp_id" property="bpId" />
+		<result column="cl_num" property="cl_num" />
+		<result column="bp_id" property="bp_id" />
+		<result column="bp_type" property="bp_type" />
 	</resultMap>
 
-	<resultMap type="chatmessage" id="chatmessage">
+	<resultMap type="Chatmessage" id="chatmessage">
 		<id column="message_id" property="mId" />
 		<result column="message_sender" property="mSender" />
 		<result column="message_receiver" property="mReceiver" />
@@ -15,76 +16,123 @@
 		<result column="message_sendTime" property="mSendTime" />
 		<result column="chatroom_id" property="chatId" />
 		<result column="message_readTime" property="mReadTime" />
-		<result column="cl_num" property="clNum" />
-		<result column="bp_id" property="bpId" />
+		<result column="cl_num" property="cl_num" />
+		<result column="bp_id" property="bp_id" />
+	</resultMap>
+	
+	<resultMap type="ChatList" id="chatList">
+		<result column="chatroom_id" property="chatId"/>
+		<result column="cl_num" property="cl_num"/>
+		<result column="bp_id" property="bp_id"/>
+		<result column="HOS_NAME" property="shopName"/>
+		<result column="MESSAGE_SENDTIME" property="mSendTime"/>
+		<result column="MESSAGE_CONTENT" property="mContent"/>
 	</resultMap>
 
 	<insert id="createRoom">
-		INSERT INTO CHATROOM VALUES(SEQ_CROOMID, #{clnNum},
-		#{bpId})
+		INSERT INTO CHATROOM VALUES(SEQ_CHAT_ROOMID.NEXTVAL,
+		#{cl_num},
+		#{bp_id})
 	</insert>
 
 	<select id="isRoom" resultMap="chatroom">
 		SELECT * FROM CHATROOM WHERE
-		CL_NUM = #{clNum} and bp_id=#{bpId}
+		CL_NUM = #{cl_num} AND BP_ID = #{bp_id}
 	</select>
 
 	<insert id="insertMessage">
-		INSERT INTO MESSAGE (MESSAGE_ID, MESSAGE_SENDER,
-		MESSAGE_RECEIVER, MESSAGE_CONTENT, CHATROOM_ID, CL_NUM, BP_ID)
-		VALUES(SEQ_CMESSAGE, #{mSender}, #{mReceiver}, #{mContent}, #{chatId},
-		#{clNum}, #{bpId})
+		INSERT INTO MESSAGE (SEQ_CHAT_MESSAGE.NEXTVAL,
+		MESSAGE_SENDER,
+		MESSAGE_RECEIVER, MESSAGE_CONTENT, CHATROOM_ID, CL_NUM,
+		BP_ID)
+		VALUES(SEQ_CMESSAGE, #{mSender}, #{mReceiver}, #{mContent},
+		#{chatId},
+		#{cl_num}, #{bp_id})
 	</insert>
 
 	<select id="getRoomList" resultMap="chatroom">
 		SELECT * FROM CHATROOM
-		WHERE CL_NUM = #{clNum}
+		WHERE
+		CL_NUM = #{cl_num}
 	</select>
 
-	<select id="getRoomListBpId" resultMap="chatroom">
+	<select id="getList" resultMap="chatList">
+		SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM,
+		B.BP_ID, B.HOS_NAME
+		FROM
+		(SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
+		FROM(
+		SELECT
+		ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS
+		RANK,
+		CHATROOM_ID, MESSAGE_CONTENT,MESSAGE_SENDTIME, CL_NUM, BP_ID
+		FROM CHATMESSAGE) SQ
+		WHERE SQ.RANK = 1 AND CL_NUM = #{cl_num}
+		ORDER BY CHATROOM_ID) A
+		INNER JOIN
+		(SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) B
+		ON A.BP_ID = B.BP_ID
+	</select>
+
+	<select id="getRoomListbp_id" resultMap="chatroom">
 		SELECT * FROM CHATROOM
-		WHERE BP_ID = #{bpId}
+		WHERE BP_ID = #{bp_id}
 	</select>
 
 	<select id="getMessageList" resultMap="chatmessage">
-		SELECT M.*, C.CL_NUM FROM CHATMESSAGE M LEFT OUTER JOIN CLIENT C
-		ON M.MESSAGE_RECEIVER = C.CL_NUM
+		SELECT MESSAGE_SENDER, MESSAGE_RECEIVER, MESSAGE_CONTENT, 
+		TO_CHAR(MESSAGE_SENDTIME, 'YYMMDD HH24:MI') MESSAGE_SENDTIME, CL_NUM, BP_ID 
+		FROM CHATMESSAGE 
 		WHERE CHATROOM_ID=#{chatId}
 	</select>
 
-	<select id="getMessageListBpId" resultMap="chatmessage">
-		SELECT M.*, B.BP_ID	FROM CHATMESSAGE M LEFT OUTER JOIN BUSINESS_PARTNER B
-		ON M.MESSAGE_SENDER = B.BP_ID 
+	<select id="getMessageListbp_id" resultMap="chatmessage">
+		SELECT M.*, B.BP_ID
+		FROM CHATMESSAGE M LEFT OUTER JOIN BUSINESS_PARTNER B
+		ON
+		M.MESSAGE_SENDER = B.BP_ID
 		WHERE CHATROOM_ID=#{chatId}
 	</select>
 
 	<select id="getRecentMessage" resultMap="chatmessage">
-		SELECT * FROM CHATMESSAGE M
-		WHERE CHATROOM_ID = #{chatId} ORDER BY MESSAGE_ID DESC LIMIT 1;
+		SELECT * FROM
+		CHATMESSAGE M
+		WHERE CHATROOM_ID = #{chatId} ORDER BY MESSAGE_ID DESC
+		LIMIT 1
 	</select>
 
 	<update id="updateReadTime">
-		UPDATE MESSGE SET MESSAGE_READTIME = CURRENT_TIMESTAMP
-		WHERE BP_ID=#{bpId} AND MESSAGE_SENDER = #{bpId} AND CL_NUM = #{clNum};
+		UPDATE MESSGE SET MESSAGE_READTIME =
+		CURRENT_TIMESTAMP
+		WHERE BP_ID=#{bp_id} AND MESSAGE_SENDER = #{bp_id}
+		AND CL_NUM = #{cl_num};
 	</update>
 
-	<update id="updateReadTimeBpId">
-		UPDATE MESSAGE SET MESSAGE_READTIME = CURRENT_TIMESTAMP
-		WHERE BP_ID=#{bpId} AND MESSAGE_SENDER = #{clNum} AND CL_NUM = #{clNum};
+	<update id="updateReadTimebp_id">
+		UPDATE MESSAGE SET MESSAGE_READTIME =
+		CURRENT_TIMESTAMP
+		WHERE BP_ID=#{bp_id} AND MESSAGE_SENDER = #{cl_num}
+		AND CL_NUM = #{cl_num};
 	</update>
 
 	<select id="getUnreadCount" resultType="int">
-		SELECT COUNT(*) FROM CHATMESSAGE
-		WHERE CL_NUM = #{clNum} AND MESSAGE_SENDTIME = NULL AND CHATROOM_ID=#{chatId};
+		SELECT COUNT(*) FROM
+		CHATMESSAGE
+		WHERE CL_NUM = #{cl_num} AND MESSAGE_SENDTIME = NULL AND
+		CHATROOM_ID=#{chatId};
 	</select>
 
-	<select id="getUnreadCountBpId" resultType="int">
-		SELECT COUNT(*) FROM CHATMESSAGE 
-		WHERE BP_ID = #{bpId} AND MESSAGE_SENDTIME = NULL AND CHATROOM_ID=#{chatId};
+	<select id="getUnreadCountbp_id" resultType="int">
+		SELECT COUNT(*) FROM
+		CHATMESSAGE
+		WHERE BP_ID = #{bp_id} AND MESSAGE_SENDTIME = NULL AND
+		CHATROOM_ID=#{chatId};
 	</select>
-	
+
 	<select id="getAllCount" resultType="int">
-		SELECT COUNT(*) FROM CHATMESSAGE
-		WHERE (BP_ID=#{bpId} AND MESSAGE_SENDER ^=#{clNum})) OR (CL_NUM=#{clNum} AND MESSAGE_SENDER ^=#{CL_NUM})
+		SELECT COUNT(*) FROM
+		CHATMESSAGE
+		WHERE (BP_ID=#{bp_id} AND MESSAGE_SENDER ^=#{cl_num})) OR
+		(CL_NUM=#{cl_num} AND MESSAGE_SENDER ^=#{CL_NUM})
 	</select>
 </mapper>
