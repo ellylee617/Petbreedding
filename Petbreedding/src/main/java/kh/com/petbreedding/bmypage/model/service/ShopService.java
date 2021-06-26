@@ -8,10 +8,15 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.Style;
 
 public interface ShopService {
 	
-	public List<HairSalon> selectHarList(int currentPage, int limit); // 미용실 전체 리스트 조회
+	public int updateBpReg(String bpId); // 사업장 등록 - BP 테이블에서 사업장 등록여부 상태 1로 바꾸기 
+	
+	
+	public List<HairSalon> selectHarList(int currentPage, int limit); // 미용실 전체 리스트 조회 //******TODO:위치이동*******
+	
 	
 	public int insertHarInfo(HairSalon vo);	// 미용실 기본 정보 입력 
 	public HairSalon selectHarInfo(String bpId); // 미용실 기본 정보 불러오기
@@ -22,16 +27,11 @@ public interface ShopService {
 	public int insertHarDayOff(HairDayOff vo); // 미용실 주휴일 입력
 	public int deleteHarDayOff(String harNum); // 미용실 주휴일 수정 (삭제)
 	public int insertNewHarDayOff(HairDayOff vo); // 수정된 미용실 주휴일 추가
-	//	TODO
-	//	미용실 리스트 : 인기순
-	//	미용실 리스트 : 거리순
-	//	미용실 리스트 : 별점순	
+	public int insertStyleMAinMenu(Style vo);	// 미용실 메인메뉴 추가
+	public int insertStyleSubMenu(Style vo); //미용실 서브메뉴 추가
 	
-	public List<Hospital> selectHosList(int currentPage, int limit); // 동물병원 전체 리스트 조회
-	//	TODO
-	//	동물병원 리스트 : 인기순
-	//	동물병원 리스트 : 거리순
-	//	동물병원 리스트 : 별점순	
+	public List<Hospital> selectHosList(int currentPage, int limit); // 동물병원 전체 리스트 조회 //*********TODO:위치이동***********
+	
 	public int insertHosInfo(Hospital vo);	// 동물병원 기본 정보 입력
 	public Hospital selectHosInfo(String bpId); //동물병원 기본 정보 불러오기
 	public int updateHosInfo(Hospital vo); // 동물병원 기본 정보 수정

@@ -4,19 +4,18 @@ import java.sql.Timestamp;
 
 public class ChatMessage {
 
-	 private int mId;
-	 private String mSender;
-	 private String mReceiver;
-	 private String mContent;
-	 private Timestamp mSendTime;
-	 private int chatId;
-	 private String clNum;
-	 private String bpId;
-	 
-	public int getmId() {
+	private String mId;
+	private String mSender;
+	private String mReceiver;
+	private String mContent;
+	private String mSendTime;
+	private String chatId;
+	private String cl_num;
+	private String bp_id;
+	public String getmId() {
 		return mId;
 	}
-	public void setmId(int mId) {
+	public void setmId(String mId) {
 		this.mId = mId;
 	}
 	public String getmSender() {
@@ -37,29 +36,28 @@ public class ChatMessage {
 	public void setmContent(String mContent) {
 		this.mContent = mContent;
 	}
-	public Timestamp getmSendTime() {
+	public String getmSendTime() {
 		return mSendTime;
 	}
-	public void setmSendTime(Timestamp mSendTime) {
+	public void setmSendTime(String mSendTime) {
 		this.mSendTime = mSendTime;
 	}
-	public int getChatId() {
+	public String getChatId() {
 		return chatId;
 	}
-	public void setChatId(int chatId) {
+	public void setChatId(String chatId) {
 		this.chatId = chatId;
 	}
-	public String getClNum() {
-		return clNum;
+	public String getCl_num() {
+		return cl_num;
 	}
-	public void setClNum(String clNum) {
-		this.clNum = clNum;
+	public void setCl_num(String cl_num) {
+		this.cl_num = cl_num;
 	}
-	public String getBpId() {
-		return bpId;
+	public String getBp_id() {
+		return bp_id;
 	}
-	public void setBpId(String bpId) {
-		this.bpId = bpId;
+	public void setBp_id(String bp_id) {
+		this.bp_id = bp_id;
 	}
-	 
 }

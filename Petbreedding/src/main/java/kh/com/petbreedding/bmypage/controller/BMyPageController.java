@@ -32,6 +32,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.Style;
 
 @Controller
 public class BMyPageController {
@@ -94,14 +95,82 @@ public class BMyPageController {
 		return "/bPartner/bBoard/bQnaWrite";
 	}
 
-	// 사장님 메뉴관리
+	
+	
+	// 사장님 메뉴관리 페이지 이동
+	// TODO:등록 메뉴 불러오기
 	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
 	public String bMenu(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub
-		return "/bPartner/bShop/bmenu_manage";
+		return "/bPartner/bShop/bMenu";
 	}
 
+	
+	// 사장님 메뉴관리 - 미용실 스타일 등록
+	@RequestMapping(value = "bp/bMenu/write", method = RequestMethod.POST)
+	public String bMenuWrite(
+			HttpServletRequest req
+			,Style styleVO) {
+			
+		System.out.println("****** BMyPageController 실행 ******");
+	
+		
+		
+		// 세션에 있는 로그인 정보 가져오기
+		HttpSession session = req.getSession();
+		BPartner bp = (BPartner) session.getAttribute("bP");
+		
+		String bpId = bp.getBp_Id();
+		System.out.println("로그인한 사업주 ID::"+bpId);
+		int bPType = bp.getBp_type();
+
+		// bPType이 0이면 미용실, 1이면 동물병원
+		if (bPType == 0) {
+			
+			//TODO
+			//1.로그인한 사업주의 미용실 정보 조회
+			HairSalon harVO = shopService.selectHarInfo(bpId);
+			System.out.println(harVO);
+			String harNum = harVO.getHarNum();
+			styleVO.setHarNum(harNum);
+			System.out.println("메뉴 등록할 미용실 번호::"+harNum);
+			
+			//2.미용실 메뉴 등록 
+			//2-1.주메뉴 등록
+			
+			// 조건: style_deep 0 
+			int styleDeep = styleVO.getStyle_deep();
+			
+			if(styleDeep==0) {
+				shopService.insertStyleMAinMenu(styleVO);
+				System.out.println("미용실 메인메뉴::"+styleVO);
+			} 
+			
+			//2-2.서브메뉴 등록
+			// 조건: style_deep 1, STYLE_NUM=STYLE_NUM2
+			if(styleDeep==1) {
+				shopService.insertStyleSubMenu(styleVO);
+				System.out.println("미용실 서브메뉴::"+styleVO);
+			}
+		} else {
+			
+			// 동물병원
+		}
+		
+		
+		System.out.println("!!!!!!!!! 사업장 메뉴 추가 완료 !!!!!!");
+		
+		//TODO:alert 추가하기
+		
+		return "bPartner/bShop/bReservation"; // TODO:수정해야됨!!!!
+	
+	
+	}
+	
+	
+	
+	
 	// 사장님 매출관리
 	@RequestMapping(value = "/bCalculate", method = RequestMethod.GET)
 	public String bCalculate(Locale locale, Model model) {
@@ -116,7 +185,8 @@ public class BMyPageController {
 		return "/bPartner/bShop/bShopInfo";
 	}
 
-	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지 + 로그인 연동
+	
+	// 사장님 사업장 관리 - 사업자 등록 기능 (미용실) + 이미지 + 로그인 연동 + BP 테이블에서 사업장 등록여부 상태 1로 바꾸기 
 	@RequestMapping(value = "bp/bShop/write")
 	public String bShopWrite(HttpServletRequest hrequest, HairSalon harVO, Hospital hosVO,
 			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest request) {
@@ -235,9 +305,14 @@ public class BMyPageController {
 
 			}
 		}
+		
+		shopService.updateBpReg(bpId);
+		// TODO: 
 
 		System.out.println("!! 사업장 등록 완료 !!");
-
+		
+		//TODO:alert 추가하기
+		
 		return "bPartner/bShop/bReservation"; // TODO:수정해야됨!!!!
 	}
 	
@@ -453,6 +528,10 @@ public class BMyPageController {
 		System.out.println("!! 사업장 수정 완료 !!");
 		return "bPartner/bShop/bReservation"; // TODO:경로 수정해야됨!!!!
 	}
+	
+	
+	
+	
 			
 	// 업체 리뷰 관리 페이지로 이동
 	@RequestMapping(value = "/bReview", method = RequestMethod.GET)

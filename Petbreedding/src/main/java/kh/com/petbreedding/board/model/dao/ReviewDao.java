@@ -15,6 +15,12 @@ public class ReviewDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
+	public String getRevNumFromSeq() {
+		System.out.println("리뷰 등록 번호 가져오기 - 시퀀스 넥스트벨");
+		return sqlSession.selectOne("Review.getRevNumFromSeq");
+	}
+	
 	public List<Review> reviewSelectList(String bpId, int currentPage, int limit) {
 		System.out.println("다오 진입");
 		int startRow = (currentPage -1) * limit;
@@ -32,4 +38,5 @@ public class ReviewDao {
 	public String searchBpId(String har_num) {
 		return sqlSession.selectOne("Shop.searchBpId", har_num);
 	}
+	
 }

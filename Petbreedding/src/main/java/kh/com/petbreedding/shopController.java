@@ -25,6 +25,8 @@ import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.cta.model.service.CtaService;
 
+//TODO: !!!!!!!! 경로 수정하고 컨트롤러명 변경하기 !!!!!!!!!!
+
 @Controller
 public class shopController {
 
@@ -36,39 +38,36 @@ public class shopController {
 	
 	@Autowired
 	private ShopService shopService;
-
-	
 	@Autowired
 	private CtaService ctaService;
+
+	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
+	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception{
+		
+		// shopType 0은 미용실, 1은 동물병원
+		
+		if(shopType==0) {
+			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+			List<HairSalon> ultra = ctaService.ctabuylist();
+			mv.addObject("shopList", salonList);
+			mv.addObject("cta", ultra);
+			mv.setViewName("/user/uShop/shopList");
+		} else {
+			
+			List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
+			System.out.println("컨트롤러 동물병원 리스트:"+hosList);
+			
+			mv.addObject("shopList", hosList);
+			mv.setViewName("/user/uShop/shopList");
+		}
+		
+		
+		return mv;
+		
+	}
 	
 
-	   @RequestMapping(value = "/shopList", method = RequestMethod.GET)
-	   public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception {
-	      
-	      // shopType 0은 미용실, 1은 동물병원
-	      
-	      if(shopType==0) {
-	         List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
-	         System.out.println("컨트롤러 미용실 리스트 : " + salonList);
-	         List<HairSalon> ultra = ctaService.ctabuylist();
-	         
-	         
-	         mv.addObject("shopList", salonList);
-	         mv.addObject("cta", ultra);
-	         mv.setViewName("/user/uShop/shopList");
-	      } else {
-	         
-	         List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
-	         System.out.println("컨트롤러 동물병원 리스트:"+hosList);
-	         
-	         mv.addObject("shopList", hosList);
-	         mv.setViewName("/user/uShop/shopList");
-	      }
-	      
-	      
-	      return mv;
-	      
-	   }
 	
 	
 //	@RequestMapping(value = "/salonList", method = RequestMethod.GET)	// *********** TODO "/shopList"에 합쳐줘야 됨!!*******
