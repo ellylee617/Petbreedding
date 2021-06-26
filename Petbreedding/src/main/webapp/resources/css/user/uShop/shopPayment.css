@@ -24,7 +24,9 @@
 .pointInfo{
     padding-right: 400px;
 }
-
+#pointArea {
+	text-align: right;
+}
 /*결제금액*/
 .totalpay_info{
     box-sizing: border-box;

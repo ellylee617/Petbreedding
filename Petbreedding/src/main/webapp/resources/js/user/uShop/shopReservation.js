@@ -72,6 +72,7 @@ $("#noPlus").on("click", function(){
 	style_num2 = $("#noPlus").find(".styleNum").val();
 });
 
+var tex = "";
 //예약하기
 $("#reservation_btn").on("click", function(){
 	var style_num = $(".chooseMenu").find(".styleNum").val();
@@ -96,7 +97,10 @@ $("#reservation_btn").on("click", function(){
 		},
 		success: function(data){
 			console.log(data);
+			text= "HAR000";
+			text += data;
 			$("#har_rnum").val(har_rnum);
+			
 		}
 	});
 });
@@ -108,8 +112,6 @@ $("#nextTime").on("click",function(){
 
 //바로결제!!
 $("#goTOPay").on("click",function(){
-	var text= "HAR000";
-	text += $("#har_rnum").val();
 	console.log("text : " + text);
 	location.href="/petbreedding/shopPayment?har_rnum="+text+"";
 });

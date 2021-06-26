@@ -114,11 +114,11 @@
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${cta.bpId }"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
-                    </div>
+                   </div>
                 </ul>
             </div>
             </c:forEach>
