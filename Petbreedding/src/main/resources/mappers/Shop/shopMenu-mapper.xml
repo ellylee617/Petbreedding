@@ -30,18 +30,15 @@
 	VALUES	(SEQ_STYLE.NEXTVAL,#{harNum},#{style_name},#{price},#{style_time},1,SEQ_STYLE.NEXTVAL)
 	</insert>
 	
-	<!-- 미용실 메뉴(메인+서브) 조회 -->
+	<!-- 등록한 미용실 메뉴(메인+서브) 조회 -->
 	<!-- ShopDao.java -->
 	<select id="selectStyleMenu" parameterType="Style" resultMap="Style">
 		SELECT * 
 		FROM STYLE
-		WHERE HAR_NUM = #{harNum} AND STYLE_DEEP = #{style_deep}
+		WHERE HAR_NUM = #{harNum}
 	</select>
 	
 
-	
-	<!-- TODO -->
-	<!-- 동물병원 메뉴 추가 -->
 	
 	
 </mapper>
