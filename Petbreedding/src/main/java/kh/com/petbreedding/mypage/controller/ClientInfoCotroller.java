@@ -71,6 +71,7 @@ public class ClientInfoCotroller {
 
 	//미용실 예약 취소
 	@RequestMapping("/cancleRev")
+	@ResponseBody
 	public int cancleRev(String har_rnum) {	
 		int result = clientInfoService.cancleRev(har_rnum);
 		return result;
