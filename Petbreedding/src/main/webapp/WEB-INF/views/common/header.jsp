@@ -31,7 +31,7 @@
         </nav>
         <nav class="mainMenu2">
             <ul>
-                <li><a href="fboardlist">자유게시판</a></li>
+                <li><a href="${pageContext.request.contextPath}/fboardlist?cl_num=${client.cl_num}">자유게시판</a></li>
                 <li><a href="/petbreedding/bIndex">제휴문의</a></li>
             </ul>
         </nav>

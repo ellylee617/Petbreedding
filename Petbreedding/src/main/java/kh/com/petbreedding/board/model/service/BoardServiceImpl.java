@@ -17,7 +17,6 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int insertBoard(Board board) {
-		// TODO Auto-generated method stub
 		int result = -1;
 		
 		try {
@@ -57,9 +56,6 @@ public class BoardServiceImpl implements BoardService{
 		List<Board> board = null;
 		
 		try {
-			System.out.println(board);
-			System.out.println(currentPage);
-			System.out.println(limit);
 			board = boardDao.selectBoardList(currentPage, limit);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -69,10 +65,14 @@ public class BoardServiceImpl implements BoardService{
 		return board;
 	}
 
+	// 게시판 상세 조회
 	@Override
-	public Board selectBoardDetail(String boNum) {
+	public Board selectBoardDetail(int chk, String boNum) {
 		Board board = null;
+		
 		try {
+			if(chk == 0)
+				boardDao.addReadCount(boNum);
 			board = boardDao.selectBoardDetail(boNum);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -82,12 +82,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int totalCount(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
+	public int listCount() {
 		int result = -1;
-		
 		try {
-			
+			result = boardDao.listCount();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -95,15 +93,17 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void veiwCnt(String bo_num) {
-		// TODO Auto-generated method stub
+	public List<Board> searchList(String keyword) {
+		List<Board> searchResult = null;
 		
 		try {
-			
+			searchResult = boardDao.searchList(keyword);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
+		return searchResult;
 	}
+
 
 }

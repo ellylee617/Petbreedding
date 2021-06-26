@@ -36,13 +36,40 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boarService;
+	
+	public static final int LIMIT = 5;
+
 		
 	//	게시글 목록 + 페이징 + 검색
-	@RequestMapping(value = "/fboardlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/fboardlist")
 	// TODO 병원 번호, 미용실 번호 GET 방식으로 들고 들어와서 파라미터로 넣어줘야함 - @RequestParam(name="harNum") String harNum
-	public ModelAndView fboardlist(Locale locale, ModelAndView mv) {
-		List<Board> boardList = boarService.selectBoardList(1, 10);
-		mv.addObject("boardList", boardList);
+	public ModelAndView fboardlist(
+			ModelAndView mv
+			,HttpServletRequest req
+			,@RequestParam(name = "page", defaultValue = "1") int page
+			,@RequestParam(name = "keyword", required = false) String keyword
+			) {
+		
+		int currentPage = page;
+		// 한 페이지당 출력할 목록 갯수
+		int listCount = boarService.listCount();
+		int maxPage = (int) ((double) listCount / LIMIT + 0.9);
+		List<Board> boardList = null;
+		
+		if(keyword != null && !keyword.equals("")) {
+			boardList = boarService.searchList(keyword);
+			mv.addObject("boardList", boardList);
+		}
+		else {
+			boardList = boarService.selectBoardList(currentPage, LIMIT);
+			mv.addObject("boardList", boardList);
+		}
+		
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("maxPage", maxPage);
+		mv.addObject("listCount", listCount);
+		 
+		System.out.println("[세훈] @컨트롤러 boardList : " + boardList.toString());
 		mv.setViewName("/user/uBoard/fboardList");
 		
 		return mv;
@@ -51,14 +78,18 @@ public class BoardController {
 	// 게시글 상세
 	@RequestMapping(value = "/fboardcon", method = RequestMethod.GET)
 	public ModelAndView fboardcon(
-			Locale locale,
-			ModelAndView mv,
-			@RequestParam(name="boNum") String boNum
+			ModelAndView mv
+			,@RequestParam(name="boNum") String boNum
+			,@RequestParam(name = "page", defaultValue = "1") int page
 			) {
 		
-		Board board = boarService.selectBoardDetail(boNum);
+		int currentPage = page;
+		Board board = boarService.selectBoardDetail(0, boNum);
 		System.out.println("컨트롤러 서비스 다녀왔음 : " + board);
+		
 		mv.setViewName("/user/uBoard/fboardcon");
+		
+		mv.addObject("currentPage", currentPage);
 		mv.addObject("board", board);
 		
 		return mv;

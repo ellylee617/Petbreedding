@@ -1,6 +1,5 @@
 package kh.com.petbreedding.board.model.vo;
 
-import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
@@ -9,6 +8,7 @@ public class Board {
 	
 	private String boNum;
 	private String clNum;
+	private String clNickName;
 	private String boTitle;
 	private String boCont;
 	private String boImg;
@@ -17,8 +17,8 @@ public class Board {
 	
 	@Override
 	public String toString() {
-		return "Board [boNum=" + boNum + ", clNum=" + clNum + ", boTitle=" + boTitle + ", boCont=" + boCont + ", boImg="
-				+ boImg + ", boDate=" + boDate + ", boView=" + boView + "]";
+		return "Board [boNum=" + boNum + ", clNum=" + clNum + ", clNickName=" + clNickName + ", boTitle=" + boTitle
+				+ ", boCont=" + boCont + ", boImg=" + boImg + ", boDate=" + boDate + ", boView=" + boView + "]";
 	}
 
 	public String getBoNum() {
@@ -35,6 +35,14 @@ public class Board {
 
 	public void setClNum(String clNum) {
 		this.clNum = clNum;
+	}
+
+	public String getClNickName() {
+		return clNickName;
+	}
+
+	public void setClNickName(String clNickName) {
+		this.clNickName = clNickName;
 	}
 
 	public String getBoTitle() {
@@ -76,6 +84,8 @@ public class Board {
 	public void setBoView(int boView) {
 		this.boView = boView;
 	}
+	
+
 	
 	
 }
