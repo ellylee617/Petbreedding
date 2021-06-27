@@ -199,6 +199,39 @@ public class BMyPageController {
 	
 	}
 	
+	// 사장님 메뉴 관리 - 수정
+	@RequestMapping(value = "/bp/bMenu/rewrite")
+	public String bMenuReWrite(HttpSession session, HttpServletRequest req, Style styleVO) {
+
+		System.out.println("  BMyPageController 실행 - bMenuReWrite()  ");
+		
+		System.out.println("입력 받은 스타일 정보:"+styleVO);
+
+		// 로그인한 사업자 정보 가져오기
+		BPartner bpVO = (BPartner) session.getAttribute("bP");
+		String bpId = bpVO.getBp_Id();
+
+		ModelAndView mv = new ModelAndView();
+
+		if (bpId == null) {
+			System.out.println("로그인 안 됨");
+		} else {
+
+			int result = 0;
+			
+			result = shopService.updateStyle(styleVO);
+			if(result>0) {
+				System.out.println("!! 스타일 수정 성공 !!");
+			} else {
+				System.out.println("!! 스타일 수정 실패 !!");
+			}
+			
+		}
+		return "redirect:/bMenu";
+	}
+	
+		
+	
 	
 	
 	

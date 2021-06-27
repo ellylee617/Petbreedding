@@ -17,6 +17,7 @@
 }
 
 
+
 #addItemBtn{
     float: right;
     margin-bottom: 30px;
@@ -92,6 +93,11 @@
 
 }
 
+#type{
+	width: 120px;
+	margin: 0px;
+}
+
 input[type=radio] {
 	margin: 0px;
 	padding:0px;
@@ -114,14 +120,14 @@ input[type=radio] {
 }
 
 .insert input[type=text]{
-	width: 18%;
+	width: 15%;
     height: 30px;
     border: 1px solid #aaa;
     margin-left: 25px;
 }
 
 
-button[type=submit]{
+.okbtn{
 	clear: both;
 	float: none;
     margin-left: 20px;
@@ -132,7 +138,25 @@ button[type=submit]{
     
 }
 
+.updatebtn{
+    border-radius: 5px;
+    font-family: "GmarketM";	
+}
 
+form button {
+	clear: both;
+	float: none;
+    margin-left: 20px;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    font-family: "GmarketM";	
+}
+
+.rebtn{
+    width: 30px;
+    height: 20px;	
+}
 
 .menucon{
 	float: right;

@@ -345,6 +345,24 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 미용실 메뉴 수정
+	@Override
+	public int updateStyle(Style vo) {
+		int result = -1;
+		
+		System.out.println("shopService  updateStyle() 실행 ! ! ");
+		try {
+			result = shopDao.updateStyle(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+
+
 
 
 

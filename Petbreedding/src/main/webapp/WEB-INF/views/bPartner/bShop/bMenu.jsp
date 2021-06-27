@@ -59,22 +59,30 @@
 							<input type="text" placeholder="메뉴" id="menu" name="style_name">
 							<input type="text" placeholder="가격" id="price" name="price">
 							<input type="text" placeholder="소요시간" id="time" name="style_time">
-							<button type="submit" class="basicBtn">완료</button>
+							<button type="submit" class="basicBtn okbtn">완료</button>
 						</form>
 					</c:if>
 
 					<!-- 등록된 스타일 불러오기 -->
 					<c:if test="${!empty styleList }">
-						<c:forEach var="list" items="${styleList}" varStatus="status">
-								<form id="dynamicTable" action="${path}/bp/bMenu/write"
+						<c:forEach var="list" items="${styleList }" varStatus="status">
+								<form id="dynamicTable" action="${path}/bp/bMenu/rewrite"
 									method="POST">
-									<label><input type="radio" name="style_deep" value="0">메인</label>
-									<!-- 예약 페이지: 기타 추가요금 -->
+									<c:if test="${list.style_deep eq 0}">
+									<label><input type="radio" name="style_deep" value="0" checked="checked">메인</label>
 									<label><input type="radio" name="style_deep" value="1">서브</label>
+									</c:if>
+									<c:if test="${list.style_deep eq 1}">
+									<label><input type="radio" name="style_deep" value="0">메인</label>
+									<label><input type="radio" name="style_deep" value="1" checked="checked">서브</label>
+									</c:if>
+									<input type="hidden" value="${list.style_num }" name="style_num">
+									<input type="hidden" value="${list.harNum }" name="harNum">
 									<input type="text" placeholder="메뉴" id="menu" name="style_name" value="${list.style_name }"> 
 									<input type="text" placeholder="가격" id="price" name="price" value="${list.price }"> 
 									<input type="text" placeholder="소요시간" id="time" name="style_time" value="${list.style_time }">
-									<button type="submit" class="basicBtn">완료</button>
+									<button type="submit" class="basicBtn" class="rebtn">수정</button>
+									<button type="button" class="basicBtn"  class="rebtn">삭제</button>
 								</form>
 						</c:forEach>
 					</c:if>
@@ -85,7 +93,7 @@
 
 
 			</div>
-	<!-- 삭제 모달 -->
+	<!-- TODO:삭제 모달 -->
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
 	</div>	 

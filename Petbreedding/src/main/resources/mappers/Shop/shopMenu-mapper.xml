@@ -37,6 +37,16 @@
 		WHERE HAR_NUM = #{harNum}
 	</select>
 	
+	<!-- 미용실 메뉴 수정 -->
+	<update id="updateStyle" parameterType="Style">
+	UPDATE STYLE
+	SET (STYLE_DEEP,STYLE_NAME,PRICE,STYLE_TIME)
+		= (
+			SELECT #{style_deep},#{style_name},#{price},#{style_time}
+			FROM dual
+		)
+	WHERE STYLE_NUM = #{style_num}
+	</update>
 
 	
 	

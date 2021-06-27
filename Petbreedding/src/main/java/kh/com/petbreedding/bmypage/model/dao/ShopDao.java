@@ -137,6 +137,14 @@ public class ShopDao {
 		return sqlSession.selectList("ShopMenu.selectStyleList", harNum);
 	}
 	
+	// 미용실 메뉴 수정
+	public int updateStyle(Style vo) {
+		System.out.println(" !! ShopDao - updateStyle() 실행 !!");
+		System.out.println("수정할 미용실 정보::"+vo);
+		return sqlSession.update("ShopMenu.updateStyle", vo);
+	}
+	
+	
 	/* 
 	 * 동물병원
 	 * 
