@@ -1,5 +1,6 @@
 package kh.com.petbreedding.bmypage.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -129,6 +130,12 @@ public class ShopDao {
 		return sqlSession.insert("ShopMenu.insertStyleSubMenu", vo);
 	}
 	
+	// 등록한 미용실 메뉴(메인+서브) 조회
+	public List<Style> selectStyleList(String harNum){
+		System.out.println(" !! ShopDao - selectStyleList() 실행 !!");
+		System.out.println("조회할 미용실 번호"+harNum);
+		return sqlSession.selectList("ShopMenu.selectStyleList", harNum);
+	}
 	
 	/* 
 	 * 동물병원

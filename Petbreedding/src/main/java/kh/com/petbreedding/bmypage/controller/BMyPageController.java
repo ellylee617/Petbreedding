@@ -2,6 +2,7 @@ package kh.com.petbreedding.bmypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -98,12 +99,42 @@ public class BMyPageController {
 	
 	
 	// 사장님 메뉴관리 페이지 이동
-	// TODO:등록 메뉴 불러오기
+	// TODO: 등록미용실 메뉴(메인+서브) 조회
 	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
-	public String bMenu(Locale locale, Model model) {
+	public ModelAndView bMenu(HttpServletResponse res, HttpSession session) {
+		
+		System.out.println("  BMyPageController 실행 - bMenu()  ");
+			// 로그인한 사업자 정보 가져오기
+			BPartner bpVO = (BPartner) session.getAttribute("bP");
+			String bpId = bpVO.getBp_Id();
+				
+			ModelAndView mv = new ModelAndView();
 
-		// TODO Auto-generated method stub
-		return "/bPartner/bShop/bMenu";
+			if (bpId == null) {
+				System.out.println("로그인 안됨");
+			} else {
+					
+				String harNum = (shopService.selectHarInfo(bpId)).getHarNum();
+				System.out.println("미용설 번호::"+harNum);
+				
+				List<Style> styleList = shopService.selectStyleList(harNum);
+				System.out.println("미용실 스타일 리스트::"+styleList);
+				
+				for(int i = 0; i < styleList.size(); i++) {
+					System.out.println(styleList.get(i));
+				}
+
+				mv.setViewName("/bPartner/bShop/bMenu");
+				mv.addObject("styleList", styleList);
+				
+				System.out.println(mv);
+				
+			}
+		
+		
+		
+		return mv;
+
 	}
 
 	

@@ -1,5 +1,6 @@
 package kh.com.petbreedding.bmypage.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -326,6 +327,24 @@ public class ShopServiceImpl implements ShopService {
 		
 		return result;
 	}
+
+
+
+
+	@Override
+	public List<Style> selectStyleList(String harNum) {
+		List<Style> styleList = null;
+		System.out.println("서비스 진입");
+		try {
+			styleList = shopDao.selectStyleList(harNum);
+		} catch(Exception e) {
+		}
+		System.out.println("List<Style> selectStyleList ::" + styleList);
+		return styleList;
+	}
+
+
+
 
 
 

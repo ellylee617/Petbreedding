@@ -1,5 +1,6 @@
 package kh.com.petbreedding.bmypage.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kh.com.petbreedding.bmypage.model.vo.HairDayOff;
@@ -29,6 +30,7 @@ public interface ShopService {
 	public int insertNewHarDayOff(HairDayOff vo); // 수정된 미용실 주휴일 추가
 	public int insertStyleMAinMenu(Style vo);	// 미용실 메인메뉴 추가
 	public int insertStyleSubMenu(Style vo); //미용실 서브메뉴 추가
+	public List<Style> selectStyleList(String harNum); // 등록한 미용실 메뉴(메인+서브) 조회
 	
 	public List<Hospital> selectHosList(int currentPage, int limit); // 동물병원 전체 리스트 조회 //*********TODO:위치이동***********
 	

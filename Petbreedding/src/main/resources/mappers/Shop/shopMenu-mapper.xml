@@ -14,7 +14,6 @@
 		<result column="STYLE_NUM2" property="style_num2"/>
 	</resultMap>
 	
-	
 		
 	<!-- 미용실 주메뉴 추가 -->
 	<!-- ShopDao.java -->
@@ -32,7 +31,7 @@
 	
 	<!-- 등록한 미용실 메뉴(메인+서브) 조회 -->
 	<!-- ShopDao.java -->
-	<select id="selectStyleMenu" parameterType="Style" resultMap="Style">
+	<select id="selectStyleList" parameterType="string" resultMap="Style">
 		SELECT * 
 		FROM STYLE
 		WHERE HAR_NUM = #{harNum}
