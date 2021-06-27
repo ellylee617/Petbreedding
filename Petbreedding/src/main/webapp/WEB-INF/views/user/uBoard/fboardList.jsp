@@ -13,6 +13,15 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/user/uBoard/freeboard.css" rel="stylesheet" type="text/css" >
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	function searchBoard() {
+		$("#searchBoardFrm").attr('action', 'fboardlist')
+		$("#searchBoardFrm").attr('method', 'get')
+		$("#searchBoardFrm").submit();
+		
+	}
+</script>
 </head>
 <body>
 	<div class="wrapper">    
@@ -21,12 +30,15 @@
            
 	    	<div class="bheader">
 	        <h1>자유게시판</h1>
-	            <div class="search-box">
-	            <input type="text" class="search-txt" name="#" placeholder="Type to search">
-	            <a class="search-btn" href="#">
-	              <i class="fas fa-search"></i>
-	            </a>
-	        </div><br><br>
+            	<form id="searchBoardFrm">
+		            <div class="search-box">
+	            		<input type="text" class="search-txt" name="keyword" placeholder="Type to search">
+			            <input type="hidden" name="page" value="${currentPage}">
+			            <span class="search-btn" onClick="searchBoard();">
+			              <i class="fas fa-search"></i>
+			            </span>
+		        	</div><br><br>
+	            </form>
 	        <!-- <form action="qnalist" method="get">
 	            
 				<select id="searchType" name="searchType">

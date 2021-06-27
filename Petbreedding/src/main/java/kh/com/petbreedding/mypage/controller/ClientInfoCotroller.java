@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.mypage.model.service.ClientInfoService;
 import kh.com.petbreedding.mypage.model.service.MyPointService;
@@ -27,6 +29,9 @@ public class ClientInfoCotroller {
 	
 	@Autowired
 	private MyPointService myPointService;
+	
+	@Autowired
+	private MyAskService myAskService;
 
 	// 예약조회
 	@RequestMapping("/mypage")
@@ -113,13 +118,35 @@ public class ClientInfoCotroller {
 
 	// 1:1 문의 내역
 	@RequestMapping("/mypage/ask")
-	public String ask(HttpSession session) {
+	public String ask(
+			HttpSession session
+			,String user_num
+			,Model md
+			) {
+		
+		System.out.println("[세훈] @일대일 문의 컨트롤러 user_num : " + user_num);
+		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
+		md.addAttribute("myAskList", myAskList);
+		System.out.println("[세훈] @일대일 문의 컨트롤러 myAskList : " + myAskList);
+		
 		return "/user/uMyPage/myAsk";
 	}
 
 	// 1:1 문의 자세히 보기
 	@RequestMapping("/mypage/askdetail")
-	public String askDetail(HttpSession session) {
+	public String askDetail(
+			HttpSession session
+			,String qna_num
+			,Model md
+			) {
+		
+		System.out.println("[세훈] @일대일 문의  상세 컨트롤러 qna_num : " + qna_num);
+		
+		MyAsk myAskDetail = new MyAsk();
+		myAskDetail = myAskService.MyAskSelectDetail(qna_num);
+		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 myAskDetail : " + myAskDetail);
+		md.addAttribute("myAskDetail", myAskDetail);
+		
 		return "/user/uMyPage/myAskDetail";
 	}
 	

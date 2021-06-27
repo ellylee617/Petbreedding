@@ -85,7 +85,7 @@ public class BoardController {
 		
 		int currentPage = page;
 		Board board = boarService.selectBoardDetail(0, boNum);
-		System.out.println("컨트롤러 서비스 다녀왔음 : " + board);
+		System.out.println("[세훈] @자유 게시글 상세 컨트롤러 board : " + board);
 		
 		mv.setViewName("/user/uBoard/fboardcon");
 		

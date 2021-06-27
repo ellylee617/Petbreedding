@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- //QNA_NUM   NOT NULL VARCHAR2(10)    -->
+<!-- //USER_NUM  NOT NULL VARCHAR2(20)    -->
+<!-- //QNA_TITLE NOT NULL VARCHAR2(100)   -->
+<!-- //QNA_CONT  NOT NULL VARCHAR2(3000)  -->
+<!-- //QNA_IMG            VARCHAR2(200)   -->
+<!-- //QNA_DATE  NOT NULL VARCHAR2(20)    -->
+<!-- //QNA_WR             VARCHAR2(50)    -->
+<!-- //QNAR_CHK           NUMBER(1)   -->
+
+<!-- 	private String qnaNum; -->
+<!-- 	private String userNum; -->
+<!-- 	private String qnaTitle; -->
+<!-- 	private String qnaCont; -->
+<!-- 	private String qnaImg; -->
+<!-- 	private String qnaDate; -->
+<!-- 	private String qnaWr; -->
+<!-- 	private String qnaChk; -->
+
+<mapper namespace="MyAsk">
+	<resultMap type="MyAsk" id="MyAskMap">
+		<id column="QNA_NUM" property="qnaNum"/>
+		<result column="USER_NUM" property="userNum"/>
+		<result column="QNA_TITLE" property="qnaTitle"/>
+		<result column="QNA_CONT" property="qnaCont"/>
+		<result column="QNA_IMG" property="qnaImg"/>
+		<result column="QNA_DATE" property="qnaDate"/>
+		<result column="QNA_WR" property="qnaWr"/>
+		<result column="QNAR_CHK" property="qnaChk"/>
+	</resultMap>
+	
+	<select id="MyAskSelectList" parameterType="string" resultMap="MyAskMap">
+		SELECT * FROM QNA_BOARD WHERE USER_NUM = #{userNum}
+	</select>
+	
+	<select id="MyAskSelectOne" parameterType="string" resultMap="MyAskMap">
+		SELECT * FROM QNA_BOARD WHERE QNA_NUM = #{qnaNum}
+	</select>
+	
+	
+</mapper>

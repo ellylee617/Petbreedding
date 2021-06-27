@@ -29,9 +29,9 @@
 	<!-- 검색한 게시글 조회 -->
 	 <select id="searchList" parameterType="string" resultMap="BoardMap">
 		 SELECT * FROM BOARD
-		 WHERE BOARD_TITLE LIKE '%'|| #{keyword} ||'%'
-		 OR BOARD_CONTENT LIKE '%'|| #{keyword} ||'%'
-		 ORDER BY REGDATE DESC
+		 WHERE BO_TITLE LIKE '%'|| #{keyword} ||'%'
+		 OR BO_CONT LIKE '%'|| #{keyword} ||'%'
+		 ORDER BY BO_DATE DESC
 	 </select>
 	 
 	 <!-- 게시글 조회 수 증가 -->

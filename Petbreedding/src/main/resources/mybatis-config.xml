@@ -31,6 +31,7 @@
 		<typeAlias type="kh.com.petbreedding.Chat.model.vo.ChatMessage" alias="ChatMessage"/>
 		<typeAlias type="kh.com.petbreedding.Chat.model.vo.ChatList" alias="ChatList"/>
 		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HarPay" alias="HarPay"/>
+		<typeAlias type="kh.com.petbreedding.board.model.vo.MyAsk" alias="MyAsk"/>
 		<!-- TODO -->
 	</typeAliases>
 	
@@ -51,6 +52,7 @@
 		<mapper resource="mappers/Shop/shopPay-mapper.xml"/>
 		<mapper resource="mappers/Shop/shopMenu-mapper.xml"/>
 		<mapper resource="mappers/Chat/Chat-mapper.xml"/>
+		<mapper resource="mappers/board/myAsk-mapper.xml"/>
 	</mappers>
 	
 </configuration>
