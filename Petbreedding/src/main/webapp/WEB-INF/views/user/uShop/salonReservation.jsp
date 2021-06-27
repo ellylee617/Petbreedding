@@ -31,7 +31,7 @@
             
             <!-- 넘길 정보 -->
             <!-- TODO -->
-            <input type="hidden" value="40" id="clNum"/> 
+            <input type="hidden" value="${client.cl_num}" id="clNum"/> 
             <input type="hidden" value="HA1" id="harNum"/>
             
             <div class="swiper-container" id="checkService">
@@ -98,39 +98,122 @@
                             <div class="calendar" id="calendar"></div>
                         </div>
                         <div class="choose_date">
-                        	선택날짜 : <span id="choDate"></span>
-                            <div class="times">
-                                <ul>
-                                    <li class="time">10:00</li>
-                                    <li class="time">10:30</li>
-                                    <li class="time">11:00</li>
-                                    <li class="time">11:30</li>
+                        	선택날짜 : <input type="text" id="choDate" value="선택날짜" readonly>
+                        	<c:forEach items="${checkTime }" var="checkTime" >
+                        	<div class="times">
+                                <ul>            
+                                   	<c:if test="${checkTime.res_time eq '10:00' }">
+                                   		<li class="cannotCheck"><input type="text" value="10:00" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '10:00' }">
+                                   		<li class="time"><input type="text" value="10:00" readonly></li>
+                                   	</c:if>
+                                   	<c:if test="${checkTime.res_time eq '10:30' }">
+                                   		<li class="cannotCheck"><input type="text" value="10:30" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '10:30' }">
+                                   		<li class="time"><input type="text" value="10:30" readonly></li>
+                                   	</c:if>
+									<c:if test="${checkTime.res_time eq '11:00' }">
+                                   		<li class="cannotCheck"><input type="text" value="11:00" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '11:00' }">
+                                   		<li class="time"><input type="text" value="11:00" readonly></li>
+                                   	</c:if>
+                                   	<c:if test="${checkTime.res_time eq '11:30' }">
+                                   		<li class="cannotCheck"><input type="text" value="11:30" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '11:30' }">
+                                   		<li class="time"><input type="text" value="11:30" readonly></li>
+                                   	</c:if>
                                 </ul>
                             </div>
                             <div class="times">
                                 <ul>
-                                    <li class="time">12:00</li>
-                                    <li class="time">12:30</li>
-                                    <li class="time">13:00</li>
-                                    <li class="time">13:30</li>
+                                   <c:if test="${checkTime.res_time eq '12:00' }">
+                                   		<li class="cannotCheck"><input type="text" value="12:00" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '12:00' }">
+                                   		<li class="time"><input type="text" value="12:00" readonly></li>
+                                   	</c:if>
+                                   	<c:if test="${checkTime.res_time eq '12:30' }">
+                                   		<li class="cannotCheck"><input type="text" value="12:30" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '12:30' }">
+                                   		<li class="time"><input type="text" value="12:30" readonly></li>
+                                   	</c:if>
+									<c:if test="${checkTime.res_time eq '13:00' }">
+                                   		<li class="cannotCheck"><input type="text" value="13:00" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '13:00' }">
+                                   		<li class="time"><input type="text" value="13:00" readonly></li>
+                                   	</c:if>
+                                   	<c:if test="${checkTime.res_time eq '13:30' }">
+                                   		<li class="cannotCheck"><input type="text" value="13:30" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '13:30' }">
+                                   		<li class="time"><input type="text" value="13:30" readonly></li>
+                                   	</c:if>
                                 </ul>
                             </div>
                             <div class="times">
                                 <ul>
-                                    <li class="time">14:00</li>
-                                    <li class="time">14:30</li>
-                                    <li class="time">15:00</li>
-                                    <li class="time">15:30</li>
+                                   <c:if test="${checkTime.res_time eq '14:00' }">
+                                   		<li class="cannotCheck"><input type="text" value="14:00" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '14:00' }">
+                                   		<li class="time"><input type="text" value="14:00" readonly></li>
+                                   	</c:if>
+                                   	<c:if test="${checkTime.res_time eq '14:30' }">
+                                   		<li class="cannotCheck"><input type="text" value="14:30" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '14:30' }">
+                                   		<li class="time"><input type="text" value="14:30" readonly></li>
+                                   	</c:if>
+									<c:if test="${checkTime.res_time eq '15:00' }">
+                                   		<li class="cannotCheck"><input type="text" value="15:00" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '15:00' }">
+                                   		<li class="time"><input type="text" value="15:00" readonly></li>
+                                   	</c:if>
+                                   	<c:if test="${checkTime.res_time eq '15:30' }">
+                                   		<li class="cannotCheck"><input type="text" value="15:30" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '15:30' }">
+                                   		<li class="time"><input type="text" value="15:30" readonly></li>
+                                   	</c:if>
                                 </ul>
                             </div>
                             <div class="times">
                                 <ul>
-                                    <li class="time">16:00</li>
-                                    <li class="time">16:30</li>
-                                    <li class="time">17:00</li>
-                                    <li class="time">17:30</li>
+                                   <c:if test="${checkTime.res_time eq '16:00' }">
+                                   		<li class="cannotCheck"><input type="text" value="16:00" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '16:00' }">
+                                   		<li class="time"><input type="text" value="16:00" readonly></li>
+                                   	</c:if>
+                                   	<c:if test="${checkTime.res_time eq '16:30' }">
+                                   		<li class="cannotCheck"><input type="text" value="16:30" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '16:30' }">
+                                   		<li class="time"><input type="text" value="16:30" readonly></li>
+                                   	</c:if>
+									<c:if test="${checkTime.res_time eq '17:00' }">
+                                   		<li class="cannotCheck"><input type="text" value="17:00" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '17:00' }">
+                                   		<li class="time"><input type="text" value="17:00" readonly></li>
+                                   	</c:if>
+                                   	<c:if test="${checkTime.res_time eq '17:30' }">
+                                   		<li class="cannotCheck"><input type="text" value="17:30" readonly disabled></li>
+                                   	</c:if>
+                                    <c:if test="${checkTime.res_time ne '17:30' }">
+                                   		<li class="time"><input type="text" value="17:30" readonly></li>
+                                   	</c:if>
                                 </ul>
                             </div>
+                        	</c:forEach>
+
                         </div>
                     </div>
                 </div>

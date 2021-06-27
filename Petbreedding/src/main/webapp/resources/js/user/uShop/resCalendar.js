@@ -54,7 +54,7 @@ $("#calendar").datepicker({
 	,onSelect: function(dateText, inst) {
         var date = $(this).val();
         $(".choose_date").css("display","block");
-        $("#choDate").html(date);
+        $("#choDate").val(date).change();
    }
 });                    
 

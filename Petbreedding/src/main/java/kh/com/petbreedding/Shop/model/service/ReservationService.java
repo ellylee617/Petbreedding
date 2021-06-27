@@ -13,4 +13,5 @@ public interface ReservationService {
 	public int insertHairRev(HairShopReservation hrv);
 	
 	public List<HairShopReservation> shopPayment(String har_rnum);
+	public List<HairShopReservation> checkTime(String har_num);
 }

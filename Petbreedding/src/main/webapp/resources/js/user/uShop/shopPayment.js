@@ -1,7 +1,7 @@
 var chk1 = $("#agreeInfo2").is(":checked");
 var chk2 = $("#agreeInfo3").is(":checked");
 var chk3 = $("#agreeInfo4").is(":checked");
-
+//이용동의 체크여부 확인
 $("#agreeInfo1").on("click",function(){
     var chk = $(this).is(":checked");
     if(chk){
@@ -21,13 +21,13 @@ $(".agreeAll").on("click", function(){
     }
 });
 
-$("#reservation_btn").on("click",function(){
+/*$("#reservation_btn").on("click",function(){
     var chk = $("#agreeInfo1").is(":checked");
     if(!chk){
         alert("이용동의에 모두 체크해주세요!");
         return false;
     }
-});
+});*/
 
 $("#pointAll").on("click",function(){
     var usingPoint = $("#nowPoint").text();
@@ -52,7 +52,6 @@ $("#pointArea").on("propertychange change keyup paste input oninput ",function()
 	var pay = 0;
 	pay = number - number2;
 	pay = pay.toLocaleString();
-	pay += " 원";
 	$("#payMoney").text(pay);
 	
 });

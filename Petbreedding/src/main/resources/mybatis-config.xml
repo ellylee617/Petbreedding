@@ -25,11 +25,12 @@
 		<typeAlias type="kh.com.petbreedding.mypage.model.vo.MyPet" alias="Pet"/>
 		<typeAlias type="kh.com.petbreedding.board.model.vo.Review" alias="Review"/>
 		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.Style" alias="Style"/>
-		<typeAlias alias="HairRev" type="kh.com.petbreedding.Shop.model.vo.HairShopReservation"/>
+		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HairShopReservation" alias="HairRev"/>
 		<typeAlias type="kh.com.petbreedding.mypage.model.vo.MyPoint" alias="MyPoint"/>
 		<typeAlias type="kh.com.petbreedding.Chat.model.vo.ChatRoom" alias="ChatRoom"/>
 		<typeAlias type="kh.com.petbreedding.Chat.model.vo.ChatMessage" alias="ChatMessage"/>
 		<typeAlias type="kh.com.petbreedding.Chat.model.vo.ChatList" alias="ChatList"/>
+		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HarPay" alias="HarPay"/>
 		<!-- TODO -->
 	</typeAliases>
 	

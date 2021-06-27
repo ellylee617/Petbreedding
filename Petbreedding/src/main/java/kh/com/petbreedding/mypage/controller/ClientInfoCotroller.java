@@ -31,16 +31,19 @@ public class ClientInfoCotroller {
 	// 예약조회
 	@RequestMapping("/mypage")
 	public String myReservationList(String cl_num, Model model) {
-		
-		List<HairShopReservation> result = clientInfoService.myReservationList(cl_num);
-		int status0 = clientInfoService.status0(cl_num);
-		int status1 = clientInfoService.status1(cl_num);
-		int status2 = clientInfoService.status2(cl_num);
-		model.addAttribute("myRev", result);
-		model.addAttribute("status0", status0);
-		model.addAttribute("status1", status1);
-		model.addAttribute("status2", status2);
-		
+		if(cl_num != null) {
+			List<HairShopReservation> result = clientInfoService.myReservationList(cl_num);
+			int status0 = clientInfoService.status0(cl_num);
+			int status1 = clientInfoService.status1(cl_num);
+			int status2 = clientInfoService.status2(cl_num);
+			model.addAttribute("myRev", result);
+			model.addAttribute("status0", status0);
+			model.addAttribute("status1", status1);
+			model.addAttribute("status2", status2);
+		}else {
+			System.out.println("cl_num이 없음");
+		}
+	
 		return "/user/uMyPage/myReservationList";
 	}
 	

@@ -71,4 +71,15 @@ public class ReservationServiceImpl implements ReservationService{
 		return result;
 	}
 
+	@Override
+	public List<HairShopReservation> checkTime(String har_num) {
+		List<HairShopReservation> result = null;
+		try {
+			result = revDao.checkTime(har_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

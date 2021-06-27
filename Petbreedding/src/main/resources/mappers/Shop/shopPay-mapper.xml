@@ -35,6 +35,19 @@
 		<result column="PRICE" property="price"/>
 	</resultMap>
 
+	<!-- 미용실 결제VO -->
+	<resultMap type="HarPay" id="HarPay">
+		<id column="PAY_NUM" property="pay_num"/>
+		<result column="HAR_RNUM" property="har_rnum" />
+		<result column="MSG_NUM" property="msg_num" />
+		<result column="CARD_NUM" property="card_num" />
+		<result column="PAY_DATE" property="pay_date" />
+		<result column="PAY_PRICE" property="pay_price" />
+		<result column="TOTAL_PRICE" property="total_price" />
+	</resultMap>
+
+
+
 	<!-- 결제 페이지 조회-->
 	<select id="myRevPay" parameterType="string" resultMap="HairRev">
         SELECT h.*, s.style_name, hs.har_name, hs.har_addr, hs.har_tel
@@ -43,6 +56,16 @@
 		LEFT JOIN HAIR_SALON hs ON h.har_num = hs.har_num
 		WHERE h.har_rnum = #{har_rnum}
 	</select>
+	
+	<!-- 결제테이블 저장 -->
+	<insert id="harPay" parameterType="HarPay">
+		INSERT INTO HAR_PAY VALUES('HARPAY000' || SEQ_HAR_PAY.nextval, #{har_rnum},'M2',#{card_num},to_char(SYSDATE, 'YYYY-MM-DD'),#{pay_price},#{total_price})
+	</insert>
+	
+	<!-- 예약현황 update -->
+	<update id="harRevUp" parameterType="string">
+		UPDATE HAR_RESERVATION SET RES_STATUS = 1 WHERE HAR_RNUM = #{har_rnum}
+	</update>
 	
 	
 	

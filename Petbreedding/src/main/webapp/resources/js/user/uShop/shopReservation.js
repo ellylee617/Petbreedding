@@ -54,6 +54,31 @@ $(".plus").on("click",function(){
 	}
 });
 
+/*//날짜에 따른 시간선택
+$("#choDate").on("propertychange change keyup paste input oninput ",function(){
+	var res_date = $("#choDate").val();
+	var har_num = $("#harNum").val();
+	$.ajax({
+		url:"checkTime",
+		type:"POST",
+		data:{
+			res_date : res_date,
+			har_num : har_num
+		},
+		success:function(data){
+			console.log(data);
+			location.href="/petbreedding/salonReservation";
+		},
+		complete: function(data){
+			
+			
+		},
+		error : function(){
+			console.log("error");
+		}
+	});
+});*/
+
 
 //시간 클릭
 $(".time").on("click",function(){
@@ -62,11 +87,15 @@ $(".time").on("click",function(){
 		$(".time").addClass("normalTime");
 		$(this).addClass('chooseTime');	
 		$(this).removeClass('normalTime');	
+		$(".chooseTime input").css("color","var(--font-color)");
+		$(".normalTime input").css("color","var(--main-color)");
 	}else{
 		$(this).removeClass('chooseTime');
 		$(this).addClass('normalTime');	
 	}
 });
+
+
 var style_num2;
 $("#noPlus").on("click", function(){
 	style_num2 = $("#noPlus").find(".styleNum").val();
@@ -78,8 +107,8 @@ $("#reservation_btn").on("click", function(){
 	var style_num = $(".chooseMenu").find(".styleNum").val();
 	var pet_num = $(".chooseDog").find(".petNum").val();
 	style_num2 = $(".choosePlus").find(".styleNum").val();
-	var res_date  = $("#choDate").text();  //연월일
-	var res_time = $(".chooseTime").text(); //시간
+	var res_date  = $("#choDate").val();  //연월일
+	var res_time = $(".chooseTime input").val(); //시간
 	var cl_num = $("#clNum").val();
 	var har_num = $("#harNum").val();
 

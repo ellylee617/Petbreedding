@@ -27,7 +27,7 @@
 		<result column="PET_NUM" property="pet_num" />
 		<result column="STYLE_NUM" property="style_num" />
 		<result column="HAR_NUM" property="har_num" />
-		<result column="RES_NUM" property="res_date" />
+		<result column="RES_DATE" property="res_date" />
 		<result column="RES_STATUS" property="res_status" />
 		<result column="RES_TIME" property="res_time" />
 		<result column="STYLE_NUM2" property="style_num2" />
@@ -67,11 +67,13 @@
 				SELECT SEQ_HAR_RESERVATION.CURRVAL AS HAR_RNUM FROM DUAL
 			</selectKey>
 
-
-
 		</insert>
 	
-	
-	
+		<!-- 미용실 예약 시간 확인 -->
+		<select id="checkTime" parameterType="string" resultType="HairRev">
+			<![CDATA[
+			select res_time,res_date from har_reservation where har_num = #{har_num} and res_date >= to_char(SYSDATE, 'YYYY-MM-DD')
+			]]>
+		</select>
 	
 </mapper>

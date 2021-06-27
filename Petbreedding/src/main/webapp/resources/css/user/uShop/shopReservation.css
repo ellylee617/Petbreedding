@@ -102,6 +102,14 @@
     float: left;
     display:none;
 }
+#choDate{
+	border:none;
+	background: none;
+	outline:none;
+	color: transparent;
+  	text-shadow: 0 0 0 black;
+  	font-family: GmarketM;
+}
 .time{
  	width: 80px;
     border: 1px solid var(--border-color);
@@ -112,10 +120,61 @@
     margin-left: 30px;
     cursor: pointer; 
 }
+.time input{
+	border:none;
+	background: none;
+	outline:none;
+	color: transparent;
+  	text-shadow: 0 0 0 black;
+  	cursor: pointer;
+  	font-family: GmarketM;
+  	text-align: center;
+  	width: 50px;
+}
+.time{
+ 	width: 80px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    text-align: center;
+    padding: 8px;
+    float: left;
+    margin-left: 30px;
+    cursor: pointer; 
+}
+.time input{
+	border:none;
+	background: none;
+	outline:none;
+	color: transparent;
+  	text-shadow: 0 0 0 black;
+  	cursor: pointer;
+  	font-family: GmarketM;
+  	text-align: center;
+  	width: 50px;
+}
+.cannotCheck{
+ 	width: 80px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    text-align: center;
+    padding: 8px;
+    float: left;
+    margin-left: 30px;
+}
+.cannotCheck input{
+	border:none;
+	background: none;
+	outline:none;
+	color: transparent;
+  	text-shadow: 0 0 0 black;
+  	font-family: GmarketM;
+  	text-align: center;
+  	width: 50px;
+  	text-decoration: line-through;
+}
 .chooseTime{
 	background-color: var(--hover-color);
-    border: 1px solid var(--hover-color);
-    color: var(--font-color);
+    border: 1px solid var(--hover-color);  
 }
 .normalTime{
 	background-color: none;
@@ -126,10 +185,8 @@
     padding-bottom: 50px;
 }
 #fourthChoose{
-    overflow: hidden;
-    
+    overflow: hidden;    
 }
-
 
 /*예약안내*/
 .reservatoin_info{

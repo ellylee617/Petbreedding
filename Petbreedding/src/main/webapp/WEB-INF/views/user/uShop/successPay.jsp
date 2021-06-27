@@ -21,6 +21,7 @@
 			<p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫미용실</a>></span><span><a href="salonReservation.html">예약하기</a>></span>결제하기</p>
              <div class="finishedPage">
                 <div class="pageContent">
+                	<input type="hidden" id="cl_num" value="${client.cl_num }">
                     <h1>결제가 완료되었습니다.</h1>
                     <p>정상적으로 결제가 완료되었습니다.</p>
                     <p>이용해주셔서 감사합니다.</p>

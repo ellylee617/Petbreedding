@@ -25,6 +25,7 @@
                 <div class="reservation_info infoBox">
                    <table>
                    <c:forEach items="${myRev}" var="myRev">
+                   		<input type="hidden" value="${myRev.har_rnum }" id="har_rnum"/>
                        <tr>
                            <th>예약 정보</th>
                        </tr>
@@ -50,15 +51,15 @@
                         </tr>
                         <tr>
                             <td class="infoName">예약자명</td>
-                            <td colspan="2">${client.name }</td>
+                            <td colspan="2" id="name">${client.name }</td>
                         </tr>
                         <tr>
                             <td class="infoName">연락처</td>
-                            <td>${client.tel }</td>                        
+                            <td id="tel">${client.tel }</td>                        
                         </tr>
                         <tr>
                             <td class="infoName">이메일</td>
-                            <td>${client.email }</td>                        
+                            <td id="email">${client.email }</td>                        
                         </tr>
                     </table>
                  </div>
@@ -81,7 +82,7 @@
 							</span>원
 						</p>
                         <p>포인트 사용<span class="usePoint">0원</span></p>
-                        <p >총 결제 금액 <span id="payMoney"></span></p>
+                        <p >총 결제 금액 <span id="payMoney"></span>원</p>
                      </div>                              
                  </div>
                  <div class="agreeInfo infoBox">
@@ -128,6 +129,7 @@
 	
 	 <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/user/uShop/shopPayment.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/user/uShop/shopPay.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
 </body>
 </html>
