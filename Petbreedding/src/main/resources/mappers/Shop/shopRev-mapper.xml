@@ -70,9 +70,9 @@
 		</insert>
 	
 		<!-- 미용실 예약 시간 확인 -->
-		<select id="checkTime" parameterType="string" resultType="HairRev">
+		<select id="checkTime" parameterType="string" resultType="string">
 			<![CDATA[
-			select res_time,res_date from har_reservation where har_num = #{har_num} and res_date >= to_char(SYSDATE, 'YYYY-MM-DD')
+			select res_time,res_date from har_reservation where har_num = #{har_num} and res_date = #{res_date} and (res_status = 0 OR res_status = 1)
 			]]>
 		</select>
 	

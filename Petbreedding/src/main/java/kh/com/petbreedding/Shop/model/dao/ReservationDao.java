@@ -38,8 +38,8 @@ public class ReservationDao {
 		return sqlSession.selectList("shopPay.myRevPay", har_rnum);
 	}	
 
-	public List<HairShopReservation> checkTime(String har_num){
-		return sqlSession.selectList("ShopRev.checkTime", har_num);
+	public List<String> checkTime(HairShopReservation hrv){
+		return sqlSession.selectList("ShopRev.checkTime", hrv);
 	}
 	
 	

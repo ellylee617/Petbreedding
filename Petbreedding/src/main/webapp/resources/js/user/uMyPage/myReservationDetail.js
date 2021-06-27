@@ -8,13 +8,13 @@ $("#pay").on("click",function(){
 //취소하기
 $("#goCancle").on("click",function(){
 	var har_rnum = $("#har_rnum").val();
-	
+	var cl_num = $("#cl_num").val();
 	$.ajax({
 		url: "cancleRev",
 		type:"POST",
 		data:{har_rnum : har_rnum},
 		success:function(data){
-	        location.href="/petbreedding/mypage";
+	        location.href="/petbreedding/mypage?cl_num="+cl_num+"";
 		}
 	});
 	

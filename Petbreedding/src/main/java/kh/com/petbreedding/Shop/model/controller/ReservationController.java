@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.Shop.model.service.ReservationService;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
@@ -33,11 +32,9 @@ public class ReservationController {
 		List<Style> list = revService.revList(har_num);
 		List<MyPet> list2 = revService.revList2(cl_num);
 		List<Style> list3 = revService.revList3(har_num);
-		List<HairShopReservation> list4 = revService.checkTime(har_num);
 		model.addAttribute("style", list);
 		model.addAttribute("pet", list2);
 		model.addAttribute("style2", list3);
-		model.addAttribute("checkTime", list4);
 		
 		return "/user/uShop/salonReservation";
 	}
@@ -67,6 +64,15 @@ public class ReservationController {
 		return "/user/uShop/shopPayment";
 	}
 	
+	//미용실 시간체크
+	@RequestMapping(value="checkTime")
+	@ResponseBody
+	public List<String> checkTime(HairShopReservation hrv) {
+		
+		List<String> list = revService.checkTime(hrv);
+
+		return list;
+	}
 	
 
 }
