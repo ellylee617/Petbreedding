@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -67,16 +68,20 @@
                             <th class="pointInfo">포인트 사용</th>
                             <td>보유 포인트</td>
                             <td id="nowPoint">1,000</td>
-                            <td><input type="text" id="pointArea"><input type="checkbox" id="pointAll"><label for="pointAll">모두 사용</label></td>
+                            <td><input type="text" id="pointArea" value="0"><input type="checkbox" id="pointAll"><label for="pointAll">모두 사용</label></td>
                         </tr>                        
                     </table>
                  </div>
                  <div class="totalpay_info infoBox">
                      <h4>결제 금액</h4>
                      <div >
-                        <p>총 상품 금액 <span>${totalPrice }원</span></p>
+                        <p>총 상품 금액 
+	                        <span id="totalPrice">
+	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice }" />
+							</span>원
+						</p>
                         <p>포인트 사용<span class="usePoint">0원</span></p>
-                        <p>총 결제 금액 <span>40,000원</span></p>
+                        <p >총 결제 금액 <span id="payMoney"></span></p>
                      </div>                              
                  </div>
                  <div class="agreeInfo infoBox">

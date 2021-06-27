@@ -42,10 +42,10 @@ public class ReservationController {
 	//미용실 예약 처리
 	@RequestMapping(value="doReservation")
 	@ResponseBody
-	public int insertHairRev(HairShopReservation hrv) {
+	public String insertHairRev(HairShopReservation hrv) {
 		
-		int result = revService.insertHairRev(hrv);
-		
+		revService.insertHairRev(hrv);
+		String result = hrv.getHar_rnum();
 		return result;
 	}
 	

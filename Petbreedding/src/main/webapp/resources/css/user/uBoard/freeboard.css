@@ -169,6 +169,10 @@
     overflow:hidden;
     margin-bottom: 30px;
 }
+.imgSize {
+	width: 150px;
+	height: 100px;
+}
 .boardlist .subdiv img{
     float: left;
     margin-right: 60px;
@@ -219,6 +223,7 @@
 .page_nation .none {
 	display:none;
 }
+.page_nation span,
 .page_nation a {
 	display:block;
 	margin:0 3px;
@@ -248,7 +253,7 @@
 	margin-left:7px;
 }
 
-.page_nation a.active {
+.page_nation span.active {
 	font-size: 15px;
     font-weight: bold;
 	color:#ff9914;

@@ -40,29 +40,91 @@
 			</form> -->
 	        </div>
 	        
-			<c:if test="${empty boardList}">
+			<c:if test="${listCount eq 0}">
 				<h1>게시글이 없습니다.</h1>
 			</c:if>
 			
-			<c:forEach items="${boardList }" var="blist">
-	       	
+			<c:if test="${listCount ne 0}">
+				
 				<div class="write">
 				   <button class="writebtn basicBtn"><a href="">글쓰기</a></button>
 				</div>  
-				<div class="boardlist">
-	            	<div class="subdiv">
-		                <div class="img"><a href="#"><img src="http://placehold.it/150x100"  alt="boardimg"></a></div>
-		                <div class="title">
-		                <a href="fboardcon?boNum=${blist.boNum}">
-		                <p>${blist.boCont}(10)</p>
-		                </a>
+				<c:forEach items="${boardList }" var="blist">
+					<div class="boardlist">
+		            	<div class="subdiv">
+		            		
+		            		<c:choose>
+		            			<c:when test="${blist.boImg eq null}">
+			            	    	<div class="img"><a href="#"><img class="imgSize" src="http://placehold.it/150x100"  alt="boardimg"></a></div>
+			            	    </c:when>
+		            			<c:otherwise>
+			            	    	<div class="img"><a href="#"><img class="imgSize" src="${path}/resources/uploadFile/review/${blist.boImg}"  alt="boardimg"></a></div>
+			            	    </c:otherwise>	
+			                </c:choose>
+			                <div class="title">
+			                <a href="fboardcon?boNum=${blist.boNum}">
+			                <p>${blist.boCont}(10)</p>
+			                </a>
+			                </div>
+			                <div class="writer"><a href="fboardcon">${blist.clNickName}</a></div>
+			                <div class="regdate"><a href="fboardcon">${blist.boDate}</a></div>
+			                <div class="count"><a href="fboardcon">${blist.boView}</a></div>
 		                </div>
-		                <div class="writer"><a href="fboardcon">유저 닉네임</a></div>
-		                <div class="regdate"><a href="fboardcon">${blist.boDate}</a></div>
-		                <div class="count"><a href="fboardcon">${blist.boView}</a></div>
-	                </div>
-	                
-	            </div>
+		                
+		            </div>
+				</c:forEach>
+			
+			</c:if>
+			
+			 <!-- 앞 페이지 번호 처리 -->
+			 	<div class="page_wrap">
+			 		<div class="page_nation">
+			 		
+			 			<c:set var="firstPage" value=""/>
+					 	<c:if test="${currentPage <= 1}">
+					 		<span class="arrow prev">이전</span>
+					 		<span class="active">1</span>
+						</c:if>
+						
+						<c:if test="${currentPage > 1}">
+							<c:url var="blistST" value="fboardlist">
+								<c:param name="page" value="${currentPage-1}" />
+							</c:url>
+							<a class="arrow prev" href="${blistST}">이전</a>
+						</c:if>
+						
+						<!-- 끝 페이지 번호 처리 -->
+						<c:set var="endPage" value="${maxPage}" />
+						<c:forEach var="p" begin="${startPage+1}" end="${endPage}">
+						
+							<c:if test="${p eq currentPage}">
+								${p}
+							</c:if>
+							
+							<c:if test="${p ne currentPage}">
+								<c:url var="blistchk" value="fboardlist">
+									<c:param name="page" value="${p}" />
+								</c:url>
+								<a href="${blistchk}">${p}</a>
+							</c:if>
+						</c:forEach>
+						
+						<c:if test="${currentPage >= maxPage}">
+							<span class="active">2</span>
+							<span class="arrow next">다음</span>
+						</c:if>
+						
+						<c:if test="${currentPage < maxPage}">
+							<c:url var="blistEND" value="fboardlist">
+								<c:param name="page" value="${currentPage+1}" />
+							</c:url>
+							<a class="arrow next" href="${blistEND}">다음</a>
+						</c:if>
+					</div>	
+				</div>
+			 	
+			
+	       	
 				          
 				<!-- 
 				<div class="page_wrap">
@@ -83,7 +145,6 @@
 				 </div>
 				  -->
 	                
-			</c:forEach>
              
 			</section>
 		<jsp:include page="../../common/footer.jsp" />

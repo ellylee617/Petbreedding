@@ -148,15 +148,19 @@
 	                                        <span class="reviewDate">${items.revDate } 방문</span>
 	                                    </div>
 	                                </div>
-	                                <c:if test="${items.revImg eq null}">
-	                                	<div class="review_imgBox">
-	                                    	<img class="review_img" src="${pageContext.request.contextPath}/resources/images/logo.png">
-	                                	</div>
-	                                </c:if>
-		                                <div class="review_imgBox">
-		                                    <img class="review_img" src="${path}/resources/uploadFile/review/${items.revImg}">
-		                                </div>
 	                                
+	                                <c:choose>
+	                                	<c:when test="${items.revImg eq null}">
+		                                	<div class="review_imgBox">
+		                                    	<img class="review_img" src="${pageContext.request.contextPath}/resources/images/logo.png">
+		                                	</div>
+	                                	</c:when>
+	                                	<c:otherwise>
+			                                <div class="review_imgBox">
+			                                    <img class="review_img" src="${path}/resources/uploadFile/review/${items.revImg}">
+			                                </div>
+		                                </c:otherwise>
+		                           	</c:choose>     
                             </div>
                                 </c:forEach>
                             <div class="reply">

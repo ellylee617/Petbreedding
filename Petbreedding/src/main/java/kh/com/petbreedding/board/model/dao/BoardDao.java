@@ -16,6 +16,7 @@ public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
 		// 게시글 작성
 		public int insertBoard(Board board) {
 			
@@ -33,6 +34,11 @@ public class BoardDao {
 			//TODO
 		}
 		
+		//전체 글 수 조회
+		public int listCount() { 
+			return sqlSession.selectOne("Board.listCount");
+		}
+		
 		// 게시글 보기
 		public Board selectBoardDetail(String boNum) {
 			Board board = null;
@@ -47,12 +53,14 @@ public class BoardDao {
 			return sqlSession.selectList("Board.selectBoardList", null, row);
 		}
 		
-		public int totalCount(HashMap<String, String> map) {
-			//TODO
-			return 0;
+		 // 게시글 검색 조회
+		public List<Board> searchList(String keyword) {
+			 return sqlSession.selectList("Board.searchList", keyword);
 		}
 		
-		public void veiwCnt(String bo_num) {
-			//TODO
+		 // 글 조회 수 증가
+		public int addReadCount(String bo_num) {
+			 return sqlSession.update("Board.addReadCount", bo_num);
 		}
+
 }

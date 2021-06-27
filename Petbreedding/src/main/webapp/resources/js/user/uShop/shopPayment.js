@@ -31,5 +31,28 @@ $("#reservation_btn").on("click",function(){
 
 $("#pointAll").on("click",function(){
     var usingPoint = $("#nowPoint").text();
-    $("#pointArea").val(usingPoint);
+    $("#pointArea").val(usingPoint).change();   
+});
+
+//총결제 금액 뿌리기 
+var total = $("#totalPrice").text();
+$(function(){
+	$("#payMoney").html(total);
+});
+
+
+//포인트 사용시 결제금액 변화
+$("#pointArea").on("propertychange change keyup paste input oninput ",function(){
+	var using = $("#pointArea").val();	
+	
+	// 전체 콤마 제거
+	const number = total.replace(/,/g, "");
+	const number2 = using.replace(/,/g, "");
+	
+	var pay = 0;
+	pay = number - number2;
+	pay = pay.toLocaleString();
+	pay += " 원";
+	$("#payMoney").text(pay);
+	
 });

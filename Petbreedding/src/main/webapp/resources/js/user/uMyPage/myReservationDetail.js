@@ -14,7 +14,6 @@ $("#goCancle").on("click",function(){
 		type:"POST",
 		data:{har_rnum : har_rnum},
 		success:function(data){
-			close();
 	        location.href="/petbreedding/mypage";
 		}
 	});
@@ -29,10 +28,6 @@ function modal(id) {
 
     // 모달 div 뒤에 희끄무레한 레이어
     var bg = document.createElement('div');
-    function close(){
-    	 bg.remove();
-         modal.style.display = 'none';
-    }
     bg.setStyle({
         position: 'fixed',
         zIndex: zIndex,
@@ -48,10 +43,12 @@ function modal(id) {
 
     // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
     modal.querySelector('.modal_close_btn').addEventListener('click', function () {
-    	close();
+    	 bg.remove();
+         modal.style.display = 'none';
     });
     $("#nextTime").on("click",function(){
-    	close();
+    	 bg.remove();
+         modal.style.display = 'none';
     });
     modal.setStyle({
         position: 'fixed',
