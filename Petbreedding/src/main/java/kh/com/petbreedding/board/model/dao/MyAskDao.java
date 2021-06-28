@@ -31,4 +31,8 @@ public class MyAskDao {
 	public String getClientNickName(String user_num) {
 		return sqlSession.selectOne("MyAsk.getClientNickName", user_num);
 	}
+	
+	public String getBpNickName(String user_num) {
+		return sqlSession.selectOne("MyAsk.getBpNickName", user_num);
+	}
 }

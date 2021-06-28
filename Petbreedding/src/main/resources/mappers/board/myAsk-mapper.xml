@@ -43,6 +43,10 @@
 		SELECT CL_NICKNAME FROM CLIENT WHERE CL_NUM = #{userNum}
 	</select>  
 	
+	<select id="getBpNickName" parameterType="string" resultType="string">
+		SELECT BP_NAME FROM BUSINESS_PARTNER WHERE BP_ID = #{userNum}
+	</select>
+	
 	<insert id="MyAskInsert" parameterType="MyAsk">
 		<![CDATA[
 			INSERT INTO QNA_BOARD VALUES (

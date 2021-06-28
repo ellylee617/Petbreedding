@@ -24,20 +24,23 @@
 		<section class="section">
 			<jsp:include page="../bheader.jsp" />
 			<div class="bContent">
-            	
-                <div class="qnatitle">
-            		<h1 id="h1">제목</h1>
-                   <input id="title" type="text" name="#" placeholder="글 제목을 입력해주세요">
-                </div>
-            <div class="qnacontent">
-                <h1 id="h2">내용</h1>
-                <textarea id="content" placeholder="1:1문의내용을 작성해주세요"></textarea>
-            </div> 
-            <div class="qanbtn">
-            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
-            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
-            </div>
-			
+			<form action="/petbreedding/maWrite" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="user_num" value="${user_num}">
+	            	
+	                <div class="qnatitle">
+	            		<h1 id="h1">제목</h1>
+	                   <input id="title" type="text" name="myAskTitle" placeholder="글 제목을 입력해주세요">
+	                </div>
+	            <div class="qnacontent">
+	                <h1 id="h2">내용</h1>
+	                <textarea id="content" placeholder="1:1문의내용을 작성해주세요" name="myAskCont"></textarea>
+	            </div> 
+	            <div class="qanbtn">
+	            <input type="file" id="myAskImg" name="myAskImg" accept=".jpg, .png">
+	            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
+	            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
+	            </div>
+			</form>
 			</div>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
