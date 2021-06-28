@@ -219,7 +219,7 @@ public class ClientInfoCotroller {
 		MultipartFile mf = req.getFile("myAskImg"); // 업로드 파라미터
 		if(mf != null) {
 			
-			String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
+			String path = req.getRealPath("/resources/uploadFile/myAsk"); // 자징될 위치
 			UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
 			String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
 			String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
