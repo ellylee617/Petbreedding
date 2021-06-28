@@ -100,26 +100,27 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
-	public String bwrite(Locale locale, Model model) {
-		return "/user/uBoard/bwrite";
+	// 게시글 작성
+	@RequestMapping(value = "/bWrite", method = RequestMethod.GET)
+	public String bWrite(Locale locale, Model model) {
+		return "/user/uBoard/bWrite";
 	}
+	
 	
 	@Autowired
 	private ReviewService reviewService;
 	
 	// 리뷰 작성
-	// TODO 리뷰 등록 버튼을 눌렀을 때 미용실 또는 병원 번호를 받아와야함
 	@RequestMapping(value = "/rwrite", method = RequestMethod.POST)
 	public String rwrite(
-			Locale locale
-			,HttpSession session
+			HttpSession session
 			,MultipartHttpServletRequest req
 			,HttpServletResponse res
 			,Client cl
 			,@RequestParam(name="revCont") String revCont
 			,@RequestParam(name="selectedVal") int revVal
 			) {
+		res.setContentType("text/html; charset=utf-8");
 		System.out.println("리뷰 등록 컨트롤러 진입");
 		cl = (Client) session.getAttribute("client");
 		if(cl==null) {
@@ -195,6 +196,7 @@ public class BoardController {
 		
 		return "redirect:/mypage?cl_num=CL1";
 	}
+	
 	
 	//	유저 공지사항 리스트 조회
 	@RequestMapping(value = "/UcustomerService", method = RequestMethod.GET)

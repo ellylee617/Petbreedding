@@ -75,6 +75,7 @@ JS에서 html 태그 생성
 						<li class="option" value="1"><img src="${path}/resources/images/1.png">&nbsp;&nbsp;많이 아쉬워요</li>
 					</ul>
 					<input type="number" id="selectedVal" name="selectedVal" style="display:none"  readonly>
+					<input type="file" id="reviewImg" name="reviewImg" accept=".jpg, .png">
 					<input type="hidden" name="har_num" id="for_value_har_num" >
 					<input type="hidden" name="har_name" id="for_value_har_name" >
 					<!-- hidden에 미용실 번호 담음 from js파일 -->
@@ -83,7 +84,7 @@ JS에서 html 태그 생성
 				<br>
 				<textarea placeholder="리뷰내용을 작성해주세요" id="revCont" name="revCont" rows="15" cols="37"></textarea>
 				<br><br>
-				<a class="btnAddFile"><i class="fa fa-camera fa-2x"></i></a>
+				<span id="imgUpBtn" class="btnAddFile"><i class="fa fa-camera fa-2x"></i></span>
 				<button id="regBtn" class="basicBtn btnReCom">등록하기</button>
 				<br>
 			</form>

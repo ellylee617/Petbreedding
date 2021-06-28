@@ -22,4 +22,13 @@ public class MyAskDao {
 	public MyAsk MyAskSelectOne(String qna_num) {
 		return sqlSession.selectOne("MyAsk.MyAskSelectOne", qna_num);
 	}
+	
+	public int MyAskInsert(MyAsk myAsk) {
+		System.out.println("[세훈] @MyAsk 다오 myAsk" + myAsk.toString());
+		return sqlSession.insert("MyAsk.MyAskInsert", myAsk);
+	}
+	
+	public String getClientNickName(String user_num) {
+		return sqlSession.selectOne("MyAsk.getClientNickName", user_num);
+	}
 }
