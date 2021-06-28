@@ -25,9 +25,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.media.jfxmedia.logging.Logger;
 
 import kh.com.petbreedding.board.model.vo.Board;
+import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.board.model.service.BoardService;
+import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.service.ReviewService;
 
 
@@ -36,6 +38,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boarService;
+	
+	@Autowired
+	private CustomerServiceService customerServiceService;
 	
 	public static final int LIMIT = 5;
 
@@ -93,6 +98,11 @@ public class BoardController {
 		mv.addObject("board", board);
 		
 		return mv;
+	}
+	
+	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
+	public String bwrite(Locale locale, Model model) {
+		return "/user/uBoard/bwrite";
 	}
 	
 	@Autowired
@@ -186,14 +196,19 @@ public class BoardController {
 		return "redirect:/mypage?cl_num=CL1";
 	}
 	
+	//	유저 공지사항 리스트 조회
 	@RequestMapping(value = "/UcustomerService", method = RequestMethod.GET)
-	public String UcustomerService(Locale locale, Model model) {
+	public String UcustomerService(Model md) {
+		
+		List<CustomerService> csList = null;
+		
+		csList = customerServiceService.CustomerServiceSelectList();
+		
+		md.addAttribute("csList", csList);
+		
 		return "/user/uBoard/UcustomerService";
 	}
-	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
-	public String bwrite(Locale locale, Model model) {
-		return "/user/uBoard/bwrite";
-	}
+
 	@RequestMapping(value = "/oftenqna", method = RequestMethod.GET)
 	public String oftenqna(Locale locale, Model model) {
 		return "/user/uBoard/oftenqna";

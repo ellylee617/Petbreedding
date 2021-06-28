@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- ANN_NUM   NOT NULL VARCHAR2(10)    -->
+<!-- ADMIN_ID           VARCHAR2(50)    -->
+<!-- ANN_TITLE NOT NULL VARCHAR2(100)   -->
+<!-- ANN_CONT  NOT NULL VARCHAR2(3000)  -->
+<!-- ANN_DATE  NOT NULL VARCHAR2(20)  -->
+
+<!-- 	private String annNum; -->
+<!-- 	private String adminId; -->
+<!-- 	private String annTitle; -->
+<!-- 	private String annCont; -->
+<!-- 	private String annDate; -->
+
+<mapper namespace="CustomerService">
+	<resultMap type="CustomerService" id="CustomerServiceMap">
+		<id column="ANN_NUM" property="annNum"/>
+		<result column="ADMIN_ID" property="adminId"/>
+		<result column="ANN_TITLE" property="annTitle"/>
+		<result column="ANN_CONT" property="annCont"/>
+		<result column="ANN_DATE" property="annDate"/>
+	</resultMap>
+	
+	<select id="CustomerServiceSelectList" parameterType="CustomerService" resultMap="CustomerServiceMap">
+		SELECT * FROM ANNOUNCEMENT
+	</select>
+</mapper>

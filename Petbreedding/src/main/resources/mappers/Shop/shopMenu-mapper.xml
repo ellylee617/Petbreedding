@@ -49,7 +49,7 @@
 	</update>
 	
 	<!-- 미용실 메뉴 삭제 -->
-	<delete id="deleteStyle" parameterType="Style">
+	<delete id="deleteStyle" parameterType="string">
 		DELETE 
 		FROM STYLE 
 		WHERE STYLE_NUM = #{style_num}
