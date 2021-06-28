@@ -76,4 +76,50 @@
 			]]>
 		</select>
 	
+	<!-- 동물병원 -->
+	<resultMap type="Hospital" id="Hospital">
+		<id column="HOS_NUM" property="hosNum"/>
+		<result column="BP_ID" property="bpId"/>
+		<result column="HOS_NAME" property="shopName"/>
+		<result column="HOS_ADDR" property="shopAddr"/>
+		<result column="HOS_TEL" property="shopTel"/>
+		<result column="OPEN_TIME" property="shopTime"/>
+		<result column="HOS_MINFO" property="shopMInfo"/>
+		<result column="HOS_CONN" property="hosConn"/>
+		<result column="HOS_CLICK" property="hosClick"/>
+	</resultMap>
+	
+	<!-- 동물병원 예약VO  -->
+	<resultMap type="HosRev" id="HosRev">
+		<id column="HOS_RNUM" property="hos_rnum"/>
+		<result column="PET_NUM" property="pet_num" />
+		<result column="MSG_NUM" property="msg_num"/>
+		<result column="CL_NUM" property="cl_num"/>
+		<result column="MED_NUM" property="med_num"/>
+		<result column="HOS_NUM" property="hos_num"/>
+		<result column="HOS_DATE" property="hos_date"/>
+		<result column="HOS_DATE2" property="hos_date2"/>
+		<result column="HOS_STATUS" property="hos_status" />
+		<result column="HOS_TIME" property="hos_time"/>
+	</resultMap>
+	
+	<!-- 병원 예약 등록 -->
+		<!-- 예약등록 -->
+		<insert id="insertHosRev" parameterType="HosRev">
+			INSERT INTO HAR_RESERVATION 
+			VALUES('HOS000' || SEQ_HOS_RESERVATION.NEXTVAL,#{pet_num},'M1', #{cl_num}, #{med_num}, #{hos_num},#{hos_date},null,0,#{hos_time})
+			
+			<selectKey keyProperty="hos_rnum" resultType="string"  order="AFTER">
+				SELECT SEQ_HOS_RESERVATION.CURRVAL AS HOS_RNUM FROM DUAL
+			</selectKey>
+
+		</insert>
+	
+		<!-- 병원 예약 시간 확인 -->
+		<select id="checkTime2" parameterType="string" resultType="string">
+			<![CDATA[
+			select hos_time,hos_date from hos_reservation where hos_num = #{hos_num} and hos_date = #{hos_date} and (res_status = 0 OR res_status = 1)
+			]]>
+		</select>
+	
 </mapper>

@@ -31,6 +31,7 @@
 		<typeAlias type="kh.com.petbreedding.Chat.model.vo.ChatMessage" alias="ChatMessage"/>
 		<typeAlias type="kh.com.petbreedding.Chat.model.vo.ChatList" alias="ChatList"/>
 		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HarPay" alias="HarPay"/>
+		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HospitalReservation" alias="HosRev"/>
 		<!-- TODO -->
 	</typeAliases>
 	

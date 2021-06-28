@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
@@ -42,5 +43,11 @@ public class ReservationDao {
 		return sqlSession.selectList("ShopRev.checkTime", hrv);
 	}
 	
-	
+	public int insertHosRev(HospitalReservation hos) {
+		return sqlSession.insert("ShopRev.insertHosRev", hos);
+		
+	}
+	public List<String> checkTime2(HospitalReservation hos){
+		return sqlSession.selectList("ShopRev.checkTime2", hos);
+	}
 }

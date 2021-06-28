@@ -10,12 +10,13 @@
 	            <li class="alertBell"><a href="#"><i class="fas fa-bell"></i><span class="alertCircle"></span></a></li>
 	            <li id="userName"><a href="${pageContext.request.contextPath}/uModify">${client.nickname}님</a></li>
 	            <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
+	            <li><a href="${pageContext.request.contextPath}/mypage?cl_num=${client.cl_num}">예약확인/조회</a></li>
             </c:if>
             <c:if test = "${empty client }">
 	            <li><a href="${pageContext.request.contextPath}/uLogin">로그인</a></li>
 	            <li><a href="${pageContext.request.contextPath}/uJoin">회원가입</a></li>
+	            <li id="revC"><a href="${pageContext.request.contextPath}/uLogin">예약확인/조회</a></li>
             </c:if>
-            <li><a href="${pageContext.request.contextPath}/mypage?cl_num=${client.cl_num}">예약확인/조회</a></li>
             <li><a href="#">고객센터</a></li>
         </ul>
     </nav>  
