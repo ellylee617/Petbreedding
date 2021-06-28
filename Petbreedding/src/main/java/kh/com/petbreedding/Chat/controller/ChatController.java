@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.Chat.model.service.ChatService;
 import kh.com.petbreedding.Chat.model.vo.ChatList;
 import kh.com.petbreedding.Chat.model.vo.ChatMessage;
@@ -32,23 +33,50 @@ public class ChatController {
 
 	@RequestMapping("/chat")
 	public ModelAndView chat(ModelAndView mv,
-			@RequestParam(value = "inbpId") String chatId, 
-			@RequestParam(value = "inbname", required=false) String ShopName, 
+			@RequestParam(value = "chatId") String chatId, 
+			@RequestParam(value = "shopName", required=false) String ShopName, 
 			HttpServletRequest req) {
-		System.out.println("chatId" + chatId);
 		List<ChatMessage> list = null;
 		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("client");
 		String nickName = "";
+		String email="";
+		
 		if (session != null) {
-			String cl_num = client.getCl_num();
 			nickName = client.getNickname();
+			email = client.getEmail();
 			list = chService.getMessageList(chatId);
-			System.out.println("list" + list);
 		}
+		String user = "user";
+		mv.addObject("user", user);
+		mv.addObject("email", email);
 		mv.addObject("chatlist", list);
 		mv.addObject("ShopName", ShopName);
 		mv.addObject("nickName", nickName);
+		mv.setViewName("/user/uMyPage/myChatRoom");
+		return mv;
+	}
+	
+	@RequestMapping("/bchat")
+	public ModelAndView bchat(ModelAndView mv,
+			@RequestParam(value = "chatId") String chatId, 
+			@RequestParam(value = "nickName", required=false) String nickName, 			
+			@RequestParam(value = "shopName", required=false) String shopName, 			
+			HttpServletRequest req) {
+		List<ChatMessage> list = null;
+		HttpSession session = req.getSession();
+		BPartner bpartner = (BPartner) session.getAttribute("bP");
+		String email = "";
+		if (session != null) {
+			email = bpartner.getBp_email();
+			list = chService.getMessageListbp_id(chatId);
+		}
+		String user = "bPartber";
+		mv.addObject("user", user);
+		mv.addObject("email", email);
+		mv.addObject("chatlist", list);
+		mv.addObject("nickName", nickName);
+		mv.addObject("shopName", shopName);
 		mv.setViewName("/user/uMyPage/myChatRoom");
 		return mv;
 	}
@@ -62,9 +90,23 @@ public class ChatController {
 			String cl_num = client.getCl_num();
 			list = chService.getList(cl_num);
 		}
-		
 		mv.addObject("Roomlist", list);
 		mv.setViewName("/user/uMyPage/myChatList");
+		return mv;
+	}
+	
+	@RequestMapping("/bchatlist")
+	public ModelAndView bchatlist(ModelAndView mv, HttpServletRequest req) {
+		List<ChatList> list = null;
+		HttpSession session = req.getSession();
+		BPartner bpartner = (BPartner) session.getAttribute("bP");
+		System.out.println(bpartner);
+		if (session != null) {
+			String bpId = bpartner.getBp_Id();
+			list = chService.getListbp_id(bpId);
+		}
+		mv.addObject("Roomlist", list);
+		mv.setViewName("/bPartner/bChat/bChatList");
 		return mv;
 	}
 }
