@@ -43,24 +43,21 @@
             <hr>
             <div id="Accordion_wrap">
                 
-                <!--for문으로 나중에 기능 구현하고 돌리기-->
-                <div class="que">
-                 <span>[발표] 5월 5주차 무료 초대권 당첨자 발표</span>
-                </div>
-                <div class="anw">
-                 <span>
-                    <p>2021-05-28</p>
-                    <p>
-                        안녕하세요, 펫브리띵 팀입니다.<br><br>
-                        금주 무료 초대권 당첨자를 발표 합니다.<br>
-                        
-                        김x지(12****)
-
-                    </p>
-
-                 </span>
-                </div>
-                 
+                <c:forEach items="${csList}" var="list">
+	                <div class="que">
+	                 <span>${list.annTitle}</span>
+	                </div>
+	                <div class="anw">
+	                 <span>
+	                    <p>${list.annDate}</p>
+	                    <p>
+	                        ${list.annCont}
+	
+	                    </p>
+	
+	                 </span>
+	                </div>
+                 </c:forEach>
            </div>
         </div>
 		</section>
