@@ -248,7 +248,11 @@ public class BMyPageController {
 
 			int result = 0;
 			
-			result = shopService.deleteStyle(styleVO);
+			String styleNum = null;
+			styleNum = styleVO.getStyle_num();
+			System.out.println("삭제할 스타일 번호:"+styleNum);
+			
+			result = shopService.deleteStyle(styleNum);
 			if(result>0) {
 				System.out.println("!! 스타일 삭제 성공 !!");
 			} else {

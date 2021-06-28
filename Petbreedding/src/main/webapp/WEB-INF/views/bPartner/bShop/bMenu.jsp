@@ -45,14 +45,15 @@
 	        </tbody>
 	        </table>
 	        </div>
-				
+
 				<div class="insert">
 
-					
+
 					<!-- style_deep (0 : 메인메뉴  1: 서브메뉴) -->
 
 					<c:if test="${empty styleList }">
-						<form id="dynamicTable" action="${path}/bp/bMenu/write" method="POST">
+						<form class="dynamicTable" action="${path}/bp/bMenu/write"
+							method="POST">
 							<label><input type="radio" name="style_deep" value="0">메인</label>
 							<!-- 예약 페이지: 기타 추가요금 -->
 							<label><input type="radio" name="style_deep" value="1">서브</label>
@@ -66,23 +67,34 @@
 					<!-- 등록된 스타일 불러오기 -->
 					<c:if test="${!empty styleList }">
 						<c:forEach var="list" items="${styleList }" varStatus="status">
-								<form id="dynamicTable">
-									<c:if test="${list.style_deep eq 0}">
-									<label><input type="radio" name="style_deep" value="0" checked="checked">메인</label>
+							<form class="dynamicTable frm_${list.style_num  }">
+								<c:if test="${list.style_deep eq 0}">
+									<label><input type="radio" name="style_deep" value="0"
+										checked="checked">메인</label>
 									<label><input type="radio" name="style_deep" value="1">서브</label>
-									</c:if>
-									<c:if test="${list.style_deep eq 1}">
+								</c:if>
+								<c:if test="${list.style_deep eq 1}">
 									<label><input type="radio" name="style_deep" value="0">메인</label>
-									<label><input type="radio" name="style_deep" value="1" checked="checked">서브</label>
-									</c:if>
-									<input type="hidden" value="${list.style_num }" name="style_num">
-									<input type="hidden" value="${list.harNum }" name="harNum">
-									<input type="text" placeholder="메뉴" id="menu" name="style_name" value="${list.style_name }"> 
-									<input type="text" placeholder="가격" id="price" name="price" value="${list.price }"> 
-									<input type="text" placeholder="소요시간" id="time" name="style_time" value="${list.style_time }">
-									<button type="submit" class="basicBtn" class="rebtn" formaction="${path}/bp/bMenu/rewrite">수정</button>
-									<button type="submit" class="basicBtn"  class="rebtn" formaction="${path}/bp/bMenu/delete">삭제</button>
-								</form>
+									<label><input type="radio" name="style_deep" value="1"
+										checked="checked">서브</label>
+								</c:if>
+								<input type="hidden" value="${list.style_num }" name="style_num">
+								<input type="hidden" value="${list.harNum }" name="harNum">
+								<input type="text" placeholder="메뉴" id="menu" name="style_name"
+									value="${list.style_name }"> <input type="text"
+									placeholder="가격" id="price" name="price" value="${list.price }">
+								<input type="text" placeholder="소요시간" id="time"
+									name="style_time" value="${list.style_time }">
+								<button type="submit" class="basicBtn rebtn" formaction="${path}/bp/bMenu/rewrite">수정</button>
+								<button id="cancleBtn" type="button" class="basicBtn delBtns rebtn">삭제</button>
+								<div id="modalC" class="modalC">
+									<div class="contentC">
+										<p>정말 삭제하시겠습니까?</p>
+										<button type="button" class="basicBtn" id="yes">네</button>
+										<button class="basicBtn" id="no">아니오</button>
+									</div>
+								</div>
+							</form>
 						</c:forEach>
 					</c:if>
 
@@ -92,7 +104,5 @@
 
 
 			</div>
-	<!-- TODO:삭제 모달 -->
-	 </section>
-	<jsp:include page="../../common/footer.jsp" />
+			<jsp:include page="../../common/footer.jsp" />
 	</div>	 
