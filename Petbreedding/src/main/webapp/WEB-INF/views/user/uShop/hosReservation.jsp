@@ -29,8 +29,6 @@
 			<section class="section">
             <p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫동물병원</a>></span>예약하기</p>
             
-            <!-- 넘길 정보 -->
-            <!-- TODO -->
             <input type="hidden" value="${client.cl_num}" id="clNum"/> 
             <input type="hidden" value="10" id="hos_num"/>
             
