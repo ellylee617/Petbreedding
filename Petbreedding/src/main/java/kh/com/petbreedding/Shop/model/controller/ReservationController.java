@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.com.petbreedding.Shop.model.service.ReservationService;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.mypage.model.service.ClientInfoService;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
@@ -74,5 +75,53 @@ public class ReservationController {
 		return list;
 	}
 	
+	/*************  병원  **************/
+	
+	//병원 예약하기
+	@RequestMapping(value = "shopHosReservation", method = RequestMethod.GET)
+	public String revHosList(Locale locale,  Model model, String cl_num) {
 
+		List<MyPet> list2 = revService.revList2(cl_num);
+		model.addAttribute("pet", list2);
+		
+		return "/user/uShop/hosReservation";
+	}
+	
+	
+	
+	//병원 예약 처리
+	@RequestMapping(value="doHosReservation")
+	@ResponseBody
+	public String insertHosRev(HospitalReservation hos) {
+		
+		revService.insertHosRev(hos);
+		String result = hos.getHos_rnum();
+		return result;
+	}
+	
+	/*
+	 * //미용실 결제화면
+	 * 
+	 * @RequestMapping(value = "/shopHosPayment", method = RequestMethod.GET) public
+	 * String shopHosPayment(String hos_rnum, Model model) {
+	 * 
+	 * List<HairShopReservation> list = revService.shopPayment(har_rnum); String
+	 * result2 = clientInfoService.anotherMenu(har_rnum); int getPrice =
+	 * clientInfoService.getPrice(har_rnum);
+	 * 
+	 * model.addAttribute("myRev", list); model.addAttribute("another", result2);
+	 * model.addAttribute("totalPrice", getPrice);
+	 * 
+	 * return "/user/uShop/shopPayment"; }
+	 */
+	
+	//미용실 시간체크
+	@RequestMapping(value="checkTime2")
+	@ResponseBody
+	public List<String> checkTime2(HospitalReservation hos) {
+		
+		List<String> list = revService.checkTime2(hos);
+
+		return list;
+	}
 }

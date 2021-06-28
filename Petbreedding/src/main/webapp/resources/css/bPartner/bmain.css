@@ -22,7 +22,8 @@
     padding-bottom: 0px;
 }
 .joinPartner{
-    margin-top: 400px;
+    position: absolute;
+    bottom: 250px;
 }
 .joinPartner a{
 	color : var(--font-color);

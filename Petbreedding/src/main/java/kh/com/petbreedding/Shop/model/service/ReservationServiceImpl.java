@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.Shop.model.dao.ReservationDao;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
@@ -57,7 +58,7 @@ public class ReservationServiceImpl implements ReservationService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return result;
 	}
 
 	@Override
@@ -76,6 +77,28 @@ public class ReservationServiceImpl implements ReservationService{
 		List<String> result = null;
 		try {
 			result = revDao.checkTime(hrv);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int insertHosRev(HospitalReservation hos) {
+		int result = -1;
+		try {
+			result = revDao.insertHosRev(hos);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<String> checkTime2(HospitalReservation hos) {
+		List<String> result = null;
+		try {
+			result = revDao.checkTime2(hos);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
