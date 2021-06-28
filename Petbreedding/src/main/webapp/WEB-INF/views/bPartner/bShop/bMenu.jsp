@@ -51,8 +51,7 @@
 					<!-- style_deep (0 : 메인메뉴  1: 서브메뉴) -->
 
 					<c:if test="${empty styleList }">
-						<form id="dynamicTable" action="${path}/bp/bMenu/write"
-							method="POST">
+						<form id="dynamicTable" action="${path}/bp/bMenu/write" method="POST">
 							<label><input type="radio" name="style_deep" value="0">메인</label>
 							<!-- 예약 페이지: 기타 추가요금 -->
 							<label><input type="radio" name="style_deep" value="1">서브</label>
@@ -66,8 +65,7 @@
 					<!-- 등록된 스타일 불러오기 -->
 					<c:if test="${!empty styleList }">
 						<c:forEach var="list" items="${styleList }" varStatus="status">
-								<form id="dynamicTable" action="${path}/bp/bMenu/rewrite"
-									method="POST">
+								<form id="dynamicTable">
 									<c:if test="${list.style_deep eq 0}">
 									<label><input type="radio" name="style_deep" value="0" checked="checked">메인</label>
 									<label><input type="radio" name="style_deep" value="1">서브</label>
@@ -81,8 +79,8 @@
 									<input type="text" placeholder="메뉴" id="menu" name="style_name" value="${list.style_name }"> 
 									<input type="text" placeholder="가격" id="price" name="price" value="${list.price }"> 
 									<input type="text" placeholder="소요시간" id="time" name="style_time" value="${list.style_time }">
-									<button type="submit" class="basicBtn" class="rebtn">수정</button>
-									<button type="button" class="basicBtn"  class="rebtn">삭제</button>
+									<button type="submit" class="basicBtn" class="rebtn" formaction="${path}/bp/bMenu/rewrite">수정</button>
+									<button type="submit" class="basicBtn"  class="rebtn" formaction="${path}/bp/bMenu/delete">삭제</button>
 								</form>
 						</c:forEach>
 					</c:if>

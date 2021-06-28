@@ -361,6 +361,22 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 미용실 메뉴 삭제 
+	@Override
+	public int deleteStyle(Style vo) {
+		int result = -1;
+		
+		System.out.println("shopService  deleteStyle() 실행 ! ! ");
+		try {
+			result = shopDao.deleteStyle(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
 
 
 

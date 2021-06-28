@@ -47,6 +47,13 @@
 		)
 	WHERE STYLE_NUM = #{style_num}
 	</update>
+	
+	<!-- 미용실 메뉴 삭제 -->
+	<delete id="deleteStyle" parameterType="Style">
+		DELETE 
+		FROM STYLE 
+		WHERE STYLE_NUM = #{style_num}
+	</delete>
 
 	
 	

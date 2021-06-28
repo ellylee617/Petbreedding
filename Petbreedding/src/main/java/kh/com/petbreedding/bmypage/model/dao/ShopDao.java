@@ -144,6 +144,13 @@ public class ShopDao {
 		return sqlSession.update("ShopMenu.updateStyle", vo);
 	}
 	
+	// 미용실 메뉴 삭제
+	public int deleteStyle(Style vo) {
+		System.out.println(" !! ShopDao - deleteStyle() 실행 !!");
+		System.out.println("수정할 미용실 정보::"+vo);
+		return sqlSession.update("ShopMenu.deleteStyle", vo);		
+	}
+	
 	
 	/* 
 	 * 동물병원
