@@ -127,6 +127,7 @@ public class ClientInfoCotroller {
 		System.out.println("[세훈] @일대일 문의 컨트롤러 user_num : " + user_num);
 		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
 		md.addAttribute("myAskList", myAskList);
+		md.addAttribute("user_num", user_num);
 		System.out.println("[세훈] @일대일 문의 컨트롤러 myAskList : " + myAskList);
 		
 		return "/user/uMyPage/myAsk";

@@ -16,10 +16,15 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		var userNum = ${user_num};
 		$(".pointline").click(function() {
 			var idVar = $(this).attr("id");
 			console.log(idVar);
 			goDetail(idVar);
+		});
+		
+		$("#myAskBtn").click(function() {
+			location.href = "/petbreedding/bwrite";
 		});
 		
 		function goDetail(value){
@@ -36,14 +41,14 @@
 			<jsp:include page="../myPageAside.jsp" />
 			<div class="mcontent">
 				<p class="pageTitle">1:1 문의 내역 <p>
-					<button class="basicBtn">1:1문의하기</button>
+					<button id="myAskBtn" class="basicBtn">1:1문의하기</button>
 					<table class="asktable">
 					<br><br><br>
 					<tr class="pointline">
 						<th>글번호</th>
 						<th>제목</th>
 						<th>작성일</th>
-						<th>답변여부</th>
+						<th>답변여부 </th>
 					</tr>
 					
 					<c:forEach items="${myAskList}" var="list">

@@ -100,6 +100,11 @@ public class BoardController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
+	public String bwrite(Locale locale, Model model) {
+		return "/user/uBoard/bwrite";
+	}
+	
 	@Autowired
 	private ReviewService reviewService;
 	
@@ -203,10 +208,7 @@ public class BoardController {
 		
 		return "/user/uBoard/UcustomerService";
 	}
-	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
-	public String bwrite(Locale locale, Model model) {
-		return "/user/uBoard/bwrite";
-	}
+
 	@RequestMapping(value = "/oftenqna", method = RequestMethod.GET)
 	public String oftenqna(Locale locale, Model model) {
 		return "/user/uBoard/oftenqna";
