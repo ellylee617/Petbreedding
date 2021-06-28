@@ -194,7 +194,7 @@ public class BMyPageController {
 		
 		//TODO:alert 추가하기
 		
-		return "bPartner/bShop/bReservation"; // TODO:수정해야됨!!!!
+		return "redirect:/bMenu";
 	
 	
 	}

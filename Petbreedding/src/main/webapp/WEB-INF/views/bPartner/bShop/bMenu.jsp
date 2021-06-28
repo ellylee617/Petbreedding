@@ -45,8 +45,9 @@
 	        </tbody>
 	        </table>
 	        </div>
-
+				
 				<div class="insert">
+
 
 					<!-- style_deep (0 : 메인메뉴  1: 서브메뉴) -->
 
