@@ -8,15 +8,13 @@
 <meta charset="UTF-8">
 
 <title>Insert title here</title>
-<link href="${path}/resources/css/common/reset.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/common/header.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/common/footer.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/user/uBoard/fboardcont.css"
-	rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/user/uBoard/fboardcont.css" rel="stylesheet" type="text/css">
+
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -33,7 +31,7 @@
 						<p>${board.boTitle}</p>
 					</div>												
 					<!-- TODO 세션 받아와서 이름 입력 -->
-					<div class="writer">작성자 : 또비언니</div>
+					<div class="writer">작성자 : ${board.clNickName}</div>
 					<div class="regdate">작성일 : ${board.boDate}</div>
 					<div class="count">조회수: ${board.boView}</div>
 					
@@ -45,7 +43,14 @@
 				<div class="img">
 				
 					<!-- TODO db에 있는 이미지 입력 -->
-					<img src="http://placehold.it/500x300" alt="boardconimg">
+					<c:choose>
+						<c:when test="${board.boImg eq null}">
+							<img src="http://placehold.it/500x300" alt="boardconimg">
+						</c:when>
+						<c:otherwise>
+							<img src="${path}/resources/uploadFile/review/${board.boImg}" alt="boardconimg">
+						</c:otherwise>
+					</c:choose>
 				</div>
 				
 			
@@ -53,9 +58,9 @@
 				
 					<p>${board.boCont }</p>
 
-					<button class="backbtn basicBtn">목록</button>
-					<button class="modifybtn basicBtn">수정</button>
-					<button class="delbtn basicBtn">삭제</button>
+					<button class="backbtn basicBtn" onClick="location.href='fboardlist'">목록</button>
+					<button id="fboardUpdBtn" class="modifybtn basicBtn">수정</button>
+					<button id="fboardDelBtn" class="delbtn basicBtn">삭제</button>
 				
 				</div>
 			</div>

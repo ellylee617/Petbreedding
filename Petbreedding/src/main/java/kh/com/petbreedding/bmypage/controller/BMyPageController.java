@@ -99,7 +99,7 @@ public class BMyPageController {
 	
 	
 	// 사장님 메뉴관리 페이지 이동
-	// TODO: 등록미용실 메뉴(메인+서브) 조회
+	// 등록미용실 메뉴(메인+서브) 조회
 	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
 	public ModelAndView bMenu(HttpServletResponse res, HttpSession session) {
 		
@@ -194,12 +194,12 @@ public class BMyPageController {
 		
 		//TODO:alert 추가하기
 		
-		return "bPartner/bShop/bReservation"; // TODO:수정해야됨!!!!
+		return "redirect:/bMenu";
 	
 	
 	}
 	
-	// 사장님 메뉴 관리 - 수정
+	// 사장님 메뉴 관리 - 스타일 수정
 	@RequestMapping(value = "/bp/bMenu/rewrite")
 	public String bMenuReWrite(HttpSession session, HttpServletRequest req, Style styleVO) {
 
@@ -211,7 +211,6 @@ public class BMyPageController {
 		BPartner bpVO = (BPartner) session.getAttribute("bP");
 		String bpId = bpVO.getBp_Id();
 
-		ModelAndView mv = new ModelAndView();
 
 		if (bpId == null) {
 			System.out.println("로그인 안 됨");
@@ -230,6 +229,36 @@ public class BMyPageController {
 		return "redirect:/bMenu";
 	}
 	
+	// 사장님 메뉴관리 - 스타일 삭제
+	@RequestMapping(value = "/bp/bMenu/delete")
+	public String bMenuDelete(HttpSession session, HttpServletRequest req, Style styleVO) {
+		
+		System.out.println("  BMyPageController 실행 - bMenuDelete()  ");
+		
+		System.out.println("입력 받은 스타일 정보:"+styleVO);
+
+		// 로그인한 사업자 정보 가져오기
+		BPartner bpVO = (BPartner) session.getAttribute("bP");
+		String bpId = bpVO.getBp_Id();
+
+
+		if (bpId == null) {
+			System.out.println("로그인 안 됨");
+		} else {
+
+			int result = 0;
+			
+			result = shopService.deleteStyle(styleVO);
+			if(result>0) {
+				System.out.println("!! 스타일 삭제 성공 !!");
+			} else {
+				System.out.println("!! 스타일 삭제 실패 !!");
+			}
+			
+		}		
+		
+		return "redirect:/bMenu";
+	}
 		
 	
 	
@@ -420,9 +449,7 @@ public class BMyPageController {
 	
 	
 	
-	
 
-	// TODO
 	// 사업장 관리 - 사업장 수정 실행
 	@RequestMapping(value = "bp/bShop/update")
 	public String bShopUpdateDo(HttpServletRequest req,

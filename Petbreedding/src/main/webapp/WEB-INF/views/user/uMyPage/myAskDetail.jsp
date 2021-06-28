@@ -11,8 +11,8 @@
 <link href="${path}/resources/css/common/header.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/user/myPageAside.css" rel="stylesheet"	type="text/css">	
-<link href="${path}/resources/css/user/uMypage/myAskDetail.css" rel="stylesheet"	type="text/css">
-<script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
+<link href="${path}/resources/css/user/uMyPage/myAskDetail.css" rel="stylesheet"	type="text/css">
+<script src="https://kit.fontawesome.com/aca84cf3fb.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -22,17 +22,21 @@
 			<div class="mcontent">
 			<table class="asktbl">
 				<tr>
-					<th colspan="2">결제 관련 문의 드립니다.</th>
+					<th colspan="2">${myAskDetail.qnaCont }</th>
 				</tr>
 				<tr>
-					<td>작성자:또비언니</td>
-					<td>작성일:2021-06-04</td>
+					<td>작성자:${myAskDetail.qnaWr }</td>
+					<td>작성일:${myAskDetail.qnaDate }</td>
 				</tr>
 				<tr class="asktblImg">
-					<td colspan="2"><img src="http://placehold.it/500x300"></td>
-				</tr>
-				<tr>
-					<td colspan="2">위 사진처럼 결제 오류 나요.</td>
+					<c:choose>
+						<c:when test="${myAskDetail.qnaImg eq null}">
+							<td colspan="2"><img src="http://placehold.it/500x300"></td>
+						</c:when>
+						<c:otherwise>
+							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg }"></td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 			</table>
                 <button class="basicBtn">목록</button>

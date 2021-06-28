@@ -11,8 +11,23 @@
 <link href="${path}/resources/css/common/header.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/user/myPageAside.css"	rel="stylesheet" type="text/css">
-<link href="${path}/resources/css/user/uMypage/myAsk.css" rel="stylesheet"	type="text/css">
+<link href="${path}/resources/css/user/uMyPage/myAsk.css" rel="stylesheet"	type="text/css">
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".pointline").click(function() {
+			var idVar = $(this).attr("id");
+			console.log(idVar);
+			goDetail(idVar);
+		});
+		
+		function goDetail(value){
+			console.log(value);
+			location.href = "/petbreedding//mypage/askdetail?qna_num="+value+"";
+		}
+	});
+</script>
 </head>
 <body>
 	<div class="wrapper">
@@ -30,24 +45,23 @@
 						<th>작성일</th>
 						<th>답변여부</th>
 					</tr>
-					<tr class="pointline">
-						<td>3</td>
-						<td>결제 관련 문의 드립니다.</td>
-						<td>2021-06-11</td>
-						<td>N</td>
+					
+					<c:forEach items="${myAskList}" var="list">
+					<tr id="${list.qnaNum}" class="pointline">
+						<td>${list.qnaNum}</td>
+						<td>${list.qnaTitle}</td>
+						<td>${list.qnaDate}</td>
+						<c:choose>
+							<c:when test="${list.qnaChk eq 0}">
+								<td>N</td>
+							</c:when>
+							<c:otherwise>
+								<td>Y</td>
+							</c:otherwise>					
+						</c:choose>
 					</tr>
-					<tr class="pointline">
-						<td>2</td>
-						<td>결제 관련 문의 드립니다.</td>
-						<td>2021-06-02</td>
-						<td>Y</td>
-					</tr>
-					<tr class="pointline">
-						<td>1</td>
-						<td>결제 관련 문의 드립니다.</td>
-						<td>2021-06-04</td>
-						<td>Y</td>
-					</tr>
+					</c:forEach>
+
 				</table>
 			</div>
 		</section>
