@@ -47,6 +47,30 @@
     margin-bottom: 10px;
 }
 
+.newDynamicTable{
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    height: 40px;
+    float: left;
+    clear: right;
+    width: 110%; 
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.newDynamicTable #menu{
+	width: 202.39px;
+}
+
+.newDynamicTable #price{
+	width: 131.99px;
+}
+
+.newDynamicTable #time{
+	width: 131.99px;
+}
+
 #dynamicTable th{
     height: 40px;
     border-top: 1px solid #aaa;
@@ -139,6 +163,11 @@ input[type=radio] {
 }
 
 
+input {
+    font-family: "GmarketM";
+    src: url("../../font/GmarketSansTTFMedium.ttf");	
+    text-align: center;
+}
 
 .insert label input {
 	width: 3%;
@@ -164,12 +193,12 @@ input[type=radio] {
 }
 
 
-.okbtn{
+.okBtn{
 	clear: both;
 	float: none;
-    margin-left: 20px;
-    width: 60px;
-    height: 30px;
+    margin-left: 95px;
+    width: 50px;
+    height: 25px;
     border-radius: 5px;
     font-family: "GmarketM";
     
@@ -191,8 +220,8 @@ form button {
 }
 
 .rebtn{
-    width: 30px;
-    height: 20px;	
+    width: 50px;
+    height: 25px;	
 }
 
 .menucon{
