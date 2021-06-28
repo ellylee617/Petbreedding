@@ -145,10 +145,10 @@ public class ShopDao {
 	}
 	
 	// 미용실 메뉴 삭제
-	public int deleteStyle(Style vo) {
+	public int deleteStyle(String styleNum) {
 		System.out.println(" !! ShopDao - deleteStyle() 실행 !!");
-		System.out.println("수정할 미용실 정보::"+vo);
-		return sqlSession.update("ShopMenu.deleteStyle", vo);		
+		System.out.println("삭제할 스타일 번호:"+styleNum);
+		return sqlSession.delete("ShopMenu.deleteStyle", styleNum);		
 	}
 	
 	

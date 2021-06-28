@@ -34,7 +34,7 @@
 }
 
 
-#dynamicTable{
+.dynamicTable{
     
     border-left: none;
     border-right: none;
@@ -108,11 +108,48 @@ input[type=radio] {
 	margin-left: 50px;
 }
 
+
+.modalC{
+	display: none;
+	position: absolute;
+	top: 45%;
+	left: 45%;
+	width: 300px;
+	height: 120px;
+	padding: 20px 10px 20px 10px;
+	background: white;
+	border: 1px solid #000;
+	overflow: auto;	
+}
+
+.contentC{
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.contentC button {
+	border-radius: 6px;
+	font-size: 14px;
+	width: 80px;
+	height: 25px;
+	font-family: "GmarketM";
+    src: url("../../font/GmarketSansTTFMedium.ttf");
+}
+
+
+
 .insert label input {
 	width: 3%;
 	height: 8px;
+
 }
 
+#yes{
+	margin-right: 20px;
+
+}
 .insert {
 	margin: 0px;
 	width: 800px;
