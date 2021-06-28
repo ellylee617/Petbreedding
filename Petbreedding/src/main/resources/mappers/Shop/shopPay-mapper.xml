@@ -45,9 +45,49 @@
 		<result column="PAY_PRICE" property="pay_price" />
 		<result column="TOTAL_PRICE" property="total_price" />
 	</resultMap>
+	
+	<!-- 동물병원 -->
+	<resultMap type="Hospital" id="Hospital">
+		<id column="HOS_NUM" property="hosNum"/>
+		<result column="BP_ID" property="bpId"/>
+		<result column="HOS_NAME" property="shopName"/>
+		<result column="HOS_ADDR" property="shopAddr"/>
+		<result column="HOS_TEL" property="shopTel"/>
+		<result column="OPEN_TIME" property="shopTime"/>
+		<result column="HOS_MINFO" property="shopMInfo"/>
+		<result column="HOS_CONN" property="hosConn"/>
+		<result column="HOS_CLICK" property="hosClick"/>
+	</resultMap>
+	
+	<!-- 동물병원 예약VO  -->
+	<resultMap type="HosRev" id="HosRev">
+		<id column="HOS_RNUM" property="hos_rnum"/>
+		<result column="MSG_NUM" property="msg_num"/>
+		<result column="CL_NUM" property="cl_num"/>
+		<result column="PET_NUM" property="pet_num" />
+		<result column="MED_NUM" property="med_num"/>
+		<result column="HOS_NUM" property="hos_num"/>
+		<result column="HOS_DATE" property="hos_date"/>
+		<result column="HOS_DATE2" property="hos_date2"/>
+		<result column="MED_NUM2" property="med_num2"/>
+		<result column="HOS_STATUS" property="hos_status" />
+		<result column="HOS_TIME" property="hos_time"/>
+		<collection property="hospital" resultMap="Hospital" />
+	</resultMap>
 
+	<!-- 동물병원 결제VO -->
+	<resultMap type="HosPay" id="HosPay">
+		<id column="PAY_NUM" property="pay_num"/>
+		<result column="HOS_RNUM" property="hos_rnum" />
+		<result column="MSG_NUM" property="msg_num" />
+		<result column="CARD_NUM" property="card_num" />
+		<result column="PAY_DATE" property="pay_date" />
+		<result column="PAY_PRICE" property="pay_price" />
+		<result column="TOTAL_PRICE" property="total_price" />
+	</resultMap>
 
-
+	
+	<!-- 미용실 -->
 	<!-- 결제 페이지 조회-->
 	<select id="myRevPay" parameterType="string" resultMap="HairRev">
         SELECT h.*, s.style_name, hs.har_name, hs.har_addr, hs.har_tel
@@ -67,6 +107,23 @@
 		UPDATE HAR_RESERVATION SET RES_STATUS = 1 WHERE HAR_RNUM = #{har_rnum}
 	</update>
 	
+	<!-- 동물병원 -->
+	<!-- 결제 페이지 조회-->
+	<select id="myRevPay2" parameterType="string" resultMap="HosRev">
+		SELECT h.*, hs.hos_name, hs.hos_addr, hs.hos_tel
+		FROM HOS_RESERVATION h 
+		LEFT JOIN HOSPITAL hs ON h.hos_num = hs.hos_num
+		WHERE h.hos_rnum = #{hos_rnum}
+	</select>
 	
+	<!-- 결제테이블 저장 -->
+	<insert id="hosPay" parameterType="HosPay">
+		INSERT INTO HOS_PAY VALUES('HOSPAY000' || SEQ_HOS_PAY.nextval, #{hos_rnum},'M2',#{card_num},to_char(SYSDATE, 'YYYY-MM-DD'),#{pay_price},#{total_price})
+	</insert>
+	
+	<!-- 예약현황 update -->
+	<update id="hosRevUp" parameterType="string">
+		UPDATE HOS_RESERVATION SET HOS_STATUS = 1 WHERE HOS_RNUM = #{hos_rnum}
+	</update>
 	
 </mapper>

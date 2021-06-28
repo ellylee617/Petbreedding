@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.board.model.service.MyAskService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.client.model.vo.Client;
@@ -63,7 +64,7 @@ public class ClientInfoCotroller {
 	}
 	
 	
-	// 예약 자세히 보기
+	// 미용실 예약 자세히 보기
 	@RequestMapping("/revdetail")
 	public String myReservationDetail(String har_rnum, Model model) {
 		
@@ -84,7 +85,25 @@ public class ClientInfoCotroller {
 		int result = clientInfoService.cancleRev(har_rnum);
 		return result;
 	}
+	
+	// 동물병원 예약 자세히 보기
+	@RequestMapping("/revdetail2")
+	public String myReservationDetail2(String hos_rnum, Model model) {
+		
+		List<HospitalReservation> result = clientInfoService.myRevDetail2(hos_rnum);
+		model.addAttribute("myRev", result);
+		
+		return "/user/uMyPage/myHosReservationDetail";
+	}
 
+	//동물병원 예약 취소
+	@RequestMapping("/cancleRev2")
+	@ResponseBody
+	public int cancleRev2(String hos_rnum) {	
+		int result = clientInfoService.cancleRev2(hos_rnum);
+		return result;
+	}
+	
 	// 포인트내역
 	@RequestMapping("/mypage/point")
 	public String point(

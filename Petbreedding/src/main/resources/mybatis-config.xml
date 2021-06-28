@@ -33,6 +33,7 @@
 		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HarPay" alias="HarPay"/>
 		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HospitalReservation" alias="HosRev"/>
 		<typeAlias type="kh.com.petbreedding.board.model.vo.MyAsk" alias="MyAsk"/>
+		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HosPay" alias="HosPay"/>
 		<!-- TODO -->
 	</typeAliases>
 	

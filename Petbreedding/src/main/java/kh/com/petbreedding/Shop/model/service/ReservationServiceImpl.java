@@ -83,6 +83,18 @@ public class ReservationServiceImpl implements ReservationService{
 		return result;
 	}
 
+	
+	@Override
+	public List<HospitalReservation> shopPayment2(String hos_rnum) {
+		List<HospitalReservation> result = null;
+		try {
+			result = revDao.shopPayment2(hos_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+		
 	@Override
 	public int insertHosRev(HospitalReservation hos) {
 		int result = -1;
@@ -104,5 +116,7 @@ public class ReservationServiceImpl implements ReservationService{
 		}
 		return result;
 	}
+
+
 
 }

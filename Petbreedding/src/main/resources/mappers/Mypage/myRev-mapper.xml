@@ -52,7 +52,38 @@
 		<result column="PRICE" property="price"/>
 	</resultMap>
 	
+	<!-- 동물병원 -->
+	<resultMap type="Hospital" id="Hospital">
+		<id column="HOS_NUM" property="hosNum"/>
+		<result column="BP_ID" property="bpId"/>
+		<result column="HOS_NAME" property="shopName"/>
+		<result column="HOS_ADDR" property="shopAddr"/>
+		<result column="HOS_TEL" property="shopTel"/>
+		<result column="OPEN_TIME" property="shopTime"/>
+		<result column="HOS_MINFO" property="shopMInfo"/>
+		<result column="HOS_CONN" property="hosConn"/>
+		<result column="HOS_CLICK" property="hosClick"/>
+	</resultMap>
+	<!-- 동물병원 예약VO  -->
+	<resultMap type="HosRev" id="HosRev">
+		<id column="HOS_RNUM" property="hos_rnum"/>
+		<result column="MSG_NUM" property="msg_num"/>
+		<result column="CL_NUM" property="cl_num"/>
+		<result column="PET_NUM" property="pet_num" />
+		<result column="MED_NUM" property="med_num"/>
+		<result column="HOS_NUM" property="hos_num"/>
+		<result column="HOS_DATE" property="hos_date"/>
+		<result column="HOS_DATE2" property="hos_date2"/>
+		<result column="MED_NUM2" property="med_num2"/>
+		<result column="HOS_STATUS" property="hos_status" />
+		<result column="HOS_TIME" property="hos_time"/>
+		<collection property="pet" resultMap="Pet" />
+		<collection property="hospital" resultMap="Hospital" />
+	</resultMap>
 	
+	
+
+	<!-- 공통 -->
 	
 	<!-- 예약확인/조회 페이지 -->
 	<select id="myRevList" parameterType="string" resultMap="HairRev">
@@ -132,15 +163,16 @@
 
 	</select>
 	
-	<!-- 예약 상세 페이지 -->
+	<!-- 미용실  -->
+	<!-- 미용실 예약 상세 페이지 -->
 	<select id="myRevDetail" parameterType="string" resultMap="HairRev">
-		SELECT h.*, s.style_name, c.cl_name, c.cl_tel, c.cl_email, p.pet_name, p.pet_birth, p.pet_weight, hs.har_name, hs.har_addr, hs.har_tel
-		FROM HAR_RESERVATION h 
-		LEFT JOIN STYLE s ON h.style_num = s.style_num 
-		LEFT JOIN CLIENT c ON h.cl_num = c.cl_num
-		LEFT JOIN PET_INFO p ON h.pet_num = p.pet_num
-		LEFT JOIN HAIR_SALON hs ON h.har_num = hs.har_num
-		WHERE h.har_rnum = #{har_rnum}
+			SELECT h.*, s.style_name, c.cl_name, c.cl_tel, c.cl_email, p.pet_name, p.pet_birth, p.pet_weight, hs.har_name, hs.har_addr, hs.har_tel
+			FROM HAR_RESERVATION h 
+			LEFT JOIN STYLE s ON h.style_num = s.style_num 
+			LEFT JOIN CLIENT c ON h.cl_num = c.cl_num
+			LEFT JOIN PET_INFO p ON h.pet_num = p.pet_num
+			LEFT JOIN HAIR_SALON hs ON h.har_num = hs.har_num
+			WHERE h.har_rnum = #{value}
 	</select>
 	<!-- 메뉴조회 -->
 	<select id="anotherMenu" parameterType="string" resultType="string">
@@ -152,19 +184,33 @@
 	
 	<!-- 가격조회 -->
 	<select id="getPrice" parameterType="string" resultType="int">
-		SELECT (s.price+ NVL(s2.price,0)) as totalPrice
-		FROM HAR_RESERVATION h 
-		LEFT JOIN STYLE s ON h.style_num = s.style_num 
-		LEFT JOIN STYLE s2 ON h.style_num2 = s2.style_num2
-		WHERE h.har_rnum = #{har_rnum}
+			SELECT (s.price+ NVL(s2.price,0)) as totalPrice
+			FROM HAR_RESERVATION h 
+			LEFT JOIN STYLE s ON h.style_num = s.style_num 
+			LEFT JOIN STYLE s2 ON h.style_num2 = s2.style_num2
+			WHERE h.har_rnum = #{value}
 	</select>
-	
-	
+		
 	<!-- 결제취소 -->
 	<select id="cancleRev" parameterType="string" resultType="int">
 		UPDATE HAR_RESERVATION SET RES_STATUS = 3 WHERE HAR_RNUM = #{har_rnum}
 	</select>
 	
+	
+	<!-- 동물병원 -->
+	<!-- 병원예약 상세 페이지 -->
+	<select id="myRevDetail2" parameterType="string" resultMap="HosRev">
+			SELECT h.*, p.pet_name, p.pet_birth, p.pet_weight, hs.hos_name, hs.hos_addr, hs.hos_tel
+			FROM HOS_RESERVATION h 
+			LEFT JOIN PET_INFO p ON h.pet_num = p.pet_num
+			LEFT JOIN HOSPITAL hs ON h.hos_num = hs.hos_num
+			WHERE h.hos_rnum = #{value}
+	</select>
+	
+	<!-- 병원 결제취소 -->
+	<select id="cancleRev2" parameterType="string" resultType="int">
+		UPDATE HOS_RESERVATION SET HOS_STATUS = 3 WHERE HOS_RNUM = #{hos_rnum}
+	</select>
 	
 	
 </mapper>
