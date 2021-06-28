@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <aside class="myPageAside">
 	<div class="divborder">
 		<br>
@@ -13,7 +13,12 @@
 			<label>예약 내역</label>
 			<br>
 			<br>
-			<a href="#"><li>- 예약확인/조회</li></a>
+			<c:if test = "${empty client }">
+				<a href="${pageContext.request.contextPath}/uLogin"><li>- 예약확인/조회</li></a>
+			</c:if>
+			<c:if test = "${!empty client }">
+				<a href="${pageContext.request.contextPath}/mypage?cl_num=${client.cl_num}"><li>- 예약확인/조회</li></a>
+			</c:if>
 		</ul>
 	</div>
 	<div class="divborder">

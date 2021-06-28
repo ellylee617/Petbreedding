@@ -2,7 +2,7 @@ var modal = document.getElementById("modalRe");
 var modalReWin = document.getElementById("modalRe-Win");
 var btnReWr = document.getElementById("btnReWr")
 var selectedEle = document.getElementById("selectedVal");
-
+//날짜 현재날짜로 지정해서 검색
 $(function(){
 	currentDay();
 	$("#searchDate").trigger("click");

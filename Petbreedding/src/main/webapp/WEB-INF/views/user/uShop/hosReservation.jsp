@@ -27,48 +27,36 @@
 <div class="wrapper">    
 		<jsp:include page="../../common/header.jsp" />
 			<section class="section">
-            <p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫미용실</a>></span>예약하기</p>
+            <p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫동물병원</a>></span>예약하기</p>
             
             <!-- 넘길 정보 -->
             <!-- TODO -->
             <input type="hidden" value="${client.cl_num}" id="clNum"/> 
-            <input type="hidden" value="HA1" id="harNum"/>
+            <input type="hidden" value="10" id="hos_num"/>
             
             <div class="swiper-container" id="checkService">
                 <p class="rev_text">이용하실 서비스를 선택해주세요</p>
                 <div class="swiper-wrapper">
-                	<c:if test="${empty style }">
-                		<div class="menu_box swiper-slide">
-                			<input type="hidden" value="일반진료" class="med_num" />
-                            <p class="menu_item">일반진료</p>
-                            <p class="menu_price">5000원</p>
-                		</div>
-                		<div class="menu_box swiper-slide">
-                			<input type="hidden" value="예방접종" class="med_num" />
-                            <p class="menu_item">예방접종</p>
-                            <p class="menu_price">5000원</p>
-                		</div>
-                		<div class="menu_box swiper-slide">
-                			<input type="hidden" value="건강검진" class="med_num" />
-                            <p class="menu_item">건강검진</p>
-                            <p class="menu_price">5000원</p>
-                		</div>
-                		<div class="menu_box swiper-slide">
-                			<input type="hidden" value="수술상담" class="med_num" />
-                            <p class="menu_item">수술상담</p>
-                            <p class="menu_price">5000원</p>
-                		</div>
-                	</c:if>
-                	<c:if test="${!empty style }">
-	                	<c:forEach items="${style}" var="style">
-	                		<div class="menu_box swiper-slide">
-	                			<input type="hidden" value="${style.style_num }" class="styleNum" />
-	                            <p class="menu_item">${style.style_name}</p>
-	                            <p class="menu_time">${style.style_time }분 소요</p>
-	                            <p class="menu_price">${style.price}원</p>
-	                        </div>
-	               		</c:forEach>
-                	</c:if>
+               		<div class="menu_box swiper-slide">
+               			<input type="hidden" value="일반진료" class="med_num" />
+                           <p class="menu_item">일반진료</p>
+                           <p class="menu_price">5000원</p>
+               		</div>
+               		<div class="menu_box swiper-slide">
+               			<input type="hidden" value="예방접종" class="med_num" />
+                           <p class="menu_item">예방접종</p>
+                           <p class="menu_price">5000원</p>
+               		</div>
+               		<div class="menu_box swiper-slide">
+               			<input type="hidden" value="건강검진" class="med_num" />
+                           <p class="menu_item">건강검진</p>
+                           <p class="menu_price">5000원</p>
+               		</div>
+               		<div class="menu_box swiper-slide">
+               			<input type="hidden" value="수술상담" class="med_num" />
+                           <p class="menu_item">수술상담</p>
+                           <p class="menu_price">5000원</p>
+               		</div>
                 </div>
                 <div class="swiper-button-next swpBtn"></div>
                 <div class="swiper-button-prev swpBtn"></div>
@@ -94,28 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper-container " id="thirdChoose">
-                <p class="rev_text">기타 추가 요금</p>
-                <div class="store_menues swiper-wrapper">
-                        <div class="plus swiper-slide" id="noPlus">
-                        	<input type="hidden" value="선택안함" class="styleNum" />
-                            <p class="menu_item">선택안함</p>
-                            <p class="menu_time">+0분</p>
-                            <p class="menu_price">0원</p>
-                        </div>
-                        <c:forEach items="${style2}" var="style2">
-	                        <div class="plus swiper-slide">
-	                       		<input type="hidden" value="${style2.style_num }" class="styleNum" />
-	                            <p class="menu_item">${style2.style_name}</p>
-	                            <p class="menu_time">+${style2.style_time }분</p>
-	                            <p class="menu_price">${style2.price}원</p>
-	                        </div>
-                        </c:forEach>
-                    </div>
-                 <div class="swiper-button-next swpBtn"></div>
-                 <div class="swiper-button-prev swpBtn"></div>
-            </div>
-            <div class="selectService " id="fourthChoose">
+            <div class="selectService " id="thirdChoose">
                <p class="rev_text">예약일 선택</p>
                <div class="store_menues">
                    <div id="calendar_box">
@@ -180,14 +147,14 @@
                 <p>지금 결제 하지 않으셔도 Mypage에서 결제하실 수 있습니다.</p>
                 <button id="goTOPay">바로 결제할게요</button>
                 <button id="nextTime">다음에 할게요</button>
-                <input type="hidden" id="har_rnum">
+                <input type="hidden" id="hos_rnum">
             </div>
         </div>	
 </div>
 	
 	 <!-- script -->
 	 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-     <script type="text/javascript" src="${path}/resources/js/user/uShop/shopReservation.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/user/uShop/hosReservation.js"></script>
      <script type="text/javascript" src="${path}/resources/js/user/uShop/resCalendar.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
      
