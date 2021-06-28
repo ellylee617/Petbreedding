@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.mypage.model.dao.ClientInfoDao;
 
@@ -150,6 +151,28 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<HospitalReservation> myRevDetail2(String hos_rnum) {
+		List<HospitalReservation> list = null;
+		try {
+			list = clientInfoDao.myRevDetail2(hos_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int cancleRev2(String hos_rnum) {
+		int result = -1;
+		try {
+			result = clientInfoDao.cancleRev2(hos_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

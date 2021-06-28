@@ -6,12 +6,6 @@ total_price = parseInt(total_price);
 var email = $("#email").text();
 var har_rnum = $("#har_rnum").val();
 
-console.log(name);
-console.log(tel);
-console.log(total_price);
-console.log(email);
-console.log(har_rnum);
-
 $("#reservation_btn").click(function() {
 	var pay_price = $("#payMoney").text();
 	pay_price = pay_price.replace(/,/g, "");
@@ -64,26 +58,50 @@ $("#reservation_btn").click(function() {
 				
 				var pay_num = rsp.imp_uid; 
 				
-				//Har_pay에 저장하게하기
-				$.ajax({
-					url : "harPay",
-					data : {
-						card_num : pay_num,
-						har_rnum : har_rnum,
-						pay_price : pay_price,
-						total_price : total_price
-					},
-					type : "post",
-					success : function(data) {
-						console.log(data);
-						console.log("성공");
-						updateSuccess();
-						location.href = '/petbreedding/successPay';
-					},
-					error : function(jqxhr, textStatus, errorThrown) {
-						console.log("ajax 처리 실패");
-					}
-				});
+				if(har_rnum.substring(0,3) == "HAR"){
+					//Har_pay에 저장하게하기
+					$.ajax({
+						url : "harPay",
+						data : {
+							card_num : pay_num,
+							har_rnum : har_rnum,
+							pay_price : pay_price,
+							total_price : total_price
+						},
+						type : "post",
+						success : function(data) {
+							console.log(data);
+							console.log("성공");
+							updateSuccess();
+							location.href = '/petbreedding/successPay';
+						},
+						error : function(jqxhr, textStatus, errorThrown) {
+							console.log("ajax 처리 실패");
+						}
+					});
+				}else if(har_rnum.substring(0,3) == "HOS"){
+					//Hos_pay에 저장하게하기
+					$.ajax({
+						url : "hosPay",
+						data : {
+							card_num : pay_num,
+							hos_rnum : har_rnum,
+							pay_price : pay_price,
+							total_price : total_price
+						},
+						type : "post",
+						success : function(data) {
+							console.log(data);
+							console.log("성공");
+							updateSuccess();
+							location.href = '/petbreedding/successPay';
+						},
+						error : function(jqxhr, textStatus, errorThrown) {
+							console.log("ajax 처리 실패");
+						}
+					});
+				}
+				
 
 			} else {
 				var msg = '결제에 실패하였습니다.';
@@ -102,11 +120,20 @@ $("#reservation_btn").click(function() {
 
 function updateSuccess(){
 	//har_rnum으로 결제완료로 업데이트 시켜주기
-	$.ajax({
-		url:"harRevUp",
-		type:"GET",
-		data:{har_rnum:har_rnum}
-	});
+	if(har_rnum.substring(0,3) == "HAR"){
+		$.ajax({
+			url:"harRevUp",
+			type:"GET",
+			data:{har_rnum:har_rnum}
+		});
+	}else if(har_rnum.substring(0,3) == "HOS"){
+		$.ajax({
+			url:"hosRevUp",
+			type:"GET",
+			data:{hos_rnum:har_rnum}
+		});
+	}
+
 }
 
 

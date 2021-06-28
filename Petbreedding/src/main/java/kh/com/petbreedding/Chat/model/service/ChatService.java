@@ -11,9 +11,8 @@ public interface ChatService {
 	public int createRoom(ChatRoom cr);
 	public ChatRoom isRoom(ChatRoom cr);
 	public int insertMessage(ChatMessage cm);
-	public List<ChatRoom> getRoomList(String cl_num);
 	public List<ChatList> getList(String cl_num);
-	public List<ChatRoom> getRoomListbp_id(String bp_id);
+	public List<ChatList> getListbp_id(String bp_id);
 	public List<ChatMessage> getMessageList(String chatId);
 	public List<ChatMessage> getMessageListbp_id(String chatId);
 	public ChatMessage getRecentMessage(String chatId);

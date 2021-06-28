@@ -5,6 +5,9 @@
     src: url("../font/GmarketSansTTFMedium.ttf");
 }
 
+.petBox{
+	margin-bottom: 90px;
+}
 .pethead{
     margin-bottom: 150px;
 }

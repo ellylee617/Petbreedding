@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.com.petbreedding.Shop.model.service.ShopPayService;
 import kh.com.petbreedding.Shop.model.vo.HarPay;
+import kh.com.petbreedding.Shop.model.vo.HosPay;
 
 @Controller
 public class ShopPayController {
@@ -30,4 +31,18 @@ public class ShopPayController {
 		return result;
 	}
 	
+	@RequestMapping("hosPay")
+	@ResponseBody
+	public int hosPay(HosPay hosPay) {
+		
+		int result = shopPayService.hosPay(hosPay);
+		return result;
+	}
+	
+	@RequestMapping("hosRevUp")
+	@ResponseBody
+	public int hosRevUp(String hos_rnum) {
+		int result = shopPayService.hosRevUp(hos_rnum);
+		return result;
+	}
 }

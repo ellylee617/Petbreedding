@@ -76,6 +76,16 @@ public class ReservationController {
 	}
 	
 	/*************  병원  **************/
+	//동물병원 결제화면
+	@RequestMapping(value = "/shopHosPayment", method = RequestMethod.GET)
+	public String shopHosPayment(String hos_rnum, Model model) {
+		
+		List<HospitalReservation> list = revService.shopPayment2(hos_rnum);
+		model.addAttribute("myRev", list);
+		
+		return "/user/uShop/HosPayment";
+	}
+	
 	
 	//병원 예약하기
 	@RequestMapping(value = "shopHosReservation", method = RequestMethod.GET)

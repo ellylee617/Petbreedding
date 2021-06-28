@@ -43,12 +43,8 @@ public class ChatDao {
 		return sqlSession.selectList("Chat.getList", cl_num);
 	}
 
-	public List<ChatRoom> getRoomList(String cl_num) throws Exception {
-		return sqlSession.selectList("Chat.getRoomList", cl_num);
-	}
-
-	public List<ChatRoom> getRoomListbp_id(String bp_id) throws Exception {
-		return sqlSession.selectList("Chat.getRoomListbp_id", bp_id);
+	public List<ChatList> getListbp_id(String bp_id) throws Exception {
+		return sqlSession.selectList("Chat.getListbp_id", bp_id);
 	}
 
 	public List<ChatMessage> getMessageList(String chatId) throws Exception {
