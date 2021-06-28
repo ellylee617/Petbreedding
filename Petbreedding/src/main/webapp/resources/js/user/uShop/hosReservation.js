@@ -338,7 +338,7 @@ $("#nextTime").on("click", function() {
 // 바로결제!!
 $("#goTOPay").on("click", function() {
 	console.log("text : " + text);
-	location.href = "/petbreedding/shopPayment2?hos_rnum=" + text + "";
+	location.href = "/petbreedding/shopHosPayment?hos_rnum=" + text + "";
 });
 
 // 모달

@@ -30,8 +30,8 @@
             <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
             <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
             <div class="btnwrap">
-            <button id="updateBtn" class="btn basicBtn"><a href="mypetupdate?pet_num=${list.pet_num}">수정</a></button>
-            <button id="delBtn" class="btn basicBtn"><a id="cancleM">삭제</a></button>
+            <a href="mypetupdate?pet_num=${list.pet_num}"><button id="updateBtn" class="btn basicBtn">수정</button></a>
+            <a class="cancleM"><button id="delBtn" class="btn basicBtn">삭제</button></a>
         </div>
 	 </c:forEach>
          </div>
