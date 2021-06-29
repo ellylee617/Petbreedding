@@ -13,9 +13,8 @@
 <link href="${path}/resources/css//user/uShop/shopInfoRead.css" rel="stylesheet" type="text/css" >
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffd90e8fd83a8d1b7acd8b168a81415f"></script>
-<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+<!-- 지도 api -->
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffd90e8fd83a8d1b7acd8b168a81415f&libraries=services"></script>
 
 <!-- Swiper -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
@@ -26,17 +25,17 @@
 		<jsp:include page="../../common/header.jsp" />
 			<section class="section">
             <div class="store_area">
+            <!-- 매장 타입이 0이면 미용실 -->
                 <div class="store_info_article">
                     <div class="store_img">
                         <img src="http://placehold.it/400x400">
                     </div>
                     <div class="store_name">
-                        <h1>쿨펫미용실</h1>
+                        <h1>${harInfo.shopName }</h1>
                     </div>
-                    <div class="store_tel"><i class="fas fa-phone-alt"></i><span>031-123-1234</span></div>
+                    <div class="store_tel"><i class="fas fa-phone-alt"></i><span>${harInfo.shopTel }</span></div>
                     <div class="store_info">
-                        <p>가위컷 전문 쿨펫 미용실 입니다.</p>
-                        <p>문의 후 예약해 주세요.</p>
+                        <p>${harInfo.shopMInfo }</p>
                     </div>
                     <div class="store_btn">
                         <a href="#" id="goChat" class="sBtn">문의하기</a>
@@ -198,9 +197,9 @@
                             </div>
                         </div>
                         <div class="storeInfo">
-                            <p>쿨펫 미용실</p>
-                            <p>전화번호 : 031-123-1234</p>
-                            <p>주소 : 경기도 고양시 고양동 고양오피스텔 1F 305호</p>
+                            <p>${harInfo.shopName }</p>
+                            <p>전화번호 : ${harInfo.shopTel }</p>
+                            <p>주소 : ${harInfo.shopAddr }</p>
                         </div>
                     </div>
                 </div>
@@ -208,8 +207,10 @@
             
             <!--TOPBTN-->
             <a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
+        
         </section>
 	
+		
 		<jsp:include page="../../common/footer.jsp" />	
 	</div>
 	
