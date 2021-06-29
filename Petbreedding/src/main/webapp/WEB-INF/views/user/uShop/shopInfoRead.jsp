@@ -13,6 +13,9 @@
 <link href="${path}/resources/css//user/uShop/shopInfoRead.css" rel="stylesheet" type="text/css" >
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffd90e8fd83a8d1b7acd8b168a81415f"></script>
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 
 <!-- Swiper -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
@@ -191,7 +194,8 @@
                     <p>오시는길</p>
                     <div class="storeMapBox">
                         <div class="mapFrame">
-                            <div class="mapBox"></div>
+                            <div id="map" class="mapBox">
+                            </div>
                         </div>
                         <div class="storeInfo">
                             <p>쿨펫 미용실</p>
@@ -212,5 +216,6 @@
 	 <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/user/uShop/shopInfoRead.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/common/map.js"></script>
 </body>
 </html>

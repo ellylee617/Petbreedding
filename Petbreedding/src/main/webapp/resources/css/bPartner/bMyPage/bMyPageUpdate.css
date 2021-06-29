@@ -45,6 +45,12 @@
 	width: 400px;
     margin: 0 auto;
 }
+
+.updateFrm input {
+font-family: "GmarketM";
+    src: url("../../font/GmarketSansTTFMedium.ttf");		
+}
+
 .hpBox{
     width: 275px;
     padding: 10px;
@@ -164,3 +170,5 @@
 #cfMessage{
 	display: none;
 }
+
+

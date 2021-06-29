@@ -1,8 +1,8 @@
-function openchatwin(inbpId,inbname) {
+function openchatwin(inchatId,inshopName) {
 
-	var inbpId = inbpId;
-	var inbname = inbname;
-	var url = '/petbreedding/chat?inbpId='+inbpId+'&inbname='+inbname;
+	var chatId = inchatId;
+	var shopName = inshopName;
+	var url = '/petbreedding/chat?chatId='+chatId+'&shopName='+shopName;
 	window.open(url, '_blank', 'width=555px, height=700px');
 }
 
