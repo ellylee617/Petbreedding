@@ -65,9 +65,22 @@
 				<!-- 페이징 시작-->
 				<div class="page_wrap">
 					<div class="page_nation">
-						<a class="arrow prev" href="#">이전</a> <a href="#" class="active">4</a>
-						<a href="#">5</a> <a href="#">6</a> <a href="#">7</a> <a href="#">8</a>
-						<a class="arrow next" href="#">다음</a>
+						<c:if test="${paging.startPage != 1 }">
+							<a class="arrow prev" href="${path}/mcancel?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a href="${path}/mcancel?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a class="arrow next" href="${path}/mcancel?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+						</c:if>
 					</div>
 				</div>
 				<!-- 페이징 끝! -->

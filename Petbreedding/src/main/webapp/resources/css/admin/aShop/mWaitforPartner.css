@@ -101,3 +101,9 @@ table td:last-child, table th:last-child  {
     font-weight: bold;
 	color:#ff9914;
 }
+
+b{
+    float: left;
+    padding-top: 3px;
+    width:40px;
+}

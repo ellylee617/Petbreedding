@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.Admin.model.dao.AdminDao;
 import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -14,11 +15,23 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminDao aDao;
 	
+	
 	@Override
-	public List<BPartner> waitList() {
+	public int countMwait() {
+		int result = -1;
+		try {
+			result = aDao.countMwait();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@Override
+	public List<BPartner> waitList(Pagination page) {
 		List<BPartner> list = null;
 		try {
-			list = aDao.waitList();
+			list = aDao.waitList(page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,11 +63,23 @@ public class AdminServiceImpl implements AdminService{
 		return result;
 	}
 
+	
 	@Override
-	public List<BPartner> deleteList() {
+	public int countMdelete() {
+		int result = -1;
+		try {
+			result = aDao.countMdelete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@Override
+	public List<BPartner> deleteList(Pagination page) {
 		List<BPartner> list = null;
 		try {
-			list = aDao.deleteList();
+			list = aDao.deleteList(page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -85,5 +110,6 @@ public class AdminServiceImpl implements AdminService{
 		
 		return result;
 	}
+
 
 }

@@ -15,6 +15,7 @@ import kh.com.petbreedding.Admin.model.service.AdminService;
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.vo.CustomerService;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Controller
 public class AdminController {
@@ -41,9 +42,14 @@ public class AdminController {
 
 	// 사업장관리 - 제휴 승인 목록조회
 	@RequestMapping(value = "/mwaitList", method = RequestMethod.GET)
-	public String waitList( Model model) {
+	public String waitList( Model model,Pagination page,
+			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage) {
 		
-		List<BPartner> list = adminService.waitList();
+		int total = adminService.countMwait();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		List<BPartner> list = adminService.waitList(page);
+		model.addAttribute("paging", page);
 		model.addAttribute("bP", list);
 		
 		return "/admin/aShop/mWaitforPartner";
@@ -69,11 +75,16 @@ public class AdminController {
 		return result;
 	}
 	
-	// 사업장관리 - 제휴 취소 대기 페이지로 이동
+	// 사업장관리 - 제휴 취소 목록 조회
 	@RequestMapping(value = "/mcancel", method = RequestMethod.GET)
-	public String mCancel(Locale locale, Model model) {
-		
-		List<BPartner> list = adminService.deleteList();
+	public String mCancel( Model model,Pagination page,
+			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage) {
+
+		int total = adminService.countMdelete();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		List<BPartner> list = adminService.deleteList(page);
+		model.addAttribute("paging", page);
 		model.addAttribute("bP", list);
 		
 		return "/admin/aShop/mCancelPartner";

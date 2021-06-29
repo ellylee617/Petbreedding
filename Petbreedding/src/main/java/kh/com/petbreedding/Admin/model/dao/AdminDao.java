@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 
 @Repository("aDao")
@@ -15,9 +16,14 @@ public class AdminDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	//제휴승인대기 목록 총 갯수
+	public int countMwait() {
+		return sqlSession.selectOne("mWait.countMwait");
+	}
+	
 //	제휴승인대기 목록 조회
-	public List<BPartner> waitList() {
-		return sqlSession.selectList("mWait.selectMwait");
+	public List<BPartner> waitList(Pagination page) {
+		return sqlSession.selectList("mWait.selectMwait", page);
 	}
 	
 	//제휴승인 대기 승인
@@ -30,11 +36,14 @@ public class AdminDao {
 		return sqlSession.delete("mWait.refuseBP", list);
 	}
 	
-	
+	//제휴취소대기 목록 총 갯수
+	public int countMdelete() {
+		return sqlSession.selectOne("mWait.countMdelete");
+	}
 	
 	//제휴취소대기 목록 조회
-	public List<BPartner> deleteList() {
-		return sqlSession.selectList("mWait.selectMdelete");
+	public List<BPartner> deleteList(Pagination page) {
+		return sqlSession.selectList("mWait.selectMdelete",page);
 	}
 
 	//제휴취소 승인

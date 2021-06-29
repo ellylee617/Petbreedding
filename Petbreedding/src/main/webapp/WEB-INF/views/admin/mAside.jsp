@@ -21,7 +21,7 @@
 	                <p>게시물관리</p>
 	            </li>
             </a>
-            <a href="${pageContext.request.contextPath}/mwait" >
+            <a href="${pageContext.request.contextPath}/mwaitList" >
             	<li class="menu" id="mShop">
                 <i class="fas fa-home"></i>
                 <p>사업장관리</p>
@@ -44,7 +44,7 @@
        <div class="mBox">
            <ul>
                <p>사업장 관리</p>
-               <li class="bs"><a href="${pageContext.request.contextPath}/mwait">제휴승인게시판</a></li>
+               <li class="bs"><a href="${pageContext.request.contextPath}/mwaitList">제휴승인게시판</a></li>
                <li class="bs"><a href="${pageContext.request.contextPath}/mcancel">제휴취소게시판</a></li>
            </ul>
        </div>

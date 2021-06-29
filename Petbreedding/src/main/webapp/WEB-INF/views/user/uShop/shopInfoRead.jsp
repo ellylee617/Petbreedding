@@ -45,9 +45,9 @@
                         </c:if>
                         <!-- TODO -->
                         <c:if test="${!empty client }">
-                        	<%-- <c:if test="${!empty hairShop }"> --%>
+                        	<%-- <c:if test="${!empty harInfo }"> --%>
                         	<a href="${path}/shopHosReservation?hos_num=10&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>
-		                        <%-- <a href="${path}/shopReservation?har_num=HA1&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a> --%>                                            	
+		                        <%-- <a href="${path}/shopReservation?har_num=${harInfo.harNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a> --%>                                            	
 <%--                         	</c:if>
                         	<c:if test="${!empty hospital }">
 		                        <a href="${path}/shopReservation?hos_num=10&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	

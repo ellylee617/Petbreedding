@@ -35,6 +35,7 @@
 		<typeAlias type="kh.com.petbreedding.board.model.vo.MyAsk" alias="MyAsk"/>
 		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HosPay" alias="HosPay"/>
 		<typeAlias type="kh.com.petbreedding.board.model.vo.CustomerService" alias="CustomerService"/>
+		<typeAlias type="kh.com.petbreedding.common.model.vo.Pagination" alias="page"/>
 		<!-- TODO -->
 	</typeAliases>
 	
