@@ -28,11 +28,20 @@
 		<result column="QNA_IMG" property="qnaImg"/>
 		<result column="QNA_DATE" property="qnaDate"/>
 		<result column="QNA_WR" property="qnaWr"/>
+		<result column="QNA_TYPE" property="qnaType"/>
 		<result column="QNAR_CHK" property="qnaChk"/>
 	</resultMap>
 	
+	<select id="listCount" resultType="int">
+		SELECT COUNT(*) FROM QNA_BOARD
+	</select>
+	
 	<select id="MyAskSelectList" parameterType="string" resultMap="MyAskMap">
 		SELECT * FROM QNA_BOARD WHERE USER_NUM = #{userNum}
+	</select>
+	
+	<select id="MyAskSelectListM" parameterType="MyAsk" resultMap="MyAskMap">
+		SELECT * FROM QNA_BOARD
 	</select>
 	
 	<select id="MyAskSelectOne" parameterType="string" resultMap="MyAskMap">
@@ -51,7 +60,7 @@
 		<![CDATA[
 			INSERT INTO QNA_BOARD VALUES (
 			'Q'||SEQ_QNA_BOARD.NEXTVAL, #{userNum}, #{qnaTitle}, #{qnaCont},
-			#{qnaImg}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{qnaWr}, 0
+			#{qnaImg}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{qnaType}, #{qnaWr}, 0
 			)
 		]]>
 	</insert>

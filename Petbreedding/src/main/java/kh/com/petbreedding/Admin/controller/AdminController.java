@@ -21,7 +21,10 @@ import kh.com.petbreedding.Admin.model.service.AdminService;
 import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
+import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.CustomerService;
+import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Controller
@@ -33,6 +36,10 @@ public class AdminController {
 	@Autowired
 	private CustomerServiceService customerServiceService;
 	
+	@Autowired
+	private MyAskService myAskService;
+	
+	public final int LIMIT = 5;
 	
 
 	//관리자 회원관리
@@ -119,13 +126,44 @@ public class AdminController {
 	
 	// 게시글 관리 (문의게시판 목록)
 	@RequestMapping(value = "/mboard", method = RequestMethod.GET)
-	public String mboard(Locale locale, Model model) {
+	public String mboard(
+			Model md
+			,@RequestParam(name = "page", defaultValue = "1") int page
+			) {
+		
+		int currentPage = page;
+		// 한 페이지당 출력할 목록 갯수
+		int listCount = myAskService.listCount();
+		int maxPage = (int) ((double) listCount / LIMIT + 0.9);
+		
+		List<MyAsk> myAskList = null;
+		myAskList = myAskService.MyAskSelectListM(currentPage, LIMIT);
+		md.addAttribute("myAskList", myAskList);
+		md.addAttribute("currentPage", currentPage);
+		md.addAttribute("listCount", listCount);
+		md.addAttribute("maxPage", maxPage);
+		
+		System.out.println("[세훈] @관리자 문의 사항 리스트 : " + myAskList.toString());
+		
 		return "/admin/aBoard/mboard";
 	}
 
 	// 게시글 관리 (문의게시판 글상세)
 	@RequestMapping(value = "/mboardcon", method = RequestMethod.GET)
-	public String mboardcon(Locale locale, Model model) {
+	public String mboardcon(
+			Model md
+			,String qna_num
+			,@RequestParam(name = "page", defaultValue = "1") int page
+			) {
+		
+		
+		int currentPage = page;
+		MyAsk mAsk = new MyAsk();
+		
+		mAsk = myAskService.MyAskSelectDetail(qna_num);
+		md.addAttribute("mAsk", mAsk);
+		
+		
 		return "/admin/aBoard/mboardcon";
 	}
 

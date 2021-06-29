@@ -20,12 +20,14 @@ public class MyAsk {
 	private String qnaImg;
 	private String qnaDate;
 	private String qnaWr;
-	private String qnaChk;
+	private int qnaType;
+	private int qnaChk;
 	
 	@Override
 	public String toString() {
 		return "MyAsk [qnaNum=" + qnaNum + ", userNum=" + userNum + ", qnaTitle=" + qnaTitle + ", qnaCont=" + qnaCont
-				+ ", qnaImg=" + qnaImg + ", qnaDate=" + qnaDate + ", qnaWr=" + qnaWr + ", qnaChk=" + qnaChk + "]";
+				+ ", qnaImg=" + qnaImg + ", qnaDate=" + qnaDate + ", qnaWr=" + qnaWr + ", qnaType=" + qnaType
+				+ ", qnaChk=" + qnaChk + "]";
 	}
 
 	public String getQnaNum() {
@@ -84,11 +86,19 @@ public class MyAsk {
 		this.qnaWr = qnaWr;
 	}
 
-	public String getQnaChk() {
+	public int getQnaType() {
+		return qnaType;
+	}
+
+	public void setQnaType(int qnaType) {
+		this.qnaType = qnaType;
+	}
+
+	public int getQnaChk() {
 		return qnaChk;
 	}
 
-	public void setQnaChk(String qnaChk) {
+	public void setQnaChk(int qnaChk) {
 		this.qnaChk = qnaChk;
 	}
 	

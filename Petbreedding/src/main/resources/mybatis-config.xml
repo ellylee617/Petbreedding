@@ -36,6 +36,7 @@
 		<typeAlias type="kh.com.petbreedding.Shop.model.vo.HosPay" alias="HosPay"/>
 		<typeAlias type="kh.com.petbreedding.board.model.vo.CustomerService" alias="CustomerService"/>
 		<typeAlias type="kh.com.petbreedding.common.model.vo.Pagination" alias="page"/>
+		<typeAlias type="kh.com.petbreedding.board.model.vo.MyAskComment" alias="MyAskComment"/>
 		<!-- TODO -->
 	</typeAliases>
 	
@@ -57,6 +58,7 @@
 		<mapper resource="mappers/Shop/shopMenu-mapper.xml"/>
 		<mapper resource="mappers/Chat/Chat-mapper.xml"/>
 		<mapper resource="mappers/board/myAsk-mapper.xml"/>
+		<mapper resource="mappers/board/myAskComment-mapper.xml"/>
 		<mapper resource="mappers/board/customerService-mapper.xml"/>
 		<mapper resource="mappers/BP/bPRev-mapper.xml"/>
 		

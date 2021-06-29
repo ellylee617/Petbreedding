@@ -54,27 +54,32 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>[회원]</td>
-                      <td>결제문의 드립니다.</td>
-                      <td>또비언니</td>
-                      <td>2021-06-15</td>
-                      <td><button class="basicBtn" id="waitBtn">답변대기</button></td>
-                    </tr>
-                    <tr>
-                        <td>[회원]</td>
-                      <td>결제문의 드립니다.</td>
-                      <td>또비언니</td>
-                      <td>2021-06-15</td>
-                      <td><button class="basicBtn" id="successBtn">답변완료</button></td>
-                      </tr>
-                      <tr>
-                        <td>[회원]</td>
-                      <td>결제문의 드립니다.</td>
-                      <td>또비언니</td>
-                      <td>2021-06-15</td>
-                      <td><button class="basicBtn" id="successBtn">답변완료</button></td>
-                      </tr>
+                    <c:forEach items="${myAskList}" var="mList">
+	                    <tr id="${mList.qnaNum}" class="mTr">
+		                    <c:choose>
+		                   		<c:when test="${mList.qnaType eq 1}">
+			                    	<td>[회원]</td>
+		                   		</c:when>
+		                   		<c:otherwise>
+		                   			<td>[사업자]</td>
+		                   		</c:otherwise>
+	                    	</c:choose>
+		                    	
+		                    <td>${mList.qnaTitle }</td>
+		                    <td>${mList.qnaWr }</td>
+		                    <td>${mList.qnaDate }</td>
+		                    
+		                    <c:choose>
+		                   		<c:when test="${mList.qnaChk eq 0}">
+			                   		<td><button class="basicBtn" id="waitBtn">답변대기</button></td>
+		                   		</c:when>
+		                   		<c:otherwise>
+		                   			<td><button class="basicBtn" id="successBtn">답변완료</button></td>
+		                   		</c:otherwise>
+	                    	</c:choose>
+		                   
+	                    </tr>
+					</c:forEach>
                     </tbody>
                   </table>
             </div>
@@ -99,6 +104,8 @@
 	<jsp:include page="../../common/footer.jsp" />
 	</div>	 
 <script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
+<script type="text/javascript" src="${path}/resources/js/admin/aBoard/mBoard.js"></script>
+
 	</body>
 	</html>
 	

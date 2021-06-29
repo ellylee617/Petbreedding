@@ -14,26 +14,6 @@
 <link href="${path}/resources/css/bPartner/bBoard/bQna.css" rel="stylesheet" type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-$(function() {
-	var userNum = "${user_num}";
-	console.log(userNum);
-	$(".pointline").click(function() {
-		var idVar = $(this).attr("id");
-		console.log(idVar);
-		goDetail(idVar);
-	});
-	
-	$("#myAskBtn").click(function() {
-		location.href = "/petbreedding/bQna/write?user_num="+userNum+"";
-	});
-	
-	function goDetail(value){
-		console.log(value);
-		location.href = "/petbreedding//mypage/askdetail?qna_num="+value+"";
-	}
-});
-</script>
 </head>
 <body>
 	<div class="wrapper">
@@ -75,5 +55,6 @@ $(function() {
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
 	<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/bPartner/bBoard/bQna.js"></script>
 </body>
 </html>

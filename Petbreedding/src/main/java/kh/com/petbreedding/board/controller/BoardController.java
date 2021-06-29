@@ -42,7 +42,7 @@ public class BoardController {
 	@Autowired
 	private CustomerServiceService customerServiceService;
 	
-	public static final int LIMIT = 5;
+	public final int LIMIT = 5;
 
 		
 	//	게시글 목록 + 페이징 + 검색
