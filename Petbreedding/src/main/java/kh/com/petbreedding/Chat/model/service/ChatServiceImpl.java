@@ -50,6 +50,17 @@ public class ChatServiceImpl implements ChatService{
 	}
 	
 	@Override
+	public ChatRoom selectChatRoom(String chatId) {
+		ChatRoom result = null;
+		try {
+			result = chDao.selectChatRoom(chatId);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@Override
 	public List<ChatList> getList(String cl_num) {
 		List<ChatList> result = null;
 		try {

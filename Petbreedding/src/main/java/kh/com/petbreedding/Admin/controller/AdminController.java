@@ -1,7 +1,12 @@
 package kh.com.petbreedding.Admin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kh.com.petbreedding.Admin.model.service.AdminService;
+import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.vo.CustomerService;
@@ -137,6 +144,67 @@ public class AdminController {
 	@RequestMapping(value = "/mservicecon", method = RequestMethod.GET)
 	public String mservicecon(Locale locale, Model model) {
 		return "/admin/aBoard/mservicecon";
+	}
+	
+	// 게시글 관리 (공지사항게시판 등록 폼)
+	@RequestMapping(value = "/mserviceRegisterFrm")
+	public String mserviceRegisterFrm(Locale locale, Model model) {
+		return "/admin/aBoard/mServiceRegister";
+	}
+	
+	// 게시글 관리 (공지사항게시판 등록)
+	@RequestMapping(value = "/mRegister")
+	public String mRegister(
+			Model md
+			,Admin ad
+			,HttpSession session
+			,MultipartHttpServletRequest req
+			,HttpServletResponse res
+			) {
+		
+		res.setContentType("text/html; charset=utf-8");
+		
+		ad = (Admin) session.getAttribute("admin");
+		
+		String admin_id = ad.getAdmin_id();
+		String ann_type = req.getParameter("mServiceSelect");
+		String ann_title = req.getParameter("mServiceTitle");
+		String ann_cont = req.getParameter("mServiceCont");
+		
+		CustomerService cs = new CustomerService();
+		
+		cs.setAdminId(admin_id);
+		cs.setAnnCont(ann_cont);
+		cs.setAnnTitle(ann_title);
+		cs.setAnnType(ann_type);
+		
+		int result = 0;
+		
+		result = customerServiceService.CustomerServiceInsert(cs);
+		
+		PrintWriter out = null;
+		
+		String msg1 = "공지사항등록 완료";
+		String msg2 = "공지사항 등록 실패";
+		
+		try {
+			out = res.getWriter();
+			if(result == 1) {
+				out.println("<script>alert('" + msg1 + "');</script>");
+				System.out.println("[세훈] 공지사항 등록 성공");
+				
+			} else {
+				out.println("<script>alert('" + msg2 + "');</script>");
+				System.out.println("[세훈] 공지사항 등록 실패");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.flush();
+			out.close();
+		}
+		
+		return "/admin/aBoard/mservice";
 	}
 
 	// 게시글 관리 (자유게시판 목록)
