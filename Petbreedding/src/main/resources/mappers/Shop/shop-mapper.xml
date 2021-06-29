@@ -15,6 +15,8 @@
 			<result column="HAR_TEL" property="shopTel"/>
 			<result column="HOPEN_TIME" property="shopTime"/>
 			<result column="HAR_MINFO" property="shopMInfo"/>
+			<result column="Y" property="y"/>
+			<result column="X" property="x"/>
 		</resultMap>
 		
 		<!-- 
@@ -69,8 +71,8 @@
 		
 		<!-- 미용실 기본 정보 기입 -->
 		<insert id="insertHarInfo" parameterType="HairSalon">
-		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO)
-		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo})
+		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X)
+		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x})
 		</insert>
 		
 		
@@ -86,9 +88,9 @@
 		<!-- 미용실 정보 수정 -->
 		<update id="updateHarInfo" parameterType="HairSalon">
 		UPDATE HAIR_SALON 
-		SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO)
+		SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X)
 			= (
-				SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}
+				SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}
 				FROM dual
 			)
 		WHERE BP_ID = #{bpId}
@@ -161,6 +163,8 @@
 		<result column="HOS_MINFO" property="shopMInfo"/>
 		<result column="HOS_CONN" property="hosConn"/>
 		<result column="HOS_CLICK" property="hosClick"/>
+		<result column="Y" property="y"/>
+		<result column="X" property="x"/>		
 	</resultMap>
 	
 	<!-- HOSPITAL_IMAGE 테이블-->

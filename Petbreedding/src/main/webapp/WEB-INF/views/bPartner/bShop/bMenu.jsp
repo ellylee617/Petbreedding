@@ -22,29 +22,29 @@
 </head>
 <body>
 	<div class="wrapper">
-	<jsp:include page="../bheader.jsp" />
-	 <section class="section">
-	 <jsp:include page="../bAside.jsp"/>
-	 <div class="bContent">
-		    <div class="menucon">
-		    <button id="addItemBtn" class="basicBtn">옵션추가</button>
-		    </div>
-	 	<div class="menuhead">
-        	<h1>메뉴관리</h1>
-	       <table style="border: 1px;">
-	        <thead>
-	        <tr>
-	        <th width="550">타입</th>
-	        <th width="500">메뉴명</th>
-	        <th width="500">가격</th>
-	        <th width="400">소요시간</th>
-	        </tr>
-	        </thead>
-	        <tbody id="dynamicTbody">
-	            
-	        </tbody>
-	        </table>
-	        </div>
+		<jsp:include page="../bheader.jsp" />
+		<section class="section">
+			<jsp:include page="../bAside.jsp" />
+			<div class="bContent">
+				<div class="menucon">
+					<button id="addItemBtn" class="basicBtn">옵션추가</button>
+				</div>
+				<div class="menuhead">
+					<h1>메뉴관리</h1>
+					<table style="border: 1px;">
+						<thead>
+							<tr>
+								<th width="550">타입</th>
+								<th width="500">메뉴명</th>
+								<th width="500">가격</th>
+								<th width="400">소요시간</th>
+							</tr>
+						</thead>
+						<tbody id="dynamicTbody">
+
+						</tbody>
+					</table>
+				</div>
 
 				<div class="insert">
 
@@ -85,8 +85,10 @@
 									placeholder="가격" id="price" name="price" value="${list.price }">
 								<input type="text" placeholder="소요시간" id="time"
 									name="style_time" value="${list.style_time }">
-								<button type="submit" class="basicBtn rebtn" formaction="${path}/bp/bMenu/rewrite">수정</button>
-								<button id="cancleBtn" type="button" class="basicBtn delBtns rebtn">삭제</button>
+								<button type="submit" class="basicBtn rebtn"
+									formaction="${path}/bp/bMenu/rewrite">수정</button>
+								<button id="cancleBtn" type="button"
+									class="basicBtn delBtns rebtn">삭제</button>
 								<div id="modalC" class="modalC">
 									<div class="contentC">
 										<p>정말 삭제하시겠습니까?</p>
@@ -102,7 +104,7 @@
 				</div>
 
 
-
 			</div>
 			<jsp:include page="../../common/footer.jsp" />
-	</div>	 
+		</section>
+	</div>
