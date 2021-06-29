@@ -33,6 +33,7 @@ import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.board.model.service.MyAskService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.common.model.vo.Pagination;
 import kh.com.petbreedding.mypage.model.service.ClientInfoService;
 import kh.com.petbreedding.mypage.model.service.MyPointService;
 import kh.com.petbreedding.mypage.model.vo.MyPoint;
@@ -71,10 +72,22 @@ public class ClientInfoCotroller {
 	//리스트 조회 결과
 	@RequestMapping("/mypage2")
 	@ResponseBody
-	public List<HairShopReservation> myRevDateList(HairShopReservation hsr) {
+	public List<HairShopReservation> myRevDateList(HairShopReservation hsr,
+			@RequestParam(defaultValue="1") int curPage,
+            HttpServletRequest request, ModelAndView model) {
 		
-		List<HairShopReservation> result = clientInfoService.myRevDateList(hsr);
-
+		
+		// 전체리스트 개수
+        int listCnt = clientInfoService.myRevListCnt(hsr);
+        Pagination pagination = new Pagination(listCnt, curPage);
+        
+        hsr.setStartIndex(pagination.getStartIndex());
+        hsr.setCntPerPage(pagination.getPageSize());
+        
+        List<HairShopReservation> result = clientInfoService.myRevDateList(hsr);
+        model.addObject("pagination", pagination);
+        model.setViewName("/user/uMyPage/myReservationList");
+        
 		return result;
 	}
 	

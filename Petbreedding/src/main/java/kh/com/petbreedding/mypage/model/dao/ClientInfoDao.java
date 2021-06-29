@@ -22,6 +22,11 @@ public class ClientInfoDao {
 		return sqlSession.update("Modify.modifyClient", client);
 	} 
 	
+	//게시물 총개수
+	public int myRevListCnt(HairShopReservation hsr) {
+		return sqlSession.selectOne("myRev.myRevListCnt", hsr);
+	}
+	
 	//예약확인/조회 리스트
 	public List<HairShopReservation> myReservationList(String cl_num) {
 		return sqlSession.selectList("myRev.myRevList", cl_num);
@@ -46,6 +51,8 @@ public class ClientInfoDao {
 	public int status2(String cl_num) {
 		return sqlSession.selectOne("myRev.status2", cl_num);
 	}
+	
+
 	
 	//미용실 예약확인 상세조회
 	public List<HairShopReservation> myRevDetail(String har_rnum){
