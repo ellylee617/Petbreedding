@@ -49,7 +49,7 @@
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -86,6 +86,8 @@
             <a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
             </c:if>
             
+            
+            
             <!-- 미용실 -->
             <c:if test="${shopType eq 0}">
             <h1>미용실</h1>
@@ -115,7 +117,7 @@
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}&y=${cta.y }&x=${cta.x }"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>

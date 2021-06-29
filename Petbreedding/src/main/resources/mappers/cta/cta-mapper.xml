@@ -12,6 +12,8 @@
 			<result column="HOPEN_TIME" property="shopTime"/>
 			<result column="HAR_MINFO" property="shopMInfo"/>
 			<result column="HAR_CLICK" property="harClick"/>
+			<result column="Y" property="y"/>
+			<result column="X" property="x"/>
 		</resultMap>
 
 

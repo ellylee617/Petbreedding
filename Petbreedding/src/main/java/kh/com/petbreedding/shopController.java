@@ -21,6 +21,7 @@ import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
+import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.cta.model.service.CtaService;
@@ -118,6 +119,13 @@ public class shopController {
 			HairSalon har = shopService.selectHarInfo(bpId);
 			System.out.println("미용실 정보::"+har);
 			mv.addObject("harInfo", har);
+			
+			// 메뉴(스타일) 출력
+			String harNum = har.getHarNum();
+			System.out.println("미용실 번호:"+harNum);
+			List<Style> styleList = shopService.selectStyleList(harNum);
+			System.out.println("스타일 리스트:"+styleList);
+			mv.addObject("styleList", styleList);
 			
 		} else {
 			
