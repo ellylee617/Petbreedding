@@ -23,6 +23,7 @@
 	<jsp:include page="../../common/header.jsp" />
 	 <section class="section">
 	 <jsp:include page="../myPageAside.jsp"/>
+	 <div id="petInfo">
 	  <div class="pethead">
             <h1>반려동물 정보</h1>
 	  <c:forEach var="list" items="${list}">
@@ -57,7 +58,7 @@
 		</div>
 	</div>
 	
-        
+     </div>   
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
 	<!-- script -->
