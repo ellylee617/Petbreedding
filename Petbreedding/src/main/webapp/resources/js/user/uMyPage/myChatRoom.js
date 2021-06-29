@@ -24,7 +24,8 @@ function sendMessage() {
 	var msg = $("#message").val();
 	if (msg != "") {
 		message = {};
-		message.message_content = $("#message").val()
+		message.message_content = $("#message").val();
+		message.message_sender = $("#name").val();
 		//message.TUTOR_USER_user_id = '${TUTOR_USER_user_id}'
 		//message.USER_user_id = '${profile.user_id}'
 		//message.CLASS_class_id = '${class_id}'
@@ -63,20 +64,18 @@ function appendMessage(msg) {
 	if (msg == '') {
 		return false;
 	} else {
-
 		var t = getTimeStamp();
 		$("#chatMessageArea")
 				.append(
-						"<div class='col-12 row' style = 'height : auto; margin-top : 5px;'><div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'><div style='font-size:9px; clear:both;'>${user_name}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px;'>"
-								+ msg
-								+ "</span></div><div col-12 style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"
-								+ t + "</span></div></div></div>")
-
+						"<div class='col-12 row dMessageO'><div class='col-2 dMessage my'><div class='dNick'>"
+								+ "</div></div><br><div class='col-10 dConO my'><div class='col-12 dConI mycolor'><span>"
+								+ msg + "</span></div><div class='col-12 dTimeO'><br><div>");
 		var chatAreaHeight = $("#chatArea").height();
 		var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
 		$("#chatArea").scrollTop(maxScroll);
 	}
 }
+
 	$(document).ready(function() {
 		connect();
 	$('#message').keypress(function(event) {
