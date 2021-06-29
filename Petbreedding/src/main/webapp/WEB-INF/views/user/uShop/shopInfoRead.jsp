@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -56,44 +57,17 @@
                     </div>
                 </div> <!--store_info_article-->
                 <div class="swiper-container store_menu_article ">
-                    <p>메뉴<span>(5)</span></p>
+                    <p>메뉴<span>(${fn:length(styleList)})</span></p>
                     <div class="swiper-wrapper store_menues">
+                     <c:forEach var="styleList " items="${styleList }" varStatus="status">
                             <div class="menu_box swiper-slide">
                                 <a href="#">
-                                    <p class="menu_item">클리퍼미용</p>
-                                    <small class="menu_time">60분 소요</small>
-                                    <p class="menu_price">30,000원</p>
+                                    <p class="menu_item"><c:out value="${styleList[status.index].style_name }"/></p>
+                                    <small class="menu_time">${styleList[status.index].style_time }분 소요</small>
+                                    <p class="menu_price">${styleList[status.index].price }원</p>
                                 </a>
                             </div>
-                            <div class="menu_box swiper-slide">
-                                <a href="#">
-                                    <p class="menu_item">가위컷</p>
-                                    <small class="menu_time">180분 소요</small>
-                                    <p class="menu_price">50,000원</p>
-                                </a>
-                            </div>
-                            <div class="menu_box swiper-slide" >
-                                <a href="#">
-                                    <p class="menu_item">목욕</p>
-                                    <small class="menu_time">40분 소요</small>
-                                    <p class="menu_price">20,000원</p>
-                                </a>
-                            </div>
-                            <div class="menu_box swiper-slide">
-                                <a href="#">
-                                    <p class="menu_item">스파</p>
-                                    <small class="menu_time">60분 소요</small>
-                                    <p class="menu_price">40,000원</p>
-                                </a>
-                            </div>
-                            <div class="menu_box swiper-slide">
-                                <a href="#">
-                                    <p class="menu_item">스포팅 미용</p>
-                                    <small class="menu_time">60분 소요</small>
-                                    <p class="menu_price">30,000원</p>
-                                </a>
-                            </div>
-                        </ul>
+                           </c:forEach>
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
