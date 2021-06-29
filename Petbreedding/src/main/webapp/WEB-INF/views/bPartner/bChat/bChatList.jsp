@@ -36,7 +36,7 @@
 			<c:forEach items="${Roomlist }" var="r" varStatus="status">
 					<table onClick="openbchatwin('${r.chatId }','${r.nickName}', '${r.shopName }');">
 						<tr>
-							<td rowspan="2"><img src="${path}/resources/images/logoForChat"></td>
+							<td rowspan="2"><img src="${path}/resources/images/logoForChat.png"></td>
 							<td>${r.nickName }
 							</td>
 							<td>${r.mSendTime }</td>
