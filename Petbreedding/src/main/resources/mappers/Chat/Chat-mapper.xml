@@ -18,6 +18,7 @@
 		<result column="message_readTime" property="mReadTime" />
 		<result column="cl_num" property="cl_num" />
 		<result column="bp_id" property="bp_id" />
+		<result column="unread_count" property="mUnreadCount"/>
 	</resultMap>
 	
 	<resultMap type="ChatList" id="chatList">
@@ -32,8 +33,7 @@
 
 	<insert id="createRoom">
 		INSERT INTO CHATROOM VALUES(SEQ_CHAT_ROOMID.NEXTVAL,
-		#{cl_num},
-		#{bp_id})
+		#{cl_num}, #{bp_id})
 	</insert>
 
 	<select id="isRoom" resultMap="chatroom">
@@ -42,14 +42,15 @@
 	</select>
 
 	<insert id="insertMessage">
-		INSERT INTO MESSAGE (SEQ_CHAT_MESSAGE.NEXTVAL,
-		MESSAGE_SENDER,
-		MESSAGE_RECEIVER, MESSAGE_CONTENT, CHATROOM_ID, CL_NUM,
-		BP_ID)
-		VALUES(SEQ_CMESSAGE, #{mSender}, #{mReceiver}, #{mContent},
-		#{chatId},
-		#{cl_num}, #{bp_id})
+		INSERT INTO MESSAGE (MESSAGE_ID,MESSAGE_SENDER,	MESSAGE_RECEIVER, 
+		MESSAGE_CONTENT, MESSAGE_SENDTIME, CHATROOM_ID, UNREAD_COUNT, CL_NUM, BP_ID)
+		VALUES(SEQ_CMESSAGE.NEXTVAL, #{mSender}, #{mReceiver}, #{mContent},
+		#{mSendTime}, #{chatId}, #{mUnreadCount}, #{cl_num}, #{bp_id})
 	</insert>
+	
+	<select id="selectChatRoom" resultMap="chatroom">
+		SELECT * FROM CHATROOM WHERE CHATROOM_ID = #{chatId}
+	</select>
 
 	<select id="getList" resultMap="chatList">
 		SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM,
