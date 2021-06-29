@@ -18,15 +18,26 @@
 	type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+    $("#browseBtn").bind("click", function() {
+        insertImg();
+    });
+    
+    function insertImg() {
+        $("#realInput").trigger("click");
+    }
+});    
+</script>
 </head>
 <body>
 	<div class="wrapper">
-		<section class="section">
 			<jsp:include page="../bheader.jsp" />
+		<section class="section">
 			<div class="bContent">
 			<form action="/petbreedding/maWrite" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="user_num" value="${user_num}">
-	            	
+	            
 	                <div class="qnatitle">
 	            		<h1 id="h1">제목</h1>
 	                   <input id="title" type="text" name="myAskTitle" placeholder="글 제목을 입력해주세요">
@@ -36,9 +47,9 @@
 	                <textarea id="content" placeholder="1:1문의내용을 작성해주세요" name="myAskCont"></textarea>
 	            </div> 
 	            <div class="qanbtn">
-	            <input type="file" id="myAskImg" name="myAskImg" accept=".jpg, .png">
-	            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
-	            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
+					<input type="file" id="realInput" name="myAskImg" accept=".jpg, .png" style='display:none'>
+		            <input type="button" value="이미지 등록" id="browseBtn" class="basicBtn">
+		            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
 	            </div>
 			</form>
 			</div>

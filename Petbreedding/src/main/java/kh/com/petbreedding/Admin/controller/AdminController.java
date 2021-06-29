@@ -13,12 +13,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.com.petbreedding.Admin.model.service.AdminService;
 import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.board.model.service.CustomerServiceService;
+import kh.com.petbreedding.board.model.vo.CustomerService;
 
 @Controller
 public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private CustomerServiceService customerServiceService;
 	
 	
 
@@ -108,7 +113,12 @@ public class AdminController {
 
 	// 게시글 관리 (공지사항게시판 목록)
 	@RequestMapping(value = "/mservice", method = RequestMethod.GET)
-	public String mservice(Locale locale, Model model) {
+	public String mservice(Model md) {
+		
+		List<CustomerService> cusList = customerServiceService.CustomerServiceSelectListA();
+		
+		md.addAttribute("cusList", cusList);
+		
 		return "/admin/aBoard/mservice";
 	}
 

@@ -14,7 +14,10 @@ public class CustomerServiceDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<CustomerService> CustomerServiceSelectList() {
-		return sqlSession.selectList("CustomerService.CustomerServiceSelectList");
+	public List<CustomerService> CustomerServiceSelectListC() {
+		return sqlSession.selectList("CustomerService.CustomerServiceSelectListC");
+	}
+	public List<CustomerService> CustomerServiceSelectListA() {
+		return sqlSession.selectList("CustomerService.CustomerServiceSelectListA");
 	}
 }

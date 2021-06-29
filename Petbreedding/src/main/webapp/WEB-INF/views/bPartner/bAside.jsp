@@ -71,7 +71,7 @@
                 </div>
                 <div class="bmp"> 
                     <p>고객센터</p>
-                    <li class="bs">공지사항</li>
+                    <a href="UcustomerService"><li class="bs">공지사항</li></a>
                     <li class="bs">자주묻는 질문</li>
                     <a href="bQna?user_num=${bP.bp_Id}"><li class="bs">내 문의 내역</li></a>
                     <a href="bQna/write?user_num=${bP.bp_Id}"><li class="bs">1:1 문의하기</li></a>

@@ -21,8 +21,8 @@
 </head>
 <body>
 	<div class="wrapper">
-		<section class="section">
 			<jsp:include page="../bheader.jsp" />
+		<section class="section">
 			<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
 				<h1>공지사항</h1>
