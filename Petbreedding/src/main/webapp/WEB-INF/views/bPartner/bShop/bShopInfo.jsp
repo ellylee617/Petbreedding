@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
 <title>Petbreedding::펫브리띵 사장님</title>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/common/reset.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bheader.css">
@@ -14,6 +15,9 @@
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bShop/bShopInfo.css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffd90e8fd83a8d1b7acd8b168a81415f&libraries=services"></script>
+
 </head>
 <body>
 	<div class="wrapper">
@@ -50,13 +54,11 @@
 					<tr>
 						<th>매장 주소</th>
 						<td colspan="2">
-						<input type="text" id="postcode"
-							placeholder="우편번호"> <input id="postcodebtn" class="basicBtn" type="button" onclick="exePostCode()" value="우편번호 찾기">
-							<br>
-							<input type="text" id="shopAddress" placeholder="주소" name="shopAddr">
-							<br>
-							<input type="text" id="detailAddress" placeholder="상세주소">
-							<input type="text" id="extraAddress" placeholder="참고항목">
+							<input type="text" id="shopAddr" placeholder="주소" name="shopAddr" style="width: 150px">
+							<input type="button" class="basicBtn" onclick="execDaumPostcode1()" value="주소 검색"><br>
+							<input type="hidden" id="y" name="y">
+							<input type="hidden" id="x" name="x">
+							<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>	
 					</tr>
 					<tr>
 						<th>매장 전화번호</th>
@@ -129,13 +131,11 @@
 					<tr>
 						<th>매장 주소</th>
 						<td colspan="2">
-						<input type="text" id="postcode"
-							placeholder="우편번호"> <input id="postcodebtn" class="basicBtn" type="button" onclick="exePostCode()" value="우편번호 찾기">
-							<br>
-							<input type="text" id="shopAddress" placeholder="주소" name="shopAddr" value="${vo.shopAddr }">
-							<br>
-							<input type="text" id="detailAddress" placeholder="상세주소">
-							<input type="text" id="extraAddress" placeholder="참고항목">
+							<input type="text" id="shopAddr" placeholder="주소" name="shopAddr" style="width: 150px" value="${vo.shopAddr }">
+							<input type="button" class="basicBtn" onclick="execDaumPostcode2()" value="주소 검색"><br>
+							<input type="hidden" id="y" name="y">
+							<input type="hidden" id="x" name="x">
+							<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>	
 					</tr>
 					<tr>
 						<th>매장 전화번호</th>
@@ -187,7 +187,6 @@
 		<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 		<script type="text/javascript" src="${path}/resources/js/bPartner/bPostcode.js"></script>
 		<script type="text/javascript" src="${path}/resources/js/bPartner/bBoard/bShopInfo.js"></script>
-		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		
 </body>
 </html>

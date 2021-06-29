@@ -13,6 +13,10 @@
 <link href="${path}/resources/css/bPartner/bAside.css"	rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bMyPage/bMyPageUpdate.css"	rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffd90e8fd83a8d1b7acd8b168a81415f"></script>
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+
 </head>
 <body>
 	<div class="wrapper">
