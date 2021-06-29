@@ -1,22 +1,41 @@
 
 //결제하기 
 $("#pay").on("click",function(){
-	var har_rnum = $("#har_rnum").val(); 
-	location.href="/petbreedding/shopPayment?har_rnum="+har_rnum+"";
+	var har_rnum =$("#har_rnum").val();
+	if(har_rnum.substring(0,3) == "HAR"){
+		location.href="/petbreedding/shopPayment?har_rnum="+har_rnum+"";
+	}else if(har_rnum.substring(0,3) == "HOS"){
+		location.href = "/petbreedding/shopHosPayment?hos_rnum="+har_rnum+"";
+	}
 });
 
 //취소하기
 $("#goCancle").on("click",function(){
-	var har_rnum = $("#har_rnum").val();
 	var cl_num = $("#cl_num").val();
-	$.ajax({
-		url: "cancleRev",
-		type:"POST",
-		data:{har_rnum : har_rnum},
-		success:function(data){
-	        location.href="/petbreedding/mypage?cl_num="+cl_num+"";
-		}
-	});
+	var har_rnum =$("#har_rnum").val();
+	var hos_rnum = "";
+	
+	if(har_rnum.substring(0,3) == "HAR"){
+		har_rnum = $("#har_rnum").val();
+		$.ajax({
+			url: "cancleRev",
+			type:"POST",
+			data:{har_rnum : har_rnum},
+			success:function(data){
+		        location.href="/petbreedding/mypage?cl_num="+cl_num+"";
+			}
+		});
+	}else if(har_rnum.substring(0,3) == "HOS"){
+		$.ajax({
+			url: "cancleRev2",
+			type:"POST",
+			data:{hos_rnum : har_rnum},
+			success:function(data){
+		        location.href="/petbreedding/mypage?cl_num="+cl_num+"";
+			}
+		});
+	}
+
 	
 });
 

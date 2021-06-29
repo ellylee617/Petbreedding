@@ -34,7 +34,7 @@
 							<td colspan="2"><img src="http://placehold.it/500x300"></td>
 						</c:when>
 						<c:otherwise>
-							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg }"></td>
+							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg}"></td>
 						</c:otherwise>
 					</c:choose>
 				</tr>

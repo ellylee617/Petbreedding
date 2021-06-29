@@ -6,7 +6,7 @@
         <ul>
         	<c:if test = "${!empty bP }">
 	            <li class="alertBell"><a href="#"><i class="fas fa-bell"></i><span class="alertCircle"></span></a></li>
-	            <li id="userName"><a href="#">${bP.bp_name}님</a></li>
+	            <li id="userName"><a href="bNotice">${bP.bp_name}님</a></li>
 	            <li><a href="${pageContext.request.contextPath}/blogout">로그아웃</a></li>
             </c:if>
             <c:if test = "${empty bP }">

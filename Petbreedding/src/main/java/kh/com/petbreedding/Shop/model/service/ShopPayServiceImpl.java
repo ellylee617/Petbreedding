@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.Shop.model.dao.ShopPayDao;
 import kh.com.petbreedding.Shop.model.vo.HarPay;
+import kh.com.petbreedding.Shop.model.vo.HosPay;
 
 
 @Service("shopPayService")
@@ -30,6 +31,28 @@ public class ShopPayServiceImpl implements ShopPayService{
 		int result = -1;
 		try {
 			result = shopPayDao.harRevUp(har_rnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int hosPay(HosPay hosPay) {
+		int result = -1;
+		try {
+			result = shopPayDao.hosPay(hosPay);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int hosRevUp(String hos_rnum) {
+		int result = -1;
+		try {
+			result = shopPayDao.hosRevUp(hos_rnum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

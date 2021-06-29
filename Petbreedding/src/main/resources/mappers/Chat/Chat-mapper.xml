@@ -24,9 +24,10 @@
 		<result column="chatroom_id" property="chatId"/>
 		<result column="cl_num" property="cl_num"/>
 		<result column="bp_id" property="bp_id"/>
-		<result column="HOS_NAME" property="shopName"/>
+		<result column="SHOP_NAME" property="shopName"/>
 		<result column="MESSAGE_SENDTIME" property="mSendTime"/>
 		<result column="MESSAGE_CONTENT" property="mContent"/>
+		<result column="CL_NICKNAME" property="nickName"/>
 	</resultMap>
 
 	<insert id="createRoom">
@@ -50,15 +51,9 @@
 		#{cl_num}, #{bp_id})
 	</insert>
 
-	<select id="getRoomList" resultMap="chatroom">
-		SELECT * FROM CHATROOM
-		WHERE
-		CL_NUM = #{cl_num}
-	</select>
-
 	<select id="getList" resultMap="chatList">
 		SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM,
-		B.BP_ID, B.HOS_NAME
+		B.BP_ID, B.HOS_NAME AS SHOP_NAME
 		FROM
 		(SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
 		FROM(
@@ -74,14 +69,30 @@
 		ON A.BP_ID = B.BP_ID
 	</select>
 
-	<select id="getRoomListbp_id" resultMap="chatroom">
-		SELECT * FROM CHATROOM
-		WHERE BP_ID = #{bp_id}
+	<select id="getListbp_id" resultMap="chatList">
+		SELECT C.*, D.HOS_NAME AS SHOP_NAME FROM
+		(SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.BP_ID,
+		B.CL_NUM, B.CL_NICKNAME
+		FROM
+		(SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
+		FROM(
+		SELECT
+		ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS
+		RANK,
+		CHATROOM_ID, MESSAGE_CONTENT,MESSAGE_SENDTIME, CL_NUM, BP_ID
+		FROM CHATMESSAGE) SQ
+		WHERE SQ.RANK = 1 AND BP_ID = #{bp_id}
+		ORDER BY CHATROOM_ID) A
+		INNER JOIN
+		(SELECT * FROM CLIENT) B
+		ON A.CL_NUM = B.CL_NUM ) C
+        INNER JOIN (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) D
+		ON C.BP_ID = D.BP_ID
 	</select>
 
 	<select id="getMessageList" resultMap="chatmessage">
 		SELECT MESSAGE_SENDER, MESSAGE_RECEIVER, MESSAGE_CONTENT, 
-		TO_CHAR(MESSAGE_SENDTIME, 'YYMMDD HH24:MI') MESSAGE_SENDTIME, CL_NUM, BP_ID 
+		TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, CL_NUM, BP_ID 
 		FROM CHATMESSAGE 
 		WHERE CHATROOM_ID=#{chatId}
 	</select>

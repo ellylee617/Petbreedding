@@ -16,7 +16,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		var userNum = ${user_num};
+		var userNum = "${user_num}";
+		console.log(userNum);
 		$(".pointline").click(function() {
 			var idVar = $(this).attr("id");
 			console.log(idVar);
@@ -24,7 +25,7 @@
 		});
 		
 		$("#myAskBtn").click(function() {
-			location.href = "/petbreedding/bwrite";
+			location.href = "/petbreedding/maWriteForm?user_num="+userNum+"";
 		});
 		
 		function goDetail(value){

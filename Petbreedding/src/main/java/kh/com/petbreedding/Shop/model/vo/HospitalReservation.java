@@ -1,5 +1,9 @@
 package kh.com.petbreedding.Shop.model.vo;
 
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
+import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.mypage.model.vo.MyPet;
+
 public class HospitalReservation {
 	private String hos_rnum; 	//동물병원 예약번호
 	private String msg_num;		//알림번호
@@ -12,13 +16,25 @@ public class HospitalReservation {
 	private String med_num2;	//예약메뉴번호2
 	private int hos_status; 	//예약 상태
 	private String hos_time; 	//예약 시간
+	private MyPet pet;
+	private Hospital hospital;
+	
+	/*
+	 * @Override public String toString() { return "HospitalReservation [hos_rnum="
+	 * + hos_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num + ", pet_num=" +
+	 * pet_num + ", med_num=" + med_num + ", hos_num=" + hos_num + ", hos_date=" +
+	 * hos_date + ", hos_date2=" + hos_date2 + ", med_num2=" + med_num2 +
+	 * ", hos_status=" + hos_status + ", hos_time=" + hos_time + "]"; }
+	 */
+	
 	@Override
 	public String toString() {
 		return "HospitalReservation [hos_rnum=" + hos_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", med_num=" + med_num + ", hos_num=" + hos_num + ", hos_date=" + hos_date
 				+ ", hos_date2=" + hos_date2 + ", med_num2=" + med_num2 + ", hos_status=" + hos_status + ", hos_time="
-				+ hos_time + "]";
+				+ hos_time + ", pet=" + pet + ", hospital=" + hospital + "]";
 	}
+	
 	public String getHos_rnum() {
 		return hos_rnum;
 	}
@@ -84,6 +100,18 @@ public class HospitalReservation {
 	}
 	public void setHos_time(String hos_time) {
 		this.hos_time = hos_time;
+	}
+	public MyPet getPet() {
+		return pet;
+	}
+	public void setPet(MyPet pet) {
+		this.pet = pet;
+	}
+	public Hospital getHospital() {
+		return hospital;
+	}
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
 	}
 	
 	

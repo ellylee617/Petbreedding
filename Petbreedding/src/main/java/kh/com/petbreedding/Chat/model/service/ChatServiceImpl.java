@@ -48,17 +48,6 @@ public class ChatServiceImpl implements ChatService{
 		}
 		return result;
 	}
-
-	@Override
-	public List<ChatRoom> getRoomList(String cl_num) {
-		List<ChatRoom> result = null;
-		try {
-			result = chDao.getRoomList(cl_num);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
 	
 	@Override
 	public List<ChatList> getList(String cl_num) {
@@ -72,10 +61,10 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public List<ChatRoom> getRoomListbp_id(String bp_id) {
-		List<ChatRoom> result = null;
+	public List<ChatList> getListbp_id(String bp_id) {
+		List<ChatList> result = null;
 		try {
-			result = chDao.getRoomListbp_id(bp_id);
+			result = chDao.getListbp_id(bp_id);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

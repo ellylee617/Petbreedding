@@ -1,19 +1,35 @@
 package kh.com.petbreedding.mypage.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.board.model.service.MyAskService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.client.model.vo.Client;
@@ -63,7 +79,7 @@ public class ClientInfoCotroller {
 	}
 	
 	
-	// 예약 자세히 보기
+	// 미용실 예약 자세히 보기
 	@RequestMapping("/revdetail")
 	public String myReservationDetail(String har_rnum, Model model) {
 		
@@ -84,7 +100,25 @@ public class ClientInfoCotroller {
 		int result = clientInfoService.cancleRev(har_rnum);
 		return result;
 	}
+	
+	// 동물병원 예약 자세히 보기
+	@RequestMapping("/revdetail2")
+	public String myReservationDetail2(String hos_rnum, Model model) {
+		
+		List<HospitalReservation> result = clientInfoService.myRevDetail2(hos_rnum);
+		model.addAttribute("myRev", result);
+		
+		return "/user/uMyPage/myHosReservationDetail";
+	}
 
+	//동물병원 예약 취소
+	@RequestMapping("/cancleRev2")
+	@ResponseBody
+	public int cancleRev2(String hos_rnum) {	
+		int result = clientInfoService.cancleRev2(hos_rnum);
+		return result;
+	}
+	
 	// 포인트내역
 	@RequestMapping("/mypage/point")
 	public String point(
@@ -150,6 +184,91 @@ public class ClientInfoCotroller {
 		
 		return "/user/uMyPage/myAskDetail";
 	}
+	
+	@RequestMapping(value = "/maWriteForm")
+	public String maWriteForm (Model md, String user_num) {
+		md.addAttribute("user_num", user_num);
+		return "/user/uMyPage/myAskRegister";
+	}
+	
+	@RequestMapping(value = "/maWrite")
+	public String maWrite(
+			Model md
+			,HttpSession session
+			,MultipartHttpServletRequest req
+			,HttpServletResponse res
+			,Client cl
+			) throws Exception {
+		
+		res.setContentType("text/html; charset=utf-8");
+		
+		String user_num = req.getParameter("user_num");
+		String qna_title = req.getParameter("myAskTitle"); 
+		String qna_cont = req.getParameter("myAskCont");
+		
+		System.out.println("myAskTitle" + qna_title);
+		System.out.println("myAskCont" + qna_cont);
+		System.out.println("user_num" + user_num);
+		
+		MyAsk myAsk = new MyAsk();
+		myAsk.setUserNum(user_num);
+		myAsk.setQnaCont(qna_cont);
+		myAsk.setQnaTitle(qna_title);
+		
+		// 파일업로드
+		MultipartFile mf = req.getFile("myAskImg"); // 업로드 파라미터
+		if(mf != null) {
+			
+			String path = req.getRealPath("/resources/uploadFile/myAsk"); // 자징될 위치
+			UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
+			String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
+			String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
+			File uploadFile = new File(path + "//" + saveName); // 복사될 위치
+			
+			try {
+				mf.transferTo(uploadFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			myAsk.setQnaImg(saveName);
+			
+			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
+				}
+				
+			System.out.println("[세훈 ]" + myAsk.toString());
+			int result = myAskService.MyAskInsert(myAsk);
+			
+			PrintWriter out = null;
+			
+			String msg1 = "문의 등록 완료";
+			String msg2 = "문의 등록 실패";
+			
+			try {
+				out = res.getWriter();
+				if(result == 1) {
+					out.println("<script>alert('" + msg1 + "');</script>");
+					System.out.println("[세훈] 문의 등록 성공");
+					
+				} else {
+					out.println("<script>alert('" + msg2 + "');</script>");
+					System.out.println("[세훈] 문의 등록 실패");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				out.flush();
+				out.close();
+			}
+
+			//TODO 리다이렉트
+//			redirect:/board/boardList
+		return "redirect:/myAsk";
+	}
+	
+
+	
+	
 	
 	// 내 찜 목록
 		@RequestMapping("/mypage/myzzim")

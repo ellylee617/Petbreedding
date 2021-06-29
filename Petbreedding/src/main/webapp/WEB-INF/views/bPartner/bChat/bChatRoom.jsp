@@ -1,5 +1,3 @@
-<%@page import="kh.com.petbreedding.BP.model.vo.BPartner"%>
-<%@page import="kh.com.petbreedding.client.model.vo.Client"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,66 +14,13 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 </head>
 <body>
+	<c:set var="profile" value='<%=session.getAttribute("login")%>' />
 	<div class="closebtn">
 			<a href="#" onclick="javascript:top.window.close()">닫기</a>
 	</div>
 	<div class="col-12 row justify-content-center align-items-center my-5 ">
 		<img src="${path}/resources/images/logo-resize.png" class="img-fluid" />
 	</div>
-	<c:if test="${user == 'user'}">
-	<div class="col-12 bInfo">
-		<div class="col-10 bInfoinner">
-			${ShopName }
-		</div>
-	</div>
-	<!-- 채팅 내용 -->
-	<div class="col-12">
-		<div class="col-11" id="chatArea">
-			<div id="chatMessageArea">
-			<c:if test="${not empty chatlist }">
-			<c:forEach items="${chatlist }" var="c" varStatus="status">
-				<c:if test="${c.cl_num eq c.mSender }">
-				<div class="col-12 row dMessageO">
-				<div class="col-2 dMessage my">
-				<div class="dNick">${nickName}</div></div><br>
-					<div class="col-10 dConO my">
-					<div class="col-12 dConI mycolor">
-					<span>
-					${c.mContent}</span></div>
-					<div class = "col-12 dTimeO"><br>
-					<div>${c.mSendTime }</div></div>
-					</div></div><br><br><br><br>
-				</c:if>
-				<c:if test="${c.cl_num ne c.mSender }">
-					<div class="col-12 row dMessageO">
-					<div class="col-2 dMessage U">
-					<div class="dNick">${ShopName}</div></div><br>
-					<div class="col-10 dConO U">
-					<div class="col-12 dConI Ucolor">
-					<span>
-					${c.mContent}</span></div>
-					<div class="col-12 dTimeO"><br>
-					<div>${c.mSendTime }</div></div>
-					</div></div><br><br><br><br>
-				</c:if>
-			</c:forEach>
-			</c:if>
-			<c:if test="${empty chatlist }">
-			 대화내용이 없어용
-			</c:if>
-			</div>
-		</div>
-	</div>
-	<!-- 채팅 입력창 -->
-	<div class="col-12 inputchatwrap">
-		<div class="col-12 textwrap">
-			<textarea class="form-control" placeholder="내용을 입력해주세요" id="message" rows="4" cols="35"></textarea>
-			<button type="button" id="sendBtn" class="basicBtn">전송</button>
-		</div>
-	</div>
-	</c:if>
-	
-	<c:if test="${user ne 'user'}">
 	<div class="col-12 bInfo">
 		<div class="col-10 bInfoinner">
 			${nickName }
@@ -127,7 +72,6 @@
 			<button type="button" id="sendBtn" class="basicBtn">전송</button>
 		</div>
 	</div>
-	</c:if>
 </body>
 <script type="text/javascript" src="${path}/resources/js/user/uMyPage/myChatRoom.js"></script>
 </html>

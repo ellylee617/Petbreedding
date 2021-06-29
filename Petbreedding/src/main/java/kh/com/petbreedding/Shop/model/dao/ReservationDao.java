@@ -43,6 +43,11 @@ public class ReservationDao {
 		return sqlSession.selectList("ShopRev.checkTime", hrv);
 	}
 	
+	//동물병원
+	public List<HospitalReservation> shopPayment2(String hos_rnum){
+		return sqlSession.selectList("shopPay.myRevPay2", hos_rnum);
+	}	
+	
 	public int insertHosRev(HospitalReservation hos) {
 		return sqlSession.insert("ShopRev.insertHosRev", hos);
 		

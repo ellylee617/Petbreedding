@@ -3,6 +3,7 @@ package kh.com.petbreedding.mypage.model.service;
 import java.util.List;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.client.model.vo.Client;
 
 public interface ClientInfoService {
@@ -24,8 +25,9 @@ public interface ClientInfoService {
 	public int getPrice(String har_rnum); //총합
 	public int cancleRev(String har_rnum); //결제취소
 	
-	
-	
+	//동물병원
+	public List<HospitalReservation> myRevDetail2(String hos_rnum);	//예약 상세조회
+	public int cancleRev2(String hos_rnum); //결제 취소
 	
 	
 	

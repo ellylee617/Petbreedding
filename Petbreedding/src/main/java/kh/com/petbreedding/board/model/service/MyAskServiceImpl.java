@@ -41,6 +41,30 @@ public class MyAskServiceImpl implements MyAskService {
 		return result;
 	}
 
+	@Override
+	public int MyAskInsert(MyAsk myAsk) {
+		int result = 0;
+		String user_num = myAsk.getUserNum();
+		if(user_num.contains("CL")) {
+			String qna_wr = myAskDao.getClientNickName(user_num);
+			myAsk.setQnaWr(qna_wr);
+			System.out.println("[세훈] @MyAsk 서비스 qna_wr" + qna_wr);
+		} else {
+			String qna_wr = myAskDao.getBpNickName(user_num);
+			myAsk.setQnaWr(qna_wr);
+			System.out.println("[세훈] @MyAsk 사장님 서비스 qna_wr" + qna_wr);
+		}
+		
+		
+		
+		try {
+			result = myAskDao.MyAskInsert(myAsk);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 
 	
 	

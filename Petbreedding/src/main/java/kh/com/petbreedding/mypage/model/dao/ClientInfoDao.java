@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.client.model.vo.Client;
 
 @Repository("clientInfoDao")
@@ -63,7 +64,12 @@ public class ClientInfoDao {
 	}
 	
 	
-	
-	
-	
+	//동물병원 예약확인 상세조회
+	public List<HospitalReservation> myRevDetail2(String hos_rnum){
+		return sqlSession.selectList("myRev.myRevDetail2", hos_rnum);
+	}
+	//동물병원 결제 취소
+	public int cancleRev2(String hos_rnum){
+		return sqlSession.update("myRev.cancleRev2", hos_rnum);
+	}
 }

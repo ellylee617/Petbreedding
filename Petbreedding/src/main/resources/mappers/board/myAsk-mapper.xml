@@ -39,5 +39,22 @@
 		SELECT * FROM QNA_BOARD WHERE QNA_NUM = #{qnaNum}
 	</select>
 	
+	<select id="getClientNickName" parameterType="string" resultType="string">
+		SELECT CL_NICKNAME FROM CLIENT WHERE CL_NUM = #{userNum}
+	</select>  
+	
+	<select id="getBpNickName" parameterType="string" resultType="string">
+		SELECT BP_NAME FROM BUSINESS_PARTNER WHERE BP_ID = #{userNum}
+	</select>
+	
+	<insert id="MyAskInsert" parameterType="MyAsk">
+		<![CDATA[
+			INSERT INTO QNA_BOARD VALUES (
+			'Q'||SEQ_QNA_BOARD.NEXTVAL, #{userNum}, #{qnaTitle}, #{qnaCont},
+			#{qnaImg}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{qnaWr}, 0
+			)
+		]]>
+	</insert>
+	
 	
 </mapper>

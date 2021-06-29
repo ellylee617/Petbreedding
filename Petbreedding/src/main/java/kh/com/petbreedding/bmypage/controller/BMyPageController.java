@@ -34,6 +34,8 @@ import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.Style;
+import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.vo.MyAsk;
 
 @Controller
 public class BMyPageController {
@@ -43,6 +45,9 @@ public class BMyPageController {
 
 	@Autowired
 	private BInfoService bInfoService;
+	
+	@Autowired
+	private MyAskService myAskService;
 
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
@@ -75,24 +80,27 @@ public class BMyPageController {
 	// 사장님 마이 페이지 자주 묻는 질문
 	@RequestMapping(value = "/bFAQ", method = RequestMethod.GET)
 	public String bFAQ(Locale locale, Model model) {
-
-		// TODO Auto-generated method stub
+		
 		return "/bPartner/bBoard/bFAQ";
 	}
 
 	// 사장님 마이 페이지 1:1문의 내역
 	@RequestMapping(value = "/bQna", method = RequestMethod.GET)
-	public String bQna(Locale locale, Model model) {
-
-		// TODO Auto-generated method stub
+	public String bQna(Model md, String user_num) {
+		
+		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 user_num : " + user_num);
+		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
+		md.addAttribute("bQnaList", myAskList);
+		md.addAttribute("user_num", user_num);
+		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 myAskList : " + myAskList);
+		
 		return "/bPartner/bBoard/bQna";
 	}
 
 	// 사장님 마이 페이지 1:1문의하기
 	@RequestMapping(value = "/bQna/write", method = RequestMethod.GET)
-	public String bQnaWrite(Locale locale, Model model) {
-
-		// TODO Auto-generated method stub
+	public String bQnaWrite(Model md, String user_num) {
+		md.addAttribute("user_num", user_num);
 		return "/bPartner/bBoard/bQnaWrite";
 	}
 

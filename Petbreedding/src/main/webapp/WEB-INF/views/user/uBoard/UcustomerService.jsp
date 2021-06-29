@@ -34,7 +34,7 @@
             <div class="inside">
                 <a href="UcustomerService.jsp"><p>공지사항</p></a>
                 <a href="oftenqna"><p>자주묻는질문</p></a>
-                <a href="bwrite"><p>1:1 문의 작성</p></a>
+                <a href="maWriteForm"><p>1:1 문의 작성</p></a>
                 </div>
         </div>
         </div>
