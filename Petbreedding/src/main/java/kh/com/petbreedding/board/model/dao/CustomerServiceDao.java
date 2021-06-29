@@ -20,4 +20,8 @@ public class CustomerServiceDao {
 	public List<CustomerService> CustomerServiceSelectListA() {
 		return sqlSession.selectList("CustomerService.CustomerServiceSelectListA");
 	}
+	
+	public int CustomerServiceInsert(CustomerService cs) {
+		return sqlSession.insert("CustomerService.CustomerServiceInsert", cs);
+	}
 }
