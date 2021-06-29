@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bprev">
+	<!-- 미용실 예약VO -->
+	<resultMap type="HairRev" id="HairRev">
+		<id column="HAR_RNUM" property="har_rnum"/>
+		<result column="MSG_NUM" property="msg_num" />
+		<result column="CL_NUM" property="cl_num" />
+		<result column="PET_NUM" property="pet_num" />
+		<result column="STYLE_NUM" property="style_num" />
+		<result column="HAR_NUM" property="har_num" />
+		<result column="RES_DATE" property="res_date" />
+		<result column="RES_STATUS" property="res_status" />
+		<result column="RES_TIME" property="res_time" />
+		<result column="STYLE_NUM2" property="style_num2" />
+		<result  column="CL_NAME" property="name"/>
+	</resultMap>
+	
+		<resultMap type="Client" id="Client">
+		<id column="CL_NUM" property="cl_num" />
+		<result  column="CL_EMAIL" property="email"/>
+		<result  column="CL_PWD" property="password"/>
+		<result  column="CL_NICKNAME" property="nickname"/>
+		
+		<result  column="CL_TEL" property="tel"/>
+		<result  column="NAVERLOGIN" property="naverlogin"/>
+		<result  column="KAKAOLOGIN" property="kakaologin"/>
+	</resultMap>
+	
+		<!-- 미용실 예약조회  (사용자 페이지)-->
+	<select id="hartRavList"  resultMap="HairRev">
+	select client.cl_name, HAR_RESERVATION.*
+	from HAR_RESERVATION join client 
+	on HAR_RESERVATION.cl_num = client.cl_num
+	</select>
+
+</mapper>

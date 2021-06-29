@@ -14,7 +14,9 @@ console.log(email);
 console.log(cmcode);
 console.log(bpid);
 
+
 $("#check_module").click(function () {
+	if($("#agrs1").is(":checked") == true){
 var IMP = window.IMP; // 생략가능
 IMP.init('imp92318493');
 // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -57,7 +59,7 @@ buyer_name: name,
 buyer_tel: tel,
 //buyer_addr: '서울특별시 강남구 삼성동',
 //buyer_postcode: '123-456',
-m_redirect_url: 'successPay'
+m_redirect_url: 'successCta'
 /*
 모바일 결제시,
 결제가 끝나고 랜딩되는 URL을 지정
@@ -71,7 +73,7 @@ msg += '고유ID : ' + rsp.imp_uid;
 msg += '상점 거래ID : ' + rsp.merchant_uid;
 msg += '결제 금액 : ' + rsp.paid_amount;
 msg += '카드 승인번호 : ' + rsp.apply_num;
-location.href = '/petbreedding/successPay';
+location.href = 'successCta';
 paysuceess();
 
 
@@ -85,6 +87,10 @@ alert(msg);
 
 
 });
+	}else{
+		alert("이용동의에 모두 체크해주세요.");
+		return false;
+	}
 
 /*ajax*/
 

@@ -2,7 +2,7 @@ var modal = document.getElementById("modalRe");
 var modalReWin = document.getElementById("modalRe-Win");
 var btnReWr = document.getElementById("btnReWr")
 var selectedEle = document.getElementById("selectedVal");
-//날짜 현재날짜로 지정해서 검색
+
 $(function(){
 	currentDay();
 	$("#searchDate").trigger("click");
@@ -157,7 +157,10 @@ $("#searchDate").on("click",function(){
 		            $(".resInfoBox").click(function() {
 		            	var idVar = $(this).attr("id");	//	클릭된 행의 id
 		            	var th = $(this).find('.btnReWr');	//	클릭된 행의 리뷰 작성 버튼
-
+		            	
+		            	console.log(th);
+		            	console.log('콘솔로그');
+		            	
 		            	if(th.length < 1) {	//	버튼이 있는 행은 길이가 1, 없는 행은 길이가 0이므로 1보다 작으면 goDetail 함수를 실행해서 상세페이지로 이동
 		            		goDetail(idVar);
 		            	}
@@ -184,16 +187,8 @@ $("#searchDate").on("click",function(){
 
 
 function goDetail(value){
-	if(value.substring(0,3) == "HAR"){
-		har_rnum = value;
-		location.href = "/petbreedding/revdetail?har_rnum="+har_rnum+"";
-	}else if(value.substring(0,3) == "HOS"){
-		hos_rnum = value;
-		location.href = "/petbreedding/revdetail2?hos_rnum="+hos_rnum+"";
-	}
-	var har_rnum ="";
-	var hos_rnum = "";
-
+	
+	location.href = "/petbreedding/revdetail?har_rnum="+value+"";
 }
 
 

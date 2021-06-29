@@ -57,6 +57,8 @@
 		<mapper resource="mappers/Chat/Chat-mapper.xml"/>
 		<mapper resource="mappers/board/myAsk-mapper.xml"/>
 		<mapper resource="mappers/board/customerService-mapper.xml"/>
+		<mapper resource="mappers/BP/bPRev-mapper.xml"/>
+		
 	</mappers>
 	
 </configuration>
