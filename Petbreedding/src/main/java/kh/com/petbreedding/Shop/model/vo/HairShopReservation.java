@@ -22,16 +22,9 @@ public class HairShopReservation {
 	private MyPet pet;
 	private Style style;
 	private HairSalon hairSalon;
-<<<<<<< HEAD
 	private int startIndex;
 	private int cntPerPage;
-=======
 	private String name;
-	
-	
-	
-
->>>>>>> d78a344647ff02701e6b9648e279237780807249
 	@Override
 	public String toString() {
 		return "HairShopReservation [har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
