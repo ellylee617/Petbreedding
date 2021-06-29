@@ -33,25 +33,26 @@ public class ChatController {
 
 	@RequestMapping("/chat")
 	public ModelAndView chat(ModelAndView mv,
-			@RequestParam(value = "chatId") String chatId, 
-			@RequestParam(value = "shopName", required=false) String ShopName, 
+			@RequestParam(value = "chatId", required=false) String chatId, 
+			@RequestParam(value = "shopName", required=false) String shopName, 
 			HttpServletRequest req) {
 		List<ChatMessage> list = null;
 		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("client");
 		String nickName = "";
-		String email="";
-		
+		String id = "";
+	
 		if (session != null) {
 			nickName = client.getNickname();
-			email = client.getEmail();
+			id = client.getEmail();
 			list = chService.getMessageList(chatId);
 		}
 		String user = "user";
 		mv.addObject("user", user);
-		mv.addObject("email", email);
 		mv.addObject("chatlist", list);
-		mv.addObject("ShopName", ShopName);
+		mv.addObject("id", id);
+		mv.addObject("chatId", chatId);
+		mv.addObject("shopName", shopName);
 		mv.addObject("nickName", nickName);
 		mv.setViewName("/user/uMyPage/myChatRoom");
 		return mv;
@@ -59,24 +60,25 @@ public class ChatController {
 	
 	@RequestMapping("/bchat")
 	public ModelAndView bchat(ModelAndView mv,
-			@RequestParam(value = "chatId") String chatId, 
+			@RequestParam(value = "chatId", required=false) String chatId, 
 			@RequestParam(value = "nickName", required=false) String nickName, 			
 			@RequestParam(value = "shopName", required=false) String shopName, 			
 			HttpServletRequest req) {
 		List<ChatMessage> list = null;
 		HttpSession session = req.getSession();
 		BPartner bpartner = (BPartner) session.getAttribute("bP");
-		String email = "";
+		String id = "";
 		if (session != null) {
-			email = bpartner.getBp_email();
+			id = bpartner.getBp_email();
 			list = chService.getMessageListbp_id(chatId);
 		}
 		String user = "bPartber";
 		mv.addObject("user", user);
-		mv.addObject("email", email);
 		mv.addObject("chatlist", list);
-		mv.addObject("nickName", nickName);
+		mv.addObject("id", id);
+		mv.addObject("chatId", chatId);
 		mv.addObject("shopName", shopName);
+		mv.addObject("nickName", nickName);
 		mv.setViewName("/user/uMyPage/myChatRoom");
 		return mv;
 	}
