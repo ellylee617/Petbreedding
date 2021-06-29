@@ -2,6 +2,7 @@ package kh.com.petbreedding.board.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,9 +15,20 @@ public class MyAskDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public int listCount() {
+		return sqlSession.selectOne("MyAsk.listCount");
+	}
+	
 	public List<MyAsk> MyAskSelectList(String user_num) {
 		System.out.println("[세훈] @일대일 문의 다오 진입");
 		return sqlSession.selectList("MyAsk.MyAskSelectList", user_num);
+	}
+	
+	public List<MyAsk> MyAskSelectListM(int currentPage, int limit) {
+		int startRow = (currentPage -1) * limit;
+		RowBounds row = new RowBounds(startRow, limit);
+		
+		return sqlSession.selectList("MyAsk.MyAskSelectListM", null, row);
 	}
 	
 	public MyAsk MyAskSelectOne(String qna_num) {

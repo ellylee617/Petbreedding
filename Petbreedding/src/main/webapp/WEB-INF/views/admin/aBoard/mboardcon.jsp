@@ -12,41 +12,49 @@
 <link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/admin/mAside.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/admin/mboard.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/admin/aBoard/mboard.css" rel="stylesheet" type="text/css" >
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<div class="wrapper">
 	<jsp:include page="../mheader.jsp" />
-	 <section class="section">
-	 <jsp:include page="../mAside.jsp"/>
-	   <div class="mContent">
-    
-            <div class="conhead">
-                <p>[회원]</p>
-                <p>결제 문의 드립니다</p>
-                <p>작성자 : 또비언니</p>
-                <p>작성일 : 2021-06-15</p>
-            </div>
-            <div class="conimg">
-                <img src="http://placehold.it/400x300">
-            </div>
-            <div class="conbtn">
-                <button class="basicBtn" id="listBtn">목록</button>
-                <button class="basicBtn" id="updeteBtn">수정</button>
-                <button class="basicBtn" id="delBtn">삭제</button>
-
-            </div>
-            <div class="reply">
-                <input type="text" name="#" id="replt">
-                <button class="basicBtn" id="submitbtn">등록</button>
-            </div>
-        
-</div>
-	   </section>
+		<section class="section">
+			<jsp:include page="../mAside.jsp"/>
+			<div class="mContent">
+			
+		        <div class="conhead">
+				        
+			       	<c:choose>
+						<c:when test="${mAsk.qnaType eq 1}">
+						<p>[회원]</p>
+						</c:when>
+						<c:otherwise>
+						<p>[사업자]</p>
+						</c:otherwise>
+					</c:choose>
+					<p>${mAsk.qnaCont}</p>
+					<p>작성자 : ${mAsk.qnaWr}</p>
+					<p>작성일 : ${mAsk.qnaDate}</p>
+				</div>
+				
+				<div class="conimg">
+				    <img src="http://placehold.it/400x300">
+				</div>
+				<div class="conbtn">
+				    <button class="basicBtn" id="listBtn">목록</button>
+				    <button class="basicBtn" id="updeteBtn">수정</button>
+				    <button class="basicBtn" id="delBtn">삭제</button>
+				
+				</div>
+				<div class="reply">
+				    <input type="text" name="#" id="replt">
+				    <button class="basicBtn" id="submitbtn">등록</button>
+				</div>
+			</div>
+		</section>
 	<jsp:include page="../../common/footer.jsp" />
 	</div>	 
 <script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
-	</body>
-	</html>
+</body>
+</html>
