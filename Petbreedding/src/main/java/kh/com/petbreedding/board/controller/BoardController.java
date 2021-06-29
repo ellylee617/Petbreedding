@@ -101,9 +101,9 @@ public class BoardController {
 	}
 	
 	// 게시글 작성
-	@RequestMapping(value = "/bWrite", method = RequestMethod.GET)
+	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
 	public String bWrite(Locale locale, Model model) {
-		return "/user/uBoard/bWrite";
+		return "/user/uBoard/bwrite";
 	}
 	
 	
