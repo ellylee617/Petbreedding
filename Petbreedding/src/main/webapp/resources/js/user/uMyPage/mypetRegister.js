@@ -71,11 +71,42 @@ $("#selectPet").blur(function() {
 $("#pet_birth").blur(function() {
 	if ($("#pet_birth").val() == "") {
 		// 빈칸일시
-		$("#pet_birthchk").text("필수입력칸입니다. 펫 나이를 입력해주세요");
+		$("#pet_birthchk").text("필수입력칸입니다. 펫 나이를 입력해주세요.");
 		$("#pet_birthchk").css("color", "red");
 	} else {
 		$("#pet_birthchk").text("나이가 입력되었습니다.");
 		$("#pet_birthchk").css("color", "green");
 	}
 });
+
+$("#pet_weight").blur(function() {
+	var pattern1 = /^[0-9.]*$/;	
+	var str = document.getElementById("pet_weight").value;
+	if (!pattern1.test(document.getElementById("pet_weight").value)) {
+		// 빈칸일시
+		$("#pet_weightchk").text("몸무게는 숫자로만 입력해주세요.");
+		$("#pet_weightchk").css("color", "red");
+	} else {
+		$("#pet_weightchk").text("나이가 입력되었습니다.");
+		$("#pet_weightchk").css("color", "green");
+	}
+});
+
+
+//사진 미리보기 
+
+function setThumbnail(event) {
+	for (var image of event.target.files) { 
+		var reader = new FileReader(); 
+		reader.onload = function(event) { 
+			var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result); 
+			img.setAttribute("width", "150"); 
+			img.setAttribute("height", "150");
+			img.setAttribute("text-align", "");
+			document.querySelector("div.imgBox").appendChild(img); };
+			console.log(image); 
+			reader.readAsDataURL(image);
+	}
+}
 

@@ -96,10 +96,11 @@ public class shopController {
 			@RequestParam Long shopType
 			, Locale locale
 			, ModelAndView mv
-			, HttpServletRequest request) {
+			, HttpServletRequest request) throws Exception{
 //		System.out.println("[세훈]");
 		System.out.println("shopPage 컨트롤러 진입");
 		String bpId = request.getParameter("bpId"); 
+		ctaService.delcta(bpId);
 		
 		System.out.println("매장 타입:"+shopType);
 		mv.addObject("shopType", shopType);
