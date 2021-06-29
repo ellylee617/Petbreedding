@@ -92,11 +92,11 @@ $("#searchDate").on("click",function(){
 	}else{
 		$.ajax({
 			url:"mypage2",
-			type:"POST",
+			type:"GET",
 			data :{
 				cl_num : cl_num,
 				res_date : res_date,
-				res_date2 : res_date2
+				res_date2 : res_date2,
 			},
 			success: function(data){
 				
@@ -139,7 +139,7 @@ $("#searchDate").on("click",function(){
 		            
 		            var td = "";
 		            //td += '<tr onclick="goDetail('+param+')">'; // 리뷰 작성 버튼과 겹치기 때문에 onClick 보다 우선 순위가 더 낮은 id를 통해 페이지 이동
-		            td += "<tr id="+param+" class='resInfoBox'>";
+		            td += "<tr id="+param+" class='resInfoBox' style='display:none;'>";
 		            td += "<td>"+$res_date+"</td>";
 		            td += "<td>"+$har_name+"</td>";
 		            if(res_status == "이용완료"){
@@ -168,6 +168,15 @@ $("#searchDate").on("click",function(){
 		             	
 		          }
 		          
+		          //리스트 잘라서 5개만 보여주기
+		          $(".resInfoBox").slice(0,5).show();
+
+		          //총 데이터 갯수가 5개가 초과하면 더보기 버튼 추가
+	               var moreBtn = "<button type='button' id='btnmore' onclick='clickMore()'>더보기</button>"; 
+	               if(data.length > 5 ){
+						$(".divmore").append(moreBtn);				
+					} 
+
 		         }else{
 		        	 var td = "";
 		        	 td += "<tr>";
@@ -183,9 +192,27 @@ $("#searchDate").on("click",function(){
 	
 });
 
+function clickMore(){
+	console.log("들어왔슈");
+	hiddenComment = $(".resInfoBox").filter(function(){
+		return $(this).css('display') == 'none';
+	});
+	count = hiddenComment.length;
+	if(count == 0){
+		$("#btnmore").css("display","none");
+		alert("더 이상 항목이 없습니다.");
+	}else{
+		$(hiddenComment).slice(0,5).show();
+	}
+}
+//더보기 버튼 눌렀을시
+$("#btnmore").on("click",function(){
+
+});
+
+
+
 //상세보기페이지 진입
-
-
 function goDetail(value){
 	
 	location.href = "/petbreedding/revdetail?har_rnum="+value+"";

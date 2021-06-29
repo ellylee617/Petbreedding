@@ -51,7 +51,7 @@
 				<table class="rtable rlist">
 					<!-- 예약 조회한 값이 들어옴 -->
 				</table>
-				
+				<div class="divmore"></div>
 
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
