@@ -22,6 +22,8 @@ public class HairShopReservation {
 	private MyPet pet;
 	private Style style;
 	private HairSalon hairSalon;
+	private int startIndex;
+	private int cntPerPage;
 	@Override
 	public String toString() {
 		return "HairShopReservation [har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
@@ -125,6 +127,18 @@ public class HairShopReservation {
 	}
 	public void setHairSalon(HairSalon hairSalon) {
 		this.hairSalon = hairSalon;
+	}
+	public int getStartIndex() {
+		return startIndex;
+	}
+	public int getCntPerPage() {
+		return cntPerPage;
+	}
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+	public void setCntPerPage(int cntPerPage) {
+		this.cntPerPage = cntPerPage;
 	}
 	
 
