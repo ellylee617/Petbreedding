@@ -17,6 +17,11 @@ public class Hospital {
 	private String hosConn;		// 동물병원 채팅 접속여부
 	private String hosClick;	// 동물병원 잔여 클릭수
 	
+	
+
+
+	
+
 
 	@Override
 	public String toString() {
@@ -25,7 +30,7 @@ public class Hospital {
 				+ shopMInfo + ", hosConn=" + hosConn + ", hosClick=" + hosClick + "]";
 	}
 
-	
+
 	public String getY() {
 		return y;
 	}

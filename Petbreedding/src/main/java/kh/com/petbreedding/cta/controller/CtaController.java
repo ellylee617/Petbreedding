@@ -107,5 +107,11 @@ public class CtaController {
 		return "redirect:cta";
 	}
 	
+	//울트라콜 결제완료시
+		@RequestMapping(value = "/successCta", method = RequestMethod.GET)
+		public String successPay(Locale locale, Model model) {
+			return "bPartner/bSales/ctasuccess";
+		}
+	
 
 }

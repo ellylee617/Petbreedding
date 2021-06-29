@@ -41,23 +41,32 @@ public class shopController {
 	@Autowired
 	private CtaService ctaService;
 
+	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
 	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception{
 		
 		// shopType 0은 미용실, 1은 동물병원
 		
 		if(shopType==0) {
+			
+			int harShopType = 0;
 			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			List<HairSalon> ultra = ctaService.ctabuylist();
+			
+			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
+			
+			
 		} else {
 			
+			int hosShopType = 1;
 			List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
 			System.out.println("컨트롤러 동물병원 리스트:"+hosList);
 			
+			mv.addObject("shopType", hosShopType);
 			mv.addObject("shopList", hosList);
 			mv.setViewName("/user/uShop/shopList");
 		}
@@ -81,19 +90,51 @@ public class shopController {
 //		return mv;
 //	}
 	
+	// 사업장 상세 페이지 
 	@RequestMapping(value = "/shopPage")
-	public ModelAndView shopPage(Locale locale, ModelAndView mv, HttpServletRequest request) {
-		System.out.println("[세훈]");
+	public ModelAndView shopPage(
+			@RequestParam Long shopType
+			, Locale locale
+			, ModelAndView mv
+			, HttpServletRequest request) throws Exception{
+//		System.out.println("[세훈]");
 		System.out.println("shopPage 컨트롤러 진입");
 		String bpId = request.getParameter("bpId"); 
+		ctaService.delcta(bpId);
+		
+		System.out.println("매장 타입:"+shopType);
+		mv.addObject("shopType", shopType);
+		
 //		try {
 //			bpId = Integer.parseInt(request.getParameter("bpId"));
 //		}catch(Exception e) {
 //			e.printStackTrace();
 //		}
+		
+		
+		// ** 미용실 ** 
+		if(shopType==0) {
+			
+			// 기본 정보 출력 
+			HairSalon har = shopService.selectHarInfo(bpId);
+			System.out.println("미용실 정보::"+har);
+			mv.addObject("harInfo", har);
+			
+		} else {
+			
+			//TODO:동물병원
+			
+		}
+		
+		
+		// 리뷰 리스트
 		List<Review> reviewList = reviewService.reviewSelectList(bpId, STARTPAGE, 5);
 		System.out.println("리뷰 리스트 가져왔다면 보여줘 --> " + reviewList);
 		mv.addObject("reviewList", reviewList);
+		
+		
+		
+		
 		mv.setViewName("/user/uShop/shopInfoRead");
 		
 		System.out.println("컨트롤러 끝");

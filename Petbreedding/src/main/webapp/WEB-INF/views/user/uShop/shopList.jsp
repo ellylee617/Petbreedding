@@ -49,7 +49,7 @@
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -71,8 +71,9 @@
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
-                                <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
+                                    <input type="hidden" id="y" name="y" value="${item.y }">
+                           			<input type="hidden" id="x" name="x" value="${item.x }">
                                 </div>
                             </div>                                                            
                         </li>
@@ -114,7 +115,7 @@
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${cta.bpId }"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -139,7 +140,9 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
+                                    <input type="hidden" id="y" name="y" value="${item.y }">
+                           			<input type="hidden" id="x" name="x" value="${item.x }">
                                 </div>
                                </form>
                             </div>                                                            
@@ -194,5 +197,6 @@
     <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/user/uShop/shopList.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/common/map.js"></script>
 </body>
 </html>

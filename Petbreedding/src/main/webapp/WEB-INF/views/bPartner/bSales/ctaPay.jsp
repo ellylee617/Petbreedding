@@ -32,7 +32,7 @@
 						</div>
 						<div class="mt15">
 							<span>구매자명</span> <span id="name" >${bP.bp_name}</span>
-							<input type="text" id="BP_ID" value="${bP.bp_Id}"/>
+							<input type="hidden" id="BP_ID" value="${bP.bp_Id}"/>
 						</div>
 						<div class="mt15">
 							<span>연락처</span> <span id="tel">${bP.bp_tel}</span>
@@ -59,24 +59,24 @@
 							<div class="container">
 								<p>이용 동의</p>
 								<div>
-									<input type="checkbox" id="allAgr" class="mb30" name="allAgr"> <label
-										for="allAgr">모두 동의</label>
+									<input type="checkbox" id=agrs1 class="mb30"> <label
+										for="agrs1">모두 동의</label>
 								</div>
 
 								<div>
-									<input type="checkbox" id="agr1" class="mb30"  name="args">
-									<label for="agr1">상기 결제 내역을 확인, 결제 진행에 동의(필수)</label>
+									<input type="checkbox" id="agr2" class="agreeAll mb30" >
+									<label for="agr2">상기 결제 내역을 확인, 결제 진행에 동의(필수)</label>
 								</div>
 
 								<div>
-									<input type="checkbox" id="agr2" name="args">
-									<label for="agr2">취소/변경/환불/수수료 및 기한을 확인 후 동의(필수)</label>
+									<input type="checkbox" id="agr3" class="agreeAll">
+									<label for="agr3">취소/변경/환불/수수료 및 기한을 확인 후 동의(필수)</label>
 									<p class="detail">자세히 보기</p>
 								</div>
 
 								<div>
-									<input type="checkbox" id="agr3" name="args">
-									<label for="agr3">개인 정보 수집에 동의</label>
+									<input type="checkbox" id="agr4"  class="agreeAll">
+									<label for="agr4">개인 정보 수집에 동의</label>
 									<p class="detail">자세히 보기</p>
 								</div>
 

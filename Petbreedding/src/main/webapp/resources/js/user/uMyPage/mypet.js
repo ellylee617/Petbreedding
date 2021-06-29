@@ -1,5 +1,5 @@
 //삭제  누르면 모달창 띄움
-$(".cancleM").on("click",function(){
+$("#cancleM").on("click",function(){
 	$("#cancel-modal").css("display","block");
 });
 
