@@ -377,6 +377,21 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 미용실 이미지 리스트 불러오기
+	@Override
+	public List<HairSalonImg> selectHarImgList(String harNum) {
+		List<HairSalonImg> harImgList = null;
+		System.out.println(" ~ ShopService 진입 ~");
+		try {
+			harImgList = shopDao.selectHarImgList(harNum);
+		} catch(Exception e) {
+		}
+		System.out.println("List<HairSalonImg> harImgList ::" + harImgList);
+		return harImgList;
+	}
+
+
+
 
 
 

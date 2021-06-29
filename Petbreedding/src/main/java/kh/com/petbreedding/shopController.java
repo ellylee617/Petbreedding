@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.ReviewService;
@@ -53,12 +54,22 @@ public class shopController {
 			int harShopType = 0;
 			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+			
+//			List<HairSalonImg> harImgList = shopService.selectHarImgList();
+			
 			List<HairSalon> ultra = ctaService.ctabuylist();
 			
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
+			
+			
+			
+			// 미용실 매장 사진 리스트
+			// TODO
+			
+//			harImg= shopService.selec
 			
 			
 		} else {
@@ -70,6 +81,10 @@ public class shopController {
 			mv.addObject("shopType", hosShopType);
 			mv.addObject("shopList", hosList);
 			mv.setViewName("/user/uShop/shopList");
+			
+			// 동물병원 매장 대표 사진 출력
+			// TODO
+			
 		}
 		
 		
@@ -121,12 +136,19 @@ public class shopController {
 			System.out.println("미용실 정보::"+har);
 			mv.addObject("harInfo", har);
 			
-			// 메뉴(스타일) 출력
+			// 해당 미용실 번호 출력하기
 			String harNum = har.getHarNum();
 			System.out.println("미용실 번호:"+harNum);
+			
+			// 메뉴(스타일) 출력
 			List<Style> styleList = shopService.selectStyleList(harNum);
 			System.out.println("스타일 리스트:"+styleList);
 			mv.addObject("styleList", styleList);
+			
+			// 미용실 사진 출력
+			List<HairSalonImg> harImgList = shopService.selectHarImgList(harNum);
+			System.out.println("미용실 사진 리스트:"+harImgList);
+			mv.addObject("harImgList", harImgList);
 			
 		} else {
 			

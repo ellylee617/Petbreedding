@@ -28,9 +28,11 @@
             <div class="store_area">
             <!-- 매장 타입이 0이면 미용실 -->
                 <div class="store_info_article">
+                	<c:forEach var="harImgList" items="${harImgList }" varStatus="status">
                     <div class="store_img">
-                        <img src="http://placehold.it/400x400">
+                        <img src="${path}/resources/uploadFile/hairsalon/${harImgList.shopImg }" style="width:400px; height: 400px">
                     </div>
+                    </c:forEach>
                     <div class="store_name">
                         <h1>${harInfo.shopName }</h1>
                     </div>

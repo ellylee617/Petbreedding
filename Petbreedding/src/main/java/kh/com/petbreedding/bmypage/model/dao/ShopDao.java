@@ -85,6 +85,13 @@ public class ShopDao {
 		return  sqlSession.insert("Shop.insertHarImg", vo);
 	}
 	
+	// 미용실 이미지 리스트 불러오기
+	public List<HairSalonImg> selectHarImgList(String harNum){
+		System.out.println(" !! ShopDao - selectHarImgList() 실행 !!");
+		return  sqlSession.selectList("Shop.selectHarImgList", harNum);
+	}
+	
+	
 	// 미용실 이미지 수정 (삭제)
 	public int deleteHarImg(String harNum) {
 		System.out.println(" !! ShopDao - deleteHarImg() 실행 !!");
@@ -208,6 +215,12 @@ public class ShopDao {
 		System.out.println(" !! ShopDao - insertHarImg() 실행 !!");
 		return  sqlSession.insert("Shop.insertHosImg", vo);
 	}	
+	
+	// 동물병원 이미지 리스트 불러오기
+	// TODO
+	
+	
+	
 	// 동물병원 이미지 수정 (삭제) 
 	public int deleteHosImg(String hosNum) {
 		

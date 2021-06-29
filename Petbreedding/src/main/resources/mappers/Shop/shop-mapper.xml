@@ -58,7 +58,8 @@
 		
 		<!-- 미용실 전체 리스트 -->
 		<select id="selectHarList" parameterType="HairSalon" resultMap="HairSalon">
-			SELECT * FROM HAIR_SALON
+			SELECT * 
+			FROM HAIR_SALON
 		</select>
 			
 		<!-- TODO -->
@@ -105,11 +106,12 @@
 		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNumImg},#{shopImg})
 		</insert>
 		
-		<!-- 미용실 이미지 정보 불러오기 -->
-		<select id="selectInfo" parameterType="HairSalonImg">
+		
+		<!-- 미용실 이미지 리스트 불러오기 -->
+		<select id="selectHarImgList" parameterType="string" resultMap="HairSalonImg">
 		SELECT *
-		FROM HAIR_SALON
-		WHERE BP_ID = #{bpId}
+		FROM HAIR_SALON_IMG
+		WHERE HAR_NUM = #{harNum}
 		</select>
 		
 		<!-- 미용실 이미지 수정(삭제) -->
@@ -127,7 +129,7 @@
 			<!-- 수정된 미용실 이미지 추가 -->
 			<insert id="insertNewHarImg" parameterType="HairSalonImg">
 		INSERT INTO HAIR_SALON_IMG (IMG_NUM, HAR_NUM, HAR_IMG)
-		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNumImg},#{shopImg})
+		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNum},#{shopImg})
 		</insert>
 		
 		<!-- 미용실 주휴일 추가 -->
