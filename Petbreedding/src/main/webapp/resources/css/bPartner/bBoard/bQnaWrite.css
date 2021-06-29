@@ -19,36 +19,62 @@
 	float: left;
 }
 
-#title{
-	width: 50%;	
+#mServiceTitle{
+	width: 472px;
 	height: 40px;
 }
 
 #content{
 	width: 50%;	
 	height: 500px;
+	box-sizing: border-box;
 }
 
 .qnatitle{
 	width: 100%;
 	position: absolute;
 	top:20%;
-	left: 25%;
+	left: 15%;
 }
 
 .qnacontent{
 	width: 100%;
 	position: absolute;
 	top:25%;
-	left: 25%;
+	left: 15%;
 }
 
 .qanbtn{
 	width: 80%;
 	position: absolute;
-	top:65%;
-	left: 50%;
+	top:60%;
+	left: 40%;
+}
 
+.msTitle{
+	width: 100%;
+	position: absolute;
+	top:20%;
+	left: 20%;
+}
+
+.msContent{
+	width: 100%;
+	position: absolute;
+	top:25%;
+	left: 20%;
+}
+
+.msBtn{
+	width: 80%;
+	position: absolute;
+	top:63%;
+	left: 47%;
+}
+
+.selectBox {
+	width: 119px;
+    height: 40px;
 }
 
 .basicBtn{

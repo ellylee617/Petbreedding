@@ -12,11 +12,12 @@ public class CustomerService {
 	private String annTitle;
 	private String annCont;
 	private String annDate;
+	private String annType;
 	
 	@Override
 	public String toString() {
-		return "Service [annNum=" + annNum + ", adminId=" + adminId + ", annTitle=" + annTitle + ", annCont=" + annCont
-				+ ", annDate=" + annDate + "]";
+		return "CustomerService [annNum=" + annNum + ", adminId=" + adminId + ", annTitle=" + annTitle + ", annCont="
+				+ annCont + ", annDate=" + annDate + ", annType=" + annType + "]";
 	}
 
 	public String getAnnNum() {
@@ -58,6 +59,15 @@ public class CustomerService {
 	public void setAnnDate(String annDate) {
 		this.annDate = annDate;
 	}
+
+	public String getAnnType() {
+		return annType;
+	}
+
+	public void setAnnType(String annType) {
+		this.annType = annType;
+	}
 	
+
 	
 }

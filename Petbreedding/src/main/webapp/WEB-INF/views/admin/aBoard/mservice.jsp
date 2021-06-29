@@ -26,13 +26,13 @@
                 <h1>공지사항 게시판</h1>
                 <div class="select">
                     <select>
-                        <option value="1">전체</option>
-                        <option value="2">회원</option>
-                        <option value="3">사업자</option>
+                        <option value="0">전체</option>
+                        <option value="1">회원</option>
+                        <option value="2">사업자</option>
                     </select>
 
                 </div>
-                <button class="basicBtn" id="writeBtn">글쓰기</button>
+                <button class="basicBtn" id="writeBtn" onclick="location.href='/petbreedding/mserviceRegisterFrm'">글쓰기</button>
 
             </div>
             <div class="mboardrow">
@@ -41,33 +41,35 @@
                     <tr>
                       <th scope="cols" width="200px">구분</th>
                       <th scope="cols"  width="1400px">제목</th>
-                      <th scope="cols" width="200px">작성자</th>
+<!--                       <th scope="cols" width="200px">작성자</th> -->
                       <th scope="cols" width="200px">작성일</th>
                     
                     </tr>
                     </thead>
                     <tbody>
+                    
+                    <c:forEach items="${cusList}" var="list">
+                    
                     <tr>
-                      <td>[회원]</td>
-                      <td>결제문의 드립니다.</td>
-                      <td>또비언니</td>
-                      <td>2021-06-15</td>
+                    <c:choose>
+                    	<c:when test="${list.annType eq 0}">
+	                    	<td>[전체]</td>
+                    	</c:when>
+                    	<c:when test="${list.annType eq 1}">
+	                    	<td>[회원]</td>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<td>[사업자]</td>
+                    	</c:otherwise>
+                    </c:choose>
+                      <td>${list.annTitle }</td>
+<%--                       <td>${list.annTitle }</td> --%>
+                      <td>${list.annDate }</td>
                      
                     </tr>
-                    <tr>
-                        <td>[회원]</td>
-                      <td>결제문의 드립니다.</td>
-                      <td>또비언니</td>
-                      <td>2021-06-15</td>
-                      
-                      </tr>
-                      <tr>
-                        <td>[회원]</td>
-                      <td>결제문의 드립니다.</td>
-                      <td>또비언니</td>
-                      <td>2021-06-15</td>
-                  
-                      </tr>
+                    
+                    </c:forEach>
+
                     </tbody>
                   </table>
             </div>

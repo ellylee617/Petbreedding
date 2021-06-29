@@ -37,8 +37,8 @@ $(function() {
 </head>
 <body>
 	<div class="wrapper">
-		<section class="section">
 			<jsp:include page="../bheader.jsp" />
+		<section class="section">
 			<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
 				<h1>1:1 문의 내역</h1>

@@ -20,9 +20,22 @@
 		<result column="ANN_TITLE" property="annTitle"/>
 		<result column="ANN_CONT" property="annCont"/>
 		<result column="ANN_DATE" property="annDate"/>
+		<result column="ANN_TYPE" property="annType"/>
 	</resultMap>
 	
-	<select id="CustomerServiceSelectList" parameterType="CustomerService" resultMap="CustomerServiceMap">
+	<select id="CustomerServiceSelectListA" parameterType="CustomerService" resultMap="CustomerServiceMap">
 		SELECT * FROM ANNOUNCEMENT
 	</select>
+	
+	<select id="CustomerServiceSelectListC" parameterType="CustomerService" resultMap="CustomerServiceMap">
+		SELECT * FROM ANNOUNCEMENT WHERE ANN_TYPE = 0 OR ANN_TYPE = 1
+	</select>
+	
+	<insert id="CustomerServiceInsert" parameterType="CustomerService">
+		INSERT INTO ANNOUNCEMENT VALUES
+		(
+			'AN'||SEQ_ANNOUNCEMENT.NEXTVAL, #{adminId}, #{annTitle}
+			,#{annCont}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{annType}
+		)
+	</insert>
 </mapper>

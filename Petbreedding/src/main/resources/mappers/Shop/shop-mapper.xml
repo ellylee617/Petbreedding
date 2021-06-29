@@ -48,7 +48,6 @@
 		</resultMap>
 			
 			
-		<!-- TODO -->
 		<!-- 사업장 등록 - BP 테이블에서 사업장 등록여부 상태 1로 바꾸기 -->
 		<update id="updateBpReg" parameterType="BPartner">
 		UPDATE BUSINESS_PARTNER 

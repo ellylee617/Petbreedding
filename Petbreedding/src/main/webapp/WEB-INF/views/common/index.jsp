@@ -53,7 +53,7 @@
 		            <li><a href="#">이용약관</a></li>
 		            <li><a href="#">개인정보취급방침</a></li>
 		            <li><a href="business.html">제휴문의</a></li>
-		            <li><a href="UNotice.html">공지사항</a></li>
+		            <li><a href="UcustomerService">공지사항</a></li>
 		            <li><a href="UQnA.html">자주묻는질문</a></li>
 		        </ul>
 	    	</div>

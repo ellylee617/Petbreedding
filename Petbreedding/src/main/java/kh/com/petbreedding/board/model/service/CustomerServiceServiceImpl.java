@@ -15,14 +15,39 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 	private CustomerServiceDao customerServiceDao;
 
 	@Override
-	public List<CustomerService> CustomerServiceSelectList() {
+	public List<CustomerService> CustomerServiceSelectListC() {
 		List<CustomerService> result = null;
 		
 		try {
-			result = customerServiceDao.CustomerServiceSelectList();
+			result = customerServiceDao.CustomerServiceSelectListC();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
+
+	@Override
+	public List<CustomerService> CustomerServiceSelectListA() {
+		List<CustomerService> result = null;
+		
+		try {
+			result = customerServiceDao.CustomerServiceSelectListA();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int CustomerServiceInsert(CustomerService cs) {
+		int result = -1;
+		
+		try {
+			result = customerServiceDao.CustomerServiceInsert(cs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 

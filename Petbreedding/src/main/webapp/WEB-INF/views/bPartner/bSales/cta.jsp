@@ -30,7 +30,6 @@
 		                ${cta.CTA_NUMBER}
 		                </span>
 		            </div>
-		            <button><a href="ctadel?BP_ID=${bP.bp_Id}">차감 테스트 </a></button>
 		            <article class="aContainer">
 		               
 		               <c:forEach var="list" items="${list }">

@@ -204,7 +204,7 @@ public class BoardController {
 		
 		List<CustomerService> csList = null;
 		
-		csList = customerServiceService.CustomerServiceSelectList();
+		csList = customerServiceService.CustomerServiceSelectListC();
 		
 		md.addAttribute("csList", csList);
 		

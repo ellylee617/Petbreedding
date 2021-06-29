@@ -24,16 +24,14 @@
 	 <section class="section">
 	 <jsp:include page="../myPageAside.jsp"/>
 	  <div class="pethead">
-	  <h1>반려동물 정보</h1>
 	  <c:forEach var="list" items="${list}">
-	  		<div class="petBox">
-	  			<input type="hidden" value="${list.pet_num}" name="pet_num" id="pet_num"> 
-	            <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
-	            <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
-	            <div class="btnwrap">
-	            <a href="mypetupdate?pet_num=${list.pet_num}"><button id="updateBtn" class="btn basicBtn">수정</button></a>
-	            <a class="cancleM"><button id="delBtn" class="btn basicBtn">삭제</button></a>
-	  		</div>
+            <h1>반려동물 정보</h1>
+            <input type="hidden" value="${list.pet_num}" name="pet_num" id="pet_num"> 
+            <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
+            <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
+            <div class="btnwrap">
+            <a href="mypetupdate?pet_num=${list.pet_num}"><button id="updateBtn" class="btn basicBtn">수정</button></a>
+            <a id="cancleM"><button id="delBtn" class="btn basicBtn">삭제</button></a>
         </div>
 	 </c:forEach>
          </div>
@@ -46,7 +44,7 @@
         <!-- 펫 삭제 모달 -->
 	<div id="cancel-modal" class="modal">
 	<div class="cancel-content">
-		<p class="boldtext">제휴를 취소 하시겠습니까?</p> 
+		<p class="boldtext">펫을 삭제하시겠습니까?</p> 
 		<p class="text">
 		<br>
 		펫과 관련된 모든 정보가 삭제됩니다.
