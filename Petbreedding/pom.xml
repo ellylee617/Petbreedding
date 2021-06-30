@@ -244,6 +244,16 @@
 			<artifactId>tomcat-embed-websocket</artifactId>
 			<version>8.5.32</version>
 		</dependency>
+		
+		<!-- CKFINDER -->
+		<dependency>
+		    <groupId>com.cksource</groupId>
+		    <artifactId>ckfinder3</artifactId>
+		    <version>3.5.1.1</version>
+		</dependency>
+				
+		
+		
 	</dependencies>
 	<build>
 		<plugins>
@@ -283,4 +293,13 @@
 			</plugin>
 		</plugins>
 	</build>
+	<!-- CKFINDER -->
+	<repositories>
+		<repository>
+		    <id>cksource-mvn-repo</id>
+		    <name>CKSource Maven Repository</name>
+		    <url>https://maven.cksource.com/</url>
+		</repository>
+	</repositories>
+	
 </project>

@@ -37,38 +37,14 @@
             <div class="swiper-container" id="checkService">
                 <p class="rev_text">이용하실 서비스를 선택해주세요</p>
                 <div class="swiper-wrapper">
-                	<c:if test="${empty style }">
+                	<c:forEach items="${style}" var="style">
                 		<div class="menu_box swiper-slide">
-                			<input type="hidden" value="일반진료" class="med_num" />
-                            <p class="menu_item">일반진료</p>
-                            <p class="menu_price">5000원</p>
-                		</div>
-                		<div class="menu_box swiper-slide">
-                			<input type="hidden" value="예방접종" class="med_num" />
-                            <p class="menu_item">예방접종</p>
-                            <p class="menu_price">5000원</p>
-                		</div>
-                		<div class="menu_box swiper-slide">
-                			<input type="hidden" value="건강검진" class="med_num" />
-                            <p class="menu_item">건강검진</p>
-                            <p class="menu_price">5000원</p>
-                		</div>
-                		<div class="menu_box swiper-slide">
-                			<input type="hidden" value="수술상담" class="med_num" />
-                            <p class="menu_item">수술상담</p>
-                            <p class="menu_price">5000원</p>
-                		</div>
-                	</c:if>
-                	<c:if test="${!empty style }">
-	                	<c:forEach items="${style}" var="style">
-	                		<div class="menu_box swiper-slide">
-	                			<input type="hidden" value="${style.style_num }" class="styleNum" />
-	                            <p class="menu_item">${style.style_name}</p>
-	                            <p class="menu_time">${style.style_time }분 소요</p>
-	                            <p class="menu_price">${style.price}원</p>
-	                        </div>
-	               		</c:forEach>
-                	</c:if>
+                			<input type="hidden" value="${style.style_num }" class="styleNum" />
+                            <p class="menu_item">${style.style_name}</p>
+                            <p class="menu_time">${style.style_time }분 소요</p>
+                            <p class="menu_price">${style.price}원</p>
+                        </div>
+               		</c:forEach>
                 </div>
                 <div class="swiper-button-next swpBtn"></div>
                 <div class="swiper-button-prev swpBtn"></div>
