@@ -92,30 +92,6 @@
 		ON CL_NUM = #{cl_num} AND hair_salon.har_num = har_reservation.har_num
 	</select>
 	
-	<!-- 게시글 총 개수 -->
-	<select id="myRevListCnt" parameterType="HairRev" resultType="int">
-		select count(*)
-	    from(
-	    SELECT HAR_RESERVATION.*, hair_salon.har_name
-	    FROM HAR_RESERVATION left join hair_salon
-	    ON CL_NUM = #{cl_num} AND hair_salon.har_num = har_reservation.har_num 
-	    <if test="#{res_date2} != null">
-			<![CDATA[
-				WHERE RES_DATE >= #{res_date} AND RES_DATE <= #{res_date2}
-		 	]]>
-		</if>
-	    union
-	    SELECT HOS_RESERVATION.*, hospital.hos_name
-	    FROM HOS_RESERVATION left join HOSPITAL
-	    ON CL_NUM = #{cl_num} AND hospital.hos_num = hos_reservation.hos_num
-	    <if test="#{res_date2} != null">
-			<![CDATA[
-				WHERE HOS_DATE >= #{res_date} AND HOS_DATE <= #{res_date2}
-		 	]]>
-		</if>
-	    ) 
-	</select>
-	
 	<!-- 결제대기 상태 카운트 -->
 	<select id="status0" resultType="int" parameterType="string">
 		SELECT h.RES_STATUS + s.HOS_STATUS as total
@@ -167,29 +143,34 @@
 	
 	<!-- 날짜로 목록조회하기 -->
 	<select id="myRevListDate" parameterType="HairRev" resultMap="HairRev">
-			select ROWNUM, B.*
+		
+			select  C.*
 			from(
-			    select A.* 
-			    from(
-			    SELECT HAR_RESERVATION.*, hair_salon.har_name
-			    FROM HAR_RESERVATION left join hair_salon
-			    ON CL_NUM = #{cl_num} AND hair_salon.har_num = har_reservation.har_num 
-			   <if test="#{res_date2} != null">
-					<![CDATA[
-						WHERE RES_DATE >= #{res_date} AND RES_DATE <= #{res_date2}
-				 	]]>
-				</if>
-			    union
-			    SELECT HOS_RESERVATION.*, hospital.hos_name
-			    FROM HOS_RESERVATION left join HOSPITAL
-			    ON CL_NUM = #{cl_num} AND hospital.hos_num = hos_reservation.hos_num
-			    <if test="#{res_date2} != null">
-					<![CDATA[
-						WHERE HOS_DATE >= #{res_date} AND HOS_DATE <= #{res_date2}
-				 	]]>
-				</if>
-			    )A ORDER BY RES_DATE ASC
-			)B	
+				select ROWNUM R, B.*
+				from(
+					    select A.* 
+					    from(
+					    SELECT HAR_RESERVATION.*, hair_salon.har_name
+					    FROM HAR_RESERVATION left join hair_salon
+					    ON CL_NUM = #{cl_num} AND hair_salon.har_num = har_reservation.har_num 
+					   <if test="#{res_date2} != null">
+							<![CDATA[
+								WHERE RES_DATE >= #{res_date} AND RES_DATE <= #{res_date2}
+						 	]]>
+						</if>
+					    union
+					    SELECT HOS_RESERVATION.*, hospital.hos_name
+					    FROM HOS_RESERVATION left join HOSPITAL
+					    ON CL_NUM = #{cl_num} AND hospital.hos_num = hos_reservation.hos_num
+					    <if test="#{res_date2} != null">
+							<![CDATA[
+								WHERE HOS_DATE >= #{res_date} AND HOS_DATE <= #{res_date2}
+						 	]]>
+						</if>
+				    )A ORDER BY RES_DATE ASC
+				)B
+			)C	
+			ORDER BY R DESC
 	</select>
 	
 	<!-- 미용실  -->

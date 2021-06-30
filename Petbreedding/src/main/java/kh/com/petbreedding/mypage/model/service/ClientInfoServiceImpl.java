@@ -39,17 +39,6 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public int myRevListCnt(HairShopReservation hsr) {
-		int result = -1;
-		try {
-			result = clientInfoDao.myRevListCnt(hsr);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
 	
 	@Override
 	public List<HairShopReservation> myReservationList(String cl_num) {

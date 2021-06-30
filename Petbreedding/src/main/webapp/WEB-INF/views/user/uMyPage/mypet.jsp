@@ -23,15 +23,18 @@
 	<jsp:include page="../../common/header.jsp" />
 	 <section class="section">
 	 <jsp:include page="../myPageAside.jsp"/>
+	 <div id="petInfo">
 	  <div class="pethead">
-	  <c:forEach var="list" items="${list}">
             <h1>반려동물 정보</h1>
-            <input type="hidden" value="${list.pet_num}" name="pet_num" id="pet_num"> 
-            <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
-            <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
-            <div class="btnwrap">
-            <a href="mypetupdate?pet_num=${list.pet_num}"><button id="updateBtn" class="btn basicBtn">수정</button></a>
-            <a id="cancleM"><button id="delBtn" class="btn basicBtn">삭제</button></a>
+	  <c:forEach var="list" items="${list}">
+            <div class="petBox">
+	  			<input type="hidden" value="${list.pet_num}" name="pet_num" id="pet_num"> 
+	            <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
+	            <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
+	            <div class="btnwrap">
+	            <a href="mypetupdate?pet_num=${list.pet_num}"><button id="updateBtn" class="btn basicBtn">수정</button></a>
+	            <a class="cancleM"><button id="delBtn" class="btn basicBtn">삭제</button></a>
+	  		</div>
         </div>
 	 </c:forEach>
          </div>
@@ -55,7 +58,7 @@
 		</div>
 	</div>
 	
-        
+     </div>   
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
 	<!-- script -->

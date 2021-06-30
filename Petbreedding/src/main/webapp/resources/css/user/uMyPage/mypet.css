@@ -4,7 +4,10 @@
     font-family: "GmarketM";
     src: url("../font/GmarketSansTTFMedium.ttf");
 }
-
+#petInfo{
+	width: 800px;
+	float: left;
+}
 .petBox{
 	margin-bottom: 90px;
 }
@@ -12,7 +15,7 @@
     margin-bottom: 150px;
 }
 .pethead h1{
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     font-weight: bold;
 }
 .pethead img{

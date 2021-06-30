@@ -1,3 +1,11 @@
+.section{
+	width: 800px;
+	margin: 0 auto;
+}
+h1{
+    text-align: center;
+    margin-top: 100px;
+}
 .qnatitle .qnacontent{
     text-align: center;
 }
@@ -9,15 +17,20 @@
 	margin-bottom: 30px;
 }
 .qnatitle input{
-    width: 600px;
+    width: 730px;
     height: 30px;
     margin-left: 30px;
+    padding: 20px;
 }
 
 .qnacontent textarea{
     width: 600px;
     height: 600px;
     margin-left: 30px;
+}
+#btnBox{
+ 	width: 210px;
+	margin: 0 auto;
 }
 #browseBtn,
 #successbtn{
@@ -27,6 +40,9 @@
     font-size: 15px;
 }
 
-
+/* CKEDITOR 높이 조정 */
+.ck-editor__main, .ck-content{
+	height: 500px;
+}
 
 

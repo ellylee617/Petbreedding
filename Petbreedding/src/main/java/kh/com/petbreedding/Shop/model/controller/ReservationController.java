@@ -1,7 +1,9 @@
 package kh.com.petbreedding.Shop.model.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +49,7 @@ public class ReservationController {
 		
 		revService.insertHairRev(hrv);
 		String result = hrv.getHar_rnum();
+
 		return result;
 	}
 	

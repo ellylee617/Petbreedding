@@ -72,22 +72,8 @@ public class ClientInfoCotroller {
 	//리스트 조회 결과
 	@RequestMapping("/mypage2")
 	@ResponseBody
-	public List<HairShopReservation> myRevDateList(HairShopReservation hsr,
-			@RequestParam(defaultValue="1") int curPage,
-            HttpServletRequest request, ModelAndView model) {
-		
-		
-		// 전체리스트 개수
-        int listCnt = clientInfoService.myRevListCnt(hsr);
-        Pagination pagination = new Pagination(listCnt, curPage);
-        
-        hsr.setStartIndex(pagination.getStartIndex());
-        hsr.setCntPerPage(pagination.getPageSize());
-        
+	public List<HairShopReservation> myRevDateList(HairShopReservation hsr) {
         List<HairShopReservation> result = clientInfoService.myRevDateList(hsr);
-        model.addObject("pagination", pagination);
-        model.setViewName("/user/uMyPage/myReservationList");
-        
 		return result;
 	}
 	

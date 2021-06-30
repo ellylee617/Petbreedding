@@ -10,7 +10,7 @@ public class HairShopReservation {
 	private String msg_num; //알림번호 (M1~M5)
 	private String cl_num; //고객번호
 	private String pet_num; //펫번호
-	private int style_num; //메인 스타일 번호
+	private String style_num; //메인 스타일 번호
 	private String har_num; //헤어샵 번호
 	private String res_date; //예약날짜 (YYYY-MM-DD)
 	private int res_status; //예약상태  (0 : 결제대기, 1 : 결제완료, 2: 이용완료 , 3: 결제취소)
@@ -63,10 +63,10 @@ public class HairShopReservation {
 	public void setPet_num(String pet_num) {
 		this.pet_num = pet_num;
 	}
-	public int getStyle_num() {
+	public String getStyle_num() {
 		return style_num;
 	}
-	public void setStyle_num(int style_num) {
+	public void setStyle_num(String style_num) {
 		this.style_num = style_num;
 	}
 	public String getHar_num() {

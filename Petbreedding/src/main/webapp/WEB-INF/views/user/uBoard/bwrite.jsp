@@ -6,39 +6,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>Insert title here</title>
 <link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/user/uBoard/qna.css" rel="stylesheet" type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<!-- CKEDITOR -->
+<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 	<div class="wrapper">
 		<jsp:include page="../../common/header.jsp" />
-		 <center>
         <section class="section">
             	<h1>1:1문의 작성</h1>
             	
                 <div class="qnatitle">
                
-                    
+                   <label>제목</label>
                    <input type="text" name="#" placeholder="글 제목을 입력해주세요">
                    
                 </div>
             <div class="qnacontent">
-              
-                <textarea placeholder="1:1문의내용을 작성해주세요"></textarea>
-
+                <textarea name="content" id="editor"></textarea>
             </div> 
 
-
-            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
-            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
-                
+			<div id="btnBox">
+	            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
+	            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
+            </div>    
             
         </section>
-        </center>   
 		<jsp:include page="../../common/footer.jsp" />
-		</div>
+	</div>
+	<!-- script -->
+     <script type="text/javascript" src="${path}/resources/js/user/uBoard/bwriter.js"></script>
+</body>
+</html>
