@@ -271,6 +271,10 @@ public class ShopDao {
 		return sqlSession.selectList("ShopMenu.selectMedList", hosNum);
 	}
 	
-	//TODO
-
+	// 동물병원 진료 정보 수정
+	public int updateMedicalType(MedicalType vo) {
+		System.out.println(" !! ShopDao - updateMedicalType() 실행 !!");
+		System.out.println("수정할 동물병원 정보::"+vo);
+		return sqlSession.update("ShopMenu.updateMedicalType", vo);
+	}
 }

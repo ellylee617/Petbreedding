@@ -439,5 +439,21 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 동물병원 진료 정보 수정
+	@Override
+	public int updateMedicalType(MedicalType vo) {
+		System.out.println(" ~ Shoservice  updateMedicalType() 실행  ~");
+		int result = -1;
+		
+		try {
+			result = shopDao.updateMedicalType(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
 
 }

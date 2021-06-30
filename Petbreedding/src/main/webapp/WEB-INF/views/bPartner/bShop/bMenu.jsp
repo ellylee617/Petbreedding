@@ -56,8 +56,7 @@
 					<!-- style_deep (0 : 메인메뉴  1: 서브메뉴) -->
 
 					<c:if test="${empty menuList }">
-						<form class="dynamicTable" action="${path}/bp/bMenu/write"
-							method="POST">
+						<form class="dynamicTable" action="${path}/bp/bMenu/write" method="POST">
 							<label><input type="radio" name="style_deep" value="0">메인</label>
 							<!-- 예약 페이지: 기타 추가요금 -->
 							<label><input type="radio" name="style_deep" value="1">서브</label>
