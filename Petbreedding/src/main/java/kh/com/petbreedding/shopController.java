@@ -55,12 +55,9 @@ public class shopController {
 	@Autowired
 	private BpReservationService bprevService;
 
-<<<<<<< HEAD
 	@Autowired
 	LikesService likeService;
 	
-=======
->>>>>>> 426dc6e8c705dd7bb2d0f8f61c4c1d2a1fc2f4af
 	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
 	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception {
@@ -117,17 +114,12 @@ public class shopController {
 
 	// 사업장 상세 페이지
 	@RequestMapping(value = "/shopPage")
-<<<<<<< HEAD
 	public ModelAndView shopPage(
 			@RequestParam Long shopType
 			, Locale locale
 			, ModelAndView mv
 			, HttpServletRequest request
 			, HttpSession session) throws Exception{
-=======
-	public ModelAndView shopPage(@RequestParam Long shopType, Locale locale, ModelAndView mv,
-			HttpServletRequest request) throws Exception {
->>>>>>> 426dc6e8c705dd7bb2d0f8f61c4c1d2a1fc2f4af
 //		System.out.println("[세훈]");
 		System.out.println("shopPage 컨트롤러 진입");
 		String bpId = request.getParameter("bpId");
@@ -163,7 +155,6 @@ public class shopController {
 			List<HairSalonImg> harImgList = shopService.selectHarImgList(harNum);
 			System.out.println("미용실 사진 리스트:" + harImgList);
 			mv.addObject("shopImgList", harImgList);
-<<<<<<< HEAD
 			
 			//로그인한 회원이 이 미용실을 찜했는지?
 			Client client = (Client) session.getAttribute("client");
@@ -175,10 +166,6 @@ public class shopController {
 				System.out.println("로그인하지 않았습니다.");
 			}
 
-			
-=======
-
->>>>>>> 426dc6e8c705dd7bb2d0f8f61c4c1d2a1fc2f4af
 		} else {
 
 			// 동물병원

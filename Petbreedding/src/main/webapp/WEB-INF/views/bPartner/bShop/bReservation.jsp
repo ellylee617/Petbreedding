@@ -15,10 +15,9 @@
 	type="text/css">
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet"
 	type="text/css">
-<link href="${path}/resources/css/bPartner/bShop/bReservation.css"
-	rel="stylesheet" type="text/css">
-<script src="https://kit.fontawesome.com/aca84cf3fb.js"
-	crossorigin="anonymous"></script>
+<link href="${path}/resources/css/bPartner/bShop/bReservation.css" rel="stylesheet" type="text/css">
+	
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link href="${path}/resources/css/user/uShop/datepicker.css"
 	rel="stylesheet" type="text/css">
@@ -33,7 +32,8 @@
 						<input type="text" name="res_date" id="choDate" value="선택날짜"
 							onchange="change()">
 					</div>
-					<div class="resBox">
+				</div>
+				<div class="resBox">
 						<select id="resselect" onchange="change()">
 							<option value="3" name="res_status">전체</option>
 							<option value="0" name="res_status">예약완료</option>
@@ -43,7 +43,6 @@
 
 						<hr>
 						<div class="resList">
-							<table>
 								<!-- tr forEach -->
 								<input type="text" value="${bP.bp_Id}" id="bp_id" />
 									<table id="revtable">
@@ -66,22 +65,17 @@
 											</tr>
 										</c:forEach>
 									</table>
-								</div>
 						</div>
-					</div>
+				</div>
+			</div>			
 		</section>
 
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
 
-	<!-- script -->
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script type="text/javascript"
-		src="${path}/resources/js/bPartner/bAside.js"></script>
-	<script type="text/javascript"
-		src="${path}/resources/js/bPartner/bShop/bReservation.js"></script>
-	<script type="text/javascript"
-		src="${path}/resources/js/user/uShop/resCalendar.js"></script>
-</body>
+			<!-- script -->
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
+		<script type="text/javascript" src="${path}/resources/js/bPartner/bShop/bReservation.js"></script>
 </body>
 </html>
