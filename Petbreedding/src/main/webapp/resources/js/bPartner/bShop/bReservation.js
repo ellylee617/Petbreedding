@@ -79,13 +79,13 @@ function change() {
                  html += "<tr>";
                  console.log("상테:" + resId);
                  if (resId == 0){
-                    html += "<td class='status'>예약완료<span class='noneDis'>,</span></td>";
+                    html += "<td class='status revFin'>예약완료<span class='noneDis'>,</span></td>";
                  }
                   if (resId == 1){
-                    html += "<td class='status'>결제완료<span class='noneDis'>,</span></td>";
+                    html += "<td class='status payFin'>결제완료<span class='noneDis'>,</span></td>";
                  }
                   if (resId == 2){
-                    html += "<td class='status'>결제취소<span class='noneDis'>,</span></td>";
+                    html += "<td class='status canFin'>결제취소<span class='noneDis'>,</span></td>";
                  }
                  
                  html += "<td class='resTime'>"+data[i].res_date+"</td>";
