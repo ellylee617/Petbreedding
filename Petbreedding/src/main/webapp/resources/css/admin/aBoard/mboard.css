@@ -1,3 +1,20 @@
+#mboardSection {
+	padding-bottom: 201px;
+}
+
+.maCommentFrm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+#maCommentText {
+	width: 823px;
+	height: 55px;
+	margin-right: 21px;
+}
+
 .mboardhead select{
     font-family: "GmarketB";
     width: 70px;
@@ -166,7 +183,7 @@
 
 .reply input{
     width: 80%;
-    height: 80px;
+    height: 82px;
 }
 
 #submitbtn{

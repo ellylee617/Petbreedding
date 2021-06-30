@@ -173,8 +173,8 @@ public class BoardController {
 		
 		PrintWriter out = null;
 		
-		String msg1 = "Upload has been successed";
-		String msg2 = "Upload has been failed";
+		String msg1 = "리뷰가 등록되었습니다.";
+		String msg2 = "리뷰가 등록되지 않았습니다.";
 		
 		try {
 			out = res.getWriter();

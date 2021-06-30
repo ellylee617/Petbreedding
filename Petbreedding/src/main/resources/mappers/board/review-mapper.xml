@@ -30,6 +30,8 @@
 			)
 		]]>
  	</insert>
+ 	
+ 	<!-- 리뷰 시퀀스 값 가져오기 -->
  	<select id="getRevNumFromSeq" resultType="string">
 		<![CDATA[
 			select 'REV'||SEQ_REVIEW.NEXTVAL from dual

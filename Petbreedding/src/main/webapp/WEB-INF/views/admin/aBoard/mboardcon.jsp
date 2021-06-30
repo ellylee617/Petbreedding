@@ -19,12 +19,10 @@
 <body>
 	<div class="wrapper">
 	<jsp:include page="../mheader.jsp" />
-		<section class="section">
+		<section class="section" id="mboardSection">
 			<jsp:include page="../mAside.jsp"/>
 			<div class="mContent">
-			
 		        <div class="conhead">
-				        
 			       	<c:choose>
 						<c:when test="${mAsk.qnaType eq 1}">
 						<p>[회원]</p>
@@ -39,22 +37,40 @@
 				</div>
 				
 				<div class="conimg">
-				    <img src="http://placehold.it/400x300">
+					<c:choose>
+						<c:when test="${mAsk.qnaImg eq null}">
+						    <img src="http://placehold.it/400x300">
+						</c:when>
+						<c:otherwise>
+							<img src="${path}/resources/uploadFile/myAsk/${mAsk.qnaImg}">
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="conbtn">
 				    <button class="basicBtn" id="listBtn">목록</button>
-				    <button class="basicBtn" id="updeteBtn">수정</button>
 				    <button class="basicBtn" id="delBtn">삭제</button>
+				    <button class="basicBtn" id="updeteBtn">수정</button>
+				    
 				
 				</div>
-				<div class="reply">
-				    <input type="text" name="#" id="replt">
-				    <button class="basicBtn" id="submitbtn">등록</button>
+				<div id="replyArea" class="reply">
+<!-- 				<div> -->
+<!-- 					안녕하세요. 또비언니님<br><br>현재 확인해본 결과, 해당 카드사에서 발생한 문제로 확인되고 있습니다. -->
+<!--         		<br>잠시 후 다시 결제 해보시고, 안되시면 고객센터(1577-0123)로 연락주시면 추가 안내해드리겠습니다.<br><br> -->
+<!--         		감사합니다. -->
+<!-- 				</div> -->
+					<form id="maCommentFrm" class="maCommentFrm">
+<!-- 					    <input type="text" name="maCommentText" id="replt"> -->
+						<textarea id="maCommentText" name="maCommentText"></textarea>
+					    <button class="basicBtn" id="maCommentBtn">등록</button>
+						<input type="hidden" name="qna_num" value="${mAsk.qnaNum}">
+					</form>				
 				</div>
 			</div>
 		</section>
 	<jsp:include page="../../common/footer.jsp" />
 	</div>	 
 <script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
+<script type="text/javascript" src="${path}/resources/js/admin/aBoard/mBoardCon.js"></script>
 </body>
 </html>

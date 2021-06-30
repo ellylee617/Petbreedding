@@ -260,7 +260,7 @@ public class ClientInfoCotroller {
 				out.close();
 			}
 
-			//TODO 리다이렉트
+			//TODO 리다이렉트 오류 수정
 //			redirect:/board/boardList
 		return "redirect:/myAsk";
 	}

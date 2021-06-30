@@ -1,21 +1,24 @@
 package kh.com.petbreedding.board.model.vo;
 
+import org.springframework.stereotype.Component;
+
 //QNAC_NUM  NOT NULL VARCHAR2(10)   
 //ADMIN_ID           VARCHAR2(50)   
 //QNA_NUM            VARCHAR2(50)   
 //QNAC_CONT          VARCHAR2(1000) 
 //QNAC_DATE          VARCHAR2(20)
 
+@Component
 public class MyAskComment {
 	private String qnacNum;
 	private String adminId;
-	private String qndNum;
+	private String qnaNum;
 	private String qnacCont;
 	private String qnacDate;
 	
 	@Override
 	public String toString() {
-		return "MyAskComment [qnacNum=" + qnacNum + ", adminId=" + adminId + ", qndNum=" + qndNum + ", qnacCont="
+		return "MyAskComment [qnacNum=" + qnacNum + ", adminId=" + adminId + ", qnaNum=" + qnaNum + ", qnacCont="
 				+ qnacCont + ", qnacDate=" + qnacDate + "]";
 	}
 
@@ -35,12 +38,12 @@ public class MyAskComment {
 		this.adminId = adminId;
 	}
 
-	public String getQndNum() {
-		return qndNum;
+	public String getQnaNum() {
+		return qnaNum;
 	}
 
-	public void setQndNum(String qndNum) {
-		this.qndNum = qndNum;
+	public void setQnaNum(String qnaNum) {
+		this.qnaNum = qnaNum;
 	}
 
 	public String getQnacCont() {
