@@ -189,6 +189,16 @@ public class shopController {
 			List<HospitalImg> hosImgList = shopService.selectHosImgList(hosNum);
 			System.out.println("동물병원 사진 리스트:" + hosImgList);
 			mv.addObject("shopImgList", hosImgList);
+			
+			//로그인한 회원이 이 병원을 찜했는지?
+			Client client = (Client) session.getAttribute("client");
+			if(client != null) {
+				String cl_num = client.getCl_num();
+				List<Likes> likes = likeService.selectLikes(cl_num);
+				mv.addObject("zzim", likes);
+			}else {
+				System.out.println("로그인하지 않았습니다.");
+			}
 
 		}
 

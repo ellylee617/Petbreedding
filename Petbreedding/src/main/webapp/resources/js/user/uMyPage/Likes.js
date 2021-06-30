@@ -44,8 +44,38 @@ $("#zzim").on("click",function(){
 		}
 
 	}else {
-		$("#heartOn").css("display","none");
-		$("#heartOff").css("display","inline-block");
+		if(har_num != null){
+			$.ajax({
+				url: "delLikes",
+				type:"GET",
+				data:{
+					cl_num : cl_num,
+					har_num : har_num
+				},
+				success:function(data){
+					console.log("성공!");
+
+				}
+			});
+			
+			$("#heartOn").css("display","none");
+			$("#heartOff").css("display","inline-block");
+		}else if(hos_num != null){
+			$.ajax({
+				url: "delLikes",
+				type:"GET",
+				data:{
+					cl_num : cl_num,
+					hos_num : hos_num
+				},
+				success:function(data){
+					console.log("성공!");
+				}
+			});
+			$("#heartOn").css("display","none");
+			$("#heartOff").css("display","inline-block");
+		}
+
 	}
 });
 
