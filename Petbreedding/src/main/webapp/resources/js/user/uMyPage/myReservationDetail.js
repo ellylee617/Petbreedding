@@ -1,3 +1,11 @@
+//1:1문의하기 
+$("#1and1").on("click",function(){
+	var bpId = $("#bpId").val();
+	var clNum = $("#cl_num").val();
+	var shopName = $("#shopName").val();
+	var url = '/petbreedding/chat?bpId='+bpId+'&clNum='+clNum+'&shopName='+shopName;
+	window.open(url, '_blank', 'width=555px, height=700px');
+});
 
 //결제하기 
 $("#pay").on("click",function(){
