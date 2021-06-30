@@ -29,7 +29,7 @@
             </li></a>
             <li class="menu">
                 <i class="fas fa-comments"></i>
-                <p>채팅관리</p>
+                <a href="${pageContext.request.contextPath}/bchatlist"><p>채팅관리</p>
             </li>
             <a href="${pageContext.request.contextPath}/bCalculate"><li class="menu" id="bCal">
                 <i class="fas fa-chart-bar"></i>

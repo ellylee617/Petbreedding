@@ -3,7 +3,12 @@
  */
 
 ClassicEditor
-.create( document.querySelector( '#editor' ) )
+.create( document.querySelector( '#editor' ), {
+	cloudServices: {
+		uploadUrl: 'https://81683.cke-cs.com/easyimage/upload/',
+		tokenUrl: "https://81683.cke-cs.com/token/dev/257c3679671be1fe578579914bcdfe4a6ff64cef58f14d2780b701e3c7d1"
+	},
+} )
 .catch( error => {
     console.error( error );
 } );

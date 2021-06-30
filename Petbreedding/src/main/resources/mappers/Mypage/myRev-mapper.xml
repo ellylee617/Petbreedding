@@ -35,6 +35,7 @@
 		<result column="HAR_NAME" property="shopName"/>
 		<result column="HAR_ADDR" property="shopAddr"/>
 		<result column="HAR_TEL" property="shopTel"/>
+		<result column="BP_ID" property="bpId"/>
 	</resultMap>
 	
 	<resultMap type="Pet" id="Pet">
@@ -176,7 +177,7 @@
 	<!-- 미용실  -->
 	<!-- 미용실 예약 상세 페이지 -->
 	<select id="myRevDetail" parameterType="string" resultMap="HairRev">
-			SELECT h.*, s.style_name, c.cl_name, c.cl_tel, c.cl_email, p.pet_name, p.pet_birth, p.pet_weight, hs.har_name, hs.har_addr, hs.har_tel
+			SELECT h.*, s.style_name, c.cl_name, c.cl_tel, c.cl_email, p.pet_name, p.pet_birth, p.pet_weight, hs.har_name, hs.har_addr, hs.har_tel, hs.bp_Id
 			FROM HAR_RESERVATION h 
 			LEFT JOIN STYLE s ON h.style_num = s.style_num 
 			LEFT JOIN CLIENT c ON h.cl_num = c.cl_num
@@ -210,7 +211,7 @@
 	<!-- 동물병원 -->
 	<!-- 병원예약 상세 페이지 -->
 	<select id="myRevDetail2" parameterType="string" resultMap="HosRev">
-			SELECT h.*, p.pet_name, p.pet_birth, p.pet_weight, hs.hos_name, hs.hos_addr, hs.hos_tel
+			SELECT h.*, p.pet_name, p.pet_birth, p.pet_weight, hs.hos_name, hs.hos_addr, hs.hos_tel, hs.bp_Id
 			FROM HOS_RESERVATION h 
 			LEFT JOIN PET_INFO p ON h.pet_num = p.pet_num
 			LEFT JOIN HOSPITAL hs ON h.hos_num = hs.hos_num

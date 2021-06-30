@@ -37,7 +37,7 @@
 			<div class="listwrap">
 			<c:if test="${not empty Roomlist }">
 			<c:forEach items="${Roomlist }" var="r" varStatus="status">
-					<table onClick="openchatwin('${r.bp_id }','${r.shopName}');">
+					<table onClick="openchatwin('${r.chatId }','${r.shopName}','${r.bp_id}' );">
 						<tr>
 							<td rowspan="2"><img src="http://placehold.it/50X50"></td>
 							<td>${r.shopName }

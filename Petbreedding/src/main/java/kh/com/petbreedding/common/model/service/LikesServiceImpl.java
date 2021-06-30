@@ -28,10 +28,10 @@ public class LikesServiceImpl implements LikesService{
 	}
 
 	@Override
-	public List<Likes> selectLikce(String cl_num) {
+	public List<Likes> selectLikes(String cl_num) {
 		List<Likes> result = null;
 		try {
-			result = likesDao.selectLikce(cl_num);
+			result = likesDao.selectLikes(cl_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

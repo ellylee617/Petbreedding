@@ -17,6 +17,7 @@
     float: left;
 }
 .calendar{
+	float:left;
     width: 500px;
     height: 500px;
     border: 1px solid var(--main-color);  
@@ -26,6 +27,7 @@
     float: left;
     width: 450px;
     margin-left: 30px;
+    float:right;
 }
 .resBox select{
     width: 100px;
@@ -50,7 +52,7 @@
     margin-right: 10px;
     text-align: center;
 }
-.resList .status{
+.status{
     color: var(--font-color);
     text-align: center;
     border-radius: 10px;
@@ -66,4 +68,17 @@
 }
 .resInfo a:hover{
     color: var(--hover-color);
+}
+
+
+
+/* 예약완료. 결제완료, 결제취소 */
+.revFin{
+	background: var(--button-color);
+}
+.payFin{
+	background: var(--hover-color);
+}
+.canFin{
+	background: var(--trhover-color);
 }

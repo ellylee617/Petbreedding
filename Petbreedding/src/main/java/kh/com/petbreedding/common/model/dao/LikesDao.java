@@ -19,7 +19,7 @@ public class LikesDao {
 		return sqlSession.insert("likes.insertLike", likes);
 	}
 	
-	public List<Likes> selectLikce(String cl_num){
+	public List<Likes> selectLikes(String cl_num){
 		return sqlSession.selectList("likes.selectLike", cl_num);
 	}
 	

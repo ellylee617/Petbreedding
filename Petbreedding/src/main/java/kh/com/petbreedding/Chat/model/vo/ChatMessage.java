@@ -1,7 +1,5 @@
 package kh.com.petbreedding.Chat.model.vo;
 
-import java.sql.Timestamp;
-
 public class ChatMessage {
 
 	private String mId;
@@ -12,6 +10,28 @@ public class ChatMessage {
 	private String chatId;
 	private String cl_num;
 	private String bp_id;
+	private int mUnreadCount;
+	private String mSenderemail;
+	private String mSenderName;
+	
+	public String getmSenderName() {
+		return mSenderName;
+	}
+	public void setmSenderName(String mSenderName) {
+		this.mSenderName = mSenderName;
+	}
+	public String getmSenderemail() {
+		return mSenderemail;
+	}
+	public void setmSenderemail(String mSenderemail) {
+		this.mSenderemail = mSenderemail;
+	}
+	public int getmUnreadCount() {
+		return mUnreadCount;
+	}
+	public void setmUnreadCount(int mUnreadCount) {
+		this.mUnreadCount = mUnreadCount;
+	}
 	public String getmId() {
 		return mId;
 	}

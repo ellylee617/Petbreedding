@@ -34,9 +34,9 @@
 			<div class="listwrap">
 			<c:if test="${not empty Roomlist }">
 			<c:forEach items="${Roomlist }" var="r" varStatus="status">
-					<table onClick="openbchatwin('${r.chatId }','${r.nickName}', '${r.shopName }');">
+					<table onClick="openbchatwin('${r.chatId }','${r.nickName}', '${r.shopName }', '${r.cl_num }');">
 						<tr>
-							<td rowspan="2"><img src="${path}/resources/images/logoForChat"></td>
+							<td rowspan="2"><img src="${path}/resources/images/logoForChat.png"></td>
 							<td>${r.nickName }
 							</td>
 							<td>${r.mSendTime }</td>
