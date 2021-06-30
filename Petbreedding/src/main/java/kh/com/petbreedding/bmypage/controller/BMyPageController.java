@@ -137,7 +137,7 @@ public class BMyPageController {
 //					System.out.println(styleList.get(i));
 //				}
 				
-				mv.addObject("styleList", styleList);
+				mv.addObject("menuList", styleList);
 				
 				
 			} else {	// 1이면 동물병원
@@ -145,7 +145,10 @@ public class BMyPageController {
 				String hosNum = (shopService.selectHosInfo(bpId)).getHosNum();
 				System.out.println("동물병원 번호:"+hosNum);
 				
-//				List<MedicalType> medList = shopService.
+				List<MedicalType> medList = shopService.selectMedList(hosNum);
+				System.out.println("동물병원 진료 정보 리스트:"+medList);
+				
+				mv.addObject("menuList", medList);
 			}
 
 			

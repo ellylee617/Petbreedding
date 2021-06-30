@@ -69,8 +69,8 @@
 					</c:if>
 
 					<!-- 등록된 스타일 불러오기 -->
-					<c:if test="${!empty styleList }">
-						<c:forEach var="list" items="${styleList }" varStatus="status">
+					<c:if test="${!empty menuList }">
+						<c:forEach var="list" items="${menuList }" varStatus="status">
 							<form class="dynamicTable frm_${list.style_num  }">
 								<c:if test="${list.style_deep eq 0}">
 									<label><input type="radio" name="style_deep" value="0"

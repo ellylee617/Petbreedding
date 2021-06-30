@@ -50,4 +50,5 @@ public interface ShopService {
 	public int deleteHosDayOff(String hosNum); // 동물병원 주휴일 수정 (삭제)
 	public int insertNewHosDayOff(HosDayOff vo); // 수정된 동물병원 주휴일 추가
 	public int insertMedicalType(MedicalType vo); // 동물병원 진료 정보 추가
+	public List<MedicalType> selectMedList(String hosNum); // 등록한 동물병원 진료 정보 리스트 조회
 }

@@ -264,6 +264,13 @@ public class ShopDao {
 		
 	}
 	
+	// 등록한 동물병원 진료 정보 리스트 조회
+	public List<MedicalType> selectMedList(String hosNum){
+		System.out.println(" !! ShopDao - selectMedList() 실행 !!");
+		System.out.println("조회할 동물병원 번호:"+hosNum);
+		return sqlSession.selectList("ShopMenu.selectMedList", hosNum);
+	}
+	
 	//TODO
 
 }

@@ -424,5 +424,20 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 등록한 동물병원 진료 정보 리스트 조회
+	@Override
+	public List<MedicalType> selectMedList(String hosNum) {
+		List<MedicalType> medList = null;
+		System.out.println(" ~ ShopService 진입 ~");
+		try {
+			medList = shopDao.selectMedList(hosNum);
+		} catch(Exception e) {
+		}
+		System.out.println("List<MedicalType> medList ::" + medList);
+		return medList;
+	}
+
+
+
 
 }

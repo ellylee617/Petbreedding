@@ -23,6 +23,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.Review;
@@ -67,10 +68,9 @@ public class shopController {
 			
 			
 			
-			// 미용실 매장 사진 리스트
+			// 미용실 대표 사진 리스트
 			// TODO
 			
-//			harImg= shopService.selec
 			
 			
 		} else {
@@ -144,7 +144,7 @@ public class shopController {
 			// 메뉴(스타일) 출력
 			List<Style> styleList = shopService.selectStyleList(harNum);
 			System.out.println("스타일 리스트:"+styleList);
-			mv.addObject("styleList", styleList);
+			mv.addObject("menuList", styleList);
 			
 			// 미용실 사진 출력
 			List<HairSalonImg> harImgList = shopService.selectHarImgList(harNum);
@@ -164,7 +164,11 @@ public class shopController {
 			String hosNum = hos.getHosNum();
 			System.out.println("동물병원 번호:"+hosNum);
 			
-			// TODO: 진료 출력
+			// TODO
+			// 동물병원 진료 정보 출력
+			List<MedicalType> medList = shopService.selectMedList(hosNum);
+			System.out.println("동물병원 진료 정보 리스트:"+medList);
+			mv.addObject("menuList", medList);
 			
 			// 동물병원 사진 출력
 			List<HospitalImg> hosImgList = shopService.selectHosImgList(hosNum);

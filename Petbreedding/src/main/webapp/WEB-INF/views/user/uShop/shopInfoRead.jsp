@@ -28,6 +28,7 @@
             <div class="store_area">
             <!-- 매장 타입이 0이면 미용실 -->
             <!-- 매장 타입이 1이면 동물병원 -->
+
                 <div class="store_info_article">
                 	<c:forEach var="shopImgList" items="${shopImgList }" varStatus="status">
                     <div class="store_img">
@@ -60,22 +61,44 @@
                     </div>
                 </div> <!--store_info_article-->
                 <div class="swiper-container store_menu_article ">
-                	<!-- TODO: 동물병원 진료 메뉴랑 구분 필요 -->
-                    <p>메뉴<span>(${fn:length(styleList)})</span></p>
+                
+                <c:if test="${shopType eq 0}">
+					<p>스타일<span>(${fn:length(menuList)})</span></p>
                     <div class="swiper-wrapper store_menues">
-                     <c:forEach var="styleList " items="${styleList }" varStatus="status">
+                     <c:forEach var="menuList " items="${menuList }" varStatus="status">
                             <div class="menu_box swiper-slide">
                                 <a href="#">
-                                    <p class="menu_item"><c:out value="${styleList[status.index].style_name }"/></p>
-                                    <small class="menu_time">${styleList[status.index].style_time }분 소요</small>
-                                    <p class="menu_price">${styleList[status.index].price }원</p>
+                                    <p class="menu_item"><c:out value="${menuList[status.index].style_name }"/></p>
+                                    <small class="menu_time">${menuList[status.index].style_time }분 소요</small>
+                                    <p class="menu_price">${menuList[status.index].price }원</p>
                                 </a>
                             </div>
-                           </c:forEach>
+                      </c:forEach>
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
+                </c:if> 
+                
+               <c:if test="${shopType eq 1}">
+					<p>진료<span>(${fn:length(menuList)})</span></p>
+                    <div class="swiper-wrapper store_menues">
+                     <c:forEach var="menuList " items="${menuList }" varStatus="status">
+                            <div class="menu_box swiper-slide">
+                                <a href="#">
+                                    <p class="menu_item"><c:out value="${menuList[status.index].medName }"/></p>
+                                    <small class="menu_time">	</small>
+                                    <p class="menu_price">${menuList[status.index].medPrice }원</p>
+                                </a>
+                            </div>
+                      </c:forEach>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>               
+                </c:if>
+                
+                   
                 </div><!--store_menu_article-->
+                
                 <div class="store_review_article ">
                     <p>예약자 리뷰<span>(5)</span></p>
                     <div class="reviewsBox">
