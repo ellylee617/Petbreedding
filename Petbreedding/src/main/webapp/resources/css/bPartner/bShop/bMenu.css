@@ -22,17 +22,25 @@
     float: right;
     margin-bottom: 30px;
     margin-right: 70px;
-    width: 60px;
+    width: 75px;
     height: 30px;
     border-radius: 5px;
     font-family: "GmarketM";
     
 }
 
-
-.menuhead th {
-	height: 60px;
+.menuhead table {
+	width: 100%;
+	text-align: center;
 }
+
+.menuhead thead tr th {
+	height: 60px;
+	padding-right: 50px;
+	width: 30px;
+	
+}
+
 
 
 .dynamicTable{
@@ -188,7 +196,7 @@ input {
 }
 
 .insert input[type=text]{
-	width: 15%;
+	width: 10%;
     height: 30px;
     border: 1px solid #aaa;
     margin-left: 25px;
@@ -223,7 +231,9 @@ input {
 
 .rebtn{
     width: 50px;
-    height: 25px;	
+    height: 30px;
+    border-radius: 5px;	
+    font-family: "GmarketM";	
 }
 
 .menucon{
@@ -239,7 +249,7 @@ input {
 .medHead table{
 	text-align: center;
 	margin-left:100px;
-	padding: 0px;
+	padding-bottom: 20px;
 }
 
 
@@ -271,7 +281,7 @@ input {
     float: right;
     margin-bottom: 30px;
     margin-right: 70px;
-    width: 70px;
+    width: 75px;
     height: 30px;
     border-radius: 5px;
     font-family: "GmarketM";

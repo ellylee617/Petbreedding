@@ -234,8 +234,9 @@ public class BMyPageController {
 	}
 
 	// 사장님 메뉴 관리 - 스타일 수정
+	// TODO: 진료 종류 수정 
 	@RequestMapping(value = "/bp/bMenu/rewrite")
-	public String bMenuReWrite(HttpSession session, HttpServletRequest req, Style styleVO) {
+	public String bMenuReWrite(HttpSession session, HttpServletRequest req, Style styleVO, MedicalType medVO) {
 
 		System.out.println("  BMyPageController 실행 - bMenuReWrite()  ");
 
@@ -249,22 +250,40 @@ public class BMyPageController {
 			System.out.println("로그인 안 됨");
 		} else {
 
+			
 			int result = 0;
-
-			result = shopService.updateStyle(styleVO);
-			if (result > 0) {
-				System.out.println("!! 스타일 수정 성공 !!");
+			
+			int bpType = bpVO.getBp_type();
+			System.out.println("사업자 타입:"+bpType);
+			
+			if(bpType==0) {
+				
+				String styleNum = null;
+				styleNum = styleVO.getStyle_num();
+				System.out.println("수정할 스타일 번호:" + styleNum);
+				result = shopService.updateStyle(styleVO);
+				
 			} else {
-				System.out.println("!! 스타일 수정 실패 !!");
+				String medNum = null;
+				medNum = medVO.getMedNum();
+				System.out.println("수정할 진료 정보 번호:"+medNum);
+				result = shopService.updateMedicalType(medVO);
+			}
+			
+			if (result > 0) {
+				System.out.println("!! 메뉴 수정 성공 !!");
+			} else {
+				System.out.println("!! 메뉴 수정 실패 !!");
 			}
 
+			
 		}
 		return "redirect:/bMenu";
 	}
 
 	// 사장님 메뉴관리 - 스타일 삭제
 	@RequestMapping(value = "/bp/bMenu/delete")
-	public String bMenuDelete(HttpSession session, HttpServletRequest req, Style styleVO) {
+	public String bMenuDelete(HttpSession session, HttpServletRequest req, Style styleVO, MedicalType medVO) {
 
 		System.out.println("  BMyPageController 실행 - bMenuDelete()  ");
 
@@ -279,16 +298,26 @@ public class BMyPageController {
 		} else {
 
 			int result = 0;
-
-			String styleNum = null;
-			styleNum = styleVO.getStyle_num();
-			System.out.println("삭제할 스타일 번호:" + styleNum);
-
-			result = shopService.deleteStyle(styleNum);
+			
+			int bpType = bpVO.getBp_type();
+			System.out.println("사업자 타입:"+bpType);
+			
+			if(bpType==0) {	// 미용실 - 스타일
+				
+				String styleNum = null;
+				styleNum = styleVO.getStyle_num();
+				System.out.println("삭제할 스타일 번호:" + styleNum);
+				result = shopService.deleteStyle(styleNum);
+				
+			} else {	// 동물병원 - 진료 종류
+				
+				//TODO
+			}
+			
 			if (result > 0) {
-				System.out.println("!! 스타일 삭제 성공 !!");
+				System.out.println("!! 메뉴 삭제 성공 !!");
 			} else {
-				System.out.println("!! 스타일 삭제 실패 !!");
+				System.out.println("!! 메뉴 삭제 실패 !!");
 			}
 
 		}
