@@ -73,8 +73,8 @@
 	<!-- 동물병원 진료 정보 추가 -->
 	<!-- ShopDao.java -->
 	<insert id="insertMedicalType" parameterType="MedicalType">
-	INSERT INTO MEDICAL_TYPE (MED_NUM, MED_NAME, MED_PRICE)
-	VALUES	(SEQ_MEDICAL_TYPE.NEXTVAL, #{medName}, #{medPrice})
+	INSERT INTO MEDICAL_TYPE (MED_NUM, MED_NAME, MED_PRICE, HOS_NUM)
+	VALUES	(SEQ_MEDICAL_TYPE.NEXTVAL, #{medName}, #{medPrice}, #{hosNum})
 	</insert>
 	
 	

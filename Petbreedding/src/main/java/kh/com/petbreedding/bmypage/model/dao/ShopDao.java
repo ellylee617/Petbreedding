@@ -260,7 +260,7 @@ public class ShopDao {
 	public int insertMedicalType(MedicalType vo) {
 		
 		System.out.println(" !! ShopDao - insertMedicalType() 실행 !!");
-		return  sqlSession.insert("Shop.insertMedicalType", vo);
+		return  sqlSession.insert("ShopMenu.insertMedicalType", vo);
 		
 	}
 	

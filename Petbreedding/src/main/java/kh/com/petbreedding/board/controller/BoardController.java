@@ -1,9 +1,7 @@
 package kh.com.petbreedding.board.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
@@ -19,15 +17,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.sun.media.jfxmedia.logging.Logger;
+
 import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
-import net.sf.json.JSONObject;
 import kh.com.petbreedding.board.model.service.BoardService;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.service.ReviewService;
@@ -101,32 +101,8 @@ public class BoardController {
 	}
 	
 	// 게시글 작성
-	@RequestMapping(value = "/bwrite")
-	public String bWrite(Model model) throws Exception {
-
-		/*
-		 * JSONObject json = new JSONObject(); PrintWriter pw = null; OutputStream out =
-		 * null; MultipartFile file = multiFile.getFile("upload");
-		 * 
-		 * if(file != null) { if(file.getSize()>0 && file.getOriginalFilename() != "") {
-		 * try { String fileName = file.getName(); byte[] bytes = file.getBytes();
-		 * String uploadPath =
-		 * multiFile.getServletContext().getRealPath("/resources/uploadFile/mypet");
-		 * File uploadFile = new File(uploadPath); if(!uploadFile.exists()) {
-		 * uploadFile.mkdirs(); } fileName = UUID.randomUUID().toString(); uploadPath =
-		 * uploadPath + "/" + fileName; out = new FileOutputStream(new
-		 * File(uploadPath)); out.write(bytes); out.flush();
-		 * 
-		 * pw = res.getWriter(); res.setContentType("text/html"); String fileUrl =
-		 * multiFile.getContextPath() + "/resources/uploadFile/mypet" + fileName;
-		 * 
-		 * json.put("uploaded", 1); json.put("fileName", fileName); json.put("url",
-		 * fileUrl);
-		 * 
-		 * pw.println(json); } catch (Exception e) { e.printStackTrace(); }finally {
-		 * if(out != null) { out.close(); } if(pw != null) { pw.close(); } } } }
-		 */
-		
+	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
+	public String bWrite(Locale locale, Model model) {
 		return "/user/uBoard/bwrite";
 	}
 	
