@@ -127,17 +127,23 @@ public class LoginController {
 		
 		BPartner result = loginService.blogin(bP);
 		session = req.getSession();
+		String path = "";
 		
 		if(result == null) {
 			System.out.println("로그인 실패");
 			session.setAttribute("bP", null);
-			return "/bLogin";
+			path = "/bLogin";
 		}else {
 			System.out.println("로그인 성공!");
 			session.setAttribute("bP", result);
-			return "/bReservation";
+			
+			if(result.getBp_type() == 0) {
+				path = "/bReservation";
+			}else if(result.getBp_type() == 1){
+				path = "/bReservation2";
+			}
 		}
-		
+		return path;
 	}
 	
 	// 관리자 로그인 처리

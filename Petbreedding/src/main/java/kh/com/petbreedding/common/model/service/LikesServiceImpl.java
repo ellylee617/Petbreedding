@@ -1,10 +1,13 @@
 package kh.com.petbreedding.common.model.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.common.model.dao.LikesDao;
+import kh.com.petbreedding.common.model.vo.Likes;
 
 
 @Service("likesService")
@@ -12,32 +15,40 @@ public class LikesServiceImpl implements LikesService{
 
 	@Autowired
 	private LikesDao likesDao;
-	
-	
+
 	@Override
-	public String addLikes(String like_num) {
-		// TODO Auto-generated method stub
-		String result = null;
+	public int insertLikes(Likes likes) {
+		int result = -1;
 		try {
-			
-		} catch(Exception e) {
+			result = likesDao.insertLikes(likes);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 
 	@Override
-	public void cancelLikes(String like_num) {
-		// TODO Auto-generated method stub
-		
+	public List<Likes> selectLikce(String cl_num) {
+		List<Likes> result = null;
 		try {
-			
-		} catch(Exception e) {
+			result = likesDao.selectLikce(cl_num);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		return result;
 	}
+
+	@Override
+	public int delLikes(Likes likes) {
+		int result = -1;
+		try {
+			result = likesDao.delLikes(likes);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	
 
 }

@@ -128,7 +128,7 @@ public class ReservationController {
 	 * return "/user/uShop/shopPayment"; }
 	 */
 	
-	//미용실 시간체크
+	//병원 시간체크
 	@RequestMapping(value="checkTime2")
 	@ResponseBody
 	public List<String> checkTime2(HospitalReservation hos) {

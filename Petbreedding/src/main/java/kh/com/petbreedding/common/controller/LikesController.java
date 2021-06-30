@@ -1,9 +1,13 @@
 package kh.com.petbreedding.common.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import kh.com.petbreedding.common.model.service.LikesService;
+import kh.com.petbreedding.common.model.vo.Likes;
 
 @Controller
 public class LikesController {
@@ -12,18 +16,32 @@ public class LikesController {
 	LikesService likeService;
 	
 	// 동물병원/미용실 찜하기
-	public Object addLikes(String like_num) {
+	@RequestMapping("/insertLikes")
+	public int insertLikes(Likes likes) {
 		
-		// TODO Auto-generated method stub
-		return like_num;
+		int result = likeService.insertLikes(likes);		
+		return result;
 		
 	}
 	
-	// 동물병원/미용실 찜해제
-	public Object cancelLikes(String like_num) {
+	// 내 찜 목록
+	@RequestMapping("/mypage/myzzim")
+	public String myZzim(HttpSession session) {
 		
-		// TODO Auto-generated method stub
-		return like_num;
+		String cl_num = (String) session.getAttribute("cl_num");
+		likeService.selectLikce(cl_num);
+		
+		return "/user/uMyPage/myzzim";
+	}
+		
+	// 동물병원/미용실 찜해제
+	@RequestMapping("/delLikes")
+	public int delLikes(Likes likes) {
+		
+		int result = likeService.delLikes(likes);
+		
+		return result;
+
 		
 	}
 }

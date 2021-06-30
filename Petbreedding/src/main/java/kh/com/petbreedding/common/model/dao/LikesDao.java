@@ -1,5 +1,7 @@
 package kh.com.petbreedding.common.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,16 @@ public class LikesDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void insertLikes(Likes likes) {
-		//TODO
+	public int insertLikes(Likes likes) {
+		return sqlSession.insert("likes.insertLike", likes);
 	}
 	
-	public void delLikes(String like_num) {
-		//TODO
+	public List<Likes> selectLikce(String cl_num){
+		return sqlSession.selectList("likes.selectLike", cl_num);
+	}
+	
+	public int delLikes(Likes likes) {
+		return sqlSession.insert("likes.deleteLike", likes);
 	}
 	
 }

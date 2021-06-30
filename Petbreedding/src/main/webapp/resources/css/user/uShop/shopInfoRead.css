@@ -62,16 +62,10 @@
     text-align: center;
     padding: 15px;
     border-radius: 10px;
+    cursor:pointer;
 }
-#zzim i:nth-child(2){
+#heartOn{
     display: none;
-}
-#zzim:hover i:nth-child(1){
-    display: none;
-}
-#zzim:hover i:nth-child(2){
-    display: inline-block;
-    color: var(--hover-color);
 }
 
 /*메뉴*/

@@ -181,9 +181,9 @@ public class shopController {
 	}
 	
 	//사업자 예약관리 개별 리스트
-//	@ResponseBody
+		@ResponseBody
 		@RequestMapping(value = "/bReservationkind")
-		public ModelAndView bReservation(Locale locale,
+		public List<HairShopReservation> bReservation(Locale locale,
 							Model model,
 							HairShopReservation rev,
 							HttpSession session,
@@ -198,10 +198,12 @@ public class shopController {
 			System.out.println("선택된 예약 상태는" + rev.getRes_status());
 			System.out.println("로그인한 사업장은" + rev.getBp_id());
 			System.out.println("이름은 " + rev.getName());
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("list", bprevService.revList(rev));
-			mav.setViewName("bPartner/bShop/bReservation");
-			return mav;
+			/*
+			 * ModelAndView mav = new ModelAndView(); mav.addObject("list",
+			 * bprevService.revList(rev)); mav.setViewName("bPartner/bShop/bReservation");
+			 */
+			List<HairShopReservation> list = bprevService.revList(rev);
+			return list;
 		}
 
 	//사업자 예약확인

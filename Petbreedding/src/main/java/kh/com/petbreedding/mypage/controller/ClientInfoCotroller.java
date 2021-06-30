@@ -266,14 +266,7 @@ public class ClientInfoCotroller {
 	}
 	
 
-	
-	
-	
-	// 내 찜 목록
-		@RequestMapping("/mypage/myzzim")
-		public String myZzim(HttpSession session) {
-			return "/user/uMyPage/myzzim";
-		}
+	//찜목록은 LikesController
 
 	// 회원 정보 불러오기
 	@RequestMapping("/mypage/selectClienInfo")

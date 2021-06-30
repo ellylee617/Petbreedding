@@ -61,7 +61,7 @@
 		<!-- <mapper resource="mappers/board/myAskComment-mapper.xml"/> -->
 		<mapper resource="mappers/board/customerService-mapper.xml"/>
 		<mapper resource="mappers/BP/bPRev-mapper.xml"/>
-		
+		<mapper resource="mappers/common/likes-mapper.xml"/>
 	</mappers>
 	
 </configuration>

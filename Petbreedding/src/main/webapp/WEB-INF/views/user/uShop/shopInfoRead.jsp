@@ -26,6 +26,13 @@
 		<jsp:include page="../../common/header.jsp" />
 			<section class="section">
             <div class="store_area">
+            	<input type="hidden" value="${client.cl_num}" id="cl_num" />
+            	<c:if test="${shopType eq 0 }">
+            	<input type="hidden" value="${shopInfo.harNum}" id="har_num" />
+            	</c:if>
+            	<c:if test="${shopType eq 1 }">
+            	<input type="hidden" value="${shopInfo.hosNum}" id="hos_num" />
+            	</c:if>
             <!-- 매장 타입이 0이면 미용실 -->
             <!-- 매장 타입이 1이면 동물병원 -->
                 <div class="store_info_article">
@@ -55,7 +62,10 @@
 		                       <a href="${path}/shopReservation?har_num=${shopInfo.hosNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
                         	</c:if>
                         </c:if>
-                        <a href="#" id="zzim"><i class="far fa-heart"></i><i class="fas fa-heart"></i></a>
+                        <a id="zzim">
+                        	<i class="far fa-heart" id="heartOff"></i>
+                        	<i class="fas fa-heart" id="heartOn"></i>
+                        </a>
                     </div>
                 </div> <!--store_info_article-->
                 <div class="swiper-container store_menu_article ">
@@ -193,6 +203,7 @@
 	
 	 <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/user/uShop/shopInfoRead.js"></script>
+     <script type="text/javascript" src="${path}/resources/js/user/uMyPage/Likes.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/map.js"></script>
 </body>
