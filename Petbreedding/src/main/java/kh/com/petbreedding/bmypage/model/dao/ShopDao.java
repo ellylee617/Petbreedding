@@ -15,6 +15,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 
 @Repository("shopDao")
@@ -255,5 +256,14 @@ public class ShopDao {
 		return  sqlSession.insert("Shop.insertNewHosDayOff", vo);
 	}		
 	
+	// 동물병원 진료 정보 추가
+	public int insertMedicalType(MedicalType vo) {
+		
+		System.out.println(" !! ShopDao - insertMedicalType() 실행 !!");
+		return  sqlSession.insert("Shop.insertMedicalType", vo);
+		
+	}
+	
+	//TODO
 
 }

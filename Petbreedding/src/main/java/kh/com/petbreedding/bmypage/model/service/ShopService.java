@@ -9,6 +9,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 
 public interface ShopService {
@@ -42,10 +43,11 @@ public interface ShopService {
 	public Hospital selectHosInfo(String bpId); //동물병원 기본 정보 불러오기
 	public int updateHosInfo(Hospital vo); // 동물병원 기본 정보 수정
 	public int insertHosImg(HospitalImg vo); // 동물병원 이미지 첨부
-	public List<HospitalImg> selectHosImgList(String hosNum);// TODO: 동물병원 이미지 리스트 불러오기 
+	public List<HospitalImg> selectHosImgList(String hosNum);
 	public int deleteHosImg(String hosNum); // 동물병원 이미지 수정 (삭제) 
 	public int insertNewHosImg(HospitalImg vo); // 수정된 동물병원 이미지 추가
 	public int insertHosDayOff(HosDayOff vo); // 동물병원 주휴일 입력
 	public int deleteHosDayOff(String hosNum); // 동물병원 주휴일 수정 (삭제)
 	public int insertNewHosDayOff(HosDayOff vo); // 수정된 동물병원 주휴일 추가
+	public int insertMedicalType(MedicalType vo); // 동물병원 진료 정보 추가
 }
