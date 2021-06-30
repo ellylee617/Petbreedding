@@ -15,8 +15,36 @@ public class BpReservationServiceImpl implements BpReservationService{
 	private BpReservationDao bprevDao;
 
 	@Override
-	public List<HairShopReservation> revList() {
-		return bprevDao.revList();
+	public List<HairShopReservation> revList(HairShopReservation vo) throws Exception {
+		List<HairShopReservation> list = null;
+		try {
+			list = bprevDao.revList(vo);
+			if(list != null){
+				System.out.println("내 예약 리스트 있음");
+			}else {
+				System.out.println("내 예약 없음");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<HairShopReservation> revAllList(String bp_id) throws Exception {
+		List<HairShopReservation> list = null;
+		try{
+			list =  bprevDao.revAllList(bp_id);
+			if(list != null) {
+				System.out.println("전체 예약 리스트 있음");
+			}else {
+				System.out.println("전체 예약 리스트 없음");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 

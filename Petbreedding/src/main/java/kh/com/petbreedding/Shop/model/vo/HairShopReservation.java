@@ -25,13 +25,16 @@ public class HairShopReservation {
 	private int startIndex;
 	private int cntPerPage;
 	private String name;
+	private String bp_id;
+
 	@Override
 	public String toString() {
 		return "HairShopReservation [har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", style_num=" + style_num + ", har_num=" + har_num + ", res_date="
 				+ res_date + ", res_status=" + res_status + ", res_time=" + res_time + ", style_num2=" + style_num2
 				+ ", har_name=" + har_name + ", res_date2=" + res_date2 + ", client=" + client + ", pet=" + pet
-				+ ", style=" + style + ", hairSalon=" + hairSalon + ", name=" + name + "]";
+				+ ", style=" + style + ", hairSalon=" + hairSalon + ", startIndex=" + startIndex + ", cntPerPage="
+				+ cntPerPage + ", name=" + name + ", bp_id=" + bp_id + "]";
 	}
 	public String getName() {
 		return name;
@@ -151,6 +154,12 @@ public class HairShopReservation {
 	}
 	public void setCntPerPage(int cntPerPage) {
 		this.cntPerPage = cntPerPage;
+	}
+	public String getBp_id() {
+		return bp_id;
+	}
+	public void setBp_id(String bp_id) {
+		this.bp_id = bp_id;
 	}
 	
 	

@@ -14,7 +14,11 @@ public class BpReservationDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<HairShopReservation> revList() {
-		return sqlSession.selectList("bprev.hartRavList");
+	public List<HairShopReservation> revList(HairShopReservation vo) throws Exception {
+		return sqlSession.selectList("bprev.harRavListeach",vo);
+	}
+
+	public List<HairShopReservation> revAllList(String bp_id) throws Exception {
+		return sqlSession.selectList("bprev.hartRavList",bp_id);
 	}
 }

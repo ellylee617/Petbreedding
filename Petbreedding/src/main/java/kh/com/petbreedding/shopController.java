@@ -15,9 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.Shop.model.service.BpReservationService;
+import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
@@ -42,9 +45,14 @@ public class shopController {
 	
 	@Autowired
 	private ShopService shopService;
+	
 	@Autowired
 	private CtaService ctaService;
+	
+	@Autowired
+	private BpReservationService bprevService;
 
+	
 	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
 	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception{
@@ -208,7 +216,6 @@ public class shopController {
 	public String bReservation(Locale locale, Model model) {
 		return "/bPartner/bShop/bReservation";
 	}
-<<<<<<< HEAD
 	
 	//사업자 예약관리 개별 리스트
 		@ResponseBody
@@ -235,8 +242,6 @@ public class shopController {
 			List<HairShopReservation> list = bprevService.revList(rev);
 			return list;
 		}
-=======
->>>>>>> c09dc60f1bd157e18a97bfc9fc3a20f7ddcc96be
 
 	//사업자 예약확인
 	@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
