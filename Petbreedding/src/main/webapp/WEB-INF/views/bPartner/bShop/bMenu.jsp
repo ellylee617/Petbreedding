@@ -149,7 +149,6 @@
 					<c:forEach var="list" items="${menuList }" varStatus="status">
 						<form class="dynamicTable frm_${list.medNum  }">
 							<input type="hidden" value="${list.medNum}" name="medNum">
-							<input type="hidden" value="${list.hosNum}" name="hosNum">
 							<input type="text" placeholder="진료명" id="medName" name="medName" value="${list.medName }">
 							<input type="text" placeholder="진료가격" id="medPrice" name="medPrice" value="${list.medPrice }">
 							<button type="submit" class="basicBtn rebtn" formaction="${path}/bp/bMenu/rewrite">수정</button>
