@@ -17,18 +17,16 @@
                 <i class="fas fa-home"></i>
                 <p>사업장관리</p>
             </li></a>
-            <c:if test = "${bP.bp_type == 0 }">
             <a href="${pageContext.request.contextPath}/bMenu"><li class="menu" id="menuOP">
+            <c:if test="${bP.bp_type==0}">
                 <i class="fas fa-bars"></i>
-                <p>메뉴관리</p>
-            </li></a>
+                <p>스타일 관리</p>
             </c:if>
-            <c:if test = "${bP.bp_type == 1 }">
-            <li class="menu">
+           	<c:if test="${bP.bp_type==1}">
                 <i class="fas fa-stethoscope"></i>
-                <p>온라인검진</p>
-            </li>
+                <p>진료 종류<br>관리</p>
             </c:if>
+            </li></a>
             <li class="menu">
                 <i class="fas fa-comments"></i>
                 <p>채팅관리</p>

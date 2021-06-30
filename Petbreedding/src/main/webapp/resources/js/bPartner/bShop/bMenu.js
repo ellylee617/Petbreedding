@@ -1,6 +1,6 @@
 $(function(){
 	
-	$("#addItemBtn").click(function() {
+	$("#addItemBtn1").click(function() {
 		
 		
 		var form = '<form  class="newDynamicTable" action="bp/bMenu/write" method="POST" style="float: left">\
@@ -13,6 +13,20 @@ $(function(){
 				</form>';
 		
 		$(".insert").prepend (
+				form
+		)
+	});
+	
+	$("#addItemBtn2").click(function() {
+		
+		
+		var form = '<form class="dynamicTable" action="${path}/bp/bMenu/write" method="POST">\
+			<input type="text" placeholder="진료명" id="medName" name="medName">\
+			<input type="text" placeholder="가격" id="medPrice" name="medPrice">\
+			<button type="submit" class="basicBtn medOkBtn">완료</button>\
+			</form>';
+		
+		$(".medInsert").prepend (
 				form
 		)
 	});
