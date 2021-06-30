@@ -39,7 +39,7 @@
                     </div>
                     <div class="store_tel"><i class="fas fa-phone-alt"></i><span>${shopInfo.shopTel }</span></div>
                     <div class="store_info">
-                        <p>${harInfo.shopMInfo }</p>
+                        <p>${shopInfo.shopMInfo }</p>
                     </div>
                     <div class="store_btn">
                         <a href="#" id="goChat" class="sBtn">문의하기</a>
@@ -48,12 +48,22 @@
                         </c:if>
                         <!-- TODO -->
                         <c:if test="${!empty client }">
+<<<<<<< HEAD
                         	<c:if test="${shopType eq 0 }">
 		                       <a href="${path}/shopReservation?har_num=${shopInfo.harNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
                         	</c:if>
 							<c:if test="${shopType eq 1 }">
 		                       <a href="${path}/shopReservation?har_num=${shopInfo.hosNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
                         	</c:if>
+=======
+                        	<%-- <c:if test="${!empty hairShop }"> --%>
+                        	<a href="${path}/shopHosReservation?hos_num=10&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>
+		                        <%-- <a href="${path}/shopReservation?har_num=HA1&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a> --%>                                            	
+<%--                         	</c:if>
+                        	<c:if test="${!empty hospital }">
+		                        <a href="${path}/shopReservation?hos_num=10&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
+                        	</c:if> --%>
+>>>>>>> 45a0ee1d46d3a50296b966d1a6551b0e40491120
                         </c:if>
                         <a href="#" id="zzim"><i class="far fa-heart"></i><i class="fas fa-heart"></i></a>
                     </div>
