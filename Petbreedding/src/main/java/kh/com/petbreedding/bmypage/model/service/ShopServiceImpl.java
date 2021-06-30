@@ -392,7 +392,18 @@ public class ShopServiceImpl implements ShopService {
 
 
 
-
+	// 동물병원 이미지 리스트 불러오기
+	@Override
+	public List<HospitalImg> selectHosImgList(String hosNum) {
+		List<HospitalImg> hosImgList = null;
+		System.out.println(" ~ ShopService 진입 ~");
+		try {
+			hosImgList = shopDao.selectHosImgList(hosNum);
+		} catch(Exception e) {
+		}
+		System.out.println("List<HairSalonImg> harImgList ::" + hosImgList);
+		return hosImgList;
+	}
 
 
 

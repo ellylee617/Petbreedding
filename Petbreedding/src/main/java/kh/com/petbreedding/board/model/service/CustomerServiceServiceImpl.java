@@ -38,17 +38,4 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 		return result;
 	}
 
-	@Override
-	public int CustomerServiceInsert(CustomerService cs) {
-		int result = -1;
-		
-		try {
-			result = customerServiceDao.CustomerServiceInsert(cs);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
-
 }

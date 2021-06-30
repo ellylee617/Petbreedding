@@ -201,6 +201,7 @@ public class ShopDao {
 		
 	}
 	
+	
 	// 동물병원 기본 정보 수정
 	public int updateHosInfo(Hospital vo) {
 		System.out.println(" !! ShopDao - updateHosInfo() 실행 !!");
@@ -217,8 +218,10 @@ public class ShopDao {
 	}	
 	
 	// 동물병원 이미지 리스트 불러오기
-	// TODO
-	
+	public List<HospitalImg> selectHosImgList(String hosNum){
+		System.out.println(" !! ShopDao - selectHosImgList() 실행 !!");
+		return  sqlSession.selectList("Shop.selectHosImgList", hosNum);
+	}
 	
 	
 	// 동물병원 이미지 수정 (삭제) 

@@ -341,7 +341,7 @@ public class BMyPageController {
 
 		// 파일 업로드
 
-		String savePath = request.getRealPath("resources/uploadFile/hospital"); // 파일이 저장될 위치
+		String savePath = request.getRealPath("resources/uploadFile/shop"); // 파일이 저장될 위치
 
 		// 넘어온 파일을 리스트로 저장
 		List<MultipartFile> mf = request.getFiles("shopImg");// 업로드 파라미터
@@ -367,27 +367,25 @@ public class BMyPageController {
 					e.printStackTrace();
 				}
 
-				System.out.println("파일명:" + saveName);
+				System.out.println("원본 파일명:" + originalfileName);
 
 				if (bPType == 0) { // 미용실 매장 사진 등록
 
 					HairSalonImg harVO3 = new HairSalonImg();
-					harVO3.setShopImg(saveName); // HAIR_SALON_IMG 테이블 HAR_IMG 컬럼에 파일명 삽입
+					harVO3.setShopImg(originalfileName); // DB에는 원본 파일명 저장 
 					shopService.insertHarImg(harVO3);
 
 					System.out.println(harVO3.toString());
 
-					session.setAttribute("harImg", harVO3);
 
 				} else { // 동물병원 매장 사진 등록
 
 					HospitalImg hosVO3 = new HospitalImg();
-					hosVO3.setShopImg(saveName);
+					hosVO3.setShopImg(originalfileName);
 					shopService.insertHosImg(hosVO3);
 
 					System.out.println(hosVO3.toString());
 
-					session.setAttribute("hosImg", hosVO3);
 
 				}
 
@@ -526,8 +524,8 @@ public class BMyPageController {
 		}
 
 		// 파일 업로드
-
-		String savePath = mulitreq.getRealPath("resources/uploadFile/hairsalon"); // 파일이 저장될 위치
+		String savePath = mulitreq.getRealPath("resources/uploadFile/shop"); // 파일이 저장될 위치
+		
 
 		// 넘어온 파일을 리스트로 저장
 		List<MultipartFile> mf = mulitreq.getFiles("shopImg");// 업로드 파라미터
@@ -538,10 +536,10 @@ public class BMyPageController {
 
 			for (int i = 0; i < mf.size(); i++) {
 
-//				UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
+				UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
 				String originalfileName = mf.get(i).getOriginalFilename(); // 본래 파일명
-//				String saveName = uuid.toString() + "_" + originalfileName; // 저장될 이름
-				File uploadFile = new File(savePath + "//" + originalfileName); // 복사될 위치
+				String saveName = uuid.toString() + "_" + originalfileName; // 저장될 이름
+				File uploadFile = new File(savePath + "//" + saveName); // 복사될 위치
 				
 				// 파일 저장
 				try {
@@ -558,23 +556,21 @@ public class BMyPageController {
 
 				if (bPType == 0) { // 미용실 매장 사진 등록
 
-					harVO3.setShopImg(originalfileName); // HAIR_SALON_IMG 테이블 HAR_IMG 컬럼에 파일명 삽입
+					harVO3.setShopImg(originalfileName); // DB에는 원본 파일명 저장
 					harVO3.setHarNum(harNum);
 
 					shopService.insertNewHarImg(harVO3);
 
 					System.out.println(harVO3.toString());
 
-					session.setAttribute("harImg", harVO3);
 
 				} else { // 동물병원 매장 사진 등록
 
 					hosVO3.setShopImg(originalfileName);
-					hosVO3.setHosNumImg(hosNum);
+					hosVO3.setHosNum(hosNum);
 
 					shopService.insertNewHosImg(hosVO3);
 					System.out.println(hosVO3.toString());
-					session.setAttribute("hosImg", harVO3);
 				}
 
 			}

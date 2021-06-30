@@ -19,8 +19,8 @@
 	float: left;
 }
 
-#mServiceTitle{
-	width: 472px;
+#title{
+	width: 50%;	
 	height: 40px;
 }
 
@@ -47,34 +47,9 @@
 .qanbtn{
 	width: 80%;
 	position: absolute;
-	top:60%;
+	top:65%;
 	left: 40%;
-}
 
-.msTitle{
-	width: 100%;
-	position: absolute;
-	top:20%;
-	left: 20%;
-}
-
-.msContent{
-	width: 100%;
-	position: absolute;
-	top:25%;
-	left: 20%;
-}
-
-.msBtn{
-	width: 80%;
-	position: absolute;
-	top:63%;
-	left: 47%;
-}
-
-.selectBox {
-	width: 119px;
-    height: 40px;
 }
 
 .basicBtn{

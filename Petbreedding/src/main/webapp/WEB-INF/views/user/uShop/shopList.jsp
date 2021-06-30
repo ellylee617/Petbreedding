@@ -66,26 +66,25 @@
                                 <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
-                                <div class="storeList_etc_area">
-                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
-                                    <a href="#">구매건수<small>999+</small></a>
-                                    <a href="#">찜하기<small>999+</small></a>
-                                </div>
+	                                <div class="storeList_etc_area">
+	                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
+	                                    <a href="#">구매건수<small>999+</small></a>
+	                                    <a href="#">찜하기<small>999+</small></a>
+	                                </div>
                                     <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
                                     <input type="hidden" id="y" name="y" value="${item.y }">
                            			<input type="hidden" id="x" name="x" value="${item.x }">
-                                </div>
-                            </div>                                                            
+                             </div>
                         </li>
-                    </div>
+                     </div>                                                            
                 </ul>
                 </c:forEach>
-            </div>
+                    </div>
+            </c:if>
             
             <!--TOPBTN-->
             <a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
             
-            </c:if>
             
             
             

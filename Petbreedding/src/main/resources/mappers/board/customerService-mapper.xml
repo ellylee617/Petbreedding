@@ -30,12 +30,4 @@
 	<select id="CustomerServiceSelectListC" parameterType="CustomerService" resultMap="CustomerServiceMap">
 		SELECT * FROM ANNOUNCEMENT WHERE ANN_TYPE = 0 OR ANN_TYPE = 1
 	</select>
-	
-	<insert id="CustomerServiceInsert" parameterType="CustomerService">
-		INSERT INTO ANNOUNCEMENT VALUES
-		(
-			'AN'||SEQ_ANNOUNCEMENT.NEXTVAL, #{adminId}, #{annTitle}
-			,#{annCont}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{annType}
-		)
-	</insert>
 </mapper>

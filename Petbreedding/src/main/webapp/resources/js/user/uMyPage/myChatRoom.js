@@ -1,4 +1,3 @@
-// 소켓
 let sock;
 
 function connect() {
@@ -12,7 +11,7 @@ function connect() {
 		console.log(data);
 		var obj = JSON.parse(data)
 		console.log(obj)
-		appendMessage(obj);
+		appendMessage(obj.message_content);
 	};
 	
 	sock.onclose = function() {
@@ -25,17 +24,15 @@ function sendMessage() {
 	var msg = $("#message").val();
 	if (msg != "") {
 		message = {};
-		message.mContent = $("#message").val();
-		message.mSender = $("#sender").val();
-		message.mSenderemail = $("#email").val();
-		message.mReceiver = $("#receiver").val();
-		message.mSendTime = getTimeStamp();
-		message.chatId = $("#chatId").val();
-		message.cl_num = $("#cl_num").val();
-		message.bp_id = $("#bp_id").val();
-
+		message.message_content = $("#message").val();
+		message.message_sender = $("#name").val();
+		//message.TUTOR_USER_user_id = '${TUTOR_USER_user_id}'
+		//message.USER_user_id = '${profile.user_id}'
+		//message.CLASS_class_id = '${class_id}'
+		//message.message_sender = '${profile.user_id}'
 	}
 	sock.send(JSON.stringify(message));
+	sock.send($("#message").val());
 }
 
 function getTimeStamp() {
@@ -63,26 +60,16 @@ function leadingZeros(n, digits) {
 }
 
 function appendMessage(msg) {
-	var id = $("#rid").val();
-	
-	if (msg.mContent == '') {
+
+	if (msg == '') {
 		return false;
 	} else {
-		if(msg.mSenderemail == id){
+		var t = getTimeStamp();
 		$("#chatMessageArea")
 				.append(
 						"<div class='col-12 row dMessageO'><div class='col-2 dMessage my'><div class='dNick'>"
-								+ msg.mSender +"</div></div><br><div class='col-10 dConO my'><div class='col-12 dConI mycolor'><span>"
-								+ msg.mContent + "</span></div><div class='col-12 dTimeO'><br><div>"
-								+ msg.mSendTime + "</div></div></div></div><br><br><br><br>");
-		} else {
-			$("#chatMessageArea")
-			.append(
-					"<div class='col-12 row dMessageO'><div class='col-2 dMessage U'><div class='dNick'>"
-							+ msg.mSender +"</div></div><br><div class='col-10 dConO U'><div class='col-12 dConI Ucolor'><span>"
-							+ msg.mContent + "</span></div><div class='col-12 dTimeO'><br><div>"
-							+ msg.mSendTime + "</div></div></div></div><br><br><br><br>");
-		}
+								+ "</div></div><br><div class='col-10 dConO my'><div class='col-12 dConI mycolor'><span>"
+								+ msg + "</span></div><div class='col-12 dTimeO'><br><div>");
 		var chatAreaHeight = $("#chatArea").height();
 		var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
 		$("#chatArea").scrollTop(maxScroll);

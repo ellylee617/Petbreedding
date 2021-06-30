@@ -27,16 +27,17 @@
 			<section class="section">
             <div class="store_area">
             <!-- 매장 타입이 0이면 미용실 -->
+            <!-- 매장 타입이 1이면 동물병원 -->
                 <div class="store_info_article">
-                	<c:forEach var="harImgList" items="${harImgList }" varStatus="status">
+                	<c:forEach var="shopImgList" items="${shopImgList }" varStatus="status">
                     <div class="store_img">
-                        <img src="${path}/resources/uploadFile/hairsalon/${harImgList.shopImg }" style="width:400px; height: 400px">
+                        <img src="${path}/resources/uploadFile/shop/${shopImgList.shopImg }" style="width:400px; height: 400px">
                     </div>
                     </c:forEach>
                     <div class="store_name">
-                        <h1>${harInfo.shopName }</h1>
+                        <h1>${shopInfo.shopName }</h1>
                     </div>
-                    <div class="store_tel"><i class="fas fa-phone-alt"></i><span>${harInfo.shopTel }</span></div>
+                    <div class="store_tel"><i class="fas fa-phone-alt"></i><span>${shopInfo.shopTel }</span></div>
                     <div class="store_info">
                         <p>${harInfo.shopMInfo }</p>
                     </div>
@@ -59,6 +60,7 @@
                     </div>
                 </div> <!--store_info_article-->
                 <div class="swiper-container store_menu_article ">
+                	<!-- TODO: 동물병원 진료 메뉴랑 구분 필요 -->
                     <p>메뉴<span>(${fn:length(styleList)})</span></p>
                     <div class="swiper-wrapper store_menues">
                      <c:forEach var="styleList " items="${styleList }" varStatus="status">
@@ -173,9 +175,9 @@
                             </div>
                         </div>
                         <div class="storeInfo">
-                            <p>${harInfo.shopName }</p>
-                            <p>전화번호 : ${harInfo.shopTel }</p>
-                            <p>주소 : ${harInfo.shopAddr }</p>
+                            <p>${shopInfo.shopName }</p>
+                            <p>전화번호 : ${shopInfo.shopTel }</p>
+                            <p>주소 : ${shopInfo.shopAddr }</p>
                         </div>
                     </div>
                 </div>

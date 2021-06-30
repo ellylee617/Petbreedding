@@ -16,8 +16,6 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 </head>
 <body>
-<input type="hidden" id="rid" value="${id }">
-<input type="hidden" id="chatId" value="${chatId }">
 	<div class="closebtn">
 			<a href="#" onclick="javascript:top.window.close()">닫기</a>
 	</div>
@@ -25,11 +23,9 @@
 		<img src="${path}/resources/images/logo-resize.png" class="img-fluid" />
 	</div>
 	<c:if test="${user == 'user'}">
-	<% Client client = (Client)session.getAttribute("client");
-		String email = client.getEmail(); %>
 	<div class="col-12 bInfo">
 		<div class="col-10 bInfoinner">
-			${shopName }
+			${ShopName }
 		</div>
 	</div>
 	<!-- 채팅 내용 -->
@@ -53,7 +49,7 @@
 				<c:if test="${c.cl_num ne c.mSender }">
 					<div class="col-12 row dMessageO">
 					<div class="col-2 dMessage U">
-					<div class="dNick">${shopName}</div></div><br>
+					<div class="dNick">${ShopName}</div></div><br>
 					<div class="col-10 dConO U">
 					<div class="col-12 dConI Ucolor">
 					<span>
@@ -74,19 +70,12 @@
 	<div class="col-12 inputchatwrap">
 		<div class="col-12 textwrap">
 			<textarea class="form-control" placeholder="내용을 입력해주세요" id="message" rows="4" cols="35"></textarea>
-			<input type='hidden' id="sender" value="${nickName }">
-			<input type='hidden' id="receiver" value="${shopName }">
-			<input type="hidden" id="email" value="<%=email %>">
-			<input type="hidden" id="cl_num" value="${c.cl_num }">
-			<input type="hidden" id="bp_id" value="${c.bp_id }">
 			<button type="button" id="sendBtn" class="basicBtn">전송</button>
 		</div>
 	</div>
 	</c:if>
 	
 	<c:if test="${user ne 'user'}">
-	<% BPartner bp = (BPartner)session.getAttribute("bP");
-		String email = bp.getBp_email(); %>
 	<div class="col-12 bInfo">
 		<div class="col-10 bInfoinner">
 			${nickName }
@@ -134,11 +123,7 @@
 	<div class="col-12 inputchatwrap">
 		<div class="col-12 textwrap">
 			<textarea class="form-control" placeholder="내용을 입력해주세요" id="message" rows="4" cols="35"></textarea>
-			<input type='hidden' id="sender" value="${shopName }">
-			<input type='hidden' id="receiver" value="${nickName }">
-			<input type="hidden" id="email" value="<%=email %>">
-			<input type="hidden" id="cl_num" value="${c.cl_num }">
-			<input type="hidden" id="bp_id" value="${c.bp_id }">
+			<input type="hidden" id="name" value="${shopName}">
 			<button type="button" id="sendBtn" class="basicBtn">전송</button>
 		</div>
 	</div>

@@ -171,8 +171,8 @@
 	<!-- HOSPITAL_IMAGE 테이블-->
 		<resultMap type="HospitalImg" id="HospitalImg">
 			<id column="IMG_NUM" property="imgNum"/>
-			<result column="HAR_NUM" property="hosNumImg"/>
-			<result column="HAR_IMG" property="shopImg"/>
+			<result column="HOS_NUM" property="hosNum"/>
+			<result column="HOS_IMG" property="shopImg"/>
 		</resultMap>
 		
 			
@@ -197,8 +197,8 @@
 	
 	<!-- 동물병원 기본 정보 기입 -->
 	<insert id="insertHosInfo" parameterType="Hospital">
-	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, HOS_CONN, HOS_CLICK )
-	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, 0, 0)
+	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, HOS_CONN, HOS_CLICK, Y, X )
+	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, 0, 0, #{y}, #{x})
 	</insert>
 
 
@@ -213,14 +213,21 @@
 	<!-- 동물병원 기본 정보 수정 -->
 	<update id="updateHosInfo" parameterType="Hospital">
 		UPDATE HOSPITAL 
-		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO) 
+		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X) 
 		= (
-			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}
+			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}
 			FROM dual
 		)
 		WHERE BP_ID = #{bpId}	
 	</update>
 	
+	<!-- 동물병원 이미지 리스트 불러오기 -->
+		<select id="selectHosImgList" parameterType="string" resultMap="HospitalImg">
+		SELECT *
+		FROM HOSPITAL_IMAGE
+		WHERE HOS_NUM = #{hosNum}
+		</select>
+		
 	<!--동물병원 이미지 첨부 -->
 	<insert id="insertHosImg" parameterType="HospitalImg">
 			<selectKey keyProperty="hosNumImg" resultType="string" order="BEFORE">
@@ -238,14 +245,14 @@
 			(
 				SELECT 1
 				FROM HOSPITAL info
-				WHERE info.HOS_NUM = #{hosNumDayOff}
+				WHERE info.HOS_NUM = #{hosNum}
 			)
 		</delete>
 		
 		<!-- 수정된 동물병원 이미지 추가 -->
 		<insert id="insertNewHosImg" parameterType="HospitalImg">
 		INSERT INTO HOSPITAL_IMAGE (IMG_NUM, HOS_NUM, HOS_IMG)
-		VALUES (SEQ_HOSPITAL_IMG.NEXTVAL,#{hosNumImg},#{shopImg})
+		VALUES (SEQ_HOSPITAL_IMG.NEXTVAL,#{hosNum},#{shopImg})
 		</insert>
 		
 		<!-- 동물병원 주휴일 추가 -->
