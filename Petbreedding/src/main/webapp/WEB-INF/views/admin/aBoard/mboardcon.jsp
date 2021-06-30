@@ -54,17 +54,6 @@
 				
 				</div>
 				<div id="replyArea" class="reply">
-<!-- 				<div> -->
-<!-- 					안녕하세요. 또비언니님<br><br>현재 확인해본 결과, 해당 카드사에서 발생한 문제로 확인되고 있습니다. -->
-<!--         		<br>잠시 후 다시 결제 해보시고, 안되시면 고객센터(1577-0123)로 연락주시면 추가 안내해드리겠습니다.<br><br> -->
-<!--         		감사합니다. -->
-<!-- 				</div> -->
-					<form id="maCommentFrm" class="maCommentFrm">
-<!-- 					    <input type="text" name="maCommentText" id="replt"> -->
-						<textarea id="maCommentText" name="maCommentText"></textarea>
-					    <button class="basicBtn" id="maCommentBtn">등록</button>
-						<input type="hidden" name="qna_num" value="${mAsk.qnaNum}">
-					</form>				
 				</div>
 			</div>
 		</section>
