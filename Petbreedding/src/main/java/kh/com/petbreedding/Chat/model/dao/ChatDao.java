@@ -32,12 +32,10 @@ public class ChatDao {
 	public int insertMessage(ChatMessage cm) throws Exception {
 		return sqlSession.insert("Chat.insertMessage", cm);
 	}
-//	
-//	public String getPartner(ChatRoom vo) throws Exception {
-//		List<ChatMessage> mvo = sqlSession.selectList("Chat.getPartner", vo);
-//		return mvo.get(0).getcl_num();
-//	}
-//	
+	
+	public ChatRoom selectChatRoom(String chatId) throws Exception {
+		return sqlSession.selectOne("Chat.selectChatRoom", chatId);
+	}
 	
 	public List<ChatList> getList(String cl_num) throws Exception {
 		return sqlSession.selectList("Chat.getList", cl_num);

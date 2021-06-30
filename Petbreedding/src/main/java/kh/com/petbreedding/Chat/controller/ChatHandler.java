@@ -1,45 +1,140 @@
 package kh.com.petbreedding.Chat.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-@RequestMapping("/chat")
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kh.com.petbreedding.Chat.model.service.ChatService;
+import kh.com.petbreedding.Chat.model.vo.ChatMessage;
+import kh.com.petbreedding.Chat.model.vo.ChatRoom;
+
+@Controller
 public class ChatHandler extends TextWebSocketHandler {
 
-	// 세션 리스트
-	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
+	@Autowired
+	ChatService chService;
 
-	private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
+	private final ObjectMapper objectMapper = new ObjectMapper();
 
-	// 클라이언트가 연결 되었을 때 실행
+	// 채팅방 목록 <방 번호, ArrayList<session> >이 들어간다.
+	private Map<String, ArrayList<WebSocketSession>> RoomList = new ConcurrentHashMap<String, ArrayList<WebSocketSession>>();
+	// session, 방 번호가 들어간다.
+	private Map<WebSocketSession, String> sessionList = new ConcurrentHashMap<WebSocketSession, String>();
+
+	private static int i;
+
+	/**
+	 * websocket 연결 성공 시
+	 */
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		sessionList.add(session);
-		logger.info("{} 연결됨");
+		i++;
+		System.out.println(session.getId() + " 연결 성공 => 총 접속 인원 : " + i + "명");
 	}
 
-	// 클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
-	@Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        logger.info("{}로 부터 {} 받음", message.getPayload());
-        //모든 유저에게 메세지 출력
-        for(WebSocketSession sess : sessionList){
-            sess.sendMessage(new TextMessage(message.getPayload()));
-        }
-    }
-
-	// 클라이언트 연결을 끊었을 때 실행
+	/**
+	 * websocket 연결 종료 시
+	 */
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		sessionList.remove(session);
-		logger.info("{} 연결 끊김.");
+		i--;
+		System.out.println(session.getId() + " 연결 종료 => 총 접속 인원 : " + i + "명");
+		// sessionList에 session이 있다면
+		if (sessionList.get(session) != null) {
+			// 해당 session의 방 번호를 가져와서, 방을 찾고, 그 방의 ArrayList<session>에서 해당 session을 지운다.
+			RoomList.get(sessionList.get(session)).remove(session);
+			sessionList.remove(session);
+		}
+	}
+
+	@Override
+	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+
+		// 전달받은 메세지
+		String msg = message.getPayload();
+		
+		// Json객체 → Java객체
+		ChatMessage chatMessage = objectMapper.readValue(msg, ChatMessage.class);
+				
+		// 받은 메세지에 담긴 roomId로 해당 채팅방을 찾아온다.
+		ChatRoom chatRoom = chService.selectChatRoom(chatMessage.getChatId());
+			
+		// 채팅 세션 목록에 채팅방이 존재하지 않고, 처음 들어왔고, DB에서의 채팅방이 있을 때
+		// 채팅방 생성
+		if (RoomList.get(chatRoom.getChatId()) == null && chatRoom != null) {
+			System.out.println("채팅방 없어요?");
+			
+			// 채팅방에 들어갈 session들
+			ArrayList<WebSocketSession> sessionTwo = new ArrayList<>();
+			// session 추가
+			sessionTwo.add(session);
+			// sessionList에 추가
+			sessionList.put(session, chatRoom.getChatId());
+			// RoomList에 추가
+			RoomList.put(chatRoom.getChatId(), sessionTwo);
+			// 확인용
+			System.out.println("채팅방 생성");
+		} // 채팅방이 존재 할 때
+		else if (RoomList.get(chatRoom.getChatId()) != null && chatRoom != null) {
+			
+			System.out.println("들어오나요? 지금 채팅방 있어요?");
+
+			// RoomList에서 해당 방번호를 가진 방이 있는지 확인.
+			RoomList.get(chatRoom.getChatId()).add(session);
+			// sessionList에 추가
+			sessionList.put(session, chatRoom.getChatId());
+			// 확인용
+			System.out.println("생성된 채팅방으로 입장");
+		}
+
+		// 채팅 메세지 입력 시
+		if (RoomList.get(chatRoom.getChatId()) != null && chatRoom != null) {
+			
+//			// 메세지에 보낸사람이름, 보낸 시간, 내용을 담는다.
+//			TextMessage textMessage = new TextMessage(
+//					chatMessage.getmSender() + "," + chatMessage.getmSendTime() + "," + chatMessage.getmContent()
+//					+ "," + chatMessage.getBp_id()
+//					+ "," + chatMessage.getChatId()
+//					+ "," + chatMessage.getCl_num()
+//					+ "," + chatMessage.getmReceiver()
+//					);
+
+			// 현재 session 수
+			int sessionCount = 0;
+
+			// 해당 채팅방의 session에 뿌려준다.
+			for (WebSocketSession sess : RoomList.get(chatRoom.getChatId())) {
+				sess.sendMessage(message);
+				sessionCount++;
+			}
+
+			// 동적쿼리에서 사용할 sessionCount 저장
+			// sessionCount == 2 일 때는 unReadCount = 0,
+			// sessionCount == 1 일 때는 unReadCount = 1
+			chatMessage.setmUnreadCount(sessionCount);
+
+			// DB에 저장한다.
+			int result = chService.insertMessage(chatMessage);
+
+			if (result == 1) {
+				System.out.println("메세지 전송 및 DB 저장 성공");
+			} else {
+				System.out.println("메세지 전송 실패!!! & DB 저장 실패!!");
+			}
+		}else {
+			System.out.println("완전 잘못 들어왓쥬?");
+		}
+	}
+
+	public void afterPropertiesSet() throws Exception {
 	}
 }
