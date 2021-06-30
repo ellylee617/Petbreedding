@@ -38,10 +38,10 @@
 					<table style="border: 1px;">
 						<thead>
 							<tr>
-								<th width="550">타입</th>
-								<th width="500">스타일명</th>
-								<th width="500">가격</th>
-								<th width="400">소요시간</th>
+								<th>타입</th>
+								<th>스타일명</th>
+								<th>가격</th>
+								<th>소요시간</th>
 							</tr>
 						</thead>
 						<tbody id="dynamicTbody">
@@ -55,7 +55,7 @@
 
 					<!-- style_deep (0 : 메인메뉴  1: 서브메뉴) -->
 
-					<c:if test="${empty styleList }">
+					<c:if test="${empty menuList }">
 						<form class="dynamicTable" action="${path}/bp/bMenu/write"
 							method="POST">
 							<label><input type="radio" name="style_deep" value="0">메인</label>
@@ -111,7 +111,7 @@
 			</div>
 			</c:if>
 			
-			<c:if test="${bP.bp_type==1}">
+			<c:if test="${bP.bp_type == 1}">
 			
 			<div class="bContent">
 			
@@ -119,8 +119,7 @@
 					<button id="addItemBtn2" class="basicBtn addItemBtn">옵션추가</button>
 				</div>
 				
-				<div class="menuhead medHead">
-					
+				<div class="medHead">
 					<h1>진료 종류 관리</h1>
 					<table style="border: 1px;">
 						<thead>
@@ -130,28 +129,47 @@
 							</tr>
 						</thead>
 						<tbody id="dynamicTbody">
-
 						</tbody>
 					</table>
-					
 				</div>
 				
 				<div class="medInsert">
 				
+				<c:if test="${empty menuList }">
 				 	<form class="dynamicTable" action="${path}/bp/bMenu/write" method="POST">
 							<input type="text" placeholder="진료명" id="medName" name="medName">
 							<input type="text" placeholder="가격" id="medPrice" name="medPrice">
 							<button type="submit" class="basicBtn medOkBtn">완료</button>
 						</form>
+				</c:if>
+				
+				
 				 
 				<!-- 등록된 진료 종류 불러오기 -->
+				<c:if test="${!empty menuList }">
+					<c:forEach var="list" items="${menuList }" varStatus="status">
+						<form class="dynamicTable frm_${list.medNum  }">
+							<input type="hidden" value="${list.medNum}" name="medNum">
+							<input type="hidden" value="${list.hosNum}" name="hosNum">
+							<input type="text" placeholder="진료명" id="medName" name="medName" value="${list.medName }">
+							<input type="text" placeholder="진료가격" id="medPrice" name="medPrice" value="${list.medPrice }">
+							<button type="submit" class="basicBtn rebtn" formaction="${path}/bp/bMenu/rewrite">수정</button>
+							<button id="cancleBtn" type="button" class="basicBtn delBtns rebtn">삭제</button>
+							<div id="modalC" class="modalC">
+								<div class="contentC">
+									<p>정말 삭제하시겠습니까?</p>
+									<button type="button" class="basicBtn" id="yes">네</button>
+									<button class="basicBtn" id="no">아니오</button>
+								</div>
+							</div>
+						</form>
+					</c:forEach>
+				</c:if>
 				 
 				</div>
 				
 				
 			</div>
-			
-			
 			
 			</c:if>
 			
