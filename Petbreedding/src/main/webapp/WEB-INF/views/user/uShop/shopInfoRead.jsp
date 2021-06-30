@@ -54,15 +54,13 @@
                         <c:if test="${empty client }">
                         	<a href="${path}/uLogin" id="goRev" class="sBtn" >예약하기</a>
                         </c:if>
-                        <!-- TODO -->
-                        <c:if test="${!empty client }">
-                        	<%-- <c:if test="${!empty hairShop }"> --%>
-                        	<a href="${path}/shopHosReservation?hos_num=10&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>
-		                        <%-- <a href="${path}/shopReservation?har_num=HA1&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a> --%>                                            	
-<%--                         	</c:if>
-                        	<c:if test="${!empty hospital }">
-		                        <a href="${path}/shopReservation?hos_num=10&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
-                        	</c:if> --%>
+						<c:if test="${!empty client }">
+                        	<c:if test="${shopType eq 0 }">
+		                       <a href="${path}/shopReservation?har_num=${shopInfo.harNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
+                        	</c:if>
+							<c:if test="${shopType eq 1 }">
+		                       <a href="${path}/shopReservation?har_num=${shopInfo.hosNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
+                        	</c:if>
                         </c:if>
                         <a id="zzim">
                         	<i class="far fa-heart" id="heartOff"></i>
