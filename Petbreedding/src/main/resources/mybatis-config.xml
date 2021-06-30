@@ -37,6 +37,7 @@
 		<typeAlias type="kh.com.petbreedding.board.model.vo.CustomerService" alias="CustomerService"/>
 		<typeAlias type="kh.com.petbreedding.common.model.vo.Pagination" alias="page"/>
 		<typeAlias type="kh.com.petbreedding.board.model.vo.MyAskComment" alias="MyAskComment"/>
+		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.MedicalType" alias="MedicalType"/>
 		<!-- TODO -->
 	</typeAliases>
 	

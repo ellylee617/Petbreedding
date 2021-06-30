@@ -15,49 +15,55 @@
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-<link href="${path}/resources/css/user/uShop/datepicker.css" rel="stylesheet" type="text/css" >
 <body>
-
 	<div class="wrapper">
 		<jsp:include page="../bheader.jsp" />
 		<section class="section">
 	        <jsp:include page="../bAside.jsp" />
 	        <div class="bContent">
-                <div id="calendar_box">
-                       <div class="calendar" id="calendar">
-                   <input type="text" name="res_date" id="choDate" value="선택날짜" onchange="change()">
+                <div class="calendarBox">
+                    <div class="calendar"></div>
                 </div>
                 <div class="resBox">
-                    <select id="resselect" onchange="change()">
-                        <option value="3" name="res_status" >전체</option>
-                        <option value="0" name="res_status">예약완료</option>
-                        <option value="1" name="res_status">결제완료</option>
-                        <option value="2" name="res_status">결제취소</option>
+                    <select>
+                        <option>전체</option>
+                        <option>예약완료</option>
+                        <option>결제완료</option>
+                        <option>결제취소</option>
                     </select>
+                    
                     <hr>
-                        <input type="text" value="${bP.bp_Id}" id="bp_id"/>
-                    <div class="resList">
-                        <table id="revtable">
-                    <c:forEach var="rev" items="${list }">
+                    <div class="resList">                    
+                        <table>
                             <!-- tr forEach -->
                             <tr>
                                 <td class="status">예약완료<span class="noneDis">,</span></td>
-                                <td class="resTime">${rev.res_date}</td>
-                                <td class="resName">${rev.name}</td>
+                                <td class="resTime">10:00</td>
+                                <td class="resName">곽서현</td>
                                 <td class="resInfo"><a href="#">상세보기</a></td>
                             </tr>
-                        </c:forEach>
+                            <tr>
+                                <td class="status">결제완료<span class="noneDis">,</span></td>
+                                <td class="resTime">10:00</td>
+                                <td class="resName">곽서현</td>
+                                <td class="resInfo"><a href="#">상세보기</a></td>
+                            </tr>
+                            <tr>
+                                <td class="status">결제취소<span class="noneDis">,</span></td>
+                                <td class="resTime">10:00</td>
+                                <td class="resName">곽서현</td>
+                                <td class="resInfo"><a href="#">상세보기</a></td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div> 	
-		<jsp:include page="../../common/footer.jsp" />
 	    </section>
+		<jsp:include page="../../common/footer.jsp" />
 	</div>
+	
 	<!-- script -->
-	 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
     <script type="text/javascript" src="${path}/resources/js/bPartner/bShop/bReservation.js"></script>	
-    <script type="text/javascript" src="${path}/resources/js/user/uShop/resCalendar.js"></script>
 </body>
 </html>

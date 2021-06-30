@@ -15,7 +15,6 @@
 
 <!-- CKEDITOR -->
 <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
-<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -30,9 +29,7 @@
                    
                 </div>
             <div class="qnacontent">
-            	<form action="#" enctype="multipart/form-data">
-                	<textarea name="content" id="editor"></textarea>            	
-            	</form>
+                <textarea name="content" id="editor"></textarea>
             </div> 
 
 			<div id="btnBox">

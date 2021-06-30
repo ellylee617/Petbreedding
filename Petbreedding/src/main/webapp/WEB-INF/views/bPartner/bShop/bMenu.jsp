@@ -25,17 +25,21 @@
 		<jsp:include page="../bheader.jsp" />
 		<section class="section">
 			<jsp:include page="../bAside.jsp" />
+			
+			<c:if test="${bP.bp_type==0}">
 			<div class="bContent">
+			
 				<div class="menucon">
-					<button id="addItemBtn" class="basicBtn">옵션추가</button>
+					<button id="addItemBtn1" class="basicBtn addItemBtn">옵션추가</button>
 				</div>
 				<div class="menuhead">
-					<h1>메뉴관리</h1>
+					
+					<h1>스타일 관리</h1>
 					<table style="border: 1px;">
 						<thead>
 							<tr>
 								<th width="550">타입</th>
-								<th width="500">메뉴명</th>
+								<th width="500">스타일명</th>
 								<th width="500">가격</th>
 								<th width="400">소요시간</th>
 							</tr>
@@ -65,8 +69,8 @@
 					</c:if>
 
 					<!-- 등록된 스타일 불러오기 -->
-					<c:if test="${!empty styleList }">
-						<c:forEach var="list" items="${styleList }" varStatus="status">
+					<c:if test="${!empty menuList }">
+						<c:forEach var="list" items="${menuList }" varStatus="status">
 							<form class="dynamicTable frm_${list.style_num  }">
 								<c:if test="${list.style_deep eq 0}">
 									<label><input type="radio" name="style_deep" value="0"
@@ -105,6 +109,54 @@
 
 
 			</div>
+			</c:if>
+			
+			<c:if test="${bP.bp_type==1}">
+			
+			<div class="bContent">
+			
+				<div class="menucon">
+					<button id="addItemBtn2" class="basicBtn addItemBtn">옵션추가</button>
+				</div>
+				
+				<div class="menuhead medHead">
+					
+					<h1>진료 종류 관리</h1>
+					<table style="border: 1px;">
+						<thead>
+							<tr>
+								<th width="350px" align="center">진료명</th>
+								<th width="200px" align="center">가격</th>
+							</tr>
+						</thead>
+						<tbody id="dynamicTbody">
+
+						</tbody>
+					</table>
+					
+				</div>
+				
+				<div class="medInsert">
+				
+				 	<form class="dynamicTable" action="${path}/bp/bMenu/write" method="POST">
+							<input type="text" placeholder="진료명" id="medName" name="medName">
+							<input type="text" placeholder="가격" id="medPrice" name="medPrice">
+							<button type="submit" class="basicBtn medOkBtn">완료</button>
+						</form>
+				 
+				<!-- 등록된 진료 종류 불러오기 -->
+				 
+				</div>
+				
+				
+			</div>
+			
+			
+			
+			</c:if>
+			
+			
+			
 			<jsp:include page="../../common/footer.jsp" />
 		</section>
 	</div>

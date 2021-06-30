@@ -15,15 +15,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.BP.model.vo.BPartner;
-import kh.com.petbreedding.Shop.model.service.BpReservationService;
-import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
+import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
+import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.cta.model.service.CtaService;
@@ -43,10 +44,6 @@ public class shopController {
 	private ShopService shopService;
 	@Autowired
 	private CtaService ctaService;
-	
-	@Autowired
-	private BpReservationService bprevService;
-
 
 	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
@@ -59,12 +56,21 @@ public class shopController {
 			int harShopType = 0;
 			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+			
+//			List<HairSalonImg> harImgList = shopService.selectHarImgList();
+			
 			List<HairSalon> ultra = ctaService.ctabuylist();
 			
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
+			
+			
+			
+			// 미용실 대표 사진 리스트
+			// TODO
+			
 			
 			
 		} else {
@@ -76,6 +82,10 @@ public class shopController {
 			mv.addObject("shopType", hosShopType);
 			mv.addObject("shopList", hosList);
 			mv.setViewName("/user/uShop/shopList");
+			
+			// 동물병원 매장 대표 사진 출력
+			// TODO
+			
 		}
 		
 		
@@ -125,11 +135,45 @@ public class shopController {
 			// 기본 정보 출력 
 			HairSalon har = shopService.selectHarInfo(bpId);
 			System.out.println("미용실 정보::"+har);
-			mv.addObject("harInfo", har);
+			mv.addObject("shopInfo", har);
+			
+			// 해당 미용실 번호 출력하기
+			String harNum = har.getHarNum();
+			System.out.println("미용실 번호:"+harNum);
+			
+			// 메뉴(스타일) 출력
+			List<Style> styleList = shopService.selectStyleList(harNum);
+			System.out.println("스타일 리스트:"+styleList);
+			mv.addObject("menuList", styleList);
+			
+			// 미용실 사진 출력
+			List<HairSalonImg> harImgList = shopService.selectHarImgList(harNum);
+			System.out.println("미용실 사진 리스트:"+harImgList);
+			mv.addObject("shopImgList", harImgList);
 			
 		} else {
 			
-			//TODO:동물병원
+			//동물병원
+			
+			//기본 정보 출력
+			Hospital hos = shopService.selectHosInfo(bpId);
+			System.out.println("동물병원 정보::"+hos);
+			mv.addObject("shopInfo",hos);
+			
+			// 해당 동물병원 번호 출력하기
+			String hosNum = hos.getHosNum();
+			System.out.println("동물병원 번호:"+hosNum);
+			
+			// TODO
+			// 동물병원 진료 정보 출력
+			List<MedicalType> medList = shopService.selectMedList(hosNum);
+			System.out.println("동물병원 진료 정보 리스트:"+medList);
+			mv.addObject("menuList", medList);
+			
+			// 동물병원 사진 출력
+			List<HospitalImg> hosImgList = shopService.selectHosImgList(hosNum);
+			System.out.println("동물병원 사진 리스트:"+hosImgList);
+			mv.addObject("shopImgList", hosImgList);
 			
 		}
 		
@@ -161,24 +205,10 @@ public class shopController {
 	
 	//사업자 예약관리
 	@RequestMapping(value = "/bReservation", method = RequestMethod.GET)
-	public ModelAndView bReservationList(Locale locale,
-						Model model,
-						HairShopReservation rev,
-						HttpSession session,
-						HttpServletResponse res
-						
-						) throws Exception {
-		
-		BPartner vo = (BPartner) session.getAttribute("bP");
-		String bp_id =  vo.getBp_Id();
-		System.out.println("사업자 예약조회 들어옴-----------");
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("bPartner/bShop/bReservation");
-		mav.addObject("list", bprevService.revAllList(bp_id));
-		
-		return mav;
+	public String bReservation(Locale locale, Model model) {
+		return "/bPartner/bShop/bReservation";
 	}
+<<<<<<< HEAD
 	
 	//사업자 예약관리 개별 리스트
 		@ResponseBody
@@ -205,6 +235,8 @@ public class shopController {
 			List<HairShopReservation> list = bprevService.revList(rev);
 			return list;
 		}
+=======
+>>>>>>> c09dc60f1bd157e18a97bfc9fc3a20f7ddcc96be
 
 	//사업자 예약확인
 	@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)

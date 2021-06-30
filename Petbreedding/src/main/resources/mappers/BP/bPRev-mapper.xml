@@ -28,27 +28,10 @@
 	</resultMap>
 	
 		<!-- 미용실 예약조회  (사용자 페이지)-->
-	<select id="hartRavList"  resultMap="HairRev" parameterType="HairRev">
+	<select id="hartRavList"  resultMap="HairRev">
 	select client.cl_name, HAR_RESERVATION.*
 	from HAR_RESERVATION join client 
 	on HAR_RESERVATION.cl_num = client.cl_num
-	join hair_salon
-	on har_reservation.har_num = hair_salon.har_num
-	join business_partner
-	on business_partner.bp_id = #{bp_id}
 	</select>
 
-	<!-- 옵션별로 출력 -->
-	<select id="harRavListeach"  resultMap="HairRev" parameterType="HairRev">
-	select client.cl_name, HAR_RESERVATION.*
-	from HAR_RESERVATION join client 
-	on HAR_RESERVATION.cl_num = client.cl_num
-	join hair_salon
-	on har_reservation.har_num = hair_salon.har_num
-	join business_partner
-	on business_partner.bp_id = #{bp_id}
-	and RES_DATE =  #{res_date}
-	and RES_STATUS = #{res_status}
-	
-	</select>
 </mapper>

@@ -14,6 +14,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 
 @Service("shopService")
@@ -403,6 +404,37 @@ public class ShopServiceImpl implements ShopService {
 		}
 		System.out.println("List<HairSalonImg> harImgList ::" + hosImgList);
 		return hosImgList;
+	}
+
+
+
+	// 동물병원 진료 정보 추가
+	@Override
+	public int insertMedicalType(MedicalType vo) {
+		System.out.println(" ~ Shoservice  insertMedicalType() 실행  ~");
+		int result = -1;
+		
+		try {
+			result = shopDao.insertMedicalType(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+	// 등록한 동물병원 진료 정보 리스트 조회
+	@Override
+	public List<MedicalType> selectMedList(String hosNum) {
+		List<MedicalType> medList = null;
+		System.out.println(" ~ ShopService 진입 ~");
+		try {
+			medList = shopDao.selectMedList(hosNum);
+		} catch(Exception e) {
+		}
+		System.out.println("List<MedicalType> medList ::" + medList);
+		return medList;
 	}
 
 

@@ -15,6 +15,7 @@ function currentDay(){
 }
 
 $(function(){
+<<<<<<< HEAD
 		
 	currentDay();
 	
@@ -99,3 +100,9 @@ function change() {
 }
 
 //날짜 조회
+=======
+    $("td:contains('예약완료')").css("background-color","var(--button-color)");
+    $("td:contains('결제완료')").css("background-color","var(--hover-color)");
+    $("td:contains('결제취소')").css("background-color","var(--trhover-color)").css("color","var(--main-color)");
+});
+>>>>>>> c09dc60f1bd157e18a97bfc9fc3a20f7ddcc96be

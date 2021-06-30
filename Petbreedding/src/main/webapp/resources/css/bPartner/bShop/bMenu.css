@@ -18,7 +18,7 @@
 
 
 
-#addItemBtn{
+#addItemBtn1{
     float: right;
     margin-bottom: 30px;
     margin-right: 70px;
@@ -28,6 +28,7 @@
     font-family: "GmarketM";
     
 }
+
 
 .menuhead th {
 	height: 60px;
@@ -70,6 +71,7 @@
 .newDynamicTable #time{
 	width: 131.99px;
 }
+
 
 #dynamicTable th{
     height: 40px;
@@ -209,7 +211,7 @@ input {
     font-family: "GmarketM";	
 }
 
-form button {
+#okbtn {
 	clear: both;
 	float: none;
     margin-left: 20px;
@@ -228,4 +230,50 @@ form button {
 	float: right;
 	position: relative;
 	left: 10px;
+}
+
+
+
+/* 동물병원 진료 종류 관리 */
+
+.medHead table{
+	text-align: center;
+	margin-left:100px;
+	padding: 0px;
+}
+
+
+.medInsert input {
+	height: 30px;
+}
+
+#medName{
+	margin-right: 110px;
+}
+
+#medPrice{
+	width: 160px;
+	margin-right: 130px;
+}
+
+.medOkBtn{
+	margin: 0px;
+	clear: both;
+	float: none;
+    width: 60px;
+    height: 30px;
+    margin-right: 40px;
+    border-radius: 5px;
+    font-family: "GmarketM";	
+}
+
+#addItemBtn2{
+    float: right;
+    margin-bottom: 30px;
+    margin-right: 70px;
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    font-family: "GmarketM";
+    
 }

@@ -33,6 +33,7 @@ import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
 import kh.com.petbreedding.bmypage.model.vo.HosDayOff;
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.MyAskService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
@@ -106,6 +107,7 @@ public class BMyPageController {
 
 	// 사장님 메뉴관리 페이지 이동
 	// 등록미용실 메뉴(메인+서브) 조회
+	// TODO: 동물병원도 똑같이 작업..~~ 
 	@RequestMapping(value = "/bMenu", method = RequestMethod.GET)
 	public ModelAndView bMenu(HttpServletResponse res, HttpSession session) {
 
@@ -113,25 +115,46 @@ public class BMyPageController {
 		// 로그인한 사업자 정보 가져오기
 		BPartner bpVO = (BPartner) session.getAttribute("bP");
 		String bpId = bpVO.getBp_Id();
-
 		ModelAndView mv = new ModelAndView();
 
 		if (bpId == null) {
 			System.out.println("로그인 안됨");
 		} else {
+			
+			int bpType = bpVO.getBp_type();
+			System.out.println("사업자 타입:"+bpType);
+			
+			
+			if(bpType==0) {	// 0이면 미용실
+				
+				String harNum = (shopService.selectHarInfo(bpId)).getHarNum();
+				System.out.println("미용실 번호::" + harNum);
 
-			String harNum = (shopService.selectHarInfo(bpId)).getHarNum();
-			System.out.println("미용설 번호::" + harNum);
+				List<Style> styleList = shopService.selectStyleList(harNum);
+				System.out.println("미용실 스타일 리스트::" + styleList);
 
-			List<Style> styleList = shopService.selectStyleList(harNum);
-			System.out.println("미용실 스타일 리스트::" + styleList);
-
-			for (int i = 0; i < styleList.size(); i++) {
-				System.out.println(styleList.get(i));
+//				for (int i = 0; i < styleList.size(); i++) {
+//					System.out.println(styleList.get(i));
+//				}
+				
+				mv.addObject("menuList", styleList);
+				
+				
+			} else {	// 1이면 동물병원
+				
+				String hosNum = (shopService.selectHosInfo(bpId)).getHosNum();
+				System.out.println("동물병원 번호:"+hosNum);
+				
+				List<MedicalType> medList = shopService.selectMedList(hosNum);
+				System.out.println("동물병원 진료 정보 리스트:"+medList);
+				
+				mv.addObject("menuList", medList);
 			}
 
+			
+
 			mv.setViewName("/bPartner/bShop/bMenu");
-			mv.addObject("styleList", styleList);
+			
 
 			System.out.println(mv);
 
@@ -142,8 +165,10 @@ public class BMyPageController {
 	}
 
 	// 사장님 메뉴관리 - 미용실 스타일 등록
+	// TODO: 동물병원 진료 메뉴 등록
+	
 	@RequestMapping(value = "bp/bMenu/write", method = RequestMethod.POST)
-	public String bMenuWrite(HttpServletRequest req, Style styleVO) {
+	public String bMenuWrite(HttpServletRequest req, Style styleVO, MedicalType medVO) {
 
 		System.out.println("****** BMyPageController 실행 ******");
 
@@ -161,7 +186,7 @@ public class BMyPageController {
 			// TODO
 			// 1.로그인한 사업주의 미용실 정보 조회
 			HairSalon harVO = shopService.selectHarInfo(bpId);
-			System.out.println(harVO);
+			System.out.println("미용실 정보:"+harVO);
 			String harNum = harVO.getHarNum();
 			styleVO.setHarNum(harNum);
 			System.out.println("메뉴 등록할 미용실 번호::" + harNum);
@@ -185,7 +210,19 @@ public class BMyPageController {
 			}
 		} else {
 
+			//TODO
 			// 동물병원
+			
+			//1.로그인한 사업주의 동물병원 정보 조회
+			Hospital hosVO = shopService.selectHosInfo(bpId);
+			System.out.println("동물병원 정보:"+hosVO);
+			String hosNum = hosVO.getHosNum();
+			System.out.println("진료종류 등록할 동물병원 번호:"+hosNum);
+			medVO.setHosNum(hosNum);
+			
+			//2.동물병원 진료정보 등록
+			shopService.insertMedicalType(medVO);
+			
 		}
 
 		System.out.println("!!!!!!!!! 사업장 메뉴 추가 완료 !!!!!!");
