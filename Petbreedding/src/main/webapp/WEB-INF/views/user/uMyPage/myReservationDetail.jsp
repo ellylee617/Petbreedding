@@ -25,6 +25,8 @@
                     <c:forEach items="${myRev}" var="myRev">
                     <input type="hidden" value="${myRev.har_rnum }" id="har_rnum">
                     <input type="hidden" value="${client.cl_num }" id="cl_num">
+                    <input type="hidden" value="${myRev.hairSalon.bpId }" id="bpId">
+                    <input type="hidden" value="${myRev.har_name }" id="shopName">
                     <c:if test="${myRev.res_status eq 0}">
 						&nbsp;결제 대기					
 					</c:if>
