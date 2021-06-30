@@ -30,6 +30,9 @@ import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.Review;
+import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.common.model.service.LikesService;
+import kh.com.petbreedding.common.model.vo.Likes;
 import kh.com.petbreedding.cta.model.service.CtaService;
 
 //TODO: !!!!!!!! 경로 수정하고 컨트롤러명 변경하기 !!!!!!!!!!
@@ -52,6 +55,8 @@ public class shopController {
 	@Autowired
 	private BpReservationService bprevService;
 
+	@Autowired
+	LikesService likeService;
 	
 	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
@@ -121,7 +126,8 @@ public class shopController {
 			@RequestParam Long shopType
 			, Locale locale
 			, ModelAndView mv
-			, HttpServletRequest request) throws Exception{
+			, HttpServletRequest request
+			, HttpSession session) throws Exception{
 //		System.out.println("[세훈]");
 		System.out.println("shopPage 컨트롤러 진입");
 		String bpId = request.getParameter("bpId"); 
@@ -158,6 +164,17 @@ public class shopController {
 			List<HairSalonImg> harImgList = shopService.selectHarImgList(harNum);
 			System.out.println("미용실 사진 리스트:"+harImgList);
 			mv.addObject("shopImgList", harImgList);
+			
+			//로그인한 회원이 이 미용실을 찜했는지?
+			Client client = (Client) session.getAttribute("client");
+			if(client != null) {
+				String cl_num = client.getCl_num();
+				List<Likes> likes = likeService.selectLikes(cl_num);
+				mv.addObject("zzim", likes);
+			}else {
+				System.out.println("로그인하지 않았습니다.");
+			}
+
 			
 		} else {
 			

@@ -62,10 +62,43 @@
 		                       <a href="${path}/shopReservation?har_num=${shopInfo.hosNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
                         	</c:if>
                         </c:if>
-                        <a id="zzim">
-                        	<i class="far fa-heart" id="heartOff"></i>
-                        	<i class="fas fa-heart" id="heartOn"></i>
-                        </a>
+                        <c:if test="${empty client }">
+                        	<a id="zzim" onclick="noCLient()">
+	                        	<i class="far fa-heart" id="heartOff"></i>
+	                        	<i class="fas fa-heart" id="heartOn"></i>
+                        	</a>
+                        </c:if>
+                        
+                        <%-- <c:out value="${zzim.like_num }"></c:out> --%>
+                        <c:out value="${shopInfo.harNum }"></c:out>
+                        <%-- <c:if test="${!empty client }">
+                        	<c:if test="${shopType eq 0 }">
+	                        	<c:if test="${zzim.har_num == shopInfo.harNum && zzim.cl_num == client.cl_num}">
+	                        		<a id="zzim">
+	                        			<i class="fas fa-heart" id="heartOn"></i>
+	                        		</a>
+	                        	</c:if>
+	                        	<c:if test="${zzim.har_num != shopInfo.harNum && zzim.cl_num != client.cl_num}">
+			                        <a id="zzim">
+			                        	<i class="far fa-heart" id="heartOff"></i>
+			                        	<i class="fas fa-heart" id="heartOn"></i>
+			                        </a>
+		                        </c:if>
+	                        </c:if>
+	                        <c:if test="${shopType eq 1 }">
+	                        	<c:if test="${zzim.hos_num eq shopInfo.hosNum and zzim.cl_num eq client.cl_num}">
+	                        		<a id="zzim">
+	                        			<i class="fas fa-heart" id="heartOn"></i>
+	                        		</a>
+	                        	</c:if>
+	                        	<c:if test="${zzim.hos_num ne shopInfo.hosNum and zzim.cl_num ne client.cl_num}">
+			                        <a id="zzim">
+			                        	<i class="far fa-heart" id="heartOff"></i>
+			                        	<i class="fas fa-heart" id="heartOn"></i>
+			                        </a>
+		                        </c:if>
+	                        </c:if>
+                        </c:if> --%>
                     </div>
                 </div> <!--store_info_article-->
                 <div class="swiper-container store_menu_article ">

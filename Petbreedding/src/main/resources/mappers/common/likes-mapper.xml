@@ -12,10 +12,10 @@
 	<!-- 찜하기 등록  -->
 	<insert id="insertLike" parameterType="Likes">
 		<if test="har_num != null">
-		INSERT INTO LIKES VALUES('LIKE000' || SEQ_LIKES, #{cl_num},#{har_num},'null')
+		INSERT INTO LIKES(LIKE_NUM, CL_NUM, HAR_NUM) VALUES('LIKE000' || SEQ_LIKES.nextval, #{cl_num},#{har_num})
 		</if>
 		<if test="hos_num != null">
-		INSERT INTO LIKES VALUES('LIKE000' || SEQ_LIKES, #{cl_num},'null',#{hos_num})
+		INSERT INTO LIKES(LIKE_NUM, CL_NUM, HOS_NUM) VALUES('LIKE000' || SEQ_LIKES.nextval, #{cl_num},#{hos_num})
 		</if>
 	</insert>
 	
