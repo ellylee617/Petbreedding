@@ -75,6 +75,8 @@
 		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x})
 		</insert>
 		
+		<!-- 미용실 대표 사진 첨부 -->
+		<!-- TODO -->
 		
 		<!-- 미용실 기본 정보 불러오기 -->
 		<select id="selectHarInfo" parameterType="string" resultMap="HairSalon">
@@ -87,23 +89,25 @@
 		
 		<!-- 미용실 정보 수정 -->
 		<update id="updateHarInfo" parameterType="HairSalon">
-		UPDATE HAIR_SALON 
-		SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X)
-			= (
-				SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}
-				FROM dual
-			)
-		WHERE BP_ID = #{bpId}
+			UPDATE HAIR_SALON 
+			SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X)
+				= (
+					SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x} 
+					FROM dual
+				)
+			WHERE BP_ID = #{bpId}
 		</update>
 		
 		
-		<!--미용실 이미지 첨부 -->
+
+		
+		<!--미용실 매장 이미지 첨부 -->
 		<insert id="insertHarImg" parameterType="HairSalonImg">
-			<selectKey keyProperty="harNumImg" resultType="string" order="BEFORE">
+			<selectKey keyProperty="harNum" resultType="string" order="BEFORE">
 	       	 SELECT SEQ_HAIR_SALON.CURRVAL FROM DUAL
 	  		</selectKey>
 		INSERT INTO HAIR_SALON_IMG (IMG_NUM, HAR_NUM, HAR_IMG)
-		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNumImg},#{shopImg})
+		VALUES (SEQ_HAIR_SALON_IMG.NEXTVAL,#{harNum},#{shopImg})
 		</insert>
 		
 		

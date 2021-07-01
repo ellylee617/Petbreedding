@@ -277,4 +277,11 @@ public class ShopDao {
 		System.out.println("수정할 동물병원 정보::"+vo);
 		return sqlSession.update("ShopMenu.updateMedicalType", vo);
 	}
+	
+	// 동물병원 진료 삭제
+	public int deleteMedicalType(String medNum) {
+		System.out.println(" !! ShopDao - deleteMedicalType() 실행 !!");
+		System.out.println("삭제할 진료 종류 번호:" + medNum);
+		return sqlSession.delete("ShopMenu.deleteMedicalType", medNum);	
+	}
 }

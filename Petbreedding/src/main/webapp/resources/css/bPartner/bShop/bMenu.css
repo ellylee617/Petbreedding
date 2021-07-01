@@ -29,18 +29,11 @@
     
 }
 
-.menuhead table {
-	width: 100%;
-	text-align: center;
-}
 
-.menuhead thead tr th {
+.menuhead thead tr th{
 	height: 60px;
-	padding-right: 50px;
-	width: 30px;
 	
 }
-
 
 
 .dynamicTable{
@@ -57,7 +50,7 @@
 }
 
 .newDynamicTable{
-    border-left: none;
+	border-left: none;
     border-right: none;
     text-align: center;
     height: 40px;
@@ -73,11 +66,11 @@
 }
 
 .newDynamicTable #price{
-	width: 131.99px;
+	width: 88px;
 }
 
 .newDynamicTable #time{
-	width: 131.99px;
+	width: 88px;
 }
 
 
@@ -142,7 +135,6 @@ input[type=radio] {
 	margin-left: 50px;
 }
 
-
 .modalC{
 	display: none;
 	position: absolute;
@@ -206,9 +198,9 @@ input {
 .okBtn{
 	clear: both;
 	float: none;
-    margin-left: 95px;
+    margin-left: 100px;
     width: 50px;
-    height: 25px;
+    height: 30px;
     border-radius: 5px;
     font-family: "GmarketM";
     
@@ -242,6 +234,9 @@ input {
 	left: 10px;
 }
 
+#rebtn1{
+	margin-left: 50px;
+}
 
 
 /* 동물병원 진료 종류 관리 */
@@ -270,7 +265,7 @@ input {
 	margin: 0px;
 	clear: both;
 	float: none;
-    width: 60px;
+    width: 50px;
     height: 30px;
     margin-right: 40px;
     border-radius: 5px;

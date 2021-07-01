@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -185,7 +186,7 @@ public class ClientInfoCotroller {
 		MyAskComment maComment = new MyAskComment();
 		
 		myAskDetail = myAskService.MyAskSelectDetail(qna_num);
-		maComment = myAskCommentService.myAskCommentSelectOne(qna_num);
+		maComment = myAskCommentService.myAskCommentSelectOneCB(qna_num);
 		
 		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 myAskDetail : " + myAskDetail);
 		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 maComment : " + maComment);
