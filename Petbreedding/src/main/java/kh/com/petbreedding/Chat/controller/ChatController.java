@@ -28,8 +28,8 @@ public class ChatController {
 	public ModelAndView chat(ModelAndView mv, @RequestParam(value = "chatId", required = false) String chatId,
 			@RequestParam(value = "shopName", required = false) String shopName,
 			@RequestParam(value = "clNum", required = false) String clNum,			
-			@RequestParam(value = "bpId", required = false) String bpId, HttpServletRequest req) {
-		
+			@RequestParam(value = "bp_id", required = false) String bp_id, HttpServletRequest req) {
+			
 		List<ChatMessage> list = null;
 		
 		HttpSession session = req.getSession();
@@ -49,10 +49,8 @@ public class ChatController {
 		// 채팅방 번호가 없다면
 		if (chatId == null) {
 			ChatRoom cr = new ChatRoom();
-			System.out.println("clNum" + clNum);
-			System.out.println("bp_id" +bpId);
 			cr.setCl_num(clNum);
-			cr.setBp_id(bpId);
+			cr.setBp_id(bp_id);
 			
 			// 채팅방이 있는지 한번 확인 후
 			ChatRoom roomResult = null;
@@ -78,7 +76,7 @@ public class ChatController {
 				
 		String user = "user";
 		mv.addObject("cl_num", cl_num);
-		mv.addObject("bp_id", bpId);
+		mv.addObject("bp_id", bp_id);
 		mv.addObject("user", user);
 		mv.addObject("chatlist", list);
 		mv.addObject("id", id);
@@ -139,6 +137,7 @@ public class ChatController {
 		if (session != null) {
 			String cl_num = client.getCl_num();
 			list = chService.getList(cl_num);
+			System.out.println("겟리스트" + list);
 		}
 		mv.addObject("Roomlist", list);
 		mv.setViewName("/user/uMyPage/myChatList");
