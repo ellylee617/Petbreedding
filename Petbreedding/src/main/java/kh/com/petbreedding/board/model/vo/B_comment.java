@@ -7,46 +7,56 @@ import org.springframework.stereotype.Component;
 @Component
 public class B_comment {
 	
-	private String co_num;
-	private String bo_num;
-	private String cl_nickname;
-	private String co_cont;
-	private Date co_date;
+	private String coNum;
+	private String boNum;
+	private String clNickName;
+	private String coCont;
+	private String coDate;
 	
 	@Override
 	public String toString() {
-		return "B_comment [co_num=" + co_num + ", bo_num=" + bo_num + ", cl_nickname=" + cl_nickname + ", co_cont="
-				+ co_cont + ", co_date=" + co_date + "]";
+		return "B_comment [coNum=" + coNum + ", boNum=" + boNum + ", clNickName=" + clNickName + ", coCont=" + coCont
+				+ ", coDate=" + coDate + "]";
 	}
-	public String getCo_num() {
-		return co_num;
+
+	public String getCoNum() {
+		return coNum;
 	}
-	public void setCo_num(String co_num) {
-		this.co_num = co_num;
+
+	public void setCoNum(String coNum) {
+		this.coNum = coNum;
 	}
-	public String getBo_num() {
-		return bo_num;
+
+	public String getBoNum() {
+		return boNum;
 	}
-	public void setBo_num(String bo_num) {
-		this.bo_num = bo_num;
+
+	public void setBoNum(String boNum) {
+		this.boNum = boNum;
 	}
-	public String getCl_nickname() {
-		return cl_nickname;
+
+	public String getClNickName() {
+		return clNickName;
 	}
-	public void setCl_nickname(String cl_nickname) {
-		this.cl_nickname = cl_nickname;
+
+	public void setClNickName(String clNickName) {
+		this.clNickName = clNickName;
 	}
-	public String getCo_cont() {
-		return co_cont;
+
+	public String getCoCont() {
+		return coCont;
 	}
-	public void setCo_cont(String co_cont) {
-		this.co_cont = co_cont;
+
+	public void setCoCont(String coCont) {
+		this.coCont = coCont;
 	}
-	public Date getCo_date() {
-		return co_date;
+
+	public String getCoDate() {
+		return coDate;
 	}
-	public void setCo_date(Date co_date) {
-		this.co_date = co_date;
+
+	public void setCoDate(String coDate) {
+		this.coDate = coDate;
 	}
 	
 	
