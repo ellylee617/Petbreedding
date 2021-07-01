@@ -241,7 +241,6 @@ public class BMyPageController {
 
 		System.out.println("  BMyPageController 실행 - bMenuReWrite()  ");
 
-		System.out.println("입력 받은 스타일 정보:" + styleVO);
 
 		// 로그인한 사업자 정보 가져오기
 		BPartner bpVO = (BPartner) session.getAttribute("bP");
@@ -259,12 +258,14 @@ public class BMyPageController {
 			
 			if(bpType==0) {
 				
+				System.out.println("입력 받은 스타일 정보:" + styleVO);
 				String styleNum = null;
 				styleNum = styleVO.getStyle_num();
 				System.out.println("수정할 스타일 번호:" + styleNum);
 				result = shopService.updateStyle(styleVO);
 				
 			} else {
+				System.out.println("입력 받은 진료 종류 정보:"+medVO);
 				String medNum = null;
 				medNum = medVO.getMedNum();
 				System.out.println("수정할 진료 정보 번호:"+medNum);
@@ -288,7 +289,6 @@ public class BMyPageController {
 
 		System.out.println("  BMyPageController 실행 - bMenuDelete()  ");
 
-		System.out.println("입력 받은 스타일 정보:" + styleVO);
 
 		// 로그인한 사업자 정보 가져오기
 		BPartner bpVO = (BPartner) session.getAttribute("bP");
@@ -305,14 +305,22 @@ public class BMyPageController {
 			
 			if(bpType==0) {	// 미용실 - 스타일
 				
+				System.out.println("입력 받은 스타일 정보:" + styleVO);
 				String styleNum = null;
 				styleNum = styleVO.getStyle_num();
 				System.out.println("삭제할 스타일 번호:" + styleNum);
 				result = shopService.deleteStyle(styleNum);
 				
-			} else {	// 동물병원 - 진료 종류
+			} 
+			
+			if(bpType==1){	// 동물병원 - 진료 종류
 				
-				//TODO
+				System.out.println("입력 받은 진료 종류 정보:"+medVO);
+				
+				String medNum = null;
+				medNum = medVO.getMedNum();
+				System.out.println("삭제할 진료 정보 번호:"+medNum);
+				result = shopService.deleteMedicalType(medNum);
 			}
 			
 			if (result > 0) {
@@ -343,27 +351,49 @@ public class BMyPageController {
 
 	// 사장님 사업장 관리 - 사업자 등록 기능 + 이미지 + 로그인 연동 + BP 테이블에서 사업장 등록여부 상태 1로 바꾸기
 	@RequestMapping(value = "bp/bShop/write")
-	public String bShopWrite(HttpServletRequest hrequest, HairSalon harVO, Hospital hosVO,
-			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest request) {
+	public String bShopWrite(
+			HttpServletRequest hrequest
+			, HairSalon harVO
+			, Hospital hosVO
+			,@RequestParam(value = "shopDayOff") List<String> dayOffList
+			, MultipartHttpServletRequest request) {
 
+		ModelAndView mv = new ModelAndView();
+		
 		// 세션에 있는 로그인 정보 가져오기
 		HttpSession session = hrequest.getSession();
 		BPartner bp = (BPartner) session.getAttribute("bP");
 		String bpId = bp.getBp_Id();
 
 		int bPType = bp.getBp_type();
-
+		
+		
+		int result = -1;
+		
 		// bPType이 0이면 미용실, 1이면 동물병원
 		if (bPType == 0) {
 
-//			HairSalon harVO = new HairSalon();
 			harVO.setBpId(bpId);
-
+			
+			
 			// 미용실 기본 정보 등록
-			shopService.insertHarInfo(harVO);
-			harVO.toString();
+			
+			result = shopService.insertHarInfo(harVO);
+			
+			
+			if(result>0) {
+				System.out.println(" !! 미용실 기본 정보 등록 성공 !!");
+				System.out.println("등록한 미용실 정보:"+harVO);
+				
+				shopService.updateBpReg(bpId);
+				
+				mv.addObject("vo",harVO);
+				
+				
+			} else {
+				System.out.println(" !! 미용실 기본 정보 등록 실패 !! ");
+			}
 
-			session.setAttribute("harInfo", harVO);
 
 			// 미용실 주휴일 설정
 			// 1:월요일 ~ 7:일요일
@@ -375,21 +405,29 @@ public class BMyPageController {
 				System.out.println("LIST 타입 변환중~~ dayoff 값::" + dayoff);
 				shopService.insertHarDayOff(harVO2);
 
-				session.setAttribute("harDayOff", harVO2);
-
 			}
 
 		} else {
 
-//			Hospital hosVO = new Hospital();
 			hosVO.setBpId(bpId);
 
 			// 동물병원 기본 정보 등록
-			shopService.insertHosInfo(hosVO);
-			hosVO.toString();
+			result = shopService.insertHosInfo(hosVO);
 
-			session.setAttribute("hosInfo", hosVO);
-
+			if(result>0) {
+				System.out.println(" !! 동물병원 기본 정보 등록 성공 !!");
+				System.out.println("등록한 동물병원 정보:"+hosVO);
+				
+				shopService.updateBpReg(bpId);
+				
+				mv.addObject("vo",hosVO);
+				
+				
+			} else {
+				System.out.println(" !! 미용실 기본 정보 등록 실패 !! ");
+			}
+			
+			
 			// 동물병원 주휴일 설정
 			// 1:월요일 ~ 7:일요일
 			HosDayOff hosVO2 = new HosDayOff();
@@ -399,8 +437,6 @@ public class BMyPageController {
 				hosVO2.setShopDayOff(dayoff);
 				System.out.println("LIST 타입 변환중~~ dayoff 값::" + dayoff);
 				shopService.insertHosDayOff(hosVO2);
-
-				session.setAttribute("hosDayOFf", hosVO2);
 
 			}
 
@@ -452,21 +488,20 @@ public class BMyPageController {
 					shopService.insertHosImg(hosVO3);
 
 					System.out.println(hosVO3.toString());
-
+					
 
 				}
 
 			}
 		}
 
-		shopService.updateBpReg(bpId);
-		// TODO:
+		
 
 		System.out.println("!! 사업장 등록 완료 !!");
 
 		// TODO:alert 추가하기
-
-		return "bPartner/bShop/bReservation"; // TODO:수정해야됨!!!!
+		mv.setViewName("/bPartner/bShop/bShopInfo");
+		return "redirect:/bShop/update"; // TODO:수정해야됨!!!!
 	}
 
 	

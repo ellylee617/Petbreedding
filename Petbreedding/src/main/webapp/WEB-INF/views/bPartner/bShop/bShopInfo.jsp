@@ -31,7 +31,7 @@
 				-->
 			<!-- 입력된 사업장 정보가 없으면 사업장 등록 -->
 			
-				<c:if test="${bP.bp_reg == 0 }">
+				<c:if test="${empty vo}">
 				<h2>사업장 등록</h2>
 			<form action="${path}/bp/bShop/write" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
 				<br>
@@ -101,7 +101,7 @@
 			</form>
 			</c:if>
 			
-			<c:if test="${bP.bp_reg == 1 }">
+			<c:if test="${!empty vo}">
 						<h2>사업장 수정</h2>
 			<form action="${path}/bp/bShop/update" method="POST" id="bShopInfoFrm" enctype="multipart/form-data">
 					<c:if test="${bP.bp_type == 0 }">
