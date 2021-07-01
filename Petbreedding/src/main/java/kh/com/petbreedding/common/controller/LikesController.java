@@ -31,9 +31,7 @@ public class LikesController {
 	
 	// 내 찜 목록
 	@RequestMapping("/myzzim")
-	public String myZzim(String cl_num, Model model) {
-		List<Likes> likes = likeService.selectLikes(cl_num);
-		model.addAttribute("likes", likes);
+	public String myZzim() {
 		return "/user/uMyPage/myzzim";
 	}
 		

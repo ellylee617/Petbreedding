@@ -1,6 +1,7 @@
 package kh.com.petbreedding.common.model.service;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,17 @@ public class LikesServiceImpl implements LikesService{
 		int result = -1;
 		try {
 			result = likesDao.clickLike(likes);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public String countSalon(String har_num) {
+		String result = null;
+		try {
+			result = likesDao.countSalon(har_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

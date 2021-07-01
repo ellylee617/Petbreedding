@@ -190,13 +190,9 @@ public class LoginController {
 		
 		System.out.println("properties : "+ userInfo);
 //		System.out.println("kakao_account : "+ kakao_account);
-		Map <String, Object> resultMap = new HashMap<String, Object>();
 
 		email = kakao_account.path("email").asText(); 
 		nickname = properties.path("nickname").asText(); 
-		
-		resultMap.put("email", email);
-		resultMap.put("nickname", nickname);
 		
 		int checkEmail = clientService.checkEmail(email);
 		
@@ -208,7 +204,17 @@ public class LoginController {
 			return mv;
 			
 		}else { //모두 연동 되어있을시
-			session.setAttribute("client",resultMap);
+			List<Client> result = loginService.selectMember(nickname);
+			String cl_num = result.get(0).getCl_num();
+			String name = result.get(0).getName();
+			String tel = result.get(0).getTel();
+			Client client = new Client();
+			client.setCl_num(cl_num);
+			client.setEmail(email);
+			client.setName(name);
+			client.setNickname(nickname);
+			client.setTel(tel);
+			session.setAttribute("client",client);
 			mv.addObject("result", apiResult);
 		}	
 	
@@ -247,7 +253,7 @@ public class LoginController {
 		 String nickname = (String)response_obj.get("nickname");
 		 String email = (String)response_obj.get("email");
 		 String name = (String)response_obj.get("name");
-		 String tel = (String)response_obj.get("mobile");
+			/* String tel = (String)response_obj.get("mobile"); */
 		 System.out.println(nickname);
 		 
 		 int checkEmail = clientService.checkEmail(email);
@@ -261,7 +267,17 @@ public class LoginController {
 			return "/user/uMember/snsJoin";
 			
 		}else { //모두 연동 되어있을시
-			session.setAttribute("client",response_obj);
+			List<Client> result = loginService.selectMember(nickname);
+			String cl_num = result.get(0).getCl_num();
+			/* String name = result.get(0).getName(); */
+			String tel = result.get(0).getTel();
+			Client client = new Client();
+			client.setCl_num(cl_num);
+			client.setEmail(email);
+			client.setName(name);
+			client.setNickname(nickname);
+			client.setTel(tel);
+			session.setAttribute("client",client);
 			model.addAttribute("result", apiResult);
 		}
 		

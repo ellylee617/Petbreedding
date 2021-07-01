@@ -192,6 +192,7 @@ $("#searchDate").on("click",function(){
 	
 });
 
+//더보기 버튼 눌렀을시
 function clickMore(){
 	console.log("들어왔슈");
 	hiddenComment = $(".resInfoBox").filter(function(){
@@ -205,11 +206,6 @@ function clickMore(){
 		$(hiddenComment).slice(0,5).show();
 	}
 }
-//더보기 버튼 눌렀을시
-$("#btnmore").on("click",function(){
-
-});
-
 
 
 //상세보기페이지 진입

@@ -57,6 +57,7 @@
                 <ul>
                     <div class="Store">                     
                         <li class="storeList">
+                            	
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>

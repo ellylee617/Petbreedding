@@ -1,7 +1,10 @@
 package kh.com.petbreedding;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,7 +73,23 @@ public class shopController {
 			int harShopType = 0;
 			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
-
+			
+			String har_num = null;
+			List<String> list = new ArrayList<String>();
+			for(int i =0; i<salonList.size(); i++) {
+				har_num = salonList.get(i).getHarNum();
+				String count = likeService.countSalon(har_num);
+				System.out.println("************count*****"+count);
+				list.add(count);
+				mv.addObject("count", list);
+			}
+			
+			/*
+			 * List<String> list = new ArrayList<String>(); 
+			 * System.out.println("~~~~~~~~~~~~~harNum ~~~~~~~~~"+list);
+			 * HashMap<String,String> salonCount = likeService.countSalon(list);
+			 * System.out.println("!!!!!!!salonList!!!!!!!!! "+ salonCount);
+			 */
 //			List<HairSalonImg> harImgList = shopService.selectHarImgList();
 
 			List<HairSalon> ultra = ctaService.ctabuylist();

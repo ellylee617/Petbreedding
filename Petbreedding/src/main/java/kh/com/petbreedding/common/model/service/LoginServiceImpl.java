@@ -1,6 +1,7 @@
 package kh.com.petbreedding.common.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -55,6 +56,18 @@ public class LoginServiceImpl implements LoginService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+
+	@Override
+	public List<Client> selectMember(String nickname) {
+		List<Client> list = null;
+		try {
+			list = loginDao.selectMember(nickname);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

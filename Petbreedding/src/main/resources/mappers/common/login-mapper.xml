@@ -56,6 +56,10 @@
 		WHERE ADMIN_ID = #{admin_id} AND ADMIN_PWD = #{admin_pwd}
 	</select>
 	
+	<!-- 카카오, 네이버 로그인시 session 값 설정 -->
+	<select id="selectMember" parameterType="string" resultMap="uLogin">
+		SELECT * FROM CLIENT WHERE CL_NICKNAME = #{nickname}
+	</select>
 	
 	<!-- 사용자 아이디 찾기  -->
 	<select id="searchId" parameterType="Client" statementType="PREPARED" resultType="string">

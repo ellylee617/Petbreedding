@@ -1,5 +1,6 @@
 package kh.com.petbreedding.common.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,5 +30,9 @@ public class LikesDao {
 	
 	public int clickLike(Likes likes) {
 		return sqlSession.selectOne("likes.clickLike", likes);
+	}
+	
+	public String countSalon(String har_num) {
+		return sqlSession.selectOne("likes.countSalon", har_num);
 	}
 }

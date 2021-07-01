@@ -13,6 +13,7 @@ public class Likes {
 	private Hospital hospital;
 	private String bp_type;
 	private String har_img;
+	private int count;
 	
 	
 	
@@ -20,7 +21,7 @@ public class Likes {
 	public String toString() {
 		return "Likes [like_num=" + like_num + ", cl_num=" + cl_num + ", har_num=" + har_num + ", hos_num=" + hos_num
 				+ ", hairSalon=" + hairSalon + ", hospital=" + hospital + ", bp_type=" + bp_type + ", har_img="
-				+ har_img + "]";
+				+ har_img + ", count=" + count + "]";
 	}
 	public String getLike_num() {
 		return like_num;
@@ -69,6 +70,12 @@ public class Likes {
 	}
 	public void setHar_img(String har_img) {
 		this.har_img = har_img;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 	

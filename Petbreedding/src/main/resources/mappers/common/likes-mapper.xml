@@ -73,6 +73,7 @@
 		WHERE CL_NUM = #{cl_num}
 	</select>
 	
+	<!-- 찜하기 삭제 -->
 	<delete id="deleteLike" parameterType="Likes">
 		DELETE FROM LIKES WHERE CL_NUM = #{cl_num} 
 		<if test="har_num != null">
@@ -83,6 +84,8 @@
 		</if>
 	</delete>
 	
+	
+	<!-- 찜하기 카운트  -->
 	<select id="clickLike" parameterType="Likes" resultType="int">
 		SELECT COUNT(*) 
 		FROM LIKES 
@@ -95,5 +98,10 @@
 		</if>
 	</select>
 	
-	
+	<!-- 찜한 미용실 카운트 -->
+	<select id="countSalon" parameterType="string" resultType="string">
+		SELECT COUNT(*)
+		FROM LIKES
+		WHERE HAR_NUM = #{har_num}
+	</select>
 </mapper>

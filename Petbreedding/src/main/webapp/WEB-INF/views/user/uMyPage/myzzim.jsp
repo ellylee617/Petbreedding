@@ -25,61 +25,21 @@
 	 <input type="hidden" id="cl_num" value="${client.cl_num}">
 	 <div class="myzzimhead">
         <h1>찜 목록</h1>
-        <div class="zzimlist">
-        	<c:if test="${empty likes}">
-        		<div class="subdiv">
-        			<h1 id="notice">찜한 매장이 없습니다.</h1>
-		        </div>
-        	</c:if>
-        	<c:if test="${!empty likes }">
-        	<c:forEach items="${likes}" var="likes">
-        		<c:if test="${likes.bp_type eq 0 }">
-        			<a href="shopPage?bpId=${likes.hairSalon.bpId }&shopType=${likes.bp_type}&y=${likes.hairSalon.y }&x=${likes.hairSalon.x }">
-	   	           	<div class="subdiv">
-		                <div class="img">
-		                	<img src="${path}/resources/uploadFile/shop/${likes.har_img }" style="width:200px; height: 100px;">
-		                </div>
-		                <div class="title">
-			                <h1>${likes.hairSalon.shopName }</h1><br>
-			                <p>${likes.hairSalon.shopMInfo }</p> 
-			            </div>
-		           </div>
-		           </a>
-		           <input type="hidden" class="har_num" value="${likes.har_num}">
-		           <div class="zzimdel">
-	                    <button class="zzimdelBtn basicBtn">찜 해제</button>
-	                </div>
-	            </c:if>
-	            <c:if test="${likes.bp_type eq 1 }">
-        			<a href="shopPage?bpId=${likes.hospital.bpId }&shopType=${likes.bp_type}&y=${likes.hospital.y }&x=${likes.hospital.x }">
-	   	           	<div class="subdiv">
-		                <div class="img">
-		                	<img src="${path}/resources/uploadFile/shop/${likes.har_img }" style="width:200px; height: 100px;">
-		                </div>
-		                <div class="title">
-			                <h1>${likes.hairSalon.shopName }</h1><br>
-			                <p>${likes.hairSalon.shopMInfo }</p> 
-			            </div>
-		           </div>
-		           </a>
-		           <input type="hidden" class="hos_num" value="${likes.hos_num}">
-		           <div class="zzimdel">
-	                    <button class="zzimdelBtn basicBtn" >찜 해제</button>
-		           </div>
-	            </c:if>
-        	</c:forEach>
-        	</c:if>
-        </div>
-        <c:if test="${fn:length(likes) > 5 }">
-	        <div class="myzzimrow">
-	            <button class="basicBtn" id="moreBtn"> 더보기</button>
+	        <div class="zzimlist">
+					<!-- 찜목록은 ajax -->
 	        </div>
-        </c:if>
-        </div>
+			<div class="myzzimrow">
+			</div>
+     </div>
 	 </section>
+	 
+	 <!--TOPBTN-->
+     <a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
+	 
 	<jsp:include page="../../common/footer.jsp" />
 	<!-- script -->
     <script src="${path}/resources/js/user/uMyPage/myzzim.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
 	</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package kh.com.petbreedding.common.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -35,6 +36,10 @@ public class LoginDao {
 		
 	}
 	
+	//사용자 조회(네이버, 카카오)
+	public List<Client> selectMember(String nickname) {
+		return sqlSession.selectList("Login.selectMember", nickname);
+	}
 	
 }
 

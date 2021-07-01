@@ -20,7 +20,6 @@
       <jsp:include page="../../common/header.jsp" />
       
       <section class="section">
-      
       <!-- 동물병원 -->
       <c:if test="${shopType eq 1}">
             <h1>동물병원</h1>
@@ -58,7 +57,8 @@
             </div>
             
             <div class="storeS">
-               <c:forEach items="${shopList}" var="item">
+               <c:forEach items="${shopList}" var="item" varStatus="status">
+                     
                 <ul>
                     <div class="Store">                     
                         <li class="storeList">
@@ -69,7 +69,7 @@
 	                                <div class="storeList_etc_area">
 	                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
 	                                    <a href="#">구매건수<small>999+</small></a>
-	                                    <a href="#">찜하기<small>999+</small></a>
+	                                    
 	                                </div>
                                     <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
                                     <input type="hidden" id="y" name="y" value="${item.y }">
@@ -127,10 +127,11 @@
             </c:forEach>
             
            <div class="storeS">
-               <c:forEach items="${shopList}" var="item">
+               <c:forEach items="${shopList}" var="item" varStatus="status" >
                 <ul>
                     <div class="Store">                      
                        <li class="storeList">
+                       
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
@@ -138,7 +139,7 @@
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
-                                    <a href="#">찜하기<small>999+</small></a>
+		                            <a href="#">찜하기 <small> ${count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
