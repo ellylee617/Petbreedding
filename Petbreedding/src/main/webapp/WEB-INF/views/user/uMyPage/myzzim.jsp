@@ -22,10 +22,10 @@
 	<jsp:include page="../../common/header.jsp" />
 	 <section class="section">
 	 <jsp:include page="../myPageAside.jsp"/>
-	 <input type="text" id="cl_num" value="${client.cl_num}">
+	 <input type="hidden" id="cl_num" value="${client.cl_num}">
 	 <div class="myzzimhead">
         <h1>찜 목록</h1>
-<%--         <div class="zzimlist">
+        <div class="zzimlist">
         	<c:if test="${empty likes}">
         		<div class="subdiv">
         			<h1 id="notice">찜한 매장이 없습니다.</h1>
@@ -75,7 +75,7 @@
 	            <button class="basicBtn" id="moreBtn"> 더보기</button>
 	        </div>
         </c:if>
-        </div> --%>
+        </div>
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
 	<!-- script -->
