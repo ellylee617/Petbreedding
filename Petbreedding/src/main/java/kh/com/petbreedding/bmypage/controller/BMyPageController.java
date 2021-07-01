@@ -349,7 +349,7 @@ public class BMyPageController {
 	}
 	
 
-	// 사장님 사업장 관리 - 사업자 등록 기능 + 이미지 + 로그인 연동 + BP 테이블에서 사업장 등록여부 상태 1로 바꾸기
+	// 사장님 사업장 관리 - 사업장 등록 기능 + 이미지 + 로그인 연동 + BP 테이블에서 사업장 등록여부 상태 1로 바꾸기
 	@RequestMapping(value = "bp/bShop/write")
 	public String bShopWrite(
 			HttpServletRequest hrequest
@@ -359,6 +359,8 @@ public class BMyPageController {
 			, MultipartHttpServletRequest request) {
 
 		ModelAndView mv = new ModelAndView();
+		
+		String savePath = request.getRealPath("resources/uploadFile/shop"); // 파일이 저장될 위치
 		
 		// 세션에 있는 로그인 정보 가져오기
 		HttpSession session = hrequest.getSession();
@@ -375,17 +377,35 @@ public class BMyPageController {
 
 			harVO.setBpId(bpId);
 			
+			System.out.println("등록할 미용실 정보::"+harVO);
 			
 			// 미용실 기본 정보 등록
+			// TODO 대표 사진 등록 
 			
+			MultipartFile mf = request.getFile("shopMainImg"); // input type="file" name="shopMainImg"
+			UUID uuid = UUID.randomUUID(); 
+			String originalfileName = mf.getOriginalFilename();
+			String saveName = uuid.toString() + "_" + originalfileName;
+			File uploadFile = new File(savePath + "//" + saveName);
+			
+			try {
+				mf.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			harVO.setShopMImg(originalfileName);
 			result = shopService.insertHarInfo(harVO);
-			
 			
 			if(result>0) {
 				System.out.println(" !! 미용실 기본 정보 등록 성공 !!");
 				System.out.println("등록한 미용실 정보:"+harVO);
 				
-				shopService.updateBpReg(bpId);
+				shopService.updateBpReg(bpId);	// 사업장 등록 상태 컬럼 1로 변경 
 				
 				mv.addObject("vo",harVO);
 				
@@ -444,25 +464,25 @@ public class BMyPageController {
 
 		// 파일 업로드
 
-		String savePath = request.getRealPath("resources/uploadFile/shop"); // 파일이 저장될 위치
+		
 
 		// 넘어온 파일을 리스트로 저장
-		List<MultipartFile> mf = request.getFiles("shopImg");// 업로드 파라미터
+		List<MultipartFile> mfList = request.getFiles("shopImg");// 업로드 파라미터
 
-		if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+		if (mfList.size() == 1 && mfList.get(0).getOriginalFilename().equals("")) {
 
 		} else {
-			for (int i = 0; i < mf.size(); i++) {
+			for (int i = 0; i < mfList.size(); i++) {
 
 				UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
-				String originalfileName = mf.get(i).getOriginalFilename(); // 본래 파일명
+				String originalfileName = mfList.get(i).getOriginalFilename(); // 본래 파일명
 				String saveName = uuid.toString() + "_" + originalfileName; // 저장될 이름
 				File uploadFile = new File(savePath + "//" + saveName); // 복사될 위치
 
 				// 파일 저장
 				try {
 
-					mf.get(i).transferTo(uploadFile);
+					mfList.get(i).transferTo(uploadFile);
 
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
@@ -630,23 +650,23 @@ public class BMyPageController {
 		
 
 		// 넘어온 파일을 리스트로 저장
-		List<MultipartFile> mf = mulitreq.getFiles("shopImg");// 업로드 파라미터
+		List<MultipartFile> mfList = mulitreq.getFiles("shopImg");// 업로드 파라미터
 
-		if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+		if (mfList.size() == 1 && mfList.get(0).getOriginalFilename().equals("")) {
 
 		} else {
 
-			for (int i = 0; i < mf.size(); i++) {
+			for (int i = 0; i < mfList.size(); i++) {
 
 				UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
-				String originalfileName = mf.get(i).getOriginalFilename(); // 본래 파일명
+				String originalfileName = mfList.get(i).getOriginalFilename(); // 본래 파일명
 				String saveName = uuid.toString() + "_" + originalfileName; // 저장될 이름
 				File uploadFile = new File(savePath + "//" + saveName); // 복사될 위치
 				
 				// 파일 저장
 				try {
 
-					mf.get(i).transferTo(uploadFile);
+					mfList.get(i).transferTo(uploadFile);
 
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
