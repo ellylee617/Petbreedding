@@ -3,23 +3,24 @@
  */
 var cl_num = $("#cl_num").val();
 //찜목록 뿌리기
-$(function(){
+$("#moreBtn").on("click",function(){
 	$.ajax({
-		url:"myzzim",
-		type:"POST",
+		url: "myzzimList",
+		type:"GET",
 		data:{
 			cl_num : cl_num
 		},
-		success: function(data){
+		success:function(data){
 			console.log(data);
-			location.href="/petbreedding/myzzim";
+			for(var i in data){
+				
+			}
 		}
 	});
 });
 
 
 //찜 해제
-
 $(".zzimdelBtn").on("click",function(){
 	var har_num = $(this).parent().prev('.har_num').val();
 	var hos_num = $(this).parent().prev('.hos_num').val();

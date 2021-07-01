@@ -31,8 +31,9 @@ public class LikesController {
 	
 	// 내 찜 목록
 	@RequestMapping("/myzzim")
-	public String myZzim() {
-		
+	public String myZzim(String cl_num, Model model) {
+		List<Likes> likes = likeService.selectLikes(cl_num);
+		model.addAttribute("likes", likes);
 		return "/user/uMyPage/myzzim";
 	}
 		
@@ -40,7 +41,6 @@ public class LikesController {
 	@RequestMapping("/myzzimList")
 	@ResponseBody
 	public List<Likes> myZzim(String cl_num) {
-		
 		List<Likes> likes = likeService.selectLikes(cl_num);
 		return likes;
 	}
