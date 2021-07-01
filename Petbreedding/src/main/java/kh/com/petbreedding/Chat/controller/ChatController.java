@@ -55,24 +55,25 @@ public class ChatController {
 			// 채팅방이 있는지 한번 확인 후
 			ChatRoom roomResult = null;
 			roomResult = chService.isRoom(cr);
+			
 			// 기존의 채팅방이 없다면
-			if (roomResult == null) {
+			if(roomResult == null) {
 				int result = 0;
 				// 채팅방 생성
 				result = chService.createRoom(cr);
+				
 				if(result == 1) {
 					System.out.println("채팅방 생성 성공");
+					roomResult = chService.isRoom(cr);
 				} else {
 					System.out.println("채팅방 생성 실패");
 				}
-			} else {
-				//기존의 채팅방이 있다면
-				chatId = roomResult.getChatId();
-				list = chService.getMessageList(chatId);
 			}
-		} else if (chatId !=null) {
-			list = chService.getMessageList(chatId);
+			chatId = roomResult.getChatId(); 
 		}
+
+		if (chatId !=null)
+		list = chService.getMessageList(chatId);
 				
 		String user = "user";
 		mv.addObject("cl_num", cl_num);
