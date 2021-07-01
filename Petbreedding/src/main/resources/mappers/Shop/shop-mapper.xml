@@ -234,11 +234,11 @@
 		
 	<!--동물병원 이미지 첨부 -->
 	<insert id="insertHosImg" parameterType="HospitalImg">
-			<selectKey keyProperty="hosNumImg" resultType="string" order="BEFORE">
+			<selectKey keyProperty="hosNum" resultType="string" order="BEFORE">
 	       	 SELECT SEQ_HOSPITAL.CURRVAL FROM DUAL
 	  		</selectKey>
 		INSERT INTO HOSPITAL_IMAGE (IMG_NUM, HOS_NUM, HOS_IMG)
-		VALUES (SEQ_HOSPITAL_IMG.NEXTVAL,#{hosNumImg},#{shopImg})
+		VALUES (SEQ_HOSPITAL_IMG.NEXTVAL,#{hosNum},#{shopImg})
 		</insert>
 		
 		<!-- 동물병원 이미지 수정(삭제) -->
