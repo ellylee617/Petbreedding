@@ -1,5 +1,7 @@
 package kh.com.petbreedding.board.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,8 +15,9 @@ public class MyAskCommentDao {
 	private SqlSession sqlSession;
 	
 	// <!-- 해당 문의 사항의 댓글 조회 -->
-	public MyAskComment myAskCommentSelectOne(String qna_num) {
-		return sqlSession.selectOne("MyAskComment.myAskCommentSelectOne", qna_num);
+	public List<MyAskComment> myAskCommentSelectOne(String qna_num) {
+		System.out.println("문의사항 번호!" + qna_num);
+		return sqlSession.selectList("MyAskComment.myAskCommentSelectOne", qna_num);
 	}
 	
 	// <!-- 문의 사항 댓글 시퀀스 더미 테이블을 이용해 가져오기 -->
