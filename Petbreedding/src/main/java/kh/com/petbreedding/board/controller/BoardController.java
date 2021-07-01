@@ -3,6 +3,7 @@ package kh.com.petbreedding.board.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sun.media.jfxmedia.logging.Logger;
 
 import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.CustomerService;
@@ -37,7 +39,7 @@ import kh.com.petbreedding.board.model.service.ReviewService;
 public class BoardController {
 	
 	@Autowired
-	private BoardService boarService;
+	private BoardService boardService;
 	
 	@Autowired
 	private CustomerServiceService customerServiceService;
@@ -57,16 +59,16 @@ public class BoardController {
 		
 		int currentPage = page;
 		// 한 페이지당 출력할 목록 갯수
-		int listCount = boarService.listCount();
+		int listCount = boardService.listCount();
 		int maxPage = (int) ((double) listCount / LIMIT + 0.9);
 		List<Board> boardList = null;
 		
 		if(keyword != null && !keyword.equals("")) {
-			boardList = boarService.searchList(keyword);
+			boardList = boardService.searchList(keyword);
 			mv.addObject("boardList", boardList);
 		}
 		else {
-			boardList = boarService.selectBoardList(currentPage, LIMIT);
+			boardList = boardService.selectBoardList(currentPage, LIMIT);
 			mv.addObject("boardList", boardList);
 		}
 		
@@ -89,7 +91,7 @@ public class BoardController {
 			) {
 		
 		int currentPage = page;
-		Board board = boarService.selectBoardDetail(0, boNum);
+		Board board = boardService.selectBoardDetail(0, boNum);
 		System.out.println("[세훈] @자유 게시글 상세 컨트롤러 board : " + board);
 		
 		mv.setViewName("/user/uBoard/fboardcon");
@@ -101,9 +103,91 @@ public class BoardController {
 	}
 	
 	// 게시글 작성
-	@RequestMapping(value = "/bwrite", method = RequestMethod.GET)
-	public String bWrite(Locale locale, Model model) {
+	@RequestMapping(value = "/bwriteFrm")
+	public String bWrite(Model model) {
 		return "/user/uBoard/bwrite";
+	}
+	
+	@RequestMapping(value = "/bwrite")
+	public String bwrite(
+			Model model
+			,Client cl
+			,MultipartHttpServletRequest req
+			,HttpServletResponse res
+			,HttpSession session
+			) {
+		res.setContentType("text/html; charset=utf-8");
+		
+		cl = (Client) session.getAttribute("client");
+		if(cl==null) {
+			//TODO: 로그인 안됐다는 경고.또는 이동 위치 변경
+			return "redirect:/";
+		}
+		
+		String cl_num = cl.getCl_num();
+		String cl_nickName = cl.getNickname();
+		String bo_content = req.getParameter("boContent");
+		
+		System.out.println("[세훈] @글 등록 컨트롤러 clNum : " + cl_num);
+		System.out.println("[세훈] @글 등록 컨트롤러 clNickName : " + cl_nickName);
+		System.out.println("[세훈] @글 등록 컨트롤러 bo_content : " + bo_content);
+		
+		Board board = new Board();
+		board.setClNum(cl_num);
+		board.setClNickName(cl_nickName);
+		board.setBoCont(bo_content);
+		
+		// 파일업로드
+				MultipartFile mf = req.getFile("boContent"); // 업로드 파라미터
+				if(mf != null) {
+					
+					String path = req.getRealPath("/resources/uploadFile/fboard"); // 자징될 위치
+					UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
+					String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
+					String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
+					File uploadFile = new File(path + "//" + saveName); // 복사될 위치
+					
+					try {
+						mf.transferTo(uploadFile);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+					board.setBoImg(saveName);
+					
+					System.out.println("[세훈] @글 등록 컨트롤러 saveName : " + saveName);
+				}
+				
+				System.out.println("[세훈] @글 등록 컨트롤러 board : " + board.toString());
+				
+				int result = boardService.insertBoard(board);
+				
+				PrintWriter out = null;
+				
+				String msg1 = "글이 등록되었습니다.";
+				String msg2 = "글이 등록되지 않았습니다.";
+				
+				try {
+					out = res.getWriter();
+					if(result == 1) {
+						out.println("<script>alert('" + msg1 + "');</script>");
+						System.out.println("[세훈] 자유게시판 글 등록 성공");
+						
+					} else {
+						out.println("<script>alert('" + msg2 + "');</script>");
+						System.out.println("[세훈] 자유게시판 글 등록 실패");
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					out.flush();
+					out.close();
+				}
+				
+		
+		
+		
+		return "redirect:/fboardlist";
 	}
 	
 	

@@ -20,23 +20,24 @@
 	<div class="wrapper">
 		<jsp:include page="../../common/header.jsp" />
         <section class="section">
-            	<h1>1:1문의 작성</h1>
+            	<h1>자유게시판 글 작성</h1>
             	
-                <div class="qnatitle">
-               
-                   <label>제목</label>
-                   <input type="text" name="#" placeholder="글 제목을 입력해주세요">
-                   
-                </div>
-            <div class="qnacontent">
-                <textarea name="content" id="editor"></textarea>
-            </div> 
-
-			<div id="btnBox">
-	            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
-	            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
-            </div>    
-            
+           	<form action="bwrite" method="post" enctype="multipart/form-data">
+   				<div class="qnatitle">
+	               
+	              <label>제목</label>
+	              <input type="text" name="boTitle" placeholder="글 제목을 입력해주세요">
+	                   
+	                </div>
+	            <div class="qnacontent">
+	                <textarea name="boContent" id="editor"></textarea>
+	            </div> 
+	
+				<div id="btnBox">
+		            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
+		            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
+	            </div>    
+            </form>
         </section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
