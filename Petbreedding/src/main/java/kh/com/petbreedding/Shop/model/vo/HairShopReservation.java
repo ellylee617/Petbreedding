@@ -13,7 +13,7 @@ public class HairShopReservation {
 	private String style_num; //메인 스타일 번호
 	private String har_num; //헤어샵 번호
 	private String res_date; //예약날짜 (YYYY-MM-DD)
-	private int res_status; //예약상태  (0 : 결제대기, 1 : 결제완료, 2: 이용완료 , 3: 결제취소)
+	private String res_status; //예약상태  (0 : 결제대기, 1 : 결제완료, 2: 이용완료 , 3: 결제취소)
 	private String res_time; //예약시간( HH:MM)
 	private String style_num2; //추가 스타일 번호
 	private String har_name;
@@ -26,22 +26,6 @@ public class HairShopReservation {
 	private int cntPerPage;
 	private String name;
 	private String bp_id;
-
-	@Override
-	public String toString() {
-		return "HairShopReservation [har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
-				+ ", pet_num=" + pet_num + ", style_num=" + style_num + ", har_num=" + har_num + ", res_date="
-				+ res_date + ", res_status=" + res_status + ", res_time=" + res_time + ", style_num2=" + style_num2
-				+ ", har_name=" + har_name + ", res_date2=" + res_date2 + ", client=" + client + ", pet=" + pet
-				+ ", style=" + style + ", hairSalon=" + hairSalon + ", startIndex=" + startIndex + ", cntPerPage="
-				+ cntPerPage + ", name=" + name + ", bp_id=" + bp_id + "]";
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getHar_rnum() {
 		return har_rnum;
 	}
@@ -84,10 +68,10 @@ public class HairShopReservation {
 	public void setRes_date(String res_date) {
 		this.res_date = res_date;
 	}
-	public int getRes_status() {
+	public String getRes_status() {
 		return res_status;
 	}
-	public void setRes_status(int res_status) {
+	public void setRes_status(String res_status) {
 		this.res_status = res_status;
 	}
 	public String getRes_time() {
@@ -102,23 +86,18 @@ public class HairShopReservation {
 	public void setStyle_num2(String style_num2) {
 		this.style_num2 = style_num2;
 	}
-
 	public String getHar_name() {
 		return har_name;
 	}
-
 	public void setHar_name(String har_name) {
 		this.har_name = har_name;
 	}
-
 	public String getRes_date2() {
 		return res_date2;
 	}
-
 	public void setRes_date2(String res_date2) {
 		this.res_date2 = res_date2;
 	}
-
 	public Client getClient() {
 		return client;
 	}
@@ -146,14 +125,20 @@ public class HairShopReservation {
 	public int getStartIndex() {
 		return startIndex;
 	}
-	public int getCntPerPage() {
-		return cntPerPage;
-	}
 	public void setStartIndex(int startIndex) {
 		this.startIndex = startIndex;
 	}
+	public int getCntPerPage() {
+		return cntPerPage;
+	}
 	public void setCntPerPage(int cntPerPage) {
 		this.cntPerPage = cntPerPage;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getBp_id() {
 		return bp_id;
@@ -161,6 +146,16 @@ public class HairShopReservation {
 	public void setBp_id(String bp_id) {
 		this.bp_id = bp_id;
 	}
+	@Override
+	public String toString() {
+		return "HairShopReservation [har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
+				+ ", pet_num=" + pet_num + ", style_num=" + style_num + ", har_num=" + har_num + ", res_date="
+				+ res_date + ", res_status=" + res_status + ", res_time=" + res_time + ", style_num2=" + style_num2
+				+ ", har_name=" + har_name + ", res_date2=" + res_date2 + ", client=" + client + ", pet=" + pet
+				+ ", style=" + style + ", hairSalon=" + hairSalon + ", startIndex=" + startIndex + ", cntPerPage="
+				+ cntPerPage + ", name=" + name + ", bp_id=" + bp_id + "]";
+	}
+
 	
 	
 }

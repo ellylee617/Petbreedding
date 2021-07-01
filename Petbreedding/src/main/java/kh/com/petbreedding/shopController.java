@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.Shop.model.service.BpReservationService;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.bmypage.model.vo.HairSalonImg;
@@ -223,10 +224,10 @@ public class shopController {
 		return "/user/uShop/successRev";
 	}
 
-	// 사업자 예약관리
-	@ResponseBody
+	// 사업자 미용실 예약관리 - 현재 날짜 전체 리스트
 	@RequestMapping(value = "/bReservation")
-	public ModelAndView bReservationList(Locale locale, Model model, HairShopReservation rev, HttpSession session,
+	public ModelAndView bReservationList(Locale locale, Model model,
+			HairShopReservation rev, HttpSession session,
 			HttpServletResponse res
 
 	) throws Exception {
@@ -234,16 +235,38 @@ public class shopController {
 		BPartner vo = (BPartner) session.getAttribute("bP");
 		String bp_id = vo.getBp_Id();
 		System.out.println("사업자 예약조회 들어옴-----------");
-
+		
+		
+		List<HairShopReservation> list = null;
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("bPartner/bShop/bReservation");
-		mav.addObject("list", bprevService.revAllList(bp_id));
+
+		
+			list = bprevService.revAllList(bp_id);
+			mav.setViewName("bPartner/bShop/bReservation");
+			mav.addObject("list", list);
+		
 
 		return mav;
 	}
+	
+	
+	//사업자 미용실 날짜별 전체보기 
+	@ResponseBody
+	@RequestMapping(value = "/bReservationdate")
+	public List<HairShopReservation> bReservationDate(Locale locale, Model model, 
+			HairShopReservation rev,
+			HttpSession session, 
+			HttpServletResponse res) throws Exception {
+	
+		
+		System.out.println("선택된 날짜는" + rev.getRes_date());
+		List<HairShopReservation> list = bprevService.revAllListDate(rev);
+		return list;
+	
+	}
+	
 
-
-	// 사업자 예약관리 개별 리스트
+	// 사업자 미용실 예약관리 개별 선택 리스트
 	@ResponseBody
 	@RequestMapping(value = "/bReservationkind")
 	public List<HairShopReservation> bReservation(Locale locale, Model model, HairShopReservation rev,
@@ -264,7 +287,35 @@ public class shopController {
 		List<HairShopReservation> list = bprevService.revList(rev);
 		return list;
 	}
-
+	
+	
+//	// 사업자 미용실 예약관리 - 현재 날짜 전체 리스트
+//		@RequestMapping(value = "/bReservation")
+//		public ModelAndView bReservationHosList(Locale locale,
+//				Model model,
+//				HospitalReservation rev, 
+//				HttpSession session,
+//				HttpServletResponse res
+//
+//		) throws Exception {
+//
+//			BPartner vo = (BPartner) session.getAttribute("bP");
+//			String bp_id = vo.getBp_Id();
+//			System.out.println("사업자 예약조회 들어옴-----------");
+//			
+//			
+//			List<HairShopReservation> list = null;
+//			ModelAndView mav = new ModelAndView();
+//
+//			
+//				list = bprevService.revAllList(bp_id);
+//				mav.setViewName("bPartner/bShop/bReservation");
+//				mav.addObject("list", list);
+//			
+//
+//			return mav;
+//		}
+		
 	// 사업자 예약확인
 	@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
 	public String bReservationDetail(Locale locale, Model model) {

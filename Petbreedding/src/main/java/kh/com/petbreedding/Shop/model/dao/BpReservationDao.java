@@ -18,7 +18,11 @@ public class BpReservationDao {
 		return sqlSession.selectList("bprev.harRavListeach",vo);
 	}
 
+	public List<HairShopReservation> revAllListDate(HairShopReservation vo) throws Exception {
+		return sqlSession.selectList("bprev.hartRavListDate", vo);
+	}
+	
 	public List<HairShopReservation> revAllList(String bp_id) throws Exception {
-		return sqlSession.selectList("bprev.hartRavList",bp_id);
+		return sqlSession.selectList("bprev.hartRavList", bp_id);
 	}
 }
