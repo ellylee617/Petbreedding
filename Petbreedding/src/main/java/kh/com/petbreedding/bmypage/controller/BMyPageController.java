@@ -350,8 +350,12 @@ public class BMyPageController {
 
 	// 사장님 사업장 관리 - 사업자 등록 기능 + 이미지 + 로그인 연동 + BP 테이블에서 사업장 등록여부 상태 1로 바꾸기
 	@RequestMapping(value = "bp/bShop/write")
-	public String bShopWrite(HttpServletRequest hrequest, HairSalon harVO, Hospital hosVO,
-			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest request) {
+	public String bShopWrite(
+			HttpServletRequest hrequest
+			, HairSalon harVO
+			, Hospital hosVO
+			,@RequestParam(value = "shopDayOff") List<String> dayOffList
+			, MultipartHttpServletRequest request) {
 
 		// 세션에 있는 로그인 정보 가져오기
 		HttpSession session = hrequest.getSession();
@@ -359,7 +363,10 @@ public class BMyPageController {
 		String bpId = bp.getBp_Id();
 
 		int bPType = bp.getBp_type();
-
+		
+		
+		int result = -1;
+		
 		// bPType이 0이면 미용실, 1이면 동물병원
 		if (bPType == 0) {
 
@@ -367,10 +374,15 @@ public class BMyPageController {
 			harVO.setBpId(bpId);
 
 			// 미용실 기본 정보 등록
-			shopService.insertHarInfo(harVO);
-			harVO.toString();
+			
+			result = shopService.insertHarInfo(harVO);
+			if(result>0) {
+				System.out.println(" !! 미용실 기본 정보 등록 성공 !!");
+				shopService.updateBpReg(bpId);
+			} else {
+				System.out.println(" !! 미용실 기본 정보 등록 실패 !! ");
+			}
 
-			session.setAttribute("harInfo", harVO);
 
 			// 미용실 주휴일 설정
 			// 1:월요일 ~ 7:일요일
@@ -459,21 +471,20 @@ public class BMyPageController {
 					shopService.insertHosImg(hosVO3);
 
 					System.out.println(hosVO3.toString());
-
+					
 
 				}
 
 			}
 		}
 
-		shopService.updateBpReg(bpId);
-		// TODO:
+		
 
 		System.out.println("!! 사업장 등록 완료 !!");
 
 		// TODO:alert 추가하기
 
-		return "bPartner/bShop/bReservation"; // TODO:수정해야됨!!!!
+		return "redirect:/bReservation"; // TODO:수정해야됨!!!!
 	}
 
 	
