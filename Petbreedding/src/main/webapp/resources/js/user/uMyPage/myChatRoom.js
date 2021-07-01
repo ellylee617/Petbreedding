@@ -132,3 +132,8 @@ function appendMessage(msg) {
 	}
 	
 }
+
+//스크롤 쭉 내리기
+var scHeight = $("#chatArea").prop('scrollHeight');
+$("#chatArea").animate({ scrollTop: scHeight }, "slow");
+

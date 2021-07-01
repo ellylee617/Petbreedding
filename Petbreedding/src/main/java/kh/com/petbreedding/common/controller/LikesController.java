@@ -31,13 +31,20 @@ public class LikesController {
 	
 	// 내 찜 목록
 	@RequestMapping("/myzzim")
-	public String myZzim(String cl_num, Model model) {
+	public String myZzim() {
 		
-		List<Likes> likes = likeService.selectLikes(cl_num);
-		model.addAttribute("likes", likes);
 		return "/user/uMyPage/myzzim";
 	}
 		
+	//내 찜 목록 조회
+	@RequestMapping("/myzzimList")
+	@ResponseBody
+	public List<Likes> myZzim(String cl_num) {
+		
+		List<Likes> likes = likeService.selectLikes(cl_num);
+		return likes;
+	}
+	
 	// 동물병원/미용실 찜해제
 	@RequestMapping("/delLikes")
 	@ResponseBody
