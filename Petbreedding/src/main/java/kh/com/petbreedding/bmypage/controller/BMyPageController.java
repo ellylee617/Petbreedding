@@ -99,8 +99,9 @@ public class BMyPageController {
 	}
 
 	// 사장님 마이 페이지 1:1문의하기
-	@RequestMapping(value = "/bQna/write", method = RequestMethod.GET)
+	@RequestMapping(value = "/bQna/writeFrm")
 	public String bQnaWrite(Model md, String user_num) {
+		System.out.println(user_num);
 		md.addAttribute("user_num", user_num);
 		return "/bPartner/bBoard/bQnaWrite";
 	}

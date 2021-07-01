@@ -12,11 +12,13 @@ $(function() {
 	});
 	
 	$("#myAskBtn").click(function() {
-		location.href = "/petbreedding/bQna/write?user_num="+userNum+"";
+		console.log(userNum);
+		location.href = "/petbreedding/bQna/writeFrm?user_num="+userNum+"";
 	});
-	
-	function goDetail(value){
-		console.log(value);
-		location.href = "/petbreedding//mypage/askdetail?qna_num="+value+"";
-	}
+
 });
+
+function goDetail(value){
+	console.log(value);
+	location.href = "/petbreedding//mypage/askdetail?qna_num="+value+"";
+}
