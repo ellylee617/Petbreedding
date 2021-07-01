@@ -48,6 +48,17 @@ public class LikesServiceImpl implements LikesService{
 		}
 		return result;
 	}
+
+	@Override
+	public int clickLike(Likes likes) {
+		int result = -1;
+		try {
+			result = likesDao.clickLike(likes);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 

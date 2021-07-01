@@ -33,7 +33,6 @@
         	<c:if test="${!empty likes}">
         	<c:forEach items="${likes}" var="likes">
         		<c:if test="${likes.bp_type eq 0 }">
-        			<input type="hidden" class="har_num" value="${likes.har_num}">
         			<a href="shopPage?bpId=${likes.hairSalon.bpId }&shopType=${likes.bp_type}&y=${likes.hairSalon.y }&x=${likes.hairSalon.x }">
 	   	           	<div class="subdiv">
 		                <div class="img">
@@ -43,14 +42,14 @@
 			                <h1>${likes.hairSalon.shopName }</h1><br>
 			                <p>${likes.hairSalon.shopMInfo }</p> 
 			            </div>
-		                <div class="zzimdel">
-		                    <button id="zzimdelBtn" class="basicBtn" onclick="cutZzim()">찜 해제</button>
-		                </div>
 		           </div>
 		           </a>
+		           <input type="hidden" class="har_num" value="${likes.har_num}">
+		           <div class="zzimdel">
+	                    <button class="zzimdelBtn basicBtn">찜 해제</button>
+	                </div>
 	            </c:if>
 	            <c:if test="${likes.bp_type eq 1 }">
-	            	<input type="hidden" class="hos_num" value="${likes.hos_num}">
         			<a href="shopPage?bpId=${likes.hospital.bpId }&shopType=${likes.bp_type}&y=${likes.hairSalon.y }&x=${likes.hairSalon.x }">
 	   	           	<div class="subdiv">
 		                <div class="img">
@@ -60,32 +59,24 @@
 			                <h1>${likes.hairSalon.shopName }</h1><br>
 			                <p>${likes.hairSalon.shopMInfo }</p> 
 			            </div>
-		                <div class="zzimdel">
-		                    <button id="zzimdelBtn" class="basicBtn" onclick="cutZzim()">찜 해제</button>
-		                </div>
 		           </div>
 		           </a>
+		           <input type="hidden" class="hos_num" value="${likes.hos_num}">
+		           <div class="zzimdel">
+	                    <button class="zzimdelBtn basicBtn" >찜 해제</button>
+		           </div>
 	            </c:if>
         	</c:forEach>
         	</c:if>
         </div>
-        <div class="myzzimrow">
-            <button class="basicBtn" id="moreBtn"> 더보기</button>
-        </div>
+        <c:if test="${like.length > 5 }">
+	        <div class="myzzimrow">
+	            <button class="basicBtn" id="moreBtn"> 더보기</button>
+	        </div>
+        </c:if>
         </div>
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
-	<script type="text/javascript">
-		console.log("로딩");
-		var qnaNum = 'Q10';
-		console.log(qnaNum);
-		maCommentInit(qnaNum);
-		
-		function maCommentInit(qnaNum){
-			console.log("함수 진입");
-		}
-	
-	</script>
 	<!-- script -->
     <script src="${path}/resources/js/user/uMyPage/myzzim.js"></script>
 	</div>

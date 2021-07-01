@@ -44,9 +44,16 @@ public class LikesController {
 	public int delLikes(Likes likes) {
 		
 		int result = likeService.delLikes(likes);
-		
 		return result;
 
+	}
+	
+	//찜했니 안했니 
+	@RequestMapping("clickLike")
+	@ResponseBody
+	public int clickLike(Likes likes) {
 		
+		int result = likeService.clickLike(likes);
+		return result;
 	}
 }

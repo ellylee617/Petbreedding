@@ -27,4 +27,7 @@ public class LikesDao {
 		return sqlSession.insert("likes.deleteLike", likes);
 	}
 	
+	public int clickLike(Likes likes) {
+		return sqlSession.selectOne("likes.clickLike", likes);
+	}
 }

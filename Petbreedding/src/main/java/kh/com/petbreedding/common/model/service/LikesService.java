@@ -9,4 +9,5 @@ public interface LikesService {
 	public int insertLikes(Likes likes);
 	public List<Likes> selectLikes(String cl_num);
 	public int delLikes(Likes likes);
+	public int clickLike(Likes likes);
 }

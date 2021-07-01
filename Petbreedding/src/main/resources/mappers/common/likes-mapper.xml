@@ -83,4 +83,17 @@
 		</if>
 	</delete>
 	
+	<select id="clickLike" parameterType="Likes" resultType="int">
+		SELECT COUNT(*) 
+		FROM LIKES 
+		WHERE CL_NUM =#{cl_num} 
+		<if test="har_num != null">
+		AND HAR_NUM = #{har_num}
+		</if>
+		<if test="hos_num != null">
+		AND HOS_NUM = #{hos_num}
+		</if>
+	</select>
+	
+	
 </mapper>
