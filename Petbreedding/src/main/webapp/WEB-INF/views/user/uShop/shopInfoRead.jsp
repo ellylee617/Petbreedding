@@ -59,7 +59,7 @@
 		                       <a href="${path}/shopReservation?har_num=${shopInfo.harNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
                         	</c:if>
 							<c:if test="${shopType eq 1 }">
-		                       <a href="${path}/shopReservation?har_num=${shopInfo.hosNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
+		                       <a href="${path}/shopHosReservation?hos_num=${shopInfo.hosNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
                         	</c:if>
                         </c:if>
                         <c:if test="${empty client }">
@@ -68,7 +68,7 @@
 	                        	<i class="fas fa-heart" id="heartOn"></i>
                         	</a>
                         </c:if>
-                        <c:if test="${!empty client }">
+                       <%--  <c:if test="${!empty client }">
                         	<c:if test="${shopType eq 0 }">
 	                        	<c:forEach items="${zzim }" var="zzim">
 	                        		<c:if test="${!empty zzim}">
@@ -119,7 +119,13 @@
                         		</c:if>
 	                        </c:if>
                         </c:if> 
-                        
+                         --%>
+                       <c:if test="${!empty client }">
+                         <a id="zzim">
+                        	<i class="far fa-heart" id="heartOff"></i>
+                        	<i class="fas fa-heart" id="heartOn"></i>
+                        </a>
+                       </c:if>
                     </div>
                 </div> <!--store_info_article-->
                 <div class="swiper-container store_menu_article ">

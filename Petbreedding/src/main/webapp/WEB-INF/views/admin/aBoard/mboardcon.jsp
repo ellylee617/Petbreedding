@@ -65,9 +65,9 @@
 // 		var a = 'Q1';
 // 		console.log(a);
 		console.log(qnaNum);
-		maCommentInit(qnaNum);
+		maCommentInit();
 		
-		function maCommentInit(qnaNum) {
+		function maCommentInit() {
 			console.log("조회 함수 들어옴");
 // 			var qnaNum = '${MyAsk.qnaNum}';
 			console.log(qnaNum);
