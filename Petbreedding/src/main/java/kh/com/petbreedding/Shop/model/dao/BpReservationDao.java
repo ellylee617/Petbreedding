@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 
 @Repository("bprevDao")
@@ -25,4 +26,19 @@ public class BpReservationDao {
 	public List<HairShopReservation> revAllList(String bp_id) throws Exception {
 		return sqlSession.selectList("bprev.hartRavList", bp_id);
 	}
+	
+	
+	//병원
+	public List<HospitalReservation> revHosList(HospitalReservation vo) throws Exception{
+		return sqlSession.selectList("bprev.hosRevListeach", vo);
+	}
+	
+	public List<HospitalReservation> revAllHosListDate(HospitalReservation vo) throws Exception {
+		return sqlSession.selectList("bprev.hosRevListDate", vo);
+	}
+	
+	public List<HospitalReservation> revHosAllList(String bp_id) throws Exception {
+		return sqlSession.selectList("bprev.hosrevList", bp_id);
+	}
+	
 }
