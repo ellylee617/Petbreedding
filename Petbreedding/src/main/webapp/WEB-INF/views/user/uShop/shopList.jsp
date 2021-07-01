@@ -108,7 +108,7 @@
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
-                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${shopImgList.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
                                 <div class="ultraList_info_area"><a href="#">${cta.shopMInfo}</a></div>
                                 <div class="ultraList_etc_area">

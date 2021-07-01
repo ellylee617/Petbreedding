@@ -563,7 +563,9 @@ public class BMyPageController {
 			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest mulitreq) {
 
 		System.out.println("***** 사업장 수정 컨트롤러 실행 *****");
-
+		
+		String savePath = mulitreq.getRealPath("resources/uploadFile/shop"); // 파일이 저장될 위치
+		
 		// 로그인 정보 가져오기
 		HttpSession session = req.getSession();
 		BPartner bp = (BPartner) session.getAttribute("bP");
@@ -591,8 +593,26 @@ public class BMyPageController {
 		if (bPType == 0) {
 
 			// 미용실 기본 정보 수정
+			
+			MultipartFile mf = mulitreq.getFile("shopMainImg"); // input type="file" name="shopMainImg"
+			UUID uuid = UUID.randomUUID(); 
+			String originalfileName = mf.getOriginalFilename();
+			String saveName = uuid.toString() + "_" + originalfileName;
+			File uploadFile = new File(savePath + "//" + saveName);
+			
+			try {
+				mf.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			harVO.setShopMImg(originalfileName);
+			System.out.println("수정할 미용실 정보:"+harVO);
 			shopService.updateHarInfo(harVO);
-			harVO.toString();
 
 			// 예전 미용실 매장 사진 삭제
 			shopService.deleteHarImg(harNum);
@@ -619,6 +639,7 @@ public class BMyPageController {
 		} else {
 
 			// 동물병원 기본 정보 수정
+			// TODO: 매장 대표사진 코드 추가 !!! 
 			shopService.updateHosInfo(hosVO);
 			hosVO.toString();
 
@@ -647,7 +668,7 @@ public class BMyPageController {
 		}
 
 		// 파일 업로드
-		String savePath = mulitreq.getRealPath("resources/uploadFile/shop"); // 파일이 저장될 위치
+		
 		
 
 		// 넘어온 파일을 리스트로 저장

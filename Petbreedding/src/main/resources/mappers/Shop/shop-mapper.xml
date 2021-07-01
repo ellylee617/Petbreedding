@@ -90,9 +90,9 @@
 		<!-- 미용실 정보 수정 -->
 		<update id="updateHarInfo" parameterType="HairSalon">
 			UPDATE HAIR_SALON 
-			SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X)
+			SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X, HAR_MIMG)
 				= (
-					SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x} 
+					SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg} 
 					FROM dual
 				)
 			WHERE BP_ID = #{bpId}
@@ -119,15 +119,10 @@
 		</select>
 		
 		<!-- 미용실 이미지 수정(삭제) -->
-		<delete id="deleteHarImg" parameterType="HairSalonImg">
+		<delete id="deleteHarImg" parameterType="string">
 			DELETE 
-			FROM HAIR_SALON_IMG img
-			WHERE EXISTS
-			(
-				SELECT 1
-				FROM HAIR_SALON info
-				WHERE info.HAR_NUM = #{harNum}
-			)
+			FROM HAIR_SALON_IMG
+			WHERE HAR_NUM = #{harNum}
 		</delete>
 		
 			<!-- 수정된 미용실 이미지 추가 -->
