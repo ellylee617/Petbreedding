@@ -11,6 +11,7 @@
 		<result column="BO_IMG" property="boImg"/>
 		<result column="BO_DATE" property="boDate"/>
 		<result column="BO_VIEW" property="boView"/>
+		<result column="BO_VIEW" property="bocChk"/>
 	</resultMap>
 	
 	<!-- 게시글 전체 개수 조회 -->

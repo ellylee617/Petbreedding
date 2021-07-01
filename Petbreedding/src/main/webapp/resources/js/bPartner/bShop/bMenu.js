@@ -3,9 +3,9 @@ $(function(){
 	$("#addItemBtn1").click(function() {
 		
 		
-		var form = '<form  class="newDynamicTable" action="bp/bMenu/write" method="POST" style="float: left">\
+		var form = '<form  class="newDynamicTable" action="bp/bMenu/write" method="POST">\
 				<label><input type="radio" name="style_deep" value="0" >메인</label>\
-				<label><input type="radio" name="style_deep" class="next" value="1">서브</label>\
+				<label><input type="radio" name="style_deep" class="next" value="1">서브&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>\
 				<input  type="text" placeholder="메뉴" id="menu" name="style_name">\
 				<input  type="text" placeholder="가격" id="price" name="price">\
 				<input  type="text" placeholder="소요시간" id="time" name="style_time">\

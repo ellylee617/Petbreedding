@@ -3,6 +3,7 @@ package kh.com.petbreedding.Admin.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -191,7 +192,7 @@ public class AdminController {
 		
 		PrintWriter out = res.getWriter();
 		String result = "";
-		MyAskComment mAskComment = new MyAskComment();
+		List<MyAskComment> mAskComment = new ArrayList<MyAskComment>();
 		
 		System.out.println(qna_num);
 		mAskComment = myAskCommentService.myAskCommentSelectOne(qna_num);

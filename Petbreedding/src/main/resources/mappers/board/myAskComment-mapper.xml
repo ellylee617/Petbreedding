@@ -23,8 +23,13 @@
 		<result column="QNAC_DATE" property="qnacDate"/>
 	</resultMap>
 
-	<!-- 해당 문의 사항의 댓글 조회 -->
+	<!-- [관리자] 해당 문의 사항의 댓글 조회 (JSON) -->
 	<select id="myAskCommentSelectOne" parameterType="string" resultMap="MyAskCommentMap">
+		SELECT * FROM QNA_COMMENT WHERE QNA_NUM = #{qnaNum}
+	</select>
+	
+	<!-- [고객, 사업자] 해당 문의 사항의 댓글 조회 -->
+	<select id="myAskCommentSelectOneCB" parameterType="string" resultMap="MyAskCommentMap">
 		SELECT * FROM QNA_COMMENT WHERE QNA_NUM = #{qnaNum}
 	</select>
 	

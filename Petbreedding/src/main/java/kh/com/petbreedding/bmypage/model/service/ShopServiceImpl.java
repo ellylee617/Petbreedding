@@ -455,5 +455,22 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 동물병원 진료 정보 삭제
+	@Override
+	public int deleteMedicalType(String medNum) {
+		
+		int result = -1;
+		
+		System.out.println("shopService  deleteMedicalType() 실행 ! ! ");
+		try {
+			result = shopDao.deleteMedicalType(medNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
 
 }

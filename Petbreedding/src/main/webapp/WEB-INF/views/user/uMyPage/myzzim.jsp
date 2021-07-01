@@ -22,10 +22,10 @@
 	<jsp:include page="../../common/header.jsp" />
 	 <section class="section">
 	 <jsp:include page="../myPageAside.jsp"/>
-	 <input type="text" id="cl_num" value="${client.cl_num}">
+	 <input type="hidden" id="cl_num" value="${client.cl_num}">
 	 <div class="myzzimhead">
         <h1>찜 목록</h1>
-<%--         <div class="zzimlist">
+        <div class="zzimlist">
         	<c:if test="${empty likes}">
         		<div class="subdiv">
         			<h1 id="notice">찜한 매장이 없습니다.</h1>
@@ -51,7 +51,7 @@
 	                </div>
 	            </c:if>
 	            <c:if test="${likes.bp_type eq 1 }">
-        			<a href="shopPage?bpId=${likes.hospital.bpId }&shopType=${likes.bp_type}&y=${likes.hairSalon.y }&x=${likes.hairSalon.x }">
+        			<a href="shopPage?bpId=${likes.hospital.bpId }&shopType=${likes.bp_type}&y=${likes.hospital.y }&x=${likes.hospital.x }">
 	   	           	<div class="subdiv">
 		                <div class="img">
 		                	<img src="${path}/resources/uploadFile/shop/${likes.har_img }" style="width:200px; height: 100px;">
@@ -75,7 +75,7 @@
 	            <button class="basicBtn" id="moreBtn"> 더보기</button>
 	        </div>
         </c:if>
-        </div> --%>
+        </div>
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
 	<!-- script -->

@@ -16,11 +16,13 @@
 .calendarBox{
     float: left;
 }
+
 .calendar{
 	float:left;
     width: 500px;
-    height: 500px;
-    border: 1px solid var(--main-color);  
+    height: auto;
+	display:flex;
+	justify-content: center;
 }
 
 .resBox{
@@ -37,6 +39,7 @@
     -moz-appearance: none;
     appearance: none;
     cursor: pointer;
+    font-family: "GmarketM";
 }
 .resList table{
     margin: 0 auto;
@@ -70,6 +73,14 @@
     color: var(--hover-color);
 }
 
+.date{
+	font-family: "GmarketB";
+	margin-left: 170px;
+	}
+.date input{
+	font-family: "GmarketB";
+	border : none;
+	}	
 
 
 /* 예약완료. 결제완료, 결제취소 */

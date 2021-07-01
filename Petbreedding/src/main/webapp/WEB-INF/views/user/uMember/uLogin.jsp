@@ -23,10 +23,10 @@
       		<img class="IDlogo" src="${pageContext.request.contextPath}/resources/images/logo.png">      
              <form  id="loginFrm" class="loginFrm">
              	<div class="loginBox">
-	                 <label>아이디</label>
-	                 <input type="text" id="bId" class="inputArea" placeholder="아이디를 입력해주세요" name="email">
-	                 <label>비밀번호</label>
-	                 <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호를 입력해주세요" name="password">
+	                 <!-- <label>아이디</label> -->
+	                 <input type="text" id="bId" class="inputArea" placeholder="아이디" name="email">
+	                 <!-- <label>비밀번호</label> -->
+	                 <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호" name="password">
 	                 <div id="errorText"></div>
 	                 <input type="button" class="basicBtn" id="loginBtn" value="로그인">
 	                 <p class="txt_or">또는</p>
