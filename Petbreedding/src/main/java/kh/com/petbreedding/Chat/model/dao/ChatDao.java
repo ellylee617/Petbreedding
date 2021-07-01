@@ -17,86 +17,79 @@ public class ChatDao {
 	@Autowired
 	private SqlSession sqlSession;
 
+	// 채팅방 만들기
 	public int createRoom(ChatRoom cr) throws Exception {
 		return sqlSession.insert("Chat.createRoom", cr);
 	}
 
+	// 채팅방 존재하는지 확인
 	public ChatRoom isRoom(ChatRoom cr) throws Exception {
-		ChatRoom room = null;
-		room = sqlSession.selectOne("Chat.isRoom", cr);
-		System.out.println(room);
-
-		return room;
+		return sqlSession.selectOne("Chat.isRoom", cr);
 	}
 
+	// 메시지 작성시마다 저장
 	public int insertMessage(ChatMessage cm) throws Exception {
 		return sqlSession.insert("Chat.insertMessage", cm);
 	}
 	
+	// 채팅방 아이디로 채팅방 찾기
 	public ChatRoom selectChatRoom(String chatId) throws Exception {
 		return sqlSession.selectOne("Chat.selectChatRoom", chatId);
 	}
 	
+	// 채팅방 리스트 찾기(client)
 	public List<ChatList> getList(String cl_num) throws Exception {
 		return sqlSession.selectList("Chat.getList", cl_num);
 	}
 
+	// 채팅방 리스트 찾기(bPartner)
 	public List<ChatList> getListbp_id(String bp_id) throws Exception {
 		return sqlSession.selectList("Chat.getListbp_id", bp_id);
 	}
 
+	// 채팅방의 메시지 리스트(client)
 	public List<ChatMessage> getMessageList(String chatId) throws Exception {
 		return sqlSession.selectList("Chat.getMessageList", chatId);
 	}
 
+	// 채팅방의 메시지 리스트(bPartner)
 	public List<ChatMessage> getMessageListbp_id(String chatId) throws Exception {
 		return sqlSession.selectList("Chat.getMessageListbp_id", chatId);
 	}
 
-	public ChatMessage getRecentMessage(String chatId) throws Exception {
-		return sqlSession.selectOne("Chat.getRecentMessage", chatId);
-	}
-//	
+//	public ChatMessage getRecentMessage(String chatId) throws Exception {
+//		return sqlSession.selectOne("Chat.getRecentMessage", chatId);
+//	}
+	
 //	public String getId(String str) throws Exception {
 //		return sqlSession.selectOne("Chat.getbp_id" , str) ;
 //	}
 
-	public int updateReadTime(String cl_num, String bp_id) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("bp_id", bp_id);
-		map.put("cl_num", cl_num);
-		return sqlSession.update("Chat.updateReadTime", map);
+	// 해당 채팅방의 내가 안 읽은 메시지 리스트(client)
+	public List<ChatMessage> getUnreadCount(ChatMessage cm) throws Exception {
+		return sqlSession.selectList("Chat.getUnreadCount", cm);
 	}
 	
-	public int updateReadTimebp_id(String cl_num, String bp_id) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("cl_num", cl_num);
-		map.put("bp_id", bp_id);
-		return sqlSession.update("Chat.updateReadTimebp_id", map);
-	}
-
-	public int getUnreadCount(String cl_num, String bp_id) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("bp_id", bp_id);
-		map.put("cl_num", cl_num);
-		return sqlSession.selectOne("Chat.getUnreadCount", map);
+	// 해당 채팅방의 내가 안 읽은 메시지 리스트(bPartner)
+	public List<ChatMessage> getUnreadCountbp_id(ChatMessage cm) throws Exception {
+		return sqlSession.selectList("Chat.getUnreadCountbp_id", cm);
 	}
 	
-	public int getUnreadCountbp_id(String cl_num, String bp_id) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("cl_num", cl_num);
-		map.put("bp_id", bp_id);
-		return sqlSession.selectOne("Chat.getUnreadCountbp_id", map);
+	public int updateUnreadCount(String mId) throws Exception {
+		return sqlSession.update("Chat.updateUnreadCount", mId);
 	}
-
-	public int getAllCount(String cl_num, String bp_id) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("cl_num", cl_num);
-		map.put("bp_id", bp_id);
-		if (sqlSession.selectOne("Chat.getAllCount", map) == null) {
-			return 0;
-		} else {
-			return sqlSession.selectOne("Chat.getAllCount", map);
-		}
-	}
+	
+//	public int updateUnreadCountbp_id(String cl_num, String bp_id) throws Exception {
+//		return sqlSession.update("Chat.updateReadTimebp_id", map);
+//	}
+//	public int getAllCount(String cl_num, String bp_id) {
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("cl_num", cl_num);
+//		map.put("bp_id", bp_id);
+//		if (sqlSession.selectOne("Chat.getAllCount", map) == null) {
+//			return 0;
+//		} else {
+//			return sqlSession.selectOne("Chat.getAllCount", map);
+//		}
+//	}
 }

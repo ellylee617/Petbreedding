@@ -89,6 +89,7 @@ public class ChatHandler extends TextWebSocketHandler {
 			RoomList.get(chatRoom.getChatId()).add(session);
 			// sessionList에 추가
 			sessionList.put(session, chatRoom.getChatId());
+			
 			// 확인용
 			System.out.println("생성된 채팅방으로 입장");
 			

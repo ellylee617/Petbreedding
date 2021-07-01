@@ -105,10 +105,10 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public ChatMessage getRecentMessage(String chatId) {
-		ChatMessage result = null;
+	public List<ChatMessage> getUnreadCount(ChatMessage cm) {
+		List<ChatMessage> result = null;
 		try {
-			result = chDao.getRecentMessage(chatId);
+			result = chDao.getUnreadCount(cm);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,10 +116,10 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public int updateReadTime(String cl_num, String bp_id) {
-		int result = 0;
+	public List<ChatMessage> getUnreadCountbp_id(ChatMessage cm) {
+		List<ChatMessage> result = null;
 		try {
-			result = chDao.updateReadTime(cl_num, bp_id);
+			result = chDao.getUnreadCountbp_id(cm);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -127,43 +127,10 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public int updateReadTimebp_id(String cl_num, String bp_id) {
+	public int updateUnreadCount(String mId) {
 		int result = 0;
 		try {
-			result = chDao.updateReadTimebp_id(cl_num, bp_id);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	@Override
-	public int getUnReadCount(String cl_num, String bp_id) {
-		int result = 0;
-		try {
-			result = chDao.getUnreadCount(cl_num, bp_id);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	@Override
-	public int getUnreadCountbp_id(String cl_num, String bp_id) {
-		int result = 0;
-		try {
-			result = chDao.getUnreadCountbp_id(cl_num, bp_id);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	@Override
-	public int getAllCount(String cl_num, String bp_id) {
-		int result = 0;
-		try {
-			result = chDao.getAllCount(cl_num, bp_id);
+			result = chDao.updateUnreadCount(mId);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
