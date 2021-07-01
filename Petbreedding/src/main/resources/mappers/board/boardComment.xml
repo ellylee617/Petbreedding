@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 	private String coNum; -->
+<!-- 	private String boNum; -->
+<!-- 	private String clNickName; -->
+<!-- 	private String coCont; -->
+<!-- 	private String coDate; -->
+
+<mapper namespace="boardComment">
+	<resultMap type="boardComment" id="boardCommentMap">
+		<id column="CO_NUM" property="coNum"/>
+		<result column="BO_NUM" property="boNum"/>
+		<result column="CL_NUM" property="clNickName"/>
+		<result column="CO_CONT" property="coCont"/>
+		<result column="CO_DATE" property="coDate"/>
+	</resultMap>
+</mapper>
