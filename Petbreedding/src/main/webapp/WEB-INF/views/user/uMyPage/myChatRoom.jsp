@@ -64,9 +64,6 @@
 				</c:if>
 			</c:forEach>
 			</c:if>
-			<c:if test="${empty chatlist }">
-			 대화내용이 없어용
-			</c:if>
 			</div>
 		</div>
 	</div>
@@ -124,9 +121,6 @@
 					</div></div><br><br><br><br>
 				</c:if>
 			</c:forEach>
-			</c:if>
-			<c:if test="${empty chatlist }">
-			 대화내용이 없어용
 			</c:if>
 			</div>
 		</div>
