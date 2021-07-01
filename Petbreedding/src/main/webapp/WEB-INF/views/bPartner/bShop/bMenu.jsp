@@ -38,10 +38,10 @@
 					<table style="border: 1px;">
 						<thead>
 							<tr>
-								<th>타입</th>
-								<th>스타일명</th>
-								<th>가격</th>
-								<th>소요시간</th>
+								<th width="180px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;타입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+								<th width="300px">스타일명</th>
+								<th width="100px">가격&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+								<th width="100px">소요시간</th>
 							</tr>
 						</thead>
 						<tbody id="dynamicTbody">
@@ -74,12 +74,12 @@
 								<c:if test="${list.style_deep eq 0}">
 									<label><input type="radio" name="style_deep" value="0"
 										checked="checked">메인</label>
-									<label><input type="radio" name="style_deep" value="1">서브</label>
+									<label><input type="radio" name="style_deep" value="1">서브&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 								</c:if>
 								<c:if test="${list.style_deep eq 1}">
 									<label><input type="radio" name="style_deep" value="0">메인</label>
 									<label><input type="radio" name="style_deep" value="1"
-										checked="checked">서브</label>
+										checked="checked">서브&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 								</c:if>
 								<input type="hidden" value="${list.style_num }" name="style_num">
 								<input type="hidden" value="${list.harNum }" name="harNum">
@@ -88,7 +88,7 @@
 									placeholder="가격" id="price" name="price" value="${list.price }">
 								<input type="text" placeholder="소요시간" id="time"
 									name="style_time" value="${list.style_time }">
-								<button type="submit" class="basicBtn rebtn"
+								<button type="submit" class="basicBtn rebtn" id="rebtn1"
 									formaction="${path}/bp/bMenu/rewrite">수정</button>
 								<button id="cancleBtn" type="button"
 									class="basicBtn delBtns rebtn">삭제</button>
