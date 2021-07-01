@@ -18,6 +18,7 @@
 		<result column="message_readTime" property="mReadTime" />
 		<result column="cl_num" property="cl_num" />
 		<result column="bp_id" property="bp_id" />
+		<result column="unread_count" property="mUnreadCount"/>
 	</resultMap>
 	
 	<resultMap type="ChatList" id="chatList">
@@ -31,9 +32,7 @@
 	</resultMap>
 
 	<insert id="createRoom">
-		INSERT INTO CHATROOM VALUES(SEQ_CHAT_ROOMID.NEXTVAL,
-		#{cl_num},
-		#{bp_id})
+		INSERT INTO CHATROOM VALUES(SEQ_CHAT_ROOMID.NEXTVAL, #{cl_num}, #{bp_id})
 	</insert>
 
 	<select id="isRoom" resultMap="chatroom">
@@ -41,15 +40,24 @@
 		CL_NUM = #{cl_num} AND BP_ID = #{bp_id}
 	</select>
 
-	<insert id="insertMessage">
-		INSERT INTO MESSAGE (SEQ_CHAT_MESSAGE.NEXTVAL,
-		MESSAGE_SENDER,
-		MESSAGE_RECEIVER, MESSAGE_CONTENT, CHATROOM_ID, CL_NUM,
-		BP_ID)
-		VALUES(SEQ_CMESSAGE, #{mSender}, #{mReceiver}, #{mContent},
-		#{chatId},
-		#{cl_num}, #{bp_id})
+	<insert id="insertMessage" parameterType="ChatMessage" flushCache="true">
+		<if test="mUnreadCount == 1">
+		INSERT INTO CHATMESSAGE (MESSAGE_ID, MESSAGE_SENDER, MESSAGE_RECEIVER, 
+		MESSAGE_CONTENT, MESSAGE_SENDTIME, CHATROOM_ID, UNREAD_COUNT, CL_NUM, BP_ID)
+		VALUES(SEQ_CHAT_MESSAGE.NEXTVAL, #{mSender}, #{mReceiver}, #{mContent},
+		CURRENT_TIMESTAMP, #{chatId}, 1, #{cl_num}, #{bp_id})
+		</if>
+		<if test="mUnreadCount == 2">
+		INSERT INTO CHATMESSAGE (MESSAGE_ID, MESSAGE_SENDER, MESSAGE_RECEIVER, 
+		MESSAGE_CONTENT, MESSAGE_SENDTIME, CHATROOM_ID, UNREAD_COUNT, CL_NUM, BP_ID)
+		VALUES(SEQ_CHAT_MESSAGE.NEXTVAL, #{mSender}, #{mReceiver}, #{mContent},
+		CURRENT_TIMESTAMP, #{chatId}, 0, #{cl_num}, #{bp_id})
+		</if>
 	</insert>
+	
+	<select id="selectChatRoom" resultMap="chatroom">
+		SELECT * FROM CHATROOM WHERE CHATROOM_ID = #{chatId}
+	</select>
 
 	<select id="getList" resultMap="chatList">
 		SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM,
@@ -60,7 +68,7 @@
 		SELECT
 		ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS
 		RANK,
-		CHATROOM_ID, MESSAGE_CONTENT,MESSAGE_SENDTIME, CL_NUM, BP_ID
+		CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, CL_NUM, BP_ID
 		FROM CHATMESSAGE) SQ
 		WHERE SQ.RANK = 1 AND CL_NUM = #{cl_num}
 		ORDER BY CHATROOM_ID) A
@@ -79,7 +87,7 @@
 		SELECT
 		ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS
 		RANK,
-		CHATROOM_ID, MESSAGE_CONTENT,MESSAGE_SENDTIME, CL_NUM, BP_ID
+		CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, CL_NUM, BP_ID
 		FROM CHATMESSAGE) SQ
 		WHERE SQ.RANK = 1 AND BP_ID = #{bp_id}
 		ORDER BY CHATROOM_ID) A
@@ -127,15 +135,13 @@
 	</update>
 
 	<select id="getUnreadCount" resultType="int">
-		SELECT COUNT(*) FROM
-		CHATMESSAGE
+		SELECT COUNT(*) FROM CHATMESSAGE
 		WHERE CL_NUM = #{cl_num} AND MESSAGE_SENDTIME = NULL AND
 		CHATROOM_ID=#{chatId};
 	</select>
 
 	<select id="getUnreadCountbp_id" resultType="int">
-		SELECT COUNT(*) FROM
-		CHATMESSAGE
+		SELECT COUNT(*) FROM CHATMESSAGE
 		WHERE BP_ID = #{bp_id} AND MESSAGE_SENDTIME = NULL AND
 		CHATROOM_ID=#{chatId};
 	</select>

@@ -60,7 +60,7 @@
 		<![CDATA[
 			INSERT INTO QNA_BOARD VALUES (
 			'Q'||SEQ_QNA_BOARD.NEXTVAL, #{userNum}, #{qnaTitle}, #{qnaCont},
-			#{qnaImg}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{qnaType}, #{qnaWr}, 0
+			#{qnaImg}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{qnaWr}, #{qnaType}, 0
 			)
 		]]>
 	</insert>

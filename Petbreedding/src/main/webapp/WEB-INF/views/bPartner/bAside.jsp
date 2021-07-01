@@ -29,7 +29,7 @@
             </li></a>
             <li class="menu">
                 <i class="fas fa-comments"></i>
-                <p>채팅관리</p>
+                <a href="${pageContext.request.contextPath}/bchatlist"><p>채팅관리</p>
             </li>
             <a href="${pageContext.request.contextPath}/bCalculate"><li class="menu" id="bCal">
                 <i class="fas fa-chart-bar"></i>
@@ -72,7 +72,7 @@
                     <a href="UcustomerService"><li class="bs">공지사항</li></a>
                     <li class="bs">자주묻는 질문</li>
                     <a href="bQna?user_num=${bP.bp_Id}"><li class="bs">내 문의 내역</li></a>
-                    <a href="bQna/write?user_num=${bP.bp_Id}"><li class="bs">1:1 문의하기</li></a>
+                    <a href="bQna/writeFrm?user_num=${bP.bp_Id}"><li class="bs">1:1 문의하기</li></a>
                 </div>
                 <div class="bmp"> 
                     <a id="cancleM"><li class="bs">제휴취소 신청</li></a>

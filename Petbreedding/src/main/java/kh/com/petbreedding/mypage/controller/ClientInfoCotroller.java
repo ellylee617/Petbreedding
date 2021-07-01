@@ -30,8 +30,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
+import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
+import kh.com.petbreedding.board.model.vo.MyAskComment;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.vo.Pagination;
 import kh.com.petbreedding.mypage.model.service.ClientInfoService;
@@ -49,6 +51,9 @@ public class ClientInfoCotroller {
 	
 	@Autowired
 	private MyAskService myAskService;
+	
+	@Autowired
+	private MyAskCommentService myAskCommentService;
 
 	// 예약조회
 	@RequestMapping("/mypage")
@@ -177,9 +182,16 @@ public class ClientInfoCotroller {
 		System.out.println("[세훈] @일대일 문의  상세 컨트롤러 qna_num : " + qna_num);
 		
 		MyAsk myAskDetail = new MyAsk();
+		MyAskComment maComment = new MyAskComment();
+		
 		myAskDetail = myAskService.MyAskSelectDetail(qna_num);
+		maComment = myAskCommentService.myAskCommentSelectOne(qna_num);
+		
 		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 myAskDetail : " + myAskDetail);
+		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 maComment : " + maComment);
+		
 		md.addAttribute("myAskDetail", myAskDetail);
+		md.addAttribute("maComment", maComment);
 		
 		return "/user/uMyPage/myAskDetail";
 	}

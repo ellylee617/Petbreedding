@@ -26,13 +26,13 @@
                 <h1>공지사항 게시판</h1>
                 <div class="select">
                     <select>
-                        <option value="1">전체</option>
-                        <option value="2">회원</option>
-                        <option value="3">사업자</option>
+                        <option value="0">전체</option>
+                        <option value="1">회원</option>
+                        <option value="2">사업자</option>
                     </select>
 
                 </div>
-                <button class="basicBtn" id="writeBtn">글쓰기</button>
+                <button class="basicBtn" id="writeBtn" onclick="location.href='/petbreedding/mserviceRegisterFrm'">글쓰기</button>
 
             </div>
             <div class="mboardrow">

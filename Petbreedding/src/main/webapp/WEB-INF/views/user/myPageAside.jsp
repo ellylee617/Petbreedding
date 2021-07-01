@@ -37,7 +37,7 @@
 			<a href="myboard"><li>- 내가 쓴 글</li></a>
 			<a href="myreply"><li>- 내가 쓴 댓글</li></a>
 			<a href="${pageContext.request.contextPath}/mypage/ask?user_num=${client.cl_num}"><li>- 1:1문의</li></a>
-			<a href="#"><li>- 채팅 내역</li></a>
+			<a href="${pageContext.request.contextPath}/chatlist"><li>- 채팅 내역</li></a>
 			<a href="#"><li>- 알림 내역</li></a>
 			<a href="${pageContext.request.contextPath}/myzzim?cl_num=${client.cl_num}"><li>- 찜 목록</li></a>
 			<a href="${pageContext.request.contextPath}/mypage/point?cl_num=${client.cl_num}"><li>- 포인트 내역</li></a>

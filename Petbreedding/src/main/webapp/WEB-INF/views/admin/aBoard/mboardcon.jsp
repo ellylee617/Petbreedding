@@ -54,22 +54,66 @@
 				
 				</div>
 				<div id="replyArea" class="reply">
-<!-- 				<div> -->
-<!-- 					안녕하세요. 또비언니님<br><br>현재 확인해본 결과, 해당 카드사에서 발생한 문제로 확인되고 있습니다. -->
-<!--         		<br>잠시 후 다시 결제 해보시고, 안되시면 고객센터(1577-0123)로 연락주시면 추가 안내해드리겠습니다.<br><br> -->
-<!--         		감사합니다. -->
-<!-- 				</div> -->
-					<form id="maCommentFrm" class="maCommentFrm">
-<!-- 					    <input type="text" name="maCommentText" id="replt"> -->
-						<textarea id="maCommentText" name="maCommentText"></textarea>
-					    <button class="basicBtn" id="maCommentBtn">등록</button>
-						<input type="hidden" name="qna_num" value="${mAsk.qnaNum}">
-					</form>				
 				</div>
 			</div>
 		</section>
 	<jsp:include page="../../common/footer.jsp" />
 	</div>	 
+	<script type="text/javascript">
+		console.log("로딩");
+		var qnaNum= '${mAsk.qnaNum}';
+// 		var a = 'Q1';
+// 		console.log(a);
+		console.log(qnaNum);
+		maCommentInit(qnaNum);
+		
+		function maCommentInit(qnaNum) {
+			console.log("조회 함수 들어옴");
+// 			var qnaNum = '${MyAsk.qnaNum}';
+			console.log(qnaNum);
+			$.ajax({
+				
+				url: 'macList',
+				type:'get',
+				contentType : "application/json; charset:UTF-8",
+				data: {qna_num: qnaNum },
+				dataType: 'json',
+				success: function(json) {
+					var div = "";
+					var jsonLength = Object.keys(json).length;
+					console.log(json);
+					console.log(jsonLength);
+					if(jsonLength > 0) {
+							$("#maCommentText").hide();
+							$("#maCommentBtn").hide();
+							
+							div +=	"<div>"
+									+json.qnacCont
+									+"</div>"
+									+"<form id='maCommentFrm' class='maCommentFrm'>"
+									+"<button class='basicBtn' id='maCommentUpBtn'>수정</button>"
+									+"<button class='basicBtn' id='maCommentDelBtn'>삭제</button>"
+									+"</form>";
+						
+					} else {
+						div += "<form id='maCommentFrm' class='maCommentFrm'>"
+							+"<textarea id='maCommentText' name='maCommentText'></textarea>"
+							+"<button class='basicBtn' id='maCommentBtn'>등록</button>";
+					}
+					
+					$("#replyArea").html(div);
+					},
+					
+				error : function(request, status, error) {
+					alert("code: " + request.status + "\n" + "message: "
+							+ request.responseText + "\n" + "error: "
+							+ error);
+				}
+					
+					
+			});
+		}
+	</script>
 <script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
 <script type="text/javascript" src="${path}/resources/js/admin/aBoard/mBoardCon.js"></script>
 </body>

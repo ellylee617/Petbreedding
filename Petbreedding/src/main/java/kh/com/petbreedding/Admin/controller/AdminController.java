@@ -179,13 +179,15 @@ public class AdminController {
 	}
 	
 	// 게시글 관리 (문의게시판 댓글)
-	@RequestMapping(value = "/macList")
+	@RequestMapping(value = "/macList", produces = "application/text; charset=UTF-8")
 	public void macList(
 			Model md
 			,String qna_num
 			,HttpServletRequest req
 			,HttpServletResponse res
 			) throws SQLException, IOException {
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("application/json; charset=UTF-8");
 		
 		PrintWriter out = res.getWriter();
 		String result = "";
@@ -297,7 +299,7 @@ public class AdminController {
 		
 		int result = 0;
 		
-//		result = customerServiceService.CustomerServiceInsert(cs);
+		result = customerServiceService.CustomerServiceInsert(cs);
 		
 		PrintWriter out = null;
 		
