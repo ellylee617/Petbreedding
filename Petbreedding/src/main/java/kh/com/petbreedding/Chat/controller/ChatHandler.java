@@ -61,13 +61,14 @@ public class ChatHandler extends TextWebSocketHandler {
 
 		// 전달받은 메세지
 		String msg = message.getPayload();
+		System.out.println(msg+"msg");
 		
 		// Json객체 → Java객체
 		ChatMessage chatMessage = objectMapper.readValue(msg, ChatMessage.class);
 				
 		// 받은 메세지에 담긴 roomId로 해당 채팅방을 찾아온다.
 		ChatRoom chatRoom = chService.selectChatRoom(chatMessage.getChatId());
-			
+				
 		// 채팅 세션 목록에 채팅방이 존재하지 않고, 처음 들어왔고, DB에서의 채팅방이 있을 때
 		// 채팅방 생성
 		if (RoomList.get(chatRoom.getChatId()) == null && chatRoom != null && chatMessage.getmContent().equals("ENTER-CHAT")) {
@@ -81,6 +82,7 @@ public class ChatHandler extends TextWebSocketHandler {
 			RoomList.put(chatRoom.getChatId(), sessionTwo);
 			// 확인용
 			System.out.println("채팅방 생성");
+			
 		} else if (RoomList.get(chatRoom.getChatId()) != null && chatRoom != null && chatMessage.getmContent().equals("ENTER-CHAT")) {
 			// 채팅방이 존재 할 때	
 			// RoomList에서 해당 방번호를 가진 방이 있는지 확인.
@@ -89,6 +91,7 @@ public class ChatHandler extends TextWebSocketHandler {
 			sessionList.put(session, chatRoom.getChatId());
 			// 확인용
 			System.out.println("생성된 채팅방으로 입장");
+			
 		} else if (RoomList.get(chatRoom.getChatId()) != null && chatRoom != null && !chatMessage.getmContent().equals("ENTER-CHAT")) {
 			// 채팅 메세지 입력 시
 			// 현재 session 수
