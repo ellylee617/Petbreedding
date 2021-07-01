@@ -74,9 +74,9 @@
 	<div class="col-12 inputchatwrap">
 		<div class="col-12 textwrap">
 			<textarea class="form-control" placeholder="내용을 입력해주세요" id="message" rows="4" cols="35"></textarea>
-			<input type='hidden' id="sender" value="${cl_num }">
-			<input type='hidden' id="senderName" value="${nickName }">		
-			<input type='hidden' id="receiver" value="${bp_id }">
+			<input type="hidden" id="sender" value="${cl_num }">
+			<input type="hidden" id="senderName" value="${nickName }">		
+			<input type="hidden" id="receiver" value="${bp_id }">
 			<input type="hidden" id="email" value="<%=email %>">
 			<input type="hidden" id="cl_num" value="${cl_num }">
 			<input type="hidden" id="bp_id" value="${bp_id }">
@@ -117,7 +117,7 @@
 					<div class="dNick">${shopName}</div></div><br>
 					<div class="col-10 dConO my">
 					<div class="col-12 dConI mycolor">
-					<span>
+					<span class="my">
 					${c.mContent}</span></div>
 					<div class="col-12 dTimeO"><br>
 					<div>${c.mSendTime }</div></div>
@@ -135,9 +135,9 @@
 	<div class="col-12 inputchatwrap">
 		<div class="col-12 textwrap">
 			<textarea class="form-control" placeholder="내용을 입력해주세요" id="message" rows="4" cols="35"></textarea>
-			<input type='hidden' id="sender" value="${bp_id }">
-			<input type='hidden' id="senderName" value="${shopName }">		
-			<input type='hidden' id="receiver" value="${cl_num }">
+			<input type="hidden" id="sender" value="${bp_id }">
+			<input type="hidden" id="senderName" value="${shopName }">		
+			<input type="hidden" id="receiver" value="${cl_num }">
 			<input type="hidden" id="email" value="<%=email %>">
 			<input type="hidden" id="cl_num" value="${cl_num }">
 			<input type="hidden" id="bp_id" value="${bp_id }">
