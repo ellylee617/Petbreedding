@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 .myzzimhead{
+	float:left;
+	width:800px;
     margin-bottom: 20px;
 }
 .myzzimhead h1{
@@ -11,20 +13,21 @@
     margin-bottom: 40px;
    
 }
-
+#notice{
+	text-align: center;
+}
 .zzimlist{
-    border: 1px solid #aaa;
-    padding: 30px 100px;
+    border-top: 1px solid #aaa;
     height: auto;
     overflow:hidden;
-    border-left: none;
-    border-right: none;
-    
+    margin-bottom: 50px;
 }
-
+.subdiv {
+	padding: 20px;
+	border-bottom: 1px solid #aaa;
+}
 .zzimlist .subdiv .img{
     float: left;
-    margin-left: -100px;
 }
 .zzimlist .subdiv .title{
    
@@ -32,21 +35,17 @@
     
 }
 .zzimlist .subdiv .title h1{
-    float: left;
+	display: inline-block;
     font-weight: bold;
     font-size: 20px;
     line-height: 0px;
     margin-top:-5px;
 
 }
-.zzimlist .subdiv .title h3{
-    float: left;
-    font-size: 13px;
-    clear: both;
-    margin-left: 130px;
-    margin-top: -60px;
-
-
+.zzimlist .subdiv .title p{
+   display: inline-block;
+   margin-left: 30px;
+   margin-top: -80px;
 }
 .zzimlist .subdiv .con{
     float: left;

@@ -5,9 +5,7 @@ var cl_num = $("#cl_num").val();
 var har_num = $("#har_num").val();
 var hos_num = $("#hos_num").val();
 $("#zzim").on("click",function(){
-	$.ajax({
-		
-	});
+
 	if($("#heartOn").css("display") == "none"){
 		if(har_num != null){
 			$.ajax({
@@ -72,8 +70,15 @@ $("#zzim").on("click",function(){
 					console.log("성공!");
 				}
 			});
+			var html = "";
+			html += "<a id='zzim'>";
+			html += "<i class='far fa-heart' id='heartOff'></i>";
+			html += "<i class='fas fa-heart' id='heartOn'></i>";
+			html += "</a>";
+			
 			$("#heartOn").css("display","none");
 			$("#heartOff").css("display","inline-block");
+			$("#goRev").append(html);
 		}
 
 	}

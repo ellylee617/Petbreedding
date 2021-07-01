@@ -1,9 +1,12 @@
 package kh.com.petbreedding.common.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,12 +30,11 @@ public class LikesController {
 	}
 	
 	// 내 찜 목록
-	@RequestMapping("/mypage/myzzim")
-	public String myZzim(HttpSession session) {
+	@RequestMapping("/myzzim")
+	public String myZzim(String cl_num, Model model) {
 		
-		String cl_num = (String) session.getAttribute("cl_num");
-		likeService.selectLikes(cl_num);
-		
+		List<Likes> likes = likeService.selectLikes(cl_num);
+		model.addAttribute("likes", likes);
 		return "/user/uMyPage/myzzim";
 	}
 		
