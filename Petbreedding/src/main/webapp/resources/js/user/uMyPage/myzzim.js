@@ -2,6 +2,24 @@
  * 
  */
 var cl_num = $("#cl_num").val();
+//찜목록 뿌리기
+$(function(){
+	$.ajax({
+		url:"myzzim",
+		type:"POST",
+		data:{
+			cl_num : cl_num
+		},
+		success: function(data){
+			console.log(data);
+			location.href="/petbreedding/myzzim";
+		}
+	});
+});
+
+
+//찜 해제
+
 $(".zzimdelBtn").on("click",function(){
 	var har_num = $(this).parent().prev('.har_num').val();
 	var hos_num = $(this).parent().prev('.hos_num').val();
