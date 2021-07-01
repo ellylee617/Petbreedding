@@ -8,7 +8,7 @@
                 <i class="far fa-calendar-alt"></i>
                 <p>예약관리</p>
             </li></a>
-            <c:if test="${bP.bp_reg == 0 }">
+            <c:if test="${bP.bp_reg == 0} ">
             <a href="${pageContext.request.contextPath}/bShop"><li class="menu hs" id="bShop">
             </c:if>
             <c:if test="${bP.bp_reg == 1 }">
