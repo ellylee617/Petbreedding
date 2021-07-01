@@ -240,7 +240,6 @@ public class BMyPageController {
 
 		System.out.println("  BMyPageController 실행 - bMenuReWrite()  ");
 
-		System.out.println("입력 받은 스타일 정보:" + styleVO);
 
 		// 로그인한 사업자 정보 가져오기
 		BPartner bpVO = (BPartner) session.getAttribute("bP");
@@ -258,12 +257,14 @@ public class BMyPageController {
 			
 			if(bpType==0) {
 				
+				System.out.println("입력 받은 스타일 정보:" + styleVO);
 				String styleNum = null;
 				styleNum = styleVO.getStyle_num();
 				System.out.println("수정할 스타일 번호:" + styleNum);
 				result = shopService.updateStyle(styleVO);
 				
 			} else {
+				System.out.println("입력 받은 진료 종류 정보:"+medVO);
 				String medNum = null;
 				medNum = medVO.getMedNum();
 				System.out.println("수정할 진료 정보 번호:"+medNum);
@@ -287,7 +288,6 @@ public class BMyPageController {
 
 		System.out.println("  BMyPageController 실행 - bMenuDelete()  ");
 
-		System.out.println("입력 받은 스타일 정보:" + styleVO);
 
 		// 로그인한 사업자 정보 가져오기
 		BPartner bpVO = (BPartner) session.getAttribute("bP");
@@ -304,14 +304,22 @@ public class BMyPageController {
 			
 			if(bpType==0) {	// 미용실 - 스타일
 				
+				System.out.println("입력 받은 스타일 정보:" + styleVO);
 				String styleNum = null;
 				styleNum = styleVO.getStyle_num();
 				System.out.println("삭제할 스타일 번호:" + styleNum);
 				result = shopService.deleteStyle(styleNum);
 				
-			} else {	// 동물병원 - 진료 종류
+			} 
+			
+			if(bpType==1){	// 동물병원 - 진료 종류
 				
-				//TODO
+				System.out.println("입력 받은 진료 종류 정보:"+medVO);
+				
+				String medNum = null;
+				medNum = medVO.getMedNum();
+				System.out.println("삭제할 진료 정보 번호:"+medNum);
+				result = shopService.deleteMedicalType(medNum);
 			}
 			
 			if (result > 0) {
