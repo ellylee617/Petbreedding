@@ -25,6 +25,17 @@ public class MyAskCommentServiceImpl implements MyAskCommentService {
 		}
 		return result;
 	}
+	
+	@Override
+	public MyAskComment myAskCommentSelectOneCB(String qna_num) {
+		MyAskComment result = null;
+		try {
+			result = myAskCommentDao.myAskCommentSelectOneCB(qna_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	@Override
 	public String getMyAskCommentSeq() {
@@ -63,5 +74,7 @@ public class MyAskCommentServiceImpl implements MyAskCommentService {
 		}
 		return result;
 	}
+
+
 
 }

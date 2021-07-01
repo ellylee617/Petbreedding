@@ -183,10 +183,10 @@ public class ClientInfoCotroller {
 		System.out.println("[세훈] @일대일 문의  상세 컨트롤러 qna_num : " + qna_num);
 		
 		MyAsk myAskDetail = new MyAsk();
-		List<MyAskComment> maComment = new ArrayList<MyAskComment>();
+		MyAskComment maComment = new MyAskComment();
 		
 		myAskDetail = myAskService.MyAskSelectDetail(qna_num);
-		maComment = myAskCommentService.myAskCommentSelectOne(qna_num);
+		maComment = myAskCommentService.myAskCommentSelectOneCB(qna_num);
 		
 		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 myAskDetail : " + myAskDetail);
 		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 maComment : " + maComment);
