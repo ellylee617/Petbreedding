@@ -215,7 +215,15 @@ $("#btnmore").on("click",function(){
 //상세보기페이지 진입
 function goDetail(value){
 	
-	location.href = "/petbreedding/revdetail?har_rnum="+value+"";
+	if(value.substring(0,3) == "HAR"){
+		har_rnum = value;
+		location.href = "/petbreedding/revdetail?har_rnum="+har_rnum+"";
+	}else if(value.substring(0,3) == "HOS"){
+		hos_rnum = value;
+		location.href = "/petbreedding/revdetail2?hos_rnum="+hos_rnum+"";
+	}
+	var har_rnum ="";
+	var hos_rnum = "";
 }
 
 

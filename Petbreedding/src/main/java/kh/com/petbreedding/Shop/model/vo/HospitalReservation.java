@@ -18,23 +18,8 @@ public class HospitalReservation {
 	private String hos_time; 	//예약 시간
 	private MyPet pet;
 	private Hospital hospital;
-	
-	/*
-	 * @Override public String toString() { return "HospitalReservation [hos_rnum="
-	 * + hos_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num + ", pet_num=" +
-	 * pet_num + ", med_num=" + med_num + ", hos_num=" + hos_num + ", hos_date=" +
-	 * hos_date + ", hos_date2=" + hos_date2 + ", med_num2=" + med_num2 +
-	 * ", hos_status=" + hos_status + ", hos_time=" + hos_time + "]"; }
-	 */
-	
-	@Override
-	public String toString() {
-		return "HospitalReservation [hos_rnum=" + hos_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
-				+ ", pet_num=" + pet_num + ", med_num=" + med_num + ", hos_num=" + hos_num + ", hos_date=" + hos_date
-				+ ", hos_date2=" + hos_date2 + ", med_num2=" + med_num2 + ", hos_status=" + hos_status + ", hos_time="
-				+ hos_time + ", pet=" + pet + ", hospital=" + hospital + "]";
-	}
-	
+	private String name;
+	private String bp_id;
 	public String getHos_rnum() {
 		return hos_rnum;
 	}
@@ -113,6 +98,27 @@ public class HospitalReservation {
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getBp_id() {
+		return bp_id;
+	}
+	public void setBp_id(String bp_id) {
+		this.bp_id = bp_id;
+	}
+	@Override
+	public String toString() {
+		return "HospitalReservation [hos_rnum=" + hos_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
+				+ ", pet_num=" + pet_num + ", med_num=" + med_num + ", hos_num=" + hos_num + ", hos_date=" + hos_date
+				+ ", hos_date2=" + hos_date2 + ", med_num2=" + med_num2 + ", hos_status=" + hos_status + ", hos_time="
+				+ hos_time + ", pet=" + pet + ", hospital=" + hospital + ", name=" + name + ", bp_id=" + bp_id + "]";
+	}
+	
+//
 	
 	
 	

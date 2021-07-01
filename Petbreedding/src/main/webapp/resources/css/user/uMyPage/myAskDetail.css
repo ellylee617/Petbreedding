@@ -33,6 +33,7 @@
 
 /* 답변 테이블 */
 .reponsetbl {
+	width: 100%;
 	border-top: 1px solid var(--border-color);
 	border-collapse: collapse;
 	text-align: left;

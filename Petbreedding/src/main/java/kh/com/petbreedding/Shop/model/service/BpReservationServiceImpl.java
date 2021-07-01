@@ -47,6 +47,23 @@ public class BpReservationServiceImpl implements BpReservationService{
 		return list;
 	}
 
+	@Override
+	public List<HairShopReservation> revAllListDate(HairShopReservation vo) throws Exception {
+		List<HairShopReservation> list = null;
+		
+		try {
+			list = bprevDao.revAllListDate(vo);
+			if(list != null) {
+				System.out.println("날짜별 전체 예약 들어옴");
+			}else {
+				System.out.println("날짜별 전체예약 안들어옴");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 
 	
 	

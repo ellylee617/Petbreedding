@@ -21,10 +21,10 @@
             <div class="loginBox">
                 <img class="IDlogo" src="${path}/resources/images/logo.png">
                 <form id="loginFrm">
-                    <label>아이디</label>
-                    <input type="text" id="bId" class="inputArea" placeholder="아이디를 입력해주세요" name="admin_id">
-                    <label>비밀번호</label>
-                    <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호를 입력해주세요" name="admin_pwd">
+                    <!-- <label>아이디</label> -->
+                    <input type="text" id="bId" class="inputArea" placeholder="아이디" name="admin_id">
+                    <!-- <label>비밀번호</label> -->
+                    <input type="password" id="bPwd" class="inputArea"  placeholder="비밀번호" name="admin_pwd">
                     <input type="button" class="basicBtn" id="loginBtn" value="로그인" src="#">
                 </form>
             </div>

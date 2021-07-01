@@ -1,26 +1,71 @@
-let sock;
+$(document).ready(function() {
+	
+	// 웹소켓 연결
+    connect();
+    console.log("enterRoom");
+    
+    $('html, body').animate({
+        scrollTop: $('#chatMessageArea').offset().top
+    }, 'fast'); //slow    
+    
+    // enter 키 이벤트
+	$('#message').keyup(function(e) {
+         if(e.keyCode == 13 && !e.shiftKey) {
+ 			sendMessage();
+			$('#message').val('');
+			event.preventDefault();
+         }
+    });
+	
+	$('#sendBtn').click(function() {
+		sendMessage();
+		$('#message').val('');
+	});
 
+});
+                
+// 웹소켓
+let sock;
+ 
+// 입장 버튼을 눌렀을 때 호출되는 함수
 function connect() {
+    // 웹소켓 주소 및 객체 생성
 	sock = new SockJS("http://localhost:8090/petbreedding/chat/");
-	sock.onopen = function() {
-		console.log('open');
-	};
+	// 웹 소켓에 이벤트가 발생했을 때 호출될 함수 등록
+	sock.onopen = onOpen;
+	sock.onmessage = onMessage;
+	sock.onclose = onClose;
+ }
+     
+// 웹 소켓에 연결되었을 때 호출될 함수
+function onOpen() {
+	var chatId = $("#chatId").val();
+	if(chatId==""&&chatId==null){
+		chatId = 0;
+	}
+	// ENTER-CHAT 이라는 메세지를 보내어, Java Map에 session 추가
+	message = {};
+	message.chatId = chatId;
+	message.mContent = "ENTER-CHAT";
+	let jsonData = JSON.stringify(message);
+	sock.send(jsonData);
+};
+
+function onMessage(evt) {
+	console.log('온메시지 들어옴');
+	var data = evt.data;
+	console.log('data' + data);
+	console.log(data);
+	var obj = JSON.parse(data);
+	console.log(obj)
+	appendMessage(obj);
+};
 	
-	sock.onmessage = function(evt) {
-		console.log('온메시지 들어옴');
-		var data = evt.data;
-		console.log('data' + data);
-		console.log(data);
-		var obj = JSON.parse(data);
-		console.log(obj)
-		appendMessage(obj);
-	};
-	
-	sock.onclose = function() {
-		//appendMessage("연결을 끊었습니다.");
-		console.log('close');
-	};
-}
+function onClose() {
+	// appendMessage("연결을 끊었습니다.");
+	console.log('close');
+};
+
 
 function sendMessage() {
 	var msg = $("#message").val();
@@ -84,25 +129,11 @@ function appendMessage(msg) {
 							+ msg.mContent + "</span></div><div class='col-12 dTimeO'><br><div>"
 							+ msg.mSendTime + "</div></div></div></div><br><br><br><br>");
 		}
-		var chatAreaHeight = $("#chatArea").height();
-		var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
-		$("#chatArea").scrollTop(maxScroll);
 	}
+	
 }
 
-	$(document).ready(function() {
-		connect();
-	$('#message').keyup(function(event) {
-		var keycode = event.keyCode ? event.keyCode : event.which;
-		if (keycode == '13') {
-			sendMessage();
-			$('#message').val('');
-			event.preventDefault();
-		}
-	});
+//스크롤 쭉 내리기
+var scHeight = $("#chatArea").prop('scrollHeight');
+$("#chatArea").animate({ scrollTop: scHeight }, "slow");
 
-	$('#sendBtn').click(function() {
-		sendMessage();
-		$('#message').val('');
-	});
-});

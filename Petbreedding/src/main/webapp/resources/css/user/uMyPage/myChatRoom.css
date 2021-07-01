@@ -40,7 +40,8 @@ div a:hover{
 	border: 1px solid #aaa; 
 	width : 470px;
 	height: 400px;  
-	overflow: scroll;
+	overflow-y: auto;
+	overflow-x: hidden; 
 }
 
 #chatMessageArea{
@@ -94,16 +95,19 @@ div a:hover{
 }
 .my{
 	float:right; 
+	padding-right: 10px;
 }
 .U{
 	float:left;
 }
 
 .mycolor{
+	float:right; 
 	background-color: var(--hover-color); 
 }
 
 .Ucolor{
+	float:left;
 	background-color: var(--button-color);
 }
 
@@ -120,7 +124,6 @@ div a:hover{
 
 .dConI{
 	padding : 10px 5px; 
-	float:left; 
 	border-radius:10px;
 }
 

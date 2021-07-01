@@ -35,7 +35,7 @@
 				</div>
 				<div class="resBox">
 						<select id="resselect" onchange="change()">
-							<option value="3" name="res_status">전체</option>
+							<option value="3" name="res_status" selected>전체</option>
 							<option value="0" name="res_status">예약완료</option>
 							<option value="1" name="res_status">결제완료</option>
 							<option value="2" name="res_status">결제취소</option>

@@ -7,6 +7,37 @@
 		<result column="CL_NUM" property="cl_num"/>
 		<result column="HAR_NUM" property="har_num"/>
 		<result column="HOS_NUM" property="hos_num"/>
+		<result column="BP_TYPE" property="bp_type"/>
+		<result column="HAR_IMG" property="har_img"/>
+		<!-- <result column="HOS_IMG" property="hos_img"/> -->
+		<collection property="hairSalon" resultMap="HairSalon" />
+		<collection property="hospital" resultMap="Hospital" />
+	</resultMap>
+	
+	<!-- 동물병원 -->
+	<resultMap type="Hospital" id="Hospital">
+		<id column="HOS_NUM" property="hosNum"/>
+		<result column="BP_ID" property="bpId"/>
+		<result column="HOS_NAME" property="shopName"/>
+		<result column="HOS_ADDR" property="shopAddr"/>
+		<result column="HOS_TEL" property="shopTel"/>
+		<result column="OPEN_TIME" property="shopTime"/>
+		<result column="HOS_MINFO" property="shopMInfo"/>
+		<result column="HOS_CONN" property="hosConn"/>
+		<result column="HOS_CLICK" property="hosClick"/>
+	</resultMap>
+
+	<!-- 미용실 테이블  -->
+	<resultMap type="HairSalon" id="HairSalon">
+		<id column="HAR_NUM" property="harNum"/>
+		<result column="BP_ID" property="bpId"/>
+		<result column="HAR_NAME" property="shopName"/>
+		<result column="HAR_ADDR" property="shopAddr"/>
+		<result column="HAR_TEL" property="shopTel"/>
+		<result column="HOPEN_TIME" property="shopTime"/>
+		<result column="HAR_MINFO" property="shopMInfo"/>
+		<result column="Y" property="y"/>
+		<result column="X" property="x"/>
 	</resultMap>
 
 	<!-- 찜하기 등록  -->
@@ -21,8 +52,24 @@
 	
 	<!-- 찜 조회 -->
 	<select id="selectLike" parameterType="string" resultMap="like">
-		SELECT * 
-		FROM LIKES
+		SELECT L.*, H.BP_ID, H.HAR_NAME, H.HAR_MINFO, H.Y, H.X , B.BP_TYPE, I.har_img
+		FROM LIKES L
+		RIGHT JOIN HAIR_SALON H
+		ON L.har_num = H.har_num
+		LEFT JOIN BUSINESS_PARTNER B
+		ON H.BP_ID = B.BP_ID
+		LEFT JOIN HAIR_SALON_IMG I
+		ON L.har_num = I.har_num
+		WHERE CL_NUM = #{cl_num}
+		union
+		SELECT L.*, H.BP_ID, H.HOS_NAME, H.HOS_MINFO, H.Y, H.X , B.BP_TYPE, I.hos_img
+		FROM LIKES L
+		RIGHT JOIN HOSPITAL H
+		ON L.hos_num = H.hos_num
+		LEFT JOIN BUSINESS_PARTNER B
+		ON H.BP_ID = B.BP_ID
+		LEFT JOIN HOSPITAL_IMAGE I
+		ON L.hos_num = I.hos_num
 		WHERE CL_NUM = #{cl_num}
 	</select>
 	
@@ -35,5 +82,18 @@
 			AND HOS_NUM = #{hos_num}
 		</if>
 	</delete>
+	
+	<select id="clickLike" parameterType="Likes" resultType="int">
+		SELECT COUNT(*) 
+		FROM LIKES 
+		WHERE CL_NUM =#{cl_num} 
+		<if test="har_num != null">
+		AND HAR_NUM = #{har_num}
+		</if>
+		<if test="hos_num != null">
+		AND HOS_NUM = #{hos_num}
+		</if>
+	</select>
+	
 	
 </mapper>

@@ -25,8 +25,8 @@
 					<th colspan="2">${myAskDetail.qnaCont }</th>
 				</tr>
 				<tr>
-					<td>작성자:${myAskDetail.qnaWr }</td>
-					<td>작성일:${myAskDetail.qnaDate }</td>
+					<td>작성자: ${myAskDetail.qnaWr }</td>
+					<td>작성일: ${myAskDetail.qnaDate }</td>
 				</tr>
 				<tr class="asktblImg">
 					<c:choose>
@@ -44,12 +44,10 @@
         <table class="reponsetbl">
         	<tr>
         		<th>관리자</th>
-        		<td>2021-06-04</td>
+        		<td>${maComment.qnacDate}</td>
         	</tr>
         	<tr>
-        		<td colspan="2">안녕하세요. 또비언니님<br><br>현재 확인해본 결과, 해당 카드사에서 발생한 문제로 확인되고 있습니다.
-        		<br>잠시 후 다시 결제 해보시고, 안되시면 고객센터(1577-0123)로 연락주시면 추가 안내해드리겠습니다.<br><br>
-        		감사합니다.</td>
+        		<td colspan="2">${maComment.qnacCont}</td>
         	</tr>
         </table>
 		</div>

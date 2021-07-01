@@ -61,18 +61,17 @@ public class ChatHandler extends TextWebSocketHandler {
 
 		// 전달받은 메세지
 		String msg = message.getPayload();
+		System.out.println(msg+"msg");
 		
 		// Json객체 → Java객체
 		ChatMessage chatMessage = objectMapper.readValue(msg, ChatMessage.class);
 				
 		// 받은 메세지에 담긴 roomId로 해당 채팅방을 찾아온다.
 		ChatRoom chatRoom = chService.selectChatRoom(chatMessage.getChatId());
-			
+				
 		// 채팅 세션 목록에 채팅방이 존재하지 않고, 처음 들어왔고, DB에서의 채팅방이 있을 때
 		// 채팅방 생성
-		if (RoomList.get(chatRoom.getChatId()) == null && chatRoom != null) {
-			System.out.println("채팅방 없어요?");
-			
+		if (RoomList.get(chatRoom.getChatId()) == null && chatRoom != null && chatMessage.getmContent().equals("ENTER-CHAT")) {
 			// 채팅방에 들어갈 session들
 			ArrayList<WebSocketSession> sessionTwo = new ArrayList<>();
 			// session 추가
@@ -83,36 +82,24 @@ public class ChatHandler extends TextWebSocketHandler {
 			RoomList.put(chatRoom.getChatId(), sessionTwo);
 			// 확인용
 			System.out.println("채팅방 생성");
-		} // 채팅방이 존재 할 때
-		else if (RoomList.get(chatRoom.getChatId()) != null && chatRoom != null) {
 			
-			System.out.println("들어오나요? 지금 채팅방 있어요?");
-
+		} else if (RoomList.get(chatRoom.getChatId()) != null && chatRoom != null && chatMessage.getmContent().equals("ENTER-CHAT")) {
+			// 채팅방이 존재 할 때	
 			// RoomList에서 해당 방번호를 가진 방이 있는지 확인.
 			RoomList.get(chatRoom.getChatId()).add(session);
 			// sessionList에 추가
 			sessionList.put(session, chatRoom.getChatId());
 			// 확인용
 			System.out.println("생성된 채팅방으로 입장");
-		}
-
-		// 채팅 메세지 입력 시
-		if (RoomList.get(chatRoom.getChatId()) != null && chatRoom != null) {
 			
-//			// 메세지에 보낸사람이름, 보낸 시간, 내용을 담는다.
-//			TextMessage textMessage = new TextMessage(
-//					chatMessage.getmSender() + "," + chatMessage.getmSendTime() + "," + chatMessage.getmContent()
-//					+ "," + chatMessage.getBp_id()
-//					+ "," + chatMessage.getChatId()
-//					+ "," + chatMessage.getCl_num()
-//					+ "," + chatMessage.getmReceiver()
-//					);
-
+		} else if (RoomList.get(chatRoom.getChatId()) != null && chatRoom != null && !chatMessage.getmContent().equals("ENTER-CHAT")) {
+			// 채팅 메세지 입력 시
 			// 현재 session 수
 			int sessionCount = 0;
 
 			// 해당 채팅방의 session에 뿌려준다.
 			for (WebSocketSession sess : RoomList.get(chatRoom.getChatId())) {
+				System.out.println(RoomList.get(chatRoom.getChatId()).size());
 				sess.sendMessage(message);
 				sessionCount++;
 			}
@@ -131,7 +118,7 @@ public class ChatHandler extends TextWebSocketHandler {
 				System.out.println("메세지 전송 실패!!! & DB 저장 실패!!");
 			}
 		}else {
-			System.out.println("완전 잘못 들어왓쥬?");
+			System.out.println("엥?");
 		}
 	}
 

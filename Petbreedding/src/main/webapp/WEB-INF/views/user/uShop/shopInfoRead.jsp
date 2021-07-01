@@ -59,7 +59,7 @@
 		                       <a href="${path}/shopReservation?har_num=${shopInfo.harNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
                         	</c:if>
 							<c:if test="${shopType eq 1 }">
-		                       <a href="${path}/shopReservation?har_num=${shopInfo.hosNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
+		                       <a href="${path}/shopHosReservation?hos_num=${shopInfo.hosNum}&&cl_num=${client.cl_num}" id="goRev" class="sBtn" >예약하기</a>                                            	
                         	</c:if>
                         </c:if>
                         <c:if test="${empty client }">
@@ -68,17 +68,17 @@
 	                        	<i class="fas fa-heart" id="heartOn"></i>
                         	</a>
                         </c:if>
-                        <c:if test="${!empty client }">
+                       <%--  <c:if test="${!empty client }">
                         	<c:if test="${shopType eq 0 }">
 	                        	<c:forEach items="${zzim }" var="zzim">
 	                        		<c:if test="${!empty zzim}">
-	                        			<c:if test="${zzim.har_num == shopInfo.harNum && zzim.cl_num == client.cl_num}">
+	                        			<c:if test="${zzim.har_num eq shopInfo.harNum and zzim.cl_num eq client.cl_num}">
 		                        		<a id="zzim">
 		                        			<i class="far fa-heart" id="heartOff" style="display : none;"></i>
 		                        			<i class="fas fa-heart" id="heartOn" style=" display : inline-block; color : var(--hover-color)"></i>
 		                        		</a>
 			                        	</c:if>
-			                        	<c:if test="${zzim.har_num != shopInfo.harNum && zzim.cl_num != client.cl_num}">
+			                        	<c:if test="${zzim.hos_num eq null and zzim.har_num ne shopInfo.harNum and zzim.cl_num eq client.cl_num}">
 					                        <a id="zzim">
 					                        	<i class="far fa-heart" id="heartOff"></i>
 					                        	<i class="fas fa-heart" id="heartOn"></i>
@@ -96,17 +96,19 @@
 	                        </c:if>
 	                        <c:if test="${shopType eq 1 }">
 	                        	<c:forEach items="${zzim }" var="zzim">
-		                        	<c:if test="${zzim.hos_num eq shopInfo.hosNum and zzim.cl_num eq client.cl_num}">
+	                        		<c:if test="${!empty zzim}">
+	                        			<c:if test="${zzim.hos_num eq shopInfo.hosNum and zzim.cl_num eq client.cl_num}">
 		                        		<a id="zzim">
 		                        			<i class="far fa-heart" id="heartOff" style="display : none;"></i>
 		                        			<i class="fas fa-heart" id="heartOn" style=" display : inline-block; color : var(--hover-color)"></i>
 		                        		</a>
-		                        	</c:if>
-		                        	<c:if test="${zzim.hos_num ne shopInfo.hosNum and zzim.cl_num ne client.cl_num}">
-				                        <a id="zzim">
-				                        	<i class="far fa-heart" id="heartOff"></i>
-				                        	<i class="fas fa-heart" id="heartOn"></i>
-				                        </a>
+			                        	</c:if>
+			                        	<c:if test="${ zzim.har_num eq null  and zzim.hos_num ne shopInfo.hosNum and zzim.cl_num eq client.cl_num}">
+					                        <a id="zzim">
+					                        	<i class="far fa-heart" id="heartOff"></i>
+					                        	<i class="fas fa-heart" id="heartOn"></i>
+					                        </a>
+				                        </c:if>
 			                        </c:if>
 			                   </c:forEach>
 			                   <c:if test="${empty zzim}">
@@ -117,7 +119,13 @@
                         		</c:if>
 	                        </c:if>
                         </c:if> 
-                        
+                         --%>
+                       <c:if test="${!empty client }">
+                         <a id="zzim">
+                        	<i class="far fa-heart" id="heartOff"></i>
+                        	<i class="fas fa-heart" id="heartOn"></i>
+                        </a>
+                       </c:if>
                     </div>
                 </div> <!--store_info_article-->
                 <div class="swiper-container store_menu_article ">

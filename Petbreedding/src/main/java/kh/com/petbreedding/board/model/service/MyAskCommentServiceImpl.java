@@ -1,5 +1,7 @@
 package kh.com.petbreedding.board.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,8 @@ public class MyAskCommentServiceImpl implements MyAskCommentService {
 	private MyAskCommentDao myAskCommentDao;
 
 	@Override
-	public MyAskComment myAskCommentSelectOne(String qna_num) {
-		MyAskComment result = null;
+	public List<MyAskComment> myAskCommentSelectOne(String qna_num) {
+		List<MyAskComment> result = null;
 		
 		try {
 			result = myAskCommentDao.myAskCommentSelectOne(qna_num);
