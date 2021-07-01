@@ -136,12 +136,12 @@ public class LoginController {
 		}else {
 			System.out.println("로그인 성공!");
 			session.setAttribute("bP", result);
+			path = "/bReservation";
 			
-			if(result.getBp_type() == 0) {
-				path = "/bReservation";
-			}else if(result.getBp_type() == 1){
-				path = "/bReservation2";
-			}
+//			if(result.getBp_type() == 0) {
+//			}else if(result.getBp_type() == 1){
+//				path = "/bReservation2";
+//			}
 		}
 		return path;
 	}

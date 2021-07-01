@@ -27,10 +27,14 @@
 		<section class="section">
 			<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
+			
+			<c:if test="${bP.bp_type == 0}">
+					<div class="date">
+					선택날짜:	<input type="text" name="res_date" id="choDate" value="선택날짜"
+							onchange="change()">
+							</div>
 				<div id="calendar_box">
 					<div class="calendar" id="calendar">
-						<input type="text" name="res_date" id="choDate" value="선택날짜"
-							onchange="change()">
 					</div>
 				</div>
 				<div class="resBox">
@@ -44,7 +48,7 @@
 						<hr>
 						<div class="resList">
 								<!-- tr forEach -->
-								<input type="text" value="${bP.bp_Id}" id="bp_id" />
+								<input type="hidden" value="${bP.bp_Id}" id="bp_id" />
 									<table id="revtable">
 										<c:forEach var="rev" items="${list }">
 											<tr>
@@ -67,6 +71,51 @@
 									</table>
 						</div>
 				</div>
+				</c:if>
+				<c:if test="${bP.bp_type == 1}">
+						<div class="date">
+						선택 날짜:<input type="text" name="hos_date" id="choDate" value="선택날짜"
+							onchange="changeHos()">
+					</div>
+				<div id="calendar_box">
+							</div>
+					<div class="calendar" id="calendar">
+					</div>
+				<div class="resBox">
+						<select id="hosselect" onchange="changeHos()">
+							<option value="3" name="hos_status" selected>전체</option>
+							<option value="0" name="hos_status">예약완료</option>
+							<option value="1" name="hos_status">결제완료</option>
+							<option value="2" name="hos_status">결제취소</option>
+						</select>
+
+						<hr>
+						<div class="resList">
+								<!-- tr forEach -->
+								<input type="hidden" value="${bP.bp_Id}" id="bp_id" />
+									<table id="revtable">
+										<c:forEach var="rev" items="${list }">
+											<tr>
+												<c:choose>
+													<c:when test="${rev.hos_status == 0}">
+														<td class="status" id ="status">예약완료<span class="noneDis">,</span></td>
+													</c:when>
+													<c:when test="${rev.hos_status == 1}">
+														<td class="status">결제완료<span class="noneDis">,</span></td>
+													</c:when>
+													<c:when test="${rev.hos_status == 2}">
+														<td class="status">결제취소<span class="noneDis">,</span></td>
+													</c:when>
+												</c:choose>
+												<td class="resTime">${rev.hos_date}</td>
+												<td class="resName">${rev.name}</td>
+												<td class="resInfo"><a href="#">상세보기</a></td>
+											</tr>
+										</c:forEach>
+									</table>
+						</div>
+				</div>
+				</c:if>
 			</div>			
 		</section>
 

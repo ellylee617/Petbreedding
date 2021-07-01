@@ -79,13 +79,35 @@ table tr:first-child td:first-child{
 table tr:first-child td:nth-child(2){
 	font-weight: bold;
 }
-i{
+table tr:first-child td:nth-child(2), table tr:last-child td:first-child{
+	font-size: 1.1em;
+}
+
+table tr td a{
 	font-size: 1.5em;
 }
-i:hover{
+table tr td a:hover{
 	color: var(--hover-color)
 }
 
+table tr:last-child td:first-child{
+	width : 40%;
+	text-overflow: ellipsis;
+	padding-right: 30px;
+}
+
+.countwrap{
+	display : inline-block;
+	border-radius: 30px;
+	background-color: var(--button-color);
+	width : 60px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+	margin-right: 200px;
+	color: var(--font-color)
+}
 /* 대화 삭제 모달 */
 .modal{
 	display: none;

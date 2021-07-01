@@ -5,8 +5,10 @@ import java.util.List;
 import kh.com.petbreedding.board.model.vo.MyAskComment;
 
 public interface MyAskCommentService {
-	// <!-- 해당 문의 사항의 댓글 조회 -->
+	// <!-- [관리자] 해당 문의 사항의 댓글 조회 -->
 	public List<MyAskComment> myAskCommentSelectOne(String qna_num);
+	// <!-- [고객, 사업자] 해당 문의 사항의 댓글 조회 -->
+	public MyAskComment myAskCommentSelectOneCB(String qna_num);
 	// <!-- 문의 사항 댓글 시퀀스 더미 테이블을 이용해 가져오기 -->
 	public String getMyAskCommentSeq();
 	// <!-- 문의 사항 댓글 등록 -->

@@ -14,16 +14,22 @@ public class MyAskCommentDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// <!-- 해당 문의 사항의 댓글 조회 -->
+	// <!-- [관리자] 해당 문의 사항의 댓글 조회 -->
 	public List<MyAskComment> myAskCommentSelectOne(String qna_num) {
-		System.out.println("문의사항 번호!" + qna_num);
+		System.out.println("[관리자] @문의사항 댓글 조회 문의사항 번호" + qna_num);
 		return sqlSession.selectList("MyAskComment.myAskCommentSelectOne", qna_num);
 	}
+	
+	// <!-- [고객, 사업자] 해당 문의 사항의 댓글 조회 -->
+		public MyAskComment myAskCommentSelectOneCB(String qna_num) {
+			System.out.println("[고객, 사업자] @문의사항 댓글 조회 문의사항 번호" + qna_num);
+			return sqlSession.selectOne("MyAskComment.myAskCommentSelectOneCB", qna_num);
+		}
 	
 	// <!-- 문의 사항 댓글 시퀀스 더미 테이블을 이용해 가져오기 -->
 	public String getMyAskCommentSeq() {
 		
-		System.out.println("다오는 진입하니?");
+		System.out.println("[세훈] @문의 댓글 getMyAskCommentSeq 진입");
 		return sqlSession.selectOne("MyAskComment.getMyAskCommentSeq");
 	}
 	

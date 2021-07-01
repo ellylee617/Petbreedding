@@ -51,7 +51,7 @@
 	                </div>
 	            </c:if>
 	            <c:if test="${likes.bp_type eq 1 }">
-        			<a href="shopPage?bpId=${likes.hospital.bpId }&shopType=${likes.bp_type}&y=${likes.hairSalon.y }&x=${likes.hairSalon.x }">
+        			<a href="shopPage?bpId=${likes.hospital.bpId }&shopType=${likes.bp_type}&y=${likes.hospital.y }&x=${likes.hospital.x }">
 	   	           	<div class="subdiv">
 		                <div class="img">
 		                	<img src="${path}/resources/uploadFile/shop/${likes.har_img }" style="width:200px; height: 100px;">

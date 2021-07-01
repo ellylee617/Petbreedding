@@ -14,11 +14,13 @@ public class Board {
 	private String boImg;
 	private String boDate; 
 	private int boView;
+	private int bocChk;
 	
 	@Override
 	public String toString() {
 		return "Board [boNum=" + boNum + ", clNum=" + clNum + ", clNickName=" + clNickName + ", boTitle=" + boTitle
-				+ ", boCont=" + boCont + ", boImg=" + boImg + ", boDate=" + boDate + ", boView=" + boView + "]";
+				+ ", boCont=" + boCont + ", boImg=" + boImg + ", boDate=" + boDate + ", boView=" + boView + ", bocChk="
+				+ bocChk + "]";
 	}
 
 	public String getBoNum() {
@@ -84,8 +86,14 @@ public class Board {
 	public void setBoView(int boView) {
 		this.boView = boView;
 	}
-	
 
+	public int getBocChk() {
+		return bocChk;
+	}
+
+	public void setBocChk(int bocChk) {
+		this.bocChk = bocChk;
+	}
 	
 	
 }

@@ -227,7 +227,7 @@ public class shopController {
 		return "/user/uShop/successRev";
 	}
 
-	// 사업자 미용실 예약관리 - 현재 날짜 전체 리스트
+	// 사업자 예약관리 - 현재 날짜 전체 리스트 (병원, 미용실 포함)
 	@RequestMapping(value = "/bReservation")
 	public ModelAndView bReservationList(Locale locale, Model model,
 			HairShopReservation rev, HttpSession session,
@@ -241,12 +241,21 @@ public class shopController {
 		
 		
 		List<HairShopReservation> list = null;
+		List<HospitalReservation> list2 = null;
 		ModelAndView mav = new ModelAndView();
 
 		
+		if(vo.getBp_type() == 0) {
 			list = bprevService.revAllList(bp_id);
 			mav.setViewName("bPartner/bShop/bReservation");
 			mav.addObject("list", list);
+			
+		}else {
+			list2 = bprevService.revHosAllList(bp_id);
+			mav.setViewName("bPartner/bShop/bReservation");
+			mav.addObject("list", list2);
+		}
+		
 		
 
 		return mav;
@@ -272,52 +281,66 @@ public class shopController {
 	// 사업자 미용실 예약관리 개별 선택 리스트
 	@ResponseBody
 	@RequestMapping(value = "/bReservationkind")
-	public List<HairShopReservation> bReservation(Locale locale, Model model, HairShopReservation rev,
+	public List<HairShopReservation> bReservation(Model model, HairShopReservation rev,
 			HttpSession session, HttpServletResponse res) throws Exception {
 
 		BPartner vo = (BPartner) session.getAttribute("bP");
 		String bp_id = vo.getBp_Id();
 //			List<HairShopReservation> list = bprevService.revList(res_status);
 		System.out.println("사업자 예약조회 개별 들어옴");
-		System.out.println("선택된 날짜는" + rev.getRes_date());
-		System.out.println("선택된 예약 상태는" + rev.getRes_status());
+		System.out.println("선택된 미용실 날짜는" + rev.getRes_date());
+		System.out.println("선택된 미용실 예약 상태는" + rev.getRes_status());
 		System.out.println("로그인한 사업장은" + rev.getBp_id());
 		System.out.println("이름은 " + rev.getName());
 		/*
 		 * ModelAndView mav = new ModelAndView(); mav.addObject("list",
 		 * bprevService.revList(rev)); mav.setViewName("bPartner/bShop/bReservation");
 		 */
-		List<HairShopReservation> list = bprevService.revList(rev);
-		return list;
+			List<HairShopReservation> list = bprevService.revList(rev);
+			
+			return list;
 	}
 	
+	// 사업자 병원 예약관리 개별 선택 리스트
+		@ResponseBody
+		@RequestMapping(value = "/bReservationHoskind")
+		public List<HospitalReservation> bReservationHos(Model model, 
+				HospitalReservation rev,
+				HttpSession session, HttpServletResponse res) throws Exception {
+
+			System.out.println("병원 예약조회 개별 들어옴");
+			System.out.println("선택된 병원예약 날짜는" + rev.getHos_date());
+			System.out.println("선택된 병원 예약 상태는" + rev.getHos_status());
+			System.out.println("로그인한 사업장은" + rev.getBp_id());
+			System.out.println("이름은 " + rev.getName());
+			/*
+			 * ModelAndView mav = new ModelAndView(); mav.addObject("list",
+			 * bprevService.revList(rev)); mav.setViewName("bPartner/bShop/bReservation");
+			 */
+				List<HospitalReservation> list = bprevService.revHosList(rev);
+				
+				return list;
+		}
+		
+		//사업자 병원 날짜별 전체보기 
+		@ResponseBody
+		@RequestMapping(value = "/bHosReservationdate")
+		public List<HospitalReservation> bHosReservationDate(
+				Model model, 
+				HospitalReservation rev,
+				HttpSession session, 
+				HttpServletResponse res) throws Exception {
+		
+			
+			System.out.println("병원 선택된 날짜는" + rev.getHos_date());
+			List<HospitalReservation> list = bprevService.revAllHosListDate(rev);
+			return list;
+		
+		}
+		
+		
 	
-//	// 사업자 미용실 예약관리 - 현재 날짜 전체 리스트
-//		@RequestMapping(value = "/bReservation")
-//		public ModelAndView bReservationHosList(Locale locale,
-//				Model model,
-//				HospitalReservation rev, 
-//				HttpSession session,
-//				HttpServletResponse res
-//
-//		) throws Exception {
-//
-//			BPartner vo = (BPartner) session.getAttribute("bP");
-//			String bp_id = vo.getBp_Id();
-//			System.out.println("사업자 예약조회 들어옴-----------");
-//			
-//			
-//			List<HairShopReservation> list = null;
-//			ModelAndView mav = new ModelAndView();
-//
-//			
-//				list = bprevService.revAllList(bp_id);
-//				mav.setViewName("bPartner/bShop/bReservation");
-//				mav.addObject("list", list);
-//			
-//
-//			return mav;
-//		}
+
 		
 	// 사업자 예약확인
 	@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)

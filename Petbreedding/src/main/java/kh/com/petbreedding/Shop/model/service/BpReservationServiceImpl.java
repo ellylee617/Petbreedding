@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.Shop.model.dao.BpReservationDao;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 
 @Service("bprevService")
 public class BpReservationServiceImpl implements BpReservationService{
@@ -61,6 +62,59 @@ public class BpReservationServiceImpl implements BpReservationService{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		return list;
+	}
+
+	@Override
+	public List<HospitalReservation> revHosList(HospitalReservation vo) throws Exception {
+		List<HospitalReservation> list = null;
+		try {
+			list = bprevDao.revHosList(vo);
+			if(list != null) {
+				System.out.println("병원 옵션별 리스트 있음");
+			}else {
+				System.out.println("병원 옵션별 리스트 없음");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		
+		return list;
+	}
+
+	@Override
+	public List<HospitalReservation> revAllHosListDate(HospitalReservation vo) throws Exception {
+		List<HospitalReservation> list = null;
+		try {
+			list = bprevDao.revAllHosListDate(vo);
+			if(list != null) {
+				System.out.println("병원 날짜별 조회 있음 ");
+			}else {
+				System.out.println("병원 날짜별 조회 없음");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
+
+	@Override
+	public List<HospitalReservation> revHosAllList(String bp_id) throws Exception {
+		List<HospitalReservation> list = null;
+		try {
+			list = bprevDao.revHosAllList(bp_id);
+			if(list != null) {
+				System.out.println("병원 전체 리스트 있음");
+			}else {
+				System.out.println("병원 전체 리스트 없음");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return list;
 	}
 

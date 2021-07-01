@@ -966,11 +966,18 @@ body .ui-tooltip {
 
 /* Interaction Cues
 ----------------------------------*/
+
+.ui-datepicker-calendar .ui-state-active{
+	background: #0758a8;
+	color: #fff;
+}
+
+
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-  background: #0758a8;
-	color: #fff;
+  	background: #ccc;
+	color: #000;
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
