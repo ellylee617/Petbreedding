@@ -521,6 +521,7 @@ public class BMyPageController {
 
 		// TODO:alert 추가하기
 		mv.setViewName("/bPartner/bShop/bShopInfo");
+		
 		return "redirect:/bShop/update"; // TODO:수정해야됨!!!!
 	}
 
