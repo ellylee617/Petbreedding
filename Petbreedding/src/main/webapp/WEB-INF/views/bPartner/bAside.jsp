@@ -8,16 +8,25 @@
                 <i class="far fa-calendar-alt"></i>
                 <p>예약관리</p>
             </li></a>
-            <c:if test="${bP.bp_reg == 0} ">
-            <a href="${pageContext.request.contextPath}/bShop"><li class="menu hs" id="bShop">
+            
+            <c:if test="${bP.bp_reg == 0 }">
+            <a href="${pageContext.request.contextPath}/bShop">
+            <li class="menu hs" id="bShop">
+            	<i class="fas fa-home"></i>
+            	<p>사업장관리</p></li>
+            </li>
+            </a>
             </c:if>
-            <c:if test="${bP.bp_reg == 1 }">
-            <a href="${pageContext.request.contextPath}/bShop/update"><li class="menu hs" id="bShop">
-            </c:if>
-                <i class="fas fa-home"></i>
-                <p>사업장관리</p>
-            </li></a>
-            <a href="${pageContext.request.contextPath}/bMenu"><li class="menu" id="menuOP">
+            
+			<c:if test="${bP.bp_reg == 1 }">
+				<a href="${pageContext.request.contextPath}/bShop/update">
+					<li class="menu hs" id="bShop">
+						<i class="fas fa-home"></i>
+						<p>사업장관리</p></li>
+				</a>
+			</c:if>
+
+			<a href="${pageContext.request.contextPath}/bMenu"><li class="menu" id="menuOP">
             <c:if test="${bP.bp_type==0}">
                 <i class="fas fa-bars"></i>
                 <p>스타일 관리</p>
