@@ -66,12 +66,15 @@ public class shopController {
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
 	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception {
 
+		
 		// shopType 0은 미용실, 1은 동물병원
 
 		if (shopType == 0) {
 
 			int harShopType = 0;
+			
 			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+			
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			
 			String har_num = null;
@@ -99,7 +102,7 @@ public class shopController {
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
 
-			// 미용실 대표 사진 리스트
+			// 미용실 대표 사진
 			// TODO
 
 		} else {

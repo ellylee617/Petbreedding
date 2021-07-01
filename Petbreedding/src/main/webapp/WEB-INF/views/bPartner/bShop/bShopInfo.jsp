@@ -73,7 +73,18 @@
 						<td colspan="2"><input id="shopMInfo" type="text" name="shopMInfo"></td>
 					</tr>
 					<tr>
-						<th>대표이미지</th>
+						<th>대표 사진 (1)</th>
+						<th colspan="2">
+							  <div class="imgContainer">
+                                <div class="imgBox">
+                                    <img src="">
+                                </div>
+                                <input type="file" id="inputShopImg" name="shopMainImg" multiple="multiple" accept=".jpg, .jpeg, .png" value="파일선택">
+                            </div>
+						</th>
+					</tr>
+					<tr>
+						<th>매장 사진 (3)</th>
 						<th colspan="2">
 							  <div class="imgContainer">
                                 <div class="imgBox">
@@ -150,7 +161,18 @@
 						<td colspan="2"><input id="shopMInfo" type="text" name="shopMInfo" value="${vo.shopMInfo }"></td>
 					</tr>
 					<tr>
-						<th>대표이미지</th>
+						<th>대표 사진 (1)</th>
+						<th colspan="2">
+							  <div class="imgContainer">
+                                <div class="imgBox">
+                                    <img src="">
+                                </div>
+                                <input type="file" id="inputShopImg" name="shopMainImg" multiple="multiple" accept=".jpg, .jpeg, .png" value="파일선택">
+                            </div>
+						</th>
+					</tr>
+					<tr>
+						<th>매장 사진 (3)</th>
 						<th colspan="2">
 							  <div class="imgContainer">
                                 <div class="imgBox">
@@ -160,7 +182,6 @@
                             </div>
 						</th>
 					</tr>
-					<tr>
 						<th>주휴일</th>
 						<th colspan="2">
 						<div class="wrap"><input type="checkbox" id="mon" name="shopDayOff" value="1"><label for="mon"><div class="dayitem">월</div></label></div>

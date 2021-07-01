@@ -44,7 +44,9 @@
 						</tr>
 						<tr>
 							<td>${r.mContent }</td>
-							<td colspan="2">1</td>
+							<td colspan="2">
+							<c:if test="${r.unreadCount ne 0 }"><div class="countwrap">읽지 않은 메시지 : ${r.unreadCount }개</div></c:if>
+							</td>
 						</tr>
 					</table>
 					</c:forEach>
