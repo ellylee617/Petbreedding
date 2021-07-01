@@ -1,6 +1,5 @@
 package kh.com.petbreedding.board.model.vo;
 
-import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 

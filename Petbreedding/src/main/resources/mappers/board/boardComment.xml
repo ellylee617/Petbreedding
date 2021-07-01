@@ -17,7 +17,7 @@
 	</resultMap>
 	
 		<!-- [관리자] 해당 자유 게시판의 댓글 조회  -->
-	<select id="bCommentSelectListA" parameterType="string" resultMap="MyAskCommentMap">
+	<select id="bCommentSelectListA" resultMap="MyAskCommentMap">
 		SELECT * FROM BOARD_COMMENT
 	</select>
 	
@@ -35,15 +35,20 @@
 	
 	<!-- 자유게시판 댓글 등록 -->
 	<insert id="bCommentInsert" parameterType="boardComment">
-		INSERT INTO QNA_COMMENT VALUES(
-			#{qnacNum}, #{adminId}, #{qnaNum}
-			,#{qnacCont}, TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		<![CDATA[
+			INSERT INTO BOARD_COMMENT VALUES(
+				#{coNum}, #{boNum}, #{clNickName}
+				,#{coCont}, TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		]]>
 		)
 	</insert>
 	
 	<!-- 자유게시판 댓글 개수 업데이트 -->
-	<update id="myAskChkUpdate" parameterType="string">
-		UPDATE QNA_BOARD SET QNAR_CHK = 1 WHERE QNA_NUM = #{qnaNum}
+	<update id="bocChkUpdate" parameterType="string">
+		<![CDATA[
+			UPDATE BOARD SET BOC_CHK = (SELECT COUNT(*) FROM BOARD_COMMENT WHERE BO_NUM = #{boNum})
+			WHERE BO_NUM = #{boNum}
+		]]>
 	</update>
 	
 </mapper>
