@@ -11,7 +11,14 @@ public class ChatList {
 	private Timestamp mSendTime;
 	private String shopName;
 	private String nickName;
+	private int unreadCount;
 	
+	public int getUnreadCount() {
+		return unreadCount;
+	}
+	public void setUnreadCount(int unreadCount) {
+		this.unreadCount = unreadCount;
+	}
 	public String getNickName() {
 		return nickName;
 	}

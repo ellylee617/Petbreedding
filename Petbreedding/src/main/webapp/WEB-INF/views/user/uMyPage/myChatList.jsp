@@ -40,14 +40,16 @@
 					<table onClick="openchatwin('${r.chatId }','${r.shopName}','${r.bp_id}' );">
 						<tr>
 							<td rowspan="2"><img src="http://placehold.it/50X50"></td>
-							<td>${r.shopName }
-							</td>
+							<td>${r.shopName }</td>
 							<td>${r.mSendTime }</td>
 							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
 						</tr>
 						<tr>
 							<td>${r.mContent }</td>
-							<td colspan="2">1</td>
+							<td colspan="2">
+							<c:if test="${r.unreadCount ne 0 }">읽지 않은 메시지 : ${r.unreadCount }개</c:if>
+							<c:if test="${r.unreadCount eq 0 }">읽지 않은 메시지가 없습니다</c:if>
+							</td>
 						</tr>
 					</table>
 					</c:forEach>
