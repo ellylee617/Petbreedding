@@ -2,12 +2,13 @@ const url = new URL(window.location.href);
 // URLSearchParams 객체
 const urlParams = url.searchParams;
 	
-	var y = urlParams.get('y');
-	var x = urlParams.get('x');
-	console.log("y좌표::"+y);
-	console.log("x좌표::"+x);
+
 	
-	
+	var y = $("#y").val();
+	var x = $("#x").val();
+	console.log("y좌표::" + y);
+	console.log("x좌표::" + x);
+	   
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	
 	var options = { //지도를 생성할 때 필요한 기본 옵션

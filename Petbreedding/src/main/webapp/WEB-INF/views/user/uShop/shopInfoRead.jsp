@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petverything::펫브리띵</title>
+<title>Petbreedthing::펫브리띵</title>
 <link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
@@ -274,6 +274,9 @@
                             <p>${shopInfo.shopName }</p>
                             <p>전화번호 : ${shopInfo.shopTel }</p>
                             <p>주소 : ${shopInfo.shopAddr }</p>
+                            <input type="hidden" id="x" value="${shopInfo.x }" >
+                            <input type="hidden" id="y" value="${shopInfo.y }" >
+                            
                         </div>
                     </div>
                 </div>
