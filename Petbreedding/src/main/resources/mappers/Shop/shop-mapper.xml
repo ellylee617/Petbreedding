@@ -177,11 +177,16 @@
 		<result column="HOS_TEL" property="shopTel"/>
 		<result column="OPEN_TIME" property="shopTime"/>
 		<result column="HOS_MINFO" property="shopMInfo"/>
-		<result column="HOS_CONN" property="hosConn"/>
-		<result column="HOS_CLICK" property="hosClick"/>
 		<result column="Y" property="y"/>
 		<result column="X" property="x"/>		
 		<result column="HOS_MIMG" property="shopMImg"/>
+		<result column="0" property="sun"/>
+		<result column="1" property="mon"/>
+		<result column="2" property="tue"/>
+		<result column="3" property="wed"/>
+		<result column="4" property="thu"/>
+		<result column="5" property="fri"/>
+		<result column="6" property="sat"/>
 	</resultMap>
 	
 	<!-- HOSPITAL_IMAGE 테이블-->
@@ -222,8 +227,18 @@
 	<!-- 동물병원 기본 정보 불러오기 -->
 		<select id="selectHosInfo" parameterType="string" resultMap="Hospital">
 		SELECT *
-		FROM HOSPITAL
+		FROM (
+		SELECT H.*, D.HOS_DAYOFF AS DAYOFF
+		FROM HOSPITAL H
+		LEFT JOIN HOSPITAL_DAYOFF D
+		ON H.HOS_NUM = D.HOS_NUM
 		WHERE BP_ID = #{bpId}
+		)
+		PIVOT (
+			SUM(DAYOFF) 
+			FOR DAYOFF
+			IN (0,1,2,3,4,5,6))
+		
 		</select>	
 	
 	<!-- 동물병원 기본 정보 수정 -->
