@@ -429,23 +429,42 @@ public class BMyPageController {
 
 		} else {
 
-			hosVO.setBpId(bpId);
+						hosVO.setBpId(bpId);
+			
+						// 동물병원 기본 정보 등록
+						// TODO: 동물병원 대표 사진 등록 
+			
+						MultipartFile mf = request.getFile("shopMainImg"); // input type="file" name="shopMainImg"
+						UUID uuid = UUID.randomUUID(); 
+						String originalfileName = mf.getOriginalFilename();
+						String saveName = uuid.toString() + "_" + originalfileName;
+						File uploadFile = new File(savePath + "//" + saveName);
+						
+						try {
+							mf.transferTo(uploadFile);
+						} catch (IllegalStateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						hosVO.setShopMImg(originalfileName);
+						result = shopService.insertHosInfo(hosVO);
 
-			// 동물병원 기본 정보 등록
-			result = shopService.insertHosInfo(hosVO);
-
-			if(result>0) {
-				System.out.println(" !! 동물병원 기본 정보 등록 성공 !!");
-				System.out.println("등록한 동물병원 정보:"+hosVO);
-				
-				shopService.updateBpReg(bpId);
-				
-				mv.addObject("vo",hosVO);
-				
-				
-			} else {
-				System.out.println(" !! 미용실 기본 정보 등록 실패 !! ");
-			}
+						if(result>0) {
+							System.out.println(" !! 동물병원 기본 정보 등록 성공 !!");
+							System.out.println("등록한 동물병원 정보:"+hosVO);
+							
+							shopService.updateBpReg(bpId);	// 사업장 등록상태 컬럼 1로 변경
+							
+							mv.addObject("vo",hosVO);	// mv.setViewName("/bPartner/bShop/bShopInfo");
+							
+							
+						} else {
+							System.out.println(" !! 동물병원 기본 정보 등록 실패 !! ");
+						}
 			
 			
 			// 동물병원 주휴일 설정

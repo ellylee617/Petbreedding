@@ -14,12 +14,10 @@ public class Hospital {
 	private String shopTel;	// 동물병원 전화번호
 	private String shopTime;	//동물병원영업시간
 	private String shopMInfo;	// 동물병원 메인 소개
-	private String hosConn;		// 동물병원 채팅 접속여부
-	private String hosClick;	// 동물병원 잔여 클릭수
+//	private String hosConn;		// 동물병원 채팅 접속여부
+//	private String hosClick;	// 동물병원 잔여 클릭수
+	private String shopMImg; // 동물병원 대표 사진 파일명
 	
-	
-
-
 	
 
 
@@ -27,7 +25,7 @@ public class Hospital {
 	public String toString() {
 		return "Hospital [hosNum=" + hosNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
 				+ ", y=" + y + ", x=" + x + ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo="
-				+ shopMInfo + ", hosConn=" + hosConn + ", hosClick=" + hosClick + "]";
+				+ shopMInfo + ", shopMImg=" + shopMImg + "]";
 	}
 
 
@@ -107,22 +105,16 @@ public class Hospital {
 		this.shopMInfo = shopMInfo;
 	}
 
-	public String getHosConn() {
-		return hosConn;
+
+	public String getShopMImg() {
+		return shopMImg;
 	}
 
-	public void setHosConn(String hosConn) {
-		this.hosConn = hosConn;
+
+	public void setShopMImg(String shopMImg) {
+		this.shopMImg = shopMImg;
 	}
 
-	public String getHosClick() {
-		return hosClick;
-	}
-
-	public void setHosClick(String hosClick) {
-		this.hosClick = hosClick;
-	}
-	
 	
 	
 
