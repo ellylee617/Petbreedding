@@ -63,7 +63,7 @@
                     <div class="Store">                     
                         <li class="storeList">
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
