@@ -104,4 +104,11 @@
 		FROM LIKES
 		WHERE HAR_NUM = #{har_num}
 	</select>
+	
+		<!-- 찜한 미용실 카운트 -->
+	<select id="countHos" parameterType="string" resultType="string">
+		SELECT COUNT(*)
+		FROM LIKES
+		WHERE HOS_NUM = #{hos_num}
+	</select>
 </mapper>

@@ -71,6 +71,17 @@ public class LikesServiceImpl implements LikesService{
 		}
 		return result;
 	}
+
+	@Override
+	public String countHos(String hos_num) {
+		String result = null;
+		try {
+			result = likesDao.countHos(hos_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 
