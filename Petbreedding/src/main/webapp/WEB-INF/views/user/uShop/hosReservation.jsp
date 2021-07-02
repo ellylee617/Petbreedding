@@ -37,7 +37,7 @@
                 	<c:if test="${!empty menu }">
 	                	<c:forEach items="${menu}" var="menu">
 	                		<div class="swiper-slide menu_box ">
-	                			<input type="hidden" value="${menu.hosNum }" id="hosNum"/>
+	                			<input type="hidden" value="${menu.hosNum }" class="hosNum"/>
 	                			<input type="hidden" value="${menu.medNum }" class="med_num" />
 	                            <p class="menu_item">${menu.medName}</p>
 	                            <p class="menu_price">${menu.medPrice}원</p>

@@ -317,7 +317,7 @@ $("#reservation_btn").on("click", function() {
 	var res_date = $("#choDate").val(); // 연월일
 	var res_time = $(".chooseTime input").val(); // 시간
 	var cl_num = $("#clNum").val();
-	var har_num = $("#harNum").val();
+	var har_num = $(".harNum").val();
 
 	if(res_time == null || res_time == ""){
 		alert("시간을 선택해주세요!");

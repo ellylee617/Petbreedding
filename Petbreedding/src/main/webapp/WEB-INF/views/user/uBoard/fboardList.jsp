@@ -59,7 +59,7 @@
 			<c:if test="${listCount ne 0}">
 				
 				<div class="write">
-				   <button class="writebtn basicBtn"><a href="bwriteFrm">글쓰기</a></button>
+				   <button class="writebtn basicBtn"><a href="${path}/bwriteFrm">글쓰기</a></button>
 				</div>  
 				<c:forEach items="${boardList }" var="blist">
 					<div class="boardlist">

@@ -39,7 +39,7 @@
                 	<c:if test="${!empty style }">
 	                	<c:forEach items="${style}" var="style">
 	                		<div class="swiper-slide menu_box">
-	                			<input type="hidden" value="${style.harNum }" id="harNum"/>
+	                			<input type="hidden" value="${style.harNum }" class="harNum"/>
 	                			<input type="hidden" value="${style.style_num }" class="styleNum" />
 	                            <p class="menu_item">${style.style_name}</p>
 	                            <p class="menu_time">${style.style_time }분 소요</p>
