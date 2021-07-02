@@ -1,6 +1,5 @@
 package kh.com.petbreedding.Chat.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -46,6 +45,16 @@ public class ChatDao {
 	public List<ChatList> getListbp_id(String bp_id) throws Exception {
 		return sqlSession.selectList("Chat.getListbp_id", bp_id);
 	}
+	
+	// 안읽은메시지가 있는 채팅방 리스트 찾기(client)
+	public List<ChatList> getUnreadList(String cl_num) throws Exception {
+		return sqlSession.selectList("Chat.getUnreadList", cl_num);
+	}
+	
+	// 안읽은메시지가 있는 채팅방 리스트 찾기(bPartner)
+	public List<ChatList> getUnreadListbp_id(String bp_id) throws Exception {
+		return sqlSession.selectList("Chat.getUnreadListbp_id", bp_id);
+	}	
 
 	// 채팅방의 메시지 리스트(client)
 	public List<ChatMessage> getMessageList(String chatId) throws Exception {
@@ -56,14 +65,6 @@ public class ChatDao {
 	public List<ChatMessage> getMessageListbp_id(String chatId) throws Exception {
 		return sqlSession.selectList("Chat.getMessageListbp_id", chatId);
 	}
-
-//	public ChatMessage getRecentMessage(String chatId) throws Exception {
-//		return sqlSession.selectOne("Chat.getRecentMessage", chatId);
-//	}
-	
-//	public String getId(String str) throws Exception {
-//		return sqlSession.selectOne("Chat.getbp_id" , str) ;
-//	}
 
 	// 해당 채팅방의 내가 안 읽은 메시지 리스트(client)
 	public List<ChatMessage> getUnreadCount(ChatMessage cm) throws Exception {
@@ -79,17 +80,7 @@ public class ChatDao {
 		return sqlSession.update("Chat.updateUnreadCount", mId);
 	}
 	
-//	public int updateUnreadCountbp_id(String cl_num, String bp_id) throws Exception {
-//		return sqlSession.update("Chat.updateReadTimebp_id", map);
-//	}
-//	public int getAllCount(String cl_num, String bp_id) {
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("cl_num", cl_num);
-//		map.put("bp_id", bp_id);
-//		if (sqlSession.selectOne("Chat.getAllCount", map) == null) {
-//			return 0;
-//		} else {
-//			return sqlSession.selectOne("Chat.getAllCount", map);
-//		}
-//	}
+	public int getAllCount(String mReceiver) throws Exception {
+		return sqlSession.selectOne("Chat.getAllCount", mReceiver);
+	}
 }
