@@ -21,6 +21,8 @@
 		<section class="section">
 	        <jsp:include page="../bAside.jsp" />
 	        <div class="bContent">
+	        <c:choose>
+	        <c:if test="${list.har_rnum !=null}">
                                 <h1>예약 완료</h1>
                 <div class="resInfo infoBox">
                     <table>
@@ -35,6 +37,11 @@
                         </tr>
                     </table>
                 </div>
+               </c:if>
+               <c:if test="${list.har_rnum ==null}">
+               <p>여기는 병원 상세다</p>
+               </c:if>
+               </c:choose> 
                 <div class="clientInfo infoBox">
                     <table>
                         <tr class="infoTitle">예약자 정보</tr>
