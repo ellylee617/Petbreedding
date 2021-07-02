@@ -21,7 +21,7 @@ public interface ShopService {
 //	public List<HairSalon> selectHarList(int currentPage, int limit); // 미용실 전체 리스트 조회 //******TODO:위치이동*******
 	public int countHarList(); // 미용실 리스트 총 갯수
 	public List<HairSalon> selectHarList(Pagination page);
-	
+	public List<HairSalon> selectHarListNew(Pagination page); // 미용실 리스트 - 최신순
 	
 	public int insertHarInfo(HairSalon vo);	// 미용실 기본 정보 입력 
 	public HairSalon selectHarInfo(String bpId); // 미용실 기본 정보 불러오기

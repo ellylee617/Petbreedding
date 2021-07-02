@@ -68,6 +68,28 @@
 			SELECT COUNT(*) FROM HAIR_SALON
 		</select>
 		
+		
+		<!-- TODO -->
+		<!-- 미용실 리스트 : 최신순  -->
+		<select id="selectHarListNew" parameterType="page" resultMap="HairSalon">
+		<![CDATA[
+			SELECT B.*
+			FROM(
+				SELECT ROWNUM R, A.*
+				FROM (
+					SELECT *
+					FROM HAIR_SALON
+					ORDER BY HAR_NUM  ASC) A
+			) B
+			WHERE #{start} <= R AND R <=#{end}
+			]]>
+		</select>
+		
+		<!-- 미용실 리스트 : 거리순 selectHarListNear-->
+		<!-- 미용실 리스트 : 별점순  selectHarListLike-->
+		
+		
+		
 		<!-- 미용실 전체 리스트 -->
 		<!-- 페이징 작업 완료 -->
 		<select id="selectHarList" parameterType="page" resultMap="HairSalon">
@@ -84,10 +106,7 @@
 		</select>
 		
 			
-		<!-- TODO -->
-		<!-- 미용실 리스트 : 최신순  -->
-		<!-- 미용실 리스트 : 거리순  -->
-		<!-- 미용실 리스트 : 별점순  -->
+		
 		
 
 		

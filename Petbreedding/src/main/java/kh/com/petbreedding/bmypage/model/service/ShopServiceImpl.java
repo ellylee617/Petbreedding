@@ -506,5 +506,21 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 미용실 리스트 - 최신순
+	@Override
+	public List<HairSalon> selectHarListNew(Pagination page) {
+		
+		System.out.println("shopService selectHarListNew() 실행");
+		List<HairSalon> list = null;
+		try {
+			list = shopDao.selectHarListNew(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
 
 }

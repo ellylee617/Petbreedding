@@ -73,7 +73,7 @@ public class shopController {
 			, @RequestParam Long shopType
 			) throws Exception {
 		
-		// TODO: 페이징 작업
+		// 페이징 
 		int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
 		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		mv.addObject("paging", page);
@@ -84,7 +84,14 @@ public class shopController {
 
 			int harShopType = 0;
 			
-			List<HairSalon> salonList = shopService.selectHarList(page);
+//			List<HairSalon> salonList = shopService.selectHarList(page);
+			
+			// 미용실 리스트 - 최신순 
+			List<HairSalon> salonList = shopService.selectHarListNew(page);
+			
+			//TODO
+			// 미용실 리스트 - 거리순
+			// 미용실 리스트 - 인기순
 			
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			
