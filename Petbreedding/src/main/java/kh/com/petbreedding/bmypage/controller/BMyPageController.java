@@ -578,10 +578,12 @@ public class BMyPageController {
 
 	// 사업장 관리 - 사업장 수정 실행
 	@RequestMapping(value = "bp/bShop/update")
-	public String bShopUpdateDo(HttpServletRequest req, HairSalon harVO, Hospital hosVO,
+	public ModelAndView bShopUpdateDo(HttpServletRequest req, HairSalon harVO, Hospital hosVO,
 			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest mulitreq) {
 
 		System.out.println("***** 사업장 수정 컨트롤러 실행 *****");
+		
+		ModelAndView mv = new ModelAndView();
 		
 		String savePath = mulitreq.getRealPath("resources/uploadFile/shop"); // 파일이 저장될 위치
 		
@@ -631,7 +633,10 @@ public class BMyPageController {
 			
 			harVO.setShopMImg(originalfileName);
 			System.out.println("수정할 미용실 정보:"+harVO);
+			
 			shopService.updateHarInfo(harVO);
+			
+			mv.addObject("vo", harVO);
 
 			// 예전 미용실 매장 사진 삭제
 			shopService.deleteHarImg(harNum);
@@ -650,8 +655,6 @@ public class BMyPageController {
 				System.out.println("LIST 타입 변환중~~ dayoff 값::" + dayoff);
 				harVO2.toString();
 				shopService.insertNewHarDayOff(harVO2);
-
-				session.setAttribute("harDayOff", harVO2);
 
 			}
 
@@ -679,6 +682,7 @@ public class BMyPageController {
 			System.out.println("수정할 동물병원 정보:"+hosVO);
 			shopService.updateHosInfo(hosVO);
 			
+			mv.addObject("vo", hosVO);
 			
 
 			// 동물병원 예전 사진 삭제
@@ -700,7 +704,6 @@ public class BMyPageController {
 
 				shopService.insertNewHosDayOff(hosVO2);
 
-				session.setAttribute("hosDayOff", hosVO2);
 
 			}
 		}
@@ -759,7 +762,10 @@ public class BMyPageController {
 
 		}
 		System.out.println("!! 사업장 수정 완료 !!");
-		return "bPartner/bShop/bReservation"; // TODO:경로 수정해야됨!!!!
+		
+		mv.setViewName("/bPartner/bShop/bShopInfo");
+		
+		return mv; 
 	}
 
 	// 업체 리뷰 관리 페이지로 이동
