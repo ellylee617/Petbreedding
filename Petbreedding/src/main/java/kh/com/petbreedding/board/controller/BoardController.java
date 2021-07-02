@@ -204,37 +204,22 @@ public class BoardController {
 
 	// 게시판 댓글 조회
 	@RequestMapping(value = "/bocList")
-<<<<<<< HEAD
-	public void bocList(Model md, String boNum, HttpServletRequest req, HttpServletResponse res) throws IOException {
-=======
-	public void bocList(
-			Model md
-			,HttpServletRequest req
-			,HttpServletResponse res
-			) throws IOException {
->>>>>>> 4254dbb4399d0c74fa02abcd64371a2a1d7565b8
+	public void bocList(Model md, 
+			HttpServletRequest req, 
+			HttpServletResponse res) throws IOException {
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("application/json; charset=UTF-8");
 
 		PrintWriter out = res.getWriter();
-<<<<<<< HEAD
 
-		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 boNum : " + boNum);
-
-		String bocJson = "";
-		List<B_comment> bocList = new ArrayList<B_comment>();
-
-		if (bocList != null) {
-=======
 		String bo_num = req.getParameter("boNum");
 		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 boNum : " + bo_num);
-		
+
 		String bocJson = "";
 		List<B_comment> bocList = new ArrayList<B_comment>();
-		
+
 		if(bocList != null) {
 			bocList = bCommentService.bCommentSelectListC(bo_num);
->>>>>>> 4254dbb4399d0c74fa02abcd64371a2a1d7565b8
 			Gson jobj = new GsonBuilder().create();
 			bocJson = jobj.toJson(bocList);
 		}
