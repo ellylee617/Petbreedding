@@ -13,7 +13,7 @@
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/common/footer.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bAside.css">
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/bPartner/bShop/bShopInfo.css">
-<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffd90e8fd83a8d1b7acd8b168a81415f&libraries=services"></script>
@@ -184,13 +184,49 @@
 					</tr>
 						<th>주휴일</th>
 						<th colspan="2">
-						<div class="wrap"><input type="checkbox" id="mon" name="shopDayOff" value="1"><label for="mon"><div class="dayitem">월</div></label></div>
-						<div class="wrap"><input type="checkbox" id="tue" name="shopDayOff" value="2"><label for="tue"><div class="dayitem">화</div></label></div>
-						<div class="wrap"><input type="checkbox" id="wed" name="shopDayOff" value="3"><label for="wed"><div class="dayitem">수</div></label></div>
-						<div class="wrap"><input type="checkbox" id="thu" name="shopDayOff" value="4"><label for="thu"><div class="dayitem">목</div></label></div>
-						<div class="wrap"><input type="checkbox" id="fri" name="shopDayOff" value="5"><label for="fri"><div class="dayitem">금</div></label></div>
-						<div class="wrap"><input type="checkbox" id="sat" name="shopDayOff" value="6"><label for="sat"><div class="dayitem">토</div></label></div>
-						<div class="wrap"><input type="checkbox" id="sun" name="shopDayOff" value="7"><label for="sun"><div class="dayitem">일</div></label></div>						
+							<c:if test="${!empty vo.mon }">
+								<div class="wrap"><input type="checkbox" id="mon" checked name="shopDayOff" value="1"><label for="mon"><div class="dayitem">월</div></label></div>
+							</c:if>
+							<c:if test="${empty vo.mon }">
+								<div class="wrap"><input type="checkbox" id="mon" name="shopDayOff" value="1"><label for="mon"><div class="dayitem">월</div></label></div>
+							</c:if>
+							<c:if test="${!empty vo.tue }">
+								<div class="wrap"><input type="checkbox" id="tue" checked name="shopDayOff" value="2"><label for="tue"><div class="dayitem">화</div></label></div>
+							</c:if>
+							<c:if test="${empty vo.tue }">
+								<div class="wrap"><input type="checkbox" id="tue" name="shopDayOff" value="2"><label for="tue"><div class="dayitem">화</div></label></div>
+							</c:if>
+							<c:if test="${!empty vo.wed }">
+								<div class="wrap"><input type="checkbox" id="wed" checked name="shopDayOff" value="3"><label for="wed"><div class="dayitem">수</div></label></div>
+							</c:if>
+							<c:if test="${empty vo.wed }">
+								<div class="wrap"><input type="checkbox" id="wed" name="shopDayOff" value="3"><label for="wed"><div class="dayitem">수</div></label></div>
+							</c:if>
+							<c:if test="${!empty vo.thu }">
+								<div class="wrap"><input type="checkbox" id="thu" checked name="shopDayOff" value="4"><label for="thu"><div class="dayitem">목</div></label></div>
+							</c:if>
+							<c:if test="${empty vo.thu }">
+								<div class="wrap"><input type="checkbox" id="thu" name="shopDayOff" value="4"><label for="thu"><div class="dayitem">목</div></label></div>
+							</c:if>
+							<c:if test="${!empty vo.fri }">
+								<div class="wrap"><input type="checkbox" id="fri" checked name="shopDayOff" value="5"><label for="fri"><div class="dayitem">금</div></label></div>
+							</c:if>
+							<c:if test="${empty vo.fri }">
+								<div class="wrap"><input type="checkbox" id="fri" name="shopDayOff" value="5"><label for="fri"><div class="dayitem">금</div></label></div>
+							</c:if>
+							<c:if test="${!empty vo.sat }">
+								<div class="wrap"><input type="checkbox" id="sat" checked name="shopDayOff" value="6"><label for="sat"><div class="dayitem">토</div></label></div>
+							</c:if>
+							<c:if test="${empty vo.sat }">
+								<div class="wrap"><input type="checkbox" id="sat" name="shopDayOff" value="6"><label for="sat"><div class="dayitem">토</div></label></div>
+							</c:if>
+							<c:if test="${!empty vo.sun }">
+								<div class="wrap"><input type="checkbox" id="sun" checked name="shopDayOff" value="0"><label for="sun"><div class="dayitem">일</div></label></div>
+							</c:if>
+							<c:if test="${empty vo.sun }">
+								<div class="wrap"><input type="checkbox" id="sun" name="shopDayOff" value="0"><label for="sun"><div class="dayitem">일</div></label></div>
+							</c:if>
+
 						</th>
 					</tr>					
 				</table>

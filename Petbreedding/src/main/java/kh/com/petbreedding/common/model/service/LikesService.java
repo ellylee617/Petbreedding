@@ -13,4 +13,5 @@ public interface LikesService {
 	public int clickLike(Likes likes);
 	
 	public String countSalon(String har_num);
+	public String countHos(String hos_num);
 }

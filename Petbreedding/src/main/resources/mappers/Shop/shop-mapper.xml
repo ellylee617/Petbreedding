@@ -18,6 +18,13 @@
 			<result column="Y" property="y"/>
 			<result column="X" property="x"/>
 			<result column="HAR_MIMG" property="shopMImg"/>
+			<result column="0" property="sun"/>
+			<result column="1" property="mon"/>
+			<result column="2" property="tue"/>
+			<result column="3" property="wed"/>
+			<result column="4" property="thu"/>
+			<result column="5" property="fri"/>
+			<result column="6" property="sat"/>
 		</resultMap>
 		
 		<!-- 
@@ -80,9 +87,18 @@
 		
 		<!-- 미용실 기본 정보 불러오기 -->
 		<select id="selectHarInfo" parameterType="string" resultMap="HairSalon">
-		SELECT *
-		FROM HAIR_SALON
-		WHERE BP_ID = #{bpId}
+			SELECT *
+			FROM (
+			SELECT H.*, D.har_dayoff AS DAYOFF
+			FROM HAIR_SALON H
+			LEFT JOIN HAIR_DAYOFF D
+			ON H.HAR_NUM = D.HAR_NUM
+			WHERE BP_ID = #{bpId}
+			)
+			PIVOT (
+			SUM(DAYOFF) 
+			FOR DAYOFF
+			IN (0,1,2,3,4,5,6))
 		</select>
 		
 
