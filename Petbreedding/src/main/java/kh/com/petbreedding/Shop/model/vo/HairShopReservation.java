@@ -26,6 +26,8 @@ public class HairShopReservation {
 	private int cntPerPage;
 	private String name;
 	private String bp_id;
+	
+	
 	public String getHar_rnum() {
 		return har_rnum;
 	}
@@ -155,6 +157,10 @@ public class HairShopReservation {
 				+ ", style=" + style + ", hairSalon=" + hairSalon + ", startIndex=" + startIndex + ", cntPerPage="
 				+ cntPerPage + ", name=" + name + ", bp_id=" + bp_id + "]";
 	}
+
+	
+	
+	
 
 	
 	

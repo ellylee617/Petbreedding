@@ -91,7 +91,7 @@ function change() {
 		        	
 		        	html += "<td class='resTime'>"+data[i].res_date+"</td>";
 		        	html += "<td class='resName'>"+data[i].name+"</td>";
-		        	html += "<td class='resInfo'><a href='#'>상세보기</a></td>";
+		        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
 		        	html += "</tr>"
 		        		console.log("받아온 상태:"+ data[i].res_status);
 		        });
@@ -135,9 +135,10 @@ function change() {
 			        	
 			        	html += "<td class='resTime'>"+data[j].res_date+"</td>";
 			        	html += "<td class='resName'>"+data[j].name+"</td>";
-			        	html += "<td class='resInfo'><a href='#'>상세보기</a></td>";
+			        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
 			        	html += "</tr>"
 			        		console.log("받아온 상태:"+ data[j].res_status);
+			        		console.log("예약번호 : " + data[j].har_rnum);
 			        };
 			        $("#revtable").empty();
 			        $("#revtable").append(html);
@@ -155,6 +156,9 @@ function change() {
 	  }
 }
 
+function search() {
+	location.href = "../"
+}
 
 //병원
 
@@ -200,7 +204,7 @@ function changeHos() {
 		        	
 		        	html += "<td class='resTime'>"+data[i].hos_date+"</td>";
 		        	html += "<td class='resName'>"+data[i].name+"</td>";
-		        	html += "<td class='resInfo'><a href='#'>상세보기</a></td>";
+		        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
 		        	html += "</tr>"
 		        		console.log("받아온 상태:"+ data[i].hos_status);
 		        });
@@ -243,7 +247,7 @@ function changeHos() {
 			        	
 			        	html += "<td class='resTime'>"+data[j].hos_date+"</td>";
 			        	html += "<td class='resName'>"+data[j].name+"</td>";
-			        	html += "<td class='resInfo'><a href='#'>상세보기</a></td>";
+			        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
 			        	html += "</tr>"
 			        		console.log("받아온 상태:"+ data[j].hos_status);
 			        };

@@ -65,6 +65,27 @@ public class BpReservationServiceImpl implements BpReservationService{
 		return list;
 	}
 
+
+	@Override
+	public HairShopReservation revharcon(String har_rnum) throws Exception {
+		HairShopReservation list = null;
+		
+		try {
+			list = bprevDao.revharcon(har_rnum);
+			if(list != null) {
+				System.out.println("예약 상세페이지 들어옴");
+			}else {
+				System.out.println("예약 상세페이지 못 들어옴");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	
+	
+	
 	@Override
 	public List<HospitalReservation> revHosList(HospitalReservation vo) throws Exception {
 		List<HospitalReservation> list = null;
