@@ -34,7 +34,7 @@
 							<td colspan="2"><img src="http://placehold.it/500x300"></td>
 						</c:when>
 						<c:otherwise>
-							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg}"></td>
+							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg}" class="myAskImg"></td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
@@ -43,7 +43,14 @@
         <br><br><br><br>
         <table class="reponsetbl">
         	<tr>
-        		<th>관리자</th>
+        		<c:choose>
+        			<c:when test="${maComment ne null}">
+		        		<th>관리자</th>
+        			</c:when>
+        			<c:otherwise>
+        				<th></th>
+        			</c:otherwise>
+        		</c:choose>
         		<td>${maComment.qnacDate}</td>
         	</tr>
         	<tr>
