@@ -5,7 +5,6 @@
 	width: 800px;
 	margin: 20px auto 0 auto;
 	position: relative;
-	overflow: hidden;
 	opacity: 0.9;
 	border: 1px solid #aaa;
 	border-collapse: collapse;
@@ -45,12 +44,12 @@
 	display: none;
 	text-align: left;
 	position: absolute;
+	left:0;
 	box-sizing: border-box;
 	width: 800px;
 	height: 700px;
 	overflow: scroll;
 	border: 1px solid #aaa;
-	margin-left: 29px;
 }
 
 .tabmenu input:checked ~ label {
