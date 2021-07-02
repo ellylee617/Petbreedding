@@ -204,7 +204,6 @@ public class BoardController {
 	@RequestMapping(value = "/bocList")
 	public void bocList(
 			Model md
-			,String boNum
 			,HttpServletRequest req
 			,HttpServletResponse res
 			) throws IOException {
@@ -212,13 +211,14 @@ public class BoardController {
 		res.setContentType("application/json; charset=UTF-8");
 		
 		PrintWriter out = res.getWriter();
-		
-		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 boNum : " + boNum);
+		String bo_num = req.getParameter("boNum");
+		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 boNum : " + bo_num);
 		
 		String bocJson = "";
 		List<B_comment> bocList = new ArrayList<B_comment>();
 		
 		if(bocList != null) {
+			bocList = bCommentService.bCommentSelectListC(bo_num);
 			Gson jobj = new GsonBuilder().create();
 			bocJson = jobj.toJson(bocList);
 		}

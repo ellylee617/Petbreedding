@@ -52,15 +52,17 @@
 			</form> -->
 	        </div>
 	        
+			<div class="write">
+			   <button class="writebtn basicBtn"><a href="bwriteFrm">글쓰기</a></button>
+			</div> 
+	        
 			<c:if test="${listCount eq 0}">
 				<h1>게시글이 없습니다.</h1>
 			</c:if>
 			
 			<c:if test="${listCount ne 0}">
 				
-				<div class="write">
-				   <button class="writebtn basicBtn"><a href="bwriteFrm">글쓰기</a></button>
-				</div>  
+				 
 				<c:forEach items="${boardList }" var="blist">
 					<div class="boardlist">
 		            	<div class="subdiv">

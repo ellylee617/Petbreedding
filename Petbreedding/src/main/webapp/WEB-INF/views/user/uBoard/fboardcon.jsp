@@ -56,7 +56,7 @@
 			
 				<div class="con">
 				
-					<p>${board.boCont }</p>
+					<p>${board.boCont}</p>
 
 					<button class="backbtn basicBtn" onClick="location.href='fboardlist'">목록</button>
 					<button id="fboardUpdBtn" class="modifybtn basicBtn">수정</button>
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="reply">
-				<p>댓글(10)</p>
+				<p>댓글(${board.bocChk})</p>
 				
 				<form id="bocFrm">
 					<div class="replycon">
@@ -76,8 +76,8 @@
 				</form>
 				<!--AJAX로 댓글 구현 -->
 				
-				<div id="replyArea" class="replyArea">
-				</div>
+				<div id="replyContainer"></div>
+				
 			</div>
 
 		</section>
@@ -88,7 +88,7 @@
 		var boNum = '${board.boNum}';
 		var clSession = "<%=session.getAttribute("client") %>";
 		console.log(clSession);
-		
+		console.log(boNum);
 		commentListInit(boNum);	//	로딩이 되면 해당 보드의 댓글을 한 번 초기화 
 	
 		function commentListInit(boNum) {
@@ -106,7 +106,8 @@
 					if(jsonLength > 0) {
 						
 						$.each(json, function(index, item) {
-							div += "<div class='replyUserInfo'>"
+							div += "<div class='replyArea'>"
+								+ "<div class='replyUserInfo'>"
 								+ "<p class='replyNickName'>"+item.clNickName+"</p>"
 								+ "<p>"+item.coCont+"</p>"
 								+ "</div>"
@@ -116,6 +117,7 @@
 								+ "<p>수정</p>"
 								+ "<p>삭제</p>"
 								+ "</div>"
+								+ "</div>"
 								+ "</div>";
 						});
 						
@@ -123,7 +125,7 @@
 						
 					}
 					
-					$("#replyArea").html(div);
+					$("#replyContainer").html(div);
 					
 				}
 				
@@ -145,8 +147,8 @@
 				url: 'bocWrite'
 				,type: 'post'
 				,data: queryString
-				,success: function(queryString) {
-					commentListInit(queryString.boNum);
+				,success: function() {
+					commentListInit(boNum);
 					$("#replyCont").val("").focus();
 				}
 				,error : function(request, status, error) {
