@@ -13,5 +13,4 @@ public interface BCommentService {
 	
 	public int bCommentInsert(B_comment bComment);
 	
-	public int bocChkUpdate(String bo_num);
 }

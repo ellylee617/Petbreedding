@@ -11,7 +11,8 @@
 	<resultMap type="boardComment" id="boardCommentMap">
 		<id column="CO_NUM" property="coNum"/>
 		<result column="BO_NUM" property="boNum"/>
-		<result column="CL_NUM" property="clNickName"/>
+		<result column="CL_NUM" property="clNum"/>
+		<result column="CL_NICKNAME" property="clNickName"/>
 		<result column="CO_CONT" property="coCont"/>
 		<result column="CO_DATE" property="coDate"/>
 	</resultMap>
@@ -25,12 +26,12 @@
 	</resultMap>
 	
 		<!-- [관리자] 해당 자유 게시판의 댓글 조회  -->
-	<select id="bCommentSelectListA" resultMap="MyAskCommentMap">
+	<select id="bCommentSelectListA" resultMap="boardCommentMap">
 		SELECT * FROM BOARD_COMMENT
 	</select>
 	
 	<!-- [고객] 해당 해당 자유 게시판의 댓글 조회 (JSON) -->
-	<select id="bCommentSelectListC" parameterType="string" resultMap="MyAskCommentMap">
+	<select id="bCommentSelectListC" parameterType="string" resultMap="boardCommentMap">
 		SELECT * FROM BOARD_COMMENT WHERE BO_NUM = #{boNum}
 	</select>
 	
@@ -45,10 +46,10 @@
 	<insert id="bCommentInsert" parameterType="boardComment">
 		<![CDATA[
 			INSERT INTO BOARD_COMMENT VALUES(
-				#{coNum}, #{boNum}, #{clNickName}
-				,#{coCont}, TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+				#{coNum} ,#{boNum} ,#{clNum} ,#{clNickName}
+				,#{coCont} ,TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI')
+			)
 		]]>
-		)
 	</insert>
 	
 	<!-- 자유게시판 댓글 개수 업데이트 -->

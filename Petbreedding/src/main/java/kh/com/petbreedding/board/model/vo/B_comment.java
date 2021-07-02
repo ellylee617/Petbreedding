@@ -8,14 +8,15 @@ public class B_comment {
 	
 	private String coNum;
 	private String boNum;
+	private String clNum;
 	private String clNickName;
 	private String coCont;
 	private String coDate;
 	
 	@Override
 	public String toString() {
-		return "B_comment [coNum=" + coNum + ", boNum=" + boNum + ", clNickName=" + clNickName + ", coCont=" + coCont
-				+ ", coDate=" + coDate + "]";
+		return "B_comment [coNum=" + coNum + ", boNum=" + boNum + ", clNum=" + clNum + ", clNickName=" + clNickName
+				+ ", coCont=" + coCont + ", coDate=" + coDate + "]";
 	}
 
 	public String getCoNum() {
@@ -32,6 +33,14 @@ public class B_comment {
 
 	public void setBoNum(String boNum) {
 		this.boNum = boNum;
+	}
+
+	public String getClNum() {
+		return clNum;
+	}
+
+	public void setClNum(String clNum) {
+		this.clNum = clNum;
 	}
 
 	public String getClNickName() {
@@ -57,6 +66,7 @@ public class B_comment {
 	public void setCoDate(String coDate) {
 		this.coDate = coDate;
 	}
+	
 	
 	
 }

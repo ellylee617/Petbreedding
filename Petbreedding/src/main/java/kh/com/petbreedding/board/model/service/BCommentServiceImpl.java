@@ -56,27 +56,28 @@ public class BCommentServiceImpl implements BCommentService {
 	@Override
 	public int bCommentInsert(B_comment bComment) {
 		int bcInsert = -1;
+		int bocChk = -1; 
+		String bo_num = bComment.getBoNum();
 		
 		try {
+			
+			String co_num = bCommentDao.getbCommentSeq();
+			bComment.setCoNum(co_num);
+			System.out.println("[세훈] @게시판 댓글 등록 서비스 co_num : " + co_num);
 			bcInsert = bCommentDao.bCommentInsert(bComment);
+			bocChk = bCommentDao.bocChkUpdate(bo_num);
+			
+			if(bocChk > 0) {
+				System.out.println("게시판 댓글 갯수 체크 업데이트 성공");
+			} else {
+				System.out.println("게시판 댓글 갯수 체크 업데이트 실패");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return bcInsert;
-	}
-
-	@Override
-	public int bocChkUpdate(String bo_num) {
-		int bocChkUpd = -1;
-		
-		try {
-			bocChkUpd = bCommentDao.bocChkUpdate(bo_num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return bocChkUpd;
 	}
 
 }

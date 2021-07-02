@@ -295,7 +295,7 @@ $("#reservation_btn").on("click", function() {
 	var hos_date = $("#choDate").val(); // 연월일
 	var hos_time = $(".chooseTime input").val(); // 시간
 	var cl_num = $("#clNum").val();
-	var hos_num = $("#hos_num").val();
+	var hos_num = $(".hosNum").val();
 
 	if(hos_time == null || hos_time == ""){
 		alert("시간을 선택해주세요!");
@@ -395,13 +395,8 @@ function getModal(){
 	modal('my_modal');
 }
 
-	
-
-
 /* 슬라이더 */
-
 document.addEventListener("DOMContentLoaded", function() {
-
 	var mySwiper = new Swiper('.swiper-container', {
 		slidesPerView : 4,
 		slidesPerGroup : 4,
@@ -423,5 +418,5 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 	});
-
+	console.log("mySwiper : "+ mySwiper);
 });

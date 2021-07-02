@@ -393,11 +393,26 @@ public class shopController {
 	
 
 		
-	// 사업자 예약확인
-	@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
-	public String bReservationDetail(Locale locale, Model model) {
-		return "/bPartner/bShop/bReservationDetail";
-	}
+		// 사업자 예약확인
+		@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
+		public ModelAndView bReservationDetail(
+				HttpSession session, 
+				HttpServletResponse res,
+				HairShopReservation rev
+				) throws Exception {
+				
+			ModelAndView mav = new ModelAndView();
+			System.out.println("예약번호는 : " + rev.getHar_rnum());
+			HairShopReservation vo = new HairShopReservation();
+			Client cl =  new Client();
+			
+			
+			vo = bprevService.revharcon(rev.getHar_rnum());
+			
+			mav.setViewName("/bPartner/bShop/bReservationDetail");
+			mav.addObject("list", vo);
+			return mav ;
+		}
 
 	// 사업자 화상채팅하기
 	@RequestMapping(value = "/bFaceChat", method = RequestMethod.GET)

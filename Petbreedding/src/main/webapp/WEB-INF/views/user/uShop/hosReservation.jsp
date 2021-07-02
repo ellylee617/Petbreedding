@@ -30,31 +30,20 @@
             <p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫동물병원</a>></span>예약하기</p>
             
             <input type="hidden" value="${client.cl_num}" id="clNum"/> 
-            <input type="hidden" value="10" id="hos_num"/>
             
             <div class="swiper-container" id="checkService">
                 <p class="rev_text">이용하실 서비스를 선택해주세요</p>
                 <div class="swiper-wrapper">
-               		<div class="menu_box swiper-slide">
-               			<input type="hidden" value="일반진료" class="med_num" />
-                           <p class="menu_item">일반진료</p>
-                           <p class="menu_price">5000원</p>
-               		</div>
-               		<div class="menu_box swiper-slide">
-               			<input type="hidden" value="예방접종" class="med_num" />
-                           <p class="menu_item">예방접종</p>
-                           <p class="menu_price">5000원</p>
-               		</div>
-               		<div class="menu_box swiper-slide">
-               			<input type="hidden" value="건강검진" class="med_num" />
-                           <p class="menu_item">건강검진</p>
-                           <p class="menu_price">5000원</p>
-               		</div>
-               		<div class="menu_box swiper-slide">
-               			<input type="hidden" value="수술상담" class="med_num" />
-                           <p class="menu_item">수술상담</p>
-                           <p class="menu_price">5000원</p>
-               		</div>
+                	<c:if test="${!empty menu }">
+	                	<c:forEach items="${menu}" var="menu">
+	                		<div class="swiper-slide menu_box ">
+	                			<input type="hidden" value="${menu.hosNum }" class="hosNum"/>
+	                			<input type="hidden" value="${menu.medNum }" class="med_num" />
+	                            <p class="menu_item">${menu.medName}</p>
+	                            <p class="menu_price">${menu.medPrice}원</p>
+	                        </div>
+	               		</c:forEach>
+                	</c:if>
                 </div>
                 <div class="swiper-button-next swpBtn"></div>
                 <div class="swiper-button-prev swpBtn"></div>

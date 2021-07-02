@@ -14,6 +14,11 @@
 		<result column="RES_TIME" property="res_time" />
 		<result column="STYLE_NUM2" property="style_num2" />
 		<result column="CL_NAME" property="name" />
+		<collection property="pet" resultMap="Pet" />
+		<collection property="client" resultMap="Client" />
+		<collection property="style" resultMap="Style" />
+		<collection property="hairSalon" resultMap="HairSalon" />
+		
 	</resultMap>
 
 	<!-- 병원 예약 vo -->
@@ -29,7 +34,46 @@
 		<result column="HOS_STATUS" property="hos_status" />
 		<result column="HOS_TIME" property="hos_time"/>
 		<result column="CL_NAME" property="name" />
+		
 	</resultMap>
+
+	<!-- 펫정보 -->
+   <resultMap type="Pet" id="Pet">
+      <id column="PET_NUM" property="pet_num" />
+      <result column="PET_NAME" property="pet_name"/>
+      <result column="PET_KIND" property="pet_kind"/>
+      <result column="PET_BIRTH" property="pet_birth"/>
+      <result column="PET_GEN" property="pet_gen"/>
+      <result column="PET_NEUT" property="pet_neut"/>
+      <result column="PET_EXPER" property="pet_exper"/>
+      <result column="PET_VACCIN" property="pet_vaccin"/>
+      <result column="PET_BITE" property="pet_bite"/>
+      <result column="PET_KNEECAP" property="kneecap"/>
+      <result column="DISLIKE" property="dislike"/>
+      <result column="PET_OTHERS" property="pet_others"/>
+      <result column="PET_WEIGHT" property="pet_weight"/>
+   </resultMap>
+	
+	<resultMap type="Client" id="Client">
+		<result  column="CL_EMAIL" property="email"/>
+		<result  column="CL_NAME" property="name"/>
+		<result  column="CL_TEL" property="tel"/>
+	</resultMap>
+	
+		<!-- 스타일 테이블  -->
+	<resultMap type="Style" id="Style">
+		<id column="STYLE_NUM" property="style_num"/>
+		<result column="STYLE_NAME" property="style_name"/>
+	</resultMap>
+	
+		<!-- HAR_SARLON 테이블  -->
+		<resultMap type="HairSalon" id="HairSalon">
+			<result column="HAR_NAME" property="shopName"/>
+		</resultMap>
+
+
+
+
 
 	<!-- 미용실 예약조회 (사용자 페이지) -->
 	<select id="hartRavList" resultMap="HairRev"
@@ -72,6 +116,19 @@
 
 	</select>
 	
+	<!-- 예약관리 상세페이지 -->
+	<select id="HarRevCon" resultMap="HairRev" parameterType="string">
+		select client.*, har_reservation.res_date,har_reservation.res_time, pet_info.*, style.style_name, hair_salon.har_name
+		from HAR_RESERVATION join client
+		on HAR_RESERVATION.cl_num = client.cl_num
+		join hair_salon
+		on har_reservation.har_num = hair_salon.har_num
+        join pet_info
+        on pet_info.pet_num = har_reservation.pet_num
+        join style
+        on har_reservation.style_num = style.style_num
+        and har_rnum = #{har_num}
+	</select>
 	
 	
 	

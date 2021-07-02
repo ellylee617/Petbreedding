@@ -222,6 +222,7 @@ public class AdminController {
 			) throws IOException {
 		
 		ad = (Admin) ses.getAttribute("admin");
+		
 		PrintWriter out = res.getWriter();
 		
 		String qna_num = req.getParameter("qna_num");
@@ -230,7 +231,7 @@ public class AdminController {
 		System.out.println("[세훈] @문의 댓글 달기 컨트롤러 qna_num : " + qna_num);
 		System.out.println("[세훈] @문의 댓글 달기 컨트롤러 maCommentText : " + maCommentText);
 		
-		if(maCommentText != null && qna_num != null) {
+		if(maCommentText != null && maCommentText != "" && qna_num != null && qna_num != "") {
 			
 			MyAskComment maComment = new MyAskComment();
 			String admin_id = ad.getAdmin_id();

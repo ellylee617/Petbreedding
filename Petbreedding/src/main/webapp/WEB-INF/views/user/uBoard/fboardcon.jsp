@@ -56,7 +56,7 @@
 			
 				<div class="con">
 				
-					<p>${board.boCont }</p>
+					<p>${board.boCont}</p>
 
 					<button class="backbtn basicBtn" onClick="location.href='fboardlist'">목록</button>
 					<button id="fboardUpdBtn" class="modifybtn basicBtn">수정</button>
@@ -65,19 +65,101 @@
 				</div>
 			</div>
 			<div class="reply">
-				<p>댓글(10)</p>
-				<form action="#" method="#">
+				<p>댓글(${board.bocChk})</p>
+				
+				<form id="bocFrm">
 					<div class="replycon">
-
-						<input type="text"> <input type="submit" id="submitbtn"
-							class="basicBtn" value="등록">
+						<input type="text" id="replyCont" name="getBocCont">
+						<input type="button" id="bocSubmitBtn" class="basicBtn" value="등록">
+						<input type="hidden" value="${board.boNum}" name="getBoNum">
 					</div>
 				</form>
 				<!--AJAX로 댓글 구현 -->
+				
+				<div id="replyContainer"></div>
+				
 			</div>
 
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
+	
+	<script type="text/javascript">
+		var boNum = '${board.boNum}';
+		var clSession = "<%=session.getAttribute("client") %>";
+		console.log(clSession);
+		console.log(boNum);
+		commentListInit(boNum);	//	로딩이 되면 해당 보드의 댓글을 한 번 초기화 
+	
+		function commentListInit(boNum) {
+			$.ajax({
+				url: 'bocList'
+				,type: 'get'
+				,contentType : "application/json; charset:UTF-8"
+				,data: {boNum: boNum}
+				,dataType: 'json'
+				,success: function(json) {
+					var div = "";
+					var jsonLength = Object.keys(json).length;
+					console.log(json);
+					console.log(jsonLength);
+					if(jsonLength > 0) {
+						
+						$.each(json, function(index, item) {
+							div += "<div class='replyArea'>"
+								+ "<div class='replyUserInfo'>"
+								+ "<p class='replyNickName'>"+item.clNickName+"</p>"
+								+ "<p>"+item.coCont+"</p>"
+								+ "</div>"
+								+ "<div>"
+								+ "<p class='replyTime'>"+item.coDate+"</p>"
+								+ "<div class='replyUpdDel'>"
+								+ "<p>수정</p>"
+								+ "<p>삭제</p>"
+								+ "</div>"
+								+ "</div>"
+								+ "</div>";
+						});
+						
+					} else {
+						
+					}
+					
+					$("#replyContainer").html(div);
+					
+				}
+				
+				,error : function(request, status, error) {
+					alert("code: " + request.status + "\n"
+							+ "message: "
+							+ request.responseText + "\n"
+							+ "error: " + error);
+				}
+				
+			});
+		}
+		
+		$("#bocSubmitBtn").click(function() {
+			var queryString = $("#bocFrm").serialize();
+			console.log(queryString);
+			
+			$.ajax({
+				url: 'bocWrite'
+				,type: 'post'
+				,data: queryString
+				,success: function() {
+					commentListInit(boNum);
+					$("#replyCont").val("").focus();
+				}
+				,error : function(request, status, error) {
+					alert("code: " + request.status + "\n"
+							+ "message: "
+							+ request.responseText + "\n"
+							+ "error: " + error);
+				}
+				
+			});
+		});
+	</script>
 </body>
 </html>

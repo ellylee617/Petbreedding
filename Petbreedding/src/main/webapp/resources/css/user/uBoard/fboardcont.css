@@ -56,18 +56,44 @@
     margin-left: 20px;
 }
 
+.replyArea {
+	display: flex;
+	justify-content: space-between;
+    width: 828.5px;
+    margin: 0 auto;
+}
+
+.replyNickName {
+	margin-right: 100px;
+}
+
+.replyUserInfo {
+	display: flex;
+}
+
+.replyTime {
+	margin-bottom: 0px;
+}
+
+.replyUpdDel {
+	display: flex;
+    justify-content: space-evenly;
+    margin: 0px;
+}
+
 .reply{
     border-top: 1px solid #000;
     overflow:hidden;
     height:100%;
     clear: both;
-    
-   
 }
 .replycon{
 	width: 900px;
     margin: 0 auto;
+    padding-bottom: 20px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 	
 }
 .reply .replycon input{
@@ -75,7 +101,7 @@
     height: 50px;
     float: left;
 }
-#submitbtn{
+#bocSubmitBtn{
     width: 9%;
     float: left;
     border-radius: 10px;
