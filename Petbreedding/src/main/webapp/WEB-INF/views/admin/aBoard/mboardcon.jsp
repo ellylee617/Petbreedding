@@ -62,9 +62,6 @@
 	<script type="text/javascript">
 		console.log("스크립트 시작");
 		var qnaNum= '${mAsk.qnaNum}';
-// 		var a = 'Q1';
-// 		console.log(a);
-// 		console.log(qnaNum);
 		maCommentInit(qnaNum);
 		
 		function maCommentInit(qnaNum) {
@@ -96,7 +93,7 @@
 									+"<button class='basicBtn' id='maCommentUpBtn'>수정</button>"
 									+"<button class='basicBtn' id='maCommentDelBtn'>삭제</button>"
 									+"</form>";
-						})
+						});
 					} else {
 						div += "<form id='maCommentFrm' class='maCommentFrm'>"
 							+"<textarea id='maCommentText' name='maCommentText'></textarea>"

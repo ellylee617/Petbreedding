@@ -3,6 +3,7 @@ package kh.com.petbreedding.board.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -25,11 +26,16 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import kh.com.petbreedding.board.model.vo.B_comment;
 import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.CustomerService;
+import kh.com.petbreedding.board.model.vo.MyAskComment;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.board.model.service.BCommentService;
 import kh.com.petbreedding.board.model.service.BoardService;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.service.ReviewService;
@@ -43,6 +49,12 @@ public class BoardController {
 	
 	@Autowired
 	private CustomerServiceService customerServiceService;
+	
+	@Autowired
+	private ReviewService reviewService;
+	
+	@Autowired
+	private BCommentService bCommentService;
 	
 	public final int LIMIT = 5;
 
@@ -184,15 +196,73 @@ public class BoardController {
 					out.close();
 				}
 				
-		
-		
-		
 		return "redirect:/fboardlist";
 	}
 	
 	
-	@Autowired
-	private ReviewService reviewService;
+	//	게시판 댓글 조회
+	@RequestMapping(value = "/bocList")
+	public void bocList(
+			Model md
+			,String boNum
+			,HttpServletRequest req
+			,HttpServletResponse res
+			) throws IOException {
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("application/json; charset=UTF-8");
+		
+		PrintWriter out = res.getWriter();
+		
+		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 boNum : " + boNum);
+		
+		String bocJson = "";
+		List<B_comment> bocList = new ArrayList<B_comment>();
+		
+		if(bocList != null) {
+			Gson jobj = new GsonBuilder().create();
+			bocJson = jobj.toJson(bocList);
+		}
+
+		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 bocJson : " + bocJson);
+		
+		out.println(bocJson);
+		out.flush();
+		out.close();
+	}
+	
+	//	게시판 댓글 달기
+	@RequestMapping(value = "/bocWrite")
+	public void bocWrite(
+			Model md
+			,HttpServletRequest req
+			,HttpServletResponse res
+			,HttpSession ses
+			,Client cl
+			) {
+		cl = (Client) ses.getAttribute("client");
+		String cl_nickName = cl.getNickname();
+		String cl_num = cl.getCl_num();
+		String bo_num = req.getParameter("getBoNum");
+		String co_cont = req.getParameter("getBocCont");
+		
+		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bo_num : " + bo_num);
+		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 boc_cont : " + co_cont);
+		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_num : " + cl_num);
+		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_nickName : " + cl_nickName);
+		
+		if(co_cont != null && co_cont != "" && bo_num != null && bo_num != "") {
+			B_comment bComment = new B_comment();
+			
+			bComment.setClNum(cl_num);
+			bComment.setClNickName(cl_nickName);
+			bComment.setBoNum(bo_num);
+			bComment.setCoCont(co_cont.replaceAll("\n", "<br>"));
+			
+			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bComment : " + bComment.toString());
+			bCommentService.bCommentInsert(bComment);
+		}
+	}
+	
 	
 	// 리뷰 작성
 	@RequestMapping(value = "/rwrite", method = RequestMethod.POST)
