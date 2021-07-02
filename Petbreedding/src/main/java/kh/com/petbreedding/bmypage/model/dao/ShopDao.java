@@ -17,6 +17,7 @@ import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Repository("shopDao")
 public class ShopDao {
@@ -39,13 +40,21 @@ public class ShopDao {
 	 * */
 	
 	
+	// 미용실 리스트 총 갯수 
+	public int countHarList() {
+		System.out.println("~~ ShopDao ~~");
+		return sqlSession.selectOne("Shop.countHarList");
+	}
+	
 	// 미용실 전체 리스트 조회 (shopController)
-	public List<HairSalon> selectHarList(int currentPage, int limit) {
-		System.out.println("다오 진입");
-		int startRow = (currentPage -1) * limit;
-		RowBounds row = new RowBounds(startRow, limit);
-		System.out.println("다오 끝");
-		return sqlSession.selectList("Shop.selectHarList", null, row);
+	public List<HairSalon> selectHarList(Pagination page) {
+		
+		System.out.println("~~~ShopDao 진입~~~");
+//		System.out.println("다오 진입");
+//		int startRow = (currentPage -1) * limit;
+//		RowBounds row = new RowBounds(startRow, limit);
+//		System.out.println("다오 끝");
+		return sqlSession.selectList("Shop.selectHarList", page);
 	}
 	
 	//	TODO

@@ -16,6 +16,7 @@ import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
@@ -39,19 +40,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 
-	
-	
-	@Override
-	public List<HairSalon> selectHarList(int currentPage, int limit) {
-		List<HairSalon> salonList = null;
-		System.out.println("서비스 진입");
-		try {
-			salonList = shopDao.selectHarList(currentPage, limit);
-		} catch(Exception e) {
-		}
-		System.out.println("List<HairSalon> salonList ::" + salonList);
-		return salonList;
-	}
+
 	
 	@Override
 	public int insertHarInfo(HairSalon vo) {
@@ -468,6 +457,34 @@ public class ShopServiceImpl implements ShopService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+
+
+	// 미용실 리스트 총 갯수 
+	@Override
+	public int countHarList() {
+		int result = -1;
+		try {
+			result = shopDao.countHarList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	
+	// 미용실 리스트 조회 + 페이징 처리 
+	@Override
+	public List<HairSalon> selectHarList(Pagination page) {
+		List<HairSalon> list = null;
+		try {
+			list = shopDao.selectHarList(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 

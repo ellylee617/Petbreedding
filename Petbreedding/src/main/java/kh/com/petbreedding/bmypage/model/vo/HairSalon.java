@@ -31,7 +31,7 @@ public class HairSalon {
 	private String sun;
 
 	
-
+	
 
 
 	@Override

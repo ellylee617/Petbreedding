@@ -171,3 +171,46 @@
     color: var(--hover-color);
 }
 
+/* 페이징 */
+.page_wrap {
+	text-align:center;
+	margin-top: 30px;
+}
+
+.page_nation {
+	display:inline-block;
+}
+
+.page_nation .none {
+	display:none;
+}
+
+.page_nation a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	border:none;
+	width:40px;
+	height:30px;
+	line-height:28px;
+}
+
+.page_nation a:hover {
+	color: var(--hover-color)
+}
+
+.page_nation .arrow {
+    font-weight: bold;
+}
+
+.page_nation a.active {
+	font-size: 15px;
+    font-weight: bold;
+	color:#ff9914;
+}
+
+b{
+    float: left;
+    padding-top: 3px;
+    width:40px;
+}

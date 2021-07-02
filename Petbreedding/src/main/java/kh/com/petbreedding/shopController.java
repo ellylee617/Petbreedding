@@ -37,6 +37,7 @@ import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.service.LikesService;
 import kh.com.petbreedding.common.model.vo.Likes;
+import kh.com.petbreedding.common.model.vo.Pagination;
 import kh.com.petbreedding.cta.model.service.CtaService;
 
 //TODO: !!!!!!!! 경로 수정하고 컨트롤러명 변경하기 !!!!!!!!!!
@@ -64,8 +65,19 @@ public class shopController {
 	
 	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
-	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception {
-
+	public ModelAndView shopList(
+			ModelAndView mv
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			, @RequestParam Long shopType
+			) throws Exception {
+		
+		// TODO: 페이징 작업
+		// **** ModelAndView 때문에 에러 발생해서 Model로 바꿔줌 !****
+		int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		mv.addObject("paging", page);
 		
 		// shopType 0은 미용실, 1은 동물병원
 
@@ -73,7 +85,7 @@ public class shopController {
 
 			int harShopType = 0;
 			
-			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+			List<HairSalon> salonList = shopService.selectHarList(page);
 			
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			
@@ -110,6 +122,7 @@ public class shopController {
 			
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
+			mv.addObject("paging", page);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
 
@@ -139,6 +152,7 @@ public class shopController {
 		}
 
 		return mv;
+//		return "/user/uShop/shopList";
 
 	}
 
