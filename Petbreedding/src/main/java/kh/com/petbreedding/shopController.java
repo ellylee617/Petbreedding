@@ -96,14 +96,13 @@ public class shopController {
 //			List<HairSalonImg> harImgList = shopService.selectHarImgList();
 
 			List<HairSalon> ultra = ctaService.ctabuylist();
-
+			System.out.println("울트라콜 미용실 리스트:"+ultra);
+			
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
 
-			// 미용실 대표 사진
-			// TODO
 
 		} else {
 
@@ -115,8 +114,6 @@ public class shopController {
 			mv.addObject("shopList", hosList);
 			mv.setViewName("/user/uShop/shopList");
 
-			// 동물병원 매장 대표 사진 출력
-			// TODO
 
 		}
 
