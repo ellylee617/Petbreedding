@@ -39,7 +39,12 @@
                 <div class="store_info_article">
                 	<c:forEach var="shopImgList" items="${shopImgList }" varStatus="status">
                     <div class="store_img">
-                        <img src="${path}/resources/uploadFile/shop/${shopImgList.shopImg }" style="width:400px; height: 400px">
+                    	<c:if test="${empty shopImgList.shopImg}">
+                    		<img src="http://placehold.it/400x400">
+                    	</c:if>
+                    	<c:if test="${!empty shopImgList.shopImg}">
+                        <img src="${path}/resources/uploadFile/shop/${shopImgList.shopImg }" style="width:400px; height: 400px;">
+                        </c:if>
                     </div>
                     </c:forEach>
                     <div class="store_name">

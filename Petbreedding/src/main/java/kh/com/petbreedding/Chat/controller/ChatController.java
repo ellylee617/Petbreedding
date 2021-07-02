@@ -163,13 +163,23 @@ public class ChatController {
 	@RequestMapping("/chatlist")
 	public ModelAndView chatlist(ModelAndView mv, HttpServletRequest req) {
 		List<ChatList> list = null;
+		List<ChatList> unreadList = null;
+		int countUnread = 0;
+		
 		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("client");
+		
+		// 로그인 되어있다면 세선에셔 cl_num 받아와 
+		// 채팅내역과 안읽은 채팅 내역, 안읽은 메시지의 총합 가져오기
 		if (session != null) {
 			String cl_num = client.getCl_num();
 			list = chService.getList(cl_num);
+			unreadList = chService.getUnreadList(cl_num);
+			countUnread = chService.getAllCount(cl_num);
 		}
 		mv.addObject("Roomlist", list);
+		mv.addObject("unreadList", unreadList);
+		mv.addObject("countUnread", countUnread);
 		mv.setViewName("/user/uMyPage/myChatList");
 		return mv;
 	}
@@ -177,14 +187,23 @@ public class ChatController {
 	@RequestMapping("/bchatlist")
 	public ModelAndView bchatlist(ModelAndView mv, HttpServletRequest req) {
 		List<ChatList> list = null;
+		List<ChatList> unreadList = null;
+		int countUnread = 0;
+		
 		HttpSession session = req.getSession();
 		BPartner bpartner = (BPartner) session.getAttribute("bP");
+		
+		// 로그인 되어있다면 세선에셔 bp_id 받아와
+		// 채팅내역과 안읽은 채팅 내역, 안읽은 메시지의 총합 가져오기
 		if (session != null) {
-			String bpId = bpartner.getBp_Id();
-			list = chService.getListbp_id(bpId);
-			System.out.println("list" + list);
+			String bp_id = bpartner.getBp_Id();
+			list = chService.getListbp_id(bp_id);
+			unreadList = chService.getUnreadListbp_id(bp_id);
+			countUnread = chService.getAllCount(bp_id);
 		}
 		mv.addObject("Roomlist", list);
+		mv.addObject("unreadList", unreadList);
+		mv.addObject("countUnread", countUnread);
 		mv.setViewName("/bPartner/bChat/bChatList");
 		return mv;
 	}

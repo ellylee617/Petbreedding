@@ -86,6 +86,40 @@
 	                GROUP BY CHATROOM_ID
 	                )B
 	            ON A.CHATROOM_ID = B.CHATROOM_ID
+	            ORDER BY MESSAGE_SENDTIME DESC
+	    )C
+	    INNER JOIN
+	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) D        
+	ON C.BP_ID = D.BP_ID
+	</select>
+	
+	<select id="getUnreadList" resultMap="chatList">
+	SELECT C.*, D.HOS_NAME AS SHOP_NAME
+	FROM
+	    (
+	    SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM, A.BP_ID, NVL(B.UNREAD_COUNT,0) UNREAD_COUNT
+	      FROM
+	            (
+	            SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
+	            FROM
+	                    (
+	                    SELECT
+	                    ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM,
+	                    CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, 
+	                    CL_NUM, BP_ID
+	                    FROM CHATMESSAGE
+	                    )SQ
+	                    WHERE SQ.RNUM = 1 AND CL_NUM = #{cl_num}
+	                    ORDER BY CHATROOM_ID
+	            ) A
+	            INNER JOIN
+	                (
+	                SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
+	                FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{cl_num} AND UNREAD_COUNT = 1 
+	                GROUP BY CHATROOM_ID
+	                )B
+	            ON A.CHATROOM_ID = B.CHATROOM_ID
+	            ORDER BY MESSAGE_SENDTIME DESC
 	    )C
 	    INNER JOIN
 	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) D        
@@ -119,8 +153,51 @@
 	                SELECT * FROM CLIENT
 	                ) B
 	            ON A.CL_NUM = B.CL_NUM 
+	            ORDER BY MESSAGE_SENDTIME DESC
 	        ) C
 	        LEFT OUTER JOIN
+	        (
+	        SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
+	        FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{bp_id} AND UNREAD_COUNT = 1 
+	        GROUP BY CHATROOM_ID
+	        )D
+	        ON C.CHATROOM_ID = D.CHATROOM_ID
+	    )F
+	    INNER JOIN
+	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) G        
+	ON F.BP_ID = G.BP_ID
+	</select>
+	
+	<select id="getUnreadListbp_id" resultMap="chatList">
+	SELECT F.*, G.HOS_NAME AS SHOP_NAME
+	FROM
+	    (
+	    SELECT C.CHATROOM_ID, C.MESSAGE_CONTENT, C.MESSAGE_SENDTIME, C.CL_NUM, C.BP_ID, C.CL_NICKNAME, NVL(D.UNREAD_COUNT,0) UNREAD_COUNT
+	      FROM
+	      (
+	      SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM, A.BP_ID, B.CL_NICKNAME
+	      FROM
+	            (
+	            SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
+	            FROM
+	                    (
+	                    SELECT
+	                    ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM,
+	                    CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, 
+	                    CL_NUM, BP_ID
+	                    FROM CHATMESSAGE
+	                    )SQ
+	                    WHERE SQ.RNUM = 1 AND BP_ID = #{bp_id}
+	                    ORDER BY CHATROOM_ID
+	            ) A
+	            INNER JOIN
+	                (
+	                SELECT * FROM CLIENT
+	                ) B
+	            ON A.CL_NUM = B.CL_NUM 
+	            ORDER BY MESSAGE_SENDTIME DESC
+	        ) C
+	        INNER JOIN
 	        (
 	        SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
 	        FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{bp_id} AND UNREAD_COUNT = 1 
@@ -150,6 +227,10 @@
 	
 	<select id="getUnreadCount" resultMap="chatmessage">
 		SELECT * FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{mReceiver} AND CHATROOM_ID = #{chatId} AND UNREAD_COUNT = 1
+	</select>
+	
+	<select id="getAllCount" resultType="int">
+		SELECT COUNT(*) ALL_COUNT FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{mReceiver} AND UNREAD_COUNT = 1
 	</select>
 
 	<update id="updateUnreadCount">

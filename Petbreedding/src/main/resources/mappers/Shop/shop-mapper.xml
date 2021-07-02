@@ -18,6 +18,13 @@
 			<result column="Y" property="y"/>
 			<result column="X" property="x"/>
 			<result column="HAR_MIMG" property="shopMImg"/>
+			<result column="0" property="sun"/>
+			<result column="1" property="mon"/>
+			<result column="2" property="tue"/>
+			<result column="3" property="wed"/>
+			<result column="4" property="thu"/>
+			<result column="5" property="fri"/>
+			<result column="6" property="sat"/>
 		</resultMap>
 		
 		<!-- 
@@ -80,9 +87,18 @@
 		
 		<!-- 미용실 기본 정보 불러오기 -->
 		<select id="selectHarInfo" parameterType="string" resultMap="HairSalon">
-		SELECT *
-		FROM HAIR_SALON
-		WHERE BP_ID = #{bpId}
+			SELECT *
+			FROM (
+			SELECT H.*, D.har_dayoff AS DAYOFF
+			FROM HAIR_SALON H
+			LEFT JOIN HAIR_DAYOFF D
+			ON H.HAR_NUM = D.HAR_NUM
+			WHERE BP_ID = #{bpId}
+			)
+			PIVOT (
+			SUM(DAYOFF) 
+			FOR DAYOFF
+			IN (0,1,2,3,4,5,6))
 		</select>
 		
 
@@ -161,10 +177,16 @@
 		<result column="HOS_TEL" property="shopTel"/>
 		<result column="OPEN_TIME" property="shopTime"/>
 		<result column="HOS_MINFO" property="shopMInfo"/>
-		<result column="HOS_CONN" property="hosConn"/>
-		<result column="HOS_CLICK" property="hosClick"/>
 		<result column="Y" property="y"/>
 		<result column="X" property="x"/>		
+		<result column="HOS_MIMG" property="shopMImg"/>
+		<result column="0" property="sun"/>
+		<result column="1" property="mon"/>
+		<result column="2" property="tue"/>
+		<result column="3" property="wed"/>
+		<result column="4" property="thu"/>
+		<result column="5" property="fri"/>
+		<result column="6" property="sat"/>
 	</resultMap>
 	
 	<!-- HOSPITAL_IMAGE 테이블-->
@@ -196,8 +218,8 @@
 	
 	<!-- 동물병원 기본 정보 기입 -->
 	<insert id="insertHosInfo" parameterType="Hospital">
-	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X )
-	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x})
+	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X, HOS_MIMG )
+	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg})
 	</insert>
 
 
@@ -205,16 +227,26 @@
 	<!-- 동물병원 기본 정보 불러오기 -->
 		<select id="selectHosInfo" parameterType="string" resultMap="Hospital">
 		SELECT *
-		FROM HOSPITAL
+		FROM (
+		SELECT H.*, D.HOS_DAYOFF AS DAYOFF
+		FROM HOSPITAL H
+		LEFT JOIN HOSPITAL_DAYOFF D
+		ON H.HOS_NUM = D.HOS_NUM
 		WHERE BP_ID = #{bpId}
+		)
+		PIVOT (
+			SUM(DAYOFF) 
+			FOR DAYOFF
+			IN (0,1,2,3,4,5,6))
+		
 		</select>	
 	
 	<!-- 동물병원 기본 정보 수정 -->
 	<update id="updateHosInfo" parameterType="Hospital">
 		UPDATE HOSPITAL 
-		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X) 
+		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X, HOS_MIMG) 
 		= (
-			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}}
+			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg}
 			FROM dual
 		)
 		WHERE BP_ID = #{bpId}	
