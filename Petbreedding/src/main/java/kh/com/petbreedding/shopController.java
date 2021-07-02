@@ -88,9 +88,17 @@ public class shopController {
 				mv.addObject("count", list);
 			}
 			
+			/*
+			 * List<String> list = new ArrayList<String>(); 
+			 * System.out.println("~~~~~~~~~~~~~harNum ~~~~~~~~~"+list);
+			 * HashMap<String,String> salonCount = likeService.countSalon(list);
+			 * System.out.println("!!!!!!!salonList!!!!!!!!! "+ salonCount);
+			 */
 //			List<HairSalonImg> harImgList = shopService.selectHarImgList();
 
 			List<HairSalon> ultra = ctaService.ctabuylist();
+			System.out.println("울트라콜 미용실 리스트:"+ultra);
+			
 			List<String> list2 = new ArrayList<String>();
 			for(int i =0; i<ultra.size(); i++) {
 				har_num = ultra.get(i).getHarNum();
@@ -99,14 +107,12 @@ public class shopController {
 				list2.add(count);
 				mv.addObject("count2", list2);
 			}
-
+			
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
 
-			// 미용실 대표 사진
-			// TODO
 
 		} else {
 
@@ -117,7 +123,7 @@ public class shopController {
 			mv.addObject("shopType", hosShopType);
 			mv.addObject("shopList", hosList);
 			mv.setViewName("/user/uShop/shopList");
-
+			
 			//찜한 숫자 가져오기
 			String hos_num = null;
 			List<String> list = new ArrayList<String>();
@@ -128,9 +134,7 @@ public class shopController {
 				list.add(count);
 				mv.addObject("count", list);
 			}
-			
-			// 동물병원 매장 대표 사진 출력
-			// TODO
+
 
 		}
 

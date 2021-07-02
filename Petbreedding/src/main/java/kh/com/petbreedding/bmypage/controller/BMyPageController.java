@@ -429,23 +429,42 @@ public class BMyPageController {
 
 		} else {
 
-			hosVO.setBpId(bpId);
+						hosVO.setBpId(bpId);
+			
+						// 동물병원 기본 정보 등록
+						// TODO: 동물병원 대표 사진 등록 
+			
+						MultipartFile mf = request.getFile("shopMainImg"); // input type="file" name="shopMainImg"
+						UUID uuid = UUID.randomUUID(); 
+						String originalfileName = mf.getOriginalFilename();
+						String saveName = uuid.toString() + "_" + originalfileName;
+						File uploadFile = new File(savePath + "//" + saveName);
+						
+						try {
+							mf.transferTo(uploadFile);
+						} catch (IllegalStateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						hosVO.setShopMImg(originalfileName);
+						result = shopService.insertHosInfo(hosVO);
 
-			// 동물병원 기본 정보 등록
-			result = shopService.insertHosInfo(hosVO);
-
-			if(result>0) {
-				System.out.println(" !! 동물병원 기본 정보 등록 성공 !!");
-				System.out.println("등록한 동물병원 정보:"+hosVO);
-				
-				shopService.updateBpReg(bpId);
-				
-				mv.addObject("vo",hosVO);
-				
-				
-			} else {
-				System.out.println(" !! 미용실 기본 정보 등록 실패 !! ");
-			}
+						if(result>0) {
+							System.out.println(" !! 동물병원 기본 정보 등록 성공 !!");
+							System.out.println("등록한 동물병원 정보:"+hosVO);
+							
+							shopService.updateBpReg(bpId);	// 사업장 등록상태 컬럼 1로 변경
+							
+							mv.addObject("vo",hosVO);	// mv.setViewName("/bPartner/bShop/bShopInfo");
+							
+							
+						} else {
+							System.out.println(" !! 동물병원 기본 정보 등록 실패 !! ");
+						}
 			
 			
 			// 동물병원 주휴일 설정
@@ -559,10 +578,12 @@ public class BMyPageController {
 
 	// 사업장 관리 - 사업장 수정 실행
 	@RequestMapping(value = "bp/bShop/update")
-	public String bShopUpdateDo(HttpServletRequest req, HairSalon harVO, Hospital hosVO,
+	public ModelAndView bShopUpdateDo(HttpServletRequest req, HairSalon harVO, Hospital hosVO,
 			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest mulitreq) {
 
 		System.out.println("***** 사업장 수정 컨트롤러 실행 *****");
+		
+		ModelAndView mv = new ModelAndView();
 		
 		String savePath = mulitreq.getRealPath("resources/uploadFile/shop"); // 파일이 저장될 위치
 		
@@ -593,7 +614,7 @@ public class BMyPageController {
 		if (bPType == 0) {
 
 			// 미용실 기본 정보 수정
-			
+			// ++ 대표 사진 수정
 			MultipartFile mf = mulitreq.getFile("shopMainImg"); // input type="file" name="shopMainImg"
 			UUID uuid = UUID.randomUUID(); 
 			String originalfileName = mf.getOriginalFilename();
@@ -612,7 +633,10 @@ public class BMyPageController {
 			
 			harVO.setShopMImg(originalfileName);
 			System.out.println("수정할 미용실 정보:"+harVO);
+			
 			shopService.updateHarInfo(harVO);
+			
+			mv.addObject("vo", harVO);
 
 			// 예전 미용실 매장 사진 삭제
 			shopService.deleteHarImg(harNum);
@@ -632,16 +656,34 @@ public class BMyPageController {
 				harVO2.toString();
 				shopService.insertNewHarDayOff(harVO2);
 
-				session.setAttribute("harDayOff", harVO2);
-
 			}
 
 		} else {
 
 			// 동물병원 기본 정보 수정
-			// TODO: 매장 대표사진 코드 추가 !!! 
+			// ++ 대표 사징 수정
+			MultipartFile mf = mulitreq.getFile("shopMainImg"); // input type="file" name="shopMainImg"
+			UUID uuid = UUID.randomUUID(); 
+			String originalfileName = mf.getOriginalFilename();
+			String saveName = uuid.toString() + "_" + originalfileName;
+			File uploadFile = new File(savePath + "//" + saveName);
+			
+			try {
+				mf.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			hosVO.setShopMImg(originalfileName);
+			System.out.println("수정할 동물병원 정보:"+hosVO);
 			shopService.updateHosInfo(hosVO);
-			hosVO.toString();
+			
+			mv.addObject("vo", hosVO);
+			
 
 			// 동물병원 예전 사진 삭제
 			shopService.deleteHosImg(hosNum);
@@ -662,7 +704,6 @@ public class BMyPageController {
 
 				shopService.insertNewHosDayOff(hosVO2);
 
-				session.setAttribute("hosDayOff", hosVO2);
 
 			}
 		}
@@ -721,7 +762,10 @@ public class BMyPageController {
 
 		}
 		System.out.println("!! 사업장 수정 완료 !!");
-		return "bPartner/bShop/bReservation"; // TODO:경로 수정해야됨!!!!
+		
+		mv.setViewName("/bPartner/bShop/bShopInfo");
+		
+		return mv; 
 	}
 
 	// 업체 리뷰 관리 페이지로 이동
