@@ -21,10 +21,11 @@
 		<section class="section">
 	        <jsp:include page="../bAside.jsp" />
 	        <div class="bContent">
-                                <h1>예약 완료</h1>
+                <h1>예약 완료</h1>
                 <div class="resInfo infoBox">
                     <table>
                         <tr class="infoTitle">예약 정보</tr>
+            <c:if test="${list.res_date != null}">
                         <tr class="info">
                             <td>일정</td>
                             <td>${list.res_date} 오후 ${list.res_time}</td>
@@ -33,6 +34,11 @@
                             <td>상품</td>
                             <td> ${list.hairSalon.shopName}(+)${list.style.style_name}</td>
                         </tr>
+             </c:if>
+             <c:if test="${list.res_date == null}">
+             <p>여기는 병원 내용</p>
+             
+             </c:if>
                     </table>
                 </div>
                 <div class="clientInfo infoBox">
