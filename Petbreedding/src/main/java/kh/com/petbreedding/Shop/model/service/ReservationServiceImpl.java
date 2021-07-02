@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import kh.com.petbreedding.Shop.model.dao.ReservationDao;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
+import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
@@ -83,6 +86,30 @@ public class ReservationServiceImpl implements ReservationService{
 		return result;
 	}
 
+	@Override
+	public List<HairSalon> checkDayOff(String har_num) {
+		List<HairSalon> result = null;
+		try {
+			result = revDao.checkDayOff(har_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	//병원
+	
+	@Override
+	public List<MedicalType> hosMenu(String hos_num) {
+		List<MedicalType> result = null;
+		try {
+			result = revDao.hosMenu(hos_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	@Override
 	public List<HospitalReservation> shopPayment2(String hos_rnum) {
@@ -116,6 +143,21 @@ public class ReservationServiceImpl implements ReservationService{
 		}
 		return result;
 	}
+
+	@Override
+	public List<Hospital> checkDayOff2(String hos_num) {
+		List<Hospital> result = null;
+		try {
+			result = revDao.checkDayOff2(hos_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+
 
 
 

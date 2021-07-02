@@ -395,13 +395,8 @@ function getModal(){
 	modal('my_modal');
 }
 
-	
-
-
 /* 슬라이더 */
-
 document.addEventListener("DOMContentLoaded", function() {
-
 	var mySwiper = new Swiper('.swiper-container', {
 		slidesPerView : 4,
 		slidesPerGroup : 4,
@@ -423,5 +418,5 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 	});
-
+	console.log("mySwiper : "+ mySwiper);
 });

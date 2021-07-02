@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
+import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
@@ -43,7 +46,18 @@ public class ReservationDao {
 		return sqlSession.selectList("ShopRev.checkTime", hrv);
 	}
 	
+	public List<HairSalon> checkDayOff(String har_num){
+		return sqlSession.selectList("ShopRev.checkDayOff", har_num);
+	}
+	
+	
+	
 	//동물병원
+	
+	public List<MedicalType> hosMenu(String hos_num){
+		return sqlSession.selectList("ShopRev.hosMenu", hos_num);
+	}
+	
 	public List<HospitalReservation> shopPayment2(String hos_rnum){
 		return sqlSession.selectList("shopPay.myRevPay2", hos_rnum);
 	}	
@@ -54,5 +68,8 @@ public class ReservationDao {
 	}
 	public List<String> checkTime2(HospitalReservation hos){
 		return sqlSession.selectList("ShopRev.checkTime2", hos);
+	}
+	public List<Hospital> checkDayOff2(String hos_num){
+		return sqlSession.selectList("ShopRev.checkDayOff2", hos_num);
 	}
 }

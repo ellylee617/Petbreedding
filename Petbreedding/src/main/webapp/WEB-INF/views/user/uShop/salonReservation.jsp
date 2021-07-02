@@ -32,14 +32,14 @@
             <!-- 넘길 정보 -->
             <!-- TODO -->
             <input type="hidden" value="${client.cl_num}" id="clNum"/> 
-            <input type="hidden" value="HA1" id="harNum"/>
             
             <div class="swiper-container" id="checkService">
                 <p class="rev_text">이용하실 서비스를 선택해주세요</p>
                 <div class="swiper-wrapper">
                 	<c:if test="${!empty style }">
 	                	<c:forEach items="${style}" var="style">
-	                		<div class="menu_box swiper-slide">
+	                		<div class="swiper-slide menu_box">
+	                			<input type="hidden" value="${style.harNum }" id="harNum"/>
 	                			<input type="hidden" value="${style.style_num }" class="styleNum" />
 	                            <p class="menu_item">${style.style_name}</p>
 	                            <p class="menu_time">${style.style_time }분 소요</p>
