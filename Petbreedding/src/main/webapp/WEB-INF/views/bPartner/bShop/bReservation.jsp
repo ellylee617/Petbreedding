@@ -65,7 +65,8 @@
 												</c:choose>
 												<td class="resTime">${rev.res_date}</td>
 												<td class="resName">${rev.name}</td>
-												<td class="resInfo"><a href="#">상세보기</a></td>
+												<td class="resInfo"><a href="bReservationDetail?har_rnum=${rev.har_rnum}">상세보기</a></td>
+												<td class="ff">${rev.har_rnum}</td>
 											</tr>
 										</c:forEach>
 									</table>
@@ -109,7 +110,7 @@
 												</c:choose>
 												<td class="resTime">${rev.hos_date}</td>
 												<td class="resName">${rev.name}</td>
-												<td class="resInfo"><a href="#">상세보기</a></td>
+												<td class="resInfo"><a href="bReservationDetail">상세보기</a></td>
 											</tr>
 										</c:forEach>
 									</table>

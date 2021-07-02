@@ -27,11 +27,11 @@
                         <tr class="infoTitle">예약 정보</tr>
                         <tr class="info">
                             <td>일정</td>
-                            <td>2021-06-10 목요일 오후 4:30</td>
+                            <td>${list.res_date} 오후 ${list.res_time}</td>
                         </tr>
                         <tr class="info">
                             <td>상품</td>
-                            <td>클리퍼 미용 (+)디자인 컷</td>
+                            <td> ${list.hairSalon.shopName}(+)${list.style.style_name}</td>
                         </tr>
                     </table>
                 </div>
@@ -40,15 +40,15 @@
                         <tr class="infoTitle">예약자 정보</tr>
                         <tr class="info">
                             <td>예약자명</td>
-                            <td>곽서현</td>
+                            <td>${list.client.name}</td>
                         </tr>
                         <tr class="info">
                             <td>연락처</td>
-                            <td>010-1234-1234</td>
+                            <td>${list.client.tel}</td>
                         </tr>
                         <tr class="info">
                             <td>이메일</td>
-                            <td>abcd@naver.com</td>
+                            <td>${list.client.email}</td>
                         </tr>
                     </table>
                 </div>
@@ -56,19 +56,45 @@
                     <table>
                         <tr class="infoTitle">반려견 정보</tr>
                         <tr>
-                            <td>또비</td>
-                            <td>7살</td>
-                            <td>5.5kg</td>
-                            <td>중성화</td>
-                            <td>미용경험 무</td>
-                            <td>5차 완료</td>
-                            <td>입질 없음</td>
-                            <td>입</td>
-                            <td>다리</td>
-                            <td>슬개골 탈구 2기</td>
-                        </tr>
-                        <tr>
+                            <td>${list.pet.pet_name}</td>
+                            <td>${list.pet.pet_birth}</td>
+                            <td>${list.pet.pet_kind}</td>
+                            <td>${list.pet.pet_weight}kg</td>
+				<c:choose>
+                <c:when test="${list.pet.pet_neut == null}">
+                            <td>중성화 x</td>
+          		</c:when>
+          		<c:when test="${list.pet.pet_neut != null}">
+                            <td>중성화 o</td>
+          		</c:when>
+          		</c:choose>
+          		<c:choose>
+          		 <c:when test="${list.pet.pet_exper == null}">
+                            <td>미용경험 없음 </td>
+                </c:when>
+                <c:when test="${list.pet.pet_exper != null}">
+                            <td>미용경험 ${list.pet.pet_exper} </td>
+                </c:when>
+                </c:choose>          
+                            <td>${list.pet.pet_vaccin}</td>
+                            <td>입질 ${list.pet.pet_bite}</td>
+                            <td>${list.pet.dislike}</td>
+                <c:choose>
+          		 <c:when test="${list.pet.kneecap == null}">            
+                            <td>슬개골 없음</td>
+                 </c:when>
+                 <c:when test="${list.pet.kneecap != null}">
+                 		<td>${list.pet.kneecap != null}</td>
+                 </c:when>
+                 </c:choose>       
+                       <c:choose>
+          		 <c:when test="${list.pet.kneecap == null}"> 
                             <td>특이사항 없음</td>
+                      </c:when>
+                      <c:when test="${list.pet.kneecap != null}"> 
+                            <td>${list.pet.pet_others}</td>
+                      </c:when>
+                      </c:choose>
                         </tr>
                     </table>
                 </div>

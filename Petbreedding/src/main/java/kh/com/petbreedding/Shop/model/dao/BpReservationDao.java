@@ -27,6 +27,11 @@ public class BpReservationDao {
 		return sqlSession.selectList("bprev.hartRavList", bp_id);
 	}
 	
+	// 헤어살롱 예약상세페이지
+	public HairShopReservation revharcon(String har_rnum) throws Exception{
+		return sqlSession.selectOne("bprev.HarRevCon", har_rnum);
+	}
+	
 	
 	//병원
 	public List<HospitalReservation> revHosList(HospitalReservation vo) throws Exception{

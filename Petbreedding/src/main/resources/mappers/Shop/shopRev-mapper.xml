@@ -33,6 +33,19 @@
 		<result column="STYLE_NUM2" property="style_num2" />
 	</resultMap>
 	
+		
+	<!-- HAR_SARLON 테이블  -->
+	<resultMap type="HairSalon" id="HairSalon">
+		<id column="HAR_NUM" property="harNum"/>
+		<result column="0" property="sun"/>
+		<result column="1" property="mon"/>
+		<result column="2" property="tue"/>
+		<result column="3" property="wed"/>
+		<result column="4" property="thu"/>
+		<result column="5" property="fri"/>
+		<result column="6" property="sat"/>
+	</resultMap>
+	
 	<!-- 미용실 예약 등록 -->
 		<!-- 메인 메뉴 -->
 		<select id="revPage" resultMap="Style" parameterType="string">
@@ -76,17 +89,32 @@
 			]]>
 		</select>
 	
+		<!-- 미용실 주휴일 조회 -->
+		<select id="checkDayOff" parameterType="string" resultMap="HairSalon">
+			SELECT *
+			FROM (
+			SELECT H.har_num, D.har_dayoff AS DAYOFF
+			FROM HAIR_SALON H
+			LEFT JOIN HAIR_DAYOFF D
+			ON H.HAR_NUM = D.HAR_NUM
+			WHERE H.HAR_NUM = #{har_num}
+			)
+			PIVOT (
+			SUM(DAYOFF) 
+			FOR DAYOFF
+			IN (0,1,2,3,4,5,6))
+		</select>
+		
 	<!-- 동물병원 -->
 	<resultMap type="Hospital" id="Hospital">
 		<id column="HOS_NUM" property="hosNum"/>
-		<result column="BP_ID" property="bpId"/>
-		<result column="HOS_NAME" property="shopName"/>
-		<result column="HOS_ADDR" property="shopAddr"/>
-		<result column="HOS_TEL" property="shopTel"/>
-		<result column="OPEN_TIME" property="shopTime"/>
-		<result column="HOS_MINFO" property="shopMInfo"/>
-		<result column="HOS_CONN" property="hosConn"/>
-		<result column="HOS_CLICK" property="hosClick"/>
+		<result column="0" property="sun"/>
+		<result column="1" property="mon"/>
+		<result column="2" property="tue"/>
+		<result column="3" property="wed"/>
+		<result column="4" property="thu"/>
+		<result column="5" property="fri"/>
+		<result column="6" property="sat"/>
 	</resultMap>
 	
 	<!-- 동물병원 예약VO  -->
@@ -104,7 +132,24 @@
 		<result column="HOS_TIME" property="hos_time"/>
 	</resultMap>
 	
+	<!-- 진료 정보 테이블 -->
+	<resultMap type="MedicalType" id="MedicalType">
+		<id column="MED_NUM" property="medNum"/>
+		<result column="HOS_NUM" property="hosNum"/>
+		<result column="MED_NAME" property="medName"/>
+		<result column="MED_PRICE" property="medPrice"/>
+	</resultMap>
+	
 	<!-- 병원 예약 등록 -->
+	
+		<!-- 병원메뉴 -->
+		<select id="hosMenu" resultMap="MedicalType" parameterType="string">
+				SELECT * 
+				FROM Medical_Type  
+				WHERE HOS_NUM = #{hos_num}
+				ORDER BY med_num ASC
+		</select>
+	
 		<!-- 예약등록 -->
 		<insert id="insertHosRev" parameterType="HosRev">
 			INSERT INTO HOS_RESERVATION 
@@ -121,6 +166,22 @@
 			<![CDATA[
 			select hos_time,hos_date from hos_reservation where hos_num = #{hos_num} and hos_date = #{hos_date} and (hos_status = 0 OR hos_status = 1)
 			]]>
+		</select>
+		
+		<!-- 병원 주휴일 조회 -->
+		<select id="checkDayOff2" parameterType="string" resultMap="Hospital">
+			SELECT *
+			FROM (
+			SELECT H.hos_num, D.hos_dayoff AS DAYOFF
+			FROM Hospital H
+			LEFT JOIN HOSPITAL_DAYOFF D
+			ON H.HOS_NUM = D.HOS_NUM
+			WHERE H.HOS_NUM = #{hos_num}
+			)
+			PIVOT (
+			SUM(DAYOFF) 
+			FOR DAYOFF
+			IN (0,1,2,3,4,5,6))
 		</select>
 	
 </mapper>

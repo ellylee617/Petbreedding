@@ -1,10 +1,7 @@
 package kh.com.petbreedding;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,53 +63,25 @@ public class shopController {
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
 	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception {
 
-		
 		// shopType 0은 미용실, 1은 동물병원
 
 		if (shopType == 0) {
 
 			int harShopType = 0;
-			
 			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
-			
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
-			
-			//기본 매장 찜한 숫자 가져오기
-			String har_num = null;
-			List<String> list = new ArrayList<String>();
-			for(int i =0; i<salonList.size(); i++) {
-				har_num = salonList.get(i).getHarNum();
-				String count = likeService.countSalon(har_num);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
-			
-			/*
-			 * List<String> list = new ArrayList<String>(); 
-			 * System.out.println("~~~~~~~~~~~~~harNum ~~~~~~~~~"+list);
-			 * HashMap<String,String> salonCount = likeService.countSalon(list);
-			 * System.out.println("!!!!!!!salonList!!!!!!!!! "+ salonCount);
-			 */
+
 //			List<HairSalonImg> harImgList = shopService.selectHarImgList();
 
 			List<HairSalon> ultra = ctaService.ctabuylist();
-			System.out.println("울트라콜 미용실 리스트:"+ultra);
-			
-			List<String> list2 = new ArrayList<String>();
-			for(int i =0; i<ultra.size(); i++) {
-				har_num = ultra.get(i).getHarNum();
-				String count = likeService.countSalon(har_num);
-				System.out.println("************count*****"+count);
-				list2.add(count);
-				mv.addObject("count2", list2);
-			}
-			
+
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
 
+			// 미용실 대표 사진 리스트
+			// TODO
 
 		} else {
 
@@ -123,18 +92,9 @@ public class shopController {
 			mv.addObject("shopType", hosShopType);
 			mv.addObject("shopList", hosList);
 			mv.setViewName("/user/uShop/shopList");
-			
-			//찜한 숫자 가져오기
-			String hos_num = null;
-			List<String> list = new ArrayList<String>();
-			for(int i =0; i<hosList.size(); i++) {
-				hos_num = hosList.get(i).getHosNum();
-				String count = likeService.countHos(hos_num);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
 
+			// 동물병원 매장 대표 사진 출력
+			// TODO
 
 		}
 
@@ -381,8 +341,23 @@ public class shopController {
 		
 	// 사업자 예약확인
 	@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
-	public String bReservationDetail(Locale locale, Model model) {
-		return "/bPartner/bShop/bReservationDetail";
+	public ModelAndView bReservationDetail(
+			HttpSession session, 
+			HttpServletResponse res,
+			HairShopReservation rev
+			) throws Exception {
+			
+		ModelAndView mav = new ModelAndView();
+		System.out.println("예약번호는 : " + rev.getHar_rnum());
+		HairShopReservation vo = new HairShopReservation();
+		Client cl =  new Client();
+		
+		
+		vo = bprevService.revharcon(rev.getHar_rnum());
+		
+		mav.setViewName("/bPartner/bShop/bReservationDetail");
+		mav.addObject("list", vo);
+		return mav ;
 	}
 
 	// 사업자 화상채팅하기
