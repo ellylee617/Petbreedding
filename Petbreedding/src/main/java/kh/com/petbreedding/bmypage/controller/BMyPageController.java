@@ -612,7 +612,7 @@ public class BMyPageController {
 		if (bPType == 0) {
 
 			// 미용실 기본 정보 수정
-			
+			// ++ 대표 사진 수정
 			MultipartFile mf = mulitreq.getFile("shopMainImg"); // input type="file" name="shopMainImg"
 			UUID uuid = UUID.randomUUID(); 
 			String originalfileName = mf.getOriginalFilename();
@@ -658,9 +658,28 @@ public class BMyPageController {
 		} else {
 
 			// 동물병원 기본 정보 수정
-			// TODO: 매장 대표사진 코드 추가 !!! 
+			// ++ 대표 사징 수정
+			MultipartFile mf = mulitreq.getFile("shopMainImg"); // input type="file" name="shopMainImg"
+			UUID uuid = UUID.randomUUID(); 
+			String originalfileName = mf.getOriginalFilename();
+			String saveName = uuid.toString() + "_" + originalfileName;
+			File uploadFile = new File(savePath + "//" + saveName);
+			
+			try {
+				mf.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			hosVO.setShopMImg(originalfileName);
+			System.out.println("수정할 동물병원 정보:"+hosVO);
 			shopService.updateHosInfo(hosVO);
-			hosVO.toString();
+			
+			
 
 			// 동물병원 예전 사진 삭제
 			shopService.deleteHosImg(hosNum);

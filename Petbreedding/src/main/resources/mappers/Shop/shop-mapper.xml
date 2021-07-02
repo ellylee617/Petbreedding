@@ -213,9 +213,9 @@
 	<!-- 동물병원 기본 정보 수정 -->
 	<update id="updateHosInfo" parameterType="Hospital">
 		UPDATE HOSPITAL 
-		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X) 
+		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X, HOS_MIMG) 
 		= (
-			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}}
+			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg}
 			FROM dual
 		)
 		WHERE BP_ID = #{bpId}	
