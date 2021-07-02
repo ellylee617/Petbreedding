@@ -271,17 +271,6 @@ public class ShopServiceImpl implements ShopService {
 		return result;
 	}
 
-	@Override
-	public List<Hospital> selectHosList(int currentPage, int limit) {
-		List<Hospital> hosList = null;
-		System.out.println("서비스 진입");
-		try {
-			hosList = shopDao.selectHosList(currentPage, limit);
-		} catch(Exception e) {
-		}
-		System.out.println("List<Hospital> hosList ::" + hosList);
-		return hosList;
-	}
 
 
 
@@ -481,6 +470,34 @@ public class ShopServiceImpl implements ShopService {
 		List<HairSalon> list = null;
 		try {
 			list = shopDao.selectHarList(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
+	// 동물병원 리스트 총 갯수
+	@Override
+	public int countHosList() {
+		int result = -1;
+		try {
+			result = shopDao.countHosList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+	// 동물병원 리스트 조회 + 페이징 처리 
+	@Override
+	public List<Hospital> selectHosList(Pagination page) {
+		List<Hospital> list = null;
+		try {
+			list = shopDao.selectHosList(page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

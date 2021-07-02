@@ -175,14 +175,19 @@ public class ShopDao {
 	 * 
 	 * */
 	
+	// 동물병원 리스트 총 갯수
+	public int countHosList() {
+		System.out.println("~~ ShopDao ~~");
+		return sqlSession.selectOne("Shop.countHosList");
+	}
 	
 	// 동물병원 전체 리스트 조회 (shopController)
-	public List<Hospital> selectHosList(int currentPage, int limit) {
+	public List<Hospital> selectHosList(Pagination page) {
 		System.out.println("DAO 진입");
-		int startRow = (currentPage -1) * limit;
-		RowBounds row = new RowBounds(startRow, limit);
-		System.out.println("DAO 끝");
-		return sqlSession.selectList("Shop.selectHosList", null, row);
+//		int startRow = (currentPage -1) * limit;
+//		RowBounds row = new RowBounds(startRow, limit);
+//		System.out.println("DAO 끝");
+		return sqlSession.selectList("Shop.selectHosList", page);
 	}
 	
 	//	TODO

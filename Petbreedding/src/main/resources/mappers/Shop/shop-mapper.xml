@@ -69,7 +69,7 @@
 		</select>
 		
 		<!-- 미용실 전체 리스트 -->
-		<!-- TODO:페이징 작업중~~ -->
+		<!-- 페이징 작업 완료 -->
 		<select id="selectHarList" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -219,10 +219,23 @@
 		
 	<!-- TODO -->
 	<!-- 동물병원 리스트 갯수 출력 -->
+	<select id="countHosList" resultType="int">
+			SELECT COUNT(*) FROM HOSPITAL
+		</select>
 	
 	<!-- 동물병원 전체 리스트 -->
+	<!-- TODO:페이징 작업중~~ -->
 	<select id="selectHosList" parameterType="Hospital" resultMap="Hospital">
-		SELECT * FROM HOSPITAL
+		<![CDATA[
+			SELECT B.*
+			FROM(
+				SELECT ROWNUM R, A.*
+				FROM (
+					SELECT *
+					FROM HOSPITAL) A
+			) B
+			WHERE #{start} <= R AND R <=#{end}
+			]]>
 	</select>	
 	
 		<!-- TODO -->

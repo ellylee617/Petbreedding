@@ -40,8 +40,9 @@ public interface ShopService {
 	public int deleteStyle(String styleNum); // 미용실 메뉴 삭제 
 	
 	
-	public List<Hospital> selectHosList(int currentPage, int limit); // 동물병원 전체 리스트 조회 //*********TODO:위치이동***********
-	//TODO: 동물병원 리스트 총 갯수
+//	public List<Hospital> selectHosList(int currentPage, int limit); // 동물병원 전체 리스트 조회 //*********TODO:위치이동***********
+	public int countHosList(); // 동물병원 리스트 총 갯수
+	public List<Hospital> selectHosList(Pagination page);
 	
 	public int insertHosInfo(Hospital vo);	// 동물병원 기본 정보 입력
 	public Hospital selectHosInfo(String bpId); //동물병원 기본 정보 불러오기

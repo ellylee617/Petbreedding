@@ -74,7 +74,6 @@ public class shopController {
 			) throws Exception {
 		
 		// TODO: 페이징 작업
-		// **** ModelAndView 때문에 에러 발생해서 Model로 바꿔줌 !****
 		int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
 		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		mv.addObject("paging", page);
@@ -130,11 +129,12 @@ public class shopController {
 		} else {
 
 			int hosShopType = 1;
-			List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
+			List<Hospital> hosList = shopService.selectHosList(page);
 			System.out.println("컨트롤러 동물병원 리스트:" + hosList);
 
 			mv.addObject("shopType", hosShopType);
 			mv.addObject("shopList", hosList);
+			mv.addObject("paging", page);
 			mv.setViewName("/user/uShop/shopList");
 			
 			//찜한 숫자 가져오기
