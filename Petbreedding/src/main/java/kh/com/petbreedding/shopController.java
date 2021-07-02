@@ -77,6 +77,7 @@ public class shopController {
 			
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			
+			//기본 매장 찜한 숫자 가져오기
 			String har_num = null;
 			List<String> list = new ArrayList<String>();
 			for(int i =0; i<salonList.size(); i++) {
@@ -87,15 +88,17 @@ public class shopController {
 				mv.addObject("count", list);
 			}
 			
-			/*
-			 * List<String> list = new ArrayList<String>(); 
-			 * System.out.println("~~~~~~~~~~~~~harNum ~~~~~~~~~"+list);
-			 * HashMap<String,String> salonCount = likeService.countSalon(list);
-			 * System.out.println("!!!!!!!salonList!!!!!!!!! "+ salonCount);
-			 */
 //			List<HairSalonImg> harImgList = shopService.selectHarImgList();
 
 			List<HairSalon> ultra = ctaService.ctabuylist();
+			List<String> list2 = new ArrayList<String>();
+			for(int i =0; i<ultra.size(); i++) {
+				har_num = ultra.get(i).getHarNum();
+				String count = likeService.countSalon(har_num);
+				System.out.println("************count*****"+count);
+				list2.add(count);
+				mv.addObject("count2", list2);
+			}
 
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
@@ -115,6 +118,17 @@ public class shopController {
 			mv.addObject("shopList", hosList);
 			mv.setViewName("/user/uShop/shopList");
 
+			//찜한 숫자 가져오기
+			String hos_num = null;
+			List<String> list = new ArrayList<String>();
+			for(int i =0; i<hosList.size(); i++) {
+				hos_num = hosList.get(i).getHosNum();
+				String count = likeService.countHos(hos_num);
+				System.out.println("************count*****"+count);
+				list.add(count);
+				mv.addObject("count", list);
+			}
+			
 			// 동물병원 매장 대표 사진 출력
 			// TODO
 

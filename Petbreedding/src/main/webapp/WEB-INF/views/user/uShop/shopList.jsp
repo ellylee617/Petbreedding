@@ -58,7 +58,6 @@
             
             <div class="storeS">
                <c:forEach items="${shopList}" var="item" varStatus="status">
-                     
                 <ul>
                     <div class="Store">                     
                         <li class="storeList">
@@ -69,7 +68,7 @@
 	                                <div class="storeList_etc_area">
 	                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
 	                                    <a href="#">구매건수<small>999+</small></a>
-	                                    
+	                                    <a href="#">찜하기 <small> ${count[status.index]}</small></a>
 	                                </div>
                                     <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
                                     <input type="hidden" id="y" name="y" value="${item.y }">
@@ -104,7 +103,7 @@
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
-                   <c:forEach var="cta" items="${cta}">
+                   <c:forEach var="cta" items="${cta}" varStatus="status">
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
@@ -114,7 +113,7 @@
                                 <div class="ultraList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
-                                    <a href="#">찜하기<small>999+</small></a>
+                                    <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
                                     <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}&y=${cta.y }&x=${cta.x }"  class="goList">정보보기</a>

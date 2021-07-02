@@ -35,4 +35,8 @@ public class LikesDao {
 	public String countSalon(String har_num) {
 		return sqlSession.selectOne("likes.countSalon", har_num);
 	}
+	
+	public String countHos(String hos_num) {
+		return sqlSession.selectOne("likes.countHos", hos_num);
+	}
 }
