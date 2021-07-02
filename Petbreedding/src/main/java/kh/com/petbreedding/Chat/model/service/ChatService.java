@@ -14,9 +14,12 @@ public interface ChatService {
 	public ChatRoom selectChatRoom(String chatId);
 	public List<ChatList> getList(String cl_num);
 	public List<ChatList> getListbp_id(String bp_id);
+	public List<ChatList> getUnreadList(String cl_num);
+	public List<ChatList> getUnreadListbp_id(String bp_id);
 	public List<ChatMessage> getMessageList(String chatId);
 	public List<ChatMessage> getMessageListbp_id(String chatId);
 	public List<ChatMessage> getUnreadCount(ChatMessage cm);
 	public List<ChatMessage> getUnreadCountbp_id(ChatMessage cm);
 	public int updateUnreadCount(String mId);
+	public int getAllCount(String mReceiver);
 }

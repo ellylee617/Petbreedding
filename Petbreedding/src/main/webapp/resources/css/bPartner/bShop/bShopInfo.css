@@ -69,7 +69,6 @@
 	text-align: center;
 	line-height: 30px;
 }
-
 input[type="text"] {
 	height: 35px;	
 	margin-bottom: 10px;
@@ -80,7 +79,8 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked+label .dayitem{
-	background-color: var(--hover-color);
+	background-color: var(--bmenu-color);
+	color: var(--font-color);
 }
 
 /* 등록하기 버튼*/

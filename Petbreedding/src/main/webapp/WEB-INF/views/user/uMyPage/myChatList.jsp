@@ -26,35 +26,56 @@
 			<div class="mcontent">
 				<div class="tabmenu">
 					<ul>
-						<li id="tab1" class="btnCon"><input type="radio"
-							name="tabmenu" checked id="tabmenu1" class="Tmenu"> <label
-							for="tabmenu1">전체</label></li>
-						<li id="tab2" class="btnCon"><input type="radio"
-							name="tabmenu" id="tabmenu2" class="Tmenu"> <label
-							for="tabmenu2">읽지 않음</label></li>
+						<li id="tab1" class="btnCon">
+						<input type="radio" name="tabmenu" checked id="tabmenu1" class="Tmenu">
+						<label for="tabmenu1">전체</label>
+						<div class="tabCon">
+							<c:if test="${not empty Roomlist }">
+							<c:forEach items="${Roomlist }" var="r" varStatus="status">
+							<table onClick="openchatwin('${r.chatId }','${r.shopName}','${r.bp_id}' );">
+								<tr>
+									<td rowspan="2"><img src="http://placehold.it/50X50"></td>
+									<td>${r.shopName }</td>
+									<td>${r.mSendTime }</td>
+									<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+								</tr>
+								<tr>
+									<td>${r.mContent }</td>
+									<td colspan="2">
+									<c:if test="${r.unreadCount ne 0 }"><div class="countwrap">${r.unreadCount }</div></c:if>
+									</td>
+								</tr>
+							</table>
+							</c:forEach>
+							</c:if>
+						</div>
+						</li>
+						<li id="tab2" class="btnCon">
+						<input type="radio" name="tabmenu" id="tabmenu2"  class="Tmenu">
+						<label for="tabmenu2">읽지 않음<c:if test="${countUnread ne 0 } }">${countUnread}</c:if></label>
+						<div class="tabCon">
+						<c:if test="${not empty unreadList }">
+						<c:forEach items="${unreadList }" var="u" varStatus="status">
+						<table onClick="openchatwin('${u.chatId }','${u.shopName}','${u.bp_id}' );">
+							<tr>
+								<td rowspan="2"><img src="http://placehold.it/50X50"></td>
+								<td>${u.shopName }</td>
+								<td>${u.mSendTime }</td>
+								<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>${u.mContent }</td>
+								<td colspan="2">
+								<c:if test="${u.unreadCount ne 0 }"><div class="countwrap">${u.unreadCount }</div></c:if>
+								</td>
+							</tr>
+						</table>
+						</c:forEach>
+						</c:if>
+						</div>
+						</li>
 					</ul>
 				</div>
-			<div class="listwrap">
-			<c:if test="${not empty Roomlist }">
-			<c:forEach items="${Roomlist }" var="r" varStatus="status">
-					<table onClick="openchatwin('${r.chatId }','${r.shopName}','${r.bp_id}' );">
-						<tr>
-							<td rowspan="2"><img src="http://placehold.it/50X50"></td>
-							<td>${r.shopName }</td>
-							<td>${r.mSendTime }</td>
-							<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
-						</tr>
-						<tr>
-							<td>${r.mContent }</td>
-							<td colspan="2">
-							<c:if test="${r.unreadCount ne 0 }">읽지 않은 메시지 : ${r.unreadCount }개</c:if>
-							<c:if test="${r.unreadCount eq 0 }">읽지 않은 메시지가 없습니다</c:if>
-							</td>
-						</tr>
-					</table>
-					</c:forEach>
-				</c:if>
-			</div>
 			</div>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />

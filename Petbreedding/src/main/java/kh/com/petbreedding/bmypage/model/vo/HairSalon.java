@@ -17,11 +17,21 @@ public class HairSalon {
 	private String shopTime; // 미용실 영업시간
 	private String shopMInfo; // 미용실 메인 소개
 	private String shopMImg; //미용실 메인 사진
-	
 	private Style style;
-
+	
 	private List<HairSalonImg> shopImgList; // 미용실 대표사진들. 미용실 하나가 여러 개의 사진을 가짐.
 	private List<String> shopDayOffList; // 미용실 주휴일
+	
+	private String mon;
+	private String tue;
+	private String wed;
+	private String thu;
+	private String fri;
+	private String sat;
+	private String sun;
+
+	
+
 
 
 	@Override
@@ -29,7 +39,8 @@ public class HairSalon {
 		return "HairSalon [harNum=" + harNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
 				+ ", y=" + y + ", x=" + x + ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo="
 				+ shopMInfo + ", shopMImg=" + shopMImg + ", style=" + style + ", shopImgList=" + shopImgList
-				+ ", shopDayOffList=" + shopDayOffList + "]";
+				+ ", shopDayOffList=" + shopDayOffList + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu="
+				+ thu + ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + "]";
 	}
 
 
@@ -150,6 +161,94 @@ public class HairSalon {
 		this.style = style;
 	}
 
+
+
+	public String getMon() {
+		return mon;
+	}
+
+
+
+	public String getTue() {
+		return tue;
+	}
+
+
+
+	public String getWed() {
+		return wed;
+	}
+
+
+
+	public String getThu() {
+		return thu;
+	}
+
+
+
+	public String getFri() {
+		return fri;
+	}
+
+
+
+	public String getSat() {
+		return sat;
+	}
+
+
+
+	public String getSun() {
+		return sun;
+	}
+
+
+
+	public void setMon(String mon) {
+		this.mon = mon;
+	}
+
+
+
+	public void setTue(String tue) {
+		this.tue = tue;
+	}
+
+
+
+	public void setWed(String wed) {
+		this.wed = wed;
+	}
+
+
+
+	public void setThu(String thu) {
+		this.thu = thu;
+	}
+
+
+
+	public void setFri(String fri) {
+		this.fri = fri;
+	}
+
+
+
+	public void setSat(String sat) {
+		this.sat = sat;
+	}
+
+
+
+	public void setSun(String sun) {
+		this.sun = sun;
+	}
+
+	
+	
+	
+	
 }
 
 //

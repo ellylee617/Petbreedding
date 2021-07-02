@@ -81,6 +81,28 @@ public class ChatServiceImpl implements ChatService{
 		}
 		return result;
 	}
+	
+	@Override
+	public List<ChatList> getUnreadList(String cl_num) {
+		List<ChatList> result = null;
+		try {
+			result = chDao.getUnreadList(cl_num);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<ChatList> getUnreadListbp_id(String bp_id) {
+		List<ChatList> result = null;
+		try {
+			result = chDao.getUnreadListbp_id(bp_id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	@Override
 	public List<ChatMessage> getMessageList(String chatId) {
@@ -131,6 +153,17 @@ public class ChatServiceImpl implements ChatService{
 		int result = 0;
 		try {
 			result = chDao.updateUnreadCount(mId);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getAllCount(String mReceiver) {
+		int result = 0;
+		try {
+			result = chDao.getAllCount(mReceiver);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
