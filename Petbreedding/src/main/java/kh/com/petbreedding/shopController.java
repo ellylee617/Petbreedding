@@ -87,11 +87,13 @@ public class shopController {
 //			List<HairSalon> salonList = shopService.selectHarList(page);
 			
 			// 미용실 리스트 - 최신순 
-			List<HairSalon> salonList = shopService.selectHarListNew(page);
+//			List<HairSalon> salonList = shopService.selectHarListNew(page);
 			
 			//TODO
-			// 미용실 리스트 - 거리순
 			// 미용실 리스트 - 인기순
+			List<HairSalon> salonList = shopService.selectHarListRev(page);
+			
+			// 미용실 리스트 - 거리순
 			
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			

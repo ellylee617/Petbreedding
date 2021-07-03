@@ -54,8 +54,13 @@ public class ShopDao {
 	}
 	
 	
-	//	미용실 리스트 : 거리순
 	//	미용실 리스트 : 별점순
+	public List<HairSalon> selectHarListRev(Pagination page) {
+		System.out.println("~~~ShopDao 진입~~~");
+		return sqlSession.selectList("Shop.selectHarListRev", page);
+	}
+	
+	//	미용실 리스트 : 거리순
 	
 	
 	// 미용실 전체 리스트 조회 (shopController)

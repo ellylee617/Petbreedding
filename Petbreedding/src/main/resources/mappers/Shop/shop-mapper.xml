@@ -85,8 +85,36 @@
 			]]>
 		</select>
 		
+
+		<!-- 미용실 리스트 : 별점순  selectHarListLikes-->
+		<select id="selectHarListRev" parameterType="page" resultMap="HairSalon">
+		<![CDATA[
+			SELECT B.*
+			FROM(
+				SELECT ROWNUM R, A.*
+				FROM (
+					SELECT *
+        FROM
+        (SELECT *
+        FROM HAIR_SALON HAR
+        INNER JOIN (SELECT BP_ID, AVG(REV_VAL) AVG_REV_VAL
+        FROM(
+            SELECT B.BP_ID, R.REV_VAL
+            FROM business_partner B
+            INNER JOIN review R
+            ON (b.bp_id = r.bp_id)
+        )  
+        group by BP_ID) BR
+        ON (har.bp_id = br.bp_id)) HARBP
+        ORDER BY HARBP.AVG_REV_VAL DESC
+                    ) A
+			) B
+        WHERE #{start} <= R AND R <=#{end}
+			]]>
+		</select>
+		
+				
 		<!-- 미용실 리스트 : 거리순 selectHarListNear-->
-		<!-- 미용실 리스트 : 별점순  selectHarListLike-->
 		
 		
 		
