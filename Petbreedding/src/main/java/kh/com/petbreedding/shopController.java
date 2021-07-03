@@ -362,16 +362,24 @@ public class shopController {
 		
 		Client cl =  new Client();
 		
+		// 채팅 오픈 시 bp_id 필요해서 추가
+		BPartner bpartner = (BPartner) session.getAttribute("bP");
+		String bp_id = bpartner.getBp_Id();
+		
 		if(rev.getHar_rnum() != null) {
 			vo = bprevService.revharcon(rev.getHar_rnum());
 			mav.addObject("list", vo);
 			mav.setViewName("/bPartner/bShop/bReservationDetail");
+			// 채팅창 오픈 시 bp_id 필요해서 추가
+			mav.addObject("bp_id", bp_id);
 			return mav ;
 			
 		}else if(hos.getHos_rnum() != null) {
 			hoslist = bprevService.revhoscon(hos.getHos_rnum()); 
 			mav2.addObject("list2", hoslist);
 			mav2.setViewName("/bPartner/bShop/bReservationDetail2");
+			// 채팅 오픈 시 bp_id 필요해서 추가
+			mav2.addObject("bp_id", bp_id);
 			return mav2;
 		}
 		return mav;
