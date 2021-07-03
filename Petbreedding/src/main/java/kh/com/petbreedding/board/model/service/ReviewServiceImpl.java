@@ -22,7 +22,20 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	private MyPointDao myPointDao;
 
-
+	@Override
+	public List<Review> selectRevValList(String bpId) {
+		List<Review> reviewList = null;
+		reviewList = reviewDao.selectRevValList(bpId);
+		return reviewList;
+		
+	}
+	
+	@Override
+	public String selectCountReview(String bpId) {
+		String count = reviewDao.selectCountReview(bpId);
+		return count;
+	}
+	
 	@Override
 	public List<Review> reviewSelectList(String bpId, int currentPage, int limit) {
 		System.out.println("서비스 진입1");
@@ -81,5 +94,9 @@ public class ReviewServiceImpl implements ReviewService {
 			
 		return result;
 	}
+
+
+
+
 
 }

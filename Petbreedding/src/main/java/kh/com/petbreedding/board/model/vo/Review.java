@@ -1,5 +1,7 @@
 package kh.com.petbreedding.board.model.vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,10 +15,22 @@ public class Review {
 	private String revDate;
 	private int revVal;
 	
+	private double avgRevVal;
+	
+
 	@Override
 	public String toString() {
 		return "Review [revNum=" + revNum + ", bpId=" + bpId + ", clNum=" + clNum + ", clNickName=" + clNickName
-				+ ", revCont=" + revCont + ", revImg=" + revImg + ", revDate=" + revDate + ", revVal=" + revVal + "]";
+				+ ", revCont=" + revCont + ", revImg=" + revImg + ", revDate=" + revDate + ", revVal=" + revVal
+				+ ", avgRevVal=" + avgRevVal + "]";
+	}
+
+	public double getAvgRevVal() {
+		return avgRevVal;
+	}
+
+	public void setAvgRevVal(double avgRevVal) {
+		this.avgRevVal = avgRevVal;
 	}
 
 	public String getRevNum() {

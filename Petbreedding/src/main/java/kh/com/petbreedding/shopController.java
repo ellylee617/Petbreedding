@@ -90,19 +90,30 @@ public class shopController {
 //			List<HairSalon> salonList = shopService.selectHarListNew(page);
 			
 			//TODO
-			// 미용실 리스트 - 인기순
+			// 미용실 리스트 - 별점순
 			List<HairSalon> salonList = shopService.selectHarListRev(page);
+			
+			
 			
 			// 미용실 리스트 - 거리순
 			
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			
 			//기본 매장 찜한 숫자 가져오기
+			// + 별점 출력 
 			String har_num = null;
+			String bpId = null;
 			List<String> list = new ArrayList<String>();
+			List<String> countList = new ArrayList<String>();
 			for(int i =0; i<salonList.size(); i++) {
 				har_num = salonList.get(i).getHarNum();
+				bpId = salonList.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
+				List<Review>reviewList = reviewService.selectRevValList(bpId);
+				String countRev = reviewService.selectCountReview(bpId);
+				countList.add(countRev);
+				mv.addObject("reviewList", reviewList);
+				mv.addObject("countRev", countList);
 				System.out.println("************count*****"+count);
 				list.add(count);
 				mv.addObject("count", list);

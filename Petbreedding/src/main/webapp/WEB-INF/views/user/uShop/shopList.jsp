@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:set var="shopType" value="${param.shopType}"/>
 <!DOCTYPE html>
@@ -149,6 +150,7 @@
             
            <div class="storeS">
                <c:forEach items="${shopList}" var="item" varStatus="status" >
+               	<c:forEach items="${reviewList }" var="items">
                 <ul>
                     <div class="Store">                      
                        <li class="storeList">
@@ -158,7 +160,35 @@
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
                                 <div class="storeList_etc_area">
-                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
+                                    <a href="#">리뷰<small> 
+                                    
+                                    <c:if test="${items.avgRevVal ge 1 && items.avgRevVal lt 2}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${items.avgRevVal ge 2 && items.avgRevVal lt 3}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${items.avgRevVal ge 3 && items.avgRevVal lt 4}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${items.avgRevVal ge 4 && items.avgRevVal lt 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+	                                    <c:if test="${items.avgRevVal eq 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                    </c:if>
+                                    
+                                    ${countRev[status.index]}개 </small></a>
                                     <a href="#">구매건수<small>999+</small></a>
 		                            <a href="#">찜하기 <small> ${count[status.index]}</small></a>
                                 </div>
@@ -171,6 +201,7 @@
                         </li>
                     </div>
                 </ul>
+                	</c:forEach>
                 </c:forEach>
             </div>
             

@@ -39,4 +39,14 @@ public class ReviewDao {
 		return sqlSession.selectOne("Shop.searchBpId", har_num);
 	}
 	
+	public List<Review> selectRevValList(String bpId) {
+		System.out.println("Review Dao 진입");
+		return sqlSession.selectList("Review.selectRevValList",bpId);
+	}
+	
+	public String selectCountReview(String bpId) {
+		System.out.println("Review Dao 진입");
+		return sqlSession.selectOne("Review.selectCountReview",bpId);
+	}
+	
 }
