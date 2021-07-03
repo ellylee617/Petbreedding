@@ -55,7 +55,7 @@
                         <p>${shopInfo.shopMInfo }</p>
                     </div>
                     <div class="store_btn">
-                        <a href="#" id="goChat" class="sBtn">문의하기</a>
+                        <a href="#" id="goChat" class="sBtn" onclick="openchatwin('${bp_id}','${shopInfo.shopName}','${shopType }')">문의하기</a>
                         <c:if test="${empty client }">
                         	<a href="${path}/uLogin" id="goRev" class="sBtn" >예약하기</a>
                         </c:if>
