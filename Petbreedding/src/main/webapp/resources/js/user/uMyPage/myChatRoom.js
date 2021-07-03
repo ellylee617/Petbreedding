@@ -3,11 +3,8 @@ $(document).ready(function() {
 	// 웹소켓 연결
     connect();
     console.log("enterRoom");
-    
-    $('html, body').animate({
-        scrollTop: $('#chatMessageArea').offset().top
-    }, 'fast'); //slow    
-    
+    scrolldown();
+       
     // enter 키 이벤트
 	$('#message').keyup(function(e) {
          if(e.keyCode == 13 && !e.shiftKey) {
@@ -129,11 +126,21 @@ function appendMessage(msg) {
 							+ msg.mContent + "</span></div><div class='col-12 dTimeO'><br><div>"
 							+ msg.mSendTime + "</div></div></div></div><br><br><br><br>");
 		}
+		scrolldown();
 	}
 	
 }
 
 //스크롤 쭉 내리기
-var scHeight = $("#chatArea").prop('scrollHeight');
-$("#chatArea").animate({ scrollTop: scHeight }, "slow");
+function scrolldown(){
+	var scHeight = $("#chatArea").prop('scrollHeight');
+	$("#chatArea").animate({ scrollTop: scHeight }, "slow");	
+}
 
+// 채팅 창 내 매장명 클릭 시 매장 정보 페이지로 이동
+function openshopwin(inbpId,inshopType) {
+	var bpId = inbpId;
+	var shopType = inshopType;
+	var url = '/petbreedding/shopPage?bpId='+bpId+'&shopType='+shopType;
+	window.open(url, '_blank');
+}

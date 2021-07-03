@@ -28,7 +28,7 @@
 	<% Client client = (Client)session.getAttribute("client");
 		String email = client.getEmail(); %>
 	<div class="col-12 bInfo">
-		<div class="col-10 bInfoinner">
+		<div class="col-10 bInfoinner" onclick="openshopwin('${bp_id }','${bp_type }')">
 			${shopName }
 		</div>
 	</div>

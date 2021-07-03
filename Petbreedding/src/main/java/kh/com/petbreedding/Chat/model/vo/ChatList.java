@@ -12,7 +12,21 @@ public class ChatList {
 	private String shopName;
 	private String nickName;
 	private int unreadCount;
+	private int bp_type;
+	private String mImg;
 	
+	public int getBp_type() {
+		return bp_type;
+	}
+	public void setBp_type(int bp_type) {
+		this.bp_type = bp_type;
+	}
+	public String getmImg() {
+		return mImg;
+	}
+	public void setmImg(String mImg) {
+		this.mImg = mImg;
+	}
 	public int getUnreadCount() {
 		return unreadCount;
 	}

@@ -15,6 +15,17 @@ public class ChatServiceImpl implements ChatService{
 	
 	@Autowired
 	private ChatDao chDao;
+	
+	@Override
+	public String getbp_type(String bp_id) {
+		String result = "";
+		try {
+			result = chDao.getbp_type(bp_id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}	
 
 	@Override
 	public int createRoom(ChatRoom cr) {
@@ -105,10 +116,10 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public List<ChatMessage> getMessageList(String chatId) {
+	public List<ChatMessage> getMessageList(ChatRoom cr) {
 		List<ChatMessage> result = null;
 		try {
-			result = chDao.getMessageList(chatId);
+			result = chDao.getMessageList(cr);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,10 +127,10 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public List<ChatMessage> getMessageListbp_id(String chatId) {
+	public List<ChatMessage> getMessageListbp_id(ChatRoom cr) {
 		List<ChatMessage> result = null;
 		try {
-			result = chDao.getMessageListbp_id(chatId);
+			result = chDao.getMessageListbp_id(cr);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

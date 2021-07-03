@@ -26,9 +26,10 @@ public class ChatController {
 
 	@RequestMapping("/chat")
 	public ModelAndView chat(ModelAndView mv, @RequestParam(value = "chatId", required = false) String chatId,
-			@RequestParam(value = "shopName", required = false) String shopName,
-			@RequestParam(value = "clNum", required = false) String clNum,			
-			@RequestParam(value = "bp_id", required = false) String bp_id, HttpServletRequest req) {
+			@RequestParam(value = "shopName", required = false) String shopName,			
+			@RequestParam(value = "bp_id", required = false) String bp_id, 
+			@RequestParam(value = "bp_type", required = false) String bptype, 
+			HttpServletRequest req) {
 			
 		List<ChatMessage> list = null;
 		
@@ -38,6 +39,7 @@ public class ChatController {
 		String nickName = "";
 		String id = "";
 		String cl_num = "";
+		ChatRoom cr = new ChatRoom();
 		
 		// 세션이 널이 아니면(==로그인 되어있으면)
 		if(session!=null) {
@@ -46,11 +48,18 @@ public class ChatController {
 			cl_num = client.getCl_num();
 		}
 		
+		if(bptype == null ) {
+			bptype = chService.getbp_type(bp_id);
+		}
+		//파라미터로 가져온 cl_num, bp_id, bp_type cr에 set
+		cr.setCl_num(cl_num);
+		cr.setBp_id(bp_id);
+		int bp_type = Integer.parseInt(bptype);
+		cr.setBp_type(bp_type);
+		
+		
 		// 채팅방 번호가 없다면
-		if (chatId == null) {
-			ChatRoom cr = new ChatRoom();
-			cr.setCl_num(clNum);
-			cr.setBp_id(bp_id);
+		if (chatId == null) {		
 			
 			// 채팅방이 있는지 한번 확인 후
 			ChatRoom roomResult = null;
@@ -69,22 +78,24 @@ public class ChatController {
 					System.out.println("채팅방 생성 실패");
 				}
 			}
-			chatId = roomResult.getChatId(); 
+			chatId = roomResult.getChatId();
 		}
 		
 		if (chatId !=null) {
+			cr.setChatId(chatId);
 			// 해당 채팅방의 저장된 메시지 가져오기
-			list = chService.getMessageList(chatId); 
+			list = chService.getMessageList(cr); 
 		}
 		
 		// 안 읽은 메시지 있으면 업데이트
 		updateUnread(cl_num, chatId);
 				
 		String user = "user";
+		mv.addObject("user", user);
 		mv.addObject("cl_num", cl_num);
 		mv.addObject("bp_id", bp_id);
-		mv.addObject("user", user);
 		mv.addObject("chatlist", list);
+		mv.addObject("bp_type", bp_type);
 		mv.addObject("id", id);
 		mv.addObject("chatId", chatId);
 		mv.addObject("shopName", shopName);
@@ -97,7 +108,8 @@ public class ChatController {
 	public ModelAndView bchat(ModelAndView mv, @RequestParam(value = "chatId", required = false) String chatId,
 			@RequestParam(value = "nickName", required = false) String nickName,
 			@RequestParam(value = "shopName", required = false) String shopName,
-			@RequestParam(value = "cl_num", required = false) String cl_num, HttpServletRequest req) {
+			@RequestParam(value = "cl_num", required = false) String cl_num, 
+			HttpServletRequest req) {
 		
 		List<ChatMessage> list = null;
 		
@@ -106,18 +118,23 @@ public class ChatController {
 		
 		String id = "";
 		String bp_id = "";
+		int bp_type = 0;
+		ChatRoom cr = new ChatRoom();
 		
 		// 세션이 널이 아니면(==로그인 되어있으면)
 		if(session!=null) {
 			id = bpartner.getBp_email();
 			bp_id = bpartner.getBp_Id();
+			bp_type = bpartner.getBp_type();
 		}
+		
+		//파라미터로 가져온 cl_num, bp_id, bp_type cr에 set
+		cr.setCl_num(cl_num);
+		cr.setBp_id(bp_id);
+		cr.setBp_type(bp_type);
 		
 		// 채팅방 번호가 없다면
 		if (chatId == null) {
-			ChatRoom cr = new ChatRoom();
-			cr.setCl_num(cl_num);
-			cr.setBp_id(bp_id);
 			
 			// 채팅방이 있는지 한번 확인 후
 			ChatRoom roomResult = null;
@@ -126,6 +143,7 @@ public class ChatController {
 			// 기존의 채팅방이 없다면
 			if(roomResult == null) {
 				int result = 0;
+				
 				// 채팅방 생성
 				result = chService.createRoom(cr);
 				
@@ -140,17 +158,18 @@ public class ChatController {
 		}
 		
 		if (chatId !=null) {
+			cr.setChatId(chatId);
 			// 해당 채팅방의 저장된 메시지 가져오기
-			list = chService.getMessageList(chatId); 
+			list = chService.getMessageList(cr); 
 		}
 				
 		// 안 읽은 메시지 있으면 업데이트
 		updateUnread(bp_id, chatId);
 				
 		String user = "bPartber";
+		mv.addObject("user", user);
 		mv.addObject("cl_num", cl_num);
 		mv.addObject("bp_id", bp_id);
-		mv.addObject("user", user);
 		mv.addObject("chatlist", list);
 		mv.addObject("id", id);
 		mv.addObject("chatId", chatId);

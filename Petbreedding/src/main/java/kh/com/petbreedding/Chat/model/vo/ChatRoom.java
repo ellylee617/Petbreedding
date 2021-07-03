@@ -5,7 +5,14 @@ public class ChatRoom {
     private String chatId;
 	private String cl_num;
 	private String bp_id;
+	private int bp_type;
 	
+	public int getBp_type() {
+		return bp_type;
+	}
+	public void setBp_type(int bp_type) {
+		this.bp_type = bp_type;
+	}
 	public String getChatId() {
 		return chatId;
 	}

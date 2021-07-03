@@ -15,6 +15,11 @@ public class ChatDao {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	// BP_TYPE 찾기
+	public String getbp_type(String bp_id) throws Exception {
+		return sqlSession.selectOne("Chat.getbp_type", bp_id);
+	}
 
 	// 채팅방 만들기
 	public int createRoom(ChatRoom cr) throws Exception {
@@ -57,13 +62,13 @@ public class ChatDao {
 	}	
 
 	// 채팅방의 메시지 리스트(client)
-	public List<ChatMessage> getMessageList(String chatId) throws Exception {
-		return sqlSession.selectList("Chat.getMessageList", chatId);
+	public List<ChatMessage> getMessageList(ChatRoom cr) throws Exception {
+		return sqlSession.selectList("Chat.getMessageList", cr);
 	}
 
 	// 채팅방의 메시지 리스트(bPartner)
-	public List<ChatMessage> getMessageListbp_id(String chatId) throws Exception {
-		return sqlSession.selectList("Chat.getMessageListbp_id", chatId);
+	public List<ChatMessage> getMessageListbp_id(ChatRoom cr) throws Exception {
+		return sqlSession.selectList("Chat.getMessageListbp_id", cr);
 	}
 
 	// 해당 채팅방의 내가 안 읽은 메시지 리스트(client)

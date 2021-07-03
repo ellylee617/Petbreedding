@@ -13,7 +13,21 @@ public class ChatMessage {
 	private int mUnreadCount;
 	private String mSenderemail;
 	private String mSenderName;
+	private int bp_type;
+	private String mImg;
 	
+	public int getBp_type() {
+		return bp_type;
+	}
+	public void setBp_type(int bp_type) {
+		this.bp_type = bp_type;
+	}
+	public String getmImg() {
+		return mImg;
+	}
+	public void setmImg(String mImg) {
+		this.mImg = mImg;
+	}
 	public String getmSenderName() {
 		return mSenderName;
 	}

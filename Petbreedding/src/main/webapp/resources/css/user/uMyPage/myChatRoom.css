@@ -35,6 +35,11 @@ div a:hover{
 	border-radius: 10px;
 }
 
+.bInfoinner:hover{
+	background-color: var(--hover-color);
+	cursor: pointer;	
+}
+
 /* 채팅 내용 */
 #chatArea{
 	border: 1px solid #aaa; 
