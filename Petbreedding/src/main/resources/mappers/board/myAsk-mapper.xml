@@ -65,5 +65,9 @@
 		]]>
 	</insert>
 	
+	<delete id="MyAskDelete" parameterType="string">
+		DELETE FROM QNA_BOARD WHERE QNA_NUM = #{qnaNum}
+	</delete>
+	
 	
 </mapper>

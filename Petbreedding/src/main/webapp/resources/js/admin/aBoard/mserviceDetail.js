@@ -3,8 +3,6 @@
  */
 
 $("#delBtn").on("click", function() {
-	var idVar = $(this).attr("name");
-	console.log(idVar);
 	getModal();
 });
 

@@ -34,6 +34,7 @@ import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.service.LikesService;
 import kh.com.petbreedding.common.model.vo.Likes;
+import kh.com.petbreedding.common.model.vo.Pagination;
 import kh.com.petbreedding.cta.model.service.CtaService;
 
 //TODO: !!!!!!!! 경로 수정하고 컨트롤러명 변경하기 !!!!!!!!!!
@@ -64,11 +65,13 @@ public class shopController {
 	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception {
 
 		// shopType 0은 미용실, 1은 동물병원
+		Pagination page = new Pagination();
 
 		if (shopType == 0) {
 
 			int harShopType = 0;
-			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+//			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
+			List<HairSalon> salonList = shopService.selectHarList(page);
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 
 //			List<HairSalonImg> harImgList = shopService.selectHarImgList();
@@ -86,7 +89,8 @@ public class shopController {
 		} else {
 
 			int hosShopType = 1;
-			List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
+//			List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
+			List<Hospital> hosList = shopService.selectHosList(page);
 			System.out.println("컨트롤러 동물병원 리스트:" + hosList);
 
 			mv.addObject("shopType", hosShopType);

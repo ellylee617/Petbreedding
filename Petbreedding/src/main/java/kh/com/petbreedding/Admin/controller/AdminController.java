@@ -180,6 +180,23 @@ public class AdminController {
 		return "/admin/aBoard/mboardcon";
 	}
 	
+	// 게시글 관리 (문의게시판 글 삭제)
+	@RequestMapping(value = "/mboardDelete")
+	public String mboardDelete(String qna_num) {
+		
+		System.out.println("[세훈] @관리자 문의 사항 삭제 qna_num : " + qna_num);
+		
+		int result = myAskService.MyAskDelete(qna_num);
+		
+		if(result > 0) {
+			System.out.println("문의 사항 삭제 성공");
+		} else {
+			System.out.println("문의 사항 삭제 실패");
+		}
+		
+		return "redirect:/mboard";
+	}
+	
 	// 게시글 관리 (문의게시판 댓글)
 	@RequestMapping(value = "/macList", produces = "application/text; charset=UTF-8")
 	public void macList(
