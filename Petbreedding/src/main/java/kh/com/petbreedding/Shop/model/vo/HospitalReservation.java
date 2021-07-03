@@ -1,6 +1,7 @@
 package kh.com.petbreedding.Shop.model.vo;
 
 import kh.com.petbreedding.bmypage.model.vo.Hospital;
+import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
@@ -18,6 +19,8 @@ public class HospitalReservation {
 	private String hos_time; 	//예약 시간
 	private MyPet pet;
 	private Hospital hospital;
+	private MedicalType medical;
+	private Client client;
 	private String name;
 	private String bp_id;
 	public String getHos_rnum() {
@@ -110,13 +113,29 @@ public class HospitalReservation {
 	public void setBp_id(String bp_id) {
 		this.bp_id = bp_id;
 	}
+	public MedicalType getMedical() {
+		return medical;
+	}
+	public void setMedical(MedicalType medical) {
+		this.medical = medical;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 	@Override
 	public String toString() {
 		return "HospitalReservation [hos_rnum=" + hos_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", med_num=" + med_num + ", hos_num=" + hos_num + ", hos_date=" + hos_date
 				+ ", hos_date2=" + hos_date2 + ", med_num2=" + med_num2 + ", hos_status=" + hos_status + ", hos_time="
-				+ hos_time + ", pet=" + pet + ", hospital=" + hospital + ", name=" + name + ", bp_id=" + bp_id + "]";
+				+ hos_time + ", pet=" + pet + ", hospital=" + hospital + ", medical=" + medical + ", client=" + client
+				+ ", name=" + name + ", bp_id=" + bp_id + "]";
 	}
+	
+	
+
 	
 //
 	

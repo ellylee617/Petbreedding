@@ -1,10 +1,7 @@
 package kh.com.petbreedding;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +34,6 @@ import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.service.LikesService;
 import kh.com.petbreedding.common.model.vo.Likes;
-import kh.com.petbreedding.common.model.vo.Pagination;
 import kh.com.petbreedding.cta.model.service.CtaService;
 
 //TODO: !!!!!!!! 경로 수정하고 컨트롤러명 변경하기 !!!!!!!!!!
@@ -65,94 +61,44 @@ public class shopController {
 	
 	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
-	public ModelAndView shopList(
-			ModelAndView mv
-			,Pagination page
-			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
-			, @RequestParam Long shopType
-			) throws Exception {
-		
-		// TODO: 페이징 작업
-		int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		mv.addObject("paging", page);
-		
+	public ModelAndView shopList(ModelAndView mv, @RequestParam Long shopType) throws Exception {
+
 		// shopType 0은 미용실, 1은 동물병원
 
 		if (shopType == 0) {
 
 			int harShopType = 0;
-			
-			List<HairSalon> salonList = shopService.selectHarList(page);
-			
+			List<HairSalon> salonList = shopService.selectHarList(STARTPAGE, 5);
 			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
-			
-			//기본 매장 찜한 숫자 가져오기
-			String har_num = null;
-			List<String> list = new ArrayList<String>();
-			for(int i =0; i<salonList.size(); i++) {
-				har_num = salonList.get(i).getHarNum();
-				String count = likeService.countSalon(har_num);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
-			
-			/*
-			 * List<String> list = new ArrayList<String>(); 
-			 * System.out.println("~~~~~~~~~~~~~harNum ~~~~~~~~~"+list);
-			 * HashMap<String,String> salonCount = likeService.countSalon(list);
-			 * System.out.println("!!!!!!!salonList!!!!!!!!! "+ salonCount);
-			 */
+
 //			List<HairSalonImg> harImgList = shopService.selectHarImgList();
 
 			List<HairSalon> ultra = ctaService.ctabuylist();
-			System.out.println("울트라콜 미용실 리스트:"+ultra);
-			
-			List<String> list2 = new ArrayList<String>();
-			for(int i =0; i<ultra.size(); i++) {
-				har_num = ultra.get(i).getHarNum();
-				String count = likeService.countSalon(har_num);
-				System.out.println("************count*****"+count);
-				list2.add(count);
-				mv.addObject("count2", list2);
-			}
-			
+
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);
-			mv.addObject("paging", page);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
 
+			// 미용실 대표 사진 리스트
+			// TODO
 
 		} else {
 
 			int hosShopType = 1;
-			List<Hospital> hosList = shopService.selectHosList(page);
+			List<Hospital> hosList = shopService.selectHosList(STARTPAGE, 5);
 			System.out.println("컨트롤러 동물병원 리스트:" + hosList);
 
 			mv.addObject("shopType", hosShopType);
 			mv.addObject("shopList", hosList);
-			mv.addObject("paging", page);
 			mv.setViewName("/user/uShop/shopList");
-			
-			//찜한 숫자 가져오기
-			String hos_num = null;
-			List<String> list = new ArrayList<String>();
-			for(int i =0; i<hosList.size(); i++) {
-				hos_num = hosList.get(i).getHosNum();
-				String count = likeService.countHos(hos_num);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
 
+			// 동물병원 매장 대표 사진 출력
+			// TODO
 
 		}
 
 		return mv;
-//		return "/user/uShop/shopList";
 
 	}
 
@@ -393,27 +339,42 @@ public class shopController {
 	
 
 		
-		// 사업자 예약확인
-		@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
-		public ModelAndView bReservationDetail(
-				HttpSession session, 
-				HttpServletResponse res,
-				HairShopReservation rev
-				) throws Exception {
-				
-			ModelAndView mav = new ModelAndView();
-			System.out.println("예약번호는 : " + rev.getHar_rnum());
-			HairShopReservation vo = new HairShopReservation();
-			Client cl =  new Client();
+	// 사업자 미용실 예약확인 상세페이지
+	@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
+	public ModelAndView bReservationDetail(
+			HttpSession session, 
+			HttpServletResponse res,
+			HospitalReservation hos,
+			HairShopReservation rev
+			) throws Exception {
 			
-			
+		ModelAndView mav = new ModelAndView();
+		ModelAndView mav2 = new ModelAndView();
+		System.out.println("미용실 예약번호는 : " + rev.getHar_rnum());
+		System.out.println("병원 예약번호는 : " + hos.getHos_rnum());
+		HairShopReservation vo = new HairShopReservation();
+		HospitalReservation hoslist = new HospitalReservation();
+		
+		Client cl =  new Client();
+		
+		if(rev.getHar_rnum() != null) {
 			vo = bprevService.revharcon(rev.getHar_rnum());
-			
-			mav.setViewName("/bPartner/bShop/bReservationDetail");
 			mav.addObject("list", vo);
+			mav.setViewName("/bPartner/bShop/bReservationDetail");
 			return mav ;
+			
+		}else if(hos.getHos_rnum() != null) {
+			hoslist = bprevService.revhoscon(hos.getHos_rnum()); 
+			mav2.addObject("list2", hoslist);
+			mav2.setViewName("/bPartner/bShop/bReservationDetail2");
+			return mav2;
 		}
-
+		return mav;
+		
+	}
+	
+	
+	
 	// 사업자 화상채팅하기
 	@RequestMapping(value = "/bFaceChat", method = RequestMethod.GET)
 	public String bFaceChat(Locale locale, Model model) {

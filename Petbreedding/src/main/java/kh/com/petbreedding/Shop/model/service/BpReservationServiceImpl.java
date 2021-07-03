@@ -139,6 +139,24 @@ public class BpReservationServiceImpl implements BpReservationService{
 		return list;
 	}
 
+	@Override
+	public HospitalReservation revhoscon(String hos_rnum) throws Exception {
+		HospitalReservation list = null;
+		
+		try {
+			list = bprevDao.revhoscon(hos_rnum);
+			if(list != null) {
+				System.out.println("병원 상세페이지 들어옴");
+			}else {
+				System.out.println("병원 상세페이지 못 들어옴");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
 
 	
 	
