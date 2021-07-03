@@ -25,3 +25,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+// 문의하기 버튼 클릭 시 채팅으로 연결
+function openchatwin(inbpId,inshopName,inbpType) {
+
+	var bp_id = inbpId;
+	var shopName = inshopName;
+	var bp_type = inbpType;
+	var url = '/petbreedding/chat?shopName='+shopName+'&bp_id='+bp_id+'&bp_type='+bp_type;
+	window.open(url, '_blank', 'width=555px, height=700px');
+}
+
+
+

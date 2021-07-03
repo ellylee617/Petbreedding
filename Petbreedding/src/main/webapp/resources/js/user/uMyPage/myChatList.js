@@ -1,10 +1,15 @@
-function openchatwin(inchatId,inshopName,inbpId) {
+function openchatwin(inchatId,inshopName,inbpId,inbpType) {
 
 	var chatId = inchatId;
 	var shopName = inshopName;
 	var bp_id = inbpId;
-	var url = '/petbreedding/chat?chatId='+chatId+'&shopName='+shopName+'&bp_id='+bp_id;
+	var bp_type = inbpType;
+	var url = '/petbreedding/chat?chatId='+chatId+'&shopName='+shopName+'&bp_id='+bp_id+'&bp_type='+bp_type;
 	window.open(url, '_blank', 'width=555px, height=700px');
+
+	// 페이지 열면 새로고침 하여 안읽은 메시지 수 확인
+	setTimeout("location.reload()", 300);
+
 }
 
 // 삭제 버튼 누르면 모달창 띄움
@@ -36,4 +41,9 @@ $("#yesCalncle").on("click", function() {
 			alert("오류가 발생했습니다. 관리자에게 문의해주세요.");
 		}
 	});
+});
+
+$(document).ready(function() {
+	// 1분에 한번씩 새로고침으로 신규 채팅 체크
+	setTimeout("location.reload()", 60000);
 });
