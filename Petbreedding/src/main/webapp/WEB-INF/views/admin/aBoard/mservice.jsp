@@ -50,7 +50,7 @@
                     
                     <c:forEach items="${cusList}" var="list">
                     
-                    <tr>
+                    <tr id="${list.annNum}" class="goDetailRow">
                     <c:choose>
                     	<c:when test="${list.annType eq 0}">
 	                    	<td>[전체]</td>
@@ -94,6 +94,7 @@
 	   </section>
 	<jsp:include page="../../common/footer.jsp" />
 	</div>	 
-<script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
-	</body>
-	</html>
+	<script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/admin/aBoard/mservice.js"></script>
+</body>
+</html>

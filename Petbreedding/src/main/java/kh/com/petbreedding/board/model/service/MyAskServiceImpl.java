@@ -93,5 +93,18 @@ public class MyAskServiceImpl implements MyAskService {
 		return result;
 	}
 
+	@Override
+	public int MyAskDelete(String qna_num) {
+		int maDelResult = -1;
+		
+		try {
+			maDelResult = myAskDao.MyAskDelete(qna_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return maDelResult;
+	}
+
 
 }

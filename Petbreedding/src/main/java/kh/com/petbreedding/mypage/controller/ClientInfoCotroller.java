@@ -274,8 +274,7 @@ public class ClientInfoCotroller {
 			}
 
 			//TODO 리다이렉트 오류 수정
-//			redirect:/board/boardList
-		return "redirect:/myAsk";
+		return "redirect:/mypage/ask";
 	}
 	
 

@@ -31,6 +31,10 @@
 		SELECT * FROM ANNOUNCEMENT WHERE ANN_TYPE = 0 OR ANN_TYPE = 1
 	</select>
 	
+	<select id="CustomerServiceSelectOne" parameterType="string" resultMap="CustomerServiceMap">
+		SELECT * FROM ANNOUNCEMENT WHERE ANN_NUM = #{annNum}
+	</select>
+	
 	<insert id="CustomerServiceInsert" parameterType="CustomerService">
 		INSERT INTO ANNOUNCEMENT VALUES
 		(
@@ -38,4 +42,8 @@
 			,#{annCont}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{annType}
 		)
 	</insert>
+	
+	<delete id="CustomerServiceDelete" parameterType="string">
+		DELETE FROM ANNOUNCEMENT WHERE ANN_NUM = #{annNum}
+	</delete>
 </mapper>

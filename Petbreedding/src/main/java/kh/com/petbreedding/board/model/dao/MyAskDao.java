@@ -47,4 +47,8 @@ public class MyAskDao {
 	public String getBpNickName(String user_num) {
 		return sqlSession.selectOne("MyAsk.getBpNickName", user_num);
 	}
+	
+	public int MyAskDelete(String qna_num) {
+		return sqlSession.delete("MyAsk.MyAskDelete", qna_num);
+	}
 }

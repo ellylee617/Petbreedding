@@ -34,16 +34,24 @@
 							<td colspan="2"><img src="http://placehold.it/500x300"></td>
 						</c:when>
 						<c:otherwise>
-							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg}"></td>
+							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg}" class="myAskImg"></td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
 			</table>
-                <button class="basicBtn">목록</button>
+                <button id="myAskDelBtn" class="basicBtn" style="margin-right:20px;">삭제</button>
+                <button class="basicBtn" style="margin-right:20px;">목록</button>
         <br><br><br><br>
         <table class="reponsetbl">
         	<tr>
-        		<th>관리자</th>
+        		<c:choose>
+        			<c:when test="${maComment ne null}">
+		        		<th>관리자</th>
+        			</c:when>
+        			<c:otherwise>
+        				<th></th>
+        			</c:otherwise>
+        		</c:choose>
         		<td>${maComment.qnacDate}</td>
         	</tr>
         	<tr>
@@ -53,6 +61,19 @@
 		</div>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
+		
+		<!-- MODAL -->
+		 <div id="my_modal">
+		    <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
+		    <div id="locCon">
+		        <h1>삭제하시겠습니까?</h1>
+		        <button id="goTOPay">바로 삭제할게요</button>
+		        <button id="nextTime">다음에 할게요</button>
+		        <input type="hidden" id="har_rnum">
+		    </div>
+		</div>
 	</div>
+	
+	<script type="text/javascript" src="${path}/resources/js/user/uMyPage/myAskDetail.js"></script>
 </body>
 </html>

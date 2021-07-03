@@ -7,11 +7,10 @@ $("#delBtn").on("click", function() {
 });
 
 $("#goTOPay").on("click", function() {
-	var boardNumVar = $(this).attr("name");
-	console.log(boardNumVar);
-	location.href = "/petbreedding/mboardDelete?qna_num="+boardNumVar+"";
+	var aNumVar = $(this).attr("name");
+	console.log(aNumVar);
+	location.href = "/petbreedding/msDelete?ann_num="+aNumVar+"";
 });
-
 
 // 모달
 
@@ -65,7 +64,3 @@ Element.prototype.setStyle = function(styles) {
 function getModal(){
 	modal('my_modal');
 }
-
-
-
-

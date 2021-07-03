@@ -13,7 +13,7 @@
 <link href="${path}/resources/css/admin/mAside.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/admin/aBoard/mfreeboard.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -63,6 +63,6 @@
 	</div>
 	<!-- script -->
 	<script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
-	<script src="${path}/resources/js/user/uBoard/service.js"></script>
+<%-- 	<script src="${path}/resources/js/user/uBoard/service.js"></script> --%>
 </body>
 </html>

@@ -2,16 +2,9 @@
  * 
  */
 
-$("#delBtn").on("click", function() {
+$("#myAskDelBtn").on("click", function() {
 	getModal();
 });
-
-$("#goTOPay").on("click", function() {
-	var boardNumVar = $(this).attr("name");
-	console.log(boardNumVar);
-	location.href = "/petbreedding/mboardDelete?qna_num="+boardNumVar+"";
-});
-
 
 // 모달
 
@@ -35,7 +28,8 @@ function modal(id) {
 	document.body.append(bg);
 
 	// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-	modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+	modal.querySelector('.modal_close_btn').addEventListener('click',
+			function() {
 				bg.remove();
 				modal.style.display = 'none';
 			});
@@ -65,7 +59,3 @@ Element.prototype.setStyle = function(styles) {
 function getModal(){
 	modal('my_modal');
 }
-
-
-
-

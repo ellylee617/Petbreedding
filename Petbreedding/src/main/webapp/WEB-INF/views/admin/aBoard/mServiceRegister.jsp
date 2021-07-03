@@ -32,7 +32,7 @@ $(document).ready(function(){
 		<section class="section">
 		<jsp:include page="../mAside.jsp"/>
 			<div class="bContent">
-				<form action="mRegister" method="post" enctype="multipart/form-data">
+				<form action="msRegister" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="user_num" value="${user_num}">
 		            
 		                <div class="msTitle">
