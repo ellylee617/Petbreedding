@@ -49,9 +49,6 @@
 				<div class="conbtn">
 				    <button class="basicBtn" id="listBtn">목록</button>
 				    <button class="basicBtn" id="delBtn">삭제</button>
-				    <button class="basicBtn" id="updeteBtn">수정</button>
-				    
-				
 				</div>
 				<div id="replyArea" class="reply">
 				</div>
@@ -90,8 +87,8 @@
 									+item.qnacCont
 									+"</div>"
 									+"<form id='maCommentFrm' class='maCommentFrm'>"
-									+"<button class='basicBtn' id='maCommentUpBtn'>수정</button>"
-									+"<button class='basicBtn' id='maCommentDelBtn'>삭제</button>"
+									+"<button class='basicBtn' id='maCommentUpBtn'>댓글수정</button>"
+									+"<button class='basicBtn' id='maCommentDelBtn'>댓글삭제</button>"
 									+"</form>";
 						});
 					} else {
@@ -113,8 +110,8 @@
 							url: 'macWrite',
 							type: 'post',
 							data: queryString,
-							success: function(queryString) {
-								maCommentInit(queryString.qnaNum);
+							success: function(qnaNum) {
+								maCommentInit(qnaNum);
 							},
 							
 							error : function(request, status, error) {

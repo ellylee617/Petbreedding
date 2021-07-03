@@ -82,10 +82,23 @@
 
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
+		
+		<!-- MODAL -->
+		 <div id="my_modal">
+		    <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
+		    <div id="locCon">
+		        <h1>삭제하시겠습니까?</h1>
+		        <button id="goTOPay">바로 삭제할게요</button>
+		        <button id="nextTime">다음에 할게요</button>
+		        <input type="hidden" id="har_rnum">
+		    </div>
+		</div>
 	</div>
 	
 	<script type="text/javascript">
 		var boNum = '${board.boNum}';
+		
+		//	TODO	세션 고객 번호랑 댓글 고객 번호가 같으면 수정, 삭제 표시 -----------------------------------------------------------------------------------------------   
 		var clSession = "<%=session.getAttribute("client") %>";
 		console.log(clSession);
 		console.log(boNum);
@@ -161,5 +174,6 @@
 			});
 		});
 	</script>
+	<script type="text/javascript" src="${path}/resources/js/user/uBoard/fboardcon.js"></script>
 </body>
 </html>

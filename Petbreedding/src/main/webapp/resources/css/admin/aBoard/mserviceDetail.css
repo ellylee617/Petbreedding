@@ -1,51 +1,66 @@
 @charset "UTF-8";
 
-/* 페이지 전체 패딩 */
-.mcontent {
-	padding-left: 330px;
+.basicBtn{
+  width: 80px;
+  height: 35px;
+  border-radius: 10px;
+  font-family: "GmarketB"
+ 
 }
 
-/* 질문 내역 테이블 */
-.asktbl {
-	text-align: left;
+/**MBOARDCON*/
+.conwrap{
+    margin-left: 30px;
+}
+.conhead{
+    margin-bottom: 100px;
+}
+.conhead p:nth-child(1){
+    font-weight: bold;
+}
+.conhead p:nth-child(2){
+    font-size: 30px;
+    font-family: "GmarketB";
+    word-spacing: -5px;
+}
+.conhead p:nth-child(3){
+    font-size: 15px;
+    font-family: "GmarketB";
+    word-spacing: -5px;
+    float: left;
+    margin-right: 60px;
+}
+.conhead p:nth-child(4){
+    font-size: 15px;
+    font-family: "GmarketB";
+    word-spacing: -5px;
+    float: left;
 }
 
-.asktbl th {
-	font-size: 20px;
-	padding-top: 20px;
+.conbtn{
+    margin-bottom: 70px;
 }
 
-.asktbl td {
-	padding: 30px 0;
+#listBtn{
+    
+    float: left;
+}
+#updeteBtn, #delBtn{
+    float: right;
+    margin-right: 20px;
 }
 
-.basicBtn {
-	float: right;
-	height: 30px;
-	border-radius: 10px;
-	width: 60px;
-	margin-right : 50px;
-}
 
-.asktbl td:nth-child(3) {
-	text-align: center;
+#submitbtn{
+    margin-left: 10px;
+    width: 120px;
+    height: 70px;
+    border-radius: 20px;
+    font-size: 15px;
 }
-
-.myAskImg {
-	width: 500px;
-	height: 300px;
-}
-
-/* 답변 테이블 */
-.reponsetbl {
-	width: 100%;
-	border-top: 1px solid var(--border-color);
-	border-collapse: collapse;
-	text-align: left;
-}
-
-.reponsetbl td, .reponsetbl th {
-	padding: 20px;
+.mContent {
+    margin-top: 0px;
+    padding-left: 0px;
 }
 
 /* MODAL */
@@ -100,3 +115,4 @@
 #nextTime:hover{
     border: 1px solid var(--hover-color);
 }
+

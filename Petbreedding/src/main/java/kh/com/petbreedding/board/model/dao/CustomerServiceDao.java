@@ -20,7 +20,13 @@ public class CustomerServiceDao {
 	public List<CustomerService> CustomerServiceSelectListA() {
 		return sqlSession.selectList("CustomerService.CustomerServiceSelectListA");
 	}
+	public CustomerService CustomerServiceSelectOne(String ann_num) {
+		return sqlSession.selectOne("CustomerService.CustomerServiceSelectOne", ann_num);
+	}
 	public int CustomerServiceInsert(CustomerService cs) {
 		return sqlSession.insert("CustomerService.CustomerServiceInsert", cs);
+	}
+	public int CustomerServiceDelete(String ann_num) {
+		return sqlSession.delete("CustomerService.CustomerServiceDelete", ann_num);
 	}
 }
