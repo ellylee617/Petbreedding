@@ -56,9 +56,9 @@
 						<div class="tabCon">
 						<c:if test="${not empty unreadList }">
 						<c:forEach items="${unreadList }" var="u" varStatus="status">
-						<table onClick="openchatwin('${u.chatId }','${u.shopName}','${u.bp_id}' );">
+						<table onClick="openchatwin('${u.chatId }','${u.shopName}','${u.bp_id}', '${u.bp_type}');">
 							<tr>
-								<td rowspan="2"><img src="http://placehold.it/50X50"></td>
+								<td rowspan="2"><img src="${path}/resources/uploadFile/shop/${u.mImg }"></td>
 								<td>${u.shopName }</td>
 								<td>${u.mSendTime }</td>
 								<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
