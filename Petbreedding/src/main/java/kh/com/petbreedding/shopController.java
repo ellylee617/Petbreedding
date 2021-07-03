@@ -125,6 +125,7 @@ public class shopController {
 		System.out.println("shopPage 컨트롤러 진입");
 		String bpId = request.getParameter("bpId");
 		ctaService.delcta(bpId);
+		mv.addObject("bp_id", bpId); // 문의하기 버튼 클릭 시 채팅 연결 위해
 
 		System.out.println("매장 타입:" + shopType);
 		mv.addObject("shopType", shopType);
