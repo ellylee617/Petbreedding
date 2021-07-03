@@ -20,6 +20,10 @@
 		<jsp:include page="../bheader.jsp" />
 		<section class="section">
 	        <jsp:include page="../bAside.jsp" />
+			<input type="hidden" id="bpIdforOut" value="${bp_id }">
+	        <input type="hidden" id="shopNameforOut" value="${list.hairSalon.shopName}">
+			<input type="hidden" id="cl_numforOut" value="${list.cl_num}">
+			<input type="hidden" id="nickNameforOut" value="${list.client.name}">
 	        <div class="bContent">
                 <h1>예약 완료</h1>
                 <div class="resInfo infoBox">
