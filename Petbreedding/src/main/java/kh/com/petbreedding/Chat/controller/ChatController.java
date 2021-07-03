@@ -50,6 +50,7 @@ public class ChatController {
 		
 		if(bptype == null ) {
 			bptype = chService.getbp_type(bp_id);
+			System.out.println("bptype" + bptype);
 		}
 		//파라미터로 가져온 cl_num, bp_id, bp_type cr에 set
 		cr.setCl_num(cl_num);
