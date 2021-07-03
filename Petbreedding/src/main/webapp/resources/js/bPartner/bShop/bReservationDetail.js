@@ -1,5 +1,4 @@
 // 모달
-
 function modal(id) {
     var zIndex = 9999;
     var modal = document.getElementById(id);
@@ -54,3 +53,14 @@ document.getElementById('cancleBtn').addEventListener('click', function () {
     // 모달창 띄우기
     modal('my_modal');
 });
+
+// 1:1 채팅하기 버튼 클릭 시 채팅창 열기
+$(".chatBtn").on("click", function(e) {
+	var bp_id = $("#bpId").val();
+	var shopName = $("#shopNameforOut").val();
+	var cl_num = $("#cl_numforOut").val();
+	var nickName = $("#nickNameforOut").val();
+	var url = '/petbreedding/bchat?bp_id='+bp_id+'&shopName='+shopName+'&cl_num='+cl_num+'&nickName='+nickName;
+	window.open(url, '_blank', 'width=555px, height=700px');
+});
+
