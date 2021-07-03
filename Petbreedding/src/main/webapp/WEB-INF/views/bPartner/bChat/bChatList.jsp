@@ -53,7 +53,7 @@
 						<div class="tabCon">
 						<c:if test="${not empty unreadList }">
 						<c:forEach items="${unreadList }" var="u" varStatus="status">
-						<table onClick="openbchatwin('${r.chatId }','${r.nickName}', '${r.shopName }', '${r.cl_num }');">
+						<table onClick="openbchatwin('${u.chatId }','${u.nickName}', '${u.shopName }', '${u.cl_num }');">
 							<tr>
 								<td rowspan="2"><img src="${path}/resources/images/logoForChat.png"></td>
 								<td>${u.nickName }</td>
