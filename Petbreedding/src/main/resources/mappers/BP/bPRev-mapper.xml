@@ -18,6 +18,7 @@
 		<collection property="client" resultMap="Client" />
 		<collection property="style" resultMap="Style" />
 		<collection property="hairSalon" resultMap="HairSalon" />
+	
 		
 	</resultMap>
 
@@ -34,6 +35,10 @@
 		<result column="HOS_STATUS" property="hos_status" />
 		<result column="HOS_TIME" property="hos_time"/>
 		<result column="CL_NAME" property="name" />
+		<collection property="pet" resultMap="Pet" />
+		<collection property="client" resultMap="Client" />
+		<collection property="medical" resultMap="MedicalType"/>
+		<collection property="hospital" resultMap="Hospital"/>
 		
 	</resultMap>
 
@@ -70,9 +75,17 @@
 		<resultMap type="HairSalon" id="HairSalon">
 			<result column="HAR_NAME" property="shopName"/>
 		</resultMap>
+		
+		<!-- 병원 진료 테이블 -->
 
-
-
+	<resultMap type="MedicalType" id="MedicalType">
+	<result column="MED_NAME" property="medName"/>
+	</resultMap>
+	
+	
+		<resultMap type="Hospital" id="Hospital">
+		<result column="HOS_NAME" property="shopName"/>
+		</resultMap>
 
 
 	<!-- 미용실 예약조회 (사용자 페이지) -->
@@ -172,5 +185,21 @@
 		and HOS_STATUS = #{hos_status}
 
 	</select>
+	
+	<!-- 병원예약관리 상세페이지 -->
+	<select id="HosRevCon" resultMap="HosRev" parameterType="string">
+	        select client.*, HOS_RESERVATION.hos_date,HOS_RESERVATION.hos_time, pet_info.*, MEDICAL_TYPE.med_name, hospital.hos_name
+		from HOS_RESERVATION join client
+		on HOS_RESERVATION.cl_num = client.cl_num
+		join hospital
+		on HOS_RESERVATION.hos_num = hospital.hos_num
+        join pet_info
+        on pet_info.pet_num = HOS_RESERVATION.pet_num
+        join MEDICAL_TYPE
+        on HOS_RESERVATION.med_num = MEDICAL_TYPE.med_num
+        and hos_rnum = #{hos_rnum}
+        
+	</select>
+	
 	
 </mapper>

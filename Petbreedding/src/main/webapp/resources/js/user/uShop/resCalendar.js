@@ -1,7 +1,7 @@
 var mon,tue,wed,thu,fri,sat,sun = null;
 $(function() {
-	var har_num = $("#harNum").val();
-	var hos_num = $("#hosNum").val();
+	var har_num = $(".harNum").val();
+	var hos_num = $(".hosNum").val();
 	console.log("har_num : "+ har_num);
 	console.log("hos_num : "+ hos_num);
 	

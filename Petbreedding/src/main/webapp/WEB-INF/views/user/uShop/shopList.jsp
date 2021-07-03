@@ -48,7 +48,7 @@
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -70,15 +70,37 @@
 	                                    <a href="#">구매건수<small>999+</small></a>
 	                                    <a href="#">찜하기 <small> ${count[status.index]}</small></a>
 	                                </div>
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
-                                    <input type="hidden" id="y" name="y" value="${item.y }">
-                           			<input type="hidden" id="x" name="x" value="${item.x }">
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                              </div>
                         </li>
                      </div>                                                            
                 </ul>
                 </c:forEach>
                     </div>
+                    
+               <!-- 페이징 시작-->
+				<div class="page_wrap">
+					<div class="page_nation">
+						<c:if test="${paging.startPage != 1 }">
+							<a class="arrow prev" href="${path}/shopList?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a href="${path}/shopList?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a class="arrow next" href="${path}/shopList?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+						</c:if>
+					</div>
+				</div>
+				<!-- 페이징 끝! -->
+				
             </c:if>
             
             <!--TOPBTN-->
@@ -116,7 +138,7 @@
                                     <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}&y=${cta.y }&x=${cta.x }"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -142,9 +164,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}&y=${item.y }&x=${item.x }"  class="goList">정보보기</a>
-                                    <input type="hidden" id="y" name="y" value="${item.y }">
-                           			<input type="hidden" id="x" name="x" value="${item.x }">
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -153,6 +173,31 @@
                 </ul>
                 </c:forEach>
             </div>
+            
+            <!-- 페이징 시작-->
+				<div class="page_wrap">
+					<div class="page_nation">
+						<c:if test="${paging.startPage != 1 }">
+							<a class="arrow prev" href="${path}/shopList?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a href="${path}/shopList?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a class="arrow next" href="${path}/shopList?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+						</c:if>
+					</div>
+				</div>
+				<!-- 페이징 끝! -->
+            
+            
             </c:if>
         </section>
    

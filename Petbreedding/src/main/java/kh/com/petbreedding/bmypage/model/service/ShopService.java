@@ -11,13 +11,16 @@ import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 public interface ShopService {
 	
 	public int updateBpReg(String bpId); // 사업장 등록 - BP 테이블에서 사업장 등록여부 상태 1로 바꾸기 
 	
 	
-	public List<HairSalon> selectHarList(int currentPage, int limit); // 미용실 전체 리스트 조회 //******TODO:위치이동*******
+//	public List<HairSalon> selectHarList(int currentPage, int limit); // 미용실 전체 리스트 조회 //******TODO:위치이동*******
+	public int countHarList(); // 미용실 리스트 총 갯수
+	public List<HairSalon> selectHarList(Pagination page);
 	
 	
 	public int insertHarInfo(HairSalon vo);	// 미용실 기본 정보 입력 
@@ -37,7 +40,9 @@ public interface ShopService {
 	public int deleteStyle(String styleNum); // 미용실 메뉴 삭제 
 	
 	
-	public List<Hospital> selectHosList(int currentPage, int limit); // 동물병원 전체 리스트 조회 //*********TODO:위치이동***********
+//	public List<Hospital> selectHosList(int currentPage, int limit); // 동물병원 전체 리스트 조회 //*********TODO:위치이동***********
+	public int countHosList(); // 동물병원 리스트 총 갯수
+	public List<Hospital> selectHosList(Pagination page);
 	
 	public int insertHosInfo(Hospital vo);	// 동물병원 기본 정보 입력
 	public Hospital selectHosInfo(String bpId); //동물병원 기본 정보 불러오기

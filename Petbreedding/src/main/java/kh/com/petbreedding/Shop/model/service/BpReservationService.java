@@ -14,6 +14,6 @@ public interface BpReservationService {
 	public List<HospitalReservation> revHosList(HospitalReservation vo) throws Exception;
 	public List<HospitalReservation> revAllHosListDate(HospitalReservation vo) throws Exception;
 	public List<HospitalReservation> revHosAllList(String bp_id) throws Exception; 
-
+	public HospitalReservation revhoscon(String hos_rnum) throws Exception;
 
 }
