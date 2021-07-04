@@ -31,7 +31,7 @@
             <div class="selectOpt">
                 <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최신순</label>
                 <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
-                <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
+                <input type="radio" id="rating" name="selectOpt"><label for="rating"><a href="${pageContext.request.contextPath}/shopList?shopType=1&selectState=rev">별점순</a></label>
             </div>
             <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
@@ -118,9 +118,9 @@
             </div>
             <hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최신순</label>
-                <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
-                <input type="radio" id="rating" name="selectOpt"><label for="rating">별점순</label>
+                <input type="radio" checked id="new" value="new" name="selectOpt"><label for="new">최신순</label>
+                <input type="radio" id="distance" value="distance" name="selectOpt" ><label for="distance">거리순</label>
+                 <input type="radio" id="rating" name="selectOpt"><label for="rating"><a href="${pageContext.request.contextPath}/shopList?shopType=0&selectState=rev">별점순</a></label>
             </div>
       <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
@@ -160,6 +160,9 @@
                                 <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<small> 
+                                    <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
+	                                   		&nbsp;(${item.avgRevVal})
+	                                    </c:if>
                                     <c:if test="${item.avgRevVal ge 1 && item.avgRevVal lt 2}">
 	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
 	                                    </c:if>
@@ -185,8 +188,14 @@
 	                                   		<i class="fas fa-star rate"></i>
 	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
 	                                    </c:if>
-                                    
-                                    &nbsp;${countRev[status.index]}개 </small></a>
+                                    <c:if test="${!empty countRev[status.index] }">
+	                                    &nbsp;${countRev[status.index]}개 
+                                    </c:if>
+                                    <c:if test="${empty countRev[status.index]}">
+                                    &nbsp;0개 
+                                    </c:if>
+                                    </small>
+                                    </a>
                                     <a href="#">구매건수<small>999+</small></a>
 		                            <a href="#">찜하기 <small> ${count[status.index]}</small></a>
                                 </div>

@@ -71,7 +71,9 @@ public class shopController {
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			, @RequestParam Long shopType
+			, HttpServletRequest request
 			) throws Exception {
+		
 		
 		// 페이징 
 		int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
@@ -84,20 +86,21 @@ public class shopController {
 
 			int harShopType = 0;
 			
-//			List<HairSalon> salonList = shopService.selectHarList(page);
 			
-			// 미용실 리스트 - 최신순 
-//			List<HairSalon> salonList = shopService.selectHarListNew(page);
+			List<HairSalon> salonList = null;
 			
-			//TODO
-			// 미용실 리스트 - 별점순
-			List<HairSalon> salonList = shopService.selectHarListRev(page);
+			salonList = shopService.selectHarListNew(page); // 최신순
+//			salonList = shopService.selectHarListRev(page); // 별점순 
 			
+			
+			
+			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			
 			
 			// 미용실 리스트 - 거리순
+			// TODO 
 			
-			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+			
 			
 			//기본 매장 찜한 숫자 가져오기
 			// + 별점 출력 
@@ -109,7 +112,8 @@ public class shopController {
 				har_num = salonList.get(i).getHarNum();
 				bpId = salonList.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
-				double revVal = shopService.selectRevVal(bpId);
+				String revVal = shopService.selectRevVal(bpId);
+					
 				String countRev = shopService.selectCountReview(bpId);
 				countList.add(countRev);
 				mv.addObject("revVal", revVal);

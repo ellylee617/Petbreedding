@@ -34,13 +34,13 @@ public class ShopDao {
 	
 	// 공통
 	
-	public double selectRevVal(String bpId) {
-		System.out.println("Review Dao 진입");
+	public String selectRevVal(String bpId) {
+		System.out.println("Shop Dao 진입 - selectRevVal() 실행");
 		return sqlSession.selectOne("Shop.selectRevVal",bpId);
 	}
 	
 	public String selectCountReview(String bpId) {
-		System.out.println("Review Dao 진입");
+		System.out.println("Shop Dao 진입  selectCountReview() 실행");
 		return sqlSession.selectOne("Shop.selectCountReview",bpId);
 	}
 	
