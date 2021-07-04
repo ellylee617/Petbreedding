@@ -123,22 +123,27 @@ public class BoardController {
 			) {
 		res.setContentType("text/html; charset=utf-8");
 		
-		/*
-		 * cl = (Client) session.getAttribute("client"); if(cl==null) { //TODO: 로그인 안됐다는
-		 * 경고.또는 이동 위치 변경 return "redirect:/"; }
-		 */
+		
+		 cl = (Client) session.getAttribute("client"); 
+		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
+			 return "redirect:/"; 
+		 }
+		 
 		
 		String cl_num = cl.getCl_num();
 		String cl_nickName = cl.getNickname();
+		String boTitle = req.getParameter("boTitle");
 		String bo_content = req.getParameter("boContent");
 		
 		System.out.println("[세훈] @글 등록 컨트롤러 clNum : " + cl_num);
 		System.out.println("[세훈] @글 등록 컨트롤러 clNickName : " + cl_nickName);
+		System.out.println("[세훈] @글 등록 컨트롤러 boTitle : " + boTitle);
 		System.out.println("[세훈] @글 등록 컨트롤러 bo_content : " + bo_content);
 		
 		Board board = new Board();
 		board.setClNum(cl_num);
 		board.setClNickName(cl_nickName);
+		board.setBoTitle(boTitle);
 		board.setBoCont(bo_content);
 		String src = "";
 		//이미지 경로 찾아오기
@@ -148,59 +153,77 @@ public class BoardController {
             System.out.println("*****************img경로***************** "+ matcher.group(1));
             src = matcher.group(1);
         }
-
-		/*
-		 * try { // if you want to get png or jpg ... you can do it URL url = new
-		 * URL(src); String extension = src.substring(src.indexOf('.') + 1);
-		 * 
-		 * BufferedImage image = ImageIO.read(url); File file = new
-		 * File("/resources/uploadFile/fboard");
-		 * 
-		 * ImageIO.write(image, extension, file); System.out.println("저장성공!"); } catch
-		 * (IOException e) { e.printStackTrace(); }
-		 */
+		
+		if(src != null || src != "") { 
+			try { 
+				URL imgURL = new URL(src);
+				String extension = src.substring(src.lastIndexOf(".")+1); 
+				UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성 
+				String fileName = uuid.toString() + "_" + board;
+				BufferedImage image = ImageIO.read(imgURL); 
+				File file = new File("/resources/uploadFile/fboard"); 
+				if(!file.exists()) { 
+					file.mkdirs(); 
+				}
+				ImageIO.write(image, extension, file); 
+				System.out.println("이미지 업로드완료!");
+				board.setBoImg(src); 
+			} 
+			catch (Exception e) { 
+				e.printStackTrace(); 
+			}
+		} 
 		
 		// 파일업로드
 		
+//		  MultipartFile mf = req.getFile("src"); // 업로드 파라미터 
+//		  if(mf != null) {
+//			  
+//		  String path = req.getRealPath("/resources/uploadFile/fboard"); // 자징될 위치
+//		  UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성 
+//		  String fileName =mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장 
+//		  String saveName = uuid.toString() + "_" + fileName; // 저장될 이름 
+//		  File uploadFile = new File(path + "//" + saveName); // 복사될 위치
+//		 
+//		  try { 
+//			  mf.transferTo(uploadFile); 
+//		  } catch (IOException e) {
+//		  e.printStackTrace(); }
+//		  
+//		  board.setBoImg(saveName);
+//		  
+//		  System.out.println("[세훈] @글 등록 컨트롤러 saveName : " + saveName); 
+//		  }
+		 
+				
 		
-		  MultipartFile mf = req.getFile("src"); // 업로드 파라미터 
-		  if(mf != null) {
-			  
-		  String path = req.getRealPath("/resources/uploadFile/fboard"); // 자징될 위치
-		  UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성 
-		  String fileName =mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장 
-		  String saveName = uuid.toString() + "_" + fileName; // 저장될 이름 
-		  File uploadFile = new File(path + "//" + saveName); // 복사될 위치
+		  System.out.println("[세훈] @글 등록 컨트롤러 board : " + board.toString());
 		 
+		  int result = boardService.insertBoard(board);
+		  
+		  PrintWriter out = null;
+		  
+		  String msg1 = "글이 등록되었습니다."; 
+		  String msg2 = "글이 등록되지 않았습니다.";
+		  
 		  try { 
-			  mf.transferTo(uploadFile); 
-		  } catch (IOException e) {
-		  e.printStackTrace(); }
+			  out = res.getWriter(); 
+			  if(result == 1) { 
+				  out.println("<script>alert('"+ msg1 + "');</script>"); 
+				  System.out.println("[세훈] 자유게시판 글 등록 성공");
 		  
-		  board.setBoImg(saveName);
-		  
-		  System.out.println("[세훈] @글 등록 컨트롤러 saveName : " + saveName); 
-		  }
+			  } else { 
+				  out.println("<script>alert('" + msg2 + "');</script>");
+				  System.out.println("[세훈] 자유게시판 글 등록 실패"); } 
+		   } catch (IOException e) {
+			  e.printStackTrace(); 
+		   } finally { 
+			  out.flush(); 
+			  out.close(); 
+		   }
 		 
 				
-		/*
-		 * System.out.println("[세훈] @글 등록 컨트롤러 board : " + board.toString());
-		 * 
-		 * int result = boardService.insertBoard(board);
-		 * 
-		 * PrintWriter out = null;
-		 * 
-		 * String msg1 = "글이 등록되었습니다."; String msg2 = "글이 등록되지 않았습니다.";
-		 * 
-		 * try { out = res.getWriter(); if(result == 1) { out.println("<script>alert('"
-		 * + msg1 + "');</script>"); System.out.println("[세훈] 자유게시판 글 등록 성공");
-		 * 
-		 * } else { out.println("<script>alert('" + msg2 + "');</script>");
-		 * System.out.println("[세훈] 자유게시판 글 등록 실패"); } } catch (IOException e) {
-		 * e.printStackTrace(); } finally { out.flush(); out.close(); }
-		 */
-				
-		return "redirect:/fboardlist";
+		return "/user/uBoard/fboardList";
 	}
 	
 	@RequestMapping(value = "/bdelete")
