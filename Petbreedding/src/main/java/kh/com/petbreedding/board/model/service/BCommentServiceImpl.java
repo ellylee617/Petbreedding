@@ -80,4 +80,26 @@ public class BCommentServiceImpl implements BCommentService {
 		return bcInsert;
 	}
 
+	@Override
+	public int bCommentDelete(String co_num, String bo_num) {
+		int bcDeleteResult = -1;
+		int bocChk = -1; 
+		
+		try {
+			bcDeleteResult = bCommentDao.bCommentDelete(co_num);
+			bocChk = bCommentDao.bocChkUpdate(bo_num);
+			
+			if(bocChk > 0) {
+				System.out.println("게시판 댓글 갯수 체크 업데이트 성공");
+			} else {
+				System.out.println("게시판 댓글 갯수 체크 업데이트 실패");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bcDeleteResult;
+ 	}
+
 }

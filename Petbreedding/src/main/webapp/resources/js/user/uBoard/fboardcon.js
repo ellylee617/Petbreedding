@@ -3,6 +3,7 @@
  */
 
 $("#fboardDelBtn").on("click", function() {
+	console.log("글 삭제 버튼 클릭 됨");
 	getModal();
 });
 
@@ -11,6 +12,11 @@ $("#goTOPay").on("click", function() {
 	console.log(boardNumVar);
 	location.href = "/petbreedding/bdelete?bo_num="+boardNumVar+"";
 });
+//$("#goTOPay_comment").on("click", function() {
+//	var CoNumVar = $(this).attr("name");
+//	console.log(CoNumVar);
+//	location.href = "/petbreedding/bcdelete?co_num="+CoNumVar+"";
+//});
 
 // 모달
 
@@ -64,4 +70,7 @@ Element.prototype.setStyle = function(styles) {
 };
 function getModal(){
 	modal('my_modal');
+}
+function getCommentModal(){
+	modal('my_modal_comment');
 }

@@ -33,4 +33,8 @@ public class BCommentDao {
 	public int bocChkUpdate(String bo_num) {
 		return sqlSession.update("boardComment.bocChkUpdate", bo_num);
 	}
+	
+	public int bCommentDelete(String co_num) {
+		return sqlSession.delete("boardComment.bCommentDelete", co_num);
+	}
 }

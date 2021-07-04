@@ -163,3 +163,57 @@
     border: 1px solid var(--hover-color);
 }
 
+
+
+/* MODAL COMMENT */
+#my_modal_comment {
+    display: none;
+    width: 500px;
+    height: 200px;
+    padding: 20px 60px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+#my_modal_comment h1{
+    text-align: center;
+}
+#my_modal_comment p {
+    text-align: center;
+}
+#my_modal_comment #closeBtnComment{
+    cursor: pointer;
+}
+
+#my_modal_comment .modal_close_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#my_modal_comment button {
+    width: 200px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-left: 30px;
+    
+    cursor: pointer;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+#goTOPay_comment{
+    border: none;
+    color: var(--font-color);
+    background-color: var(--button-color);
+}
+#goTOPay_comment:hover{
+    background-color: var(--hover-color);
+}
+#nextTime_comment{
+    background-color: var(--font-color);
+    border: 1px solid var(--button-color);
+}
+#nextTime_comment:hover{
+    border: 1px solid var(--hover-color);
+}
