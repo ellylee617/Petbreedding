@@ -537,5 +537,23 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 리뷰 평균 계산
+	@Override
+	public double selectRevVal(String bpId) {
+		double avgRevVal = shopDao.selectRevVal(bpId);
+		return avgRevVal;
+	}
+
+
+
+
+	@Override
+	public String selectCountReview(String bpId) {
+		String count = shopDao.selectCountReview(bpId);
+		return count;
+	}
+
+
+
 
 }

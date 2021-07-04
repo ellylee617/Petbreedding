@@ -23,20 +23,6 @@ public class ReviewServiceImpl implements ReviewService {
 	private MyPointDao myPointDao;
 
 	
-	// 리뷰 평균 계산
-	@Override
-	public double selectRevVal(String bpId) {
-		double avgRevVal = reviewDao.selectRevVal(bpId);
-		return avgRevVal;
-	}
-
-	// 리뷰 건수 계산 
-	@Override
-	public String selectCountReview(String bpId) {
-		String count = reviewDao.selectCountReview(bpId);
-		return count;
-	}
-	
 	@Override
 	public List<Review> reviewSelectList(String bpId, int currentPage, int limit) {
 		System.out.println("서비스 진입1");

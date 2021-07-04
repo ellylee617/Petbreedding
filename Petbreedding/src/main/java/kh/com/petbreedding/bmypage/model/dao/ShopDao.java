@@ -31,7 +31,18 @@ public class ShopDao {
 		System.out.println(" !! ShopDao - updateBpReg() 실행 !!");
 		return sqlSession.insert("Shop.updateBpReg", bpId);
 	}
-
+	
+	// 공통
+	
+	public double selectRevVal(String bpId) {
+		System.out.println("Review Dao 진입");
+		return sqlSession.selectOne("Shop.selectRevVal",bpId);
+	}
+	
+	public String selectCountReview(String bpId) {
+		System.out.println("Review Dao 진입");
+		return sqlSession.selectOne("Shop.selectCountReview",bpId);
+	}
 	
 	/* 
 	 * 미용실

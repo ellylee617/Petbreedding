@@ -109,8 +109,8 @@ public class shopController {
 				har_num = salonList.get(i).getHarNum();
 				bpId = salonList.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
-				double revVal = reviewService.selectRevVal(bpId);
-				String countRev = reviewService.selectCountReview(bpId);
+				double revVal = shopService.selectRevVal(bpId);
+				String countRev = shopService.selectCountReview(bpId);
 				countList.add(countRev);
 				mv.addObject("revVal", revVal);
 				mv.addObject("countRev", countList);

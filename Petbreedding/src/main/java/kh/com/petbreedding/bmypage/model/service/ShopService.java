@@ -17,6 +17,8 @@ public interface ShopService {
 	
 	public int updateBpReg(String bpId); // 사업장 등록 - BP 테이블에서 사업장 등록여부 상태 1로 바꾸기 
 	
+	public double selectRevVal(String bpId);	// 리뷰 평균 계산
+	public String selectCountReview(String bpId);	// 리뷰 건수 계산
 	
 //	public List<HairSalon> selectHarList(int currentPage, int limit); // 미용실 전체 리스트 조회 //******TODO:위치이동*******
 	public int countHarList(); // 미용실 리스트 총 갯수

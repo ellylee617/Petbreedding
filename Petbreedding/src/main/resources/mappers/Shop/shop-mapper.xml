@@ -26,7 +26,7 @@
 			<result column="5" property="fri"/>
 			<result column="6" property="sat"/>
 			<result column="AVG_REV_VAL" property="avgRevVal"/>
-			
+			<result column="COUNT" property="count"/>
 		</resultMap>
 		
 		<!-- 
@@ -89,6 +89,7 @@
 		
 
 		<!-- 미용실 리스트 : 별점순  selectHarListLikes-->
+		<!-- TODO:동물병원!! -->
 		<select id="selectHarListRev" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -115,6 +116,26 @@
 			]]>
 		</select>
 		
+		 	<!-- 사업장 평균 : 별점 -->
+		 	<select id="selectRevVal" parameterType="string" resultType="double">
+		 	SELECT AVG(REV_VAL) AVG_REV_VAL
+			FROM(
+			    SELECT B.BP_ID, R.REV_VAL
+			    FROM business_partner B
+			    INNER JOIN review R
+			    ON (b.bp_id = r.bp_id)
+			)  
+				group by BP_ID
+				HAVING BP_ID = #{bpId}
+		 	</select>
+		
+		<!-- 사업장 리스트: 리뷰 건수 -->
+	 	<select id="selectCountReview" parameterType="string" resultType="string">
+	 	SELECT COUNT(*)
+		FROM REVIEW
+		group by BP_ID
+		HAVING BP_ID = #{bpId}
+		</select>
 				
 		<!-- 미용실 리스트 : 거리순 selectHarListNear-->
 		
