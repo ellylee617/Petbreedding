@@ -25,6 +25,8 @@
 			<result column="4" property="thu"/>
 			<result column="5" property="fri"/>
 			<result column="6" property="sat"/>
+			<result column="AVG_REV_VAL" property="avgRevVal"/>
+			
 		</resultMap>
 		
 		<!-- 

@@ -109,10 +109,10 @@ public class shopController {
 				har_num = salonList.get(i).getHarNum();
 				bpId = salonList.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
-				List<Review>reviewList = reviewService.selectRevValList(bpId);
+				double revVal = reviewService.selectRevVal(bpId);
 				String countRev = reviewService.selectCountReview(bpId);
 				countList.add(countRev);
-				mv.addObject("reviewList", reviewList);
+				mv.addObject("revVal", revVal);
 				mv.addObject("countRev", countList);
 				System.out.println("************count*****"+count);
 				list.add(count);
@@ -138,6 +138,11 @@ public class shopController {
 				list2.add(count);
 				mv.addObject("count2", list2);
 			}
+			
+			List<HairSalon> harReviewList = shopService.selectHarListRev(page);
+			System.out.println("미용실 리뷰 리스트:: " + harReviewList);
+			mv.addObject("reviewList", harReviewList);
+			
 			
 			mv.addObject("shopType", harShopType);
 			mv.addObject("shopList", salonList);

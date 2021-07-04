@@ -22,14 +22,15 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	private MyPointDao myPointDao;
 
-	@Override
-	public List<Review> selectRevValList(String bpId) {
-		List<Review> reviewList = null;
-		reviewList = reviewDao.selectRevValList(bpId);
-		return reviewList;
-		
-	}
 	
+	// 리뷰 평균 계산
+	@Override
+	public double selectRevVal(String bpId) {
+		double avgRevVal = reviewDao.selectRevVal(bpId);
+		return avgRevVal;
+	}
+
+	// 리뷰 건수 계산 
 	@Override
 	public String selectCountReview(String bpId) {
 		String count = reviewDao.selectCountReview(bpId);
@@ -95,6 +96,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return result;
 	}
 
+	
 
 
 

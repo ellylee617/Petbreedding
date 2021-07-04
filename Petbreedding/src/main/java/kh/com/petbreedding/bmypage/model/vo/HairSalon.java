@@ -30,8 +30,11 @@ public class HairSalon {
 	private String sat;
 	private String sun;
 
+	private double avgRevVal;
 	
-	
+
+
+
 
 
 	@Override
@@ -40,7 +43,19 @@ public class HairSalon {
 				+ ", y=" + y + ", x=" + x + ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo="
 				+ shopMInfo + ", shopMImg=" + shopMImg + ", style=" + style + ", shopImgList=" + shopImgList
 				+ ", shopDayOffList=" + shopDayOffList + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu="
-				+ thu + ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + "]";
+				+ thu + ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + "]";
+	}
+
+
+
+	public double getAvgRevVal() {
+		return avgRevVal;
+	}
+
+
+
+	public void setAvgRevVal(double avgRevVal) {
+		this.avgRevVal = avgRevVal;
 	}
 
 

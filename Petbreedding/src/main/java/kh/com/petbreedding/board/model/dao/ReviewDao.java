@@ -39,9 +39,9 @@ public class ReviewDao {
 		return sqlSession.selectOne("Shop.searchBpId", har_num);
 	}
 	
-	public List<Review> selectRevValList(String bpId) {
+	public double selectRevVal(String bpId) {
 		System.out.println("Review Dao 진입");
-		return sqlSession.selectList("Review.selectRevValList",bpId);
+		return sqlSession.selectOne("Review.selectRevVal",bpId);
 	}
 	
 	public String selectCountReview(String bpId) {
