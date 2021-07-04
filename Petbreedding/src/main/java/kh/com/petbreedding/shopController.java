@@ -87,14 +87,15 @@ public class shopController {
 			int harShopType = 0;
 			
 			
-			List<HairSalon> salonList = null;
-			
-			salonList = shopService.selectHarListNew(page); // 최신순
-//			salonList = shopService.selectHarListRev(page); // 별점순 
 			
 			
+			List<HairSalon> newHarList = shopService.selectHarListNew(page); // 최신순
+			List<HairSalon> revHarList = shopService.selectHarListRev(page); // 별점순 
+			//TODO:거리순
 			
-			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
+			
+			System.out.println("미용실 리스트: 최신순 : " + newHarList);
+			System.out.println("미용실 리스트: 별점순: " + revHarList);
 			
 			
 			// 미용실 리스트 - 거리순
@@ -102,15 +103,17 @@ public class shopController {
 			
 			
 			
-			//기본 매장 찜한 숫자 가져오기
+			// 찜한 숫자 가져오기
 			// + 별점 출력 
 			String har_num = null;
 			String bpId = null;
 			List<String> list = new ArrayList<String>();
 			List<String> countList = new ArrayList<String>();
-			for(int i =0; i<salonList.size(); i++) {
-				har_num = salonList.get(i).getHarNum();
-				bpId = salonList.get(i).getBpId();
+			
+			// 최신순
+			for(int i =0; i<newHarList.size(); i++) {
+				har_num = newHarList.get(i).getHarNum();
+				bpId = newHarList.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
 				String revVal = shopService.selectRevVal(bpId);
 					
@@ -122,6 +125,24 @@ public class shopController {
 				list.add(count);
 				mv.addObject("count", list);
 			}
+			
+			// 별점순
+			for(int i =0; i<revHarList.size(); i++) {
+				har_num = revHarList.get(i).getHarNum();
+				bpId = revHarList.get(i).getBpId();
+				String count = likeService.countSalon(har_num);
+				String revVal = shopService.selectRevVal(bpId);
+					
+				String countRev = shopService.selectCountReview(bpId);
+				countList.add(countRev);
+				mv.addObject("revVal", revVal);
+				mv.addObject("countRev", countList);
+				System.out.println("************count*****"+count);
+				list.add(count);
+				mv.addObject("count", list);
+			}
+			
+			// TODO:거리순
 			
 			/*
 			 * List<String> list = new ArrayList<String>(); 
@@ -149,7 +170,8 @@ public class shopController {
 			
 			
 			mv.addObject("shopType", harShopType);
-			mv.addObject("shopList", salonList);
+			mv.addObject("newHarList", newHarList);
+			mv.addObject("revHarList", revHarList);
 			mv.addObject("paging", page);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");

@@ -1,36 +1,22 @@
 
-//$(document).ready(function () {
-//	
-//	var selectState = null; // 리스트 정렬 기준이 뭘로 선택됐는가?
-//	
-//  $("#new").click(function () {
-//	  selectState = $("#new").val();
-//	  console.log("리스트 정렬 기준은?:"+selectState);
-//  });
-//  $("#distance").click(function () {
-//	  selectState = $("#distance").val();
-//	  console.log("리스트 정렬 기준은?:"+selectState);
-//  });
-//  $("#review").click(function () {
-//	  selectState = $("#review").val();
-//	  console.log("리스트 정렬 기준은?:"+selectState);
-//  });
-//  
-//  
-//	  $.ajax({
-//	      type : "GET",
-//	
-//	      url : 'shopList',
-//	
-//	      dataType: "String", 
-//	
-//	      data:selectState
-//	
-//	});
-//  
-//});
-//
 
+$("#newHarRadio").click(function(){
+	$("#newHarList").show();
+	$("#distanceHarList").hide();
+	$("#revHarList").hide();
+});
+
+$("#distanceHarRadio").click(function(){
+	$("#newHarList").hide();
+	$("#distanceHarList").show();
+	$("#revHarList").hide();
+});
+
+$("#revHarRadio").click(function(){
+	$("#newHarList").hide();
+	$("#distanceHarList").hide();
+	$("#revHarList").show();
+});
 
 function modal(id) {
     var zIndex = 9999;
