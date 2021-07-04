@@ -6,6 +6,12 @@ $("#fboardDelBtn").on("click", function() {
 	getModal();
 });
 
+$("#goTOPay").on("click", function() {
+	var boardNumVar = $(this).attr("name");
+	console.log(boardNumVar);
+	location.href = "/petbreedding/bdelete?bo_num="+boardNumVar+"";
+});
+
 // 모달
 
 function modal(id) {

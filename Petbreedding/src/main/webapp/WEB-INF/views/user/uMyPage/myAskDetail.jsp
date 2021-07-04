@@ -69,7 +69,6 @@
 		        <h1>삭제하시겠습니까?</h1>
 		        <button id="goTOPay">바로 삭제할게요</button>
 		        <button id="nextTime">다음에 할게요</button>
-		        <input type="hidden" id="har_rnum">
 		    </div>
 		</div>
 	</div>

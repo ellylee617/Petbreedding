@@ -41,5 +41,11 @@
 		 WHERE BO_NUM = #{boNum}
 	 </update>
 	 
+	  <!-- 게시글 삭제 -->
+	 <delete id="deleteBoard" parameterType="string">
+	 	DELETE FROM BOARD WHERE BO_NUM = #{boNum}
+	 </delete>
+	 
+	 
 	
 </mapper>

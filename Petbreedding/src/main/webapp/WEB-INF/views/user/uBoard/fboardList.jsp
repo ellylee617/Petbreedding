@@ -62,13 +62,6 @@
 			
 			<c:if test="${listCount ne 0}">
 				
-<<<<<<< HEAD
-				<div class="write">
-				   <button class="writebtn basicBtn"><a href="${path}/bwriteFrm">글쓰기</a></button>
-				</div>  
-=======
-				 
->>>>>>> 4254dbb4399d0c74fa02abcd64371a2a1d7565b8
 				<c:forEach items="${boardList }" var="blist">
 					<div class="boardlist">
 		            	<div class="subdiv">

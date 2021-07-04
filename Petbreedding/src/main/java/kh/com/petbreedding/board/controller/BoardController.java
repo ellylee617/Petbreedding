@@ -106,7 +106,7 @@ public class BoardController {
 		return mv;
 	}
 
-	// 게시글 작성
+	// 게시글 작성 폼
 	@RequestMapping(value = "/bwriteFrm")
 	public String bWrite(Model model) {
 		return "/user/uBoard/bwrite";
@@ -200,6 +200,22 @@ public class BoardController {
 		 */
 				
 		return "redirect:/fboardlist";
+	}
+	
+	@RequestMapping(value = "/bdelete")
+	public String bdelete(String bo_num) {
+		
+		System.out.println("[세훈] @게시판 글 삭제 컨트롤러 bo_num : " + bo_num);
+		
+		int boDelResult = boardService.deleteBoard(bo_num);
+		
+		if(boDelResult > 0) {
+			System.out.println("게시판 글 삭제 성공");
+		} else {
+			System.out.println("게시판 글 삭제 실패");
+		}
+		
+		return "redirect://fboardlist";
 	}
 
 	// 게시판 댓글 조회

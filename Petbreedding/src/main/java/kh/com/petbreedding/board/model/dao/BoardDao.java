@@ -30,8 +30,8 @@ public class BoardDao {
 		}
 		
 		// 게시글 삭제
-		public void deleteBoard(String bo_num) {
-			//TODO
+		public int deleteBoard(String bo_num) {
+			return sqlSession.delete("Board.deleteBoard", bo_num);
 		}
 		
 		//전체 글 수 조회
