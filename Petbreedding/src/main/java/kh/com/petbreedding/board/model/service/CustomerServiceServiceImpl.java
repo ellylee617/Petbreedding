@@ -39,6 +39,20 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 	}
 	
 	@Override
+	public CustomerService CustomerServiceSelectOne(String ann_num) {
+		CustomerService csDetail = null;
+		
+		try {
+			csDetail = customerServiceDao.CustomerServiceSelectOne(ann_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return csDetail;
+	}
+	
+	
+	@Override
 	public int CustomerServiceInsert(CustomerService cs) {
 		int result = -1;
 		
@@ -50,5 +64,20 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 		
 		return result;
 	}
+
+	@Override
+	public int CustomerServiceDelete(String ann_num) {
+		int result = -1;
+		
+		try {
+			result = customerServiceDao.CustomerServiceDelete(ann_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
 
 }

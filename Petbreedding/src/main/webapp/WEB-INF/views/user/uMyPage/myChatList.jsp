@@ -32,9 +32,9 @@
 						<div class="tabCon">
 							<c:if test="${not empty Roomlist }">
 							<c:forEach items="${Roomlist }" var="r" varStatus="status">
-							<table onClick="openchatwin('${r.chatId }','${r.shopName}','${r.bp_id}' );">
+							<table onClick="openchatwin('${r.chatId }','${r.shopName}','${r.bp_id}', '${r.bp_type}');">
 								<tr>
-									<td rowspan="2"><img src="http://placehold.it/50X50"></td>
+									<td rowspan="2"><img src="${path}/resources/uploadFile/shop/${r.mImg }"></td>
 									<td>${r.shopName }</td>
 									<td>${r.mSendTime }</td>
 									<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
@@ -51,14 +51,14 @@
 						</div>
 						</li>
 						<li id="tab2" class="btnCon">
-						<input type="radio" name="tabmenu" id="tabmenu2"  class="Tmenu">
-						<label for="tabmenu2">읽지 않음<c:if test="${countUnread ne 0 } }">${countUnread}</c:if></label>
+						<input type="radio" name="tabmenu" id="tabmenu2" class="Tmenu">
+						<c:if test="${countUnread ne 0 }"><div class="topCount countwrap">${countUnread}</div></c:if><label for="tabmenu2">읽지 않은 메시지</label>
 						<div class="tabCon">
 						<c:if test="${not empty unreadList }">
 						<c:forEach items="${unreadList }" var="u" varStatus="status">
-						<table onClick="openchatwin('${u.chatId }','${u.shopName}','${u.bp_id}' );">
+						<table onClick="openchatwin('${u.chatId }','${u.shopName}','${u.bp_id}', '${u.bp_type}');">
 							<tr>
-								<td rowspan="2"><img src="http://placehold.it/50X50"></td>
+								<td rowspan="2"><img src="${path}/resources/uploadFile/shop/${u.mImg }"></td>
 								<td>${u.shopName }</td>
 								<td>${u.mSendTime }</td>
 								<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
@@ -72,6 +72,7 @@
 						</table>
 						</c:forEach>
 						</c:if>
+						<c:if test="${empty unreadList }"><div class="textwrap">읽지 않은 메시지가 없습니다.</div></c:if>
 						</div>
 						</li>
 					</ul>

@@ -15,10 +15,11 @@
 		<result column="message_content" property="mContent" />
 		<result column="message_sendTime" property="mSendTime" />
 		<result column="chatroom_id" property="chatId" />
-		<result column="message_readTime" property="mReadTime" />
 		<result column="cl_num" property="cl_num" />
 		<result column="bp_id" property="bp_id" />
 		<result column="unread_count" property="mUnreadCount"/>
+		<result column="BP_TYPE" property="bp_type"/>
+		<result column="MAIN_IMG" property="mImg"/>
 	</resultMap>
 	
 	<resultMap type="ChatList" id="chatList">
@@ -30,10 +31,15 @@
 		<result column="MESSAGE_SENDTIME" property="mSendTime"/>
 		<result column="MESSAGE_CONTENT" property="mContent"/>
 		<result column="UNREAD_COUNT" property="unreadCount"/>	
+		<result column="MAIN_IMG" property="mImg"/>
 	</resultMap>
+	
+	<select id="getbp_type" resultType="string">
+		SELECT BP_TYPE FROM BUSINESS_PARTNER WHERE BP_ID = #{bp_id}
+	</select>
 
 	<insert id="createRoom">
-		INSERT INTO CHATROOM VALUES(SEQ_CHAT_ROOMID.NEXTVAL, #{cl_num}, #{bp_id})
+		INSERT INTO CHATROOM VALUES(SEQ_CHAT_ROOMID.NEXTVAL, #{cl_num}, #{bp_id}, #{bp_type})
 	</insert>
 
 	<select id="isRoom" resultMap="chatroom">
@@ -44,15 +50,15 @@
 	<insert id="insertMessage" parameterType="ChatMessage" flushCache="true">
 		<if test="mUnreadCount == 1">
 		INSERT INTO CHATMESSAGE (MESSAGE_ID, MESSAGE_SENDER, MESSAGE_RECEIVER, 
-		MESSAGE_CONTENT, MESSAGE_SENDTIME, CHATROOM_ID, UNREAD_COUNT, CL_NUM, BP_ID)
+		MESSAGE_CONTENT, MESSAGE_SENDTIME, CHATROOM_ID, UNREAD_COUNT)
 		VALUES(SEQ_CHAT_MESSAGE.NEXTVAL, #{mSender}, #{mReceiver}, #{mContent},
-		CURRENT_TIMESTAMP, #{chatId}, 1, #{cl_num}, #{bp_id})
+		CURRENT_TIMESTAMP, #{chatId}, 1)
 		</if>
 		<if test="mUnreadCount == 2">
 		INSERT INTO CHATMESSAGE (MESSAGE_ID, MESSAGE_SENDER, MESSAGE_RECEIVER, 
-		MESSAGE_CONTENT, MESSAGE_SENDTIME, CHATROOM_ID, UNREAD_COUNT, CL_NUM, BP_ID)
+		MESSAGE_CONTENT, MESSAGE_SENDTIME, CHATROOM_ID, UNREAD_COUNT)
 		VALUES(SEQ_CHAT_MESSAGE.NEXTVAL, #{mSender}, #{mReceiver}, #{mContent},
-		CURRENT_TIMESTAMP, #{chatId}, 0, #{cl_num}, #{bp_id})
+		CURRENT_TIMESTAMP, #{chatId}, 0)
 		</if>
 	</insert>
 	
@@ -61,160 +67,189 @@
 	</select>
 
 	<select id="getList" resultMap="chatList">
-	SELECT C.*, D.HOS_NAME AS SHOP_NAME
+	SELECT D.*, E.HOS_NAME AS SHOP_NAME, E.HOS_MIMG AS MAIN_IMG
 	FROM
 	    (
-	    SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM, A.BP_ID, NVL(B.UNREAD_COUNT,0) UNREAD_COUNT
-	      FROM
-	            (
-	            SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
-	            FROM
-	                    (
-	                    SELECT
-	                    ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM,
-	                    CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, 
-	                    CL_NUM, BP_ID
-	                    FROM CHATMESSAGE
-	                    )SQ
-	                    WHERE SQ.RNUM = 1 AND CL_NUM = #{cl_num}
-	                    ORDER BY CHATROOM_ID
-	            ) A
-	            LEFT OUTER JOIN
+	    SELECT B.CHATROOM_ID, B.MESSAGE_CONTENT, B.MESSAGE_SENDTIME, B.CL_NUM, B.BP_ID, B.BP_TYPE, NVL(C.UNREAD_COUNT,0) UNREAD_COUNT
+        FROM
+              (
+              SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, CH.CL_NUM, CH.BP_ID, CH.BP_TYPE
+              FROM
+                    (
+                    SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME
+                    FROM
+                            (
+                            SELECT
+                            ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM,
+                            CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME
+                            FROM CHATMESSAGE
+                            )SQ                       
+                            WHERE SQ.RNUM = 1 
+                            ORDER BY CHATROOM_ID
+	                   		 ) A
+	                	INNER JOIN
+		                (SELECT * FROM CHATROOM) CH
+		                ON A.CHATROOM_ID = CH.CHATROOM_ID
+		                WHERE CL_NUM = #{cl_num}
+	               		)B
+		            LEFT OUTER JOIN
 	                (
 	                SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
 	                FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{cl_num} AND UNREAD_COUNT = 1 
 	                GROUP BY CHATROOM_ID
-	                )B
-	            ON A.CHATROOM_ID = B.CHATROOM_ID
+                )C
+	            ON B.CHATROOM_ID = C.CHATROOM_ID
 	            ORDER BY MESSAGE_SENDTIME DESC
-	    )C
+	    )D
 	    INNER JOIN
-	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) D        
-	ON C.BP_ID = D.BP_ID
+	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) E        
+	ON D.BP_ID = E.BP_ID
 	</select>
 	
 	<select id="getUnreadList" resultMap="chatList">
-	SELECT C.*, D.HOS_NAME AS SHOP_NAME
-	FROM
-	    (
-	    SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM, A.BP_ID, NVL(B.UNREAD_COUNT,0) UNREAD_COUNT
-	      FROM
-	            (
-	            SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
-	            FROM
+		SELECT D.*, E.HOS_NAME AS SHOP_NAME, E.HOS_MIMG AS MAIN_IMG
+		FROM
+		    (
+		    SELECT B.*, NVL(C.UNREAD_COUNT,0) UNREAD_COUNT
+	        FROM
+	              (
+	              SELECT A.*, CH.CL_NUM, CH.BP_ID, CH.BP_TYPE
+	              FROM
 	                    (
-	                    SELECT
-	                    ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM,
-	                    CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, 
-	                    CL_NUM, BP_ID
-	                    FROM CHATMESSAGE
-	                    )SQ
-	                    WHERE SQ.RNUM = 1 AND CL_NUM = #{cl_num}
-	                    ORDER BY CHATROOM_ID
-	            ) A
-	            INNER JOIN
+	                    SELECT  MESSAGE_SENDER, MESSAGE_RECEIVER, CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME
+	                    FROM
+                            (
+                            SELECT
+                            ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM, MESSAGE_SENDER, MESSAGE_RECEIVER,
+                            CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME
+                            FROM CHATMESSAGE
+                            )SQ                       
+                           WHERE SQ.RNUM = 1 
+                           ORDER BY CHATROOM_ID
+                   		 ) A
+	                	INNER JOIN
+		                (SELECT * FROM CHATROOM) CH
+		                ON A.CHATROOM_ID = CH.CHATROOM_ID
+		                WHERE CL_NUM = #{cl_num}
+	               		)B
+		            INNER JOIN
 	                (
 	                SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
 	                FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{cl_num} AND UNREAD_COUNT = 1 
 	                GROUP BY CHATROOM_ID
-	                )B
-	            ON A.CHATROOM_ID = B.CHATROOM_ID
+                )C
+	            ON B.CHATROOM_ID = C.CHATROOM_ID
 	            ORDER BY MESSAGE_SENDTIME DESC
-	    )C
-	    INNER JOIN
-	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) D        
-	ON C.BP_ID = D.BP_ID
+		    )D
+		    INNER JOIN
+		    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) E        
+		ON D.BP_ID = E.BP_ID
 	</select>
 
 	<select id="getListbp_id" resultMap="chatList">
-	SELECT F.*, G.HOS_NAME AS SHOP_NAME
-	FROM
-	    (
-	    SELECT C.CHATROOM_ID, C.MESSAGE_CONTENT, C.MESSAGE_SENDTIME, C.CL_NUM, C.BP_ID, C.CL_NICKNAME, NVL(D.UNREAD_COUNT,0) UNREAD_COUNT
-	      FROM
-	      (
-	      SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM, A.BP_ID, B.CL_NICKNAME
-	      FROM
-	            (
-	            SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
-	            FROM
-	                    (
-	                    SELECT
-	                    ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM,
-	                    CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, 
-	                    CL_NUM, BP_ID
-	                    FROM CHATMESSAGE
-	                    )SQ
-	                    WHERE SQ.RNUM = 1 AND BP_ID = #{bp_id}
-	                    ORDER BY CHATROOM_ID
-	            ) A
-	            INNER JOIN
-	                (
-	                SELECT * FROM CLIENT
-	                ) B
-	            ON A.CL_NUM = B.CL_NUM 
-	            ORDER BY MESSAGE_SENDTIME DESC
-	        ) C
-	        LEFT OUTER JOIN
-	        (
-	        SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
-	        FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{bp_id} AND UNREAD_COUNT = 1 
-	        GROUP BY CHATROOM_ID
-	        )D
-	        ON C.CHATROOM_ID = D.CHATROOM_ID
-	    )F
+		SELECT F.*, G.HOS_NAME AS SHOP_NAME
+		FROM
+		    (
+		    SELECT D.*, NVL(E.UNREAD_COUNT,0) UNREAD_COUNT
+	        FROM
+           		(
+				SELECT B.*, C.CL_NICKNAME
+				FROM
+       				(
+	                SELECT A.*, CH.CL_NUM, CH.BP_ID, CH.BP_TYPE
+	                FROM
+                          (
+                          SELECT  MESSAGE_SENDER, MESSAGE_RECEIVER, CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME
+                          FROM
+                              (
+                              SELECT
+                              ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM, MESSAGE_SENDER, MESSAGE_RECEIVER,
+                              CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME
+                              FROM CHATMESSAGE
+                              )SQ                       
+                          WHERE SQ.RNUM = 1 
+                          ORDER BY CHATROOM_ID
+                  			) A
+                	INNER JOIN
+	                (SELECT * FROM CHATROOM) CH
+	                ON A.CHATROOM_ID = CH.CHATROOM_ID
+	                WHERE BP_ID = #{bp_id}
+               		) B
+                   INNER JOIN
+                   (SELECT * FROM CLIENT) C
+                   ON B.CL_NUM = C.CL_NUM) D
+	            LEFT OUTER JOIN
+                (
+               SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
+               FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{bp_id} AND UNREAD_COUNT = 1 
+               GROUP BY CHATROOM_ID
+               ) E
+           ON D.CHATROOM_ID = E.CHATROOM_ID
+           ORDER BY MESSAGE_SENDTIME DESC
+	    	)F
 	    INNER JOIN
-	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) G        
+	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) G      
 	ON F.BP_ID = G.BP_ID
 	</select>
 	
 	<select id="getUnreadListbp_id" resultMap="chatList">
 	SELECT F.*, G.HOS_NAME AS SHOP_NAME
-	FROM
-	    (
-	    SELECT C.CHATROOM_ID, C.MESSAGE_CONTENT, C.MESSAGE_SENDTIME, C.CL_NUM, C.BP_ID, C.CL_NICKNAME, NVL(D.UNREAD_COUNT,0) UNREAD_COUNT
-	      FROM
-	      (
-	      SELECT A.CHATROOM_ID, A.MESSAGE_CONTENT, A.MESSAGE_SENDTIME, A.CL_NUM, A.BP_ID, B.CL_NICKNAME
-	      FROM
-	            (
-	            SELECT CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME, CL_NUM, BP_ID
-	            FROM
-	                    (
-	                    SELECT
-	                    ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM,
-	                    CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, 
-	                    CL_NUM, BP_ID
-	                    FROM CHATMESSAGE
-	                    )SQ
-	                    WHERE SQ.RNUM = 1 AND BP_ID = #{bp_id}
-	                    ORDER BY CHATROOM_ID
-	            ) A
+		FROM
+		    (
+		    SELECT D.*, NVL(E.UNREAD_COUNT,0) UNREAD_COUNT
+	        FROM
+           		(
+				SELECT B.*, C.CL_NICKNAME
+				FROM
+       				(
+	                SELECT A.*, CH.CL_NUM, CH.BP_ID, CH.BP_TYPE
+	                FROM
+                          (
+                          SELECT  MESSAGE_SENDER, MESSAGE_RECEIVER, CHATROOM_ID, MESSAGE_CONTENT, MESSAGE_SENDTIME
+                          FROM
+                              (
+                              SELECT
+                              ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM, MESSAGE_SENDER, MESSAGE_RECEIVER,
+                              CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME
+                              FROM CHATMESSAGE
+                              )SQ                       
+                          WHERE SQ.RNUM = 1 
+                          ORDER BY CHATROOM_ID
+                  			) A
+                	INNER JOIN
+	                (SELECT * FROM CHATROOM) CH
+	                ON A.CHATROOM_ID = CH.CHATROOM_ID
+	                WHERE BP_ID = #{bp_id}
+               		) B
+                   INNER JOIN
+                   (SELECT * FROM CLIENT) C
+                   ON B.CL_NUM = C.CL_NUM) D
 	            INNER JOIN
-	                (
-	                SELECT * FROM CLIENT
-	                ) B
-	            ON A.CL_NUM = B.CL_NUM 
-	            ORDER BY MESSAGE_SENDTIME DESC
-	        ) C
-	        INNER JOIN
-	        (
-	        SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
-	        FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{bp_id} AND UNREAD_COUNT = 1 
-	        GROUP BY CHATROOM_ID
-	        )D
-	        ON C.CHATROOM_ID = D.CHATROOM_ID
-	    )F
+                (
+               SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
+               FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{bp_id} AND UNREAD_COUNT = 1 
+               GROUP BY CHATROOM_ID
+               ) E
+           ON D.CHATROOM_ID = E.CHATROOM_ID
+           ORDER BY MESSAGE_SENDTIME DESC
+	    	)F
 	    INNER JOIN
-	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) G        
+	    (SELECT * FROM HOSPITAL UNION SELECT * FROM HAIR_SALON) G      
 	ON F.BP_ID = G.BP_ID
 	</select>
 
 	<select id="getMessageList" resultMap="chatmessage">
+		SELECT A.*, B.*
+		FROM
+		(
 		SELECT MESSAGE_SENDER, MESSAGE_RECEIVER, MESSAGE_CONTENT, 
-		TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, CL_NUM, BP_ID 
-		FROM CHATMESSAGE 
-		WHERE CHATROOM_ID=#{chatId}
+		TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, CHATROOM_ID
+		FROM CHATMESSAGE WHERE CHATROOM_ID= #{chatId}
+		) A
+		INNER JOIN 
+		(SELECT * FROM CHATROOM WHERE CL_NUM=#{cl_num}) B
+		ON A.CHATROOM_ID = B.CHATROOM_ID
+
 	</select>
 
 	<select id="getMessageListbp_id" resultMap="chatmessage">

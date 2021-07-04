@@ -49,15 +49,23 @@
 				<div class="conbtn">
 				    <button class="basicBtn" id="listBtn">목록</button>
 				    <button class="basicBtn" id="delBtn">삭제</button>
-				    <button class="basicBtn" id="updeteBtn">수정</button>
-				    
-				
 				</div>
 				<div id="replyArea" class="reply">
 				</div>
 			</div>
 		</section>
 	<jsp:include page="../../common/footer.jsp" />
+	
+	<!-- MODAL -->
+	<div id="my_modal">
+	   <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
+	   <div id="locCon">
+	       <h1>삭제하시겠습니까?</h1>
+	       <button id="goTOPay" name="${mAsk.qnaNum}">바로 삭제할게요</button>
+	        <button id="nextTime">다음에 할게요</button>
+	    </div>
+	</div>
+	
 	</div>	 
 	<script type="text/javascript">
 		console.log("스크립트 시작");
@@ -90,8 +98,8 @@
 									+item.qnacCont
 									+"</div>"
 									+"<form id='maCommentFrm' class='maCommentFrm'>"
-									+"<button class='basicBtn' id='maCommentUpBtn'>수정</button>"
-									+"<button class='basicBtn' id='maCommentDelBtn'>삭제</button>"
+									+"<button class='basicBtn' id='maCommentUpBtn'>댓글수정</button>"
+									+"<button class='basicBtn' id='maCommentDelBtn'>댓글삭제</button>"
 									+"</form>";
 						});
 					} else {
@@ -113,8 +121,8 @@
 							url: 'macWrite',
 							type: 'post',
 							data: queryString,
-							success: function(queryString) {
-								maCommentInit(queryString.qnaNum);
+							success: function(qnaNum) {
+								maCommentInit(qnaNum);
 							},
 							
 							error : function(request, status, error) {

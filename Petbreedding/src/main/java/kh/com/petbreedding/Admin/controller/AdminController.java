@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -179,6 +180,23 @@ public class AdminController {
 		return "/admin/aBoard/mboardcon";
 	}
 	
+	// 게시글 관리 (문의게시판 글 삭제)
+	@RequestMapping(value = "/mboardDelete")
+	public String mboardDelete(String qna_num) {
+		
+		System.out.println("[세훈] @관리자 문의 사항 삭제 qna_num : " + qna_num);
+		
+		int result = myAskService.MyAskDelete(qna_num);
+		
+		if(result > 0) {
+			System.out.println("문의 사항 삭제 성공");
+		} else {
+			System.out.println("문의 사항 삭제 실패");
+		}
+		
+		return "redirect:/mboard";
+	}
+	
 	// 게시글 관리 (문의게시판 댓글)
 	@RequestMapping(value = "/macList", produces = "application/text; charset=UTF-8")
 	public void macList(
@@ -251,7 +269,7 @@ public class AdminController {
 	
 
 	// 게시글 관리 (공지사항게시판 목록)
-	@RequestMapping(value = "/mservice", method = RequestMethod.GET)
+	@RequestMapping(value = "/mservice")
 	public String mservice(Model md) {
 		
 		List<CustomerService> cusList = customerServiceService.CustomerServiceSelectListA();
@@ -259,6 +277,25 @@ public class AdminController {
 		md.addAttribute("cusList", cusList);
 		
 		return "/admin/aBoard/mservice";
+	}
+	
+	@RequestMapping(value = "/mserviceDetail")
+	public String mserviceDetail(
+			Model md
+			,String ann_num
+			) {
+		
+		System.out.println("[세훈] @공지사항  상세 컨트롤러 ann_num : " + ann_num);
+		
+		CustomerService csDetail = new CustomerService();
+		
+		csDetail = customerServiceService.CustomerServiceSelectOne(ann_num);
+		System.out.println("[세훈] @공지사항  상세 컨트롤러 csDetail : " + csDetail);
+		
+		md.addAttribute("csDetail", csDetail);
+		
+		return "/admin/aBoard/mserviceDetail";
+		
 	}
 
 	// 게시글 관리 (공지사항게시판 내용)
@@ -274,8 +311,8 @@ public class AdminController {
 	}
 	
 	// 게시글 관리 (공지사항게시판 등록)
-	@RequestMapping(value = "/mRegister")
-	public String mRegister(
+	@RequestMapping(value = "/msRegister")
+	public String msRegister(
 			Model md
 			,Admin ad
 			,HttpSession session
@@ -327,9 +364,29 @@ public class AdminController {
 		
 		return "/admin/aBoard/mservice";
 	}
+	
+	// 게시글 관리 (공지사항게시판 삭제)
+	@RequestMapping(value = "/msDelete")
+	public String msDelete(
+			ModelAndView mv
+			,String ann_num
+			) {
+		
+		System.out.println("[세훈] @공지사항  삭제 컨트롤러 ann_num : " + ann_num);
+		
+		int result = customerServiceService.CustomerServiceDelete(ann_num);
+		
+		if(result > 0) {
+			System.out.println("삭제 성공");
+		} else {
+			System.out.println("삭제 실패");
+		}
+		
+		return "redirect:/mservice";
+	}
 
 	// 게시글 관리 (자유게시판 목록)
-	@RequestMapping(value = "/mfreeboard", method = RequestMethod.GET)
+	@RequestMapping(value = "/mfreeboard")
 	public String mfreeboard(Locale locale, Model model) {
 		return "/admin/aBoard/mfreeboard";
 	}

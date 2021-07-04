@@ -83,7 +83,7 @@
 			                </c:choose>
 			                <div class="title">
 			                <a href="fboardcon?boNum=${blist.boNum}">
-			                <p>${blist.boCont}(10)</p>
+			                <p>${blist.boCont}(${blist.bocChk})</p>
 			                </a>
 			                </div>
 			                <div class="writer"><a href="fboardcon">${blist.clNickName}</a></div>
@@ -168,6 +168,7 @@
              
 			</section>
 		<jsp:include page="../../common/footer.jsp" />
+		
     </div>
 </body>
 </html>

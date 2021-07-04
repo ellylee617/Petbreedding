@@ -46,4 +46,10 @@ public class BpReservationDao {
 		return sqlSession.selectList("bprev.hosrevList", bp_id);
 	}
 	
+	//병원 예약상세페이지
+	public HospitalReservation revhoscon(String hos_rnum) throws Exception{
+		return sqlSession.selectOne("bprev.HosRevCon", hos_rnum);
+	}
+	
+	
 }

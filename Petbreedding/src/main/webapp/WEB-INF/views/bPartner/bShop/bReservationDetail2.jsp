@@ -21,9 +21,9 @@
 		<section class="section">
 	        <jsp:include page="../bAside.jsp" />
 			<input type="hidden" id="bpIdforOut" value="${bp_id }">
-	        <input type="hidden" id="shopNameforOut" value="${list.hairSalon.shopName}">
-			<input type="hidden" id="cl_numforOut" value="${list.cl_num}">
-			<input type="hidden" id="nickNameforOut" value="${list.client.name}">
+	        <input type="hidden" id="shopNameforOut" value="${list2.hospital.shopName}">
+			<input type="hidden" id="cl_numforOut" value="${list2.cl_num}">
+	        <input type="hidden" id="nickNameforOut" value="${list2.client.name}">
 	        <div class="bContent">
                 <h1>예약 완료</h1>
                 <div class="resInfo infoBox">
@@ -31,11 +31,11 @@
                         <tr class="infoTitle">예약 정보</tr>
                         <tr class="info">
                             <td>일정</td>
-                            <td>${list.res_date} 오후 ${list.res_time}</td>
+                            <td>${list2.hos_date} 오후 ${list2.hos_time}</td>
                         </tr>
                         <tr class="info">
                             <td>상품</td>
-                            <td> ${list.hairSalon.shopName}(+)${list.style.style_name}</td>
+                            <td> ${list2.hospital.shopName}(+)${list2.medical.medName}</td>
                         </tr>
             
                     </table>
@@ -45,15 +45,15 @@
                         <tr class="infoTitle">예약자 정보</tr>
                         <tr class="info">
                             <td>예약자명</td>
-                            <td>${list.client.name}</td>
+                            <td>${list2.client.name}</td>
                         </tr>
                         <tr class="info">
                             <td>연락처</td>
-                            <td>${list.client.tel}</td>
+                            <td>${list2.client.tel}</td>
                         </tr>
                         <tr class="info">
                             <td>이메일</td>
-                            <td>${list.client.email}</td>
+                            <td>${list2.client.email}</td>
                         </tr>
                     </table>
                 </div>
@@ -61,43 +61,43 @@
                     <table>
                         <tr class="infoTitle">반려견 정보</tr>
                         <tr>
-                            <td>${list.pet.pet_name}</td>
-                            <td>${list.pet.pet_birth}</td>
-                            <td>${list.pet.pet_kind}</td>
-                            <td>${list.pet.pet_weight}kg</td>
+                            <td>${list2.pet.pet_name}</td>
+                            <td>${list2.pet.pet_birth}</td>
+                            <td>${list2.pet.pet_kind}</td>
+                            <td>${list2.pet.pet_weight}kg</td>
 				<c:choose>
-                <c:when test="${list.pet.pet_neut == null}">
+                <c:when test="${list2.pet.pet_neut == null}">
                             <td>중성화 x</td>
           		</c:when>
-          		<c:when test="${list.pet.pet_neut != null}">
+          		<c:when test="${list2.pet.pet_neut != null}">
                             <td>중성화 o</td>
           		</c:when>
           		</c:choose>
           		<c:choose>
-          		 <c:when test="${list.pet.pet_exper == null}">
+          		 <c:when test="${list2.pet.pet_exper == null}">
                             <td>미용경험 없음 </td>
                 </c:when>
-                <c:when test="${list.pet.pet_exper != null}">
+                <c:when test="${list2.pet.pet_exper != null}">
                             <td>미용경험 ${list.pet.pet_exper} </td>
                 </c:when>
                 </c:choose>          
-                            <td>${list.pet.pet_vaccin}</td>
-                            <td>입질 ${list.pet.pet_bite}</td>
-                            <td>${list.pet.dislike}</td>
+                            <td>${list2.pet.pet_vaccin}</td>
+                            <td>입질 ${list2.pet.pet_bite}</td>
+                            <td>${list2.pet.dislike}</td>
                 <c:choose>
-          		 <c:when test="${list.pet.kneecap == null}">            
+          		 <c:when test="${list2.pet.kneecap == null}">            
                             <td>슬개골 없음</td>
                  </c:when>
-                 <c:when test="${list.pet.kneecap != null}">
-                 		<td>${list.pet.kneecap != null}</td>
+                 <c:when test="${list2.pet.kneecap != null}">
+                 		<td>${list2.pet.kneecap != null}</td>
                  </c:when>
                  </c:choose>       
                        <c:choose>
-          		 <c:when test="${list.pet.kneecap == null}"> 
+          		 <c:when test="${list2.pet.kneecap == null}"> 
                             <td>특이사항 없음</td>
                       </c:when>
-                      <c:when test="${list.pet.kneecap != null}"> 
-                            <td>${list.pet.pet_others}</td>
+                      <c:when test="${list2.pet.kneecap != null}"> 
+                            <td>${list2.pet.pet_others}</td>
                       </c:when>
                       </c:choose>
                         </tr>

@@ -12,4 +12,5 @@ public interface MyAskService {
 	public List<MyAsk> MyAskSelectListM(int currentPage, int limit);
 	public MyAsk MyAskSelectDetail(String qna_num);
 	public int MyAskInsert(MyAsk myAsk);
+	public int MyAskDelete(String qna_num);
 }

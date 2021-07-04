@@ -204,7 +204,7 @@ public class shopController {
 		System.out.println("shopPage 컨트롤러 진입");
 		String bpId = request.getParameter("bpId");
 		ctaService.delcta(bpId);
-
+		mv.addObject("bp_id", bpId); // 문의하기 버튼 클릭 시 채팅 연결 위해
 		System.out.println("매장 타입:" + shopType);
 		mv.addObject("shopType", shopType);
 
@@ -418,27 +418,47 @@ public class shopController {
 	
 
 		
-		// 사업자 예약확인
+		// 사업자 미용실 예약확인 상세페이지
 		@RequestMapping(value = "/bReservationDetail", method = RequestMethod.GET)
 		public ModelAndView bReservationDetail(
 				HttpSession session, 
 				HttpServletResponse res,
+				HospitalReservation hos,
 				HairShopReservation rev
 				) throws Exception {
 				
 			ModelAndView mav = new ModelAndView();
-			System.out.println("예약번호는 : " + rev.getHar_rnum());
+			ModelAndView mav2 = new ModelAndView();
+			System.out.println("미용실 예약번호는 : " + rev.getHar_rnum());
+			System.out.println("병원 예약번호는 : " + hos.getHos_rnum());
 			HairShopReservation vo = new HairShopReservation();
+			HospitalReservation hoslist = new HospitalReservation();
+			
 			Client cl =  new Client();
 			
+			// 채팅 오픈 시 bp_id 필요해서 추가
+			BPartner bpartner = (BPartner) session.getAttribute("bP");
+			String bp_id = bpartner.getBp_Id();
 			
-			vo = bprevService.revharcon(rev.getHar_rnum());
+			if(rev.getHar_rnum() != null) {
+				vo = bprevService.revharcon(rev.getHar_rnum());
+				mav.addObject("list", vo);
+				mav.setViewName("/bPartner/bShop/bReservationDetail");
+				// 채팅창 오픈 시 bp_id 필요해서 추가
+				mav.addObject("bp_id", bp_id);
+				return mav ;
+				
+			}else if(hos.getHos_rnum() != null) {
+				hoslist = bprevService.revhoscon(hos.getHos_rnum()); 
+				mav2.addObject("list2", hoslist);
+				mav2.setViewName("/bPartner/bShop/bReservationDetail2");
+				// 채팅 오픈 시 bp_id 필요해서 추가
+				mav2.addObject("bp_id", bp_id);
+				return mav2;
+			}
+			return mav;
 			
-			mav.setViewName("/bPartner/bShop/bReservationDetail");
-			mav.addObject("list", vo);
-			return mav ;
 		}
-
 	// 사업자 화상채팅하기
 	@RequestMapping(value = "/bFaceChat", method = RequestMethod.GET)
 	public String bFaceChat(Locale locale, Model model) {
