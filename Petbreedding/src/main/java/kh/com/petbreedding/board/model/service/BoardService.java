@@ -8,7 +8,7 @@ public interface BoardService {
 	
 	public int insertBoard(Board board); // 게시글 작성
 	public void updateBoard(Board board); // 게시글 수정
-	public void deleteBoard(String bo_num); // 게시글 삭제
+	public int deleteBoard(String bo_num); // 게시글 삭제
 	public int listCount(); //전체 글 수 조회
 	public Board selectBoardDetail(int chk, String bo_num); // 게시글 하나 읽기
 	public List<Board> selectBoardList(int currentPage, int limit); // 게시글 리스트 조회

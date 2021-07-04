@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService{
 		int result = -1;
 		
 		try {
-			
+			result = boardDao.insertBoard(board);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -39,15 +39,16 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void deleteBoard(String bo_num) {
-		// TODO Auto-generated method stub
+	public int deleteBoard(String bo_num) {
+		
+		int boDelResult = -1; 
 		
 		try {
-			
+			boDelResult = boardDao.deleteBoard(bo_num);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+		return boDelResult;
 	}
 	
 	//	게시판 리스트 조회

@@ -60,4 +60,9 @@
 		]]>
 	</update>
 	
+	<!-- 자유게시판 댓글 삭제 -->
+	 <delete id="bCommentDelete" parameterType="string">
+	 	DELETE FROM BOARD_COMMENT WHERE CO_NUM = #{coNum}
+	 </delete>
+	
 </mapper>

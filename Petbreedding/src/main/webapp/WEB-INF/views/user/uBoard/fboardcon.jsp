@@ -30,7 +30,6 @@
 					<div class="title">
 						<p>${board.boTitle}</p>
 					</div>												
-					<!-- TODO 세션 받아와서 이름 입력 -->
 					<div class="writer">작성자 : ${board.clNickName}</div>
 					<div class="regdate">작성일 : ${board.boDate}</div>
 					<div class="count">조회수: ${board.boView}</div>
@@ -83,16 +82,28 @@
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 		
-		<!-- MODAL -->
+		<!-- MODAL POSTING -->
 		 <div id="my_modal">
 		    <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
 		    <div id="locCon">
 		        <h1>삭제하시겠습니까?</h1>
-		        <button id="goTOPay">바로 삭제할게요</button>
+		        <button id="goTOPay" name="${board.boNum}">바로 삭제할게요</button>
 		        <button id="nextTime">다음에 할게요</button>
-		        <input type="hidden" id="har_rnum">
 		    </div>
 		</div>
+		
+		
+	<!-- MODAL COMMENT -->
+	<div id="my_modal_comment">
+	   <a class="modal_close_btn"><i class="fas fa-times" id="closeBtnComment"></i></a>
+	   <div id="locCon_comment">
+	       <h1>삭제하시겠습니까?</h1>
+	       <button id="goTOPay_comment">바로 삭제할게요</button>
+	        <button id="nextTime_comment">다음에 할게요</button>
+	        <input type="hidden" id="coIdVar">
+	    </div>
+	</div>
+
 	</div>
 	
 	<script type="text/javascript">
@@ -113,6 +124,7 @@
 				,dataType: 'json'
 				,success: function(json) {
 					var div = "";
+					var bocMoal = "";
 					var jsonLength = Object.keys(json).length;
 					console.log(json);
 					console.log(jsonLength);
@@ -128,10 +140,11 @@
 								+ "<p class='replyTime'>"+item.coDate+"</p>"
 								+ "<div class='replyUpdDel'>"
 								+ "<p>수정</p>"
-								+ "<p>삭제</p>"
+								+ "<p id='"+item.coNum+"' class='fboCommentDelBtn'>삭제</p>"
 								+ "</div>"
 								+ "</div>"
 								+ "</div>";
+								
 						});
 						
 					} else {
@@ -139,6 +152,13 @@
 					}
 					
 					$("#replyContainer").html(div);
+					
+					$(".fboCommentDelBtn").click(function() {
+						console.log("댓글 삭제 클릭 됨")
+						var coIdVar = $(this).attr("id");	//	클릭된 행의 id
+						$("#goTOPay_comment").attr("name", coIdVar);
+						getCommentModal();
+					});
 					
 				}
 				
@@ -173,7 +193,36 @@
 				
 			});
 		});
+		
+		
+		$("#goTOPay_comment").on("click", function() {
+			var CoNumVar = $(this).attr("name");
+			console.log(CoNumVar);
+			
+			$.ajax({
+				url: "bcdelete"
+				,type: "get"
+				,data: {co_num : CoNumVar, bo_num : boNum}
+				,success: function() {
+					closeModal();
+					commentListInit(boNum);
+				}
+				,error : function(request, status, error) {
+					alert("code: " + request.status + "\n"
+							+ "message: "
+							+ request.responseText + "\n"
+							+ "error: " + error);
+				}
+			});
+
+		});
+		
+	    function closeModal() {
+	        $("#closeBtnComment").trigger("click");
+	    }
+		
 	</script>
+	
 	<script type="text/javascript" src="${path}/resources/js/user/uBoard/fboardcon.js"></script>
 </body>
 </html>

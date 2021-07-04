@@ -19,9 +19,7 @@ public class BoardDao {
 	
 		// 게시글 작성
 		public int insertBoard(Board board) {
-			
-			//TODO
-			return 0;
+			return sqlSession.insert("Board.insertBoard", board);
 		}
 		
 		// 게시글 수정
@@ -30,8 +28,8 @@ public class BoardDao {
 		}
 		
 		// 게시글 삭제
-		public void deleteBoard(String bo_num) {
-			//TODO
+		public int deleteBoard(String bo_num) {
+			return sqlSession.delete("Board.deleteBoard", bo_num);
 		}
 		
 		//전체 글 수 조회
