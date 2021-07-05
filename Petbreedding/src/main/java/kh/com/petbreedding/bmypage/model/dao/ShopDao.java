@@ -44,6 +44,26 @@ public class ShopDao {
 		return sqlSession.selectOne("Shop.selectCountReview",bpId);
 	}
 	
+	// 울트라콜 
+	
+	// 울트라콜 미용실 리스트 출력 (평균 별점 포함)
+	public List<HairSalon> selectCtaHarList() {
+		System.out.println("Shop Dao 진입 - selectCtaHarList() 실행");
+		return sqlSession.selectList("Shop.selectCtaHarList");
+	}
+	
+	// 평균 별점
+	public String selectCtaRevVal(String bpId) {
+		System.out.println("Shop Dao 진입 - selectCtaRevVal() 실행");
+		return sqlSession.selectOne("Shop.selectCtaRevVal",bpId);
+	}
+	
+	// 리뷰 건수
+	public String selectCountCtaReview(String bpId) {
+		System.out.println("Shop Dao 진입  selectCountCtaReview() 실행");
+		return sqlSession.selectOne("Shop.selectCountCtaReview",bpId);
+	}
+	
 	/* 
 	 * 미용실
 	 * 
@@ -215,11 +235,21 @@ public class ShopDao {
 		return sqlSession.selectList("Shop.selectHosList", page);
 	}
 	
-	//	TODO
 	//	동물병원 리스트 : 최신순
-	//	동물병원 리스트 : 거리순
-	//	동물병원 리스트 : 별점순	
+	public List<Hospital> selectHosListNew(Pagination page){
+		System.out.println("~~~ShopDao 진입~~~ selectHosListNew() 실행");
+		return sqlSession.selectList("Shop.selectHosListNew", page);
+		
+	}
 	
+	//	TODO
+	//	동물병원 리스트 : 거리순
+	
+	//	동물병원 리스트 : 별점순	
+	public List<Hospital> selectHosListRev(Pagination page){
+		System.out.println("~~~ShopDao 진입~~~ selectHosListRev() 실행");
+		return sqlSession.selectList("Shop.selectHosListRev", page);
+	}
 	
 	
 	
