@@ -34,9 +34,6 @@ public class HairSalon {
 	
 
 
-
-
-
 	@Override
 	public String toString() {
 		return "HairSalon [harNum=" + harNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
@@ -48,15 +45,30 @@ public class HairSalon {
 
 
 
+
+
+
+
+
 	public double getAvgRevVal() {
 		return avgRevVal;
 	}
 
 
 
+
+
+
+
+
 	public void setAvgRevVal(double avgRevVal) {
 		this.avgRevVal = avgRevVal;
 	}
+
+
+
+
+
 
 
 

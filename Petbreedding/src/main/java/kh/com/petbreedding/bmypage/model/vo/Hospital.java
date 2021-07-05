@@ -26,14 +26,35 @@ public class Hospital {
 	private String sat;
 	private String sun;
 	
+	private double avgRevVal;
+
+
+
+	
 
 	@Override
 	public String toString() {
 		return "Hospital [hosNum=" + hosNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
 				+ ", y=" + y + ", x=" + x + ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo="
 				+ shopMInfo + ", shopMImg=" + shopMImg + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu="
-				+ thu + ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + "]";
+				+ thu + ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + "]";
 	}
+
+
+
+
+	public double getAvgRevVal() {
+		return avgRevVal;
+	}
+
+
+
+
+	public void setAvgRevVal(double avgRevVal) {
+		this.avgRevVal = avgRevVal;
+	}
+
+
 
 
 	public String getY() {

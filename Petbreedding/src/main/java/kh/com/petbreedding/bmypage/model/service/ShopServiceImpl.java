@@ -545,13 +545,73 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 
-
-
+	// 리뷰 건수
 	@Override
 	public String selectCountReview(String bpId) {
 		String count = shopDao.selectCountReview(bpId);
 		return count;
 	}
+	
+	
+	/*울트라콜*/
+	
+	// 울트라콜 미용실 리스트 출력 (평균 별점 포함)
+		@Override
+		public List<HairSalon> selectCtaHarList() {
+			List<HairSalon> ultra = shopDao.selectCtaHarList();
+			return ultra;
+		}
+
+	// 평균별점
+	@Override
+	public String selectCtaRevVal(String bpId) {
+		String avgRevVal = shopDao.selectCtaRevVal(bpId);
+		return avgRevVal;
+	}
+
+
+	// 리뷰건수
+	@Override
+	public String selectCountCtaReview(String bpId) {
+		String count = shopDao.selectCountCtaReview(bpId);
+		return count;
+	}
+
+	
+
+
+
+	// 동물병원 리스트 - 최신순
+	@Override
+	public List<Hospital> selectHosListNew(Pagination page) {
+		System.out.println("shopService selectHosListNew() 실행");
+		List<Hospital> list = null;
+		try {
+			list = shopDao.selectHosListNew(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	// 동물병원 리스트 - 별점순 
+	@Override
+	public List<Hospital> selectHosListRev(Pagination page) {
+		System.out.println("shopService selectHosListRev() 실행");
+		List<Hospital> list = null;
+		try {
+			list = shopDao.selectHosListRev(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
+	
+
+
 
 
 
