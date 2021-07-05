@@ -1,21 +1,21 @@
 
 
-$("#newHarRadio").click(function(){
-	$("#newHarList").show();
-	$("#distanceHarList").hide();
-	$("#revHarList").hide();
+$("#newRadio").click(function(){
+	$("#newList").show();
+	$("#distanceList").hide();
+	$("#revList").hide();
 });
 
-$("#distanceHarRadio").click(function(){
-	$("#newHarList").hide();
-	$("#distanceHarList").show();
-	$("#revHarList").hide();
+$("#distanceRadio").click(function(){
+	$("#newList").hide();
+	$("#distanceList").show();
+	$("#revList").hide();
 });
 
-$("#revHarRadio").click(function(){
+$("#revRadio").click(function(){
 	$("#newHarList").hide();
-	$("#distanceHarList").hide();
-	$("#revHarList").show();
+	$("#distanceList").hide();
+	$("#revList").show();
 });
 
 function modal(id) {

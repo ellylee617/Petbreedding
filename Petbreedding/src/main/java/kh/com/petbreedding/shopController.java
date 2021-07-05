@@ -180,24 +180,54 @@ public class shopController {
 		} else {
 
 			int hosShopType = 1;
-			List<Hospital> hosList = shopService.selectHosList(page);
-			System.out.println("컨트롤러 동물병원 리스트:" + hosList);
+			
 
-			mv.addObject("shopType", hosShopType);
-			mv.addObject("shopList", hosList);
-			mv.addObject("paging", page);
-			mv.setViewName("/user/uShop/shopList");
+
 			
 			//찜한 숫자 가져오기
+			// +별점 출력 
 			String hos_num = null;
+			String bpId = null;
 			List<String> list = new ArrayList<String>();
-			for(int i =0; i<hosList.size(); i++) {
-				hos_num = hosList.get(i).getHosNum();
+			List<String> countList = new ArrayList<String>();
+			
+			
+//			List<Hospital> hosList = shopService.selectHosList(page);
+//			System.out.println("컨트롤러 동물병원 리스트:" + hosList);
+			
+			
+			// 최신순
+			List<Hospital> newHosList = shopService.selectHosListNew(page);
+			System.out.println("동물병원 리스트 - 최신순 : " + newHosList);
+			
+			for(int i =0; i<newHosList.size(); i++) {
+				hos_num = newHosList.get(i).getHosNum();
+				bpId = newHosList.get(i).getHosNum();
 				String count = likeService.countHos(hos_num);
+				String revVal = shopService.selectRevVal(bpId);
+				String countRev = shopService.selectCountReview(bpId);
+				countList.add(countRev);
+				mv.addObject("revVal", revVal);
+				mv.addObject("countRev", countRev);
 				System.out.println("************count*****"+count);
 				list.add(count);
 				mv.addObject("count", list);
 			}
+			
+			
+			// TODO: 거리순
+			
+			// TODO: 별점순 
+			
+			
+			
+			
+			mv.addObject("shopType", hosShopType);
+			mv.addObject("newHosList", newHosList);
+//			mv.addObject("shopList", hosList);
+			mv.addObject("paging", page);
+			mv.setViewName("/user/uShop/shopList");
+			
 
 
 		}

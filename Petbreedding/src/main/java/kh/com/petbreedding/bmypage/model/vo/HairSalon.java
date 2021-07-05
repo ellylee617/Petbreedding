@@ -30,11 +30,8 @@ public class HairSalon {
 	private String sat;
 	private String sun;
 
-	private double avgRevVal;
+	private String avgRevVal;
 	
-
-
-
 
 
 	@Override
@@ -48,15 +45,18 @@ public class HairSalon {
 
 
 
-	public double getAvgRevVal() {
+
+	public String getAvgRevVal() {
 		return avgRevVal;
 	}
 
 
 
-	public void setAvgRevVal(double avgRevVal) {
+
+	public void setAvgRevVal(String avgRevVal) {
 		this.avgRevVal = avgRevVal;
 	}
+
 
 
 

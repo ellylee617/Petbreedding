@@ -555,5 +555,20 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+	// 동물병원 리스트 - 최신순
+	@Override
+	public List<Hospital> selectHosListNew(Pagination page) {
+		System.out.println("shopService selectHosListNew() 실행");
+		List<Hospital> list = null;
+		try {
+			list = shopDao.selectHosListNew(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
 
 }

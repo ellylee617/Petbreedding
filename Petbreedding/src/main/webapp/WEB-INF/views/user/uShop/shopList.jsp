@@ -29,9 +29,9 @@
             </div>
             <hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="popular" name="selectOpt"><label for="popular">최신순</label>
-                <input type="radio" id="distance" name="selectOpt"><label for="distance">거리순</label>
-                <input type="radio" id="rating" name="selectOpt"><label for="rating"><a href="${pageContext.request.contextPath}/shopList?shopType=1&selectState=rev">별점순</a></label>
+                <input id="newRadio" type="radio" checked name="selectOpt"><label for="newRadio">최신순</label>
+                <input id="distanceRadio" type="radio"  name="selectOpt"><label for="distanceRadio">거리순</label>
+                <input id="revRadio" type="radio" name="selectOpt"><label for="revRadio">별점순</label>
             </div>
             <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
@@ -57,8 +57,10 @@
                 </ul>
             </div>
             
-            <div class="storeS">
-               <c:forEach items="${shopList}" var="item" varStatus="status">
+            
+            <!-- 동물병원 최신순 정렬 -->
+            <div id="newList" class="storeS">
+               <c:forEach items="${newHosList}" var="item" varStatus="status">
                 <ul>
                     <div class="Store">                     
                         <li class="storeList">
@@ -67,7 +69,43 @@
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
-	                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
+	                                    <a href="#">리뷰<small> 
+                                    <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
+	                                   		&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+                                    <c:if test="${item.avgRevVal ge 1 && item.avgRevVal lt 2}">
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${item.avgRevVal eq 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+                                    <c:if test="${!empty countRev[status.index] }">
+	                                    &nbsp;${countRev[status.index]}개 
+                                    </c:if>
+                                    <c:if test="${empty countRev[status.index]}">
+                                    &nbsp;0개 
+                                    </c:if>
+                                    </small>
+                                    </a>
 	                                    <a href="#">구매건수<small>999+</small></a>
 	                                    <a href="#">찜하기 <small> ${count[status.index]}</small></a>
 	                                </div>
@@ -78,6 +116,16 @@
                 </ul>
                 </c:forEach>
                     </div>
+                    
+              <!-- 동물병원 거리순 정렬 -->
+              <div id="distanceList" class="storeS" style="display: none;">
+              <h1>동물병원 거리순 정렬 작업중</h1>
+              </div>
+              
+              <!-- 동물병원 별점순 정렬 -->
+              <<div id="revList" class="storeS" style="display: none;">
+              <h1>동물병원 별점순 정렬 작업중</h1>
+              </div>
                     
                <!-- 페이징 시작-->
 				<div class="page_wrap">
@@ -118,9 +166,9 @@
             </div>
             <hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="newHarRadio" name="selectOpt"><label for="newHarRadio">최신순</label>
-                <input type="radio" id="distanceHarRadio"  name="selectOpt" ><label for="distanceHarRadio">거리순</label>
-                 <input type="radio" id="revHarRadio" name="selectOpt"><label for="revHarRadio">별점순</label>
+                <input type="radio" checked id="newRadio" name="selectOpt"><label for="newRadio">최신순</label>
+                <input type="radio" id="distanceRadio"  name="selectOpt" ><label for="distanceRadio">거리순</label>
+                 <input type="radio" id="revRadio" name="selectOpt"><label for="revRadio">별점순</label>
             </div>
       <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
