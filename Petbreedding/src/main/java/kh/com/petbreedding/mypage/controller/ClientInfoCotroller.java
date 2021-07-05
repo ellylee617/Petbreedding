@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -128,28 +130,74 @@ public class ClientInfoCotroller {
 	}
 	
 	// 포인트내역
-	@RequestMapping("/mypage/point")
-	public String point(
-			String cl_num
-			,HttpServletRequest req
-			,Client cl
-			,Model md
-			) {
+	@RequestMapping("/point")
+	public String point(String cl_num,Model md) {
 		
-
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(cl_num);
 		
 		int currPoint = myPointService.CurrPointSelectOne(cl_num);
-		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
 		
-		md.addAttribute("pointList", pointList);
 		md.addAttribute("currPoint", currPoint);
 		
 		return "/user/uMyPage/point";
 	}
 	
+	// 포인트 기간별 조회 3개월
+	@RequestMapping("/pointDate")
+	@ResponseBody
+	public List<MyPoint> pointDate(String clNum, Model model) {
 
+		System.out.println("~~~~~~~~~~~~~~~~CLNUM "+ clNum );
+		List<MyPoint> pointList = myPointService.myPoint3m(clNum);
+				
+		model.addAttribute("pointList", pointList);
+		
+		return pointList;
+	}
+	// 포인트 기간별 조회 6개월
+	@RequestMapping("/pointDate2")
+	@ResponseBody
+	public List<MyPoint> pointDate2(String clNum, Model model) {
+
+		System.out.println("~~~~~~~~~~~~~~~~CLNUM "+ clNum );
+		List<MyPoint> pointList = myPointService.myPoint6m(clNum);
+				
+		model.addAttribute("pointList", pointList);
+		
+		return pointList;
+	}
+	// 포인트 기간별 조회 12개월
+	@RequestMapping("/pointDate3")
+	@ResponseBody
+	public List<MyPoint> pointDate3(String clNum, Model model) {
+
+		System.out.println("~~~~~~~~~~~~~~~~CLNUM "+ clNum );
+		List<MyPoint> pointList = myPointService.myPoint12m(clNum);
+				
+		model.addAttribute("pointList", pointList);
+		
+		return pointList;
+	}
+
+	//포인트 기간 선택 조회
+	@RequestMapping("/pointDate4")
+	@ResponseBody
+	public List<MyPoint> pointDate3(String clNum,String expDate,String expDate2, Model model) {
+
+		System.out.println("~~~~~~~~~~~~~~~~CLNUM "+ clNum );
+		System.out.println("~~~~~~~~~~~~~~~~expDate "+ expDate );
+		System.out.println("~~~~~~~~~~~~~~~~expDate2 "+ expDate2 );
+		Map<String, String> list = new HashMap<String, String>();
+		list.put("clNum", clNum);
+		list.put("expDate", expDate);
+		list.put("expDate2", expDate2);
+		List<MyPoint> pointList = myPointService.myPointDate(list);
+				
+		model.addAttribute("pointList", pointList);
+		
+		return pointList;
+	}
 	// 1:1 문의 내역
 	@RequestMapping("/mypage/ask")
 	public String ask(

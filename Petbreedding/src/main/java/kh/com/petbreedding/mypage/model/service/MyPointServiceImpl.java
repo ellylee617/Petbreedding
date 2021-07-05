@@ -1,6 +1,8 @@
 package kh.com.petbreedding.mypage.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +53,66 @@ public class MyPointServiceImpl implements MyPointService {
 			e.printStackTrace();
 		}
 		
+		return result;
+	}
+
+
+	@Override
+	public int myPointCancle(MyPoint myPoint) {
+		int result = -1;
+		try {
+			result = myPointDao.myPointCancle(myPoint);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<MyPoint> myPoint3m(String clNum) {
+		List<MyPoint> result = null;
+		try {
+			result = myPointDao.myPoint3m(clNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<MyPoint> myPoint6m(String clNum) {
+		List<MyPoint> result = null;
+		try {
+			result = myPointDao.myPoint6m(clNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<MyPoint> myPoint12m(String clNum) {
+		List<MyPoint> result = null;
+		try {
+			result = myPointDao.myPoint12m(clNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<MyPoint> myPointDate(Map<String, String> list) {
+		List<MyPoint> result = null;
+		try {
+			result = myPointDao.myPointDate(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 

@@ -31,12 +31,19 @@ public class ShopPayController {
 		
 		return result;
 	}
-	
+	//결제시 포인트 사용
 	@RequestMapping("myPoint")
 	@ResponseBody
 	public int myPointUpdate(MyPoint myPoint) {
 		int result = myPointService.myPointUpdate(myPoint);
 		
+		return result;
+	}
+	//결제취소시 포인트 롤백
+	@RequestMapping("myPointCancle")
+	@ResponseBody
+	public int myPointCancle(MyPoint myPoint) {
+		int result = myPointService.myPointCancle(myPoint);
 		return result;
 	}
 	
