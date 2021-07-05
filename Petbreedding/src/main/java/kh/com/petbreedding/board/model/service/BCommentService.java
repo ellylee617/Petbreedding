@@ -13,6 +13,8 @@ public interface BCommentService {
 	
 	public int bCommentInsert(B_comment bComment);
 	
+	public int bCommentUpdate(B_comment bComment);
+	
 	public int bCommentDelete(String co_num, String bo_num);
 	
 }

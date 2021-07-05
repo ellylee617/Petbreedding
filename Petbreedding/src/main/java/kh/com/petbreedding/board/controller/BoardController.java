@@ -304,6 +304,32 @@ public class BoardController {
 		}
 		
 	}
+	
+	// 게시판 댓글 수정
+	@RequestMapping(value = "/bcupdate")
+	@ResponseBody
+	public void bcupdate(String co_num, String bo_num, String contVal) {
+		
+		System.out.println("[세훈] @게시판 댓글 수정 컨트롤러 co_num : " + co_num);
+		System.out.println("[세훈] @게시판 댓글 수정 컨트롤러 contVal : " + contVal);
+		
+		String co_cont = contVal;
+		
+		B_comment bComment = new B_comment();
+		
+		bComment.setCoNum(co_num);
+		bComment.setCoCont(co_cont);
+		
+		int bocUpdResult = bCommentService.bCommentUpdate(bComment);
+		
+		if(bocUpdResult > 0) {
+			System.out.println("게시판 댓글 수정 성공");
+		} else {
+			System.out.println("게시판 댓글 수정 실패");
+		}
+		
+	}
+	
 
 	// 리뷰 작성
 	@RequestMapping(value = "/rwrite", method = RequestMethod.POST)
