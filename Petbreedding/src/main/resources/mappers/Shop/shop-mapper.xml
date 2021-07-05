@@ -100,7 +100,6 @@
 		
 
 		<!-- 미용실 리스트 : 별점순  selectHarListLikes-->
-		<!-- TODO:동물병원!! -->
 		<select id="selectHarListRev" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -349,8 +348,33 @@
 		
 		<!-- 동물병원 리스트 : 거리순  -->
 		<!-- TODO -->
+		
 		<!-- 동물병원 리스트 : 별점순  -->
-
+	<select id="selectHosListRev" parameterType="page" resultMap="Hospital">
+		<![CDATA[
+			SELECT B.*
+			FROM(
+				SELECT ROWNUM R, A.*
+				FROM (
+					SELECT *
+        FROM
+        (SELECT *
+        FROM HOSPITAL HOS
+        INNER JOIN (SELECT BP_ID, AVG(REV_VAL) AVG_REV_VAL
+        FROM(
+            SELECT B.BP_ID, R.REV_VAL
+            FROM business_partner B
+            LEFT JOIN review R
+            ON (b.bp_id = r.bp_id)
+        )  
+        group by BP_ID) BR
+        ON (hos.bp_id = br.bp_id)) HOSBP
+        ORDER BY HOSBP.AVG_REV_VAL DESC NULLS LAST
+                    ) A
+			) B
+        WHERE #{start} <= R AND R <=#{end}
+			]]>
+		</select>
 	
 	<!-- 동물병원 기본 정보 기입 -->
 	<insert id="insertHosInfo" parameterType="Hospital">

@@ -218,13 +218,28 @@ public class shopController {
 			// TODO: 거리순
 			
 			// TODO: 별점순 
+			List<Hospital> revHosList = shopService.selectHosListRev(page);
+			System.out.println("동물병원 리스트 - 별점순 :"+revHosList);
 			
-			
+			for(int i =0; i<revHosList.size(); i++) {
+				hos_num = revHosList.get(i).getHosNum();
+				bpId = revHosList.get(i).getHosNum();
+				String count = likeService.countHos(hos_num);
+				String revVal = shopService.selectRevVal(bpId);
+				String countRev = shopService.selectCountReview(bpId);
+				countList.add(countRev);
+				mv.addObject("revVal", revVal);
+				mv.addObject("countRev", countRev);
+				System.out.println("************count*****"+count);
+				list.add(count);
+				mv.addObject("count", list);
+			}
 			
 			
 			mv.addObject("shopType", hosShopType);
-			mv.addObject("newHosList", newHosList);
 //			mv.addObject("shopList", hosList);
+			mv.addObject("newHosList", newHosList);
+			mv.addObject("revHosList", revHosList);
 			mv.addObject("paging", page);
 			mv.setViewName("/user/uShop/shopList");
 			

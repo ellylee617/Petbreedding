@@ -123,9 +123,68 @@
               </div>
               
               <!-- 동물병원 별점순 정렬 -->
-              <<div id="revList" class="storeS" style="display: none;">
-              <h1>동물병원 별점순 정렬 작업중</h1>
-              </div>
+               <div id="revList" class="storeS" style="display: none;">
+               <c:forEach items="${revHosList}" var="item" varStatus="status" >
+                <ul>
+                    <div class="Store">                      
+                       <li class="storeList">
+                       
+                            <div class="storeList_inner">
+                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
+                                <div class="storeList_etc_area">
+                                    <a href="#">리뷰<small> 
+                                    <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
+	                                   		&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+                                    <c:if test="${item.avgRevVal ge 1 && item.avgRevVal lt 2}">
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${item.avgRevVal eq 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+	                                    </c:if>
+                                    <c:if test="${!empty countRev[status.index] }">
+	                                    &nbsp;${countRev[status.index]}개 
+                                    </c:if>
+                                    <c:if test="${empty countRev[status.index]}">
+                                    &nbsp;0개 
+                                    </c:if>
+                                    </small>
+                                    </a>
+                                    <a href="#">구매건수<small>999+</small></a>
+		                            <a href="#">찜하기 <small> ${count[status.index]}</small></a>
+                                </div>
+                                 <form class="frmShopInfo" >
+                                 <div class="storeList_button">
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                </div>
+                               </form>
+                            </div>                                                            
+                        </li>
+                    </div>
+                </ul>
+                </c:forEach>
+            </div>
                     
                <!-- 페이징 시작-->
 				<div class="page_wrap">

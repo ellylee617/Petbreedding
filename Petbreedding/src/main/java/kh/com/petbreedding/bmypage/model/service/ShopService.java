@@ -48,7 +48,7 @@ public interface ShopService {
 	public List<Hospital> selectHosList(Pagination page);
 	public List<Hospital> selectHosListNew(Pagination page); // 동물병원 리스트 - 최신순
 	// TODO: 동물병원 리스트 - 거리순
-	// TODO: 동물병원 리스트 - 별점순 
+	public List<Hospital> selectHosListRev(Pagination page); // TODO: 동물병원 리스트 - 별점순 
 	public int insertHosInfo(Hospital vo);	// 동물병원 기본 정보 입력
 	public Hospital selectHosInfo(String bpId); //동물병원 기본 정보 불러오기
 	public int updateHosInfo(Hospital vo); // 동물병원 기본 정보 수정

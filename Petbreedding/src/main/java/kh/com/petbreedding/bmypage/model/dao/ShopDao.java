@@ -215,7 +215,6 @@ public class ShopDao {
 		return sqlSession.selectList("Shop.selectHosList", page);
 	}
 	
-	//	TODO
 	//	동물병원 리스트 : 최신순
 	public List<Hospital> selectHosListNew(Pagination page){
 		System.out.println("~~~ShopDao 진입~~~ selectHosListNew() 실행");
@@ -223,9 +222,14 @@ public class ShopDao {
 		
 	}
 	
+	//	TODO
 	//	동물병원 리스트 : 거리순
-	//	동물병원 리스트 : 별점순	
 	
+	//	동물병원 리스트 : 별점순	
+	public List<Hospital> selectHosListRev(Pagination page){
+		System.out.println("~~~ShopDao 진입~~~ selectHosListRev() 실행");
+		return sqlSession.selectList("Shop.selectHosListRev", page);
+	}
 	
 	
 	
