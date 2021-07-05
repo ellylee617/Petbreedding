@@ -38,8 +38,8 @@
 	                </div>
 	                <div class="timetblP">
 	                    <span>기간별 조회</span>&nbsp;&nbsp;&nbsp;
-	                    <span><input type="date">&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"></span>
-	                    <span>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="basicBtn">조회하기</button></span>
+	                    <span><input type="date">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<input type="date"></span>
+	                    <span>&nbsp;&nbsp;<button type="button" class="basicBtn">조회하기</button></span>
 	                </div>
 	                <br><br><br><br>
 							<c:forEach items="${pointList}" var="items">

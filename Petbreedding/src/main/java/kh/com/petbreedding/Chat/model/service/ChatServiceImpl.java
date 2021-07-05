@@ -181,4 +181,37 @@ public class ChatServiceImpl implements ChatService{
 		return result;
 	}
 
+	@Override
+	public List<ChatMessage> getListforInvisible(String chatId) {
+		List<ChatMessage> result = null;
+		try {
+			result = chDao.getListforInvisible(chatId);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int updateInvisibleCleint(String mId) {
+		int result = 0;
+		try {
+			result = chDao.updateInvisibleCleint(mId);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int updateInvisibleBp(String mId) {
+		int result = 0;
+		try {
+			result = chDao.updateInvisibleBp(mId);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

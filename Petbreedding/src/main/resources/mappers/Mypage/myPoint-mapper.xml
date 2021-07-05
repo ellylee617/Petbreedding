@@ -34,16 +34,22 @@
 		<result column="CURR_POINT" property="currPoint"/>
 	</resultMap>
 	
+	<!-- 내 포인트 사용 목록  -->
 	<select id="myPointSelectList" parameterType="MyPoint" resultMap="MyPointMap">
 		<![CDATA[
-			SELECT * FROM MYPOINT WHERE CL_NUM = #{clNum}
+			SELECT * 
+			FROM MYPOINT  
+			WHERE CL_NUM = #{clNum}
+			ORDER BY INDEXS DESC
 		 ]]>
 	</select>
+	
+	<!-- 현재 포인트 조회  -->
 	<select id="CurrPointSelectOne" parameterType="string" resultType="int">
 		<![CDATA[
 			SELECT CURR_POINT
 			FROM (
-			SELECT * FROM MYPOINT ORDER BY INDEXS DESC
+				SELECT * FROM MYPOINT ORDER BY INDEXS DESC
 			)
 			WHERE CL_NUM = #{clNum} AND ROWNUM = 1
 		]]>
@@ -52,26 +58,43 @@
 <!-- 	INSERT INTO MYPOINT VALUES('CL1', 'PO2', SEQ_MYPOINT.NEXTVAL, TO_CHAR(SYSDATE, 'YYYYMMDD'), '취소', '미용실3', 'HAP1', 1000, 1000); -->
 
 
+	<!-- 포인트 적립-->
 	<insert id="myPointInsert" parameterType="MyPoint">
 		<![CDATA[
 			
 			insert into mypoint values (#{clNum}, #{pointNum}, seq_mypoint.nextval, to_char(sysdate, 'yyyy-mm-dd'), 
 			#{expType}, #{expFrom}, #{expId}, (select score from point where point_num=#{pointNum}), 
 			(select 
-			(
-			SELECT CURR_POINT
-			         FROM (
-			         SELECT * FROM MYPOINT ORDER BY INDEXS DESC
-			         )
-			         WHERE CL_NUM = #{clNum}  AND ROWNUM = 1
-			) 
+				(
+					SELECT CURR_POINT FROM (
+			         	SELECT * FROM MYPOINT ORDER BY INDEXS DESC
+			        )
+			        WHERE CL_NUM = #{clNum}  AND ROWNUM = 1
+				) 
 			+ 
-			(select score from point where point_num=#{pointNum})
-			 from dual)
+				(
+					select score from point 
+					where point_num=#{pointNum}
+				)
+			from dual)
 			)
 	
 		]]>
 		
+	</insert>
+	
+	<!-- 포인트 사용 -->
+	<insert id="myPointUpdate" parameterType="MyPoint">
+		<![CDATA[
+			insert into mypoint(CL_NUM,INDEXS,EXP_DATE,EXP_TYPE,EXP_FROM,EXP_ID,EXP_POINT, CURR_POINT) 
+			values (#{clNum}, seq_mypoint.nextval, to_char(sysdate, 'yyyy-mm-dd'),'사용', #{expFrom}, #{expId}, #{expPoint}, 
+			(SELECT (CURR_POINT-#{expPoint}) FROM (
+			    SELECT * FROM MYPOINT ORDER BY INDEXS DESC
+			)
+			WHERE CL_NUM = 'CL1'  AND ROWNUM = 1)
+			)
+			
+		]]>
 	</insert>
 	
 </mapper>

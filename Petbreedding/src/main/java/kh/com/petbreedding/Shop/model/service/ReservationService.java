@@ -11,6 +11,7 @@ import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
 public interface ReservationService {
+	
 	public List<Style> revList(String har_num);
 	public List<MyPet> revList2(String cl_num);
 	public List<Style> revList3(String har_num);

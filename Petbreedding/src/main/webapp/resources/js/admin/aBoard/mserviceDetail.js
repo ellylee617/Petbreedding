@@ -6,6 +6,13 @@ $("#delBtn").on("click", function() {
 	getModal();
 });
 
+$("#updeteBtn").on("click", function() {
+	console.log("업데이트 함수 들어옴")
+	$("#msUpdFrm").attr("action", "mserviceRegisterFrm?type=2");
+	$("#msUpdFrm").attr("method", "post");
+	$("#msUpdFrm").submit();
+})
+
 $("#goTOPay").on("click", function() {
 	var aNumVar = $(this).attr("name");
 	console.log(aNumVar);

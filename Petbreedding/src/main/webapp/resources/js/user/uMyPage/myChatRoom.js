@@ -4,8 +4,8 @@ $(document).ready(function() {
     connect();
     console.log("enterRoom");
     scrolldown();
-       
-    // enter 키 이벤트
+        
+    // enter 키 이벤트 - 전송
 	$('#message').keyup(function(e) {
          if(e.keyCode == 13 && !e.shiftKey) {
  			sendMessage();
@@ -14,10 +14,18 @@ $(document).ready(function() {
          }
     });
 	
+	// 전송 버튼 누르면 전송
 	$('#sendBtn').click(function() {
 		sendMessage();
 		$('#message').val('');
 	});
+	
+	// esc 키 이벤트 - 창 닫기
+	$(window).keyup(function(e) {
+        if(e.keyCode == 27) {
+			this.close();
+        }
+   });
 
 });
                 

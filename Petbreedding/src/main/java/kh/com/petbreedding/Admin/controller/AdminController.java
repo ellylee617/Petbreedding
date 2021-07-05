@@ -266,7 +266,6 @@ public class AdminController {
 		
 	}
 	
-	
 
 	// 게시글 관리 (공지사항게시판 목록)
 	@RequestMapping(value = "/mservice")
@@ -306,8 +305,23 @@ public class AdminController {
 	
 	// 게시글 관리 (공지사항게시판 등록 폼)
 	@RequestMapping(value = "/mserviceRegisterFrm")
-	public String mserviceRegisterFrm(Locale locale, Model model) {
-		return "/admin/aBoard/mServiceRegister";
+	public ModelAndView mserviceRegisterFrm(ModelAndView mv, int type, HttpServletRequest req) {
+		
+		System.out.println("[세훈] @공지사항  등록 폼 컨트롤러 type : " + type);
+		
+		if(type == 2) {
+			String updAnnTitle = req.getParameter("updAnnTitle");
+			String updAnnCont = req.getParameter("updAnnCont");
+			String updAnnNum = req.getParameter("updAnnNum");
+			mv.addObject("updAnnTitle", updAnnTitle);
+			mv.addObject("updAnnCont", updAnnCont);
+			mv.addObject("updAnnNum", updAnnNum);
+		}
+		
+		mv.addObject("type", type);
+		mv.setViewName("/admin/aBoard/mServiceRegister");
+		
+		return mv;
 	}
 	
 	// 게시글 관리 (공지사항게시판 등록)
@@ -324,36 +338,95 @@ public class AdminController {
 		
 		ad = (Admin) session.getAttribute("admin");
 		
-		String admin_id = ad.getAdmin_id();
-		String ann_type = req.getParameter("mServiceSelect");
+		
+			//	공지사항 등록
+			String admin_id = ad.getAdmin_id();
+			String ann_type = req.getParameter("mServiceSelect");
+			String ann_title = req.getParameter("mServiceTitle");
+			String ann_cont = req.getParameter("mServiceCont");
+			
+			CustomerService cs = new CustomerService();
+			
+			cs.setAdminId(admin_id);
+			cs.setAnnCont(ann_cont);
+			cs.setAnnTitle(ann_title);
+			cs.setAnnType(ann_type);
+			
+			int result = 0;
+			
+			result = customerServiceService.CustomerServiceInsert(cs);
+			
+			PrintWriter out = null;
+			
+			String msg1 = "공지사항등록 완료";
+			String msg2 = "공지사항 등록 실패";
+			
+			try {
+				out = res.getWriter();
+				if(result == 1) {
+					out.println("<script>alert('" + msg1 + "');</script>");
+					System.out.println("[세훈] 공지사항 등록 성공");
+					
+				} else {
+					out.println("<script>alert('" + msg2 + "');</script>");
+					System.out.println("[세훈] 공지사항 등록 실패");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				out.flush();
+				out.close();
+			}
+			
+		
+		return "/admin/aBoard/mservice";
+	}
+	
+	
+	// 게시글 관리 (공지사항게시판 수정)
+	@RequestMapping(value = "/msModify")
+	public String msModify(
+			Model md
+			,HttpSession session
+			,HttpServletRequest req
+			,HttpServletResponse res
+			) {
+		
+		res.setContentType("text/html; charset=utf-8");
+		
+		
+		
+		//	공지사항 수정
+		String ann_num = req.getParameter("updAnnNum");
 		String ann_title = req.getParameter("mServiceTitle");
 		String ann_cont = req.getParameter("mServiceCont");
+		String ann_type = req.getParameter("mServiceSelect");
 		
 		CustomerService cs = new CustomerService();
 		
-		cs.setAdminId(admin_id);
-		cs.setAnnCont(ann_cont);
+		cs.setAnnNum(ann_num);
 		cs.setAnnTitle(ann_title);
+		cs.setAnnCont(ann_cont);
 		cs.setAnnType(ann_type);
 		
-		int result = 0;
+		int csUpdResult = 0;
 		
-		result = customerServiceService.CustomerServiceInsert(cs);
+		csUpdResult = customerServiceService.CustomerServiceUpdate(cs);
 		
 		PrintWriter out = null;
 		
-		String msg1 = "공지사항등록 완료";
-		String msg2 = "공지사항 등록 실패";
+		String msg1 = "공지사항 수정 완료";
+		String msg2 = "공지사항 수정 실패";
 		
 		try {
 			out = res.getWriter();
-			if(result == 1) {
+			if(csUpdResult > 0) {
 				out.println("<script>alert('" + msg1 + "');</script>");
-				System.out.println("[세훈] 공지사항 등록 성공");
+				System.out.println("[세훈] 공지사항 수정 성공");
 				
 			} else {
 				out.println("<script>alert('" + msg2 + "');</script>");
-				System.out.println("[세훈] 공지사항 등록 실패");
+				System.out.println("[세훈] 공지사항 수정 실패");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -361,6 +434,7 @@ public class AdminController {
 			out.flush();
 			out.close();
 		}
+			
 		
 		return "/admin/aBoard/mservice";
 	}
