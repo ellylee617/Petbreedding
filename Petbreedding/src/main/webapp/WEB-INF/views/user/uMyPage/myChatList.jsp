@@ -34,7 +34,10 @@
 							<c:forEach items="${Roomlist }" var="r" varStatus="status">
 							<table onClick="openchatwin('${r.chatId }','${r.shopName}','${r.bp_id}', '${r.bp_type}');">
 								<tr>
-									<td rowspan="2"><img src="${path}/resources/uploadFile/shop/${r.mImg }"></td>
+									<td rowspan="2">
+									<div class="imgwrap">
+									    <img src="${path}/resources/uploadFile/shop/${r.mImg }">
+									</div></td>
 									<td>${r.shopName }</td>
 									<td>${r.mSendTime }</td>
 									<td rowspan="2"><a class="cancleM" onClick="deleteChat('${r.chatId }');"><i class="far fa-times-circle"></i></a></td>
@@ -58,7 +61,9 @@
 						<c:forEach items="${unreadList }" var="u" varStatus="status">
 						<table onClick="openchatwin('${u.chatId }','${u.shopName}','${u.bp_id}', '${u.bp_type}');">
 							<tr>
-								<td rowspan="2"><img src="${path}/resources/uploadFile/shop/${u.mImg }"></td>
+								<td rowspan="2"><div class="imgwrap">
+												    <img src="${path}/resources/uploadFile/shop/${u.mImg }">
+												</div></td>
 								<td>${u.shopName }</td>
 								<td>${u.mSendTime }</td>
 								<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>

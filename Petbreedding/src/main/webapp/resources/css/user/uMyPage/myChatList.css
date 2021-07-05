@@ -119,8 +119,8 @@ table tr:last-child td:first-child {
 .countwrap {
 	background-color: var(--button-color);
 	display: inline-block;
-	border-radius: 30px;
-	width: 60px;
+	border-radius: 20px;
+	width: 40px;
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
@@ -138,11 +138,17 @@ table tr:last-child td:first-child {
     font-size: larger;
 }
 
-table img{
-	width: 80px;
+.imgwrap{
+	width : 80px;
+	height : 80px;
 	margin-right: 30px;
 	margin-left: 20px;
 	margin-top: 10px;
+	overflow: hidden;
+	border-radius: 40px;
+}
+table div img{
+	height: 80px;
 }
 
 /* 대화 삭제 모달 */
