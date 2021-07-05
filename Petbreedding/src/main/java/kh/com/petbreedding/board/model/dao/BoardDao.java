@@ -19,9 +19,7 @@ public class BoardDao {
 	
 		// 게시글 작성
 		public int insertBoard(Board board) {
-			
-			//TODO
-			return 0;
+			return sqlSession.insert("Board.insertBoard", board);
 		}
 		
 		// 게시글 수정

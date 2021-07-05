@@ -54,6 +54,57 @@ document.getElementById('cancleBtn').addEventListener('click', function () {
     modal('my_modal');
 });
 
+
+//미용실 결제취소
+$("#goTOCancle").on("click",function(){
+	
+	var har_rnum = $("#har_rnum").val();
+//	
+	$.ajax({
+		url: "bReservationCancle",
+		type : "POST",
+		data : {har_rnum : har_rnum},
+		success : function(data){
+			if(data != null){
+				console.log(data);
+				alert("정상적으로 결제취소 되었습니다.");
+				location = "bReservation";
+				
+			}else{
+				alert("실패");
+			}
+		},
+		
+	});
+})
+
+// 병원 결제취소
+$(".goTOCancle").on("click",function(){
+	
+	var hos_rnum = $("#hos_rnum").val();
+//	
+	$.ajax({
+		url: "bReservationCancle",
+		type : "POST",
+		data : {hos_rnum : hos_rnum},
+		success : function(data){
+			if(data != null){
+				console.log(data);
+				alert("정상적으로 결제취소 되었습니다.");
+				location = "bReservation";
+				
+			}else{
+				alert("실패");
+				console.log(data);
+			}
+			
+		},
+		error : function(error){
+			alert("오류가 발생했습니다. 관리자에게 문의해주세요.");
+		}
+	});
+})
+
 // 1:1 채팅하기 버튼 클릭 시 채팅창 열기
 $(".chatBtn").on("click", function(e) {
 	var bp_id = $("#bpId").val();

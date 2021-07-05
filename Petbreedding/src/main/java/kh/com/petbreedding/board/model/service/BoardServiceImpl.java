@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService{
 		int result = -1;
 		
 		try {
-			
+			result = boardDao.insertBoard(board);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

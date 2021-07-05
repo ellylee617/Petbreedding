@@ -23,108 +23,6 @@ public class HospitalReservation {
 	private Client client;
 	private String name;
 	private String bp_id;
-	public String getHos_rnum() {
-		return hos_rnum;
-	}
-	public void setHos_rnum(String hos_rnum) {
-		this.hos_rnum = hos_rnum;
-	}
-	public String getMsg_num() {
-		return msg_num;
-	}
-	public void setMsg_num(String msg_num) {
-		this.msg_num = msg_num;
-	}
-	public String getCl_num() {
-		return cl_num;
-	}
-	public void setCl_num(String cl_num) {
-		this.cl_num = cl_num;
-	}
-	public String getPet_num() {
-		return pet_num;
-	}
-	public void setPet_num(String pet_num) {
-		this.pet_num = pet_num;
-	}
-	public String getMed_num() {
-		return med_num;
-	}
-	public void setMed_num(String med_num) {
-		this.med_num = med_num;
-	}
-	public String getHos_num() {
-		return hos_num;
-	}
-	public void setHos_num(String hos_num) {
-		this.hos_num = hos_num;
-	}
-	public String getHos_date() {
-		return hos_date;
-	}
-	public void setHos_date(String hos_date) {
-		this.hos_date = hos_date;
-	}
-	public String getHos_date2() {
-		return hos_date2;
-	}
-	public void setHos_date2(String hos_date2) {
-		this.hos_date2 = hos_date2;
-	}
-	public String getMed_num2() {
-		return med_num2;
-	}
-	public void setMed_num2(String med_num2) {
-		this.med_num2 = med_num2;
-	}
-	public int getHos_status() {
-		return hos_status;
-	}
-	public void setHos_status(int hos_status) {
-		this.hos_status = hos_status;
-	}
-	public String getHos_time() {
-		return hos_time;
-	}
-	public void setHos_time(String hos_time) {
-		this.hos_time = hos_time;
-	}
-	public MyPet getPet() {
-		return pet;
-	}
-	public void setPet(MyPet pet) {
-		this.pet = pet;
-	}
-	public Hospital getHospital() {
-		return hospital;
-	}
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getBp_id() {
-		return bp_id;
-	}
-	public void setBp_id(String bp_id) {
-		this.bp_id = bp_id;
-	}
-	public MedicalType getMedical() {
-		return medical;
-	}
-	public void setMedical(MedicalType medical) {
-		this.medical = medical;
-	}
-	public Client getClient() {
-		return client;
-	}
-	public void setClient(Client client) {
-		this.client = client;
-	}
 	@Override
 	public String toString() {
 		return "HospitalReservation [hos_rnum=" + hos_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
@@ -133,11 +31,110 @@ public class HospitalReservation {
 				+ hos_time + ", pet=" + pet + ", hospital=" + hospital + ", medical=" + medical + ", client=" + client
 				+ ", name=" + name + ", bp_id=" + bp_id + "]";
 	}
+	public String getHos_rnum() {
+		return hos_rnum;
+	}
+	public String getMsg_num() {
+		return msg_num;
+	}
+	public String getCl_num() {
+		return cl_num;
+	}
+	public String getPet_num() {
+		return pet_num;
+	}
+	public String getMed_num() {
+		return med_num;
+	}
+	public String getHos_num() {
+		return hos_num;
+	}
+	public String getHos_date() {
+		return hos_date;
+	}
+	public String getHos_date2() {
+		return hos_date2;
+	}
+	public String getMed_num2() {
+		return med_num2;
+	}
+	public int getHos_status() {
+		return hos_status;
+	}
+	public String getHos_time() {
+		return hos_time;
+	}
+	public MyPet getPet() {
+		return pet;
+	}
+	public Hospital getHospital() {
+		return hospital;
+	}
+	public MedicalType getMedical() {
+		return medical;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public String getName() {
+		return name;
+	}
+	public String getBp_id() {
+		return bp_id;
+	}
+	public void setHos_rnum(String hos_rnum) {
+		this.hos_rnum = hos_rnum;
+	}
+	public void setMsg_num(String msg_num) {
+		this.msg_num = msg_num;
+	}
+	public void setCl_num(String cl_num) {
+		this.cl_num = cl_num;
+	}
+	public void setPet_num(String pet_num) {
+		this.pet_num = pet_num;
+	}
+	public void setMed_num(String med_num) {
+		this.med_num = med_num;
+	}
+	public void setHos_num(String hos_num) {
+		this.hos_num = hos_num;
+	}
+	public void setHos_date(String hos_date) {
+		this.hos_date = hos_date;
+	}
+	public void setHos_date2(String hos_date2) {
+		this.hos_date2 = hos_date2;
+	}
+	public void setMed_num2(String med_num2) {
+		this.med_num2 = med_num2;
+	}
+	public void setHos_status(int hos_status) {
+		this.hos_status = hos_status;
+	}
+	public void setHos_time(String hos_time) {
+		this.hos_time = hos_time;
+	}
+	public void setPet(MyPet pet) {
+		this.pet = pet;
+	}
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+	public void setMedical(MedicalType medical) {
+		this.medical = medical;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setBp_id(String bp_id) {
+		this.bp_id = bp_id;
+	}
 	
 	
-
-	
-//
 	
 	
 	

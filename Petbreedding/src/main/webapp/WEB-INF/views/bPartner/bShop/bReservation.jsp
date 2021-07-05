@@ -110,7 +110,7 @@
 												</c:choose>
 												<td class="resTime">${rev.hos_date}</td>
 												<td class="resName">${rev.name}</td>
-												<td class="resInfo"><a href="bReservationDetail2?hos_rnum=${rev.hos_rnum}">상세보기</a></td>
+												<td class="resInfo"><a href="bReservationDetail?hos_rnum=${rev.hos_rnum}">상세보기</a></td>
 											</tr>
 										</c:forEach>
 									</table>

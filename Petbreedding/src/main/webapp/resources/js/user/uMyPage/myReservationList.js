@@ -171,6 +171,9 @@ $("#searchDate").on("click",function(){
 		          //리스트 잘라서 5개만 보여주기
 		          $(".resInfoBox").slice(0,5).show();
 
+		          
+		          $(".divmore").empty();
+		          
 		          //총 데이터 갯수가 5개가 초과하면 더보기 버튼 추가
 	               var moreBtn = "<button type='button' id='btnmore' onclick='clickMore()'>더보기</button>"; 
 	               if(data.length > 5 ){

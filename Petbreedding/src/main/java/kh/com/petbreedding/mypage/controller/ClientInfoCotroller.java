@@ -64,10 +64,12 @@ public class ClientInfoCotroller {
 			int status0 = clientInfoService.status0(cl_num);
 			int status1 = clientInfoService.status1(cl_num);
 			int status2 = clientInfoService.status2(cl_num);
+			int point = myPointService.CurrPointSelectOne(cl_num);
 			model.addAttribute("myRev", result);
 			model.addAttribute("status0", status0);
 			model.addAttribute("status1", status1);
 			model.addAttribute("status2", status2);
+			model.addAttribute("point", point);
 		}else {
 			System.out.println("cl_num이 없음");
 		}
@@ -91,6 +93,7 @@ public class ClientInfoCotroller {
 		List<HairShopReservation> result = clientInfoService.myRevDetail(har_rnum);
 		String result2 = clientInfoService.anotherMenu(har_rnum);
 		int getPrice = clientInfoService.getPrice(har_rnum);
+		
 		model.addAttribute("myRev", result);
 		model.addAttribute("another", result2);
 		model.addAttribute("totalPrice", getPrice);
@@ -127,29 +130,21 @@ public class ClientInfoCotroller {
 	// 포인트내역
 	@RequestMapping("/mypage/point")
 	public String point(
-//			HttpSession session
 			String cl_num
 			,HttpServletRequest req
 			,Client cl
 			,Model md
 			) {
 		
-//		cl = (Client) session.getAttribute("client");
-//		String clNum = cl.getCl_num();
+
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(cl_num);
 		
 		int currPoint = myPointService.CurrPointSelectOne(cl_num);
 		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
 		
-		System.out.println("[세훈] 컨트롤러 pointList : " + pointList);
-		System.out.println("[세훈] 컨트롤러 currPoint : " + currPoint);
 		md.addAttribute("pointList", pointList);
 		md.addAttribute("currPoint", currPoint);
-		
-
-		//		req.setAttribute("currPoint", currPoint);
-//		mv.setViewName("/user/uMyPage/point");
 		
 		return "/user/uMyPage/point";
 	}

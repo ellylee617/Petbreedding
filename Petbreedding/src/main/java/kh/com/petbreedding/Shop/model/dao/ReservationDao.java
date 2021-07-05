@@ -20,7 +20,6 @@ public class ReservationDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	
 	public List<Style> revList(String har_num) {
 		return sqlSession.selectList("ShopRev.revPage", har_num);
 	}

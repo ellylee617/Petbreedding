@@ -58,7 +58,7 @@ $(".plus").on("click", function() {
 // 날짜에 따른 시간선택
 $("#choDate").on("propertychange change keyup paste input oninput ",function() {
 	var res_date = $("#choDate").val();
-	var har_num = $("#harNum").val();
+	var har_num = $(".harNum").val();
 	$.ajax({
 		url : "checkTime",
 		type : "POST",
@@ -363,8 +363,8 @@ $("#nextTime").on("click", function() {
 
 // 바로결제!!
 $("#goTOPay").on("click", function() {
-	console.log("text : " + text);
-	location.href = "/petbreedding/shopPayment?har_rnum=" + text + "";
+	var cl_num = $("#clNum").val();
+	location.href = "/petbreedding/shopPayment?har_rnum=" + text +"&cl_num="+cl_num+"";
 });
 
 // 모달

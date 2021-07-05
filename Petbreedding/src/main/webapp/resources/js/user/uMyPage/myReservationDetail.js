@@ -9,10 +9,11 @@ $("#1and1").on("click",function(){
 //결제하기 
 $("#pay").on("click",function(){
 	var har_rnum =$("#har_rnum").val();
+	var cl_num = $("#cl_num").val();
 	if(har_rnum.substring(0,3) == "HAR"){
-		location.href="/petbreedding/shopPayment?har_rnum="+har_rnum+"";
+		location.href="/petbreedding/shopPayment?har_rnum="+har_rnum+"&cl_num="+cl_num+"";
 	}else if(har_rnum.substring(0,3) == "HOS"){
-		location.href = "/petbreedding/shopHosPayment?hos_rnum="+har_rnum+"";
+		location.href = "/petbreedding/shopHosPayment?hos_rnum="+har_rnum+"&cl_num="+cl_num+"";
 	}
 });
 

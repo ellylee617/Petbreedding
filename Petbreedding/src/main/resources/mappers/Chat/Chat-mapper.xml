@@ -20,6 +20,8 @@
 		<result column="unread_count" property="mUnreadCount"/>
 		<result column="BP_TYPE" property="bp_type"/>
 		<result column="MAIN_IMG" property="mImg"/>
+		<result column="INVISIBLE_CLIENT" property="invisibleClient"/>
+		<result column="INVISIBLE_BP" property="invisibleBp"/>
 	</resultMap>
 	
 	<resultMap type="ChatList" id="chatList">
@@ -81,10 +83,10 @@
                             (
                             SELECT
                             ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM,
-                            CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME
+                            CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, NVL(INVISIBLE_CLIENT,0) INVISIBLE_CLIENT
                             FROM CHATMESSAGE
                             )SQ                       
-                            WHERE SQ.RNUM = 1 
+                            WHERE SQ.RNUM = 1 AND INVISIBLE_CLIENT = 0
                             ORDER BY CHATROOM_ID
 	                   		 ) A
 	                	INNER JOIN
@@ -121,10 +123,10 @@
                             (
                             SELECT
                             ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM, MESSAGE_SENDER, MESSAGE_RECEIVER,
-                            CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME
+                            CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, NVL(INVISIBLE_CLIENT,0) INVISIBLE_CLIENT
                             FROM CHATMESSAGE
                             )SQ                       
-                           WHERE SQ.RNUM = 1 
+                           WHERE SQ.RNUM = 1 AND INVISIBLE_CLIENT = 0
                            ORDER BY CHATROOM_ID
                    		 ) A
 	                	INNER JOIN
@@ -164,10 +166,10 @@
                               (
                               SELECT
                               ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM, MESSAGE_SENDER, MESSAGE_RECEIVER,
-                              CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME
+                              CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, NVL(INVISIBLE_BP,0) INVISIBLE_BP
                               FROM CHATMESSAGE
                               )SQ                       
-                          WHERE SQ.RNUM = 1 
+                          WHERE SQ.RNUM = 1 AND INVISIBLE_BP = 0
                           ORDER BY CHATROOM_ID
                   			) A
                 	INNER JOIN
@@ -210,10 +212,10 @@
                               (
                               SELECT
                               ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY MESSAGE_SENDTIME DESC) AS RNUM, MESSAGE_SENDER, MESSAGE_RECEIVER,
-                              CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME
+                              CHATROOM_ID, MESSAGE_CONTENT,TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, NVL(INVISIBLE_BP,0) INVISIBLE_BP
                               FROM CHATMESSAGE
                               )SQ                       
-                          WHERE SQ.RNUM = 1 
+                          WHERE SQ.RNUM = 1 AND INVISIBLE_BP = 0
                           ORDER BY CHATROOM_ID
                   			) A
                 	INNER JOIN
@@ -227,7 +229,7 @@
 	            INNER JOIN
                 (
                SELECT CHATROOM_ID, COUNT(UNREAD_COUNT) UNREAD_COUNT 
-               FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{bp_id} AND UNREAD_COUNT = 1 
+               FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{bp_id} AND UNREAD_COUNT = 1
                GROUP BY CHATROOM_ID
                ) E
            ON D.CHATROOM_ID = E.CHATROOM_ID
@@ -239,25 +241,31 @@
 	</select>
 
 	<select id="getMessageList" resultMap="chatmessage">
-		SELECT A.*, B.*
-		FROM
-		(
-		SELECT MESSAGE_SENDER, MESSAGE_RECEIVER, MESSAGE_CONTENT, 
-		TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, CHATROOM_ID
-		FROM CHATMESSAGE WHERE CHATROOM_ID= #{chatId}
-		) A
-		INNER JOIN 
-		(SELECT * FROM CHATROOM WHERE CL_NUM=#{cl_num}) B
-		ON A.CHATROOM_ID = B.CHATROOM_ID
-
+		SELECT M.*, C.* FROM 
+        (
+        SELECT MESSAGE_SENDER, MESSAGE_RECEIVER, MESSAGE_CONTENT, 
+		TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, CHATROOM_ID, NVL(INVISIBLE_CLIENT,0) INVISIBLE_CLIENT
+		FROM CHATMESSAGE 
+        WHERE CHATROOM_ID = #{chatId}
+        ) M
+        LEFT OUTER JOIN
+        (SELECT * FROM CHATROOM) C
+        ON M.CHATROOM_ID = C.CHATROOM_ID
+        WHERE M.INVISIBLE_CLIENT = 0
 	</select>
 
 	<select id="getMessageListbp_id" resultMap="chatmessage">
-		SELECT M.*, B.BP_ID
-		FROM CHATMESSAGE M LEFT OUTER JOIN BUSINESS_PARTNER B
-		ON
-		M.MESSAGE_SENDER = B.BP_ID
-		WHERE CHATROOM_ID=#{chatId}
+		SELECT M.*, C.* FROM 
+        (
+        SELECT MESSAGE_SENDER, MESSAGE_RECEIVER, MESSAGE_CONTENT, 
+		TO_CHAR(MESSAGE_SENDTIME, 'YYYY-MM-DD HH24:MI:SS') MESSAGE_SENDTIME, CHATROOM_ID, NVL(INVISIBLE_BP,0) INVISIBLE_BP
+		FROM CHATMESSAGE 
+        WHERE CHATROOM_ID = #{chatId}
+        ) M
+        LEFT OUTER JOIN
+        (SELECT * FROM CHATROOM) C
+        ON M.CHATROOM_ID = C.CHATROOM_ID
+        WHERE M.INVISIBLE_BP = 0
 	</select>
 	
 	<select id="getUnreadCount" resultMap="chatmessage">
@@ -272,5 +280,19 @@
 		UPDATE CHATMESSAGE SET UNREAD_COUNT = 0
 		WHERE message_id = #{mId}
 	</update>
+	
+	<select id="getListforInvisible" resultMap="chatmessage">
+		SELECT MESSAGE_ID FROM CHATMESSAGE WHERE CHATROOM_ID=#{chatId} AND 
+		<![CDATA[MESSAGE_SENDTIME < CURRENT_TIMESTAMP]]>
+	</select>
+	
+	<update id="updateInvisibleCleint">
+		UPDATE CHATMESSAGE SET INVISIBLE_CLIENT = 1 WHERE MESSAGE_ID = #{mId}
+	</update>
+	
+	<update id="updateInvisibleBp">
+		UPDATE CHATMESSAGE SET INVISIBLE_BP = 1 WHERE MESSAGE_ID = #{mId}
+	</update>
+	
 
 </mapper>

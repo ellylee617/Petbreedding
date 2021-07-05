@@ -29,7 +29,12 @@
 					<p class="ptitle">결제완료</p>
 					<p class="ptitle">이용완료</p>
 					<br>
-					<p class="presult">1000P</p>
+					<c:if test="${empty point }">
+						<p class="presult">0P</p>
+					</c:if>
+					<c:if test="${!empty point }">
+						<p class="presult">${point}P</p>
+					</c:if>
 					<p class="presult">${status0 }</p>
 					<p class="presult presultth">${status1 }</p>
 					<p class="presult presultend">${status2}</p>

@@ -37,6 +37,7 @@
                             <td>상품</td>
                             <td> ${list2.hospital.shopName}(+)${list2.medical.medName}</td>
                         </tr>
+                        <input type="hidden" id="hos_rnum" value="${list2.hos_rnum}" placeholder="${list2.hos_rnum}">
             
                     </table>
                 </div>
@@ -118,7 +119,7 @@
             <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
             <div id="locCon">
                 <h1>정말 취소하시겠습니까?</h1>
-                <button id="goTOCancle" >네</button>
+                <button id="goTOCancle" class="goTOCancle" >네</button>
                 <button id="nextTime">아니오</button>
             </div>
         </div>

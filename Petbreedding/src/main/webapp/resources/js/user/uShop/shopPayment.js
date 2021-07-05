@@ -21,17 +21,14 @@ $(".agreeAll").on("click", function(){
     }
 });
 
-/*$("#reservation_btn").on("click",function(){
-    var chk = $("#agreeInfo1").is(":checked");
-    if(!chk){
-        alert("이용동의에 모두 체크해주세요!");
-        return false;
-    }
-});*/
 
 $("#pointAll").on("click",function(){
     var usingPoint = $("#nowPoint").text();
-    $("#pointArea").val(usingPoint).change();   
+    if($("#pointAll").is(':checked') == true){
+    	$("#pointArea").val(usingPoint).change();   
+    }else if($("#pointAll").is(':checked') == false){
+    	$("#pointArea").val("0").change();  
+    }
 });
 
 //총결제 금액 뿌리기 
@@ -49,9 +46,19 @@ $("#pointArea").on("propertychange change keyup paste input oninput ",function()
 	const number = total.replace(/,/g, "");
 	const number2 = using.replace(/,/g, "");
 	
-	var pay = 0;
-	pay = number - number2;
-	pay = pay.toLocaleString();
-	$("#payMoney").text(pay);
+	var nowPoint = $("#nowPoint").text();
+	
+	if(nowPoint >= using){
+		var pay = 0;
+		pay = number - number2;
+		pay = pay.toLocaleString();
+		$("#payMoney").text(pay);
+	}else{
+		alert("보유 포인트보다 더 큰 금액은 입력하실 수 없습니다.");
+		$("#pointArea").val("0");
+		$("#pointAll").prop('checked', false);
+		return false;
+	}
+	
 	
 });

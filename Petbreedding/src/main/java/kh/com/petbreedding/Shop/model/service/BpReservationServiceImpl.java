@@ -157,6 +157,39 @@ public class BpReservationServiceImpl implements BpReservationService{
 		return list;
 	}
 
+	
+	@Override
+	public int delrevHar(String har_rnum) throws Exception {
+		int result = 0;
+		try {
+			result = bprevDao.delrevHar(har_rnum);
+			if(result > 0) {
+				System.out.println("결제취소 들어옴");
+			}else {
+				System.out.println("결제취소 못 들어옴 ");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int delrevHos(String hos_rnum) throws Exception {
+		int result=0;
+		try {
+			result = bprevDao.delrevHos(hos_rnum);
+			if(result > 0) {
+				System.out.println("병원 결체취소 들어옴");
+			}else {
+				System.out.println("병원 결제취소 못들어옴 ");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 
 	
 	

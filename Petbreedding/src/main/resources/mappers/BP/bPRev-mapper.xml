@@ -131,7 +131,7 @@
 	
 	<!-- 예약관리 상세페이지 -->
 	<select id="HarRevCon" resultMap="HairRev" parameterType="string">
-		select client.*, har_reservation.res_date,har_reservation.res_time, pet_info.*, style.style_name, hair_salon.har_name
+		select client.*, har_reservation.*, pet_info.*, style.style_name, hair_salon.har_name
 		from HAR_RESERVATION join client
 		on HAR_RESERVATION.cl_num = client.cl_num
 		join hair_salon
@@ -141,6 +141,11 @@
         join style
         on har_reservation.style_num = style.style_num
         and har_rnum = #{har_num}
+	</select>
+	
+	<!-- 미용실 결제취소 -->
+	<select id="harstatus" parameterType="string" >
+		update har_reservation SET RES_STATUS = 2 WHERE har_rnum = #{har_num}
 	</select>
 	
 	
@@ -188,7 +193,7 @@
 	
 	<!-- 병원예약관리 상세페이지 -->
 	<select id="HosRevCon" resultMap="HosRev" parameterType="string">
-	        select client.*, HOS_RESERVATION.hos_date,HOS_RESERVATION.hos_time, pet_info.*, MEDICAL_TYPE.med_name, hospital.hos_name
+	        select client.*, HOS_RESERVATION.*, pet_info.*, MEDICAL_TYPE.med_name, hospital.hos_name
 		from HOS_RESERVATION join client
 		on HOS_RESERVATION.cl_num = client.cl_num
 		join hospital
@@ -199,6 +204,11 @@
         on HOS_RESERVATION.med_num = MEDICAL_TYPE.med_num
         and hos_rnum = #{hos_rnum}
         
+	</select>
+	
+		<!-- 병원 결제취소 -->
+	<select id="hosstatus" parameterType="string">
+		update HOS_RESERVATION SET HOS_STATUS = 2 WHERE hos_rnum = #{hos_rnum}
 	</select>
 	
 	

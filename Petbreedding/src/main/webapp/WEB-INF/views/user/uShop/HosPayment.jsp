@@ -25,6 +25,9 @@
                 <div class="reservation_info infoBox">
                    <table>
                    <c:forEach items="${myRev}" var="myRev">
+                   		<input type="hidden" values="${myRev.cl_num }" id="cl_num"/>
+                   		<input type="hidden" values="${myRev.hos_num }" id="exp_Id"/>
+                   		<input type="hidden" value="${myRev.hospital.shopName }" id="exp_from"/>
                    		<input type="hidden" value="${myRev.hos_rnum }" id="har_rnum"/>
                        <tr>
                            <th>예약 정보</th>
@@ -35,7 +38,7 @@
                        </tr>
                        <tr>
                         <td class="infoName">상품</td>
-                        <td>${myRev.med_num }                                 
+                        <td>${myRev.medical.medName }                                 
                         </td>
                     </tr>
                     </c:forEach>
@@ -65,7 +68,7 @@
                         <tr>
                             <th class="pointInfo">포인트 사용</th>
                             <td>보유 포인트</td>
-                            <td id="nowPoint">1,000</td>
+                            <td id="nowPoint">${point }</td>
                             <td><input type="text" id="pointArea" value="0"><input type="checkbox" id="pointAll"><label for="pointAll">모두 사용</label></td>
                         </tr>                        
                     </table>
@@ -75,7 +78,9 @@
                      <div >
                         <p>총 상품 금액 
 	                        <span id="totalPrice">
-	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="5000" />
+	                        <c:forEach items="${myRev}" var="myRev">
+	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${myRev.medical.medPrice}" />
+		                    </c:forEach>
 							</span>원
 						</p>
                         <p>포인트 사용<span class="usePoint">0원</span></p>

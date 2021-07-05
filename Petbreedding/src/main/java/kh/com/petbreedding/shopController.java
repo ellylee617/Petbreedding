@@ -71,7 +71,9 @@ public class shopController {
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			, @RequestParam Long shopType
+			, HttpServletRequest request
 			) throws Exception {
+		
 		
 		// 페이징 
 		int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
@@ -84,32 +86,37 @@ public class shopController {
 
 			int harShopType = 0;
 			
-//			List<HairSalon> salonList = shopService.selectHarList(page);
 			
-			// 미용실 리스트 - 최신순 
-//			List<HairSalon> salonList = shopService.selectHarListNew(page);
 			
-			//TODO
-			// 미용실 리스트 - 별점순
-			List<HairSalon> salonList = shopService.selectHarListRev(page);
 			
+			List<HairSalon> newHarList = shopService.selectHarListNew(page); // 최신순
+			List<HairSalon> revHarList = shopService.selectHarListRev(page); // 별점순 
+			//TODO:거리순
+			
+			
+			System.out.println("미용실 리스트: 최신순 : " + newHarList);
+			System.out.println("미용실 리스트: 별점순: " + revHarList);
 			
 			
 			// 미용실 리스트 - 거리순
+			// TODO 
 			
-			System.out.println("컨트롤러 미용실 리스트 : " + salonList);
 			
-			//기본 매장 찜한 숫자 가져오기
+			
+			// 찜한 숫자 가져오기
 			// + 별점 출력 
 			String har_num = null;
 			String bpId = null;
 			List<String> list = new ArrayList<String>();
 			List<String> countList = new ArrayList<String>();
-			for(int i =0; i<salonList.size(); i++) {
-				har_num = salonList.get(i).getHarNum();
-				bpId = salonList.get(i).getBpId();
+			
+			// 최신순
+			for(int i =0; i<newHarList.size(); i++) {
+				har_num = newHarList.get(i).getHarNum();
+				bpId = newHarList.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
-				double revVal = shopService.selectRevVal(bpId);
+				String revVal = shopService.selectRevVal(bpId);
+					
 				String countRev = shopService.selectCountReview(bpId);
 				countList.add(countRev);
 				mv.addObject("revVal", revVal);
@@ -118,6 +125,24 @@ public class shopController {
 				list.add(count);
 				mv.addObject("count", list);
 			}
+			
+			// 별점순
+			for(int i =0; i<revHarList.size(); i++) {
+				har_num = revHarList.get(i).getHarNum();
+				bpId = revHarList.get(i).getBpId();
+				String count = likeService.countSalon(har_num);
+				String revVal = shopService.selectRevVal(bpId);
+					
+				String countRev = shopService.selectCountReview(bpId);
+				countList.add(countRev);
+				mv.addObject("revVal", revVal);
+				mv.addObject("countRev", countList);
+				System.out.println("************count*****"+count);
+				list.add(count);
+				mv.addObject("count", list);
+			}
+			
+			// TODO:거리순
 			
 			/*
 			 * List<String> list = new ArrayList<String>(); 
@@ -145,7 +170,8 @@ public class shopController {
 			
 			
 			mv.addObject("shopType", harShopType);
-			mv.addObject("shopList", salonList);
+			mv.addObject("newHarList", newHarList);
+			mv.addObject("revHarList", revHarList);
 			mv.addObject("paging", page);
 			mv.addObject("cta", ultra);
 			mv.setViewName("/user/uShop/shopList");
@@ -457,6 +483,27 @@ public class shopController {
 				return mav2;
 			}
 			return mav;
+			
+		}
+		
+		
+	//결제 취소
+		@RequestMapping(value = "/bReservationCancle", method = RequestMethod.POST)
+		public String bReservationCancle(
+				HospitalReservation hos,
+				HairShopReservation rev
+				 ) throws Exception {
+			
+			if(rev.getHar_rnum() != null) {
+				System.out.println("미용실 결제취소 들어옴");
+				bprevService.delrevHar(rev.getHar_rnum());
+				return "bPartner/bShop/bReservation";
+			}else if(hos.getHos_rnum() !=null) {
+				System.out.println("병원 결체 취소 들어옴");
+				bprevService.delrevHos(hos.getHos_rnum());
+				return "bPartner/bShop/bReservation";
+			}
+			return "";
 			
 		}
 	// 사업자 화상채팅하기

@@ -59,4 +59,6 @@ public class ShopPayServiceImpl implements ShopPayService{
 		return result;
 	}
 
+
+
 }
