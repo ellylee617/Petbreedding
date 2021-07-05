@@ -23,10 +23,12 @@
 			<div class="rborder r1 rOrderTitle">
                     <i class="far fa-check-circle"></i>
                     <c:forEach items="${myRev}" var="myRev">
+                    <input type="hidden" value="${myRev.har_num }" id="exp_Id">
                     <input type="hidden" value="${myRev.har_rnum }" id="har_rnum">
                     <input type="hidden" value="${client.cl_num }" id="cl_num">
                     <input type="hidden" value="${myRev.hairSalon.bpId }" id="bpId">
                     <input type="hidden" value="${myRev.har_name }" id="shopName">
+                    <input type="hidden" value="${myRev.res_date }" id="exp_date">
                     <c:if test="${myRev.res_status eq 0}">
 						&nbsp;결제 대기					
 					</c:if>

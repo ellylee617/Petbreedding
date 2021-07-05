@@ -27,7 +27,6 @@
 	margin-top: 10px;
 	font-size: 12px;
 }
-
 .selectOpt input {
 	display: none;
 }
@@ -41,15 +40,17 @@
 }
 
 .selectOpt input:checked+label {
-	background: var(- -hover-color);
-	color: var(- -font-color);
-	border: 1px solid var(- -hover-color);
+	background: var(--hover-color);
+	color: var(--font-color);
+	border: 1px solid var(--hover-color);
 }
+
+
 /* 기간순 조회 */
 .timetblP {
 	float: left;
 	width: 600px;
-	margin-left: 30px;
+	margin-left: 50px;
 }
 
 .timetblP input {
@@ -61,6 +62,10 @@
 	height: 30px;
 	border-radius : 10px;
 }
+.pointline{
+	display:none;
+}
+
 /* 포인트 내역 테이블 */
 .pointtable {
 	width: 100%;
@@ -75,11 +80,11 @@
 .pointtable tr td {
 	padding: 30px 0px;
 	text-align: center;
+	width: 100px;
 }
 
 .pointtable td:first-child {
-	width: 30%;
-	font-size: 24px;
+	font-size: 20px;
 	padding-left: 80px;
 }
 
@@ -92,33 +97,34 @@
 }
 
 .circleg {
-	border: 3px solid darkgreen;
+	border: 1px solid darkgreen;
 	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-	line-height: 100px;
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
 }
 
 .circlep {
-	border: 2px solid tomato;
+	border: 1px solid tomato;
 	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-	line-height: 100px;
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
 }
 
 .divmore {
 	text-align: center;
 }
 
-.btnmore {
+#moreBtn {
+	outline:none;
 	background-color: var(--font-color);
 	border: 1px solid #aaa;
 	width: 100px;
 	height: 40px;
 }
 
-.btnmore:hover {
+#moreBtn:hover {
 	background-color: var(--hover-color);
 	border: 1px solid var(--hover-color);
 	color: var(--font-color);;

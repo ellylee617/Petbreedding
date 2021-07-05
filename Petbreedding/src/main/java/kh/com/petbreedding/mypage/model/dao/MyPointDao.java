@@ -1,6 +1,8 @@
 package kh.com.petbreedding.mypage.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,31 @@ public class MyPointDao {
 		return sqlSession.insert("MyPoint.myPointUpdate", myPoint);
 	}
 	
+	public int myPointCancle(MyPoint myPoint) {
+		return sqlSession.insert("MyPoint.myPointCancle", myPoint);
+	}
+	
+	//3개월
+	public List<MyPoint> myPoint3m(String clNum) {
+		return sqlSession.selectList("MyPoint.myPoint3m",clNum);
+	}
+	
+	//6개월
+	public List<MyPoint> myPoint6m(String clNum) {
+		return sqlSession.selectList("MyPoint.myPoint6m",clNum);
+	}
+	
+	//12개월
+	public List<MyPoint> myPoint12m(String clNum) {
+		return sqlSession.selectList("MyPoint.myPoint12m",clNum);
+	}
+	
+	//기간별 조회
+	public List<MyPoint> myPointDate(Map<String, String> list) {
+		return sqlSession.selectList("MyPoint.myPointDate", list);
+	}
 	
 }
+
+
+
