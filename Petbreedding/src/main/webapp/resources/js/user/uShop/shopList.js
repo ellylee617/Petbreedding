@@ -1,4 +1,23 @@
 
+
+$("#newHarRadio").click(function(){
+	$("#newHarList").show();
+	$("#distanceHarList").hide();
+	$("#revHarList").hide();
+});
+
+$("#distanceHarRadio").click(function(){
+	$("#newHarList").hide();
+	$("#distanceHarList").show();
+	$("#revHarList").hide();
+});
+
+$("#revHarRadio").click(function(){
+	$("#newHarList").hide();
+	$("#distanceHarList").hide();
+	$("#revHarList").show();
+});
+
 function modal(id) {
     var zIndex = 9999;
     var modal = document.getElementById(id);
