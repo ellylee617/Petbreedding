@@ -68,7 +68,7 @@
                         <tr>
                             <th class="pointInfo">포인트 사용</th>
                             <td>보유 포인트</td>
-                            <td id="nowPoint">1,000</td>
+                            <td id="nowPoint">${point }</td>
                             <td><input type="text" id="pointArea" value="0"><input type="checkbox" id="pointAll"><label for="pointAll">모두 사용</label></td>
                         </tr>                        
                     </table>

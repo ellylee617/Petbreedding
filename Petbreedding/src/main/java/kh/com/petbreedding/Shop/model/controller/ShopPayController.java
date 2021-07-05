@@ -1,5 +1,7 @@
 package kh.com.petbreedding.Shop.model.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kh.com.petbreedding.Shop.model.service.ShopPayService;
 import kh.com.petbreedding.Shop.model.vo.HarPay;
 import kh.com.petbreedding.Shop.model.vo.HosPay;
+import kh.com.petbreedding.client.model.vo.Client;
 
 @Controller
 public class ShopPayController {
@@ -18,7 +21,7 @@ public class ShopPayController {
 	@RequestMapping("harPay")
 	@ResponseBody
 	public int harPay(HarPay harPay) {
-		
+
 		int result = shopPayService.harPay(harPay);
 		
 		return result;

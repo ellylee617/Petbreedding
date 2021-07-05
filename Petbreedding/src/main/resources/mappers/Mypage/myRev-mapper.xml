@@ -65,6 +65,7 @@
 		<result column="HOS_CONN" property="hosConn"/>
 		<result column="HOS_CLICK" property="hosClick"/>
 	</resultMap>
+	
 	<!-- 동물병원 예약VO  -->
 	<resultMap type="HosRev" id="HosRev">
 		<id column="HOS_RNUM" property="hos_rnum"/>
@@ -80,8 +81,14 @@
 		<result column="HOS_TIME" property="hos_time"/>
 		<collection property="pet" resultMap="Pet" />
 		<collection property="hospital" resultMap="Hospital" />
+		<collection property="medical" resultMap="MedicalType" />
 	</resultMap>
 	
+	<!-- 병원 진료 테이블 -->
+	<resultMap type="MedicalType" id="MedicalType">
+		<result column="MED_NAME" property="medName"/>
+		<result column="MED_PRICE" property="medPrice"/>
+	</resultMap>
 	
 
 	<!-- 공통 -->
@@ -211,10 +218,11 @@
 	<!-- 동물병원 -->
 	<!-- 병원예약 상세 페이지 -->
 	<select id="myRevDetail2" parameterType="string" resultMap="HosRev">
-			SELECT h.*, p.pet_name, p.pet_birth, p.pet_weight, hs.hos_name, hs.hos_addr, hs.hos_tel, hs.bp_Id
+			SELECT h.*, p.pet_name, p.pet_birth, p.pet_weight, hs.hos_name, hs.hos_addr, hs.hos_tel, hs.bp_Id, m.med_name, m.med_price
 			FROM HOS_RESERVATION h 
 			LEFT JOIN PET_INFO p ON h.pet_num = p.pet_num
 			LEFT JOIN HOSPITAL hs ON h.hos_num = hs.hos_num
+			LEFT JOIN MEDICAL_TYPE m ON h.med_num = m.med_num
 			WHERE h.hos_rnum = #{value}
 	</select>
 	

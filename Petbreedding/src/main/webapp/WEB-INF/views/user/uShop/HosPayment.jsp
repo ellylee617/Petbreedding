@@ -35,7 +35,7 @@
                        </tr>
                        <tr>
                         <td class="infoName">상품</td>
-                        <td>${myRev.med_num }                                 
+                        <td>${myRev.medical.medName }                                 
                         </td>
                     </tr>
                     </c:forEach>
@@ -65,7 +65,7 @@
                         <tr>
                             <th class="pointInfo">포인트 사용</th>
                             <td>보유 포인트</td>
-                            <td id="nowPoint">1,000</td>
+                            <td id="nowPoint">${point }</td>
                             <td><input type="text" id="pointArea" value="0"><input type="checkbox" id="pointAll"><label for="pointAll">모두 사용</label></td>
                         </tr>                        
                     </table>
@@ -75,7 +75,9 @@
                      <div >
                         <p>총 상품 금액 
 	                        <span id="totalPrice">
-	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="5000" />
+	                        <c:forEach items="${myRev}" var="myRev">
+	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${myRev.medical.medPrice}" />
+		                    </c:forEach>
 							</span>원
 						</p>
                         <p>포인트 사용<span class="usePoint">0원</span></p>

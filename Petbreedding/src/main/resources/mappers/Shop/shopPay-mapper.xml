@@ -46,6 +46,9 @@
 		<result column="TOTAL_PRICE" property="total_price" />
 	</resultMap>
 	
+	
+	
+	
 	<!-- 동물병원 -->
 	<resultMap type="Hospital" id="Hospital">
 		<id column="HOS_NUM" property="hosNum"/>
@@ -73,6 +76,7 @@
 		<result column="HOS_STATUS" property="hos_status" />
 		<result column="HOS_TIME" property="hos_time"/>
 		<collection property="hospital" resultMap="Hospital" />
+		<collection property="medical" resultMap="MedicalType" />
 	</resultMap>
 
 	<!-- 동물병원 결제VO -->
@@ -85,7 +89,14 @@
 		<result column="PAY_PRICE" property="pay_price" />
 		<result column="TOTAL_PRICE" property="total_price" />
 	</resultMap>
-
+	
+	<!-- 병원 진료 테이블 -->
+	<resultMap type="MedicalType" id="MedicalType">
+		<result column="MED_NAME" property="medName"/>
+		<result column="MED_PRICE" property="medPrice"/>
+	</resultMap>
+	
+	
 	
 	<!-- 미용실 -->
 	<!-- 결제 페이지 조회-->
@@ -110,9 +121,10 @@
 	<!-- 동물병원 -->
 	<!-- 결제 페이지 조회-->
 	<select id="myRevPay2" parameterType="string" resultMap="HosRev">
-		SELECT h.*, hs.hos_name, hs.hos_addr, hs.hos_tel
+		SELECT h.*, hs.hos_name, hs.hos_addr, hs.hos_tel, m.med_name, m.med_price
 		FROM HOS_RESERVATION h 
 		LEFT JOIN HOSPITAL hs ON h.hos_num = hs.hos_num
+		LEFT JOIN MEDICAL_TYPE m ON h.med_num = m.med_num
 		WHERE h.hos_rnum = #{hos_rnum}
 	</select>
 	
