@@ -34,7 +34,7 @@
 									<td rowspan="2"><img src="${path}/resources/images/logoForChat.png"></td>
 									<td>${r.nickName }</td>
 									<td>${r.mSendTime }</td>
-									<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+									<td rowspan="2"><a class="cancleM" onClick="deleteChat('${r.chatId }');"><i class="far fa-times-circle"></i></a></td>
 								</tr>
 								<tr>
 									<td>${r.mContent }</td>
@@ -79,16 +79,15 @@
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
 	<!-- 대화 삭제 모달 -->
-	<div id="cancel-modal" class="modal">
+	<div id="deleteMsg-modal" class="modal">
 	<div class="cancel-content">
-	<input type="hidden" value="${bP.bp_Id}" id="bp_Id" />
 		<p class="boldtext">대화를 지우시겠습니까?</p> 
 		<p class="text">
 		<br>
 		기존의 모든 대화가 삭제됩니다.<br><br></p>
 		<div class="btn">
-			<button class="basicBtn" id="yesCalncle">네</button>
-			<button class="basicBtn" id="noCalncle">아니오</button>
+			<button class="basicBtn" id="yesDelete">네</button>
+			<button class="basicBtn" id="noDelete">아니오</button>
 		</div>
 	</div>
 </body>
