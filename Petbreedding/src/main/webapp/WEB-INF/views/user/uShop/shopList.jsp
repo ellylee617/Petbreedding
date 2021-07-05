@@ -241,7 +241,44 @@
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
                                 <div class="ultraList_info_area"><a href="#">${cta.shopMInfo}</a></div>
                                 <div class="ultraList_etc_area">
-                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
+                                     <a href="#">리뷰<small> 
+                                     <c:out value="${ctaRevVal }"></c:out>
+                                    <c:if test="${cta.avgRevVal ge 0 && cta.avgRevVal lt 1}">
+	                                   		&nbsp;(${cta.avgRevVal})
+	                                    </c:if>
+                                    <c:if test="${cta.avgRevVal ge 1 && cta.avgRevVal lt 2}">
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${cta.avgRevVal ge 2 && cta.avgRevVal lt 3}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${cta.avgRevVal ge 3 && cta.avgRevVal lt 4}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${cta.avgRevVal ge 4 && cta.avgRevVal lt 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+	                                    </c:if>
+	                                    <c:if test="${cta.avgRevVal eq 5}">
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>
+	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+	                                    </c:if>
+                                    <c:if test="${!empty ctaCountRev[status.index] }">
+	                                    &nbsp;${ctaCountRev[status.index]}개 
+                                    </c:if>
+                                    <c:if test="${empty ctaCountRev[status.index]}">
+                                    &nbsp;0개 
+                                    </c:if>
+                                    </small>
+                                    </a>
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
                                 </div>

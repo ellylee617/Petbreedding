@@ -17,9 +17,22 @@ public interface ShopService {
 	
 	public int updateBpReg(String bpId); // 사업장 등록 - BP 테이블에서 사업장 등록여부 상태 1로 바꾸기 
 	
+	/* 공통 */
+	
 	public String selectRevVal(String bpId);	// 리뷰 평균 계산
 	public String selectCountReview(String bpId);	// 리뷰 건수 계산
 	
+	/* 울트라콜 매장 */
+	
+	// 울트라콜 미용실 리스트 출력 (평균 별점 포함)
+	public List<HairSalon> selectCtaHarList();
+	
+	
+	// 평균 별점
+	public String selectCtaRevVal(String bpId) ;
+	// 리뷰 건수
+	public String selectCountCtaReview(String bpId);
+		
 //	public List<HairSalon> selectHarList(int currentPage, int limit); // 미용실 전체 리스트 조회 //******TODO:위치이동*******
 	public int countHarList(); // 미용실 리스트 총 갯수
 	public List<HairSalon> selectHarList(Pagination page);

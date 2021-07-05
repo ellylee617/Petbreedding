@@ -114,12 +114,12 @@ public class shopController {
 			for(int i =0; i<newHarList.size(); i++) {
 				har_num = newHarList.get(i).getHarNum();
 				bpId = newHarList.get(i).getBpId();
-				String count = likeService.countSalon(har_num);
-				String revVal = shopService.selectRevVal(bpId);
+				String count = likeService.countSalon(har_num); //찜
+//				String revVal = shopService.selectRevVal(bpId);	// 평균 별점
 					
-				String countRev = shopService.selectCountReview(bpId);
+				String countRev = shopService.selectCountReview(bpId); //리뷰건수
 				countList.add(countRev);
-				mv.addObject("revVal", revVal);
+//				mv.addObject("revVal", revVal);
 				mv.addObject("countRev", countList);
 				System.out.println("************count*****"+count);
 				list.add(count);
@@ -131,11 +131,11 @@ public class shopController {
 				har_num = revHarList.get(i).getHarNum();
 				bpId = revHarList.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
-				String revVal = shopService.selectRevVal(bpId);
+//				String revVal = shopService.selectRevVal(bpId);
 					
 				String countRev = shopService.selectCountReview(bpId);
 				countList.add(countRev);
-				mv.addObject("revVal", revVal);
+//				mv.addObject("revVal", revVal);
 				mv.addObject("countRev", countList);
 				System.out.println("************count*****"+count);
 				list.add(count);
@@ -152,16 +152,23 @@ public class shopController {
 			 */
 //			List<HairSalonImg> harImgList = shopService.selectHarImgList();
 
-			List<HairSalon> ultra = ctaService.ctabuylist();
-			System.out.println("울트라콜 미용실 리스트:"+ultra);
+			List<HairSalon> ultra = shopService.selectCtaHarList();
 			
+			List<String> ctaCountList = new ArrayList<String>();
 			List<String> list2 = new ArrayList<String>();
 			for(int i =0; i<ultra.size(); i++) {
 				har_num = ultra.get(i).getHarNum();
+				bpId = ultra.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
+				String ctaCountRev = shopService.selectCountCtaReview(bpId); //리뷰건수
+				
+				ctaCountList.add(ctaCountRev);
+				mv.addObject("ctaCountRev", ctaCountList);
 				System.out.println("************count*****"+count);
 				list2.add(count);
 				mv.addObject("count2", list2);
+				
+				System.out.println("울트라콜 미용실 리스트 (평균 별점 포함):"+ultra);
 			}
 			
 			List<HairSalon> harReviewList = shopService.selectHarListRev(page);
