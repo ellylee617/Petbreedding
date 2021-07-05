@@ -30,7 +30,7 @@ public class HairSalon {
 	private String sat;
 	private String sun;
 
-	private String avgRevVal;
+	private double avgRevVal;
 	
 
 
@@ -46,16 +46,28 @@ public class HairSalon {
 
 
 
-	public String getAvgRevVal() {
+
+
+
+
+	public double getAvgRevVal() {
 		return avgRevVal;
 	}
 
 
 
 
-	public void setAvgRevVal(String avgRevVal) {
+
+
+
+
+	public void setAvgRevVal(double avgRevVal) {
 		this.avgRevVal = avgRevVal;
 	}
+
+
+
+
 
 
 

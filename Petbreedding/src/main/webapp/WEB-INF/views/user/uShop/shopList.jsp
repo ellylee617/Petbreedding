@@ -197,7 +197,7 @@
             </c:forEach>
             
            <!-- 미용실 최신순 정렬 -->
-           <div id="newHarList" class="storeS">
+           <div id="newList" class="storeS">
                <c:forEach items="${newHarList}" var="item" varStatus="status" >
                 <ul>
                     <div class="Store">                      
@@ -261,12 +261,12 @@
             </div>
             
             <!-- 미용실 거리순 정렬 -->
-            <div id="distanceHarList" class="storeS">
+            <div id="distanceList" class="storeS" style="display: none;">
             <h1>거리순 정렬 작업 중</h1>
             </div>
             
             <!-- 미용실 별점순 정렬 -->
-             <div id="revHarList" class="storeS" style="display: none;">
+             <div id="revList" class="storeS" style="display: none;">
                <c:forEach items="${revHarList}" var="item" varStatus="status" >
                 <ul>
                     <div class="Store">                      
