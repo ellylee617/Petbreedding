@@ -246,30 +246,18 @@ public class ClientInfoCotroller {
 			System.out.println("[세훈 ]" + myAsk.toString());
 			int result = myAskService.MyAskInsert(myAsk);
 			
-			PrintWriter out = null;
-			
-			String msg1 = "문의 등록 완료";
-			String msg2 = "문의 등록 실패";
-			
-			try {
-				out = res.getWriter();
-				if(result == 1) {
-					out.println("<script>alert('" + msg1 + "');</script>");
-					System.out.println("[세훈] 문의 등록 성공");
-					
-				} else {
-					out.println("<script>alert('" + msg2 + "');</script>");
-					System.out.println("[세훈] 문의 등록 실패");
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				out.flush();
-				out.close();
+			if(result > 0) {
+				System.out.println("문의 등록 성공");
+				md.addAttribute("msg", "문의 등록 성공");
+				md.addAttribute("url","/mypage/ask");
+			} else {
+				System.out.println("문의 등록 실패");
+				md.addAttribute("msg", "문의 등록 실패");
+				md.addAttribute("url","/mypage/ask");
 			}
-
-			//TODO 리다이렉트 오류 수정
-		return "redirect:/mypage/ask";
+			
+			return "common/redirect";
+			
 	}
 	
 

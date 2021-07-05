@@ -115,7 +115,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/bwrite")
 	public String bwrite(
-			Model model
+			Model md
 			,Client cl
 			,MultipartHttpServletRequest req
 			,HttpServletResponse res
@@ -201,29 +201,18 @@ public class BoardController {
 		 
 		  int result = boardService.insertBoard(board);
 		  
-		  PrintWriter out = null;
-		  
-		  String msg1 = "글이 등록되었습니다."; 
-		  String msg2 = "글이 등록되지 않았습니다.";
-		  
-		  try { 
-			  out = res.getWriter(); 
-			  if(result == 1) { 
-				  out.println("<script>alert('"+ msg1 + "');</script>"); 
-				  System.out.println("[세훈] 자유게시판 글 등록 성공");
-		  
-			  } else { 
-				  out.println("<script>alert('" + msg2 + "');</script>");
-				  System.out.println("[세훈] 자유게시판 글 등록 실패"); } 
-		   } catch (IOException e) {
-			  e.printStackTrace(); 
-		   } finally { 
-			  out.flush(); 
-			  out.close(); 
-		   }
-		 
-				
-		return "/user/uBoard/fboardList";
+			if(result > 0) {
+				System.out.println("자유게시판 글 등록 성공");
+				md.addAttribute("msg", "자유게시판 글 등록 성공");
+				md.addAttribute("url","/fboardlist");
+			} else {
+				System.out.println("공지사항 등록 실패");
+				md.addAttribute("msg", "자유게시판 글 등록 실패");
+				md.addAttribute("url","/fboardlist");
+			}
+			
+			return "common/redirect";	
+//		return "/user/uBoard/fboardList";
 	}
 	
 	@RequestMapping(value = "/bdelete")
@@ -318,8 +307,13 @@ public class BoardController {
 
 	// 리뷰 작성
 	@RequestMapping(value = "/rwrite", method = RequestMethod.POST)
-	public String rwrite(HttpSession session, MultipartHttpServletRequest req, HttpServletResponse res, Client cl,
-			@RequestParam(name = "revCont") String revCont, @RequestParam(name = "selectedVal") int revVal) {
+	public String rwrite(HttpSession session
+			,MultipartHttpServletRequest req
+			,HttpServletResponse res
+			,Client cl
+			,@RequestParam(name = "revCont") String revCont, @RequestParam(name = "selectedVal") int revVal
+			,Model md
+			){
 		res.setContentType("text/html; charset=utf-8");
 		System.out.println("리뷰 등록 컨트롤러 진입");
 		cl = (Client) session.getAttribute("client");
@@ -371,29 +365,19 @@ public class BoardController {
 		System.out.println("[세훈 ]" + rv.toString());
 		int result = reviewService.insertReview(rv, har_num, har_name);
 
-		PrintWriter out = null;
-
-		String msg1 = "리뷰가 등록되었습니다.";
-		String msg2 = "리뷰가 등록되지 않았습니다.";
-
-		try {
-			out = res.getWriter();
-			if (result == 1) {
-				out.println("<script>alert('" + msg1 + "');</script>");
-				System.out.println("[세훈] 리뷰 등록 성공");
-
-			} else {
-				out.println("<script>alert('" + msg2 + "');</script>");
-				System.out.println("[세훈] 리뷰 등록 실패");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			out.flush();
-			out.close();
+		if(result > 0) {
+			System.out.println("리뷰 등록 성공");
+			md.addAttribute("msg", "리뷰 등록 성공");
+			md.addAttribute("url","/mypage?cl_num="+clNum+"");
+		} else {
+			System.out.println("리뷰 등록 실패");
+			md.addAttribute("msg", "리뷰 등록 실패");
+			md.addAttribute("url","/mypage?cl_num="+clNum+"");
 		}
+		
+		return "common/redirect";
 
-		return "redirect:/mypage?cl_num=CL1";
+//		return "redirect:/mypage?cl_num=CL1";
 	}
 
 	// 유저 공지사항 리스트 조회
