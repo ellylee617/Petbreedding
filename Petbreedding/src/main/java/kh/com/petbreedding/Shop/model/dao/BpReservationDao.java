@@ -32,6 +32,10 @@ public class BpReservationDao {
 		return sqlSession.selectOne("bprev.HarRevCon", har_rnum);
 	}
 	
+	public int delrevHar(String har_rnum) throws Exception{
+		return sqlSession.update("bprev.harstatus", har_rnum);
+	}
+	
 	
 	//병원
 	public List<HospitalReservation> revHosList(HospitalReservation vo) throws Exception{
@@ -49,6 +53,11 @@ public class BpReservationDao {
 	//병원 예약상세페이지
 	public HospitalReservation revhoscon(String hos_rnum) throws Exception{
 		return sqlSession.selectOne("bprev.HosRevCon", hos_rnum);
+	}
+	
+	//병원 예약취소
+	public int delrevHos(String hos_rnum) throws Exception{
+		return sqlSession.update("bprev.hosstatus", hos_rnum);
 	}
 	
 	

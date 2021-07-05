@@ -363,7 +363,6 @@ $("#nextTime").on("click", function() {
 
 // 바로결제!!
 $("#goTOPay").on("click", function() {
-	console.log("text : " + text);
 	location.href = "/petbreedding/shopPayment?har_rnum=" + text + "";
 });
 

@@ -485,6 +485,27 @@ public class shopController {
 			return mav;
 			
 		}
+		
+		
+	//결제 취소
+		@RequestMapping(value = "/bReservationCancle", method = RequestMethod.POST)
+		public String bReservationCancle(
+				HospitalReservation hos,
+				HairShopReservation rev
+				 ) throws Exception {
+			
+			if(rev.getHar_rnum() != null) {
+				System.out.println("미용실 결제취소 들어옴");
+				bprevService.delrevHar(rev.getHar_rnum());
+				return "bPartner/bShop/bReservation";
+			}else if(hos.getHos_rnum() !=null) {
+				System.out.println("병원 결체 취소 들어옴");
+				bprevService.delrevHos(hos.getHos_rnum());
+				return "bPartner/bShop/bReservation";
+			}
+			return "";
+			
+		}
 	// 사업자 화상채팅하기
 	@RequestMapping(value = "/bFaceChat", method = RequestMethod.GET)
 	public String bFaceChat(Locale locale, Model model) {

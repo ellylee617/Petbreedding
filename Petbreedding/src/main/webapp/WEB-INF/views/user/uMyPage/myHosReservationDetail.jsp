@@ -54,7 +54,7 @@
                         </tr>
                         <tr>
                             <td>내역</td>
-                            <td>${myRev.med_num }</td>
+                            <td>${myRev.medical.medName }</td>
                         </tr>
                     </table>
                     </c:forEach>
@@ -110,8 +110,10 @@
                     </table>
                 </div>
                 <div class="rborder">
+                <c:forEach items="${myRev}" var="myRev">
                     <span class="rOrderTitle">결제 금액</span>
-                    <span id="rOrderAmount">5000원</span>
+                    <span id="rOrderAmount">${myRev.medical.medPrice }원</span>
+                </c:forEach>
                 </div>
                 <div class="rborder dmap">
                     <p class="rOrderTitle">오시는 길</p>
