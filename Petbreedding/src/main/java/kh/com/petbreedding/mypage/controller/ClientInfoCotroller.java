@@ -148,7 +148,6 @@ public class ClientInfoCotroller {
 	@ResponseBody
 	public List<MyPoint> pointDate(String clNum, Model model) {
 
-		System.out.println("~~~~~~~~~~~~~~~~CLNUM "+ clNum );
 		List<MyPoint> pointList = myPointService.myPoint3m(clNum);
 				
 		model.addAttribute("pointList", pointList);
@@ -160,7 +159,6 @@ public class ClientInfoCotroller {
 	@ResponseBody
 	public List<MyPoint> pointDate2(String clNum, Model model) {
 
-		System.out.println("~~~~~~~~~~~~~~~~CLNUM "+ clNum );
 		List<MyPoint> pointList = myPointService.myPoint6m(clNum);
 				
 		model.addAttribute("pointList", pointList);
@@ -172,7 +170,6 @@ public class ClientInfoCotroller {
 	@ResponseBody
 	public List<MyPoint> pointDate3(String clNum, Model model) {
 
-		System.out.println("~~~~~~~~~~~~~~~~CLNUM "+ clNum );
 		List<MyPoint> pointList = myPointService.myPoint12m(clNum);
 				
 		model.addAttribute("pointList", pointList);
@@ -185,9 +182,6 @@ public class ClientInfoCotroller {
 	@ResponseBody
 	public List<MyPoint> pointDate3(String clNum,String expDate,String expDate2, Model model) {
 
-		System.out.println("~~~~~~~~~~~~~~~~CLNUM "+ clNum );
-		System.out.println("~~~~~~~~~~~~~~~~expDate "+ expDate );
-		System.out.println("~~~~~~~~~~~~~~~~expDate2 "+ expDate2 );
 		Map<String, String> list = new HashMap<String, String>();
 		list.put("clNum", clNum);
 		list.put("expDate", expDate);
