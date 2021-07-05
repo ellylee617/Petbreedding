@@ -20,13 +20,6 @@ public class ReservationDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//포인트 조회
-	public int point(String cl_num) {
-		return sqlSession.selectOne("MyPoint.myPointSelectList", cl_num);
-	}
-	
-	
-	
 	public List<Style> revList(String har_num) {
 		return sqlSession.selectList("ShopRev.revPage", har_num);
 	}

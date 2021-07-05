@@ -24,9 +24,9 @@ $(".agreeAll").on("click", function(){
 
 $("#pointAll").on("click",function(){
     var usingPoint = $("#nowPoint").text();
-    if($("#pointAll").prop('checked', true)){
+    if($("#pointAll").is(':checked') == true){
     	$("#pointArea").val(usingPoint).change();   
-    }else if($("#pointAll").prop('checked', false)){
+    }else if($("#pointAll").is(':checked') == false){
     	$("#pointArea").val("0").change();  
     }
 });
@@ -48,7 +48,7 @@ $("#pointArea").on("propertychange change keyup paste input oninput ",function()
 	
 	var nowPoint = $("#nowPoint").text();
 	
-	if(nowPoint > using){
+	if(nowPoint >= using){
 		var pay = 0;
 		pay = number - number2;
 		pay = pay.toLocaleString();

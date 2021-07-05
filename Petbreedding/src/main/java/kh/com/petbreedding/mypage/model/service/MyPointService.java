@@ -8,4 +8,6 @@ public interface MyPointService {
 	public List<MyPoint> myPointSelectList(MyPoint myPoint); // 포인트 조회
 	
 	public int CurrPointSelectOne(String clNum); // 현재 포인트 조회
+	
+	public int myPointUpdate(MyPoint myPoint);//포인트 사용
 }

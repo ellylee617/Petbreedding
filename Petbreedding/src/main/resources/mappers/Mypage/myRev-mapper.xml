@@ -163,7 +163,7 @@
 					    ON CL_NUM = #{cl_num} AND hair_salon.har_num = har_reservation.har_num 
 					   <if test="#{res_date2} != null">
 							<![CDATA[
-								WHERE RES_DATE >= #{res_date} AND RES_DATE <= #{res_date2}
+								WHERE RES_DATE >= #{res_date} AND RES_DATE <= #{res_date2} AND CL_NUM = #{cl_num}
 						 	]]>
 						</if>
 					    union
@@ -172,7 +172,7 @@
 					    ON CL_NUM = #{cl_num} AND hospital.hos_num = hos_reservation.hos_num
 					    <if test="#{res_date2} != null">
 							<![CDATA[
-								WHERE HOS_DATE >= #{res_date} AND HOS_DATE <= #{res_date2}
+								WHERE HOS_DATE >= #{res_date} AND HOS_DATE <= #{res_date2} AND CL_NUM = #{cl_num}
 						 	]]>
 						</if>
 				    )A ORDER BY RES_DATE ASC

@@ -6,6 +6,7 @@ total_price = parseInt(total_price);
 var email = $("#email").text();
 var har_rnum = $("#har_rnum").val();
 
+
 $("#reservation_btn").click(function() {
 	var pay_price = $("#payMoney").text();
 	pay_price = pay_price.replace(/,/g, "");
@@ -57,7 +58,7 @@ $("#reservation_btn").click(function() {
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				
 				var pay_num = rsp.imp_uid; 
-				
+
 				if(har_rnum.substring(0,3) == "HAR"){
 					//Har_pay에 저장하게하기
 					$.ajax({
@@ -73,6 +74,7 @@ $("#reservation_btn").click(function() {
 							console.log(data);
 							console.log("성공");
 							updateSuccess();
+							updatePoint();
 							location.href = '/petbreedding/successPay';
 						},
 						error : function(jqxhr, textStatus, errorThrown) {
@@ -94,6 +96,7 @@ $("#reservation_btn").click(function() {
 							console.log(data);
 							console.log("성공");
 							updateSuccess();
+							updatePoint();
 							location.href = '/petbreedding/successPay';
 						},
 						error : function(jqxhr, textStatus, errorThrown) {
@@ -136,6 +139,23 @@ function updateSuccess(){
 
 }
 
+function updatePoint(){
+	var exp_point = $("#pointArea").val();
+	var exp_from = $("#exp_from").val();
+	var cl_num = $("#cl_num").val();
+	var exp_Id = $("#exp_Id").val();
+	
+	$.ajax({
+		url:"myPoint",
+		type:"GET",
+		data:{
+			clNum:cl_num,
+			expFrom : exp_from,
+			expId : exp_Id,
+			expPoint : exp_point
+		}
+	});
+}
 
 
 

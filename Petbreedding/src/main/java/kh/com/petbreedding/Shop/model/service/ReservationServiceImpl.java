@@ -21,19 +21,6 @@ public class ReservationServiceImpl implements ReservationService{
 	private ReservationDao revDao;
 	
 	@Override
-	public int point(String cl_num) {
-		int result = -1;
-		try {
-			result = revDao.point(cl_num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
-	
-	
-	@Override
 	public List<Style> revList(String har_num) {
 		List<Style> result = null;
 		try {
