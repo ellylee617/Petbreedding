@@ -1,22 +1,26 @@
+$(document).ready(function(){
+	$("#newRadio").click(function(){
+		$("#newList").show();
+		$("#distanceList").hide();
+		$("#revList").hide();
+	});
 
+	$("#distanceRadio").click(function(){
+		$("#newList").hide();
+		$("#distanceList").show();
+		$("#revList").hide();
+	});
 
-$("#newRadio").click(function(){
-	$("#newList").show();
-	$("#distanceList").hide();
-	$("#revList").hide();
+	$("#revRadio").click(function(){
+		$("#newList").hide();
+		$("#distanceList").hide();
+		$("#revList").show();
+	});
+
 });
 
-$("#distanceRadio").click(function(){
-	$("#newList").hide();
-	$("#distanceList").show();
-	$("#revList").hide();
-});
 
-$("#revRadio").click(function(){
-	$("#newHarList").hide();
-	$("#distanceList").hide();
-	$("#revList").show();
-});
+
 
 function modal(id) {
     var zIndex = 9999;
