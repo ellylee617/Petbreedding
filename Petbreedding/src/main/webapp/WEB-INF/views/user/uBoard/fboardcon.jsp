@@ -95,7 +95,7 @@
 		
 	<!-- MODAL COMMENT -->
 	<div id="my_modal_comment">
-	   <a class="modal_close_btn"><i class="fas fa-times" id="closeBtnComment"></i></a>
+	   <a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnComment"></i></a>
 	   <div id="locCon_comment">
 	       <h1>삭제하시겠습니까?</h1>
 	       <button id="goTOPay_comment">바로 삭제할게요</button>
@@ -108,6 +108,7 @@
 	
 	<script type="text/javascript">
 		var boNum = '${board.boNum}';
+		var closeBtn = $("#closeModalBtn");
 		
 		//	TODO	세션 고객 번호랑 댓글 고객 번호가 같으면 수정, 삭제 표시 -----------------------------------------------------------------------------------------------   
 		var clSession = "<%=session.getAttribute("client") %>";
@@ -195,7 +196,7 @@
 		});
 		
 		
-		$("#goTOPay_comment").on("click", function() {
+		$("#goTOPay_comment").bind("click", function() {
 			var CoNumVar = $(this).attr("name");
 			console.log(CoNumVar);
 			
@@ -204,7 +205,6 @@
 				,type: "get"
 				,data: {co_num : CoNumVar, bo_num : boNum}
 				,success: function() {
-					closeModal();
 					commentListInit(boNum);
 				}
 				,error : function(request, status, error) {
@@ -214,11 +214,16 @@
 							+ "error: " + error);
 				}
 			});
+			
+			// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
+			closeModal();
 
 		});
 		
+		// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
 	    function closeModal() {
-	        $("#closeBtnComment").trigger("click");
+	    	console.log("닫기 버튼 함수 들어옴")
+	    	closeBtn.click();
 	    }
 		
 	</script>

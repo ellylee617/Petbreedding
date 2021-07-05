@@ -32,7 +32,7 @@
                     </select>
 
                 </div>
-                <button class="basicBtn" id="writeBtn" onclick="location.href='/petbreedding/mserviceRegisterFrm'">글쓰기</button>
+                <button class="basicBtn" id="writeBtn" onclick="location.href='/petbreedding/mserviceRegisterFrm?type=1'">글쓰기</button>
 
             </div>
             <div class="mboardrow">

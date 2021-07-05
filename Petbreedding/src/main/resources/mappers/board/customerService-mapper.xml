@@ -43,6 +43,10 @@
 		)
 	</insert>
 	
+	<update id="CustomerServiceUpdate" parameterType="CustomerService">
+		UPDATE ANNOUNCEMENT SET ANN_TITLE = #{annTitle}, ANN_CONT = #{annCont}, ANN_TYPE = #{annType} WHERE ANN_NUM = #{annNum}
+	</update>
+	
 	<delete id="CustomerServiceDelete" parameterType="string">
 		DELETE FROM ANNOUNCEMENT WHERE ANN_NUM = #{annNum}
 	</delete>

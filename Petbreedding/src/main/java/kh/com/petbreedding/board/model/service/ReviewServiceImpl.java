@@ -58,7 +58,6 @@ public class ReviewServiceImpl implements ReviewService {
 			
 			
 			result = reviewDao.insertReview(rv);
-			// TODO 마이포인트 VO에 인서트
 			int currPoint = 0;
 			currPoint = myPointDao.CurrPointSelectOne(clNum);
 			currPoint += reviewPoint;
