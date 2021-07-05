@@ -23,4 +23,7 @@ public interface ChatService {
 	public List<ChatMessage> getUnreadCountbp_id(ChatMessage cm);
 	public int updateUnreadCount(String mId);
 	public int getAllCount(String mReceiver);
+	public List<ChatMessage> getListforInvisible(String chatId);
+	public int updateInvisibleCleint(String mId);
+	public int updateInvisibleBp(String mId);
 }

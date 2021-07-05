@@ -5,10 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.BP.model.vo.BPartner;
@@ -228,6 +230,59 @@ public class ChatController {
 		return mv;
 	}
 	
+	@RequestMapping("/chatdelete.do")
+	@ResponseBody
+	public int chatdelete(ModelAndView mv, HttpServletRequest req) {
+		
+		List<ChatMessage> list = null;
+		int result = 0;
+		
+		String chatId = req.getParameter("chatId");
+		System.out.println("chatId" + chatId);
+		
+		// 현재 시점 이전의 메시지 리스트를 가져와서
+		list = chService.getListforInvisible(chatId);
+		
+		for(int i=0; i<list.size(); i++) { 
+			result = 0;
+			String mId = list.get(i).getmId();
+			result = chService.updateInvisibleCleint(mId);
+			if(result==1) {
+				System.out.println("메시지 보이지 않게 처리 완료!");
+			}else {
+				System.out.println("메시지 보이지 않게 업데이트 실패");
+			}
+		}
+		return result;
+	}
+	
+	@RequestMapping("/bchatdelete.do")
+	@ResponseBody
+	public int bchatdelete(ModelAndView mv, HttpServletRequest req) {
+		
+		List<ChatMessage> list = null;
+		int result = 0;
+		
+		String chatId = req.getParameter("chatId");
+		System.out.println("chatId" + chatId);
+		
+		// 현재 시점 이전의 메시지 리스트를 가져와서
+		list = chService.getListforInvisible(chatId);
+		
+		for(int i=0; i<list.size(); i++) { 
+			result = 0;
+			String mId = list.get(i).getmId();
+			result = chService.updateInvisibleBp(mId);
+			if(result==1) {
+				System.out.println("사업자 - 메시지 보이지 않게 처리 완료!");
+			}else {
+				System.out.println("사업자 - 메시지 보이지 않게 업데이트 실패");
+			}
+		}
+		return result;
+	}
+	
+	
 	public void updateUnread(String mReceiver, String chatId) {
 	
 		// 안 읽은 메시지 업데이트 하기
@@ -235,15 +290,11 @@ public class ChatController {
 		ChatMessage cm = new ChatMessage();
 		cm.setmReceiver(mReceiver);
 		cm.setChatId(chatId);
-		System.out.println("cl_num" + cm.getmReceiver());
-		System.out.println("chatId" + cm.getChatId());
 		unreadList = chService.getUnreadCount(cm);
-		System.out.println("unreadList" + unreadList);
 		
 		if(unreadList!=null) {
 			//안 읽은 메시지가 있다면
 			for(int i=0; i<unreadList.size(); i++) {
-				System.out.println(unreadList.get(i).getmId());
 				String mId = unreadList.get(i).getmId();
 				int result = 0;
 				result = chService.updateUnreadCount(mId);

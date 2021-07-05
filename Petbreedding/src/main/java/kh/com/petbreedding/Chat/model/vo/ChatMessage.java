@@ -15,7 +15,21 @@ public class ChatMessage {
 	private String mSenderName;
 	private int bp_type;
 	private String mImg;
+	private int invisibleClient;
+	private int invisibleBp;
 	
+	public int getInvisibleClient() {
+		return invisibleClient;
+	}
+	public void setInvisibleClient(int invisibleClient) {
+		this.invisibleClient = invisibleClient;
+	}
+	public int getInvisibleBp() {
+		return invisibleBp;
+	}
+	public void setInvisibleBp(int invisibleBp) {
+		this.invisibleBp = invisibleBp;
+	}
 	public int getBp_type() {
 		return bp_type;
 	}
