@@ -76,7 +76,6 @@ public class shopController {
 			) throws Exception {
 		
 		
-//		System.out.println("!!!!!!!!!keyword!!!!!!!!!!"+keyword);
 		
 		// shopType 0은 미용실, 1은 동물병원
 
@@ -87,8 +86,6 @@ public class shopController {
 			// 미용실 페이징 
 			int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
 			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
-//			page.setKeyword(keyword);
-			System.out.println("Pagination 객체 ~~~~~~~~~~" +page);
 			mv.addObject("paging", page);
 			
 			
