@@ -109,7 +109,22 @@ public class BoardController {
 
 	// 게시글 작성 폼
 	@RequestMapping(value = "/bwriteFrm")
-	public String bWrite(Model model) {
+	public String bWrite(
+			Model md
+			,int type
+			,HttpServletRequest req
+			) {
+		String boNum = req.getParameter("boUpdBoNum");
+		String boTitle = req.getParameter("boUpdBoTitle");
+		String boCont = req.getParameter("boUpdBoCont");
+		
+		md.addAttribute("type", type);
+		md.addAttribute("boUpdBoNum", boNum);
+		md.addAttribute("boUpdBoTitle", boTitle);
+		md.addAttribute("boUpdBoCont", boCont);
+		
+		
+		System.out.println("[세훈] @자유 게시글 등록 폼 컨트롤러 type : " + type);
 		return "/user/uBoard/bwrite";
 	}
 
@@ -215,6 +230,87 @@ public class BoardController {
 //		return "/user/uBoard/fboardList";
 	}
 	
+	//	자유게시판 글 수정
+	
+	@RequestMapping(value = "/bupdate")
+	public String bupdate(
+			Model md
+			,Client cl
+			,MultipartHttpServletRequest req
+			,HttpServletResponse res
+			,HttpSession session
+			) {
+		res.setContentType("text/html; charset=utf-8");
+		
+		
+		 cl = (Client) session.getAttribute("client"); 
+		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
+			 return "redirect:/"; 
+		 }
+		 
+		
+		String boTitle = req.getParameter("boTitle");
+		String bo_content = req.getParameter("boContent");
+		String bo_num = req.getParameter("boUpdBoNum");
+		
+		System.out.println("[세훈] @글 수정 컨트롤러 boTitle : " + boTitle);
+		System.out.println("[세훈] @글 수정 컨트롤러 bo_content : " + bo_content);
+		System.out.println("[세훈] @글 수정 컨트롤러 bo_num : " + bo_num);
+		
+		Board board = new Board();
+		board.setBoTitle(boTitle);
+		board.setBoCont(bo_content);
+		board.setBoNum(bo_num);
+		String src = "";
+		//이미지 경로 찾아오기
+		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+		Matcher matcher = pattern.matcher(bo_content);
+		while(matcher.find()){
+            System.out.println("*****************img경로***************** "+ matcher.group(1));
+            src = matcher.group(1);
+        }
+		
+		if(src != null || src != "") { 
+			try { 
+				URL imgURL = new URL(src);
+				String extension = src.substring(src.lastIndexOf(".")+1); 
+				UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성 
+				String fileName = uuid.toString() + "_" + board;
+				BufferedImage image = ImageIO.read(imgURL); 
+				File file = new File("/resources/uploadFile/fboard"); 
+				if(!file.exists()) { 
+					file.mkdirs(); 
+				}
+				ImageIO.write(image, extension, file); 
+				System.out.println("이미지 업로드완료!");
+				board.setBoImg(src); 
+			} 
+			catch (Exception e) { 
+				e.printStackTrace(); 
+			}
+		} 
+		
+		 
+				
+		
+		  System.out.println("[세훈] @글 수정 컨트롤러 board : " + board.toString());
+		 
+		  int result = boardService.updateBoard(board);
+		  
+			if(result > 0) {
+				System.out.println("자유게시판 글 수정 성공");
+				md.addAttribute("msg", "자유게시판 글 수정 성공");
+				md.addAttribute("url","/fboardlist");
+			} else {
+				System.out.println("공지사항 수정 실패");
+				md.addAttribute("msg", "자유게시판 글 수정 실패");
+				md.addAttribute("url","/fboardlist");
+			}
+			
+			return "common/redirect";	
+	}
+	
+	//	자유게시판 글 삭제
 	@RequestMapping(value = "/bdelete")
 	public String bdelete(String bo_num) {
 		

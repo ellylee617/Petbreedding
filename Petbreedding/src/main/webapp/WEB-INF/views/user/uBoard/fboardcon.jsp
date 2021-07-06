@@ -46,7 +46,13 @@
 					<p>${board.boCont}</p>
 
 					<button class="backbtn basicBtn" onClick="location.href='fboardlist'">목록</button>
-					<button id="fboardUpdBtn" class="modifybtn basicBtn">수정</button>
+					<form id="boUpdFrm">
+						<button id="fboardUpdBtn" class="modifybtn basicBtn">수정</button>
+						<input type="hidden" name="boUpdBoNum" value="${board.boNum}">
+						<input type="hidden" name="boUpdBoTitle" value="${board.boTitle}">
+						<!-- board.boCont 안에 html 태그가 있어서 화면에 표시되는듯 -->
+						<input type="hidden" name="boUpdBoCont" value="${board.boCont}">
+					</form>
 					<button id="fboardDelBtn" class="delbtn basicBtn">삭제</button>
 				
 				</div>

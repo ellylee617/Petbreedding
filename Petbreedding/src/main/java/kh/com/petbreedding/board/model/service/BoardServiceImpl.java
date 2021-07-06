@@ -28,14 +28,15 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void updateBoard(Board board) {
-		// TODO Auto-generated method stub
-		
+	public int updateBoard(Board board) {
+			int boUpdResult = -1;
 		try {
-			
+			boUpdResult = boardDao.updateBoard(board);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		return boUpdResult;
 	}
 
 	@Override
