@@ -30,8 +30,11 @@
                        <label for="tabmenu1">동물병원</label>
                         <div class="tabCon">
                             <p class="nowLoc">경기도 고양시 <a href="#"><i class="fas fa-map-marker-alt loc"></i></a></p>
-                            <input type="text" class="tabInput" placeholder="찾으시는 동물병원을 입력해주세요.">
+                            <form action="shopList" method="get">
+                            <input name="keyword" type="text" class="tabInput" placeholder="찾으시는 동물병원을 입력해주세요.">
+                             <input name="shopType" type="hidden" value="1"/>
                             <button class="searchB"><i class="fas fa-search SRB"></i></button>
+                            </form>
                         </div>
                     </li>
                    <li id="tab2" class="btnCon">

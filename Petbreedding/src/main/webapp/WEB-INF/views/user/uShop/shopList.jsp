@@ -33,6 +33,11 @@
                 <input id="distanceRadio" type="radio"  name="selectOpt"><label for="distanceRadio">거리순</label>
                 <input id="revRadio" type="radio" name="selectOpt"><label for="revRadio">별점순</label>
             </div>
+            
+            <c:if test="${!empty paging.keyword }">
+            	<h1>'<c:out value="${paging.keyword }"/>'에 대한 결과입니다. (CSS 작업 전..~~)</h1>
+            </c:if>
+            <c:if test="${empty paging.keyword }">
             <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
@@ -56,6 +61,7 @@
                     </div>
                 </ul>
             </div>
+            </c:if>
             
             
             <!-- 동물병원 최신순 정렬 -->
@@ -67,7 +73,7 @@
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
-                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
                                    <div class="storeList_etc_area">
                                        <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">

@@ -191,7 +191,7 @@ public class shopController {
 			
 			// 동물병원 페이징 
 			int total = shopService.countHosList();	// 등록된 미용실 총 갯수 
-			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
 			mv.addObject("paging", page);
 
 			
@@ -201,10 +201,6 @@ public class shopController {
 			String bpId = null;
 			List<String> list = new ArrayList<String>();
 			List<String> countList = new ArrayList<String>();
-			
-			
-//			List<Hospital> hosList = shopService.selectHosList(page);
-//			System.out.println("컨트롤러 동물병원 리스트:" + hosList);
 			
 			
 			// 최신순
