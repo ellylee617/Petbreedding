@@ -71,7 +71,6 @@
 		</select>
 		
 		
-		<!-- TODO -->
 		<!-- 미용실 리스트 : 최신순  -->
 		<select id="selectHarListNew" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
@@ -101,7 +100,6 @@
 		
 
 		<!-- 미용실 리스트 : 별점순  selectHarListLikes-->
-		<!-- TODO:동물병원!! -->
 		<select id="selectHarListRev" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -128,8 +126,8 @@
 			]]>
 		</select>
 		
-		 	<!-- 사업장 평균 : 별점 -->
-		 	<select id="selectRevVal" parameterType="string" resultType="String">
+		 	<!-- 사업장 평균  별점 -->
+		 	<select id="selectRevVal" parameterType="string" resultType="string">
 		 	SELECT AVG(REV_VAL) AVG_REV_VAL
 			FROM(
 			    SELECT B.BP_ID, R.REV_VAL
@@ -140,7 +138,63 @@
 				group by BP_ID
 				HAVING BP_ID = #{bpId}
 		 	</select>
-		
+		 	
+		 	<!-- TODO -->
+		 	
+		 	<!-- 울트라콜 미용실 리스트 출력 (평균 별점 포함) -->
+		 	<select id="selectCtaHarList" resultMap="HairSalon">
+		 	SELECT *
+			FROM ( SELECT har.*, BR.AVG_REV_VAL
+			 FROM HAIR_SALON HAR
+			 LEFT JOIN (SELECT BP_ID, AVG(REV_VAL) AVG_REV_VAL
+			    FROM(
+			        SELECT B.BP_ID, R.REV_VAL
+			        FROM business_partner B
+			        JOIN review R
+			        ON (b.bp_id = r.bp_id)
+			    )  
+			    group by BP_ID) BR
+			    ON har.bp_id = br.bp_id
+			) TABLE1
+			JOIN my_cta TABLE2
+			ON TABLE1.BP_ID = TABLE2.BP_ID
+			</select>
+		 	
+		 	<!-- 울트라콜 사업장 평균 별점 -->
+		 	<select id="selectCtaRevVal" parameterType="string" resultType="string">
+		 	select AVG(REV_VAL) AVG_REV_VAL
+			from 
+				(select bp.bp_id, bp.bp_name 
+				from business_partner bp
+				join my_cta cta
+				on bp.bp_id = cta.bp_id) bpcta
+			join review r
+			on bpcta.bp_id=r.bp_id and bpcta.bp_id = #{bpId}
+		 	</select>
+		 	
+		 	<!-- 울트라콜 사업장 리뷰 건수 -->
+		 	<select id="selectCountCtaReview" parameterType="string" resultType="string">
+			SELECT COUNT(*)
+			FROM
+			(
+			    SELECT R.BP_ID, BPCTA.CTA_NUMBER
+			    FROM REVIEW R
+			    JOIN (
+			        select business_partner.*, my_cta.cta_number
+			            from business_partner join my_cta
+			            on business_partner.bp_id = my_cta.bp_id
+			    ) BPCTA
+			    ON R.bp_id = BPCTA.bp_id
+			)
+			group by BP_ID
+			HAVING BP_ID = #{bpId}
+			</select>
+			
+			
+			
+			
+			
+			
 		<!-- 사업장 리스트: 리뷰 건수 -->
 	 	<select id="selectCountReview" parameterType="string" resultType="string">
 	 	SELECT COUNT(*)
@@ -148,6 +202,11 @@
 		group by BP_ID
 		HAVING BP_ID = #{bpId}
 		</select>
+		
+		<!-- 미용실 울트라콜 리스트 : 리뷰 건수 -->
+		
+		
+		
 				
 		<!-- 미용실 리스트 : 거리순 selectHarListNear-->
 		
@@ -282,6 +341,8 @@
 		<result column="4" property="thu"/>
 		<result column="5" property="fri"/>
 		<result column="6" property="sat"/>
+		<result column="AVG_REV_VAL" property="avgRevVal"/>
+		<result column="COUNT" property="count"/>
 	</resultMap>
 	
 	<!-- HOSPITAL_IMAGE 테이블-->
@@ -306,7 +367,6 @@
 		</select>
 	
 	<!-- 동물병원 전체 리스트 -->
-	<!-- TODO:페이징 작업중~~ -->
 	<select id="selectHosList" parameterType="Hospital" resultMap="Hospital">
 		<![CDATA[
 			SELECT B.*
@@ -320,11 +380,62 @@
 			]]>
 	</select>	
 	
-		<!-- TODO -->
 		<!-- 동물병원 리스트 : 최신순  -->
+				<select id="selectHosListNew" parameterType="page" resultMap="Hospital">
+		<![CDATA[
+			SELECT B.*
+			FROM(
+				SELECT ROWNUM R, A.*
+				FROM (
+					SELECT *
+			        FROM
+			        (SELECT *
+			        FROM HOSPITAL HOS
+			        INNER JOIN (SELECT BP_ID, AVG(REV_VAL) AVG_REV_VAL
+			        FROM(
+			            SELECT B.BP_ID, R.REV_VAL
+			            FROM business_partner B
+			            LEFT JOIN review R
+			            ON (b.bp_id = r.bp_id)
+			        )  
+			        group by BP_ID) BR
+			        ON (hos.bp_id = br.bp_id)) HOSBP
+			                    ) A
+			        ORDER BY HOS_NUM DESC
+						) B
+			WHERE #{start} <= R AND R <=#{end}
+			]]>
+		</select>
+		
 		<!-- 동물병원 리스트 : 거리순  -->
+		<!-- TODO -->
+		
 		<!-- 동물병원 리스트 : 별점순  -->
-
+	<select id="selectHosListRev" parameterType="page" resultMap="Hospital">
+		<![CDATA[
+			SELECT B.*
+			FROM(
+				SELECT ROWNUM R, A.*
+				FROM (
+					SELECT *
+        FROM
+        (SELECT *
+        FROM HOSPITAL HOS
+        INNER JOIN (SELECT BP_ID, AVG(REV_VAL) AVG_REV_VAL
+        FROM(
+            SELECT B.BP_ID, R.REV_VAL
+            FROM business_partner B
+            LEFT JOIN review R
+            ON (b.bp_id = r.bp_id)
+        )  
+        group by BP_ID) BR
+        ON (hos.bp_id = br.bp_id)) HOSBP
+        ORDER BY HOSBP.AVG_REV_VAL DESC NULLS LAST
+                    ) A
+			) B
+        WHERE #{start} <= R AND R <=#{end}
+			]]>
+		</select>
 	
 	<!-- 동물병원 기본 정보 기입 -->
 	<insert id="insertHosInfo" parameterType="Hospital">

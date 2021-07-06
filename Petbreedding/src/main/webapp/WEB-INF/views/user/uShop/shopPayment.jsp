@@ -25,7 +25,10 @@
                 <div class="reservation_info infoBox">
                    <table>
                    <c:forEach items="${myRev}" var="myRev">
-                   		<input type="hidden" value="${myRev.har_rnum }" id="har_rnum"/>
+                   		<input type="text" value="${myRev.cl_num }" id="cl_num"/>
+                   		<input type="text" value="${myRev.har_num }" id="exp_Id"/>
+                   		<input type="text" value="${myRev.har_rnum }" id="har_rnum"/>
+                   		<input type="text" value="${myRev.hairSalon.shopName }" id="exp_from"/>
                        <tr>
                            <th>예약 정보</th>
                        </tr>
@@ -68,7 +71,12 @@
                         <tr>
                             <th class="pointInfo">포인트 사용</th>
                             <td>보유 포인트</td>
-                            <td id="nowPoint">${point }</td>
+                            <c:if test="${empty point }">
+                            	<td id="nowPoint">0</td>
+                            </c:if>
+                            <c:if test="${!empty point }">
+                            	<td id="nowPoint">${point }</td>
+                            </c:if>
                             <td><input type="text" id="pointArea" value="0"><input type="checkbox" id="pointAll"><label for="pointAll">모두 사용</label></td>
                         </tr>                        
                     </table>

@@ -25,6 +25,9 @@
                 <div class="reservation_info infoBox">
                    <table>
                    <c:forEach items="${myRev}" var="myRev">
+                   		<input type="hidden" values="${myRev.cl_num }" id="cl_num"/>
+                   		<input type="hidden" values="${myRev.hos_num }" id="exp_Id"/>
+                   		<input type="hidden" value="${myRev.hospital.shopName }" id="exp_from"/>
                    		<input type="hidden" value="${myRev.hos_rnum }" id="har_rnum"/>
                        <tr>
                            <th>예약 정보</th>

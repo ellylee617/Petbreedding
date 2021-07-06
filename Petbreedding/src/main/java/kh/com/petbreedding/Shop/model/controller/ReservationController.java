@@ -22,6 +22,7 @@ import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.mypage.model.service.ClientInfoService;
+import kh.com.petbreedding.mypage.model.service.MyPointService;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
 @Controller
@@ -34,7 +35,7 @@ public class ReservationController {
 	private ClientInfoService clientInfoService;
 	
 	@Autowired
-	private ShopPayService shopPayService;
+	private MyPointService myPointService;
 	
 	//미용실 예약하기
 	@RequestMapping(value = "shopReservation", method = RequestMethod.GET)
@@ -43,11 +44,11 @@ public class ReservationController {
 		List<Style> list = revService.revList(har_num);
 		List<MyPet> list2 = revService.revList2(cl_num);
 		List<Style> list3 = revService.revList3(har_num);
-		int point = revService.point(cl_num);
+		
 		model.addAttribute("style", list);
 		model.addAttribute("pet", list2);
 		model.addAttribute("style2", list3);
-		model.addAttribute("point", point);
+		
 		
 		return "/user/uShop/salonReservation";
 	}
@@ -65,22 +66,14 @@ public class ReservationController {
 	
 	//미용실 결제화면
 	@RequestMapping(value = "/shopPayment", method = RequestMethod.GET)
-	public String shopPayment(String har_rnum, Model model, HttpSession session) {
-		
-		
-		 if(session.getAttribute("cl_num") != null) {
-			 String cl_num = (String) session.getAttribute("cl_num");
-			 int point = revService.point(cl_num);
-			 model.addAttribute("point", point);
-		 }else {
-			 int point = 0;
-			 model.addAttribute("point", point);
-		 }
-		
+	public String shopPayment(String har_rnum, Model model, String cl_num) {
+
 		List<HairShopReservation> list = revService.shopPayment(har_rnum);
 		String result2 = clientInfoService.anotherMenu(har_rnum);
 		int getPrice = clientInfoService.getPrice(har_rnum);
 		
+	    int point = myPointService.CurrPointSelectOne(cl_num);
+	    model.addAttribute("point", point);
 	
 		model.addAttribute("myRev", list);
 		model.addAttribute("another", result2);
@@ -112,19 +105,14 @@ public class ReservationController {
 	/*************  병원  **************/
 	//동물병원 결제화면
 	@RequestMapping(value = "/shopHosPayment", method = RequestMethod.GET)
-	public String shopHosPayment(String hos_rnum, Model model, HttpSession session) {
-		
-		if(session.getAttribute("cl_num") != null) {
-			 String cl_num = (String) session.getAttribute("cl_num");
-			 int point = revService.point(cl_num);
-			 model.addAttribute("point", point);
-		 }else {
-			 int point = 0;
-			 model.addAttribute("point", point);
-		 }
+	public String shopHosPayment(String hos_rnum, Model model, String cl_num) {
+
 		
 		List<HospitalReservation> list = revService.shopPayment2(hos_rnum);
 		model.addAttribute("myRev", list);
+		
+		int point = myPointService.CurrPointSelectOne(cl_num);
+	    model.addAttribute("point", point);
 		
 		return "/user/uShop/HosPayment";
 	}

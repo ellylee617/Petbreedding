@@ -1,6 +1,8 @@
 package kh.com.petbreedding.mypage.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,23 +24,95 @@ public class MyPointServiceImpl implements MyPointService {
 		try {
 			myPointList = myPointDao.myPointSelectList(myPoint);
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		return myPointList;
 	}
 
+	
+	//현재 포인트 조회
 	@Override
 	public int CurrPointSelectOne(String clNum) {
-		int result = 0;
-		System.out.println("[세훈] 보유 포인트 서비스 clNum : " + clNum);
-		
+		int result = -1;
 		try {
 			result = myPointDao.CurrPointSelectOne(clNum);
-			System.out.println("[세훈] 보유 포인트 서비스 리턴 이후 result : " + result);
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		
+		return result;
+	}
+
+	//현재 포인트 사용
+	@Override
+	public int myPointUpdate(MyPoint myPoint) {
+		int result = -1;
+		try {
+			result = myPointDao.myPointUpdate(myPoint);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+
+	@Override
+	public int myPointCancle(MyPoint myPoint) {
+		int result = -1;
+		try {
+			result = myPointDao.myPointCancle(myPoint);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<MyPoint> myPoint3m(String clNum) {
+		List<MyPoint> result = null;
+		try {
+			result = myPointDao.myPoint3m(clNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<MyPoint> myPoint6m(String clNum) {
+		List<MyPoint> result = null;
+		try {
+			result = myPointDao.myPoint6m(clNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<MyPoint> myPoint12m(String clNum) {
+		List<MyPoint> result = null;
+		try {
+			result = myPointDao.myPoint12m(clNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<MyPoint> myPointDate(Map<String, String> list) {
+		List<MyPoint> result = null;
+		try {
+			result = myPointDao.myPointDate(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 

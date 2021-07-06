@@ -13,6 +13,7 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/admin/mAside.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/admin/aBoard/mserviceDetail.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/admin/aBoard/mservice.css" rel="stylesheet" type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -34,31 +35,43 @@
 							<p>[사업자]</p>
 						</c:otherwise>
 					</c:choose>
-					<p>${csDetail.annCont}</p>
+					<p>${csDetail.annTitle}</p>
 					<p>작성자 : ${csDetail.adminId}</p>
 					<p>작성일 : ${csDetail.annDate}</p>
+				</div>
+				
+				<div class="con">
+					<p>
+						${csDetail.annCont}
+					</p>
 				</div>
 				
 				
 				<div class="conbtn">
 				    <button class="basicBtn" id="listBtn">목록</button>
 				    <button class="basicBtn" id="delBtn">삭제</button>
-				    <button class="basicBtn" id="updeteBtn">수정</button>
+				    <form id="msUpdFrm">
+					    <button class="basicBtn" id="updeteBtn">수정</button>
+					    <input type="hidden" name="updAnnTitle" value="${csDetail.annTitle}">
+					    <input type="hidden" name="updAnnCont" value="${csDetail.annCont}">
+					    <input type="hidden" name="updAnnNum" value="${csDetail.annNum}">
+				    </form>
 				</div>
 
 			</div>
 		</section>
 	<jsp:include page="../../common/footer.jsp" />
 	
-			<!-- MODAL -->
-		 <div id="my_modal">
-		    <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
-		    <div id="locCon">
-		        <h1>삭제하시겠습니까?</h1>
-		        <button id="goTOPay" name="${csDetail.annNum}">바로 삭제할게요</button>
+		<!-- MODAL -->
+		<div id="my_modal">
+		   <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
+		   <div id="locCon">
+		       <h1>삭제하시겠습니까?</h1>
+		       <button id="goTOPay" name="${csDetail.annNum}">바로 삭제할게요</button>
 		        <button id="nextTime">다음에 할게요</button>
 		    </div>
 		</div>
+		
 	</div>
 	<script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
 	<script type="text/javascript" src="${path}/resources/js/admin/aBoard/mserviceDetail.js"></script>	 

@@ -1,6 +1,8 @@
 package kh.com.petbreedding.mypage.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,42 @@ public class MyPointDao {
 	}
 	
 	public int CurrPointSelectOne(String clNum) {
-		System.out.println("[세훈] 보유 포인트 다오 진입");
-		System.out.println("[세훈] 보유 포인트 다오 clNum : " + clNum);
 		return sqlSession.selectOne("MyPoint.CurrPointSelectOne", clNum);
 	}
 	
 	public int myPointInsert(MyPoint myPoint) {
-		System.out.println("[세훈] 인서트 포인트 다오 myPoint : " + myPoint.toString());
 		return sqlSession.insert("MyPoint.myPointInsert", myPoint);
 	}
+	
+	public int myPointUpdate(MyPoint myPoint) {
+		return sqlSession.insert("MyPoint.myPointUpdate", myPoint);
+	}
+	
+	public int myPointCancle(MyPoint myPoint) {
+		return sqlSession.insert("MyPoint.myPointCancle", myPoint);
+	}
+	
+	//3개월
+	public List<MyPoint> myPoint3m(String clNum) {
+		return sqlSession.selectList("MyPoint.myPoint3m",clNum);
+	}
+	
+	//6개월
+	public List<MyPoint> myPoint6m(String clNum) {
+		return sqlSession.selectList("MyPoint.myPoint6m",clNum);
+	}
+	
+	//12개월
+	public List<MyPoint> myPoint12m(String clNum) {
+		return sqlSession.selectList("MyPoint.myPoint12m",clNum);
+	}
+	
+	//기간별 조회
+	public List<MyPoint> myPointDate(Map<String, String> list) {
+		return sqlSession.selectList("MyPoint.myPointDate", list);
+	}
+	
 }
+
+
+

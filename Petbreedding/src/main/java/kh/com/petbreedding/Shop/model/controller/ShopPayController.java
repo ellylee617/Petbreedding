@@ -11,6 +11,8 @@ import kh.com.petbreedding.Shop.model.service.ShopPayService;
 import kh.com.petbreedding.Shop.model.vo.HarPay;
 import kh.com.petbreedding.Shop.model.vo.HosPay;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.mypage.model.service.MyPointService;
+import kh.com.petbreedding.mypage.model.vo.MyPoint;
 
 @Controller
 public class ShopPayController {
@@ -18,12 +20,30 @@ public class ShopPayController {
 	@Autowired
 	private ShopPayService shopPayService;
 	
+	@Autowired
+	private MyPointService myPointService;
+	
 	@RequestMapping("harPay")
 	@ResponseBody
 	public int harPay(HarPay harPay) {
 
 		int result = shopPayService.harPay(harPay);
 		
+		return result;
+	}
+	//결제시 포인트 사용
+	@RequestMapping("myPoint")
+	@ResponseBody
+	public int myPointUpdate(MyPoint myPoint) {
+		int result = myPointService.myPointUpdate(myPoint);
+		
+		return result;
+	}
+	//결제취소시 포인트 롤백
+	@RequestMapping("myPointCancle")
+	@ResponseBody
+	public int myPointCancle(MyPoint myPoint) {
+		int result = myPointService.myPointCancle(myPoint);
 		return result;
 	}
 	

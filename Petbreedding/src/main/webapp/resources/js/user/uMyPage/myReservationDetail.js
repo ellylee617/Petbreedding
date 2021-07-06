@@ -9,10 +9,11 @@ $("#1and1").on("click",function(){
 //결제하기 
 $("#pay").on("click",function(){
 	var har_rnum =$("#har_rnum").val();
+	var cl_num = $("#cl_num").val();
 	if(har_rnum.substring(0,3) == "HAR"){
-		location.href="/petbreedding/shopPayment?har_rnum="+har_rnum+"";
+		location.href="/petbreedding/shopPayment?har_rnum="+har_rnum+"&cl_num="+cl_num+"";
 	}else if(har_rnum.substring(0,3) == "HOS"){
-		location.href = "/petbreedding/shopHosPayment?hos_rnum="+har_rnum+"";
+		location.href = "/petbreedding/shopHosPayment?hos_rnum="+har_rnum+"&cl_num="+cl_num+"";
 	}
 });
 
@@ -29,6 +30,7 @@ $("#goCancle").on("click",function(){
 			type:"POST",
 			data:{har_rnum : har_rnum},
 			success:function(data){
+				canclePoint();
 		        location.href="/petbreedding/mypage?cl_num="+cl_num+"";
 			}
 		});
@@ -38,6 +40,7 @@ $("#goCancle").on("click",function(){
 			type:"POST",
 			data:{hos_rnum : har_rnum},
 			success:function(data){
+				canclePoint();
 		        location.href="/petbreedding/mypage?cl_num="+cl_num+"";
 			}
 		});
@@ -46,6 +49,25 @@ $("#goCancle").on("click",function(){
 	
 });
 
+function canclePoint(){
+	var cl_num = $("#cl_num").val();
+	var expId = $("#exp_Id").val();
+	var expFrom = $("#shopName").val();
+	var exp_date = $("#exp_date").val();
+	$.ajax({
+		url: "myPointCancle",
+		type:"POST",
+		data:{
+			clNum : cl_num,
+			expId : expId,
+			expFrom : expFrom,
+			expDate : exp_date
+		},
+		success:function(data){
+	        location.href="/petbreedding/mypage?cl_num="+cl_num+"";
+		}
+	});
+}
 
 //모달
 function modal(id) {

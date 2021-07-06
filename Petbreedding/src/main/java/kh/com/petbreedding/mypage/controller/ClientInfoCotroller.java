@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -64,10 +66,12 @@ public class ClientInfoCotroller {
 			int status0 = clientInfoService.status0(cl_num);
 			int status1 = clientInfoService.status1(cl_num);
 			int status2 = clientInfoService.status2(cl_num);
+			int point = myPointService.CurrPointSelectOne(cl_num);
 			model.addAttribute("myRev", result);
 			model.addAttribute("status0", status0);
 			model.addAttribute("status1", status1);
 			model.addAttribute("status2", status2);
+			model.addAttribute("point", point);
 		}else {
 			System.out.println("cl_num이 없음");
 		}
@@ -91,6 +95,7 @@ public class ClientInfoCotroller {
 		List<HairShopReservation> result = clientInfoService.myRevDetail(har_rnum);
 		String result2 = clientInfoService.anotherMenu(har_rnum);
 		int getPrice = clientInfoService.getPrice(har_rnum);
+		
 		model.addAttribute("myRev", result);
 		model.addAttribute("another", result2);
 		model.addAttribute("totalPrice", getPrice);
@@ -125,36 +130,68 @@ public class ClientInfoCotroller {
 	}
 	
 	// 포인트내역
-	@RequestMapping("/mypage/point")
-	public String point(
-//			HttpSession session
-			String cl_num
-			,HttpServletRequest req
-			,Client cl
-			,Model md
-			) {
+	@RequestMapping("/point")
+	public String point(String cl_num,Model md) {
 		
-//		cl = (Client) session.getAttribute("client");
-//		String clNum = cl.getCl_num();
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(cl_num);
 		
 		int currPoint = myPointService.CurrPointSelectOne(cl_num);
-		List<MyPoint> pointList = myPointService.myPointSelectList(myPoint);
 		
-		System.out.println("[세훈] 컨트롤러 pointList : " + pointList);
-		System.out.println("[세훈] 컨트롤러 currPoint : " + currPoint);
-		md.addAttribute("pointList", pointList);
 		md.addAttribute("currPoint", currPoint);
-		
-
-		//		req.setAttribute("currPoint", currPoint);
-//		mv.setViewName("/user/uMyPage/point");
 		
 		return "/user/uMyPage/point";
 	}
 	
+	// 포인트 기간별 조회 3개월
+	@RequestMapping("/pointDate")
+	@ResponseBody
+	public List<MyPoint> pointDate(String clNum, Model model) {
 
+		List<MyPoint> pointList = myPointService.myPoint3m(clNum);
+				
+		model.addAttribute("pointList", pointList);
+		
+		return pointList;
+	}
+	// 포인트 기간별 조회 6개월
+	@RequestMapping("/pointDate2")
+	@ResponseBody
+	public List<MyPoint> pointDate2(String clNum, Model model) {
+
+		List<MyPoint> pointList = myPointService.myPoint6m(clNum);
+				
+		model.addAttribute("pointList", pointList);
+		
+		return pointList;
+	}
+	// 포인트 기간별 조회 12개월
+	@RequestMapping("/pointDate3")
+	@ResponseBody
+	public List<MyPoint> pointDate3(String clNum, Model model) {
+
+		List<MyPoint> pointList = myPointService.myPoint12m(clNum);
+				
+		model.addAttribute("pointList", pointList);
+		
+		return pointList;
+	}
+
+	//포인트 기간 선택 조회
+	@RequestMapping("/pointDate4")
+	@ResponseBody
+	public List<MyPoint> pointDate3(String clNum,String expDate,String expDate2, Model model) {
+
+		Map<String, String> list = new HashMap<String, String>();
+		list.put("clNum", clNum);
+		list.put("expDate", expDate);
+		list.put("expDate2", expDate2);
+		List<MyPoint> pointList = myPointService.myPointDate(list);
+				
+		model.addAttribute("pointList", pointList);
+		
+		return pointList;
+	}
 	// 1:1 문의 내역
 	@RequestMapping("/mypage/ask")
 	public String ask(
@@ -251,30 +288,18 @@ public class ClientInfoCotroller {
 			System.out.println("[세훈 ]" + myAsk.toString());
 			int result = myAskService.MyAskInsert(myAsk);
 			
-			PrintWriter out = null;
-			
-			String msg1 = "문의 등록 완료";
-			String msg2 = "문의 등록 실패";
-			
-			try {
-				out = res.getWriter();
-				if(result == 1) {
-					out.println("<script>alert('" + msg1 + "');</script>");
-					System.out.println("[세훈] 문의 등록 성공");
-					
-				} else {
-					out.println("<script>alert('" + msg2 + "');</script>");
-					System.out.println("[세훈] 문의 등록 실패");
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				out.flush();
-				out.close();
+			if(result > 0) {
+				System.out.println("문의 등록 성공");
+				md.addAttribute("msg", "문의 등록 성공");
+				md.addAttribute("url","/mypage/ask");
+			} else {
+				System.out.println("문의 등록 실패");
+				md.addAttribute("msg", "문의 등록 실패");
+				md.addAttribute("url","/mypage/ask");
 			}
-
-			//TODO 리다이렉트 오류 수정
-		return "redirect:/mypage/ask";
+			
+			return "common/redirect";
+			
 	}
 	
 
