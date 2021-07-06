@@ -38,21 +38,9 @@
 
 
 			<div class="bcon">
-				
-				<div class="img">
-				
-					<!-- TODO db에 있는 이미지 입력 -->
-					<c:choose>
-						<c:when test="${board.boImg eq null}">
-							<img src="http://placehold.it/500x300" alt="boardconimg">
-						</c:when>
-						<c:otherwise>
-							<img src="${path}/resources/uploadFile/review/${board.boImg}" alt="boardconimg">
-						</c:otherwise>
-					</c:choose>
-				</div>
-				
-			
+
+			<!-- 이미지는 bo_cont 안에도 이미 포함되어 있으므로 img를 불러올 필요 없음 -->
+						
 				<div class="con">
 				
 					<p>${board.boCont}</p>
