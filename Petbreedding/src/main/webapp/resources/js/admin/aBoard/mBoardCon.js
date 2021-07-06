@@ -62,10 +62,15 @@ Element.prototype.setStyle = function(styles) {
 		this.style[k] = styles[k];
 	return this;
 };
+
 function getModal(){
 	modal('my_modal');
 }
-
-
+function getCommentModal(){
+	modal('my_modal_comment');
+}
+function getUpdCommentModal(){
+	modal('my_modal_updComment');
+}
 
 

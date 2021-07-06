@@ -20,5 +20,5 @@ $(function() {
 
 function goDetail(value){
 	console.log(value);
-	location.href = "/petbreedding//mypage/askdetail?qna_num="+value+"";
+	location.href = "/petbreedding/mypage/askdetail?qna_num="+value+"";
 }

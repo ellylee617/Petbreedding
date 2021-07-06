@@ -24,6 +24,7 @@
             
             <c:choose>
             	<c:when test="${type eq 1}">
+            		<!-- 글 등록으로 이미지 넘어가는지 확인 중 -->
 	           		<form action="bwrite" method="post" enctype="multipart/form-data">
 		   				<div class="qnatitle">
 			              <label>제목</label>
