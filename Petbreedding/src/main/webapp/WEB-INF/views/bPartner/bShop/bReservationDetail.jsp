@@ -39,7 +39,7 @@
                         </tr>
             
                     </table>
-                    <input type="text" id="har_rnum" value="${list.har_rnum}" placeholder="${list.har_rnum}">
+                    <input type="hidden" id="har_rnum" value="${list.har_rnum}" placeholder="${list.har_rnum}">
                 </div>
                 <div class="clientInfo infoBox">
                     <table>

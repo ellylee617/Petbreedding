@@ -97,7 +97,7 @@
 		join hair_salon
 		on har_reservation.har_num = hair_salon.har_num
 		join business_partner
-		on business_partner.bp_id = #{bp_id}
+		on hair_salon.bp_id = #{bp_id}
 		and res_date = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 
@@ -110,7 +110,7 @@
 		join hair_salon
 		on har_reservation.har_num = hair_salon.har_num
 		join business_partner
-		on business_partner.bp_id = #{bp_id}
+		on hair_salon.bp_id = #{bp_id}
 		and RES_DATE = #{res_date}
 	</select>
 
@@ -123,7 +123,7 @@
 		join hair_salon
 		on har_reservation.har_num = hair_salon.har_num
 		join business_partner
-		on business_partner.bp_id = #{bp_id}
+		on hair_salon.bp_id = #{bp_id}
 		and RES_DATE = #{res_date}
 		and RES_STATUS = #{res_status}
 
@@ -158,7 +158,7 @@
 		join HOSPITAL
 		on hos_reservation.hos_num = hospital.hos_num
 		join business_partner
-		on business_partner.bp_id = #{bp_id}
+		on HOSPITAL.bp_id = #{bp_id}
 		and hos_date = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	
@@ -172,7 +172,7 @@
 		join HOSPITAL
 		on hos_reservation.hos_num = hospital.hos_num
 		join business_partner
-		on business_partner.bp_id = #{bp_id}
+		on HOSPITAL.bp_id = #{bp_id}
 		and hos_date = #{hos_date}
 	</select>
 	
@@ -185,7 +185,7 @@
 		join HOSPITAL
 		on hos_reservation.hos_num = hospital.hos_num
 		join business_partner
-		on business_partner.bp_id = #{bp_id}
+		on HOSPITAL.bp_id = #{bp_id}
 		and HOS_DATE = #{hos_date}
 		and HOS_STATUS = #{hos_status}
 

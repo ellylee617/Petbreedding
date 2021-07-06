@@ -187,7 +187,7 @@ public class shopController {
 		} else {
 
 			int hosShopType = 1;
-			
+				
 
 
 			
@@ -242,12 +242,31 @@ public class shopController {
 				mv.addObject("count", list);
 			}
 			
+			//울트라
+			List<Hospital> ultra2 = shopService.selectCtaHosList();
+			
+			for(int i=0; i<ultra2.size(); i++) {
+				hos_num = ultra2.get(i).getHosNum();
+				bpId = ultra2.get(i).getBpId();
+				String count =  likeService.countHos(hos_num);
+				String ctaCountRev =  shopService.selectCountCtaReview(bpId);
+				
+				countList.add(ctaCountRev);
+				mv.addObject("ctaCountRev",countList);
+				System.out.println("--------병원 count-----"+count);
+				list.add(count);
+				mv.addObject("count", list);
+				
+				System.out.println("울트라콜 병원 리스트(평균 별점 포함)" + ultra2);
+			}
+
 			
 			mv.addObject("shopType", hosShopType);
 //			mv.addObject("shopList", hosList);
 			mv.addObject("newHosList", newHosList);
 			mv.addObject("revHosList", revHosList);
 			mv.addObject("paging", page);
+			mv.addObject("cta2", ultra2);
 			mv.setViewName("/user/uShop/shopList");
 			
 

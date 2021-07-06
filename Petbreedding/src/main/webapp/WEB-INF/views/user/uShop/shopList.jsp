@@ -37,23 +37,25 @@
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
+                <c:forEach var="hos" items="${cta2}" varStatus="status">
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
-                                <div class="ultraList_img_area"><a href="#"><img src="http://placehold.it/150x100"></a></div>
-                                <div class="ultraList_title_area"><a href="#">쿨펫 동물병원</a></div>
-                                <div class="ultraList_info_area"><a href="#">슬개골 수술 전문 병원입니다.</a></div>
+                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${hos.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_title_area"><a href="#">${hos.shopName}</a></div>
+                                <div class="ultraList_info_area"><a href="#">${hos.shopMInfo}</a></div>
                                 <div class="ultraList_etc_area">
                                     <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
                                     <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기<small>999+</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                    <a href="shopPage?bpId=${hos.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
                     </div>
+                    </c:forEach>
                 </ul>
             </div>
             
@@ -288,9 +290,9 @@
                             </div>                                                            
                         </li>
                    </div>
+            </c:forEach>
                 </ul>
             </div>
-            </c:forEach>
             
            <!-- 미용실 최신순 정렬 -->
            <div id="newList" class="storeS">
