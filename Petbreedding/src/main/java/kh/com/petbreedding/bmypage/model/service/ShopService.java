@@ -26,6 +26,8 @@ public interface ShopService {
 	
 	// 울트라콜 미용실 리스트 출력 (평균 별점 포함)
 	public List<HairSalon> selectCtaHarList();
+	//울트라콜 병원 리스트 출력 (평균 별점 포함)
+	public List<Hospital> selectCtaHosList();
 	
 	
 	// 평균 별점

@@ -609,6 +609,26 @@ public class ShopServiceImpl implements ShopService {
 
 
 
+
+	@Override
+	public List<Hospital> selectCtaHosList() {
+		List<Hospital> list = null;
+		try {
+			System.out.println("울트라콜 병원 리스트 조회 들어옴");
+			list = shopDao.selectCtaHosList();
+			if(list != null) {
+				System.out.println("울트라콜 병원 리스트 매장 있음");
+			}else {
+				System.out.println("울트라콜 병원 리스트 매장 없음");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
 	
 
 

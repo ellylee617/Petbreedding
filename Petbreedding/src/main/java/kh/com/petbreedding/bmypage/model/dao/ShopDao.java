@@ -353,4 +353,10 @@ public class ShopDao {
 		System.out.println("삭제할 진료 종류 번호:" + medNum);
 		return sqlSession.delete("ShopMenu.deleteMedicalType", medNum);	
 	}
+	
+	//동물병원 울트라콜 조회
+	public List<Hospital> selectCtaHosList() {
+		System.out.println("Shop Dao 진입 - selectCtaHosList() 실행");
+		return sqlSession.selectList("Shop.selectUltraHos");
+	}
 }
