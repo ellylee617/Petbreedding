@@ -38,21 +38,9 @@
 
 
 			<div class="bcon">
-				
-				<div class="img">
-				
-					<!-- TODO db에 있는 이미지 입력 -->
-					<c:choose>
-						<c:when test="${board.boImg eq null}">
-							<img src="http://placehold.it/500x300" alt="boardconimg">
-						</c:when>
-						<c:otherwise>
-							<img src="${path}/resources/uploadFile/review/${board.boImg}" alt="boardconimg">
-						</c:otherwise>
-					</c:choose>
-				</div>
-				
-			
+
+			<!-- 이미지는 bo_cont 안에도 이미 포함되어 있으므로 img를 불러올 필요 없음 -->
+						
 				<div class="con">
 				
 					<p>${board.boCont}</p>
@@ -77,6 +65,7 @@
 				
 				<div id="replyContainer"></div>
 				
+				
 			</div>
 
 		</section>
@@ -93,16 +82,28 @@
 		</div>
 		
 		
-	<!-- MODAL COMMENT -->
-	<div id="my_modal_comment">
-	   <a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnComment"></i></a>
-	   <div id="locCon_comment">
-	       <h1>삭제하시겠습니까?</h1>
-	       <button id="goTOPay_comment">바로 삭제할게요</button>
-	        <button id="nextTime_comment">다음에 할게요</button>
-	        <input type="hidden" id="coIdVar">
-	    </div>
-	</div>
+		<!-- MODAL COMMENT -->
+		<div id="my_modal_comment">
+		   <a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnComment"></i></a>
+		   <div id="locCon_comment">
+		       <h1>삭제하시겠습니까?</h1>
+		       <button id="goTOPay_comment">바로 삭제할게요</button>
+		        <button id="nextTime_comment">다음에 할게요</button>
+		        <input type="hidden" id="coIdVar">
+		    </div>
+		</div>
+		
+		<!-- MODAL COMMENT UPDATE -->
+		<div id="my_modal_updComment">
+			<a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnUpdComment"></i></a>
+			<div id="locCon_updComment">
+				<h1 class="bocUpdTitle">수정하시겠습니까?</h1>
+				<input type="text" id="replyUpdCont" name="getBocCont">
+				<button id="goTOPay_updComment">바로 수정할게요</button>
+				<button id="nextTime_updComment">다음에 할게요</button>
+				<input type="hidden" id="coIdVar">
+		    </div>
+		</div>
 
 	</div>
 	
@@ -140,7 +141,7 @@
 								+ "<div>"
 								+ "<p class='replyTime'>"+item.coDate+"</p>"
 								+ "<div class='replyUpdDel'>"
-								+ "<p>수정</p>"
+								+ "<p name='"+item.coNum+"' class='fboCommentUpdBtn'>수정</p>"
 								+ "<p id='"+item.coNum+"' class='fboCommentDelBtn'>삭제</p>"
 								+ "</div>"
 								+ "</div>"
@@ -154,12 +155,23 @@
 					
 					$("#replyContainer").html(div);
 					
+					//	댓글 삭제 버튼 클릭
 					$(".fboCommentDelBtn").click(function() {
 						console.log("댓글 삭제 클릭 됨")
 						var coIdVar = $(this).attr("id");	//	클릭된 행의 id
 						$("#goTOPay_comment").attr("name", coIdVar);
 						getCommentModal();
 					});
+					
+					//	댓글 수정 버튼 클릭
+					$(".fboCommentUpdBtn").click(function() {
+						console.log("댓글 수정 클릭 됨")
+						var coIdVar = $(this).attr("name");	//	클릭된 행의 id
+						console.log(coIdVar);
+						$("#goTOPay_updComment").attr("name", coIdVar);
+						getUpdCommentModal();
+					});
+					
 					
 				}
 				
@@ -206,6 +218,35 @@
 				,data: {co_num : CoNumVar, bo_num : boNum}
 				,success: function() {
 					commentListInit(boNum);
+				}
+				,error : function(request, status, error) {
+					alert("code: " + request.status + "\n"
+							+ "message: "
+							+ request.responseText + "\n"
+							+ "error: " + error);
+				}
+			});
+			
+			// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
+			closeModal();
+
+		});
+		
+		
+		//	자유 게시판 댓글 수정
+		$("#goTOPay_updComment").bind("click", function() {
+			var CoNumVar = $(this).attr("name");
+			var updContText = $("#replyUpdCont").val();
+			console.log(CoNumVar);
+			
+			$.ajax({
+				url: "bcupdate"
+				,type: "get"
+				,data: {co_num : CoNumVar, contVal : updContText}
+				,success: function() {
+					$("#replyUpdCont").val("");
+					commentListInit(boNum);
+					
 				}
 				,error : function(request, status, error) {
 					alert("code: " + request.status + "\n"

@@ -61,6 +61,7 @@
 .tabmenu input:checked ~ .tabCon {
 	display: block;
 }
+
 .tabmenu input:checked ~ .topCount{
 	background: var(--font-color);
 	color: black;
@@ -71,6 +72,28 @@
 	margin: 20px 60px 0px 80px;
 	color : var(--font-color);
 	background-color: var(--hover-color)
+}
+
+
+/* 깜빡이게 */
+.blink {
+  animation: blink-animation 1s steps(30, start) infinite alternate;
+}
+
+@keyframes blink-animation {
+  to {
+    background-color: var(--trhover-color);
+  }
+}
+
+.tabmenu input:checked ~ .blink {
+	animation: blink-animation2 1s steps(30, start) infinite alternate;
+}
+
+@keyframes blink-animation2 {
+  to {
+    background-color: var(--hover-color);
+  }
 }
 
 /* 채팅 목록 */

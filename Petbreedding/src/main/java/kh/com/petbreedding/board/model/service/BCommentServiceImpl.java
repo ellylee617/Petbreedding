@@ -79,6 +79,19 @@ public class BCommentServiceImpl implements BCommentService {
 		
 		return bcInsert;
 	}
+	
+	@Override
+	public int bCommentUpdate(B_comment bComment) {
+		int bcUpdResult = -1;
+		
+		try {
+			bcUpdResult = bCommentDao.bCommentUpdate(bComment);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bcUpdResult;
+	}
 
 	@Override
 	public int bCommentDelete(String co_num, String bo_num) {

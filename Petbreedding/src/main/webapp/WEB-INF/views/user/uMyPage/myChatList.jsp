@@ -55,7 +55,7 @@
 						</li>
 						<li id="tab2" class="btnCon">
 						<input type="radio" name="tabmenu" id="tabmenu2" class="Tmenu">
-						<c:if test="${countUnread ne 0 }"><div class="topCount countwrap">${countUnread}</div></c:if><label for="tabmenu2">읽지 않은 메시지</label>
+						<c:if test="${countUnread ne 0 }"><div class="topCount countwrap blink">${countUnread}</div></c:if><label for="tabmenu2">읽지 않은 메시지</label>
 						<div class="tabCon">
 						<c:if test="${not empty unreadList }">
 						<c:forEach items="${unreadList }" var="u" varStatus="status">

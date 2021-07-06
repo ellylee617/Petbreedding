@@ -68,15 +68,15 @@
 		            		
 		            		<c:choose>
 		            			<c:when test="${blist.boImg eq null}">
-			            	    	<div class="img"><a href="#"><img class="imgSize" src="http://placehold.it/150x100"  alt="boardimg"></a></div>
+			            	    	<div class="img"><a href="#"><img class="imgSize" src="http://placehold.it/150x100"></a></div>
 			            	    </c:when>
 		            			<c:otherwise>
-			            	    	<div class="img"><a href="#"><img class="imgSize" src="${path}/resources/uploadFile/review/${blist.boImg}"  alt="boardimg"></a></div>
+			            	    	<div class="img"><a href="#"><img class="imgSize" src="${blist.boImg}"></a></div>
 			            	    </c:otherwise>	
 			                </c:choose>
 			                <div class="title">
 			                <a href="fboardcon?boNum=${blist.boNum}">
-			                <p>${blist.boCont}(${blist.bocChk})</p>
+			                <p>${blist.boTitle}(${blist.bocChk})</p>
 			                </a>
 			                </div>
 			                <div class="writer"><a href="fboardcon">${blist.clNickName}</a></div>

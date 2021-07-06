@@ -169,8 +169,6 @@ public class AdminController {
 			,@RequestParam(name = "page", defaultValue = "1") int page
 			) {
 		
-		
-		int currentPage = page;
 		MyAsk mAsk = new MyAsk();
 		
 		mAsk = myAskService.MyAskSelectDetail(qna_num);
@@ -220,7 +218,6 @@ public class AdminController {
 			result = jobj.toJson(mAskComment);
 		}
 		
-//		md.addAttribute("result", result);
 		
 		System.out.println("[세훈 : result : " + result);
 		
@@ -356,30 +353,17 @@ public class AdminController {
 			
 			result = customerServiceService.CustomerServiceInsert(cs);
 			
-			PrintWriter out = null;
-			
-			String msg1 = "공지사항등록 완료";
-			String msg2 = "공지사항 등록 실패";
-			
-			try {
-				out = res.getWriter();
-				if(result == 1) {
-					out.println("<script>alert('" + msg1 + "');</script>");
-					System.out.println("[세훈] 공지사항 등록 성공");
-					
-				} else {
-					out.println("<script>alert('" + msg2 + "');</script>");
-					System.out.println("[세훈] 공지사항 등록 실패");
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				out.flush();
-				out.close();
+			if(result > 0) {
+				System.out.println("공지사항 등록 성공");
+				md.addAttribute("msg", "공지사항 등록 성공");
+				md.addAttribute("url","/mservice");
+			} else {
+				System.out.println("공지사항 등록 실패");
+				md.addAttribute("msg", "공지사항 등록 실패");
+				md.addAttribute("url","/mservice");
 			}
 			
-		
-		return "/admin/aBoard/mservice";
+			return "common/redirect";
 	}
 	
 	
@@ -413,30 +397,17 @@ public class AdminController {
 		
 		csUpdResult = customerServiceService.CustomerServiceUpdate(cs);
 		
-		PrintWriter out = null;
-		
-		String msg1 = "공지사항 수정 완료";
-		String msg2 = "공지사항 수정 실패";
-		
-		try {
-			out = res.getWriter();
-			if(csUpdResult > 0) {
-				out.println("<script>alert('" + msg1 + "');</script>");
-				System.out.println("[세훈] 공지사항 수정 성공");
-				
-			} else {
-				out.println("<script>alert('" + msg2 + "');</script>");
-				System.out.println("[세훈] 공지사항 수정 실패");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			out.flush();
-			out.close();
+		if(csUpdResult > 0) {
+			System.out.println("공지사항 수정 성공");
+			md.addAttribute("msg", "공지사항 수정 성공");
+			md.addAttribute("url","/mservice");
+		} else {
+			System.out.println("공지사항 수정 실패");
+			md.addAttribute("msg", "공지사항 수정 실패");
+			md.addAttribute("url","/mservice");
 		}
-			
 		
-		return "/admin/aBoard/mservice";
+		return "common/redirect";
 	}
 	
 	// 게시글 관리 (공지사항게시판 삭제)

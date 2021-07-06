@@ -12,6 +12,7 @@ $("#goTOPay").on("click", function() {
 	console.log(boardNumVar);
 	location.href = "/petbreedding/bdelete?bo_num="+boardNumVar+"";
 });
+
 //$("#goTOPay_comment").on("click", function() {
 //	var CoNumVar = $(this).attr("name");
 //	console.log(CoNumVar);
@@ -73,4 +74,7 @@ function getModal(){
 }
 function getCommentModal(){
 	modal('my_modal_comment');
+}
+function getUpdCommentModal(){
+	modal('my_modal_updComment');
 }
