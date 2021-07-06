@@ -28,7 +28,7 @@ $(document).ready(function() {
    });
 
 });
-                
+               
 // 웹소켓
 let sock;
  

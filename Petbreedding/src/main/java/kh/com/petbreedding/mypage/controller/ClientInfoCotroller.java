@@ -312,6 +312,12 @@ public class ClientInfoCotroller {
 		return null;
 
 	}
+	
+	// 알림 목록
+	@RequestMapping("/noticelist")
+	public String alarmlist(HttpSession session) {
+		return "/user/uMyPage/myNotice";
+	}
 
 	
 	//회원정보 수정 탈퇴는 ClientController

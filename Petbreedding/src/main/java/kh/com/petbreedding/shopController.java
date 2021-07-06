@@ -70,15 +70,12 @@ public class shopController {
 			,Pagination page
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			, @RequestParam(value="keyword", defaultValue="") String keyword
 			, @RequestParam Long shopType
 			, HttpServletRequest request
 			) throws Exception {
 		
 		
-		// 페이징 
-		int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		mv.addObject("paging", page);
 		
 		// shopType 0은 미용실, 1은 동물병원
 
@@ -86,6 +83,10 @@ public class shopController {
 
 			int harShopType = 0;
 			
+			// 미용실 페이징 
+			int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
+			mv.addObject("paging", page);
 			
 			
 			
@@ -187,8 +188,11 @@ public class shopController {
 		} else {
 
 			int hosShopType = 1;
-				
-
+			
+			// 동물병원 페이징 
+			int total = shopService.countHosList();	// 등록된 미용실 총 갯수 
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
+			mv.addObject("paging", page);
 
 			
 			//찜한 숫자 가져오기
@@ -197,10 +201,6 @@ public class shopController {
 			String bpId = null;
 			List<String> list = new ArrayList<String>();
 			List<String> countList = new ArrayList<String>();
-			
-			
-//			List<Hospital> hosList = shopService.selectHosList(page);
-//			System.out.println("컨트롤러 동물병원 리스트:" + hosList);
 			
 			
 			// 최신순
@@ -268,7 +268,6 @@ public class shopController {
 			mv.addObject("paging", page);
 			mv.addObject("cta2", ultra2);
 			mv.setViewName("/user/uShop/shopList");
-			
 
 
 		}
