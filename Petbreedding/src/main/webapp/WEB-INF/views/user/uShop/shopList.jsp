@@ -68,47 +68,47 @@
                                 <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
-	                                <div class="storeList_etc_area">
-	                                    <a href="#">리뷰<small> 
+                                   <div class="storeList_etc_area">
+                                       <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
-	                                   		&nbsp;(${item.avgRevVal})
-	                                    </c:if>
+                                            &nbsp;(${item.avgRevVal})
+                                       </c:if>
                                     <c:if test="${item.avgRevVal ge 1 && item.avgRevVal lt 2}">
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal eq 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal eq 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
                                     <c:if test="${!empty countRev[status.index] }">
-	                                    &nbsp;${countRev[status.index]}개 
+                                       &nbsp;${countRev[status.index]}개 
                                     </c:if>
                                     <c:if test="${empty countRev[status.index]}">
                                     &nbsp;0개 
                                     </c:if>
                                     </small>
                                     </a>
-	                                    <a href="#">구매건수<small>999+</small></a>
-	                                    <a href="#">찜하기 <small> ${count[status.index]}</small></a>
-	                                </div>
+                                       <a href="#">구매건수<small>999+</small></a>
+                                       <a href="#">찜하기 <small> ${count[status.index]}</small></a>
+                                   </div>
                                     <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                              </div>
                         </li>
@@ -136,35 +136,35 @@
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
-	                                   		&nbsp;(${item.avgRevVal})
-	                                    </c:if>
+                                            &nbsp;(${item.avgRevVal})
+                                       </c:if>
                                     <c:if test="${item.avgRevVal ge 1 && item.avgRevVal lt 2}">
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal eq 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal eq 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
                                     <c:if test="${!empty countRev[status.index] }">
-	                                    &nbsp;${countRev[status.index]}개 
+                                       &nbsp;${countRev[status.index]}개 
                                     </c:if>
                                     <c:if test="${empty countRev[status.index]}">
                                     &nbsp;0개 
@@ -172,7 +172,7 @@
                                     </small>
                                     </a>
                                     <a href="#">구매건수<small>999+</small></a>
-		                            <a href="#">찜하기 <small> ${count[status.index]}</small></a>
+                                  <a href="#">찜하기 <small> ${count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
@@ -187,28 +187,28 @@
             </div>
                     
                <!-- 페이징 시작-->
-				<div class="page_wrap">
-					<div class="page_nation">
-						<c:if test="${paging.startPage != 1 }">
-							<a class="arrow prev" href="${path}/shopList?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
-						</c:if>
-						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-							<c:choose>
-								<c:when test="${p == paging.nowPage }">
-									<b>${p }</b>
-								</c:when>
-								<c:when test="${p != paging.nowPage }">
-									<a href="${path}/shopList?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
-								</c:when>
-							</c:choose>
-						</c:forEach>
-						<c:if test="${paging.endPage != paging.lastPage}">
-							<a class="arrow next" href="${path}/shopList?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
-						</c:if>
-					</div>
-				</div>
-				<!-- 페이징 끝! -->
-				
+            <div class="page_wrap">
+               <div class="page_nation">
+                  <c:if test="${paging.startPage != 1 }">
+                     <a class="arrow prev" href="${path}/shopList?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+                  </c:if>
+                  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+                     <c:choose>
+                        <c:when test="${p == paging.nowPage }">
+                           <b>${p }</b>
+                        </c:when>
+                        <c:when test="${p != paging.nowPage }">
+                           <a href="${path}/shopList?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+                        </c:when>
+                     </c:choose>
+                  </c:forEach>
+                  <c:if test="${paging.endPage != paging.lastPage}">
+                     <a class="arrow next" href="${path}/shopList?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+                  </c:if>
+               </div>
+            </div>
+            <!-- 페이징 끝! -->
+            
             </c:if>
             
             <!--TOPBTN-->
@@ -244,35 +244,35 @@
                                      <a href="#">리뷰<small> 
                                      <c:out value="${ctaRevVal }"></c:out>
                                     <c:if test="${cta.avgRevVal ge 0 && cta.avgRevVal lt 1}">
-	                                   		&nbsp;(${cta.avgRevVal})
-	                                    </c:if>
+                                            &nbsp;(${cta.avgRevVal})
+                                       </c:if>
                                     <c:if test="${cta.avgRevVal ge 1 && cta.avgRevVal lt 2}">
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${cta.avgRevVal ge 2 && cta.avgRevVal lt 3}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${cta.avgRevVal ge 3 && cta.avgRevVal lt 4}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${cta.avgRevVal ge 4 && cta.avgRevVal lt 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${cta.avgRevVal eq 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
-	                                    </c:if>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${cta.avgRevVal ge 2 && cta.avgRevVal lt 3}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${cta.avgRevVal ge 3 && cta.avgRevVal lt 4}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${cta.avgRevVal ge 4 && cta.avgRevVal lt 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${cta.avgRevVal eq 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+                                       </c:if>
                                     <c:if test="${!empty ctaCountRev[status.index] }">
-	                                    &nbsp;${ctaCountRev[status.index]}개 
+                                       &nbsp;${ctaCountRev[status.index]}개 
                                     </c:if>
                                     <c:if test="${empty ctaCountRev[status.index]}">
                                     &nbsp;0개 
@@ -288,9 +288,9 @@
                             </div>                                                            
                         </li>
                    </div>
+            </c:forEach>
                 </ul>
             </div>
-            </c:forEach>
             
            <!-- 미용실 최신순 정렬 -->
            <div id="newList" class="storeS">
@@ -306,35 +306,35 @@
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
-	                                   		&nbsp;(${item.avgRevVal})
-	                                    </c:if>
+                                            &nbsp;(${item.avgRevVal})
+                                       </c:if>
                                     <c:if test="${item.avgRevVal ge 1 && item.avgRevVal lt 2}">
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal eq 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal eq 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
                                     <c:if test="${!empty countRev[status.index] }">
-	                                    &nbsp;${countRev[status.index]}개 
+                                       &nbsp;${countRev[status.index]}개 
                                     </c:if>
                                     <c:if test="${empty countRev[status.index]}">
                                     &nbsp;0개 
@@ -342,7 +342,7 @@
                                     </small>
                                     </a>
                                     <a href="#">구매건수<small>999+</small></a>
-		                            <a href="#">찜하기 <small> ${count[status.index]}</small></a>
+                                  <a href="#">찜하기 <small> ${count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
@@ -375,35 +375,35 @@
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
-	                                   		&nbsp;(${item.avgRevVal})
-	                                    </c:if>
+                                            &nbsp;(${item.avgRevVal})
+                                       </c:if>
                                     <c:if test="${item.avgRevVal ge 1 && item.avgRevVal lt 2}">
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
-	                                    <c:if test="${item.avgRevVal eq 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
-	                                    </c:if>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal eq 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
                                     <c:if test="${!empty countRev[status.index] }">
-	                                    &nbsp;${countRev[status.index]}개 
+                                       &nbsp;${countRev[status.index]}개 
                                     </c:if>
                                     <c:if test="${empty countRev[status.index]}">
                                     &nbsp;0개 
@@ -411,7 +411,7 @@
                                     </small>
                                     </a>
                                     <a href="#">구매건수<small>999+</small></a>
-		                            <a href="#">찜하기 <small> ${count[status.index]}</small></a>
+                                  <a href="#">찜하기 <small> ${count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
@@ -427,27 +427,27 @@
             
             
             <!-- 페이징 시작-->
-				<div class="page_wrap">
-					<div class="page_nation">
-						<c:if test="${paging.startPage != 1 }">
-							<a class="arrow prev" href="${path}/shopList?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
-						</c:if>
-						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-							<c:choose>
-								<c:when test="${p == paging.nowPage }">
-									<b>${p }</b>
-								</c:when>
-								<c:when test="${p != paging.nowPage }">
-									<a href="${path}/shopList?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
-								</c:when>
-							</c:choose>
-						</c:forEach>
-						<c:if test="${paging.endPage != paging.lastPage}">
-							<a class="arrow next" href="${path}/shopList?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
-						</c:if>
-					</div>
-				</div>
-				<!-- 페이징 끝! -->
+            <div class="page_wrap">
+               <div class="page_nation">
+                  <c:if test="${paging.startPage != 1 }">
+                     <a class="arrow prev" href="${path}/shopList?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+                  </c:if>
+                  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+                     <c:choose>
+                        <c:when test="${p == paging.nowPage }">
+                           <b>${p }</b>
+                        </c:when>
+                        <c:when test="${p != paging.nowPage }">
+                           <a href="${path}/shopList?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+                        </c:when>
+                     </c:choose>
+                  </c:forEach>
+                  <c:if test="${paging.endPage != paging.lastPage}">
+                     <a class="arrow next" href="${path}/shopList?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+                  </c:if>
+               </div>
+            </div>
+            <!-- 페이징 끝! -->
             
             
             </c:if>
