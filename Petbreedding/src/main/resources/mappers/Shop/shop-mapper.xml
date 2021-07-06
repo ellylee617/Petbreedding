@@ -92,10 +92,10 @@
 				            ON (b.bp_id = r.bp_id)
 				        )  
 				        group by BP_ID) BR
-				        ON (har.bp_id = br.bp_id AND har.har_name LIKE '%' ||  '미용' || '%') ) HARBP
+				        ON (har.bp_id = br.bp_id AND har.har_name LIKE '%' ||  #{keyword} || '%') ) HARBP
 
 				                    ) A
-			        ORDER BY HAR_NUM DESC
+			        ORDER BY HAR_NUM ASC
 						) B
 			WHERE #{start} <= R AND R <=#{end}
 			]]>

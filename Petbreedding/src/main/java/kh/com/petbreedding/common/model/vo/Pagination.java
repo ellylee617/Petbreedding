@@ -13,9 +13,20 @@ public class Pagination {
 		private int end;		//end
 		private int cntPage = 5;
 		
+		private String keyword; // 검색어 
+		
 		public Pagination() {
 		}
 		public Pagination(int total, int nowPage, int cntPerPage) {
+			setNowPage(nowPage);
+			setCntPerPage(cntPerPage);
+			setTotal(total);
+			calcLastPage(getTotal(), getCntPerPage());
+			calcStartEndPage(getNowPage(), cntPage);
+			calcStartEnd(getNowPage(), getCntPerPage());
+		}
+		public Pagination(int total, int nowPage, int cntPerPage, String keyword) {
+			setKeyword(keyword);
 			setNowPage(nowPage);
 			setCntPerPage(cntPerPage);
 			setTotal(total);
@@ -44,6 +55,14 @@ public class Pagination {
 			setStart(getEnd() - cntPerPage + 1);
 		}
 		
+		
+		
+		public String getKeyword() {
+			return keyword;
+		}
+		public void setKeyword(String keyword) {
+			this.keyword = keyword;
+		}
 		public int getNowPage() {
 			return nowPage;
 		}
@@ -100,10 +119,12 @@ public class Pagination {
 		}
 		@Override
 		public String toString() {
-			return "Pagination [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
-					+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
-					+ ", cntPage=" + cntPage + "]";
+			return "Pagination [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total="
+					+ total + ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end="
+					+ end + ", cntPage=" + cntPage + ", keyword=" + keyword + "]";
 		}
+		
+		
     
 }
 

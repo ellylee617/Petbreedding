@@ -70,15 +70,13 @@ public class shopController {
 			,Pagination page
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			, @RequestParam(value="keyword", defaultValue="") String keyword
 			, @RequestParam Long shopType
 			, HttpServletRequest request
 			) throws Exception {
 		
 		
-		// 페이징 
-		int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		mv.addObject("paging", page);
+//		System.out.println("!!!!!!!!!keyword!!!!!!!!!!"+keyword);
 		
 		// shopType 0은 미용실, 1은 동물병원
 
@@ -86,6 +84,12 @@ public class shopController {
 
 			int harShopType = 0;
 			
+			// 미용실 페이징 
+			int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
+//			page.setKeyword(keyword);
+			System.out.println("Pagination 객체 ~~~~~~~~~~" +page);
+			mv.addObject("paging", page);
 			
 			
 			
@@ -188,7 +192,10 @@ public class shopController {
 
 			int hosShopType = 1;
 			
-
+			// 동물병원 페이징 
+			int total = shopService.countHosList();	// 등록된 미용실 총 갯수 
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			mv.addObject("paging", page);
 
 			
 			//찜한 숫자 가져오기
