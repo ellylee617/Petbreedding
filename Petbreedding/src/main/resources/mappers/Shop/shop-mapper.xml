@@ -122,7 +122,7 @@
             ON (b.bp_id = r.bp_id)
         )  
         group by BP_ID) BR
-         	ON (har.bp_id = br.bp_id AND har.har_name LIKE '%' ||  #{keyword} || '%') ) HARBP
+         	ON (har.bp_id = br.bp_id AND har.har_name LIKE '%' ||  #{keyword} || '%' AND har.har_addr LIKE #{locCon} || '%' AND har.har_addr LIKE '%' ||  #{chooseLoc} || '%' )) HARBP
         ORDER BY HARBP.AVG_REV_VAL DESC NULLS LAST
                     ) A
 			) B
