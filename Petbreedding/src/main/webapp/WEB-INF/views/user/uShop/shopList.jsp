@@ -24,9 +24,16 @@
       <!-- 동물병원 -->
       <c:if test="${shopType eq 1}">
             <h1>동물병원</h1>
+            <c:if test="${!empty paging.locCon }">
             <div class="nowLocation">
-                <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+                <span>${paging.locCon }</span><span>></span><span>${paging.chooseLoc }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
+            </c:if>
+            <c:if test="${empty paging.locCon }">
+            <div class="nowLocation">
+                <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+            </div>
+            </c:if>
             <hr id="storeLine">
             <div class="selectOpt">
                 <input id="newRadio" type="radio" checked name="selectOpt"><label for="newRadio">최신순</label>
@@ -228,9 +235,16 @@
             <!-- 미용실 -->
             <c:if test="${shopType eq 0}">
             <h1>미용실</h1>
+            <c:if test="${!empty paging.locCon }">
             <div class="nowLocation">
                 <span>${paging.locCon }</span><span>></span><span>${paging.chooseLoc }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
+            </c:if>
+            <c:if test="${empty paging.locCon }">
+            <div class="nowLocation">
+                <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+            </div>
+            </c:if>
             <hr id="storeLine">
             <div class="selectOpt">
                 <input type="radio" checked id="newRadio" name="selectOpt"><label for="newRadio">최신순</label>

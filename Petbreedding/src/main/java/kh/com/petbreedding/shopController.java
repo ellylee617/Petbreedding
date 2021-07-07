@@ -199,7 +199,11 @@ public class shopController {
 			
 			// 동물병원 페이징 
 			int total = shopService.countHosList();	// 등록된 미용실 총 갯수 
+			
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), selectLocCon, selectChooseLoc);			
+			
 			mv.addObject("paging", page);
 
 			
