@@ -71,11 +71,14 @@ public class shopController {
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			, @RequestParam(value="keyword", defaultValue="") String keyword
+			,@RequestParam(name="selectlocCon",defaultValue="") String selectlocCon
+			,@RequestParam(name="selectChooseLoc",defaultValue="") String selectChooseLoc
 			, @RequestParam Long shopType
 			, HttpServletRequest request
 			) throws Exception {
 		
-		
+		System.out.println("선택한 시·도는?"+selectlocCon);
+		System.out.println("선택한 시·군·구는?"+selectChooseLoc);
 		
 		// shopType 0은 미용실, 1은 동물병원
 
