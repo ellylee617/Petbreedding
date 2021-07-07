@@ -17,20 +17,15 @@ public class ReviewDao {
 	
 	
 	public String getRevNumFromSeq() {
-		System.out.println("리뷰 등록 번호 가져오기 - 시퀀스 넥스트벨");
 		return sqlSession.selectOne("Review.getRevNumFromSeq");
 	}
 	
-	public List<Review> reviewSelectList(String bpId, int currentPage, int limit) {
-		System.out.println("다오 진입");
-		int startRow = (currentPage -1) * limit;
-		RowBounds row = new RowBounds(startRow, limit);
-		System.out.println("다오 끝");
-		return sqlSession.selectList("Review.reviewSelectList", bpId, row);
+	public List<Review> reviewSelectList(String bp_Id) {
+		System.out.println("[세훈] @리뷰 조회 다오 bp_id : " + bp_Id);
+		return sqlSession.selectList("Review.reviewSelectList", bp_Id);
 	}
 	
 	public int insertReview(Review rv) {
-		System.out.println("리뷰 등록 다오 진입");
 		return sqlSession.insert("Review.insertReview", rv);
 	}
 	

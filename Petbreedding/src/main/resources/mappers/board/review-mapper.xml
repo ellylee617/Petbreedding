@@ -15,20 +15,19 @@
 	
 	
 	
-	<select id="reviewSelectList" parameterType="Review" resultMap="ReviewMap">
+	<select id="reviewSelectList" parameterType="string" resultMap="ReviewMap">
 		<![CDATA[
-			SELECT * FROM REVIEW WHERE BP_ID = #{BP_ID}
+			SELECT * FROM REVIEW WHERE BP_ID = #{bpId}
 		 ]]>
 	</select>
 	
-<!-- 	#{bpId} 일단 1로 고정-->
 	
 	<insert id="insertReview" parameterType="Review">
 		<![CDATA[
 			INSERT INTO REVIEW VALUES(
 			#{revNum}, #{bpId},
 			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
-			TO_CHAR(SYSDATE, 'YYYYMMDD'), #{revVal}
+			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}
 			)
 		]]>
  	</insert>

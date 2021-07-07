@@ -75,8 +75,9 @@
 						<li class="option" value="2"><img src="${path}/resources/images/2.png">&nbsp;&nbsp;조금 아쉬워요</li>
 						<li class="option" value="1"><img src="${path}/resources/images/1.png">&nbsp;&nbsp;많이 아쉬워요</li>
 					</ul>
+					
 					<input type="number" id="selectedVal" name="selectedVal" style="display:none"  readonly>
-					<input type="file" id="reviewImg" name="reviewImg" accept=".jpg, .png">
+					<input type="file" id="reviewImg" name="reviewImg" accept=".jpg, .png" style="display:none">
 					<input type="hidden" name="har_num" id="for_value_har_num" >
 					<input type="hidden" name="har_name" id="for_value_har_name" >
 					<!-- hidden에 미용실 번호 담음 from js파일 -->

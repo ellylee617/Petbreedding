@@ -426,9 +426,38 @@ public class BoardController {
 		
 	}
 	
+	//	리뷰 조회
+	@RequestMapping(value = "/rList")
+	public void rList(
+			HttpServletRequest req
+			,HttpServletResponse res
+			,String bp_id
+			) throws IOException {
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("application/json; charset=UTF-8");
+		System.out.println("[세훈] @리뷰 조회 컨트롤러 bp_id : " + bp_id);
+		
+		PrintWriter out = res.getWriter();
+		String rvJson = "";
+		
+		List<Review> rList = new ArrayList<Review>();
+		
+		if(rList != null) {
+			rList = reviewService.reviewSelectList(bp_id);
+			Gson jobj = new GsonBuilder().create();
+			rvJson = jobj.toJson(rList);
+		}
+
+		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 bocJson : " + rvJson);
+
+		out.println(rvJson);
+		out.flush();
+		out.close();
+	}
+	
 
 	// 리뷰 작성
-	@RequestMapping(value = "/rwrite", method = RequestMethod.POST)
+	@RequestMapping(value = "/rwrite")
 	public String rwrite(HttpSession session
 			,MultipartHttpServletRequest req
 			,HttpServletResponse res
