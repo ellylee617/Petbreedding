@@ -65,7 +65,7 @@
                 <c:if test="${bP.bp_reg == 1 }">
                 	<a href="${pageContext.request.contextPath}/bShop/update"><li class="bs">사업장 수정</li></a>
                 </c:if>
-                <li class="bs">리뷰 관리</li>
+                <li class="bs" onClick="location.href='/petbreedding/bReview'">리뷰 관리</li>
             </ul>
         </div>
     </div>  

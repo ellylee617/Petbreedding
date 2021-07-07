@@ -24,12 +24,24 @@
 				<h2>리뷰 목록 (총 32개)</h2>
 				<br>
 				<table>
+				
 					<tr class="pointline">
 						<th>리뷰 번호</th>
 						<th>상품명</th>
 						<th>구매자 평점</th>
 						<th>리뷰내용</th>
 					</tr>
+					
+					<c:forEach items="${brvList}" var="brItems">
+						<tr class="pointline">
+							<td>${brItems.revNum}</td>
+							<td>가위컷</td>
+							<td><img src="${brItems.revImg}"></td>
+							<td>${brItems.revCont}</td>
+							<td><button class="basicBtn btnReply">답글쓰기</button></td>
+						</tr>
+					</c:forEach>
+					
 					<tr class="pointline">
 						<td>32</td>
 						<td>가위컷</td>

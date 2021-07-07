@@ -2,6 +2,7 @@ package kh.com.petbreedding.bmypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -36,7 +37,9 @@ import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
+import kh.com.petbreedding.board.model.vo.Review;
 
 @Controller
 public class BMyPageController {
@@ -49,6 +52,9 @@ public class BMyPageController {
 
 	@Autowired
 	private MyAskService myAskService;
+	
+	@Autowired
+	private ReviewService reviewService;
 
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
@@ -769,8 +775,29 @@ public class BMyPageController {
 	}
 
 	// 업체 리뷰 관리 페이지로 이동
-	@RequestMapping(value = "/bReview", method = RequestMethod.GET)
-	public String bReview(Locale locale, Model model) {
+	@RequestMapping(value = "/bReview")
+	public String bReview(
+			Model md
+			,HttpSession ses
+			,BPartner bP
+			) {
+		
+		bP = (BPartner) ses.getAttribute("bP");
+		
+		if(bP == null) {
+			return "redirect:/";
+		}
+		
+		String bp_id = bP.getBp_Id();
+		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 bp_id : " + bp_id);
+		
+		List<Review> brvList =  new ArrayList<Review>();
+		
+		brvList = reviewService.reviewSelectList(bp_id);
+		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 brvList : " + brvList);
+		
+		md.addAttribute("brvList", brvList);
+		
 		return "/bPartner/bShop/bReview";
 	}
 
