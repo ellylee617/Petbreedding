@@ -100,22 +100,22 @@ function categoryChange(e) {
     var city17 = ["제주시", "서귀포시"];
     var target = document.getElementById("chooseLoc");
 
-    if (e.value == "서울특별시") var d = city1;
-    else if (e.value == "부산광역시") var d = city2;
-    else if (e.value == "대구광역시") var d = city3;
-    else if (e.value == "인천광역시") var d = city4;
-    else if (e.value == "광주광역시") var d = city5;
-    else if (e.value == "대전광역시") var d = city6;
-    else if (e.value == "울산광역시") var d = city7;
+    if (e.value == "서울") var d = city1;
+    else if (e.value == "부산") var d = city2;
+    else if (e.value == "대구") var d = city3;
+    else if (e.value == "인천") var d = city4;
+    else if (e.value == "광주") var d = city5;
+    else if (e.value == "대전") var d = city6;
+    else if (e.value == "울산") var d = city7;
     else if (e.value == "세종특별자치시") var d = city8;
-    else if (e.value == "경기도") var d = city9;
+    else if (e.value == "경기") var d = city9;
     else if (e.value == "강원도") var d = city10;
-    else if (e.value == "충청북도") var d = city11;
-    else if (e.value == "충청남도") var d = city12;
-    else if (e.value == "전라북도") var d = city13;
-    else if (e.value == "전라남도") var d = city14;
-    else if (e.value == "경상북도") var d = city15;
-    else if (e.value == "경상남도") var d = city16;
+    else if (e.value == "충북") var d = city11;
+    else if (e.value == "충남") var d = city12;
+    else if (e.value == "전북") var d = city13;
+    else if (e.value == "전남") var d = city14;
+    else if (e.value == "경북") var d = city15;
+    else if (e.value == "경남") var d = city16;
     else if (e.value == "제주특별자치도") var d = city17;
     
 

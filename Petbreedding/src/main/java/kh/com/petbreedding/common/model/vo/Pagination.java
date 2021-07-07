@@ -15,6 +15,9 @@ public class Pagination {
 		
 		private String keyword; // 검색어 
 		
+		private String locCon; // 시·도
+		private String chooseLoc; // 시·군·구
+		
 		public Pagination() {
 		}
 		public Pagination(int total, int nowPage, int cntPerPage) {
@@ -25,6 +28,7 @@ public class Pagination {
 			calcStartEndPage(getNowPage(), cntPage);
 			calcStartEnd(getNowPage(), getCntPerPage());
 		}
+		// 키워드 검색 
 		public Pagination(int total, int nowPage, int cntPerPage, String keyword) {
 			setKeyword(keyword);
 			setNowPage(nowPage);
@@ -34,6 +38,19 @@ public class Pagination {
 			calcStartEndPage(getNowPage(), cntPage);
 			calcStartEnd(getNowPage(), getCntPerPage());
 		}
+		
+		// 주소 검색 
+			public Pagination(int total, int nowPage, int cntPerPage, String locCon, String chooseLoc) {
+				setLocCon(locCon);
+				setChooseLoc(chooseLoc);
+				setNowPage(nowPage);
+				setCntPerPage(cntPerPage);
+				setTotal(total);
+				calcLastPage(getTotal(), getCntPerPage());
+				calcStartEndPage(getNowPage(), cntPage);
+				calcStartEnd(getNowPage(), getCntPerPage());
+			}		
+			
 		// 제일 마지막 페이지 계산
 		public void calcLastPage(int total, int cntPerPage) {
 			setLastPage((int) Math.ceil((double)total / (double)cntPerPage));
@@ -57,6 +74,24 @@ public class Pagination {
 		
 		
 		
+		public String getLocCon() {
+			return locCon;
+		}
+		public void setLocCon(String locCon) {
+			this.locCon = locCon;
+		}
+		public int getCntPage() {
+			return cntPage;
+		}
+		public void setCntPage(int cntPage) {
+			this.cntPage = cntPage;
+		}
+		public String getChooseLoc() {
+			return chooseLoc;
+		}
+		public void setChooseLoc(String chooseLoc) {
+			this.chooseLoc = chooseLoc;
+		}
 		public String getKeyword() {
 			return keyword;
 		}
@@ -121,9 +156,11 @@ public class Pagination {
 		public String toString() {
 			return "Pagination [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total="
 					+ total + ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end="
-					+ end + ", cntPage=" + cntPage + ", keyword=" + keyword + "]";
+					+ end + ", cntPage=" + cntPage + ", keyword=" + keyword + ", locCon=" + locCon + ", chooseLoc="
+					+ chooseLoc + "]";
 		}
-		
+
+
 		
     
 }

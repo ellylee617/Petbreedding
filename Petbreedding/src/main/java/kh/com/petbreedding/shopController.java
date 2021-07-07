@@ -71,14 +71,16 @@ public class shopController {
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			, @RequestParam(value="keyword", defaultValue="") String keyword
-			,@RequestParam(name="selectlocCon",defaultValue="") String selectlocCon
+			,@RequestParam(name="selectlocCon",defaultValue="") String selectLocCon
 			,@RequestParam(name="selectChooseLoc",defaultValue="") String selectChooseLoc
 			, @RequestParam Long shopType
 			, HttpServletRequest request
 			) throws Exception {
 		
-		System.out.println("선택한 시·도는?"+selectlocCon);
+		System.out.println("검색한 키워드는?"+ keyword);
+		System.out.println("선택한 시·도는?"+selectLocCon);
 		System.out.println("선택한 시·군·구는?"+selectChooseLoc);
+		
 		
 		// shopType 0은 미용실, 1은 동물병원
 
@@ -88,13 +90,16 @@ public class shopController {
 			
 			// 미용실 페이징 
 			int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
-			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
-			mv.addObject("paging", page);
+			
+				page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+				page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
+				page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), selectLocCon, selectChooseLoc);
+				
+				mv.addObject("paging", page);
 			
 			
-			
-			List<HairSalon> newHarList = shopService.selectHarListNew(page); // 최신순
-			List<HairSalon> revHarList = shopService.selectHarListRev(page); // 별점순 
+				List<HairSalon> newHarList = shopService.selectHarListNew(page); // 최신순
+				List<HairSalon> revHarList = shopService.selectHarListRev(page); // 별점순 
 			//TODO:거리순
 			
 			
