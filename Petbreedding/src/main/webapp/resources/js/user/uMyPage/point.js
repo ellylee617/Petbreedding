@@ -87,9 +87,11 @@ function successPrint(data){
 	var html = "";
 	
 	$(".pointtable").empty();
-	
-	if(data != null){
+	console.log("data " + data);
+	if(data != null && data != ""){
+		console.log("data null아님 ");
 		for(var i in data){
+			console.log("data " + data[i]);
 			html += "<tr class='pointline'>";
 			
 			if(data[i].pointNum == 'PO1'){
@@ -128,9 +130,13 @@ function successPrint(data){
         
         
 	}else{
-		html += "<div class='pointline' colspan='4'>";
-		html += "<h1 id='notice'>해당 기간의 포인트 내역이 없습니다.</h1>";
-		html += "</div>";
+		$(".divmore").empty();
+		console.log("else 아니냐구~");
+		console.log("html : "+ html);
+		html += "<tr class='pointline' style= 'display:block'>";
+		html += "<td id='notice'><p>해당 기간의 포인트 내역이 없습니다.</p></td>";
+		html += "</tr>";
+		console.log("html : "+ html);
 		$(".pointtable").append(html);
 		html = "";
 	}

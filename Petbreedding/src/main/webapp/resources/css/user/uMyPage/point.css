@@ -130,3 +130,8 @@
 	color: var(--font-color);;
 	cursor: pointer;
 }
+
+#notice{
+	width:100%;
+	padding-left: 300px;
+}

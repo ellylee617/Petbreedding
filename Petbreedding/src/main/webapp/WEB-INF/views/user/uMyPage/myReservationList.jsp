@@ -29,10 +29,10 @@
 					<p class="ptitle">결제완료</p>
 					<p class="ptitle">이용완료</p>
 					<br>
-					<c:if test="${empty point }">
+					<c:if test="${empty point or point eq -1}">
 						<p class="presult">0P</p>
 					</c:if>
-					<c:if test="${!empty point }">
+					<c:if test="${!empty point and (point ne -1)}">
 						<p class="presult">${point}P</p>
 					</c:if>
 					<p class="presult">${status0 }</p>
