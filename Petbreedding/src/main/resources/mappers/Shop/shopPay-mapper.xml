@@ -138,4 +138,15 @@
 		UPDATE HOS_RESERVATION SET HOS_STATUS = 1 WHERE HOS_RNUM = #{hos_rnum}
 	</update>
 	
+	<update id="updateRevByScheduled" statementType="CALLABLE">
+		<![CDATA[
+		{CALL HAR_RESERVATION_DATE}
+		]]>	
+	</update>
+	
+	<update id="updateRevByScheduled2" statementType="CALLABLE">
+		<![CDATA[
+		{CALL HOS_RESERVATION_DATE}
+		]]>	
+	</update>
 </mapper>

@@ -1,5 +1,8 @@
 package kh.com.petbreedding.Shop.model.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,5 +36,22 @@ public class ShopPayDao {
 	public int hosRevUp(String hos_rnum) {
 		return sqlSession.update("shopPay.hosRevUp", hos_rnum);
 	}
+	
+	
+	public void updateRevByScheduled(){
+		try {
+			sqlSession.update("shopPay.updateRevByScheduled");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	public void updateRevByScheduled2(){
+		try {
+			sqlSession.update("shopPay.updateRevByScheduled2");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
 	
 }
