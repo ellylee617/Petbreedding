@@ -1,6 +1,5 @@
 package kh.com.petbreedding.common.model.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import kh.com.petbreedding.common.model.vo.Likes;

@@ -8,7 +8,12 @@
         <ul>
         	<c:if test = "${!empty client }">
 	            <li class="alertBell"><a href="#"><i class="fas fa-bell"></i><span class="alertCircle"></span></a></li>
-	            <li id="userName"><a href="${pageContext.request.contextPath}/uModify">${client.nickname}님</a></li>
+	            <li id="userName">
+	            	<a href="${pageContext.request.contextPath}/uModify" id="uHover">${client.nickname}님</a>
+            	    <div id="myHover">
+				    	<p><a href="${pageContext.request.contextPath}/uModify">내 정보수정</a></p>
+				    </div>
+	            </li>
 	            <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 	            <li><a href="${pageContext.request.contextPath}/mypage?cl_num=${client.cl_num}">예약확인/조회</a></li>
             </c:if>
@@ -37,6 +42,6 @@
             </ul>
         </nav>
     </div>
-    
+
     
 </header> 

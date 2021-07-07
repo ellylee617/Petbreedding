@@ -37,7 +37,8 @@ public class MyPointServiceImpl implements MyPointService {
 		try {
 			result = myPointDao.CurrPointSelectOne(clNum);
 		} catch(Exception e) {
-			e.printStackTrace();
+			/* e.printStackTrace(); */
+			System.out.println("현재 조회되는 포인트가 없습니다.");
 		}
 		
 		return result;

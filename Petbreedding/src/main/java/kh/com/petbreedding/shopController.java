@@ -61,7 +61,7 @@ public class shopController {
 	private BpReservationService bprevService;
 
 	@Autowired
-	LikesService likeService;
+	private LikesService likeService;
 	
 	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
@@ -254,8 +254,9 @@ public class shopController {
 				countList.add(ctaCountRev);
 				mv.addObject("ctaCountRev",countList);
 				System.out.println("--------병원 count-----"+count);
+				
 				list.add(count);
-				mv.addObject("count", list);
+				mv.addObject("count2", list);
 				
 				System.out.println("울트라콜 병원 리스트(평균 별점 포함)" + ultra2);
 			}

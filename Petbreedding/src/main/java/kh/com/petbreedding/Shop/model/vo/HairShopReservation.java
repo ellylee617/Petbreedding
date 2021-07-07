@@ -7,7 +7,6 @@ import kh.com.petbreedding.mypage.model.vo.MyPet;
 
 public class HairShopReservation {
 	private String har_rnum; //미용실 예약번호
-	private String msg_num; //알림번호 (M1~M5)
 	private String cl_num; //고객번호
 	private String pet_num; //펫번호
 	private String style_num; //메인 스타일 번호
@@ -33,12 +32,6 @@ public class HairShopReservation {
 	}
 	public void setHar_rnum(String har_rnum) {
 		this.har_rnum = har_rnum;
-	}
-	public String getMsg_num() {
-		return msg_num;
-	}
-	public void setMsg_num(String msg_num) {
-		this.msg_num = msg_num;
 	}
 	public String getCl_num() {
 		return cl_num;
@@ -150,7 +143,7 @@ public class HairShopReservation {
 	}
 	@Override
 	public String toString() {
-		return "HairShopReservation [har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
+		return "HairShopReservation [har_rnum=" + har_rnum + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", style_num=" + style_num + ", har_num=" + har_num + ", res_date="
 				+ res_date + ", res_status=" + res_status + ", res_time=" + res_time + ", style_num2=" + style_num2
 				+ ", har_name=" + har_name + ", res_date2=" + res_date2 + ", client=" + client + ", pet=" + pet
