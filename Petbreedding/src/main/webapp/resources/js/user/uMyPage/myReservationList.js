@@ -23,6 +23,14 @@ function currentDay(){
     $("#end").val(today);
 }
 
+$("#imgUpBtn").bind("click", function() {
+    insertImg();
+});
+
+function insertImg() {
+    $("#reviewImg").trigger("click");
+}
+
 function onClickSelect (e) {
 	const isActive = e.currentTarget.className.indexOf("active") !== -1;
 	if (isActive) {
@@ -63,13 +71,6 @@ document.querySelector(".select").addEventListener("click", onClickSelect);
 	for (var i = 0; i < optionList.length; i++) {
 		var option = optionList[i];
 		option.addEventListener("click", onClickOption);
-    $("#imgUpBtn").bind("click", function() {
-        insertImg();
-    });
-    
-    function insertImg() {
-        $("#reviewImg").trigger("click");
-    }
 }
 
 $("#regBtn").on("click", function() {

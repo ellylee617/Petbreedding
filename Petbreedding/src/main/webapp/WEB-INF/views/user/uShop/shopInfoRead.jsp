@@ -193,63 +193,7 @@
                         </div> 
                         <hr> 
                         <div class="reviews">
-                            	<c:forEach items="${reviewList }" var="items">
-                            <div class="review">
-                            
-                            
-	                                <div class="reviewWord">
-	                                    <div class="star_img">
-	                                    <c:if test="${items.revVal eq 1}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                    </c:if>
-	                                    <c:if test="${items.revVal eq 2}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                    </c:if>
-	                                    <c:if test="${items.revVal eq 3}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                    </c:if>
-	                                    <c:if test="${items.revVal eq 4}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                    </c:if>
-	                                    <c:if test="${items.revVal eq 5}">
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                   		<i class="fas fa-star rate"></i>
-	                                    </c:if>
-
-	                                        <span class="reviewScore">${items.revVal }.0</span>
-	                                    </div>
-	                                    <div class="reviewCon">
-	                                        <p>${items.revCont }</p>
-	                                    </div>
-	                                    <div class="reviewInfo">
-	                                        <span>${items.clNickName }</span>
-	                                        <span class="reviewDate">${items.revDate } 방문</span>
-	                                    </div>
-	                                </div>
-	                                
-	                                <c:choose>
-	                                	<c:when test="${items.revImg eq null}">
-		                                	<div class="review_imgBox">
-		                                    	<img class="review_img" src="${pageContext.request.contextPath}/resources/images/logo.png">
-		                                	</div>
-	                                	</c:when>
-	                                	<c:otherwise>
-			                                <div class="review_imgBox">
-			                                    <img class="review_img" src="${path}/resources/uploadFile/review/${items.revImg}">
-			                                </div>
-		                                </c:otherwise>
-		                           	</c:choose>     
-                            </div>
-                                </c:forEach>
+							<div id="reviewArea"></div>
                             <div class="reply">
                                 <div class="replyCon">
                                     <p>또비언니님 찾아주셔서 감사합니다.</p>
@@ -296,5 +240,104 @@
      <script type="text/javascript" src="${path}/resources/js/user/uMyPage/Likes.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
      <script type="text/javascript" src="${path}/resources/js/common/map.js"></script>
+   	 <script type="text/javascript">
+		 var bpId = '${shopInfo.bpId}';
+		 var path = '${path}';
+		 reviewInit(bpId, path);
+		 
+		 
+		 function reviewInit(bpId, path) {
+				console.log("리뷰 조회 함수 들어옴")
+				console.log(bpId);
+				console.log(path);
+				
+				$.ajax({
+					url: "rList"
+					,type: "get"
+					,contentType : "application/json; charset:UTF-8"
+					,data: {bp_id : bpId}
+					,dataType: 'json'
+					,success: function(json) {
+						var div = "";
+						var jsonLength = Object.keys(json).length;
+						console.log(json);
+						console.log(jsonLength);
+						
+						if(jsonLength > 0) {
+							
+							$.each(json, function(index, item) {
+								var revVal = item.revVal;
+								div += "<div class='review'>"
+									+ "<div class='reviewWord'>"
+									+ "<div class='star_img'>";
+									switch(revVal) {
+									case 1:
+										div += "<i class='fas fa-star rate'></i>";
+										break;
+									case 2:
+										div += "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>";
+										break;
+									case 3:
+										div += "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>";
+										break;
+									case 4:
+										div += "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>";
+										break;
+									case 5:
+										div += "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>"
+											+ "<i class='fas fa-star rate'></i>";
+										break;
+									}
+								div += "<span class='reviewScore'>"+item.revVal+".0</span>"
+									+ "</div>"
+									// 별점 끝
+									+ "<div class='reviewCon'>"
+									+ "<p>"+item.revCont+"</p>"
+									+ "</div>"
+									// 리뷰 내용 끝
+									+ "<div class='reviewInfo'>"
+									+ "<span>"+item.clNickName+"</span>"
+									+ "<span class='reviewDate'>"+item.revDate+" 방문</span>"
+									+ "</div>"
+									// 고객 닉네임, 방문날짜 끝
+									+ "</div>";
+									// reviewWord 끝
+									if(item.revImg = null) {
+								div += "<div class='review_imgBox'>"
+									+ "<img class='review_img' src='"+path+"/resources/images/logo.png'>"
+									+ "</div>"
+									+ "</div>";
+								} else {
+								div	+= "<div class='review_imgBox'>"
+									+ "<img class='review_img' src='"+path+"/resources/uploadFile/review/"+item.revImg+"'>"
+									+ "</div>"
+									+ "</div>";
+								}
+
+							});
+						} else {
+							
+						}
+						
+						$("#reviewArea").html(div);
+						
+					}
+					,error : function(request, status, error) {
+						alert("code: " + request.status + "\n" + "message: "
+								+ request.responseText + "\n" + "error: "
+								+ error);
+					}
+				});
+			}
+	 </script>
 </body>
 </html>
