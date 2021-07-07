@@ -36,82 +36,38 @@
 						<tr class="pointline">
 							<td>${brItems.revNum}</td>
 							<td>가위컷</td>
-							<td><img src="${brItems.revImg}"></td>
+							<c:choose>
+								<c:when test="${brItems.revVal eq 1}">
+									<td><img src="${path}/resources/images/1.png"></td>
+								</c:when>
+								<c:when test="${brItems.revVal eq 2}">
+									<td><img src="${path}/resources/images/2.png"></td>
+								</c:when>
+								<c:when test="${brItems.revVal eq 3}">
+									<td><img src="${path}/resources/images/3.png"></td>
+								</c:when>
+								<c:when test="${brItems.revVal eq 4}">
+									<td><img src="${path}/resources/images/4.png"></td>
+								</c:when>
+								<c:when test="${brItems.revVal eq 5}">
+									<td><img src="${path}/resources/images/5.png"></td>
+								</c:when>
+								<c:otherwise>
+									
+								</c:otherwise>
+							</c:choose>
+							
 							<td>${brItems.revCont}</td>
-							<td><button class="basicBtn btnReply">답글쓰기</button></td>
+							
+							<c:if test="${brItems.comntChk eq 0}">
+								<td><button class="basicBtn btnReply">답글쓰기</button></td>
+							</c:if>
+							<c:if test="${brItems.comntChk eq 1}">
+								<td><button class="basicBtn btnReCom">작성완료</button></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 					
-					<tr class="pointline">
-						<td>32</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReply">답글쓰기</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>31</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReply">답글쓰기</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>30</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReply">답글쓰기</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>29</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReply">답글쓰기</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>28</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReCom">작성완료</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>27</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReCom">작성완료</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>26</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReCom">작성완료</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>25</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReCom">작성완료</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>24</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReCom">작성완료</button></td>
-					</tr>
-					<tr class="pointline">
-						<td>23</td>
-						<td>가위컷</td>
-						<td><img src="${path}/resources/images/4.png"></td>
-						<td>첨 이용했는데 가볼만한 곳...</td>
-						<td><button class="basicBtn btnReCom">작성완료</button></td>
-					</tr>
 				</table>
 				<br> <br>
 				<div class="page_wrap">

@@ -472,23 +472,21 @@ public class BoardController {
 			// TODO: 로그인 안됐다는 경고.또는 이동 위치 변경
 			return "redirect:/";
 		}
-		String clNum = cl.getCl_num();
+		String cl_num = cl.getCl_num();
 		String clNickName = cl.getNickname();
 		String har_num = req.getParameter("har_num");
 		String har_name = req.getParameter("har_name");
 
 		System.out.println("리퀘스트 겟 파라메타" + req.getParameter("selectedVal"));
-		System.out.println("[세훈] har_num:" + har_num);
-		System.out.println("[세훈] har_name:" + har_name);
+		System.out.println("[세훈] @리뷰 등록 컨트롤러 har_num : " + har_num);
+		System.out.println("[세훈] @리뷰 등록 컨트롤러 har_name : " + har_name);
+		System.out.println("[세훈] @리뷰 등록 컨트롤러 clNum : " + cl_num);
+		System.out.println("[세훈] @리뷰 등록 컨트롤러 clNickName : " + clNickName);
 
 		Review rv = new Review();
 
-		System.out.println(clNum);
-		System.out.println(clNickName);
-		System.out.println(revCont);
-
-		rv.setClNickName(clNickName.replaceAll("\r\n", "<br>"));
-		rv.setClNum(clNum.replaceAll("\r\n", "<br>"));
+		rv.setClNickName(clNickName);
+		rv.setClNum(cl_num);
 		rv.setRevCont(revCont);
 		rv.setRevVal(revVal);
 
@@ -519,11 +517,11 @@ public class BoardController {
 		if(result > 0) {
 			System.out.println("리뷰 등록 성공");
 			md.addAttribute("msg", "리뷰 등록 성공");
-			md.addAttribute("url","/mypage?cl_num="+clNum+"");
+			md.addAttribute("url","/mypage?cl_num="+cl_num+"");
 		} else {
 			System.out.println("리뷰 등록 실패");
 			md.addAttribute("msg", "리뷰 등록 실패");
-			md.addAttribute("url","/mypage?cl_num="+clNum+"");
+			md.addAttribute("url","/mypage?cl_num="+cl_num+"");
 		}
 		
 		return "common/redirect";

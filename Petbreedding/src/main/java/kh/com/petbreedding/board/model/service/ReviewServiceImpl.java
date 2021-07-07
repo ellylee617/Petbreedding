@@ -41,10 +41,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public int insertReview(Review rv, String har_num, String har_name) {
 		int result = -1;
 		String clNum = rv.getClNum();
-		int reviewPoint = 500;
+		System.out.println("[세훈] @리뷰 등록 서비스 clNum : " + clNum);
+		int reviewPoint = 300;
 		
 		try {
-			System.out.println("[shkim]har_num" + har_num);
+			System.out.println("[세훈] @리뷰 등록 서비스 har_num : " + har_num);
 			String bp_id = reviewDao.searchBpId(har_num); 
 			rv.setBpId(bp_id);
 			String rev_num = reviewDao.getRevNumFromSeq();
@@ -54,6 +55,7 @@ public class ReviewServiceImpl implements ReviewService {
 			result = reviewDao.insertReview(rv);
 			int currPoint = 0;
 			currPoint = myPointDao.CurrPointSelectOne(clNum);
+			System.out.println("[세훈] @리뷰 등록 서비스 currPoint : " + currPoint);
 			currPoint += reviewPoint;
 			
 			MyPoint myPoint = new MyPoint();

@@ -11,6 +11,7 @@
 		<result column="REV_IMG" property="revImg"/>
 		<result column="REV_DATE" property="revDate"/>
 		<result column="REV_VAL" property="revVal"/>
+		<result column="CMNT_CHK" property="comntChk"/>
 	</resultMap>
 	
 	
@@ -27,7 +28,7 @@
 			INSERT INTO REVIEW VALUES(
 			#{revNum}, #{bpId},
 			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
-			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}
+			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}, 0
 			)
 		]]>
  	</insert>
