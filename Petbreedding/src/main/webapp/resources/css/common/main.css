@@ -37,7 +37,8 @@
 /*탭*/
 .tabmenu{ 
   width:1000px; 
-  margin: 80px auto; 
+  margin: 0px auto; 
+  margin-top: 80px;
   position:relative; 
   overflow: hidden;
   height: 500px;
