@@ -89,7 +89,7 @@
 .loc{
     color: #ff9914;
 }
-.nowLoc{
+.nowLocation{
     margin-left: 100px;
 }
 
@@ -115,6 +115,63 @@
     font-size: 20px;
     z-index: 1;
     position: absolute;
-    left: 740px;
-    top: 150px;
+    left: 750px;
+    top: 120px;
+}
+
+
+/* MODAL */
+#my_modal {
+    display: none;
+    width: 500px;
+    padding: 20px 60px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+#my_modal p {
+    text-align: center;
+}
+#my_modal #closeBtn{
+    cursor: pointer;
+}
+
+#my_modal .modal_close_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* select 박스 */
+#locCon {
+    width: 330px;
+    margin: 0 auto;
+}
+#locCon select {
+    padding: 10px;   
+    border: #707070;
+}
+#locCon #chooseLoc{
+    width: 100px;
+    margin-left: 10px;
+}
+#locCon #changeLoc{
+    display: inline-block;
+    margin-left: 10px;
+    background: var(--button-color);
+    color: var(--font-color);
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    width: 50px;
+    outline: none;
+    cursor: pointer;
+}
+#locCon #changeLoc:hover{
+    background: var(--hover-color);
+}
+#Loc{
+    margin-left: 20px;
+    color: var(--hover-color);
 }

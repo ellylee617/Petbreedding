@@ -1,6 +1,7 @@
 package kh.com.petbreedding.mypage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,10 +54,10 @@ public class ClientInfoServiceImpl implements ClientInfoService {
 	}
 
 	@Override
-	public List<HairShopReservation> myRevDateList(HairShopReservation hsr) {
+	public List<HairShopReservation> myRevDateList(Map<String, String> list) {
 		List<HairShopReservation> result = null;
 		try {
-			result = clientInfoDao.myRevDateList(hsr);
+			result = clientInfoDao.myRevDateList(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

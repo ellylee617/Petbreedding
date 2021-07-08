@@ -24,9 +24,16 @@
       <!-- 동물병원 -->
       <c:if test="${shopType eq 1}">
             <h1>동물병원</h1>
+            <c:if test="${!empty paging.locCon }">
             <div class="nowLocation">
-                <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+                <span>${paging.locCon }</span><span>></span><span>${paging.chooseLoc }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
+            </c:if>
+            <c:if test="${empty paging.locCon }">
+            <div class="nowLocation">
+                <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+            </div>
+            </c:if>
             <hr id="storeLine">
             <div class="selectOpt">
                 <input id="newRadio" type="radio" checked name="selectOpt"><label for="newRadio">최신순</label>
@@ -43,6 +50,23 @@
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
                      <c:forEach var="hos" items="${cta2}" varStatus="status">
+                    <div class="ultraStore">                     
+                        <li class="ultraList">
+                            <div class="ultraList_inner">
+                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${hos.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_title_area"><a href="#">${hos.shopName}</a></div>
+                                <div class="ultraList_info_area"><a href="#">${hos.shopAddr}</a></div>
+                                <div class="ultraList_etc_area">
+                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                    <a href="#">찜하기<small>999+</small></a>
+                                </div>
+                                <div class="ultraList_button">
+                                    <a href="shopPage?bpId=${hos.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                </div>
+                            </div>                                                            
+                        </li>
+                    </div>
 	                    <div class="ultraStore">                     
 	                        <li class="ultraList">
 	                            <div class="ultraList_inner">
@@ -75,7 +99,7 @@
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
-                                <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                    <div class="storeList_etc_area">
                                        <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
@@ -140,7 +164,7 @@
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
-                                <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
@@ -228,9 +252,16 @@
             <!-- 미용실 -->
             <c:if test="${shopType eq 0}">
             <h1>미용실</h1>
+            <c:if test="${!empty paging.locCon }">
             <div class="nowLocation">
-                <span>경기</span><span>></span><span>고양</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+                <span>${paging.locCon }</span><span>></span><span>${paging.chooseLoc }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
+            </c:if>
+            <c:if test="${empty paging.locCon }">
+            <div class="nowLocation">
+                <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+            </div>
+            </c:if>
             <hr id="storeLine">
             <div class="selectOpt">
                 <input type="radio" checked id="newRadio" name="selectOpt"><label for="newRadio">최신순</label>
@@ -252,7 +283,7 @@
                             <div class="ultraList_inner">
                                 <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
-                                <div class="ultraList_info_area"><a href="#">${cta.shopMInfo}</a></div>
+                                <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
                                 <div class="ultraList_etc_area">
                                      <a href="#">리뷰<small> 
                                      <c:out value="${ctaRevVal }"></c:out>
@@ -317,7 +348,7 @@
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
-                                <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
@@ -386,7 +417,7 @@
                             <div class="storeList_inner">
                                 <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
-                                <div class="storeList_info_area"><a href="#">${item.shopMInfo }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<small> 
                                     <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
@@ -474,37 +505,46 @@
       
       
        <!-- MODAL -->
+       <form action="shopList">
         <div id="my_modal">
             <p>주소 검색</p>
             <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
             <div id="locCon">
-                <select name="" class="select"  onchange="categoryChange(this)">
+                <select name="selectlocCon" class="select"  onchange="categoryChange(this)">
                     <option value="" disabled="disabled" selected>시·도</option>
-                    <option value="a">서울특별시</option>
-                    <option value="b">부산광역시</option>
-                    <option value="c">대구광역시</option>
-                    <option value="d">인천광역시</option>
-                    <option value="e">광주광역시</option>
-                    <option value="f">대전광역시</option>
-                    <option value="g">울산광역시</option>
-                    <option value="h">세종특별자치시</option>
-                    <option value="i">경기도</option>
-                    <option value="j">강원도</option>
-                    <option value="k">충청북도</option>
-                    <option value="l">충청남도</option>
-                    <option value="m">전라북도</option>
-                    <option value="n">전라남도</option>
-                    <option value="o">경상북도</option>
-                    <option value="p">경상남도</option>
-                    <option value="q">제주특별자치도</option>
+                    <option value="서울">서울특별시</option>
+                    <option value="부산">부산광역시</option>
+                    <option value="대구">대구광역시</option>
+                    <option value="인천">인천광역시</option>
+                    <option value="광주">광주광역시</option>
+                    <option value="대전">대전광역시</option>
+                    <option value="울산">울산광역시</option>
+                    <option value="세종특별자치시">세종특별자치시</option>
+                    <option value="경기">경기도</option>
+                    <option value="강원도">강원도</option>
+                    <option value="충북">충청북도</option>
+                    <option value="충남">충청남도</option>
+                    <option value="전북">전라북도</option>
+                    <option value="전남">전라남도</option>
+                    <option value="경북">경상북도</option>
+                    <option value="경남">경상남도</option>
+                    <option value="제주특별자치도">제주특별자치도</option>
                 </select>
-                <select id="chooseLoc">
+                <select name="selectChooseLoc" id="chooseLoc">
                     <option value="" disabled="disabled">시·군·구</option>
                 </select>
                 <button id="changeLoc">확인</button>
             </div>
         </div>
-      
+	        
+	        <c:if test="${shopType eq 1}">
+	        <input type="hidden" name="shopType" value="1">
+	        </c:if>
+	        <c:if test="${shopType eq 0}">
+	        <input type="hidden" name="shopType" value="0">
+	        </c:if>
+        
+     	</form> 
       
    </div>
    

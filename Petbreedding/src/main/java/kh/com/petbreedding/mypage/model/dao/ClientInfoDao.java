@@ -1,6 +1,7 @@
 package kh.com.petbreedding.mypage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class ClientInfoDao {
 	}
 	
 	//예약확인/조회 날짜 검색 리스트
-	public List<HairShopReservation> myRevDateList(HairShopReservation hsr) {
-		return sqlSession.selectList("myRev.myRevListDate", hsr);
+	public List<HairShopReservation> myRevDateList(Map<String, String> list) {
+		return sqlSession.selectList("myRev.myRevListDate", list);
 	}
 	
 	//결제대기 상태 카운트

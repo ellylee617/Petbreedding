@@ -82,8 +82,14 @@ public class ClientInfoCotroller {
 	//리스트 조회 결과
 	@RequestMapping("/mypage2")
 	@ResponseBody
-	public List<HairShopReservation> myRevDateList(HairShopReservation hsr) {
-        List<HairShopReservation> result = clientInfoService.myRevDateList(hsr);
+	public List<HairShopReservation> myRevDateList(String cl_num, String res_date, String res_date2) {
+		
+		Map<String, String> list = new HashMap<String, String>();
+		list.put("cl_num", cl_num);
+		list.put("res_date", res_date);
+		list.put("res_date2", res_date2);
+		
+        List<HairShopReservation> result = clientInfoService.myRevDateList(list);
 		return result;
 	}
 	
