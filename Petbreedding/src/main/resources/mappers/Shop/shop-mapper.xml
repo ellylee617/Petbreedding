@@ -236,8 +236,8 @@
 		
 		<!-- 미용실 기본 정보 기입 -->
 		<insert id="insertHarInfo" parameterType="HairSalon">
-		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X, HAR_MIMG)
-		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg})
+		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, HAR_MIMG)
+		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{shopMImg})
 		</insert>
 		
 		
@@ -262,9 +262,9 @@
 		<!-- 미용실 정보 수정 -->
 		<update id="updateHarInfo" parameterType="HairSalon">
 			UPDATE HAIR_SALON 
-			SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X, HAR_MIMG)
+			SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, HAR_MIMG)
 				= (
-					SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg} 
+					SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{shopMImg} 
 					FROM dual
 				)
 			WHERE BP_ID = #{bpId}
@@ -460,8 +460,8 @@
 	
 	<!-- 동물병원 기본 정보 기입 -->
 	<insert id="insertHosInfo" parameterType="Hospital">
-	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X, HOS_MIMG )
-	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg})
+	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, HOS_MIMG )
+	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{shopMImg})
 	</insert>
 
 
@@ -486,9 +486,9 @@
 	<!-- 동물병원 기본 정보 수정 -->
 	<update id="updateHosInfo" parameterType="Hospital">
 		UPDATE HOSPITAL 
-		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X, HOS_MIMG) 
+		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, HOS_MIMG) 
 		= (
-			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg}
+			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{shopMImg}
 			FROM dual
 		)
 		WHERE BP_ID = #{bpId}	
