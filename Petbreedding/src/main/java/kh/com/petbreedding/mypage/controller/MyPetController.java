@@ -27,7 +27,6 @@ import kh.com.petbreedding.mypage.model.service.MyPetService;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
 @Controller
-@RequestMapping("/Mypage/*")
 public class MyPetController {
 
 	@Autowired

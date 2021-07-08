@@ -26,7 +26,7 @@
 			<label>마이펫 수첩</label>
 			<br>
 			<br>
-			<a href="Mypage/petlist"><li>- 반려동물 수첩</li></a>
+			<a href="petlist"><li>- 반려동물 수첩</li></a>
 		</ul>
 	</div>
 	<div class="divborder">
