@@ -15,8 +15,6 @@
 			<result column="HAR_TEL" property="shopTel"/>
 			<result column="HOPEN_TIME" property="shopTime"/>
 			<result column="HAR_MINFO" property="shopMInfo"/>
-			<result column="Y" property="y"/>
-			<result column="X" property="x"/>
 			<result column="HAR_MIMG" property="shopMImg"/>
 			<result column="0" property="sun"/>
 			<result column="1" property="mon"/>
@@ -335,8 +333,6 @@
 		<result column="HOS_TEL" property="shopTel"/>
 		<result column="OPEN_TIME" property="shopTime"/>
 		<result column="HOS_MINFO" property="shopMInfo"/>
-		<result column="Y" property="y"/>
-		<result column="X" property="x"/>		
 		<result column="HOS_MIMG" property="shopMImg"/>
 		<result column="0" property="sun"/>
 		<result column="1" property="mon"/>

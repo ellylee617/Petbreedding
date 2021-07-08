@@ -56,8 +56,6 @@
 						<td colspan="2">
 							<input type="text" id="shopAddr" placeholder="주소" name="shopAddr" style="width: 150px">
 							<input type="button" class="basicBtn" onclick="execDaumPostcode1()" value="주소 검색"><br>
-							<input type="hidden" id="y" name="y">
-							<input type="hidden" id="x" name="x">
 							<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>	
 					</tr>
 					<tr>
@@ -144,8 +142,6 @@
 						<td colspan="2">
 							<input type="text" id="shopAddr" placeholder="주소" name="shopAddr" style="width: 150px" value="${vo.shopAddr }">
 							<input type="button" class="basicBtn" onclick="execDaumPostcode2()" value="주소 검색"><br>
-							<input type="hidden" id="y" name="y" value="${vo.y }">
-							<input type="hidden" id="x" name="x" value=${vo.x }>
 							<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>	
 					</tr>
 					<tr>
