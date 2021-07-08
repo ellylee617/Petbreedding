@@ -24,7 +24,7 @@
 	            <li><a href="${pageContext.request.contextPath}/uJoin">회원가입</a></li>
 	            <li id="revC"><a href="${pageContext.request.contextPath}/uLogin">예약확인/조회</a></li>
             </c:if>
-            <li><a href="#">고객센터</a></li>
+            <li><a href="${pageContext.request.contextPath}/UcustomerService">고객센터</a></li>
         </ul>
     </nav>  
     <div class="mainMenu">   
