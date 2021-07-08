@@ -20,9 +20,14 @@ public class ReviewDao {
 		return sqlSession.selectOne("Review.getRevNumFromSeq");
 	}
 	
-	public List<Review> reviewSelectList(String bp_Id) {
-		System.out.println("[세훈] @리뷰 조회 다오 bp_id : " + bp_Id);
-		return sqlSession.selectList("Review.reviewSelectList", bp_Id);
+	public List<Review> reviewSelectList(String bp_id) {
+		System.out.println("[세훈] @리뷰 조회 다오 bp_id : " + bp_id);
+		return sqlSession.selectList("Review.reviewSelectList", bp_id);
+	}
+	
+	public Review reviewSelectOne(String rev_num) {
+		System.out.println("[세훈] @사업자 리뷰 조회 다오 bp_id : " + rev_num);
+		return sqlSession.selectOne("Review.reviewSelectOne", rev_num);
 	}
 	
 	public int insertReview(Review rv) {

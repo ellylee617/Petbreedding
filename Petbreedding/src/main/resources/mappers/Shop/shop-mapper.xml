@@ -557,6 +557,8 @@
 		<!-- 미용실 리스트 -->
 		<select id="searchBpId" parameterType="string" resultType="string">
 			SELECT bp_id FROM HAIR_SALON where har_num=#{har_num}
+			union
+			SELECT bp_id FROM HOSPITAL where hos_num=#{har_num}
 		</select>
 		
 </mapper>

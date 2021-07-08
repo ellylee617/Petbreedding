@@ -302,11 +302,11 @@ public class ClientInfoCotroller {
 			if(result > 0) {
 				System.out.println("문의 등록 성공");
 				md.addAttribute("msg", "문의 등록 성공");
-				md.addAttribute("url","/mypage/ask");
+				md.addAttribute("url","/mypage/ask?user_num="+user_num+"");
 			} else {
 				System.out.println("문의 등록 실패");
 				md.addAttribute("msg", "문의 등록 실패");
-				md.addAttribute("url","/mypage/ask");
+				md.addAttribute("url","/mypage/ask?user_num="+user_num+"");
 			}
 			
 			return "common/redirect";

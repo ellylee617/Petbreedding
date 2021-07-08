@@ -4,7 +4,7 @@
 <mapper namespace="Review">
 	<resultMap type="Review" id="ReviewMap">
 		<id column="REV_NUM" property="revNum"/>
-		<result column="BP_IP" property="bpId"/>
+		<result column="BP_ID" property="bpId"/>
 		<result column="CL_NUM" property="clNum"/>
 		<result column="CL_NICKNAME" property="clNickName"/>
 		<result column="REV_CONT" property="revCont"/>
@@ -20,7 +20,12 @@
 		<![CDATA[
 			SELECT * FROM REVIEW WHERE BP_ID = #{bpId}
 		 ]]>
-		 
+	</select>
+	
+	<select id="reviewSelectOne" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT * FROM REVIEW WHERE REV_NUM = #{revNum}
+		 ]]>
 	</select>
 	
 	<insert id="insertReview" parameterType="Review">
@@ -39,6 +44,7 @@
 			select 'REV'||SEQ_REVIEW.NEXTVAL from dual
 		]]>
  	</select>
+ 	
 
  	
  	
