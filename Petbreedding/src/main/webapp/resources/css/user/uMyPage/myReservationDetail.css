@@ -55,7 +55,8 @@
 .rText{
     float: right;
     height: 280px;
-    margin-right: 150px;
+    width: 340px;
+    margin-right: 80px;
 }
 p.rOrderTitle{
     margin-top: 0;

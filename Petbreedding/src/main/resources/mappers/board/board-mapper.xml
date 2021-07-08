@@ -20,7 +20,8 @@
 	 </select>
 	
 	<select id="selectBoardList" parameterType="Board" resultMap="BoardMap">
-		SELECT * FROM BOARD
+		    SELECT * FROM BOARD 
+    		ORDER BY SUBSTR(BO_NUM, -3) DESC
 	</select>
 	
 	<select id="selectOneBoard" parameterType="Board" resultMap="BoardMap">

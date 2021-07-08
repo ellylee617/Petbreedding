@@ -21,7 +21,6 @@
 			SELECT * FROM REVIEW WHERE BP_ID = #{bpId}
 		 ]]>
 		 
-		 SELECT * 
 	</select>
 	
 	<insert id="insertReview" parameterType="Review">
