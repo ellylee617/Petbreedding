@@ -41,7 +41,11 @@
 		<typeAlias type="kh.com.petbreedding.board.model.vo.MyAskComment" alias="MyAskComment"/>
 		<typeAlias type="kh.com.petbreedding.bmypage.model.vo.MedicalType" alias="MedicalType"/>
 		<typeAlias type="kh.com.petbreedding.board.model.vo.B_comment" alias="boardComment"/>
+<<<<<<< HEAD
+		<typeAlias type="kh.com.petbreedding.mypage.model.vo.Notice" alias="notice"/>
+=======
 		<typeAlias type="kh.com.petbreedding.board.model.vo.ReviewComment" alias="ReviewComment"/>
+>>>>>>> 4fbfa9dceccb8fc420317863cfea7054d0a90ec6
 		<!-- TODO -->
 	</typeAliases>
 	
@@ -68,7 +72,11 @@
 		<mapper resource="mappers/BP/bPRev-mapper.xml"/>
 		<mapper resource="mappers/common/likes-mapper.xml"/>
 		<mapper resource="mappers/board/boardComment-mapper.xml"/>
+<<<<<<< HEAD
+		<mapper resource="mappers/Mypage/notice-mapper.xml"/>
+=======
 		<mapper resource="mappers/board/reviewComment-mapper.xml"/>
+>>>>>>> 4fbfa9dceccb8fc420317863cfea7054d0a90ec6
 	</mappers>
 	
 </configuration>
