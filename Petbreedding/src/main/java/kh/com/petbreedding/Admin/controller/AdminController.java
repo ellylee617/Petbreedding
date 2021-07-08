@@ -220,7 +220,7 @@ public class AdminController {
 		}
 		
 		
-		System.out.println("[세훈 : result : " + result);
+		System.out.println("[세훈] : result : " + result);
 		
 		out.println(result);
 		out.flush();
