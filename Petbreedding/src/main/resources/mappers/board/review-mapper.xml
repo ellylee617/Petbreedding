@@ -12,23 +12,24 @@
 		<result column="REV_DATE" property="revDate"/>
 		<result column="REV_VAL" property="revVal"/>
 		<result column="CMNT_CHK" property="comntChk"/>
+		<result column="DEPTH" property="depth"/>
 	</resultMap>
-	
 	
 	
 	<select id="reviewSelectList" parameterType="string" resultMap="ReviewMap">
 		<![CDATA[
 			SELECT * FROM REVIEW WHERE BP_ID = #{bpId}
 		 ]]>
+		 
+		 SELECT * 
 	</select>
-	
 	
 	<insert id="insertReview" parameterType="Review">
 		<![CDATA[
 			INSERT INTO REVIEW VALUES(
 			#{revNum}, #{bpId},
 			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
-			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}, 0
+			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}, 0, 0
 			)
 		]]>
  	</insert>
