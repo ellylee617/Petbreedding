@@ -31,7 +31,7 @@
 }
 .mainMenu .mainMenu1 {
     float:left;
-    margin-top:80px;
+    margin-top: 93px;
 }
 .mainMenu .mainMenu1 li{
     float: left;
@@ -42,7 +42,7 @@
 /*자유게시판/제휴문의*/
 .mainMenu .mainMenu2{
     float:right;
-    margin-top:80px;
+    margin-top: 93px;
 }
 .mainMenu .mainMenu2 li{
     float: left;
