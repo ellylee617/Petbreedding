@@ -40,6 +40,18 @@ function modal(id) {
         msTransform: 'translate(-50%, -50%)',
         webkitTransform: 'translate(-50%, -50%)'
     });
+    
+    
+    $("#changeLoc").click(function(){
+    	
+    	var selectlocCon = $("select[name=selectlocCon]").val();
+    	var selectChooseLoc = $("select[name=selectChooseLoc]").val();
+    	
+    	$(".nowLocation span").text(selectlocCon+">"+selectChooseLoc);
+    	
+        bg.remove();
+        modal.style.display = 'none';
+    });
 }
 
 // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
@@ -61,7 +73,6 @@ document.getElementById('Loc2').addEventListener('click', function () {
 //시.도 선택후 시.군.구 선택창
 function categoryChange(e) {
 	
-	console.log(e);
 	
     var city1 = ["종로구", "중구", "용산구", "성동구","광진구", "동대문구", "중랑구", "성북구", "강북구", "도봉구", "노원구","은평구", "서대문구", "마포구", "양천구","강서구", "구로구","금천구", "영등포구", "동작구", "관악구","서초구", "강남구", "송파구","강동구"];
     var city2 = ["중구", "서구", "동구", "영도구","부산진구", "동래구", "남구", "북구","강서구", "해운대구", "사하구", "금정구","연제구", "수영구", "사상구"];
@@ -111,5 +122,11 @@ function categoryChange(e) {
     }
     
 }
+
+
+
+
+
+
 
 

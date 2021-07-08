@@ -32,7 +32,7 @@
                        <label for="tabmenu1">동물병원</label>
                         <div class="tabCon">
                        <div class="nowLocation">
-               			 <span> 위치를 설정해 주세요 </span><a href="#" id="Loc1"><i class="fas fa-map-marker-alt loc" ></i></a>
+               			 <span> 위치를 설정해 주세요 <span></span> <span></span> </span><a href="#" id="Loc1"><i class="fas fa-map-marker-alt loc" ></i></a>
             			</div>
                             <form action="shopList" method="get">
                             <input name="keyword" type="text" class="tabInput" placeholder="찾으시는 동물병원을 입력해주세요.">
@@ -46,7 +46,7 @@
                        <label for="tabmenu2">미용실</label>
                         <div class="tabCon">
                        <div class="nowLocation">
-                	<span> 위치를 설정해 주세요 </span><a href="#" id="Loc2"><i class="fas fa-map-marker-alt loc" ></i></a>
+                       <span> 위치를 설정해 주세요 <span></span> <span></span> </span><a href="#" id="Loc2"><i class="fas fa-map-marker-alt loc" ></i></a>
            			 </div>
                              <form action="shopList" method="get">
                              <input name="keyword" type="text" class="tabInput" placeholder="찾으시는 미용실을 입력해주세요.">
@@ -79,7 +79,6 @@
 	</div>
 
        <!-- MODAL -->
-       <form action="#">
         <div id="my_modal">
             <p>주소 검색</p>
             <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
@@ -110,15 +109,7 @@
                 <button id="changeLoc">확인</button>
             </div>
         </div>
-	        
-	        <c:if test="${shopType eq 1}">
-	        <input type="hidden" name="shopType" value="1">
-	        </c:if>
-	        <c:if test="${shopType eq 0}">
-	        <input type="hidden" name="shopType" value="0">
-	        </c:if>
         
-     	</form> 
 
     <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/common/index.js"></script>
