@@ -100,8 +100,9 @@
 		</select>
 		
 
-		<!-- 미용실 리스트 : 별점순  selectHarListLikes-->
+		<!-- 미용실 리스트 : 별점순  selectHarListRev-->
 		<!-- 검색 기능 추가완료 -->
+		<!-- 주소 검색 추가 완료 -->
 		<select id="selectHarListRev" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -127,6 +128,49 @@
         WHERE #{start} <= R AND R <=#{end}
 			]]>
 		</select>
+		
+		<!-- TODO -->
+		<!-- 미용실 리스트 : 인기순(찜)  selectHarListLikes-->
+		<!-- 검색 기능 -->
+		<!-- 주소 검색 -->
+		<select id="selectHarListLikes" parameterType="page" resultMap="HairSalon">
+		<![CDATA[
+	    SELECT B.*
+			FROM(
+	SELECT ROWNUM R, A.*
+		FROM (
+		    SELECT har_hl.*, BR.AVG_REV_VAL
+		    FROM
+		    (
+		        SELECT har.*, hl.likes
+		        FROM hair_salon HAR
+		        LEFT JOIN
+		            (SELECT h.har_num, COUNT(*) LIKES
+		                FROM hair_salon H
+		                JOIN likes L
+		                ON (h.har_num = l.har_num)
+		                GROUP BY h.har_num
+		        ) HL
+		        ON HAR.har_num = HL.har_num
+		    ) har_hl
+		    LEFT JOIN (
+		         SELECT BP_ID, AVG(REV_VAL) AVG_REV_VAL
+		                FROM(
+		                SELECT B.BP_ID, R.REV_VAL
+		                FROM business_partner B
+		                LEFT JOIN review R
+		                ON (b.bp_id = r.bp_id)
+		                )  
+		                group by BP_ID
+		    ) BR
+		    ON (br.bp_id = har_hl.bp_id AND har_hl.har_name LIKE '%' ||  #{keyword} || '%' AND har_hl.har_addr LIKE #{locCon} || '%' AND har_hl.har_addr LIKE '%' ||  #{chooseLoc} || '%')
+		                        ) A
+					        ORDER BY LIKES DESC NULLS LAST
+								) B
+			WHERE #{start} <= R AND R <=#{end}
+			]]>
+		</select>
+		
 		
 		 	<!-- 사업장 평균  별점 -->
 		 	<select id="selectRevVal" parameterType="string" resultType="string">
@@ -207,10 +251,6 @@
 		
 		<!-- 미용실 울트라콜 리스트 : 리뷰 건수 -->
 		
-		
-		
-				
-		<!-- 미용실 리스트 : 거리순 selectHarListNear-->
 		
 		
 		
@@ -428,7 +468,7 @@
 			]]>
 		</select>
 		
-		<!-- 동물병원 리스트 : 거리순  -->
+		<!-- 동물병원 리스트 : 인기순(찜)  -->
 		<!-- TODO -->
 		
 		<!-- 동물병원 리스트 : 별점순  -->

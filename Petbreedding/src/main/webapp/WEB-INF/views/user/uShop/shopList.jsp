@@ -37,7 +37,7 @@
             <hr id="storeLine">
             <div class="selectOpt">
                 <input id="newRadio" type="radio" checked name="selectOpt"><label for="newRadio">최신순</label>
-                <input id="distanceRadio" type="radio"  name="selectOpt"><label for="distanceRadio">거리순</label>
+                <input id="distanceRadio" type="radio"  name="selectOpt"><label for="distanceRadio">인기순</label>
                 <input id="revRadio" type="radio" name="selectOpt"><label for="revRadio">별점순</label>
             </div>
             
@@ -149,9 +149,9 @@
                 </c:forEach>
                     </div>
                     
-              <!-- 동물병원 거리순 정렬 -->
+              <!-- 동물병원 인기순 정렬 -->
               <div id="distanceList" class="storeS" style="display: none;">
-              <h1>동물병원 거리순 정렬 작업중</h1>
+              <h1>동물병원 인기순 정렬 작업중</h1>
               </div>
               
               <!-- 동물병원 별점순 정렬 -->
@@ -265,7 +265,7 @@
             <hr id="storeLine">
             <div class="selectOpt">
                 <input type="radio" checked id="newRadio" name="selectOpt"><label for="newRadio">최신순</label>
-                <input type="radio" id="distanceRadio"  name="selectOpt" ><label for="distanceRadio">거리순</label>
+                <input type="radio" id="distanceRadio"  name="selectOpt" ><label for="distanceRadio">인기순</label>
                  <input type="radio" id="revRadio" name="selectOpt"><label for="revRadio">별점순</label>
             </div>
             
@@ -402,9 +402,68 @@
                 </c:forEach>
             </div>
             
-            <!-- 미용실 거리순 정렬 -->
-            <div id="distanceList" class="storeS" style="display: none;">
-            <h1>거리순 정렬 작업 중</h1>
+            <!-- 미용실 인기순 정렬 -->
+            <div id="likeList" class="storeS" style="display: none;">
+               <c:forEach items="${likesHarList}" var="item" varStatus="status" >
+                <ul>
+                    <div class="Store">                      
+                       <li class="storeList">
+                       
+                            <div class="storeList_inner">
+                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
+                                <div class="storeList_etc_area">
+                                    <a href="#">리뷰<small> 
+                                    <c:if test="${item.avgRevVal ge 0 && item.avgRevVal lt 1}">
+                                            &nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                    <c:if test="${item.avgRevVal ge 1 && item.avgRevVal lt 2}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 2 && item.avgRevVal lt 3}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 3 && item.avgRevVal lt 4}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal ge 4 && item.avgRevVal lt 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                       <c:if test="${item.avgRevVal eq 5}">
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>
+                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                       </c:if>
+                                    <c:if test="${!empty countRev[status.index] }">
+                                       &nbsp;${countRev[status.index]}개 
+                                    </c:if>
+                                    <c:if test="${empty countRev[status.index]}">
+                                    &nbsp;0개 
+                                    </c:if>
+                                    </small>
+                                    </a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                  <a href="#">찜하기 <small> ${count[status.index]}</small></a>
+                                </div>
+                                 <form class="frmShopInfo" >
+                                 <div class="storeList_button">
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                </div>
+                               </form>
+                            </div>                                                            
+                        </li>
+                    </div>
+                </ul>
+                </c:forEach>
             </div>
             
             <!-- 미용실 별점순 정렬 -->
