@@ -36,8 +36,6 @@
 		<result column="HAR_TEL" property="shopTel"/>
 		<result column="HOPEN_TIME" property="shopTime"/>
 		<result column="HAR_MINFO" property="shopMInfo"/>
-		<result column="Y" property="y"/>
-		<result column="X" property="x"/>
 	</resultMap>
 
 	<!-- 찜하기 등록  -->
@@ -52,7 +50,7 @@
 	
 	<!-- 찜 조회 -->
 	<select id="selectLike" parameterType="string" resultMap="like">
-		SELECT L.*, H.BP_ID, H.HAR_NAME, H.HAR_MINFO, H.Y, H.X , B.BP_TYPE, I.har_img
+		SELECT L.*, H.BP_ID, H.HAR_NAME, H.HAR_MINFO, B.BP_TYPE, I.har_img
 		FROM LIKES L
 		RIGHT JOIN HAIR_SALON H
 		ON L.har_num = H.har_num
@@ -62,7 +60,7 @@
 		ON L.har_num = I.har_num
 		WHERE CL_NUM = #{cl_num}
 		union
-		SELECT L.*, H.BP_ID, H.HOS_NAME, H.HOS_MINFO, H.Y, H.X , B.BP_TYPE, I.hos_img
+		SELECT L.*, H.BP_ID, H.HOS_NAME, H.HOS_MINFO, B.BP_TYPE, I.hos_img
 		FROM LIKES L
 		RIGHT JOIN HOSPITAL H
 		ON L.hos_num = H.hos_num

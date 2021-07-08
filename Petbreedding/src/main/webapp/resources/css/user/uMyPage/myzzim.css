@@ -43,6 +43,7 @@
 
 }
 .zzimlist .subdiv .title p{
+	width: 400px;
    display: inline-block;
    margin-left: 30px;
    margin-top: -80px;
