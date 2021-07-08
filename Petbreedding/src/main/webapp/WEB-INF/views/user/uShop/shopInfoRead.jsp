@@ -217,10 +217,8 @@
                         <div class="storeInfo">
                             <p>${shopInfo.shopName }</p>
                             <p>전화번호 : ${shopInfo.shopTel }</p>
-                            <p>주소 : ${shopInfo.shopAddr }</p>
-                            <input type="hidden" id="x" value="${shopInfo.x }" >
-                            <input type="hidden" id="y" value="${shopInfo.y }" >
-                            
+                            <p>주소: ${shopInfo.shopAddr }</p>
+                            <input type="hidden" id="shopAddr" value="${shopInfo.shopAddr }">
                         </div>
                     </div>
                 </div>
