@@ -14,6 +14,7 @@
 		<result column="SHOP_IMG" property="shopImg"/>
 		<result column="BO_TITLE" property="boTitle"/>
 		<result column="QNA_TITLE" property="qnaTitle"/>
+		<result column="NOTICE_TIME" property="notTime"/>
 	</resultMap>
 	
 	<select id="getNoticeList" resultMap="notice">
@@ -38,37 +39,37 @@
 	
 	<insert id="inReservaion">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a1', 
-		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0)
+		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<insert id="inPay">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a2', 
-		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0)
+		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<insert id="inUnreadChat">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a3', 
-		#{notReceiver}, #{notPublisher}, null, '0', 0)
+		#{notReceiver}, #{notPublisher}, null, '0', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<insert id="inBoard">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a4', 
-		#{notReceiver}, null, #{refNum}, '2', 0)
+		#{notReceiver}, null, #{refNum}, '2', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<insert id="inQna">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a5', 
-		#{notReceiver}, null, #{refNum}, '3', 0)
+		#{notReceiver}, null, #{refNum}, '3', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 		
 	<insert id="inPointSave">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a6', 
-		#{notReceiver}, null, #{refNum}, '1', 0)
+		#{notReceiver}, null, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<insert id="inPointUsing">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a7', 
-		#{notReceiver}, null, #{refNum}, '1', 0)
+		#{notReceiver}, null, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<update id="updateReadState">
