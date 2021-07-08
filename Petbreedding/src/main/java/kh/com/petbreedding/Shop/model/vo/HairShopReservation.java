@@ -16,7 +16,6 @@ public class HairShopReservation {
 	private String res_time; //예약시간( HH:MM)
 	private String style_num2; //추가 스타일 번호
 	private String har_name;
-	private String res_date2; //검색일2
 	private Client client;
 	private MyPet pet;
 	private Style style;
@@ -87,12 +86,6 @@ public class HairShopReservation {
 	public void setHar_name(String har_name) {
 		this.har_name = har_name;
 	}
-	public String getRes_date2() {
-		return res_date2;
-	}
-	public void setRes_date2(String res_date2) {
-		this.res_date2 = res_date2;
-	}
 	public Client getClient() {
 		return client;
 	}
@@ -146,7 +139,7 @@ public class HairShopReservation {
 		return "HairShopReservation [har_rnum=" + har_rnum + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", style_num=" + style_num + ", har_num=" + har_num + ", res_date="
 				+ res_date + ", res_status=" + res_status + ", res_time=" + res_time + ", style_num2=" + style_num2
-				+ ", har_name=" + har_name + ", res_date2=" + res_date2 + ", client=" + client + ", pet=" + pet
+				+ ", har_name=" + har_name + ", client=" + client + ", pet=" + pet
 				+ ", style=" + style + ", hairSalon=" + hairSalon + ", startIndex=" + startIndex + ", cntPerPage="
 				+ cntPerPage + ", name=" + name + ", bp_id=" + bp_id + "]";
 	}

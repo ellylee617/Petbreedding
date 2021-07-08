@@ -12,7 +12,6 @@ public class HospitalReservation {
 	private String med_num;		//예약메뉴번호
 	private String hos_num;		//동물병원 번호
 	private String hos_date;	//예약날짜
-	private String hos_date2;	//예약 검색날짜
 	private String med_num2;	//예약메뉴번호2
 	private int hos_status; 	//예약 상태
 	private String hos_time; 	//예약 시간
@@ -26,7 +25,7 @@ public class HospitalReservation {
 	public String toString() {
 		return "HospitalReservation [hos_rnum=" + hos_rnum + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", med_num=" + med_num + ", hos_num=" + hos_num + ", hos_date=" + hos_date
-				+ ", hos_date2=" + hos_date2 + ", med_num2=" + med_num2 + ", hos_status=" + hos_status + ", hos_time="
+				+ ", med_num2=" + med_num2 + ", hos_status=" + hos_status + ", hos_time="
 				+ hos_time + ", pet=" + pet + ", hospital=" + hospital + ", medical=" + medical + ", client=" + client
 				+ ", name=" + name + ", bp_id=" + bp_id + "]";
 	}
@@ -47,9 +46,6 @@ public class HospitalReservation {
 	}
 	public String getHos_date() {
 		return hos_date;
-	}
-	public String getHos_date2() {
-		return hos_date2;
 	}
 	public String getMed_num2() {
 		return med_num2;
@@ -95,9 +91,6 @@ public class HospitalReservation {
 	}
 	public void setHos_date(String hos_date) {
 		this.hos_date = hos_date;
-	}
-	public void setHos_date2(String hos_date2) {
-		this.hos_date2 = hos_date2;
 	}
 	public void setMed_num2(String med_num2) {
 		this.med_num2 = med_num2;

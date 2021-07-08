@@ -58,13 +58,13 @@
 }
 
 /* 내 이름에 hover시 */
-#uHover:hover #myHover{
+#userName:hover #myHover{
 	display:block;
 }
 
 #myHover{
 	display:none;
-	background-color : #e2e2e2;
+	background-color : rgba(251,251,251,0.4);
 	width: 80px;
 	position: absolute;
     right: 280px;
