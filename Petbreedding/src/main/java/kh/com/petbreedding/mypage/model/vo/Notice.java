@@ -14,8 +14,14 @@ public class Notice {
 	private String shopImg;
 	private String boTitle;
 	private String qnaTitle;
+	private String notTime;
 	
-	
+	public String getNotTime() {
+		return notTime;
+	}
+	public void setNotTime(String notTime) {
+		this.notTime = notTime;
+	}
 	public String getShopNum() {
 		return shopNum;
 	}
