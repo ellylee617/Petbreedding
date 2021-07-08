@@ -31,12 +31,14 @@
                        <input type="radio" name="tabmenu" checked id="tabmenu1" class="Tmenu">
                        <label for="tabmenu1">동물병원</label>
                         <div class="tabCon">
-                       <div class="nowLocation">
-               			 <span> 위치를 설정해 주세요 <span></span> <span></span> </span><a href="#" id="Loc1"><i class="fas fa-map-marker-alt loc" ></i></a>
+                        <form action="shopList" method="get">
+                       <div class="nowLocation" id="nowLocation1">
+               			 <span>위치를 설정해 주세요. </span> <span></span> <span></span> <a href="#" id="Loc1"><i class="fas fa-map-marker-alt loc" ></i></a>
             			</div>
-                            <form action="shopList" method="get">
                             <input name="keyword" type="text" class="tabInput" placeholder="찾으시는 동물병원을 입력해주세요.">
                              <input name="shopType" type="hidden" value="1"/>
+                             <input name="selectlocCon" id="selectlocCon1" value="" type="hidden" />
+                             <input name="selectChooseLoc" id="selectChooseLoc1" value="" type="hidden" />
                             <button class="searchB"><i class="fas fa-search SRB"></i></button>
                             </form>
                         </div>
@@ -45,14 +47,16 @@
                        <input type="radio" name="tabmenu" id="tabmenu2"  class="Tmenu">
                        <label for="tabmenu2">미용실</label>
                         <div class="tabCon">
-                       <div class="nowLocation">
-                       <span> 위치를 설정해 주세요 <span></span> <span></span> </span><a href="#" id="Loc2"><i class="fas fa-map-marker-alt loc" ></i></a>
-           			 </div>
-                             <form action="shopList" method="get">
-                             <input name="keyword" type="text" class="tabInput" placeholder="찾으시는 미용실을 입력해주세요.">
-                             <input name="shopType" type="hidden" value="0"/>
-                             <button type="submit" class="searchB"><i class="fas fa-search SRB"></i></button>
-                             </form>
+                        <form action="shopList" method="get">
+	                       <div class="nowLocation" id="nowLocation0">
+	               			 <span>위치를 설정해 주세요. </span> <span></span> <span></span> <a href="#" id="Loc2"><i class="fas fa-map-marker-alt loc" ></i></a>
+	            			</div>
+	                             <input name="keyword" type="text" class="tabInput" placeholder="찾으시는 미용실을 입력해주세요.">
+	                             <input name="shopType" type="hidden" value="0"/>
+	                             <input name="selectlocCon" id="selectlocCon0" value="" type="hidden" />
+                            	 <input name="selectChooseLoc" id="selectChooseLoc0" value="" type="hidden" />
+	                             <button type="submit" class="searchB"><i class="fas fa-search SRB"></i></button>
+                        </form>
                         </div>  
                     </li>
                </ul>
@@ -109,7 +113,6 @@
                 <button id="changeLoc">확인</button>
             </div>
         </div>
-        
 
     <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/common/index.js"></script>

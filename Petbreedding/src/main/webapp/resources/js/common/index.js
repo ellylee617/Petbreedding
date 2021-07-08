@@ -47,7 +47,23 @@ function modal(id) {
     	var selectlocCon = $("select[name=selectlocCon]").val();
     	var selectChooseLoc = $("select[name=selectChooseLoc]").val();
     	
-    	$(".nowLocation span").text(selectlocCon+">"+selectChooseLoc);
+    	console.log(selectlocCon);
+    	console.log(selectChooseLoc);
+    	
+//    	$(".nowLocation span").text(selectlocCon+">"+selectChooseLoc);
+    	
+    	$("#nowLocation1 span:eq(0)").text(selectlocCon);
+    	$("#nowLocation1 span:eq(1)").text(" > ");
+    	$("#nowLocation1 span:eq(2)").text(selectChooseLoc);
+    	$("#selectlocCon1").val(selectlocCon);
+    	$("#selectChooseLoc1").val(selectChooseLoc);
+    	
+    	$("#nowLocation0 span:eq(0)").text(selectlocCon);
+    	$("#nowLocation0 span:eq(1)").text(" > ");
+    	$("#nowLocation0 span:eq(2)").text(selectChooseLoc);
+    	$("#selectlocCon0").val(selectlocCon);
+    	$("#selectChooseLoc0").val(selectChooseLoc);
+    	
     	
         bg.remove();
         modal.style.display = 'none';
