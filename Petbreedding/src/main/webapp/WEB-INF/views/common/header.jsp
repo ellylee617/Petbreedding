@@ -34,7 +34,7 @@
                 <li><a href="#">소개</a></li>
                 <li><a href="${pageContext.request.contextPath}/shopList?shopType=1">동물병원</a></li>
                 <li><a href="${pageContext.request.contextPath}/shopList?shopType=0">미용실</a></li>
-                <li><a href="consult.html">1:1수의사 상담</a></li>
+              <li><a href="Mypage/mbtipet">멍비티아이</a></li>
             </ul>
         </nav>
         <nav class="mainMenu2">
