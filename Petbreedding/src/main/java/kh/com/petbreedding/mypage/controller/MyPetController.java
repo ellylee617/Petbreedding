@@ -161,5 +161,14 @@ public class MyPetController {
 		return "redirect:petlist";
 
 	}
+	
+	//멍비티아이
+	
+	@RequestMapping(value = "mbtipet", method = RequestMethod.GET)
+	public String mbti() throws Exception {
+		return "user/uMyPage/dogmbti";
+
+	}
+	
 
 }
