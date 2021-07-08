@@ -48,7 +48,7 @@ public class ReservationDao {
 	public List<HairSalon> checkDayOff(String har_num){
 		return sqlSession.selectList("ShopRev.checkDayOff", har_num);
 	}
-	
+
 	
 	
 	//동물병원

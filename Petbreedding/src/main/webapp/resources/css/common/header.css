@@ -56,3 +56,21 @@
     color: var(--hover-color);
     cursor: pointer;
 }
+
+/* 내 이름에 hover시 */
+#userName:hover #myHover{
+	display:block;
+}
+
+#myHover{
+	display:none;
+	background-color : rgba(251,251,251,0.4);
+	width: 80px;
+	position: absolute;
+    right: 280px;
+    padding: 5px;
+}
+#myHover p{
+	text-align:center;
+	font-size:14px;
+}

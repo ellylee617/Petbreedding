@@ -46,6 +46,10 @@
 		 WHERE BO_NUM = #{boNum}
 	 </update>
 	 
+	 <update id="updateBoard" parameterType="Board">
+	 	UPDATE BOARD SET BO_TITLE = #{boTitle}, BO_CONT = #{boCont}, BO_IMG = #{boImg} WHERE BO_NUM #{boNum}
+	 </update>
+	 
 	  <!-- 게시글 삭제 -->
 	 <delete id="deleteBoard" parameterType="string">
 	 	DELETE FROM BOARD WHERE BO_NUM = #{boNum}

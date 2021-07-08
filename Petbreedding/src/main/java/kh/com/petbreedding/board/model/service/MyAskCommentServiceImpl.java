@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.board.model.dao.MyAskCommentDao;
+import kh.com.petbreedding.board.model.dao.MyAskDao;
 import kh.com.petbreedding.board.model.vo.MyAskComment;
 
 @Service("myAskCommentService")
@@ -73,6 +74,43 @@ public class MyAskCommentServiceImpl implements MyAskCommentService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public int myAskCommentDelete(String qnac_num, String qna_num) {
+		int macDelResult = -1;
+		int qnarChkUpdResult = -1;
+		
+		System.out.println("[세훈] @문의사항 댓글 삭제 서비스 : " + qnac_num);
+		try {
+			macDelResult = myAskCommentDao.myAskCommentDelete(qnac_num);
+			qnarChkUpdResult = myAskCommentDao.updateQnarChk(qna_num);
+			
+			if(qnarChkUpdResult > 0) {
+				System.out.println("문의 사항 댓글 체크 업데이트 성공");
+			} else {
+				System.out.println("문의 사항 댓글 체크 업데이트 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return macDelResult;
+		
+	}
+
+	//	문의 사항 댓글 수정
+	@Override
+	public int myAskCommentUpdate(MyAskComment maComment) {
+		int macUpdResult = -1;
+		
+		try {
+			macUpdResult = myAskCommentDao.myAskCommentUpdate(maComment);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return macUpdResult;
 	}
 
 

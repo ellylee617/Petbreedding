@@ -31,6 +31,7 @@ import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.vo.B_comment;
 import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
@@ -219,7 +220,7 @@ public class AdminController {
 		}
 		
 		
-		System.out.println("[세훈 : result : " + result);
+		System.out.println("[세훈] : result : " + result);
 		
 		out.println(result);
 		out.flush();
@@ -259,6 +260,45 @@ public class AdminController {
 			System.out.println("[세훈] @문의 댓글 달기 컨트롤러 maComment : " + maComment.toString());
 			myAskCommentService.myAskCommentInsert(maComment);
 			
+		}
+	}
+	
+	// 게시판 댓글 수정
+	@RequestMapping(value = "/macUpdate")
+	@ResponseBody
+	public void macUpdate(String qnac_num, String qnac_cont) {
+		
+		System.out.println("[세훈] @문의 댓글 수정 컨트롤러 qnac_num : " + qnac_num);
+		System.out.println("[세훈] @문의 댓글 수정 컨트롤러 qnac_cont : " + qnac_cont);
+		
+		MyAskComment maComment = new MyAskComment();
+		maComment.setQnacNum(qnac_num);
+		maComment.setQnacCont(qnac_cont);
+		
+		int macUpdResult = myAskCommentService.myAskCommentUpdate(maComment);
+		
+		if(macUpdResult > 0) {
+			System.out.println("[관리자] 문의 댓글 수정 성공");
+		} else {
+			System.out.println("[관리자] 문의 댓글 수정 실패");
+		}
+		
+	}
+	
+	// 관리자 문의사항 댓글 삭제
+	@RequestMapping(value = "/macDelete")
+	@ResponseBody
+	public void macDelete(String qnac_num, String qna_num) {
+		
+		System.out.println("[세훈] @문의사항 댓글 삭제 컨트롤러 qnac_num : " + qnac_num);
+		System.out.println("[세훈] @문의사항 댓글 삭제 컨트롤러 qna_num : " + qna_num);
+		
+		int macDelResult = myAskCommentService.myAskCommentDelete(qnac_num, qna_num);
+		
+		if(macDelResult > 0) {
+			System.out.println("게시판 댓글 삭제 성공");
+		} else {
+			System.out.println("게시판 댓글 삭제 실패");
 		}
 		
 	}

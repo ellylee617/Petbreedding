@@ -61,7 +61,7 @@ public class shopController {
 	private BpReservationService bprevService;
 
 	@Autowired
-	LikesService likeService;
+	private LikesService likeService;
 	
 	// 사업장 리스트
 	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
@@ -266,8 +266,9 @@ public class shopController {
 				countList.add(ctaCountRev);
 				mv.addObject("ctaCountRev",countList);
 				System.out.println("--------병원 count-----"+count);
+				
 				list.add(count);
-				mv.addObject("count", list);
+				mv.addObject("count2", list);
 				
 				System.out.println("울트라콜 병원 리스트(평균 별점 포함)" + ultra2);
 			}
@@ -308,7 +309,6 @@ public class shopController {
 			, ModelAndView mv
 			, HttpServletRequest request
 			, HttpSession session) throws Exception{
-//		System.out.println("[세훈]");
 		System.out.println("shopPage 컨트롤러 진입");
 		String bpId = request.getParameter("bpId");
 		ctaService.delcta(bpId);
@@ -390,14 +390,8 @@ public class shopController {
 
 		}
 
-		// 리뷰 리스트
-		List<Review> reviewList = reviewService.reviewSelectList(bpId, STARTPAGE, 5);
-		System.out.println("리뷰 리스트 가져왔다면 보여줘 --> " + reviewList);
-		mv.addObject("reviewList", reviewList);
-
 		mv.setViewName("/user/uShop/shopInfoRead");
 
-		System.out.println("컨트롤러 끝");
 		return mv;
 	}
 

@@ -66,6 +66,29 @@
 	    </div>
 	</div>
 	
+	<!-- MODAL COMMENT -->
+	<div id="my_modal_comment">
+	   <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn_comment"></i></a>
+	   <div id="locCon_comment">
+	       <h1>삭제하시겠습니까?</h1>
+	       <button id="goTOPay_comment">바로 삭제할게요</button>
+	        <button id="nextTime_comment">다음에 할게요</button>
+	    </div>
+	</div>
+	
+	<!-- MODAL COMMENT UPDATE -->
+	<div id="my_modal_updComment">
+		<a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnUpdComment"></i></a>
+		<div id="locCon_updComment">
+			<h1 class="bocUpdTitle">수정하시겠습니까?</h1>
+			<input type="text" id="replyUpdCont" name="getBocCont">
+			<button id="goTOPay_updComment">바로 수정할게요</button>
+			<button id="nextTime_updComment">다음에 할게요</button>
+			<input type="hidden" id="coIdVar">
+	    </div>
+	</div>
+	
+	
 	</div>	 
 	<script type="text/javascript">
 		console.log("스크립트 시작");
@@ -74,7 +97,6 @@
 		
 		function maCommentInit(qnaNum) {
 			console.log("조회 함수 들어옴");
-// 			var qnaNum = '${MyAsk.qnaNum}';
 			console.log(qnaNum);
 			$.ajax({
 				
@@ -89,18 +111,25 @@
 					console.log(json);
 					console.log(jsonLength);
 					if(jsonLength > 0) {
-							$("#maCommentText").hide();
-							$("#maCommentBtn").hide();
+						
 							
-						$.each(json, function(index, item) {
+					$.each(json, function(index, item) {
+					
+// 						$("#maCommentText").hide();
+// 						$("#maCommentBtn").hide();
 							
-							div +=	"<div>"
+							div +=	
+									"<div class='maCommentUpdDelFrm'>"
+									+"<div class='replyCont'>"
 									+item.qnacCont
 									+"</div>"
-									+"<form id='maCommentFrm' class='maCommentFrm'>"
-									+"<button class='basicBtn' id='maCommentUpBtn'>댓글수정</button>"
-									+"<button class='basicBtn' id='maCommentDelBtn'>댓글삭제</button>"
-									+"</form>";
+									+"<div>"
+									+"<button class='basicBtn upDelBtn' id='maCommentUpBtn' name='"+item.qnacNum+"'>댓글수정</button>"
+									+"<button class='basicBtn upDelBtn' id='maCommentDelBtn' name='"+item.qnacNum+"'>댓글삭제</button>"
+									+"</div>"
+									+"</div>";
+									
+
 						});
 					} else {
 						div += "<form id='maCommentFrm' class='maCommentFrm'>"
@@ -113,44 +142,111 @@
 					
 					$("#replyArea").html(div);
 					
-					$("#maCommentBtn").click(function() {
-						console.log("[세훈] @문의사항 댓글 등록 ajax 들어왔음");
-						var queryString = $("#maCommentFrm").serialize();
-						console.log(queryString);
-						$.ajax({
-							url: 'macWrite',
-							type: 'post',
-							data: queryString,
-							success: function(qnaNum) {
-								maCommentInit(qnaNum);
-							},
-							
-							error : function(request, status, error) {
-								alert("code: " + request.status + "\n"
-										+ "message: "
-										+ request.responseText + "\n"
-										+ "error: " + error);
-							}
-							
-						});
+					//	댓글 삭제 버튼 클릭
+					$("#maCommentDelBtn").on("click", function() {
+						console.log("댓글 삭제 클릭 됨")
+						var qnacNumVar = $(this).attr("name");	//	클릭된 행의 name
+						console.log(qnacNumVar);
+						$("#goTOPay_comment").attr("name", qnacNumVar);
+						getCommentModal();
+					});
+					
+					//	댓글 등록 버튼 클릭
+					$("#maCommentBtn").on("click", function() {
+						macWrite();
+					});
+					
+					//	댓글 수정 버튼 클릭
+					$("#maCommentUpBtn").on("click", function() {
+						console.log("댓글 수정 클릭 됨");
+						var qnacNumVar = $(this).attr("name");	// 클릭된 행의 name
+						console.log(qnacNumVar);
+						$("#goTOPay_updComment").attr("name", qnacNumVar);
+						getUpdCommentModal();
 					});
 					
 					},
 					
-				error : function(request, status, error) {
+					error : function(request, status, error) {
 					alert("code: " + request.status + "\n" + "message: "
 							+ request.responseText + "\n" + "error: "
 							+ error);
 				}
-					
-					
 			});
 			
-			console.log("함수 댓글 조회 끝");
+			console.log("함수 댓글 조회 함수 끝");
 		}
 		
-
-		console.log("스크립트 끝");
+		function macWrite() {
+			console.log("[세훈] @문의사항 댓글 등록 ajax 들어왔음");
+			var queryString = $("#maCommentFrm").serialize();
+			console.log(queryString);
+			$.ajax({
+				url: 'macWrite',
+				type: 'post',
+				data: queryString,
+				success: function() {
+					maCommentInit(qnaNum);
+				},
+				
+				error : function(request, status, error) {
+					alert("code: " + request.status + "\n"
+							+ "message: "
+							+ request.responseText + "\n"
+							+ "error: " + error);
+				}
+				
+			});
+			
+		}
+		
+		$("#goTOPay_comment").on("click", function() {
+			console.log("관리자 문의사항 댓글 삭제 들어옴");
+			var qnacDelNum = $(this).attr("name");
+			console.log(qnacDelNum);
+			
+			$.ajax({
+				url: "macDelete"
+				,type: "get"
+				,data: {qnac_num : qnacDelNum, qna_num : qnaNum}
+				,success: function() {
+					maCommentInit(qnaNum);
+				}
+				,error : function(request, status, error) {
+					alert("code: " + request.status + "\n"
+							+ "message: "
+							+ request.responseText + "\n"
+							+ "error: " + error);
+				}
+			});
+			
+// 			$("#maCommentText").show();
+// 			$("#maCommentBtn").show();
+			
+		});
+		
+		
+		$("#goTOPay_updComment").on("click", function() {
+			var qnacNum = $(this).attr("name");	//	조회 함수 진행할 때 바꿔준 name 가져오기
+			var qnacCont = $("#replyUpdCont").val();
+			console.log(qnacNum);
+			console.log(qnacCont);
+			
+			$.ajax({
+				url: "macUpdate"
+				,type: "post"
+				,data: {qnac_num : qnacNum, qnac_cont : qnacCont}
+				,success: function() {
+					maCommentInit(qnaNum);
+				}
+				,error : function(request, status, error) {
+					alert("code: " + request.status + "\n"
+							+ "message: "
+							+ request.responseText + "\n"
+							+ "error: " + error);
+				}
+			});
+		});
 	</script>
 <script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
 <script type="text/javascript" src="${path}/resources/js/admin/aBoard/mBoardCon.js"></script>

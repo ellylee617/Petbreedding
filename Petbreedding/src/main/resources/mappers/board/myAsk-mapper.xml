@@ -56,6 +56,10 @@
 		SELECT BP_NAME FROM BUSINESS_PARTNER WHERE BP_ID = #{userNum}
 	</select>
 	
+	<update id="updateQnarChk" parameterType="string">
+		UPDATE QNA_BOARD SET QNAR_CHK = 0 WHERE QNA_NUM = #{qnaNum}
+	</update>
+	
 	<insert id="MyAskInsert" parameterType="MyAsk">
 		<![CDATA[
 			INSERT INTO QNA_BOARD VALUES (

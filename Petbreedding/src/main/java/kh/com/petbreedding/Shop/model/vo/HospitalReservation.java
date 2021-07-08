@@ -7,13 +7,11 @@ import kh.com.petbreedding.mypage.model.vo.MyPet;
 
 public class HospitalReservation {
 	private String hos_rnum; 	//동물병원 예약번호
-	private String msg_num;		//알림번호
 	private String cl_num;		//고객번호
 	private String pet_num;		//펫번호
 	private String med_num;		//예약메뉴번호
 	private String hos_num;		//동물병원 번호
 	private String hos_date;	//예약날짜
-	private String hos_date2;	//예약 검색날짜
 	private String med_num2;	//예약메뉴번호2
 	private int hos_status; 	//예약 상태
 	private String hos_time; 	//예약 시간
@@ -25,17 +23,14 @@ public class HospitalReservation {
 	private String bp_id;
 	@Override
 	public String toString() {
-		return "HospitalReservation [hos_rnum=" + hos_rnum + ", msg_num=" + msg_num + ", cl_num=" + cl_num
+		return "HospitalReservation [hos_rnum=" + hos_rnum + ", cl_num=" + cl_num
 				+ ", pet_num=" + pet_num + ", med_num=" + med_num + ", hos_num=" + hos_num + ", hos_date=" + hos_date
-				+ ", hos_date2=" + hos_date2 + ", med_num2=" + med_num2 + ", hos_status=" + hos_status + ", hos_time="
+				+ ", med_num2=" + med_num2 + ", hos_status=" + hos_status + ", hos_time="
 				+ hos_time + ", pet=" + pet + ", hospital=" + hospital + ", medical=" + medical + ", client=" + client
 				+ ", name=" + name + ", bp_id=" + bp_id + "]";
 	}
 	public String getHos_rnum() {
 		return hos_rnum;
-	}
-	public String getMsg_num() {
-		return msg_num;
 	}
 	public String getCl_num() {
 		return cl_num;
@@ -51,9 +46,6 @@ public class HospitalReservation {
 	}
 	public String getHos_date() {
 		return hos_date;
-	}
-	public String getHos_date2() {
-		return hos_date2;
 	}
 	public String getMed_num2() {
 		return med_num2;
@@ -85,9 +77,6 @@ public class HospitalReservation {
 	public void setHos_rnum(String hos_rnum) {
 		this.hos_rnum = hos_rnum;
 	}
-	public void setMsg_num(String msg_num) {
-		this.msg_num = msg_num;
-	}
 	public void setCl_num(String cl_num) {
 		this.cl_num = cl_num;
 	}
@@ -102,9 +91,6 @@ public class HospitalReservation {
 	}
 	public void setHos_date(String hos_date) {
 		this.hos_date = hos_date;
-	}
-	public void setHos_date2(String hos_date2) {
-		this.hos_date2 = hos_date2;
 	}
 	public void setMed_num2(String med_num2) {
 		this.med_num2 = med_num2;

@@ -48,7 +48,17 @@
 		)
 	</insert>
 	
-	<!-- 문의 사항 답변 여부 등록  -->
+	<update id="myAskCommentUpdate" parameterType="MyAskComment">
+		UPDATE QNA_COMMENT SET QNAC_CONT = #{qnacCont} WHERE QNAC_NUM = #{qnacNum}
+	</update>
+
+	
+	<!-- 문의 사항 댓글 삭제 -->
+	<delete id="myAskCommentDelete" parameterType="string">
+		DELETE FROM QNA_COMMENT WHERE QNAC_NUM = #{qnacNum}
+	</delete>
+	
+		<!-- 문의 사항 답변 여부 등록  -->
 	<update id="myAskChkUpdate" parameterType="string">
 		UPDATE QNA_BOARD SET QNAR_CHK = 1 WHERE QNA_NUM = #{qnaNum}
 	</update>

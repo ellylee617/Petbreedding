@@ -6,7 +6,7 @@ import java.util.Map;
 import kh.com.petbreedding.board.model.vo.Review;
 
 public interface ReviewService {
-	public List<Review> reviewSelectList(String bpId, int currentPage, int limit);
+	public List<Review> reviewSelectList(String bpId);
 	public int insertReview(Review rv, String har_num, String har_name);
 }
 

@@ -23,8 +23,8 @@ public class BoardDao {
 		}
 		
 		// 게시글 수정
-		public void updateBoard(Board board) {
-			//TODO
+		public int updateBoard(Board board) {
+			return sqlSession.update("Board.updateBoard", board);
 		}
 		
 		// 게시글 삭제

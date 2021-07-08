@@ -109,7 +109,22 @@ public class BoardController {
 
 	// 게시글 작성 폼
 	@RequestMapping(value = "/bwriteFrm")
-	public String bWrite(Model model) {
+	public String bWrite(
+			Model md
+			,int type
+			,HttpServletRequest req
+			) {
+		String boNum = req.getParameter("boUpdBoNum");
+		String boTitle = req.getParameter("boUpdBoTitle");
+		String boCont = req.getParameter("boUpdBoCont");
+		
+		md.addAttribute("type", type);
+		md.addAttribute("boUpdBoNum", boNum);
+		md.addAttribute("boUpdBoTitle", boTitle);
+		md.addAttribute("boUpdBoCont", boCont);
+		
+		
+		System.out.println("[세훈] @자유 게시글 등록 폼 컨트롤러 type : " + type);
 		return "/user/uBoard/bwrite";
 	}
 
@@ -215,6 +230,87 @@ public class BoardController {
 //		return "/user/uBoard/fboardList";
 	}
 	
+	//	자유게시판 글 수정
+	
+	@RequestMapping(value = "/bupdate")
+	public String bupdate(
+			Model md
+			,Client cl
+			,MultipartHttpServletRequest req
+			,HttpServletResponse res
+			,HttpSession session
+			) {
+		res.setContentType("text/html; charset=utf-8");
+		
+		
+		 cl = (Client) session.getAttribute("client"); 
+		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
+			 return "redirect:/"; 
+		 }
+		 
+		
+		String boTitle = req.getParameter("boTitle");
+		String bo_content = req.getParameter("boContent");
+		String bo_num = req.getParameter("boUpdBoNum");
+		
+		System.out.println("[세훈] @글 수정 컨트롤러 boTitle : " + boTitle);
+		System.out.println("[세훈] @글 수정 컨트롤러 bo_content : " + bo_content);
+		System.out.println("[세훈] @글 수정 컨트롤러 bo_num : " + bo_num);
+		
+		Board board = new Board();
+		board.setBoTitle(boTitle);
+		board.setBoCont(bo_content);
+		board.setBoNum(bo_num);
+		String src = "";
+		//이미지 경로 찾아오기
+		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+		Matcher matcher = pattern.matcher(bo_content);
+		while(matcher.find()){
+            System.out.println("*****************img경로***************** "+ matcher.group(1));
+            src = matcher.group(1);
+        }
+		
+		if(src != null || src != "") { 
+			try { 
+				URL imgURL = new URL(src);
+				String extension = src.substring(src.lastIndexOf(".")+1); 
+				UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성 
+				String fileName = uuid.toString() + "_" + board;
+				BufferedImage image = ImageIO.read(imgURL); 
+				File file = new File("/resources/uploadFile/fboard"); 
+				if(!file.exists()) { 
+					file.mkdirs(); 
+				}
+				ImageIO.write(image, extension, file); 
+				System.out.println("이미지 업로드완료!");
+				board.setBoImg(src); 
+			} 
+			catch (Exception e) { 
+				e.printStackTrace(); 
+			}
+		} 
+		
+		 
+				
+		
+		  System.out.println("[세훈] @글 수정 컨트롤러 board : " + board.toString());
+		 
+		  int result = boardService.updateBoard(board);
+		  
+			if(result > 0) {
+				System.out.println("자유게시판 글 수정 성공");
+				md.addAttribute("msg", "자유게시판 글 수정 성공");
+				md.addAttribute("url","/fboardlist");
+			} else {
+				System.out.println("공지사항 수정 실패");
+				md.addAttribute("msg", "자유게시판 글 수정 실패");
+				md.addAttribute("url","/fboardlist");
+			}
+			
+			return "common/redirect";	
+	}
+	
+	//	자유게시판 글 삭제
 	@RequestMapping(value = "/bdelete")
 	public String bdelete(String bo_num) {
 		
@@ -330,9 +426,38 @@ public class BoardController {
 		
 	}
 	
+	//	리뷰 조회
+	@RequestMapping(value = "/rList")
+	public void rList(
+			HttpServletRequest req
+			,HttpServletResponse res
+			,String bp_id
+			) throws IOException {
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("application/json; charset=UTF-8");
+		System.out.println("[세훈] @리뷰 조회 컨트롤러 bp_id : " + bp_id);
+		
+		PrintWriter out = res.getWriter();
+		String rvJson = "";
+		
+		List<Review> rList = new ArrayList<Review>();
+		
+		if(rList != null) {
+			rList = reviewService.reviewSelectList(bp_id);
+			Gson jobj = new GsonBuilder().create();
+			rvJson = jobj.toJson(rList);
+		}
+
+		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 bocJson : " + rvJson);
+
+		out.println(rvJson);
+		out.flush();
+		out.close();
+	}
+	
 
 	// 리뷰 작성
-	@RequestMapping(value = "/rwrite", method = RequestMethod.POST)
+	@RequestMapping(value = "/rwrite")
 	public String rwrite(HttpSession session
 			,MultipartHttpServletRequest req
 			,HttpServletResponse res
@@ -347,23 +472,21 @@ public class BoardController {
 			// TODO: 로그인 안됐다는 경고.또는 이동 위치 변경
 			return "redirect:/";
 		}
-		String clNum = cl.getCl_num();
+		String cl_num = cl.getCl_num();
 		String clNickName = cl.getNickname();
 		String har_num = req.getParameter("har_num");
 		String har_name = req.getParameter("har_name");
 
 		System.out.println("리퀘스트 겟 파라메타" + req.getParameter("selectedVal"));
-		System.out.println("[세훈] har_num:" + har_num);
-		System.out.println("[세훈] har_name:" + har_name);
+		System.out.println("[세훈] @리뷰 등록 컨트롤러 har_num : " + har_num);
+		System.out.println("[세훈] @리뷰 등록 컨트롤러 har_name : " + har_name);
+		System.out.println("[세훈] @리뷰 등록 컨트롤러 clNum : " + cl_num);
+		System.out.println("[세훈] @리뷰 등록 컨트롤러 clNickName : " + clNickName);
 
 		Review rv = new Review();
 
-		System.out.println(clNum);
-		System.out.println(clNickName);
-		System.out.println(revCont);
-
-		rv.setClNickName(clNickName.replaceAll("\r\n", "<br>"));
-		rv.setClNum(clNum.replaceAll("\r\n", "<br>"));
+		rv.setClNickName(clNickName);
+		rv.setClNum(cl_num);
 		rv.setRevCont(revCont);
 		rv.setRevVal(revVal);
 
@@ -394,11 +517,11 @@ public class BoardController {
 		if(result > 0) {
 			System.out.println("리뷰 등록 성공");
 			md.addAttribute("msg", "리뷰 등록 성공");
-			md.addAttribute("url","/mypage?cl_num="+clNum+"");
+			md.addAttribute("url","/mypage?cl_num="+cl_num+"");
 		} else {
 			System.out.println("리뷰 등록 실패");
 			md.addAttribute("msg", "리뷰 등록 실패");
-			md.addAttribute("url","/mypage?cl_num="+clNum+"");
+			md.addAttribute("url","/mypage?cl_num="+cl_num+"");
 		}
 		
 		return "common/redirect";

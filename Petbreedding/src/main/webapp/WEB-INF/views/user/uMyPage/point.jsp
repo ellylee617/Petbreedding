@@ -25,7 +25,12 @@
 					<div class="point">
 	                    <p class="ptitle">보유포인트</p>
 	                    <br>
-	                    <p class="presult">${currPoint}P</p>
+	                    <c:if test="${empty currPoint or currPoint eq -1}">
+	                    	<p class="presult">0P</p>
+	                    </c:if>
+	                    <c:if test="${!empty currPoint and (currPoint ne -1)}">
+	                    	<p class="presult">${currPoint}P</p>
+	                    </c:if>
 	                </div>
 	                <br>
 	                <div class="selectOpt">

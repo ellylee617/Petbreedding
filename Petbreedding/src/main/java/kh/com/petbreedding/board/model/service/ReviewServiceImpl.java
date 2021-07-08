@@ -24,33 +24,28 @@ public class ReviewServiceImpl implements ReviewService {
 
 	
 	@Override
-	public List<Review> reviewSelectList(String bpId, int currentPage, int limit) {
-		System.out.println("서비스 진입1");
-		
+	public List<Review> reviewSelectList(String bp_Id) {
 		List<Review> reviewList = null;
-		System.out.println("서비스 진입2");
-
 		try {
-			System.out.println("서비스 진입3");
-			reviewList = reviewDao.reviewSelectList(bpId, currentPage, limit);
-			System.out.println("다오 다녀왔다면 보여줘 --> " + reviewList);
+			System.out.println("[세훈] @리뷰 조회 서비스 bp_id : " + bp_Id);
+			reviewList = reviewDao.reviewSelectList(bp_Id);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("서비스 끝");
+		System.out.println("[세훈] @리뷰 조회 서비스 reviewList : " + reviewList);
 		return reviewList;
 	}
 
 	@Override
 	public int insertReview(Review rv, String har_num, String har_name) {
-		System.out.println("리뷰 등록 서비스 진입");
 		int result = -1;
 		String clNum = rv.getClNum();
-		int reviewPoint = 500;
+		System.out.println("[세훈] @리뷰 등록 서비스 clNum : " + clNum);
+		int reviewPoint = 300;
 		
 		try {
-			System.out.println("[shkim]har_num" + har_num);
+			System.out.println("[세훈] @리뷰 등록 서비스 har_num : " + har_num);
 			String bp_id = reviewDao.searchBpId(har_num); 
 			rv.setBpId(bp_id);
 			String rev_num = reviewDao.getRevNumFromSeq();
@@ -60,6 +55,7 @@ public class ReviewServiceImpl implements ReviewService {
 			result = reviewDao.insertReview(rv);
 			int currPoint = 0;
 			currPoint = myPointDao.CurrPointSelectOne(clNum);
+			System.out.println("[세훈] @리뷰 등록 서비스 currPoint : " + currPoint);
 			currPoint += reviewPoint;
 			
 			MyPoint myPoint = new MyPoint();

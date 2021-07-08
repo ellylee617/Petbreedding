@@ -53,7 +53,7 @@
 	        </div>
 	        
 			<div class="write">
-			   <button class="writebtn basicBtn"><a href="bwriteFrm">글쓰기</a></button>
+			   <a href="bwriteFrm?type=1"><button class="writebtn basicBtn">글쓰기</button></a>
 			</div> 
 	        
 			<c:if test="${listCount eq 0}">

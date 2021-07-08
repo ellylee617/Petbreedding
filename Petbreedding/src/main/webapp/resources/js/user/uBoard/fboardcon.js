@@ -2,6 +2,13 @@
  * 
  */
 
+$("#fboardUpdBtn").on("click", function() {
+	console.log("글 수정 버튼 클릭 됨");
+	$("#boUpdFrm").attr("action", "bwriteFrm?type=2");
+	$("#boUpdFrm").attr("method", "post");
+	$("#boUpdFrm").submit();
+});
+
 $("#fboardDelBtn").on("click", function() {
 	console.log("글 삭제 버튼 클릭 됨");
 	getModal();

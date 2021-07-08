@@ -40,3 +40,16 @@
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
+	<!-- 알림 삭제 모달 -->
+	<div id="cancel-modal" class="modal">
+		<div class="cancel-content">
+			<p class="boldtext">해당 알림을<br>삭제 하시겠습니까?</p>
+			<div class="btn">
+				<button class="basicBtn" id="yesCalncle">네</button>
+				<button class="basicBtn" id="noCalncle">아니오</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="${path}/resources/js/user/uMyPage/myNotice.js"></script>
+</html>

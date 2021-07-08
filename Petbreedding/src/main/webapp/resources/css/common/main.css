@@ -37,11 +37,10 @@
 /*탭*/
 .tabmenu{ 
   width:1000px; 
-  margin: 0 auto; 
+  margin: 80px auto; 
   position:relative; 
   overflow: hidden;
   height: 500px;
-  margin-top: 200px;
   opacity: 0.9;
 }
 .tabmenu ul{
@@ -72,7 +71,7 @@
   text-align:left; 
   padding: 60px;
   position:absolute; 
-  left:0; top:74px; 
+  left:0; 
   box-sizing: border-box; 
   background-color : #f9f9f9;
 

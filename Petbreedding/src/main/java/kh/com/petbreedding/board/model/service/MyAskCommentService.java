@@ -13,4 +13,8 @@ public interface MyAskCommentService {
 	public String getMyAskCommentSeq();
 	// <!-- 문의 사항 댓글 등록 -->
 	public int myAskCommentInsert(MyAskComment maComment);
+	//	문의 사항 댓글 수정
+	public int myAskCommentUpdate(MyAskComment maComment);
+	// 문의 사항 댓글 삭제
+	public int myAskCommentDelete(String qnac_num, String qna_num);
 }

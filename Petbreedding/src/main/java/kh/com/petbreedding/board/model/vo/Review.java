@@ -14,23 +14,13 @@ public class Review {
 	private String revImg;
 	private String revDate;
 	private int revVal;
+	private int comntChk;
 	
-	private double avgRevVal;
-	
-
 	@Override
 	public String toString() {
 		return "Review [revNum=" + revNum + ", bpId=" + bpId + ", clNum=" + clNum + ", clNickName=" + clNickName
 				+ ", revCont=" + revCont + ", revImg=" + revImg + ", revDate=" + revDate + ", revVal=" + revVal
-				+ ", avgRevVal=" + avgRevVal + "]";
-	}
-
-	public double getAvgRevVal() {
-		return avgRevVal;
-	}
-
-	public void setAvgRevVal(double avgRevVal) {
-		this.avgRevVal = avgRevVal;
+				+ ", comntChk=" + comntChk + "]";
 	}
 
 	public String getRevNum() {
@@ -95,6 +85,14 @@ public class Review {
 
 	public void setRevVal(int revVal) {
 		this.revVal = revVal;
+	}
+
+	public int getComntChk() {
+		return comntChk;
+	}
+
+	public void setComntChk(int comntChk) {
+		this.comntChk = comntChk;
 	}
 	
 	

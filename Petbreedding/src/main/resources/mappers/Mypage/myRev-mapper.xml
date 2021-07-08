@@ -15,7 +15,6 @@
 		<result column="RES_TIME" property="res_time" />
 		<result column="STYLE_NUM2" property="style_num2" />
 		<result column="HAR_NAME" property="har_name"/>
-		<result column="RES_DATE2" property="res_date2" />
 		<collection property="client" resultMap="Client" />
 		<collection property="hairSalon" resultMap="HairSalon" />
 		<collection property="pet" resultMap="Pet" />
@@ -75,7 +74,6 @@
 		<result column="MED_NUM" property="med_num"/>
 		<result column="HOS_NUM" property="hos_num"/>
 		<result column="HOS_DATE" property="hos_date"/>
-		<result column="HOS_DATE2" property="hos_date2"/>
 		<result column="MED_NUM2" property="med_num2"/>
 		<result column="HOS_STATUS" property="hos_status" />
 		<result column="HOS_TIME" property="hos_time"/>
@@ -150,7 +148,7 @@
 	</select>
 	
 	<!-- 날짜로 목록조회하기 -->
-	<select id="myRevListDate" parameterType="HairRev" resultMap="HairRev">
+	<select id="myRevListDate" parameterType="map" resultMap="HairRev">
 		
 			select  C.*
 			from(

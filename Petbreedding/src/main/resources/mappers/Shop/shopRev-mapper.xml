@@ -22,7 +22,6 @@
 	<!-- 미용실 예약VO -->
 	<resultMap type="HairRev" id="HairRev">
 		<id column="HAR_RNUM" property="har_rnum"/>
-		<result column="MSG_NUM" property="msg_num" />
 		<result column="CL_NUM" property="cl_num" />
 		<result column="PET_NUM" property="pet_num" />
 		<result column="STYLE_NUM" property="style_num" />
@@ -74,7 +73,7 @@
 		<!-- 예약등록 -->
 		<insert id="insertHairRev" parameterType="HairRev">
 			INSERT INTO HAR_RESERVATION 
-			VALUES('HAR000' || SEQ_HAR_RESERVATION.NEXTVAL,'M1', #{cl_num}, #{pet_num},#{style_num}, #{har_num},#{res_date},null,#{style_num2},0,#{res_time})
+			VALUES('HAR000' || SEQ_HAR_RESERVATION.NEXTVAL, #{cl_num}, #{pet_num},#{style_num}, #{har_num},#{res_date},null,#{style_num2},0,#{res_time})
 			
 			<selectKey keyProperty="har_rnum" resultType="string"  order="AFTER">
 				SELECT SEQ_HAR_RESERVATION.CURRVAL AS HAR_RNUM FROM DUAL
@@ -120,7 +119,6 @@
 	<!-- 동물병원 예약VO  -->
 	<resultMap type="HosRev" id="HosRev">
 		<id column="HOS_RNUM" property="hos_rnum"/>
-		<result column="MSG_NUM" property="msg_num"/>
 		<result column="CL_NUM" property="cl_num"/>
 		<result column="PET_NUM" property="pet_num" />
 		<result column="MED_NUM" property="med_num"/>
@@ -153,7 +151,7 @@
 		<!-- 예약등록 -->
 		<insert id="insertHosRev" parameterType="HosRev">
 			INSERT INTO HOS_RESERVATION 
-			VALUES('HOS000' || SEQ_HOS_RESERVATION.NEXTVAL,'M1', #{cl_num},#{pet_num}, #{med_num}, #{hos_num},#{hos_date},null,null,#{hos_status},#{hos_time})
+			VALUES('HOS000' || SEQ_HOS_RESERVATION.NEXTVAL, #{cl_num},#{pet_num}, #{med_num}, #{hos_num},#{hos_date},null,null,#{hos_status},#{hos_time})
 			
 			<selectKey keyProperty="hos_rnum" resultType="string"  order="AFTER">
 				SELECT SEQ_HOS_RESERVATION.CURRVAL AS HOS_RNUM FROM DUAL

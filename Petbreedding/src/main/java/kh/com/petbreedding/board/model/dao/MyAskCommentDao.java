@@ -42,4 +42,20 @@ public class MyAskCommentDao {
 	public int myAskChkUpdate(String qna_num) {
 		return sqlSession.update("MyAskComment.myAskChkUpdate", qna_num);
 	}
+	
+	//	문의사항 댓글 수정
+	public int myAskCommentUpdate(MyAskComment maComment) {
+		return sqlSession.update("MyAskComment.myAskCommentUpdate", maComment);
+	}
+	
+	// <!-- 문의 사항 댓글  삭제  -->
+	public int myAskCommentDelete(String qnac_num) {
+		System.out.println("[세훈] @문의사항 댓글 삭제 다오 : " + qnac_num);
+		return sqlSession.delete("MyAskComment.myAskCommentDelete", qnac_num);
+	}
+	
+	//	문의사항 댓글 여부 체크 엄데이트
+	public int updateQnarChk(String qna_num) {
+		return sqlSession.update("MyAsk.updateQnarChk", qna_num);
+	}
 }

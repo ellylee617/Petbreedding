@@ -20,24 +20,43 @@
 	<div class="wrapper">
 		<jsp:include page="../../common/header.jsp" />
         <section class="section">
-            	<h1>자유게시판 글 작성</h1>
-            	
-           	<form action="bwrite" method="post" enctype="multipart/form-data">
-   				<div class="qnatitle">
-	               
-	              <label>제목</label>
-	              <input type="text" name="boTitle" placeholder="글 제목을 입력해주세요">
-	                   
-	                </div>
-	            <div class="qnacontent">
-	                <textarea name="boContent" id="editor"></textarea>
-	            </div> 
-	
-				<div id="btnBox">
-		            <input type="submit" value="취소" id="successbtn" onclick="#" class="basicBtn">
-		            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
-	            </div>    
-            </form>
+           	<h1>자유게시판 글 작성</h1>
+            
+            <c:choose>
+            	<c:when test="${type eq 1}">
+            		<!-- 글 등록으로 이미지 넘어가는지 확인 중 -->
+	           		<form action="bwrite" method="post" enctype="multipart/form-data">
+		   				<div class="qnatitle">
+			              <label>제목</label>
+			              <input type="text" name="boTitle" placeholder="글 제목을 입력해주세요">
+		                </div>
+			            <div class="qnacontent">
+			                <textarea name="boContent" id="editor"></textarea>
+			            </div> 
+						<div id="btnBox">
+				            <a href="fboardlist"><input type="button" value="취소" id="successbtn" class="basicBtn"></a>
+				            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
+			            </div>    
+	            	</form>
+            	</c:when>
+            	<c:otherwise>
+   		           	<form action="bwrite" method="post" enctype="multipart/form-data">
+		   				<div class="qnatitle">
+			            	<label>제목</label>
+			            	<input type="text" name="boTitle" value="${boUpdBoTitle}">
+		                </div>
+			            <div class="qnacontent">
+			                <textarea name="boContent" id="editor">${boUpdBoCont}</textarea>
+			            </div> 
+						<div id="btnBox">
+				            <a href="fboardlist"><input type="button" value="취소" id="successbtn" class="basicBtn"></a>
+				            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
+				            <input type="hidden" name="boUpdBoNum" value="${boUpdBoNum}">
+			        	</div>    
+	            	</form>
+            	</c:otherwise>
+            </c:choose>	
+           	
         </section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
