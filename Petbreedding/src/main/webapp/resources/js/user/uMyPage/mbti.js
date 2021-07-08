@@ -18,7 +18,8 @@ function setResult(){
 
   var resultImg = document.createElement('img');
   const imgDiv = document.querySelector('#resultImg');
-  var imgURL = '../resources/images/image-' + point + '.png';
+  var imgURL = '/petbreedding/resources/images/image_' + point + '.png';
+  console.log("imgURL : "+ imgURL);
   resultImg.src = imgURL;
   resultImg.alt = point;
   resultImg.classList.add('img-fluid');
