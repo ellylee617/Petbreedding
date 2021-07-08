@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+.container{
+	margin:100px;
+}
+#resultImg img{
+	width:150px;
+}
 <!--main-->
 #main{
   background-color: #fff;
