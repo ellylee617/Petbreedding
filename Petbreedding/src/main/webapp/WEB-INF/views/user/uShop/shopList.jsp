@@ -50,7 +50,6 @@
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
                      <c:forEach var="hos" items="${cta2}" varStatus="status">
-<<<<<<< HEAD
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
@@ -68,7 +67,6 @@
                             </div>                                                            
                         </li>
                     </div>
-=======
 	                    <div class="ultraStore">                     
 	                        <li class="ultraList">
 	                            <div class="ultraList_inner">
@@ -86,7 +84,6 @@
 	                            </div>                                                            
 	                        </li>
 	                    </div>
->>>>>>> 40f38546216d6734b9729b78f938997c1d59bf32
                     </c:forEach>
                 </ul>
             </div>
