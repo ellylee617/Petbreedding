@@ -24,7 +24,7 @@
 	 <center>
 	 <div class="nologin">
 	 <p>로그인 후 이용 가능합니다</p><br>
-	 <a href="../uLogin"><button class="basicBtn gologin">로그인 하러 가기</button></a>
+	 <a href="${pageContext.request.contextPath}/uLogin"><button class="basicBtn gologin">로그인 하러 가기</button></a>
 	 </div>
 	 </center>
 	 </c:if>
