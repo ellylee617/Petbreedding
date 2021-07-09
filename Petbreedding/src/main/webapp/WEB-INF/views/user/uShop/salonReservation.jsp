@@ -57,7 +57,7 @@
                 	<c:forEach items="${pet}" var="pet">
                 		<div class="dog_box">
                         <div class="dog_img_area">
-                            <img src="http://placehold.it/160x100">
+                            <img src="${path}/resources/uploadFile/mypet/${pet.pet_img}" width="160" height="100">
                         </div>
                         <input type="hidden" class="petNum" value="${pet.pet_num}" />
                         <p class="dog_name">${pet.pet_name }</p>

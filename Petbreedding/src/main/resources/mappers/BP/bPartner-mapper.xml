@@ -19,7 +19,7 @@
 	<!-- 사업자 회원가입 -->
 	<insert id="insertBP" parameterType="Client">
 		INSERT INTO business_partner (BP_ID ,BP_PWD ,BP_NAME ,BP_TEL ,BP_EMAIL ,BP_NUM ,BP_TYPE ,BP_APRVE,BP_DELETE, BP_REG ) 
-		VALUES(SEQ_BUSINESS_PARTNER.NEXTVAL, #{bp_pwd},#{bp_name},#{bp_tel},#{bp_email},#{bp_num},#{bp_type}, 0,0,0)
+		VALUES('BP000' || SEQ_BUSINESS_PARTNER.NEXTVAL, #{bp_pwd},#{bp_name},#{bp_tel},#{bp_email},#{bp_num},#{bp_type}, 0,0,0)
 	</insert>
 	
 	<!-- 아이디 중복체크 -->

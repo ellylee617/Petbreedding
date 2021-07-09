@@ -4,7 +4,7 @@
 <mapper namespace="Review">
 	<resultMap type="Review" id="ReviewMap">
 		<id column="REV_NUM" property="revNum"/>
-		<result column="BP_IP" property="bpId"/>
+		<result column="BP_ID" property="bpId"/>
 		<result column="CL_NUM" property="clNum"/>
 		<result column="CL_NICKNAME" property="clNickName"/>
 		<result column="REV_CONT" property="revCont"/>
@@ -12,8 +12,8 @@
 		<result column="REV_DATE" property="revDate"/>
 		<result column="REV_VAL" property="revVal"/>
 		<result column="CMNT_CHK" property="comntChk"/>
+		<result column="DEPTH" property="depth"/>
 	</resultMap>
-	
 	
 	
 	<select id="reviewSelectList" parameterType="string" resultMap="ReviewMap">
@@ -22,13 +22,18 @@
 		 ]]>
 	</select>
 	
+	<select id="reviewSelectOne" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT * FROM REVIEW WHERE REV_NUM = #{revNum}
+		 ]]>
+	</select>
 	
 	<insert id="insertReview" parameterType="Review">
 		<![CDATA[
 			INSERT INTO REVIEW VALUES(
 			#{revNum}, #{bpId},
 			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
-			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}, 0
+			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}, 0, 0
 			)
 		]]>
  	</insert>
@@ -39,6 +44,7 @@
 			select 'REV'||SEQ_REVIEW.NEXTVAL from dual
 		]]>
  	</select>
+ 	
 
  	
  	

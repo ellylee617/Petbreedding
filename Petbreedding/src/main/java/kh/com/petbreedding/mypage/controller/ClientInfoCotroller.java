@@ -41,7 +41,9 @@ import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.vo.Pagination;
 import kh.com.petbreedding.mypage.model.service.ClientInfoService;
 import kh.com.petbreedding.mypage.model.service.MyPointService;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
 import kh.com.petbreedding.mypage.model.vo.MyPoint;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 
 @Controller
 public class ClientInfoCotroller {
@@ -57,6 +59,9 @@ public class ClientInfoCotroller {
 	
 	@Autowired
 	private MyAskCommentService myAskCommentService;
+	
+	@Autowired
+	private NoticeService noticeService;
 
 	// 예약조회
 	@RequestMapping("/mypage")
@@ -297,11 +302,11 @@ public class ClientInfoCotroller {
 			if(result > 0) {
 				System.out.println("문의 등록 성공");
 				md.addAttribute("msg", "문의 등록 성공");
-				md.addAttribute("url","/mypage/ask");
+				md.addAttribute("url","/mypage/ask?user_num="+user_num+"");
 			} else {
 				System.out.println("문의 등록 실패");
 				md.addAttribute("msg", "문의 등록 실패");
-				md.addAttribute("url","/mypage/ask");
+				md.addAttribute("url","/mypage/ask?user_num="+user_num+"");
 			}
 			
 			return "common/redirect";
@@ -321,11 +326,21 @@ public class ClientInfoCotroller {
 	
 	// 알림 목록
 	@RequestMapping("/noticelist")
-	public String alarmlist(HttpSession session) {
-		return "/user/uMyPage/myNotice";
+	public ModelAndView getNoticeList(ModelAndView mv, HttpSession session) {
+		List<Notice> list = null;
+		
+		Client client = (Client) session.getAttribute("client");
+		
+		if (session != null) {
+			String cl_num = client.getCl_num();
+			list = noticeService.getNoticeList(cl_num);
+		}
+		
+		mv.addObject("noticeList", list);
+		mv.setViewName("/user/uMyPage/myNotice");
+		return mv;
 	}
 
-	
 	//회원정보 수정 탈퇴는 ClientController
 	
 }

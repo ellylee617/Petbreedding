@@ -27,7 +27,6 @@ import kh.com.petbreedding.mypage.model.service.MyPetService;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
 
 @Controller
-@RequestMapping("/Mypage/*")
 public class MyPetController {
 
 	@Autowired
@@ -161,5 +160,14 @@ public class MyPetController {
 		return "redirect:petlist";
 
 	}
+	
+	//멍비티아이
+	
+	@RequestMapping(value = "mbtipet", method = RequestMethod.GET)
+	public String mbti() throws Exception {
+		return "user/uMyPage/dogmbti";
+
+	}
+	
 
 }
