@@ -34,8 +34,8 @@
 			<label>나의 활동</label>
 			<br>
 			<br>
-			<a href="myboard"><li>- 내가 쓴 글</li></a>
-			<a href="myreply"><li>- 내가 쓴 댓글</li></a>
+			<a href="${pageContext.request.contextPath}/myboard?cl_num=${client.cl_num}"><li>- 내가 쓴 글</li></a>
+			<a href="${pageContext.request.contextPath}/myreply?cl_num=${client.cl_num}"><li>- 내가 쓴 댓글</li></a>
 			<a href="${pageContext.request.contextPath}/mypage/ask?user_num=${client.cl_num}"><li>- 1:1문의</li></a>
 			<a href="${pageContext.request.contextPath}/chatlist"><li>- 채팅 내역</li></a>
 			<a href="${pageContext.request.contextPath}/noticelist"><li>- 알림 내역</li></a>

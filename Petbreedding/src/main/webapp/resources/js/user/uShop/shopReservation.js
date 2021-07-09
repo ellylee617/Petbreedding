@@ -39,7 +39,7 @@ $(".dog_box").on("click", function() {
 });
 $("#addDogBox").on("click", function() {
 	var cl_num = $("#clNum").val();
-	location.href = "/petbreedding/Mypage/openMyPet?cl_num="+cl_num+"";
+	location.href = "openMyPet?cl_num="+cl_num+"";
 });
 
 // 기타 추가요금
