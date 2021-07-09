@@ -18,6 +18,16 @@ public class NoticeDao {
 	public List<Notice> getNoticeList(String notReceiver) {
 		return sqlSession.selectList("notice.getNoticeList", notReceiver);
 	}
+	
+	// bp_id 찾기(예약에서)
+	public String getbp_id(String shopNum) {
+		return sqlSession.selectOne("notice.getbp_id", shopNum);
+	}
+	
+	// bp_id 찾기(결제에서)
+	public String getbp_idforPay(String revNum) {
+		return sqlSession.selectOne("notice.getbp_idforPay", revNum);
+	}
 
 	// 예약시
 	public int inReservaion(Notice notice) {

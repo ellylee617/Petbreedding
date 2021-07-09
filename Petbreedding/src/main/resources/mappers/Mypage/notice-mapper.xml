@@ -9,6 +9,7 @@
 		<result column="REFERENCE_NUM" property="refNum"/>
 		<result column="REFERENCE_CLASS" property="refClass"/>
 		<result column="READ_STATE" property="readState"/>
+		<result column="RESERVATION_NUM" property="revNum"/>
 		<result column="SHOP_NUM" property="shopNum"/>
 		<result column="SHOP_NAME" property="shopName"/>
 		<result column="SHOP_IMG" property="shopImg"/>
@@ -35,6 +36,25 @@
 		LEFT OUTER JOIN
 		(SELECT * FROM QNA_BOARD) F
 		ON E.REFERENCE_NUM = F.QNA_NUM
+	</select>
+	
+	<select id="getbp_id" resultType="string">
+		SELECT A.HOS_NUM AS SHOP_NUM, A.BP_ID
+		FROM
+		(SELECT HOS_NUM, BP_ID FROM HOSPITAL UNION SELECT HAR_NUM, BP_ID FROM HAIR_SALON) A
+		WHERE A.HOS_NUM = #{shopNum}
+	</select>
+	
+	<select id="getbp_idforPay" resultType="string">
+		SELECT B.*, C.BP_ID
+		FROM
+		(SELECT A.HOS_RNUM AS RESERVATION_NUM, HOS_NUM
+		FROM
+		(SELECT HOS_RNUM, HOS_NUM FROM HOS_RESERVATION UNION SELECT HAR_RNUM, HAR_NUM FROM HAR_RESERVATION) A
+		WHERE A.HOS_RNUM = #{revNum})B
+		INNER JOIN
+		(SELECT HOS_NUM, BP_ID FROM HOSPITAL UNION SELECT HAR_NUM, BP_ID FROM HAIR_SALON)C
+		ON B.HOS_NUM = C.HOS_NUM
 	</select>
 	
 	<insert id="inReservaion">
