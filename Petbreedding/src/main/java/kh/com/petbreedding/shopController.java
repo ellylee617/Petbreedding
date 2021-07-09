@@ -156,10 +156,10 @@ public class shopController {
 			// TODO:인기순
 			for(int i =0; i<likesHarList.size(); i++) {
 				har_num = likesHarList.get(i).getHarNum();
+				System.out.println("미용실 번호는????"+har_num);
 				bpId = likesHarList.get(i).getBpId();
 				String count = likeService.countSalon(har_num);
 //				String revVal = shopService.selectRevVal(bpId);
-					
 				String countRev = shopService.selectCountReview(bpId);
 				countList.add(countRev);
 //				mv.addObject("revVal", revVal);

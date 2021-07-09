@@ -25,6 +25,7 @@
 			<result column="6" property="sat"/>
 			<result column="AVG_REV_VAL" property="avgRevVal"/>
 			<result column="COUNT" property="count"/>
+			<result column="LIKES" property="likes"/>
 		</resultMap>
 		
 		<!-- 
@@ -72,6 +73,7 @@
 		<!-- 미용실 리스트 : 최신순  -->
 		<!-- 사업장 이름으로 검색기능 추가 완료 -->
 		<!-- 주소 검색 기능 추가 완료 -->
+		<!-- !!페이징 작업 수정해야됨!! -->
 		<select id="selectHarListNew" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -103,6 +105,7 @@
 		<!-- 미용실 리스트 : 별점순  selectHarListRev-->
 		<!-- 검색 기능 추가완료 -->
 		<!-- 주소 검색 추가 완료 -->
+		<!-- !!페이징 작업 수정해야됨!! -->
 		<select id="selectHarListRev" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -133,11 +136,14 @@
 		<!-- 미용실 리스트 : 인기순(찜)  selectHarListLikes-->
 		<!-- 검색 기능 -->
 		<!-- 주소 검색 -->
+		<!-- 페이징 작업 수정중!!! -->
 		<select id="selectHarListLikes" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
-	    SELECT B.*
+select  C.*
+			from(		
+	    SELECT ROWNUM R, B.*
 			FROM(
-	SELECT ROWNUM R, A.*
+	SELECT  A.*
 		FROM (
 		    SELECT har_hl.*, BR.AVG_REV_VAL
 		    FROM
@@ -167,6 +173,7 @@
 		                        ) A
 					        ORDER BY LIKES DESC NULLS LAST
 								) B
+) C 
 			WHERE #{start} <= R AND R <=#{end}
 			]]>
 		</select>

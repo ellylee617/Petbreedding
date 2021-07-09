@@ -29,11 +29,9 @@ public class HairSalon {
 	private String sun;
 
 	private double avgRevVal;
+	private int likes;
 	
-
-
-
-
+	
 
 
 	@Override
@@ -42,7 +40,29 @@ public class HairSalon {
 				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", shopMImg="
 				+ shopMImg + ", style=" + style + ", shopImgList=" + shopImgList + ", shopDayOffList=" + shopDayOffList
 				+ ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu=" + thu + ", fri=" + fri + ", sat=" + sat
-				+ ", sun=" + sun + ", avgRevVal=" + avgRevVal + "]";
+				+ ", sun=" + sun + ", avgRevVal=" + avgRevVal + ", likes=" + likes + "]";
+	}
+
+
+
+
+
+
+
+
+	public int getLikes() {
+		return likes;
+	}
+
+
+
+
+
+
+
+
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 
 
