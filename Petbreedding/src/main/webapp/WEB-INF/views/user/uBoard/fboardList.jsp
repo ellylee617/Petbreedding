@@ -61,11 +61,9 @@
 			</c:if>
 			
 			<c:if test="${listCount ne 0}">
-				
 				<c:forEach items="${boardList }" var="blist">
 					<div class="boardlist">
 		            	<div class="subdiv">
-		            		
 		            		<c:choose>
 		            			<c:when test="${blist.boImg eq null}">
 			            	    	<div class="img"><a href="#"><img class="imgSize" src="http://placehold.it/150x100"></a></div>
@@ -83,82 +81,33 @@
 			                <div class="regdate"><a href="fboardcon">${blist.boDate}</a></div>
 			                <div class="count"><a href="fboardcon">${blist.boView}</a></div>
 		                </div>
-		                
 		            </div>
 				</c:forEach>
 			
 			</c:if>
 			
-			 <!-- 앞 페이지 번호 처리 -->
-			 	<div class="page_wrap">
-			 		<div class="page_nation">
-			 		
-			 			<c:set var="firstPage" value=""/>
-					 	<c:if test="${currentPage <= 1}">
-					 		<span class="arrow prev">이전</span>
-					 		<span class="active">1</span>
-						</c:if>
-						
-						<c:if test="${currentPage > 1}">
-							<c:url var="blistST" value="fboardlist">
-								<c:param name="page" value="${currentPage-1}" />
-							</c:url>
-							<a class="arrow prev" href="${blistST}">이전</a>
-						</c:if>
-						
-						<!-- 끝 페이지 번호 처리 -->
-						<c:set var="endPage" value="${maxPage}" />
-						<c:forEach var="p" begin="${startPage+1}" end="${endPage}">
-						
-							<c:if test="${p eq currentPage}">
-								${p}
-							</c:if>
-							
-							<c:if test="${p ne currentPage}">
-								<c:url var="blistchk" value="fboardlist">
-									<c:param name="page" value="${p}" />
-								</c:url>
-								<a href="${blistchk}">${p}</a>
-							</c:if>
-						</c:forEach>
-						
-						<c:if test="${currentPage >= maxPage}">
-							<span class="active">2</span>
-							<span class="arrow next">다음</span>
-						</c:if>
-						
-						<c:if test="${currentPage < maxPage}">
-							<c:url var="blistEND" value="fboardlist">
-								<c:param name="page" value="${currentPage+1}" />
-							</c:url>
-							<a class="arrow next" href="${blistEND}">다음</a>
-						</c:if>
-					</div>	
+			<!-- 페이징 시작-->
+			<div class="page_wrap">
+				<div class="page_nation">
+					<c:if test="${paging.startPage != 1 }">
+						<a class="arrow prev" href="${path}/fboardlist?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a href="${path}/fboardlist?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<a class="arrow next" href="${path}/fboardlist?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+					</c:if>
 				</div>
-			 	
-			
-	       	
-				          
-				<!-- 
-				<div class="page_wrap">
-				    <div class="page_nation">
-				       <a class="arrow prev" href="#">이전</a>
-				       <a href="#" class="active">1</a>
-				       <a href="#">2</a>
-				       <a href="#">3</a>
-				       <a href="#">4</a>
-				       <a href="#">5</a>
-				       <a href="#">6</a>
-				       <a href="#">7</a>
-				       <a href="#">8</a>
-				       <a href="#">9</a>
-				       <a href="#">10</a>
-				       <a class="arrow next" href="#">다음</a>
-				    </div>
-				 </div>
-				  -->
-	                
-             
+			</div>
+			<!-- 페이징 끝! -->
 			</section>
 		<jsp:include page="../../common/footer.jsp" />
 		

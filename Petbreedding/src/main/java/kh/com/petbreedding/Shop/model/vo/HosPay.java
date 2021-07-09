@@ -3,14 +3,13 @@ package kh.com.petbreedding.Shop.model.vo;
 public class HosPay {
 	private String pay_num;
 	private String hos_rnum;
-	private String msg_num;
 	private String card_num;
 	private String pay_date;
 	private int pay_price;
 	private int total_price;
 	@Override
 	public String toString() {
-		return "HosPay [pay_num=" + pay_num + ", hos_rnum=" + hos_rnum + ", msg_num=" + msg_num + ", card_num="
+		return "HosPay [pay_num=" + pay_num + ", hos_rnum=" + hos_rnum+ ", card_num="
 				+ card_num + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", total_price=" + total_price
 				+ "]";
 	}
@@ -25,12 +24,6 @@ public class HosPay {
 	}
 	public void setHos_rnum(String hos_rnum) {
 		this.hos_rnum = hos_rnum;
-	}
-	public String getMsg_num() {
-		return msg_num;
-	}
-	public void setMsg_num(String msg_num) {
-		this.msg_num = msg_num;
 	}
 	public String getCard_num() {
 		return card_num;

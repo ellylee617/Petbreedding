@@ -5,7 +5,6 @@
 	<!-- 미용실 예약VO -->
 	<resultMap type="HairRev" id="HairRev">
 		<id column="HAR_RNUM" property="har_rnum"/>
-		<result column="MSG_NUM" property="msg_num" />
 		<result column="CL_NUM" property="cl_num" />
 		<result column="PET_NUM" property="pet_num" />
 		<result column="STYLE_NUM" property="style_num" />
@@ -39,7 +38,6 @@
 	<resultMap type="HarPay" id="HarPay">
 		<id column="PAY_NUM" property="pay_num"/>
 		<result column="HAR_RNUM" property="har_rnum" />
-		<result column="MSG_NUM" property="msg_num" />
 		<result column="CARD_NUM" property="card_num" />
 		<result column="PAY_DATE" property="pay_date" />
 		<result column="PAY_PRICE" property="pay_price" />
@@ -65,7 +63,6 @@
 	<!-- 동물병원 예약VO  -->
 	<resultMap type="HosRev" id="HosRev">
 		<id column="HOS_RNUM" property="hos_rnum"/>
-		<result column="MSG_NUM" property="msg_num"/>
 		<result column="CL_NUM" property="cl_num"/>
 		<result column="PET_NUM" property="pet_num" />
 		<result column="MED_NUM" property="med_num"/>
@@ -83,7 +80,6 @@
 	<resultMap type="HosPay" id="HosPay">
 		<id column="PAY_NUM" property="pay_num"/>
 		<result column="HOS_RNUM" property="hos_rnum" />
-		<result column="MSG_NUM" property="msg_num" />
 		<result column="CARD_NUM" property="card_num" />
 		<result column="PAY_DATE" property="pay_date" />
 		<result column="PAY_PRICE" property="pay_price" />
@@ -110,7 +106,7 @@
 	
 	<!-- 결제테이블 저장 -->
 	<insert id="harPay" parameterType="HarPay">
-		INSERT INTO HAR_PAY VALUES('HARPAY000' || SEQ_HAR_PAY.nextval, #{har_rnum},'M2',#{card_num},to_char(SYSDATE, 'YYYY-MM-DD'),#{pay_price},#{total_price})
+		INSERT INTO HAR_PAY VALUES('HARPAY000' || SEQ_HAR_PAY.nextval, #{har_rnum},#{card_num},to_char(SYSDATE, 'YYYY-MM-DD'),#{pay_price},#{total_price})
 	</insert>
 	
 	<!-- 예약현황 update -->
@@ -130,7 +126,7 @@
 	
 	<!-- 결제테이블 저장 -->
 	<insert id="hosPay" parameterType="HosPay">
-		INSERT INTO HOS_PAY VALUES('HOSPAY000' || SEQ_HOS_PAY.nextval, #{hos_rnum},'M2',#{card_num},to_char(SYSDATE, 'YYYY-MM-DD'),#{pay_price},#{total_price})
+		INSERT INTO HOS_PAY VALUES('HOSPAY000' || SEQ_HOS_PAY.nextval, #{hos_rnum},#{card_num},to_char(SYSDATE, 'YYYY-MM-DD'),#{pay_price},#{total_price})
 	</insert>
 	
 	<!-- 예약현황 update -->

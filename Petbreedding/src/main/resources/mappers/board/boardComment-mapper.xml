@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<!-- 	private String coNum; -->
-<!-- 	private String boNum; -->
-<!-- 	private String clNickName; -->
-<!-- 	private String coCont; -->
-<!-- 	private String coDate; -->
-
 <mapper namespace="boardComment">
 	<resultMap type="boardComment" id="boardCommentMap">
 		<id column="CO_NUM" property="coNum"/>
@@ -69,4 +63,24 @@
 	 	DELETE FROM BOARD_COMMENT WHERE CO_NUM = #{coNum}
 	 </delete>
 	
+	
+	<!-- 내가 쓴 댓글 개수 -->
+	 <select id="myBoardCMCount" parameterType="string" resultType="int">
+	 	SELECT count(*) FROM BOARD_COMMENT WHERE CL_NUM = #{cl_num}
+	 </select>
+	 <!-- 내가 쓴 댓글 조회 -->
+	 <select id="myBoardCMList" parameterType="map" resultMap="boardCommentMap">
+	 	<![CDATA[
+		 	SELECT B.*
+			FROM (
+			    SELECT ROWNUM R, A.*
+			    FROM(
+			        SELECT * FROM BOARD_COMMENT 
+			        WHERE CL_NUM = #{cl_num}
+			        ORDER BY SUBSTR(CO_NUM,-2) DESC
+			    ) A
+			)B
+			WHERE R>= #{start} AND R<=#{end}
+		]]>
+	 </select>
 </mapper>

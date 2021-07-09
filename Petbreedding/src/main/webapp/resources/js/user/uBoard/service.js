@@ -15,13 +15,17 @@ $(".que").click(function() {
 
 // myboard 전체선택
 function selectAll(selectAll)  {
-    const checkboxes 
-         = document.getElementsByName('board');
-    
+    const checkboxes = document.getElementsByName('board');
     checkboxes.forEach((checkbox) => {
       checkbox.checked = selectAll.checked;
-    })
+    });
   }
+
+//boardDetail로 이동
+$(".goDetail").on("click",function(){
+	var boNum = $(this).prev().find('input').val();
+	location.href = "fboardcon?boNum="+boNum+"";
+});
 
 // bmenu
 function tableCreate(){
