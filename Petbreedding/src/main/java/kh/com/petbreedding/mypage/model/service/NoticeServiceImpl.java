@@ -143,4 +143,30 @@ public class NoticeServiceImpl implements NoticeService {
 		return result;
 	}
 
+	@Override
+	public String getbp_id(String shopNum) {
+		String bp_id = "";
+		
+		try {
+			bp_id = noticeDao.getbp_id(shopNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bp_id;
+	}
+
+	@Override
+	public String getbp_idforPay(String revNum) {
+		String bp_id = "";
+		
+		try {
+			bp_id = noticeDao.getbp_idforPay(revNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bp_id;
+	}
+
 }

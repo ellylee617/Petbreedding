@@ -12,7 +12,9 @@ import kh.com.petbreedding.Shop.model.vo.HarPay;
 import kh.com.petbreedding.Shop.model.vo.HosPay;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.mypage.model.service.MyPointService;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
 import kh.com.petbreedding.mypage.model.vo.MyPoint;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 
 @Controller
 public class ShopPayController {
@@ -23,14 +25,41 @@ public class ShopPayController {
 	@Autowired
 	private MyPointService myPointService;
 	
+	@Autowired
+	private NoticeService noticeService;
+	
 	@RequestMapping("harPay")
 	@ResponseBody
-	public int harPay(HarPay harPay) {
+	public int harPay(HarPay harPay, HttpSession session) {
 
 		int result = shopPayService.harPay(harPay);
 		
+		// 알림 내역에 인서트
+		Client client = (Client) session.getAttribute("client");
+		
+		String revNum = harPay.getHar_rnum();
+		String cl_num = client.getNickname();
+		String bp_id = noticeService.getbp_idforPay(revNum);
+		
+		if(bp_id!=null && !bp_id.equals("")) {
+			Notice notice = new Notice();
+			notice.setNotReceiver(cl_num);
+			notice.setNotPublisher(bp_id);
+			notice.setRefNum(revNum);
+			
+			int insertNotice = 0;
+			insertNotice = noticeService.inReservaion(notice);
+			
+			if(insertNotice==1) {
+				System.out.println("알림 인서트 성공!");
+			}else {
+				System.out.println("알림 인서트 실패ㅠㅠ");
+			}
+		}
+
 		return result;
 	}
+	
 	//결제시 포인트 사용
 	@RequestMapping("myPoint")
 	@ResponseBody

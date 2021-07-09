@@ -1,5 +1,8 @@
 package kh.com.petbreedding.mypage.model.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Notice {
 	
 	private String notNum;
@@ -15,7 +18,14 @@ public class Notice {
 	private String boTitle;
 	private String qnaTitle;
 	private String notTime;
+	private String revNum;
 	
+	public String getRevNum() {
+		return revNum;
+	}
+	public void setRevNum(String revNum) {
+		this.revNum = revNum;
+	}
 	public String getNotTime() {
 		return notTime;
 	}

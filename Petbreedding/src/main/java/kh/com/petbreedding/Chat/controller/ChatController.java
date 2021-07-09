@@ -31,11 +31,10 @@ public class ChatController {
 			@RequestParam(value = "shopName", required = false) String shopName,			
 			@RequestParam(value = "bp_id", required = false) String bp_id, 
 			@RequestParam(value = "bp_type", required = false) String bptype, 
-			HttpServletRequest req) {
+			HttpSession session) {
 			
 		List<ChatMessage> list = null;
 		
-		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("client");
 		
 		String nickName = "";
@@ -112,11 +111,10 @@ public class ChatController {
 			@RequestParam(value = "nickName", required = false) String nickName,
 			@RequestParam(value = "shopName", required = false) String shopName,
 			@RequestParam(value = "cl_num", required = false) String cl_num, 
-			HttpServletRequest req) {
+			HttpSession session) {
 		
 		List<ChatMessage> list = null;
 		
-		HttpSession session = req.getSession();
 		BPartner bpartner = (BPartner) session.getAttribute("bP");
 		
 		String id = "";
@@ -183,12 +181,11 @@ public class ChatController {
 	}
 
 	@RequestMapping("/chatlist")
-	public ModelAndView chatlist(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView chatlist(ModelAndView mv, HttpSession session) {
 		List<ChatList> list = null;
 		List<ChatList> unreadList = null;
 		int countUnread = 0;
 		
-		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("client");
 		
 		// 로그인 되어있다면 세선에셔 cl_num 받아와 
@@ -207,12 +204,11 @@ public class ChatController {
 	}
 
 	@RequestMapping("/bchatlist")
-	public ModelAndView bchatlist(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView bchatlist(ModelAndView mv, HttpSession session) {
 		List<ChatList> list = null;
 		List<ChatList> unreadList = null;
 		int countUnread = 0;
 		
-		HttpSession session = req.getSession();
 		BPartner bpartner = (BPartner) session.getAttribute("bP");
 		
 		// 로그인 되어있다면 세선에셔 bp_id 받아와
@@ -232,7 +228,7 @@ public class ChatController {
 	
 	@RequestMapping("/chatdelete.do")
 	@ResponseBody
-	public int chatdelete(ModelAndView mv, HttpServletRequest req) {
+	public int chatdelete(HttpServletRequest req) {
 		
 		List<ChatMessage> list = null;
 		int result = 0;
@@ -258,7 +254,7 @@ public class ChatController {
 	
 	@RequestMapping("/bchatdelete.do")
 	@ResponseBody
-	public int bchatdelete(ModelAndView mv, HttpServletRequest req) {
+	public int bchatdelete(HttpServletRequest req) {
 		
 		List<ChatMessage> list = null;
 		int result = 0;
