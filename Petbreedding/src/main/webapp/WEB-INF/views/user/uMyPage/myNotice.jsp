@@ -27,7 +27,7 @@
 			<c:if test="${not empty noticeList }">
 			<c:forEach items="${noticeList }" var="n" varStatus="status">
 			<!-- 예약시  -->
-			<c:if test="${n.notCon eq a1 }">
+			<c:if test="${n.notCon eq 'a1' }">
 			<div class="noticewrap">
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
@@ -42,7 +42,7 @@
 			</div>
 			</c:if>
 			<!-- 결제시 -->
-			<c:if test="${n.notCon eq a2 }">
+			<c:if test="${n.notCon eq 'a2' }">
 			<div class="noticewrap">
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
@@ -57,7 +57,7 @@
 			</div>
 			</c:if>
 			<!-- 읽지 않은 채팅이 있을 시 -->
-			<c:if test="${n.notCon eq a3 }">
+			<c:if test="${n.notCon eq 'a3' }">
 			<div class="noticewrap">
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
@@ -72,7 +72,7 @@
 			</div>
 			</c:if>
 			<!-- 내 글에 댓글 달렸을 때 -->
-			<c:if test="${n.notCon eq a4 }">
+			<c:if test="${n.notCon eq 'a4' }">
 			<div class="noticewrap">
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
@@ -87,7 +87,7 @@
 			</div>
 			</c:if>
 			<!-- 1:1 문의에 답변이 달렸을 때 -->
-			<c:if test="${n.notCon eq a5 }">
+			<c:if test="${n.notCon eq 'a5' }">
 			<div class="noticewrap">
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
@@ -102,7 +102,7 @@
 			</div>
 			</c:if>
 			<!-- 포인트 사용시 -->
-			<c:if test="${n.notCon eq a6 }">
+			<c:if test="${n.notCon eq 'a6' }">
 			<div class="noticewrap">
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
@@ -117,7 +117,7 @@
 			</div>
 			</c:if>
 			<!-- 포인트 적립시 -->
-			<c:if test="${n.notCon eq a7 }">
+			<c:if test="${n.notCon eq 'a7' }">
 			<div class="noticewrap">
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
