@@ -22,9 +22,8 @@ function selectAll(selectAll)  {
   }
 
 //boardDetail로 이동
-$(".goToBoardDetail").on("click",function(){
-	var boNum = $(this).find('input').val();
-	console.log("boNum : "+ boNum);
+$(".goDetail").on("click",function(){
+	var boNum = $(this).prev().find('input').val();
 	location.href = "fboardcon?boNum="+boNum+"";
 });
 

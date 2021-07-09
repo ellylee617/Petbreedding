@@ -29,24 +29,27 @@
             <tr>
               <th scope="cols" width="250px"><input type="checkbox"  value='selectall'
                 onclick='selectAll(this)'>전체선택</th>
-              <th scope="cols"  width="1200px">제목</th>
-              <th scope="cols" width="600px"></th>
-              <th scope="cols" width="200px">작성일</th>
+              <th scope="cols"  width="1000px">댓글 내용</th>
+              <th scope="cols" width="300px"></th>
+              <th scope="cols" width="600px">작성일</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td><input type="checkbox" name="board"></td>
-              <td>살찌면 뒷목살도 접히나요?</td>
-              <td><a href="#">원문보기▶</a></td>
-              <td>2021-06-11</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" name="board"></td>
-                <td>살찌면 뒷목살도 접히나요?</td>
-                <td><a href="#">원문보기▶</a></td>
-                <td>2021-06-11</td>
-              </tr>
+            <c:if test="${empty myList}">
+		            <tr>
+		              	<td colspan="4">작성하신 댓글이 없습니다.</td>
+		            </tr>
+	        </c:if>
+	        <c:if test="${!empty myList}">
+		            <c:forEach items="${myList}" var="myList">
+		            	<tr>
+			              <td class="chBtn"><input type="checkbox" name="board" value="${myList.coNum }"></td>
+			              <td class="bTitle">${myList.coCont }</td>
+			              <td><a href='${path }/fboardcon?boNum=${myList.boNum }'>원문보기▶</a></td>
+			              <td>${myList.coDate }</td>
+			            </tr>
+		            </c:forEach>
+            </c:if>
             </tbody>
           </table>
         </div>

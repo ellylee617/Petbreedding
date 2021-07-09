@@ -3,7 +3,6 @@ package kh.com.petbreedding.Shop.model.vo;
 public class HarPay {
 	private String pay_num;
 	private String har_rnum;
-	private String msg_num;
 	private String card_num;
 	private String pay_date;
 	private int pay_price;
@@ -11,7 +10,7 @@ public class HarPay {
 	
 	@Override
 	public String toString() {
-		return "HarPay [pay_num=" + pay_num + ", har_rnum=" + har_rnum + ", msg_num=" + msg_num + ", card_num="
+		return "HarPay [pay_num=" + pay_num + ", har_rnum=" + har_rnum + ", card_num="
 				+ card_num + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", total_price=" + total_price
 				+ "]";
 	}
@@ -26,12 +25,6 @@ public class HarPay {
 	}
 	public void setHar_rnum(String har_rnum) {
 		this.har_rnum = har_rnum;
-	}
-	public String getMsg_num() {
-		return msg_num;
-	}
-	public void setMsg_num(String msg_num) {
-		this.msg_num = msg_num;
 	}
 	public String getCard_num() {
 		return card_num;
