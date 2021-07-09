@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,6 +38,7 @@ import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.common.model.vo.Pagination;
 import kh.com.petbreedding.board.model.service.BCommentService;
 import kh.com.petbreedding.board.model.service.BoardService;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
@@ -62,27 +65,25 @@ public class BoardController {
 	@RequestMapping(value = "/fboardlist")
 	// TODO 병원 번호, 미용실 번호 GET 방식으로 들고 들어와서 파라미터로 넣어줘야함 -
 	// @RequestParam(name="harNum") String harNum
-	public ModelAndView fboardlist(ModelAndView mv, HttpServletRequest req,
-			@RequestParam(name = "page", defaultValue = "1") int page,
-			@RequestParam(name = "keyword", required = false) String keyword) {
+	public ModelAndView fboardlist(ModelAndView mv, HttpServletRequest req, Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,@RequestParam(name = "keyword", required = false) String keyword) {
 
-		int currentPage = page;
-		// 한 페이지당 출력할 목록 갯수
-		int listCount = boardService.listCount();
-		int maxPage = (int) ((double) listCount / LIMIT + 0.9);
 		List<Board> boardList = null;
-
+		int total = boardService.listCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
 		if (keyword != null && !keyword.equals("")) {
 			boardList = boardService.searchList(keyword);
 			mv.addObject("boardList", boardList);
 		} else {
-			boardList = boardService.selectBoardList(currentPage, LIMIT);
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			boardList = boardService.selectBoardList(page);
 			mv.addObject("boardList", boardList);
 		}
-
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("maxPage", maxPage);
-		mv.addObject("listCount", listCount);
+		
+		mv.addObject("paging", page);
 
 		System.out.println("[세훈] @컨트롤러 boardList : " + boardList.toString());
 		mv.setViewName("/user/uBoard/fboardList");
@@ -244,27 +245,16 @@ public class BoardController {
 	@RequestMapping(value = "/bupdate")
 	public String bupdate(
 			Model md
-			,Client cl
+			,String cl_num
 			,MultipartHttpServletRequest req
 			,HttpServletResponse res
 			,HttpSession session
 			) {
 		res.setContentType("text/html; charset=utf-8");
-		
-		
-		 cl = (Client) session.getAttribute("client"); 
-		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
-			 return "redirect:/"; 
-		 }
-		 
-		
+
 		String boTitle = req.getParameter("boTitle");
 		String bo_content = req.getParameter("boContent");
 		String bo_num = req.getParameter("boUpdBoNum");
-		
-		System.out.println("[세훈] @글 수정 컨트롤러 boTitle : " + boTitle);
-		System.out.println("[세훈] @글 수정 컨트롤러 bo_content : " + bo_content);
-		System.out.println("[세훈] @글 수정 컨트롤러 bo_num : " + bo_num);
 		
 		Board board = new Board();
 		board.setBoTitle(boTitle);
@@ -534,6 +524,52 @@ public class BoardController {
 
 //		return "redirect:/mypage?cl_num=CL1";
 	}
+	
+	//내가 쓴 글
+	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
+	public String myboard(String cl_num, Model model,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		
+		int total = boardService.myBoardCount(cl_num);
+		
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("cl_num", cl_num);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<Board> list = boardService.myBoardList(map); 
+		
+		model.addAttribute("paging", page);
+		model.addAttribute("myList", list);
+		
+		return "/user/uMyPage/myboard";
+	}
+
+	//내가 쓴 댓글
+	@RequestMapping(value = "/myreply", method = RequestMethod.GET)
+	public String myreply(String cl_num, Model model,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		
+		int total = boardService.myBoardCMCount(cl_num);
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("cl_num", cl_num);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<B_comment> list = boardService.myBoardCMList(map);
+		model.addAttribute("paging", page);
+		model.addAttribute("myList", list);
+		
+		return "/user/uMyPage/myreply";
+	}
+	
 
 	// 유저 공지사항 리스트 조회
 	@RequestMapping(value = "/UcustomerService", method = RequestMethod.GET)
@@ -563,14 +599,5 @@ public class BoardController {
 		return "/user/uMyPage/mypetRegister";
 	}
 
-	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
-	public String myboard(Locale locale, Model model) {
-		return "/user/uMyPage/myboard";
-	}
-
-	@RequestMapping(value = "/myreply", method = RequestMethod.GET)
-	public String myreply(Locale locale, Model model) {
-		return "/user/uMyPage/myreply";
-	}
 
 }

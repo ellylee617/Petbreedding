@@ -35,6 +35,7 @@ import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.board.model.vo.MyAskComment;
 import kh.com.petbreedding.client.model.vo.Client;
@@ -313,7 +314,8 @@ public class ClientInfoCotroller {
 			
 	}
 	
-
+	//내가 쓴 글 / 댓글은 BoardController
+	
 	//찜목록은 LikesController
 
 	// 회원 정보 불러오기
