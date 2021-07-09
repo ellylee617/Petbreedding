@@ -191,6 +191,13 @@
 							
 						$("#reviewsection").html(div);
 						
+						$(".brevRegBtn").on("click", function() {
+							console.log("frm 서밋 함수는 들어옴")
+							$("#brevRegFrm").attr("action", "brwrite");
+							$("#brevRegFrm").attr("method", "post");
+							$("#brevRegFrm").submit();
+						});
+						
 					} else {
 						
 						div += "데이터가 없습니다";
@@ -211,6 +218,7 @@
 	closeBtn.addEventListener("click", function() {
 		modal.style.display = "none";
 	});
+	
 	</script>
 	
 	<script src="${path}/resources/js/bPartner/bShop/bReview.js"></script>
