@@ -7,6 +7,8 @@ import kh.com.petbreedding.mypage.model.vo.Notice;
 public interface NoticeService {
 	
 	public List<Notice> getNoticeList(String notReceiver);
+	public String getbp_id(String shopNum);
+	public String getbp_idforPay(String revNum);
 	public int inReservaion(Notice notice);
 	public int inPay(Notice notice);
 	public int inUnreadChat(Notice notice);

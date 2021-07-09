@@ -342,6 +342,38 @@ public class ClientInfoCotroller {
 		mv.setViewName("/user/uMyPage/myNotice");
 		return mv;
 	}
+	
+	// 알림 삭제
+	@RequestMapping("/notdelete.do")
+	@ResponseBody
+	public String noticeDelete(HttpServletRequest req, HttpServletResponse res) {
+		
+		int result = 0;
+		
+		String notNum = req.getParameter("notNum");
+		System.out.println("notNum" + notNum);
+		
+		res.setContentType("text/html; charset=UTF-8");
+		
+		try {
+			PrintWriter out = res.getWriter();
+			result = noticeService.deleteNotice(notNum);
+			
+			if(result==1) {
+				System.out.println("알림 삭제 완료!");
+				out.println("<script>alret('요청하신 알림이 삭제되었습니다!');<script>");
+				
+			}else {
+				System.out.println("알림 삭제 실패!");
+				out.println("<script>alret('알림 삭제에 실패했습니다. 관리자에게 문의해주세요.');<script>");
+			}
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "/noticelist";
+	}
 
 	//회원정보 수정 탈퇴는 ClientController
 	

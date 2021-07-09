@@ -35,16 +35,9 @@
      height: 50px;
      text-align: center;
  }
-
-.goToBoardDetail:hover{
-	 border-bottom: 1px solid #aaa;
-	 border-top: 1px solid #aaa;
-	 height: 50px;
-	 text-align: center;
-	 background-color: #a5e6fc; /*tr호버컬러*/;
-	 border-collapse: collapse;  
-	 cursor:pointer; 
- }
+.goDetail{
+	cursor:pointer;
+}
  .myboardrow{
      float: right;
  }

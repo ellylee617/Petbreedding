@@ -37,15 +37,15 @@
 	            </thead>
 	            <tbody>
 	            <c:if test="${empty myList}">
-		            <tr class="goToBoardDetail">
+		            <tr>
 		              	<td colspan="4">작성하신 글이 없습니다.</td>
 		            </tr>
 	            </c:if>
 	            <c:if test="${!empty myList}">
-		            <c:forEach items="${myList}" var="myList">
-		            	<tr class="goToBoardDetail">
+		            <c:forEach items="${myList}" var="myList" varStatus="status" >
+		            	<tr>
 			              <td class="chBtn"><input type="checkbox" name="board" value="${myList.boNum }"></td>
-			              <td class="bTitle">${myList.boTitle }(${myList.bocChk })</td>
+			              <td class="bTitle goDetail">${myList.boTitle }</td>
 			              <td>${myList.boDate }</td>
 			              <td>${myList.boView }</td>
 			            </tr>
@@ -55,7 +55,7 @@
 	          </table>
 	    </div>
     	<div class="myboardrow">
-            <button class="basicBtn" ><a href="#">삭제</a></button>
+            <button class="basicBtn" id="deleteBoard">삭제</button>
         </div>
 	    <!-- 페이징 시작-->
 		<div class="page_wrap">

@@ -2,8 +2,6 @@
 
 .page_wrap {
 	text-align:center;
-	font-size:0;
-
  }
 .page_nation {
 	display:inline-block;
@@ -51,11 +49,15 @@
     height: 35px;
     border-radius: 10px;
 }
-  .basicBtn a{
-      font-family: "GmarketM";
-      color: #fff;
-  }
-
+.basicBtn a{
+    font-family: "GmarketM";
+    color: #fff;
+}
+.page_nation b {
+	float:left;
+    padding-top: 3px;
+    width:40px;
+}
 .basicBtn:hover{
 	background-color : var(--hover-color);
 }

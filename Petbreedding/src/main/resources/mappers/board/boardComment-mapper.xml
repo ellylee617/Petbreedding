@@ -83,4 +83,13 @@
 			WHERE R>= #{start} AND R<=#{end}
 		]]>
 	 </select>
+	 
+	<!-- 내가 쓴 댓글 삭제 -->
+	 <delete id="myCommentDelete">
+	 	DELETE FROM BOARD_COMMENT
+	 	WHERE CO_NUM = ANY
+	 	<foreach collection="list" item="value" open="(" close=")" separator=",">
+		 #{value}  		
+		</foreach>
+	 </delete>
 </mapper>

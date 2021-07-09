@@ -29,7 +29,7 @@ function deleteChat(inchatId) {
 		$.ajax({
 			url : "chatdelete.do",
 			type : "POST",
-			data : { chatId, chatId },
+			data : { chatId : chatId },
 			success : function(data) {
 				if(data>0){
 					alert("대화가 모두 삭제되었습니다!");

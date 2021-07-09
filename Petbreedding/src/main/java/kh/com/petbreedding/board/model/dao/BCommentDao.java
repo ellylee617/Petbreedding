@@ -1,6 +1,7 @@
 package kh.com.petbreedding.board.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,20 @@ public class BCommentDao {
 	
 	public int bCommentDelete(String co_num) {
 		return sqlSession.delete("boardComment.bCommentDelete", co_num);
+	}
+	
+	
+	//내가 쓴 댓글 개수 
+	public int myBoardCMCount(String cl_num) {
+		return sqlSession.selectOne("boardComment.myBoardCMCount", cl_num);
+	}
+	
+	//내가 쓴 댓글 조회
+	public List<B_comment> myBoardCMList(Map<String, String> map){
+		return sqlSession.selectList("boardComment.myBoardCMList", map);
+	}
+	//내가 쓴 댓글 삭제
+	public int myCommentDelete(List<String> list) {
+		return sqlSession.delete("boardComment.myCommentDelete", list);
 	}
 }

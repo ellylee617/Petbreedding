@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+//CKEDITOR.instances.editor.getData();
 ClassicEditor
 .create( document.querySelector( '#editor' ), {
 	cloudServices: {
@@ -12,3 +12,10 @@ ClassicEditor
 .catch( error => {
     console.error( error );
 } );
+
+$("#successbtn").on("click",function(){
+	var setForm = $("#editor").text();
+	alert("setForm" + setForm);
+	CKEDITOR.instances.editor.setData(setForm);
+	
+});

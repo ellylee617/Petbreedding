@@ -2,6 +2,9 @@ package kh.com.petbreedding.Chat.model.vo;
 
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ChatList {
 	
     private String chatId;
