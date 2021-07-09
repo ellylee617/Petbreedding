@@ -795,7 +795,9 @@ public class BMyPageController {
 		bP = (BPartner) ses.getAttribute("bP");
 		
 		if(bP == null) {
-			return "redirect:/";
+			md.addAttribute("msg", "로그인이 필요합니다");
+			md.addAttribute("url", "/bLogin");
+			return "common/redirect";
 		}
 		
 		String bp_id = bP.getBp_Id();
@@ -838,12 +840,14 @@ public class BMyPageController {
 	}
 	
 	//	사업자 리뷰 댓글 등록
-	@ResponseBody
 	@RequestMapping(value = "/brwrite")
-	public void brWrite(
+	public String brWrite(
 			HttpServletRequest req
+			,HttpServletResponse res
 			,Model md
 			) {
+		
+		res.setCharacterEncoding("UTF-8");
 		
 		String bp_id = req.getParameter("revBpIdVal");
 		String rev_num = req.getParameter("revNumVal");
@@ -861,20 +865,21 @@ public class BMyPageController {
 		
 		
 		int revcResult = reviewCommentService.reviewCommentInsert(revCmnt);
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 revcResult : " + revcResult);
+		
 		
 		if(revcResult > 0) {
-			System.out.println("리뷰 댓글 등록 성공");
-			md.addAttribute("msg", "리뷰 댓글 등록 성공");
+			System.out.println("사업자 리뷰 댓글 등록 성공");
+			md.addAttribute("msg", "사업자 리뷰 댓글 등록 성공");
 			md.addAttribute("url","/bReview");
 		} else {
-			System.out.println("리뷰 댓글 등록 실패");
-			md.addAttribute("msg", "리뷰 댓글 등록 실패");
+			System.out.println("사업자 리뷰 댓글 실패");
+			md.addAttribute("msg", "사업자 리뷰 댓글 등록 실패");
 			md.addAttribute("url","/bReview");
 		}
 		
+		return "common/redirect";
 		
-		
-//		return "common/redirect";
 	}
 
 }

@@ -113,8 +113,20 @@ public class BoardController {
 	public String bWrite(
 			Model md
 			,int type
+			,Client cl
 			,HttpServletRequest req
+			,HttpSession session
 			) {
+		
+		cl = (Client) session.getAttribute("client"); 
+		
+		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
+			System.out.println("로그인 안했음");
+			md.addAttribute("msg", "로그인이 필요합니다");
+			md.addAttribute("url","/uLogin");
+			return "common/redirect"; 
+		 }
+		
 		String boNum = req.getParameter("boUpdBoNum");
 		String boTitle = req.getParameter("boUpdBoTitle");
 		String boCont = req.getParameter("boUpdBoCont");
@@ -141,9 +153,6 @@ public class BoardController {
 		
 		
 		 cl = (Client) session.getAttribute("client"); 
-		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
-			 return "redirect:/"; 
-		 }
 		 
 		
 		String cl_num = cl.getCl_num();
@@ -458,10 +467,7 @@ public class BoardController {
 		res.setContentType("text/html; charset=utf-8");
 		System.out.println("리뷰 등록 컨트롤러 진입");
 		cl = (Client) session.getAttribute("client");
-		if (cl == null) {
-			// TODO: 로그인 안됐다는 경고.또는 이동 위치 변경
-			return "redirect:/";
-		}
+
 		String cl_num = cl.getCl_num();
 		String clNickName = cl.getNickname();
 		String har_num = req.getParameter("har_num");
