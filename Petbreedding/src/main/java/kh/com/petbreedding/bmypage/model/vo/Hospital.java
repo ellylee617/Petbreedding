@@ -9,8 +9,6 @@ public class Hospital {
 	private String bpId;	// 사업자 고객번호
 	private String shopName;	// 동물병원 이름
 	private String shopAddr;	// 동물병원 주소
-	private String y; // y좌표
-	private String x; // x좌표	
 	private String shopTel;	// 동물병원 전화번호
 	private String shopTime;	//동물병원영업시간
 	private String shopMInfo;	// 동물병원 메인 소개
@@ -32,12 +30,16 @@ public class Hospital {
 
 	
 
+
+
+
+
 	@Override
 	public String toString() {
 		return "Hospital [hosNum=" + hosNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
-				+ ", y=" + y + ", x=" + x + ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo="
-				+ shopMInfo + ", shopMImg=" + shopMImg + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu="
-				+ thu + ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + "]";
+				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", shopMImg="
+				+ shopMImg + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu=" + thu + ", fri=" + fri
+				+ ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + "]";
 	}
 
 
@@ -52,28 +54,6 @@ public class Hospital {
 
 	public void setAvgRevVal(double avgRevVal) {
 		this.avgRevVal = avgRevVal;
-	}
-
-
-
-
-	public String getY() {
-		return y;
-	}
-
-
-	public void setY(String y) {
-		this.y = y;
-	}
-
-
-	public String getX() {
-		return x;
-	}
-
-
-	public void setX(String x) {
-		this.x = x;
 	}
 
 

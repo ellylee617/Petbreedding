@@ -100,11 +100,13 @@ public class shopController {
 			
 				List<HairSalon> newHarList = shopService.selectHarListNew(page); // 최신순
 				List<HairSalon> revHarList = shopService.selectHarListRev(page); // 별점순 
-			//TODO:거리순
+				List<HairSalon> likesHarList = shopService.selectHarListLikes(page); // 인기순
+			
 			
 			
 			System.out.println("미용실 리스트: 최신순 : " + newHarList);
 			System.out.println("미용실 리스트: 별점순: " + revHarList);
+			System.out.println("미용실 리스트: 인기순: " + likesHarList);
 			
 			
 			// 미용실 리스트 - 거리순
@@ -151,7 +153,21 @@ public class shopController {
 				mv.addObject("count", list);
 			}
 			
-			// TODO:거리순
+			// TODO:인기순
+			for(int i =0; i<likesHarList.size(); i++) {
+				har_num = likesHarList.get(i).getHarNum();
+				System.out.println("미용실 번호는????"+har_num);
+				bpId = likesHarList.get(i).getBpId();
+				String count = likeService.countSalon(har_num);
+//				String revVal = shopService.selectRevVal(bpId);
+				String countRev = shopService.selectCountReview(bpId);
+				countList.add(countRev);
+//				mv.addObject("revVal", revVal);
+				mv.addObject("countRev", countList);
+				System.out.println("************count*****"+count);
+				list.add(count);
+				mv.addObject("count", list);
+			}
 			
 			/*
 			 * List<String> list = new ArrayList<String>(); 
@@ -187,6 +203,7 @@ public class shopController {
 			
 			mv.addObject("shopType", harShopType);
 			mv.addObject("newHarList", newHarList);
+			mv.addObject("likesHarList", likesHarList);
 			mv.addObject("revHarList", revHarList);
 			mv.addObject("paging", page);
 			mv.addObject("cta", ultra);

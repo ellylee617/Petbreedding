@@ -32,12 +32,12 @@
 	VALUES	(SEQ_STYLE.NEXTVAL,#{harNum},#{style_name},#{price},#{style_time},1,SEQ_STYLE.NEXTVAL)
 	</insert>
 	
-	<!-- 등록한 미용실 메뉴(메인+서브) 조회 -->
+	<!-- 등록한 미용실 메인 메뉴 조회 -->
 	<!-- ShopDao.java -->
 	<select id="selectStyleList" parameterType="string" resultMap="Style">
 		SELECT * 
 		FROM STYLE
-		WHERE HAR_NUM = #{harNum}
+		WHERE HAR_NUM = #{harNum} AND STYLE_DEEP = 0
 	</select>
 	
 	<!-- 미용실 메뉴 수정 -->

@@ -91,7 +91,11 @@ public class ShopDao {
 		return sqlSession.selectList("Shop.selectHarListRev", page);
 	}
 	
-	//	미용실 리스트 : 거리순
+	//	미용실 리스트 : 인기순(찜순)
+	public List<HairSalon> selectHarListLikes(Pagination page) {
+		System.out.println("~~~ShopDao 진입~~~");
+		return sqlSession.selectList("Shop.selectHarListLikes", page);
+	}
 	
 	
 	// 미용실 전체 리스트 조회 (shopController)

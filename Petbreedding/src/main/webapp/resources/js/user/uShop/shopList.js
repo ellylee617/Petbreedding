@@ -2,19 +2,19 @@
 $(document).ready(function(){
 	$("#newRadio").click(function(){
 		$("#newList").show();
-		$("#distanceList").hide();
+		$("#likeList").hide();
 		$("#revList").hide();
 	});
 
 	$("#distanceRadio").click(function(){
 		$("#newList").hide();
-		$("#distanceList").show();
+		$("#likeList").show();
 		$("#revList").hide();
 	});
 
 	$("#revRadio").click(function(){
 		$("#newList").hide();
-		$("#distanceList").hide();
+		$("#likeList").hide();
 		$("#revList").show();
 	});
 

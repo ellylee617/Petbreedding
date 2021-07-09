@@ -534,6 +534,20 @@ public class ShopServiceImpl implements ShopService {
 		}
 		return list;
 	}
+	
+	// 미용실 리스트 - 인기순(찜순)
+
+	@Override
+	public List<HairSalon> selectHarListLikes(Pagination page) {
+		System.out.println("shopService selectHarListLikes() 실행");
+		List<HairSalon> list = null;
+		try {
+			list = shopDao.selectHarListLikes(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 
 
@@ -626,6 +640,10 @@ public class ShopServiceImpl implements ShopService {
 		}
 		return list;
 	}
+
+
+
+
 
 
 
