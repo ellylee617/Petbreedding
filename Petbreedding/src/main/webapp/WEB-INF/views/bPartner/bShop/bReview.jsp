@@ -158,6 +158,7 @@
 			url: "brmodal"
 			,type: "post"
 			,data: {rev_num : revNum}
+			,dataType: 'json'
 			,success: function(data) {
 					console.log(data);
 					if(data != null) {

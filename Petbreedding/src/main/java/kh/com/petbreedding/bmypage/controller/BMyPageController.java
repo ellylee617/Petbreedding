@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.bmypage.model.service.BInfoService;
@@ -809,34 +813,32 @@ public class BMyPageController {
 	
 	
 	//	사업자 리뷰  모달
-	@RequestMapping(value = "/brmodal")
-	public void brModal(
+	@ResponseBody
+	@RequestMapping(value = "/brmodal", produces="text/plain;charset=UTF-8")
+	public String brModal(
 			String rev_num
 			,HttpServletRequest req
 			,HttpServletResponse res
 			) {
 		
+		res.setCharacterEncoding("UTF-8");
+		
 		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rev_num : " + rev_num);
 		Review rv = new Review();
 		rv = reviewService.reviewSelectOne(rev_num);
 		
+		
+		Gson gson = new GsonBuilder().create();
+		String jsonOutPut = gson.toJson(rv);
+		
 		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rv : " + rv.toString());
 		
-		PrintWriter out = null;
 		
-		try {
-			out = res.getWriter();
-			out.println(rv);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			out.flush();
-			out.close();
-		}
-		
+		return jsonOutPut;
 	}
 	
 	//	사업자 리뷰 댓글 등록
+	@ResponseBody
 	@RequestMapping(value = "/brwrite")
 	public void brWrite(
 			HttpServletRequest req
