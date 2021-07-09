@@ -3,10 +3,23 @@
  */
 
 $("#fboardUpdBtn").on("click", function() {
-	console.log("글 수정 버튼 클릭 됨");
-	$("#boUpdFrm").attr("action", "bwriteFrm?type=2");
-	$("#boUpdFrm").attr("method", "post");
-	$("#boUpdFrm").submit();
+	
+	console.log("눌렀음");
+	var boNum = $("#boUpdBoNum").val();
+	var boTitle = $("#boUpdBoTitle").val();
+	var boCont = $(".con").html();
+	$.ajax({
+		url : "bupdateFrm",
+		type: "post",
+		data:{
+			boNum : boNum,
+			boTitle : boTitle,
+			boCont : boCont
+		},
+		success:function(data){
+			location.href="bupdateFrm";
+		}
+	});
 });
 
 $("#fboardDelBtn").on("click", function() {
@@ -14,7 +27,7 @@ $("#fboardDelBtn").on("click", function() {
 	getModal();
 });
 
-$("#goTOPay").on("click", function() {
+$("#goTODel").on("click", function() {
 	var boardNumVar = $(this).attr("name");
 	console.log(boardNumVar);
 	location.href = "/petbreedding/bdelete?bo_num="+boardNumVar+"";

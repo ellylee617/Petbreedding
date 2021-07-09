@@ -133,26 +133,17 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int myBoardCMCount(String cl_num) {
+	public int myBoardDelete(List<String> list) {
 		int result = -1;
 		try {
-			result = boardDao.myBoardCMCount(cl_num);
+			result = boardDao.myBoardDelete(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
 
-	@Override
-	public List<B_comment> myBoardCMList(Map<String, String> map) {
-		List<B_comment> result = null;
-		try {
-			result = boardDao.myBoardCMList(map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
+
 
 
 }

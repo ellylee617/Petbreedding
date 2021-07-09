@@ -27,6 +27,58 @@ $(".goDetail").on("click",function(){
 	location.href = "fboardcon?boNum="+boNum+"";
 });
 
+//댓글삭제 눌렀을때 
+$("#deleteCM").on("click",function(){
+	var arr = [];
+	$("input[name=board]:checked").each(function(item){
+		arr.push($(this).val());
+	});
+	var allData = {"coNum" : arr};
+	$.ajax({
+		url : "mycdelete",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("댓글이 삭제되었습니다.");
+				location.reload();
+			}else{
+				alert("댓글삭제 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});
+
+//글삭제 눌렀을때 
+$("#deleteBoard").on("click",function(){
+	var arr = [];
+	$("input[name=board]:checked").each(function(item){
+		arr.push($(this).val());
+	});
+	var allData = {"coNum" : arr};
+	$.ajax({
+		url : "myBoarddelete",
+		type : "POST",
+		data : {arr : arr},
+		success : function(data){
+			if(data > 0){
+				alert("글이 삭제되었습니다.");
+				location.reload();
+			}else{
+				alert("글삭제 오류");
+			}
+		},
+		error: function(){
+			console.log("에러");
+		}
+		
+	});
+});
+
 // bmenu
 function tableCreate(){
 	  var tc = new Array();

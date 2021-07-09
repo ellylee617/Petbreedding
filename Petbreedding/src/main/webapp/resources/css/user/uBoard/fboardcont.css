@@ -20,9 +20,17 @@
 .bcon{
     clear: both;
 }
+
+/* 글조회 시  */
 .con{
     margin-bottom: 100px;
 }
+.bcon > div > figure > img{
+	width : 300px;
+}
+
+
+
 .bcon .img{
     clear: both;
     display: flex;
@@ -109,12 +117,15 @@
 }
 
 
-#bocSubmitBtn{
+#bocSubmitBtn, #bocUpdateBtn{
     width: 9%;
     float: left;
     border-radius: 10px;
     font-size: 13px;
     margin-left: 30px;
+}
+#bocUpdateBtn{
+	display:none;
 }
 #bocUpdCancelBtn{
     width: 9%;

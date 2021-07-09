@@ -1,6 +1,7 @@
 package kh.com.petbreedding.board.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -100,7 +101,7 @@ public class BCommentServiceImpl implements BCommentService {
 		
 		try {
 			bcDeleteResult = bCommentDao.bCommentDelete(co_num);
-			bocChk = bCommentDao.bocChkUpdate(bo_num);
+			bocChk = bCommentDao.bocChkUpdate(bo_num); 
 			
 			if(bocChk > 0) {
 				System.out.println("게시판 댓글 갯수 체크 업데이트 성공");
@@ -114,5 +115,39 @@ public class BCommentServiceImpl implements BCommentService {
 		
 		return bcDeleteResult;
  	}
+
+	
+	@Override
+	public int myBoardCMCount(String cl_num) {
+		int result = -1;
+		try {
+			result = bCommentDao.myBoardCMCount(cl_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<B_comment> myBoardCMList(Map<String, String> map) {
+		List<B_comment> result = null;
+		try {
+			result = bCommentDao.myBoardCMList(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@Override
+	public int myCommentDelete(List<String> list) {
+		int result = -1;
+		try {
+			result = bCommentDao.myCommentDelete(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 }
