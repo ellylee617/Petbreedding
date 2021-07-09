@@ -34,10 +34,10 @@
 				</div>
 				<div class="conWrap">
 					<div class="imgWrap">
-					<img src="${path}/resources/images/${n.shopImg}">
+					<img src="${path}/resources/uploadFile/shop/${n.shopImg}">
 					</div>
-					<div class="shopNameWrap">${n.shopName }</div><div class="msgWrap">예약 되었습니다.</div>
-					<a class="cancleM"><i class="far fa-times-circle"></i></a>
+					<div class="shopNameWrap">${n.shopName }</div>&nbsp;&nbsp;<div class="msgWrap">예약 되었습니다.</div>
+					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
 				</div>
 			</div>
 			</c:if>
@@ -49,10 +49,10 @@
 				</div>
 				<div class="conWrap">
 					<div class="imgWrap">
-					<img src="${path}/resources/images/${n.shopImg}">
+					<img src="${path}/resources/uploadFile/shop/${n.shopImg}">
 					</div>
-					<div class="shopNameWrap">${n.shopName }</div><div class="msgWrap">예약이 확정되었습니다.</div>
-					<a class="cancleM"><i class="far fa-times-circle"></i></a>
+					<div class="shopNameWrap">${n.shopName }</div>&nbsp;&nbsp;<div class="msgWrap">예약이 확정되었습니다.</div>
+					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
 				</div>
 			</div>
 			</c:if>
@@ -64,10 +64,10 @@
 				</div>
 				<div class="conWrap">
 					<div class="imgWrap">
-					<img src="${path}/resources/images/${n.shopImg}">
+					<img src="${path}/resources/uploadFile/shop/${n.shopImg}">
 					</div>
-					<div class="shopNameWrap">${n.shopName }</div><div class="msgWrap">읽지 않은 메시지가 있습니다.</div>
-					<a class="cancleM"><i class="far fa-times-circle"></i></a>
+					<div class="shopNameWrap">${n.shopName }</div>&nbsp;&nbsp;<div class="msgWrap">읽지 않은 메시지가 있습니다.</div>
+					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
 				</div>
 			</div>
 			</c:if>
@@ -81,8 +81,8 @@
 					<div class="imgWrap">
 					<img src="${path}/resources/images/logo.png">
 					</div>
-					<div class="shopNameWrap">${n.boTitle }</div><div class="msgWrap">에 새 댓글이 있습니다.</div>
-					<a class="cancleM"><i class="far fa-times-circle"></i></a>
+					<div class="shopNameWrap">${n.boTitle }</div>&nbsp;&nbsp;<div class="msgWrap">에 새 댓글이 있습니다.</div>
+					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
 				</div>
 			</div>
 			</c:if>
@@ -96,8 +96,8 @@
 					<div class="imgWrap">
 					<img src="${path}/resources/images/logo.png">
 					</div>
-					<div class="shopNameWrap">${n.qnaTitle }</div><div class="msgWrap">문의하신 문의글에 대한 답변입니다.</div>
-					<a class="cancleM"><i class="far fa-times-circle"></i></a>
+					<div class="shopNameWrap">${n.qnaTitle }</div>&nbsp;&nbsp;<div class="msgWrap">문의하신 문의글에 대한 답변입니다.</div>
+					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
 				</div>
 			</div>
 			</c:if>
@@ -105,14 +105,14 @@
 			<c:if test="${n.notCon eq 'a6' }">
 			<div class="noticewrap">
 				<div class="topWrap">
-				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
+				<div class="clockWrap"><i class="far fa-clock"></i></div>&nbsp;&nbsp;<div class="dateWrap">${n.notTime }</div>
 				</div>
 				<div class="conWrap">
 					<div class="imgWrap">
 					<img src="${path}/resources/images/logo.png">
 					</div>
 					<div class="shopNameWrap">${n.refNum }</div><div class="msgWrap">건에 대해 포인트를 사용했습니다.</div>
-					<a class="cancleM"><i class="far fa-times-circle"></i></a>
+					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
 				</div>
 			</div>
 			</c:if>
@@ -126,15 +126,15 @@
 					<div class="imgWrap">
 					<img src="${path}/resources/images/logo.png">
 					</div>
-					<div class="shopNameWrap">${n.refNum }</div><div class="msgWrap">건에 대해 포인트가 적립되었습니다.</div>
-					<a class="cancleM"><i class="far fa-times-circle"></i></a>
+					<div class="shopNameWrap">${n.refNum }</div>&nbsp;&nbsp;<div class="msgWrap">건에 대해 포인트가 적립되었습니다.</div>
+					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
 				</div>
 			</div>
 			</c:if>
 			</c:forEach>
 			</c:if>
 			<c:if test="${empty noticeList }">
-				알림이 없습니다.
+				<div class="textWrapNolist">도착한 알림이 없습니다.</div>
 			</c:if>
 			</div>
 		</section>

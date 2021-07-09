@@ -58,7 +58,7 @@
 								<td rowspan="2"><img src="${path}/resources/images/logoForChat.png"></td>
 								<td>${u.nickName }</td>
 								<td>${u.mSendTime }</td>
-								<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+								<td rowspan="2"><a class="cancleM" onClick="deleteChat('${r.chatId }');"><i class="far fa-times-circle"></i></a></td>
 							</tr>
 							<tr>
 								<td>${u.mContent }</td>

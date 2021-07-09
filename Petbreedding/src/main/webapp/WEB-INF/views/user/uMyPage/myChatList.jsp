@@ -51,6 +51,7 @@
 							</table>
 							</c:forEach>
 							</c:if>
+							<c:if test="${empty Roomlist }"><div class="textwrap">대화중인 상대가 없습니다.</div></c:if>
 						</div>
 						</li>
 						<li id="tab2" class="btnCon">
@@ -66,7 +67,7 @@
 												</div></td>
 								<td>${u.shopName }</td>
 								<td>${u.mSendTime }</td>
-								<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+								<td rowspan="2"><a class="cancleM" onClick="deleteChat('${r.chatId }');"><i class="far fa-times-circle"></i></a></td>
 							</tr>
 							<tr>
 								<td>${u.mContent }</td>
