@@ -14,6 +14,7 @@
 <link type="text/css" rel="stylesheet"	href="${path}/resources/css/bPartner/bShop/bReview.css">
 <link	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"	rel="stylesheet" />
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -60,7 +61,7 @@
 							<td>${brItems.revCont}</td>
 							
 							<c:if test="${brItems.comntChk eq 0}">
-								<td><button class="basicBtn btnReply">답글쓰기</button></td>
+								<td><button class="basicBtn btnReply" name="${brItems.revNum}" id="${brItems.bpId}">답글쓰기</button></td>
 							</c:if>
 							<c:if test="${brItems.comntChk eq 1}">
 								<td><button class="basicBtn btnReCom">작성완료</button></td>
@@ -81,6 +82,7 @@
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
+	
 	<!-- 리뷰 답글 작성 모달창 -->
 	<div id="modalReply" class="modalRe-Overlay">
 		<div id="modalReply-Win">
@@ -88,26 +90,7 @@
 				<div id="modalTitle">리뷰 상세 보기</div>
 				<a class="modal_close_btn"><i class="fas fa-times fa-lg"></i></a>
 			</div>
-			<div class="reviewsection">
-				<div id="modalRetxt">
-					<img class="txtImg" src="${path}/resources/images/5.png">&nbsp;&nbsp;4.0
-					<br>
-					<p id="reTitle">잘 잘라줘요</p>
-					<br>
-					<p>또비 언니</p>
-					<p id="reDate">2021-05-31 방문</p>
-				</div>
-				<div id="modalReImg">
-					<img id="modalReImg" src="http://ipsumimage.appspot.com/100x100">
-				</div>
-				<br>
-				<br> <span>판매자 답글 작성</span>
-				<div class="replysection">
-					<div class="wraptextarea">
-						<textarea name="reply" rows="4" cols="35"></textarea>
-					</div>
-					<button class="basicBtn btnReply">답글 작성</button>
-				</div>
+			<div class="reviewsection" id="reviewsection">
 			</div>
 			<div class="wrapbtn">
 				<button class="basicBtn">이전 리뷰</button>
@@ -117,6 +100,118 @@
 		</div>
 	</div>
 	<!-- 모달 끝! -->
+	<script type="text/javascript">
+	var modal = document.getElementById("modalReply");
+	var modalReWin = document.getElementById("modalReply-Win");
+	var btnReply = document.querySelectorAll(".btnReply");
+	var closeBtn = modal.querySelector(".modal_close_btn")
+	var path = '${pageContext.request.contextPath}';
+	
+// 	for (var i = 0; i < btnReply.length; i++) {
+// 		btnReply[i].addEventListener("click", function() {
+// 			var bpId = $(this).attr("id");
+// 			console.log(bpId);
+// 			console.log(path);
+			
+// 			modalInit(bpId, path);
+			
+// 			modal.style.display = "flex";
+// 		});
+// 	}
+
+	$(".btnReply").on("click", function() {
+		var revNum = $(this).attr("name");
+		console.log(revNum);
+		console.log(path);
+		modalInit(revNum, path);
+		modal.style.display = "flex";
+	});
+
+	
+// 	<div id="modalRetxt">
+// 		<img class="txtImg" src="${path}/resources/images/5.png">&nbsp;&nbsp;4.0
+// 		<br>
+// 		<p id="reTitle">잘 잘라줘요</p>
+// 		<br>
+// 		<p>또비 언니</p>
+// 		<p id="reDate">2021-05-31 방문</p>
+// 	</div>
+// 	<div id="modalReImg">
+// 		<img id="modalReImg" src="http://ipsumimage.appspot.com/100x100">
+// 	</div>
+// 	<br>
+// 	<br> <span>판매자 답글 작성</span>
+// 	<form id="brevRegFrm">
+// 		<div class="replysection">
+// 			<div class="wraptextarea">
+// 				<textarea name="revcCont" rows="4" cols="35"></textarea>
+// 			</div>
+// 			<button id="brevRegBtn" class="basicBtn brevRegBtn">답글 작성</button>
+// 			<input type="hidden" id="revNumVal" name="revNumVal">
+// 			<input type="hidden" id="revBpIdVal" name="revBpIdVal">
+// 		</div>
+// 	</form>
+	
+	
+	function modalInit(revNum, path) {
+		$.ajax({
+			url: "brmodal"
+			,type: "post"
+			,data: {rev_num : revNum}
+			,success: function(data) {
+					console.log(data);
+					if(data != null) {
+						var div = "";
+						
+						div += "<div id='modalRetxt'>"
+							+ "<img class='txtImg' src='"+path+"/resources/images/5.png'>&nbsp;&nbsp;"+data.revVal+".0"
+							+ "<br>"
+							+ "<p id='reTitle'>"+data.revCont+"</p>"
+							+ "<br>"
+							+ "<p>"+data.clNickName+"</p>"
+							+ "<p id='reDate'>"+data.revDate+" 방문</p>"
+							+ "</div>"
+							+ "<div id='modalReImg'>"
+							+ "<img id='modalReImg' src='http://ipsumimage.appspot.com/100x100'>"
+							+ "</div>"
+							+ "<br>"
+							+ "<br>"
+							+ "<span>판매자 답글 작성</span>"
+							+ "<form id='brevRegFrm'>"
+							+ "<div class='replysection'>"
+							+ "<div class='wraptextarea'>"
+							+ "<textarea name='revcCont' rows='4' cols='35'></textarea>"
+							+ "</div>"
+							+ "<button id='brevRegBtn' class='basicBtn brevRegBtn'>답글 작성</button>"
+							+ "<input type='hidden' name='revNumVal' value="+data.revNum+">"
+							+ "<input type='hidden' name='revBpIdVal' value="+data.bpId+">"
+							+ "</div>"
+							+ "</form>";
+							
+						$("#reviewsection").html(div);
+						
+					} else {
+						
+						div += "데이터가 없습니다";
+						$("#reviewsection").html(div);
+						
+					}
+			}
+			,error : function(request, status, error) {
+				alert("code: " + request.status + "\n"
+						+ "message: "
+						+ request.responseText + "\n"
+						+ "error: " + error);
+			}
+			
+		});
+	}
+	
+	closeBtn.addEventListener("click", function() {
+		modal.style.display = "none";
+	});
+	</script>
+	
 	<script src="${path}/resources/js/bPartner/bShop/bReview.js"></script>
 </body>
 </html>

@@ -76,15 +76,18 @@ Element.prototype.setStyle = function (styles) {
     return this;
 };
 
+
 document.getElementById('Loc1').addEventListener('click', function () {
     // 모달창 띄우기
     modal('my_modal');
 });
 
+
 document.getElementById('Loc2').addEventListener('click', function () {
     // 모달창 띄우기
     modal('my_modal');
 });
+
 
 //시.도 선택후 시.군.구 선택창
 function categoryChange(e) {

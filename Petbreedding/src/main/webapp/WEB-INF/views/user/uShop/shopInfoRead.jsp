@@ -73,58 +73,7 @@
 	                        	<i class="fas fa-heart" id="heartOn"></i>
                         	</a>
                         </c:if>
-                       <%--  <c:if test="${!empty client }">
-                        	<c:if test="${shopType eq 0 }">
-	                        	<c:forEach items="${zzim }" var="zzim">
-	                        		<c:if test="${!empty zzim}">
-	                        			<c:if test="${zzim.har_num eq shopInfo.harNum and zzim.cl_num eq client.cl_num}">
-		                        		<a id="zzim">
-		                        			<i class="far fa-heart" id="heartOff" style="display : none;"></i>
-		                        			<i class="fas fa-heart" id="heartOn" style=" display : inline-block; color : var(--hover-color)"></i>
-		                        		</a>
-			                        	</c:if>
-			                        	<c:if test="${zzim.hos_num eq null and zzim.har_num ne shopInfo.harNum and zzim.cl_num eq client.cl_num}">
-					                        <a id="zzim">
-					                        	<i class="far fa-heart" id="heartOff"></i>
-					                        	<i class="fas fa-heart" id="heartOn"></i>
-					                        </a>
-				                        </c:if>
-	                        		</c:if>
-	                        	</c:forEach>
-                        		<c:if test="${empty zzim}">
-                        			<a id="zzim">
-			                        	<i class="far fa-heart" id="heartOff"></i>
-			                        	<i class="fas fa-heart" id="heartOn"></i>
-				                    </a>
-                        		</c:if>
-	                        	
-	                        </c:if>
-	                        <c:if test="${shopType eq 1 }">
-	                        	<c:forEach items="${zzim }" var="zzim">
-	                        		<c:if test="${!empty zzim}">
-	                        			<c:if test="${zzim.hos_num eq shopInfo.hosNum and zzim.cl_num eq client.cl_num}">
-		                        		<a id="zzim">
-		                        			<i class="far fa-heart" id="heartOff" style="display : none;"></i>
-		                        			<i class="fas fa-heart" id="heartOn" style=" display : inline-block; color : var(--hover-color)"></i>
-		                        		</a>
-			                        	</c:if>
-			                        	<c:if test="${ zzim.har_num eq null  and zzim.hos_num ne shopInfo.hosNum and zzim.cl_num eq client.cl_num}">
-					                        <a id="zzim">
-					                        	<i class="far fa-heart" id="heartOff"></i>
-					                        	<i class="fas fa-heart" id="heartOn"></i>
-					                        </a>
-				                        </c:if>
-			                        </c:if>
-			                   </c:forEach>
-			                   <c:if test="${empty zzim}">
-                        			<a id="zzim">
-			                        	<i class="far fa-heart" id="heartOff"></i>
-			                        	<i class="fas fa-heart" id="heartOn"></i>
-				                    </a>
-                        		</c:if>
-	                        </c:if>
-                        </c:if> 
-                         --%>
+                      
                        <c:if test="${!empty client }">
                          <a id="zzim">
                         	<i class="far fa-heart" id="heartOff"></i>
@@ -217,10 +166,8 @@
                         <div class="storeInfo">
                             <p>${shopInfo.shopName }</p>
                             <p>전화번호 : ${shopInfo.shopTel }</p>
-                            <p>주소 : ${shopInfo.shopAddr }</p>
-                            <input type="hidden" id="x" value="${shopInfo.x }" >
-                            <input type="hidden" id="y" value="${shopInfo.y }" >
-                            
+                            <p>주소: ${shopInfo.shopAddr }</p>
+                            <input type="hidden" id="shopAddr" value="${shopInfo.shopAddr }">
                         </div>
                     </div>
                 </div>

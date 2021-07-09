@@ -13,6 +13,7 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/main.css" rel="stylesheet" type="text/css" >
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </head>
 
 <body>
@@ -33,8 +34,9 @@
                         <div class="tabCon">
                         <form action="shopList" method="get">
                        <div class="nowLocation" id="nowLocation1">
-               			 <span>위치를 설정해 주세요. </span> <span></span> <span></span> <a href="#" id="Loc1"><i class="fas fa-map-marker-alt loc" ></i></a>
+               			 <span> 위치를 선택해 주세요. </span> <span></span> <span></span> <a href="#" id="Loc1"><i class="fas fa-map-marker-alt loc" ></i></a>
             			</div>
+                        <!-- <div id="map1"></div> -->
                             <input name="keyword" type="text" class="tabInput" placeholder="찾으시는 동물병원을 입력해주세요.">
                              <input name="shopType" type="hidden" value="1"/>
                              <input name="selectlocCon" id="selectlocCon1" value="" type="hidden" />
@@ -49,8 +51,9 @@
                         <div class="tabCon">
                         <form action="shopList" method="get">
 	                       <div class="nowLocation" id="nowLocation0">
-	               			 <span>위치를 설정해 주세요. </span> <span></span> <span></span> <a href="#" id="Loc2"><i class="fas fa-map-marker-alt loc" ></i></a>
+	               			 <span> 위치를 선택해 주세요. </span> <span></span> <span></span> <a href="#" id="Loc2"><i class="fas fa-map-marker-alt loc" ></i></a>
 	            			</div>
+	            			<!-- <div id="map0"></div> -->
 	                             <input name="keyword" type="text" class="tabInput" placeholder="찾으시는 미용실을 입력해주세요.">
 	                             <input name="shopType" type="hidden" value="0"/>
 	                             <input name="selectlocCon" id="selectlocCon0" value="" type="hidden" />
@@ -77,7 +80,7 @@
 		        <p>(주)펫브리띵</p>
 		        <p>서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</p>
 		        <p>사업자등록번호 : 123-01-12345</p>
-		        <p>Copyright &COPY; 2021 Petverything Institute All Right Reserved</p>
+		        <p>Copyright &COPY; 2021 PetbreeddingInstitute All Right Reserved</p>
 		    </div>
 		</footer>
 	</div>
@@ -113,10 +116,11 @@
                 <button id="changeLoc">확인</button>
             </div>
         </div>
+        
 
     <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/common/index.js"></script>
-     
+	<script type="text/javascript" src="${path}/resources/js/common/indexMap.js"></script>
 </body>
 
 

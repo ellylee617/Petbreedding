@@ -24,17 +24,31 @@ public class ReviewServiceImpl implements ReviewService {
 
 	
 	@Override
-	public List<Review> reviewSelectList(String bp_Id) {
+	public List<Review> reviewSelectList(String bp_id) {
 		List<Review> reviewList = null;
 		try {
-			System.out.println("[세훈] @리뷰 조회 서비스 bp_id : " + bp_Id);
-			reviewList = reviewDao.reviewSelectList(bp_Id);
+			System.out.println("[세훈] @리뷰 조회 서비스 bp_id : " + bp_id);
+			reviewList = reviewDao.reviewSelectList(bp_id);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		System.out.println("[세훈] @리뷰 조회 서비스 reviewList : " + reviewList);
 		return reviewList;
+	}
+	
+	@Override
+	public Review reviewSelectOne(String rev_num) {
+		Review review = null;
+		try {
+			System.out.println("[세훈] @리뷰 조회 서비스 bp_id : " + rev_num);
+			review = reviewDao.reviewSelectOne(rev_num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("[세훈] @리뷰 조회 서비스 review : " + review);
+		return review;
 	}
 
 	@Override
@@ -47,6 +61,8 @@ public class ReviewServiceImpl implements ReviewService {
 		try {
 			System.out.println("[세훈] @리뷰 등록 서비스 har_num : " + har_num);
 			String bp_id = reviewDao.searchBpId(har_num); 
+			System.out.println("리뷰 등록 가져온 bp_id" + bp_id);
+			System.out.println("리뷰 등록 가져온 rv" + rv);
 			rv.setBpId(bp_id);
 			String rev_num = reviewDao.getRevNumFromSeq();
 			rv.setRevNum(rev_num);

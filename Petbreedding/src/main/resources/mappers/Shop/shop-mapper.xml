@@ -15,8 +15,6 @@
 			<result column="HAR_TEL" property="shopTel"/>
 			<result column="HOPEN_TIME" property="shopTime"/>
 			<result column="HAR_MINFO" property="shopMInfo"/>
-			<result column="Y" property="y"/>
-			<result column="X" property="x"/>
 			<result column="HAR_MIMG" property="shopMImg"/>
 			<result column="0" property="sun"/>
 			<result column="1" property="mon"/>
@@ -102,8 +100,9 @@
 		</select>
 		
 
-		<!-- 미용실 리스트 : 별점순  selectHarListLikes-->
+		<!-- 미용실 리스트 : 별점순  selectHarListRev-->
 		<!-- 검색 기능 추가완료 -->
+		<!-- 주소 검색 추가 완료 -->
 		<select id="selectHarListRev" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -129,6 +128,49 @@
         WHERE #{start} <= R AND R <=#{end}
 			]]>
 		</select>
+		
+		<!-- TODO -->
+		<!-- 미용실 리스트 : 인기순(찜)  selectHarListLikes-->
+		<!-- 검색 기능 -->
+		<!-- 주소 검색 -->
+		<select id="selectHarListLikes" parameterType="page" resultMap="HairSalon">
+		<![CDATA[
+	    SELECT B.*
+			FROM(
+	SELECT ROWNUM R, A.*
+		FROM (
+		    SELECT har_hl.*, BR.AVG_REV_VAL
+		    FROM
+		    (
+		        SELECT har.*, hl.likes
+		        FROM hair_salon HAR
+		        LEFT JOIN
+		            (SELECT h.har_num, COUNT(*) LIKES
+		                FROM hair_salon H
+		                JOIN likes L
+		                ON (h.har_num = l.har_num)
+		                GROUP BY h.har_num
+		        ) HL
+		        ON HAR.har_num = HL.har_num
+		    ) har_hl
+		    LEFT JOIN (
+		         SELECT BP_ID, AVG(REV_VAL) AVG_REV_VAL
+		                FROM(
+		                SELECT B.BP_ID, R.REV_VAL
+		                FROM business_partner B
+		                LEFT JOIN review R
+		                ON (b.bp_id = r.bp_id)
+		                )  
+		                group by BP_ID
+		    ) BR
+		    ON (br.bp_id = har_hl.bp_id AND har_hl.har_name LIKE '%' ||  #{keyword} || '%' AND har_hl.har_addr LIKE #{locCon} || '%' AND har_hl.har_addr LIKE '%' ||  #{chooseLoc} || '%')
+		                        ) A
+					        ORDER BY LIKES DESC NULLS LAST
+								) B
+			WHERE #{start} <= R AND R <=#{end}
+			]]>
+		</select>
+		
 		
 		 	<!-- 사업장 평균  별점 -->
 		 	<select id="selectRevVal" parameterType="string" resultType="string">
@@ -211,10 +253,6 @@
 		
 		
 		
-				
-		<!-- 미용실 리스트 : 거리순 selectHarListNear-->
-		
-		
 		
 		<!-- 미용실 전체 리스트 -->
 		<!-- 페이징 작업 완료 -->
@@ -238,8 +276,8 @@
 		
 		<!-- 미용실 기본 정보 기입 -->
 		<insert id="insertHarInfo" parameterType="HairSalon">
-		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X, HAR_MIMG)
-		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg})
+		INSERT INTO HAIR_SALON (HAR_NUM, BP_ID, HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, HAR_MIMG)
+		VALUES (SEQ_HAIR_SALON.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{shopMImg})
 		</insert>
 		
 		
@@ -264,9 +302,9 @@
 		<!-- 미용실 정보 수정 -->
 		<update id="updateHarInfo" parameterType="HairSalon">
 			UPDATE HAIR_SALON 
-			SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, Y, X, HAR_MIMG)
+			SET (HAR_NAME, HAR_ADDR, HAR_TEL, HOPEN_TIME, HAR_MINFO, HAR_MIMG)
 				= (
-					SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg} 
+					SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{shopMImg} 
 					FROM dual
 				)
 			WHERE BP_ID = #{bpId}
@@ -335,8 +373,6 @@
 		<result column="HOS_TEL" property="shopTel"/>
 		<result column="OPEN_TIME" property="shopTime"/>
 		<result column="HOS_MINFO" property="shopMInfo"/>
-		<result column="Y" property="y"/>
-		<result column="X" property="x"/>		
 		<result column="HOS_MIMG" property="shopMImg"/>
 		<result column="0" property="sun"/>
 		<result column="1" property="mon"/>
@@ -432,7 +468,7 @@
 			]]>
 		</select>
 		
-		<!-- 동물병원 리스트 : 거리순  -->
+		<!-- 동물병원 리스트 : 인기순(찜)  -->
 		<!-- TODO -->
 		
 		<!-- 동물병원 리스트 : 별점순  -->
@@ -464,8 +500,8 @@
 	
 	<!-- 동물병원 기본 정보 기입 -->
 	<insert id="insertHosInfo" parameterType="Hospital">
-	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X, HOS_MIMG )
-	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg})
+	INSERT INTO HOSPITAL (HOS_NUM, BP_ID, HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, HOS_MIMG )
+	VALUES (SEQ_HOSPITAL.NEXTVAL, #{bpId}, #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{shopMImg})
 	</insert>
 
 
@@ -490,9 +526,9 @@
 	<!-- 동물병원 기본 정보 수정 -->
 	<update id="updateHosInfo" parameterType="Hospital">
 		UPDATE HOSPITAL 
-		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, Y, X, HOS_MIMG) 
+		SET (HOS_NAME, HOS_ADDR, HOS_TEL, OPEN_TIME, HOS_MINFO, HOS_MIMG) 
 		= (
-			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{y}, #{x}, #{shopMImg}
+			SELECT #{shopName},#{shopAddr},#{shopTel},#{shopTime},#{shopMInfo}, #{shopMImg}
 			FROM dual
 		)
 		WHERE BP_ID = #{bpId}	
@@ -557,6 +593,8 @@
 		<!-- 미용실 리스트 -->
 		<select id="searchBpId" parameterType="string" resultType="string">
 			SELECT bp_id FROM HAIR_SALON where har_num=#{har_num}
+			union
+			SELECT bp_id FROM HOSPITAL where hos_num=#{har_num}
 		</select>
 		
 </mapper>

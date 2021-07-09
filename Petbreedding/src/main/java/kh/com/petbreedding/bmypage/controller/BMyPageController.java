@@ -2,6 +2,7 @@ package kh.com.petbreedding.bmypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,9 +38,11 @@ import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.service.ReviewCommentService;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.board.model.vo.Review;
+import kh.com.petbreedding.board.model.vo.ReviewComment;
 
 @Controller
 public class BMyPageController {
@@ -55,6 +58,9 @@ public class BMyPageController {
 	
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private ReviewCommentService reviewCommentService;
 
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
@@ -799,6 +805,74 @@ public class BMyPageController {
 		md.addAttribute("brvList", brvList);
 		
 		return "/bPartner/bShop/bReview";
+	}
+	
+	
+	//	사업자 리뷰  모달
+	@RequestMapping(value = "/brmodal")
+	public void brModal(
+			String rev_num
+			,HttpServletRequest req
+			,HttpServletResponse res
+			) {
+		
+		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rev_num : " + rev_num);
+		Review rv = new Review();
+		rv = reviewService.reviewSelectOne(rev_num);
+		
+		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rv : " + rv.toString());
+		
+		PrintWriter out = null;
+		
+		try {
+			out = res.getWriter();
+			out.println(rv);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.flush();
+			out.close();
+		}
+		
+	}
+	
+	//	사업자 리뷰 댓글 등록
+	@RequestMapping(value = "/brwrite")
+	public void brWrite(
+			HttpServletRequest req
+			,Model md
+			) {
+		
+		String bp_id = req.getParameter("revBpIdVal");
+		String rev_num = req.getParameter("revNumVal");
+		String revc_cont = req.getParameter("revcCont");
+		
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 bp_id : " + bp_id);
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 rev_num : " + rev_num);
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 revcCont : " + revc_cont);
+		
+		ReviewComment revCmnt = new ReviewComment();
+		
+		revCmnt.setBpId(bp_id);
+		revCmnt.setRevNum(rev_num);
+		revCmnt.setRevcCont(revc_cont);
+		
+		
+		int revcResult = reviewCommentService.reviewCommentInsert(revCmnt);
+		
+		if(revcResult > 0) {
+			System.out.println("리뷰 댓글 등록 성공");
+			md.addAttribute("msg", "리뷰 댓글 등록 성공");
+			md.addAttribute("url","/bReview");
+		} else {
+			System.out.println("리뷰 댓글 등록 실패");
+			md.addAttribute("msg", "리뷰 댓글 등록 실패");
+			md.addAttribute("url","/bReview");
+		}
+		
+		
+		
+//		return "common/redirect";
 	}
 
 }

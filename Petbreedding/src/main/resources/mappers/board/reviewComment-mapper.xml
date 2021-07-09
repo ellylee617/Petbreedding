@@ -20,7 +20,10 @@
 	</resultMap>
 	
 	<insert id="reviewCommentInsert" parameterType="ReviewComment">
-	
+		INSERT INTO REVIEW_COMMENT VALUES(
+			'REVC000'||SEQ_REVIEW_COMMENT.NEXTVAL, #{bpId}, #{REV_NUM},
+			#{REVC_CONT}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), 1
+		)
 	</insert>
 	
 </mapper>
