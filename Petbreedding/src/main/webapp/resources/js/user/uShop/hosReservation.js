@@ -36,7 +36,7 @@ $(".dog_box").on("click", function() {
 });
 $("#addDogBox").on("click", function() {
 	var cl_num = $("#clNum").val();
-	location.href = "/petbreedding/Mypage/openMyPet?cl_num="+cl_num+"";
+	location.href = "openMyPet?cl_num="+cl_num+"";
 });
 
 // 날짜에 따른 시간선택
