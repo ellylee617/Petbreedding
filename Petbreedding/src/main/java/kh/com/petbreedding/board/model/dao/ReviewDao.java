@@ -20,6 +20,11 @@ public class ReviewDao {
 		return sqlSession.selectOne("Review.getRevNumFromSeq");
 	}
 	
+	// 상세페이지 리뷰, 댓글 조회
+	public List<Review> revRevcSelectList(String bp_id) {
+		return sqlSession.selectList("Review.revRevcSelectList", bp_id);
+	}
+	
 	public List<Review> reviewSelectList(String bp_id) {
 		System.out.println("[세훈] @리뷰 조회 다오 bp_id : " + bp_id);
 		return sqlSession.selectList("Review.reviewSelectList", bp_id);
@@ -38,6 +43,17 @@ public class ReviewDao {
 	public String searchBpId(String har_num) {
 		return sqlSession.selectOne("Shop.searchBpId", har_num);
 	}
+	
+	// 사업자 리뷰 리스트 개수 받아오기
+	public int getRevCount(String bp_id) {
+		return sqlSession.selectOne("Review.getRevCount", bp_id);
+	}
+	
+	// 리뷰 댓글 여부 체크 업데이트
+	public int updateCmntChk(String rev_num) {
+		return sqlSession.update("Review.updateCmntChk", rev_num);
+	}
+	
 	
 	
 }

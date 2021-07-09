@@ -22,6 +22,20 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	private MyPointDao myPointDao;
 
+	// 상세페이지 리뷰, 댓글 조회
+	@Override
+	public List<Review> revRevcSelectList(String bp_id) {
+		List<Review> revRevcList = null;
+		try {
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
+			revRevcList = reviewDao.revRevcSelectList(bp_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 reviewList : " + revRevcList);
+		return revRevcList;
+	}
 	
 	@Override
 	public List<Review> reviewSelectList(String bp_id) {
@@ -93,8 +107,19 @@ public class ReviewServiceImpl implements ReviewService {
 		return result;
 	}
 
-	
-
+	//	사업자 리뷰 개수 받아오기
+	@Override
+	public int getRevCount(String bp_id) {
+		int revcount = -1;
+		
+		try {
+			revcount = reviewDao.getRevCount(bp_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return revcount;
+	}
 
 
 

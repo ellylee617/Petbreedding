@@ -143,16 +143,16 @@
                         <hr> 
                         <div class="reviews">
 							<div id="reviewArea"></div>
-                            <div class="reply">
-                                <div class="replyCon">
-                                    <p>또비언니님 찾아주셔서 감사합니다.</p>
-                                    <p>다음에 더 좋은 서비스로 보답하겠습니다.</p>
-                                </div>
-                                <div class="replyInfo">
-                                    <span>쿨펫미용실</span>
-                                    <span class="replyDate">2021-05-31 오전 11:30</span>
-                                </div>
-                            </div>
+<!--                             <div class="reply"> -->
+<!--                                 <div class="replyCon"> -->
+<!--                                     <p>또비언니님 찾아주셔서 감사합니다.</p> -->
+<!--                                     <p>다음에 더 좋은 서비스로 보답하겠습니다.</p> -->
+<!--                                 </div> -->
+<!--                                 <div class="replyInfo"> -->
+<!--                                     <span>쿨펫미용실</span> -->
+<!--                                     <span class="replyDate">2021-05-31 오전 11:30</span> -->
+<!--                                 </div> -->
+<!--                             </div> -->
                         </div>                                    
                     </div>            
                 </div> <!--store_review_article-->
@@ -207,8 +207,8 @@
 					,success: function(json) {
 						var div = "";
 						var jsonLength = Object.keys(json).length;
-						console.log(json);
 						console.log(jsonLength);
+						console.log(json);
 						
 						if(jsonLength > 0) {
 							
@@ -258,7 +258,7 @@
 									// 고객 닉네임, 방문날짜 끝
 									+ "</div>";
 									// reviewWord 끝
-									if(item.revImg = null) {
+								if(item.revImg = null) {
 								div += "<div class='review_imgBox'>"
 									+ "<img class='review_img' src='"+path+"/resources/images/logo.png'>"
 									+ "</div>"
@@ -269,7 +269,31 @@
 									+ "</div>"
 									+ "</div>";
 								}
+									
+								if(item.revComment != null) {
+									div += "<div class='reply'>"
+										+ "<div class='replyCon'>"
+										+ "<p>"+item.revComment.revcCont+"</p>"
+										+ "</div>"
+										+ "<div class='replyInfo'>"
+										+ "<span>쿨펫미용실</span>"
+										+ "<span class='replyDate'>"+item.revComment.revcDate+"</span>"
+										+ "</div>"
+										+ "</div>";
+								} else {
+									
+								}
 
+// 		                            <div class="reply">
+// 	                                <div class="replyCon">
+// 	                                    <p>또비언니님 찾아주셔서 감사합니다.</p>
+// 	                                    <p>다음에 더 좋은 서비스로 보답하겠습니다.</p>
+// 	                                </div>
+// 	                                <div class="replyInfo">
+// 	                                    <span>쿨펫미용실</span>
+// 	                                    <span class="replyDate">2021-05-31 11:30</span>
+// 	                                </div>
+// 	                            </div>
 							});
 						} else {
 							

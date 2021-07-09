@@ -442,7 +442,7 @@ public class BoardController {
 		List<Review> rList = new ArrayList<Review>();
 		
 		if(rList != null) {
-			rList = reviewService.reviewSelectList(bp_id);
+			rList = reviewService.revRevcSelectList(bp_id);
 			Gson jobj = new GsonBuilder().create();
 			rvJson = jobj.toJson(rList);
 		}
