@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
@@ -16,12 +18,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kh.com.petbreedding.Chat.model.service.ChatService;
 import kh.com.petbreedding.Chat.model.vo.ChatMessage;
 import kh.com.petbreedding.Chat.model.vo.ChatRoom;
+import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
 
 @Controller
 public class ChatHandler extends TextWebSocketHandler {
 
 	@Autowired
 	ChatService chService;
+	
+	@Autowired
+	private NoticeService noticeService;
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -54,6 +61,7 @@ public class ChatHandler extends TextWebSocketHandler {
 			RoomList.get(sessionList.get(session)).remove(session);
 			sessionList.remove(session);
 		}
+		
 	}
 
 	@Override

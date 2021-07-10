@@ -85,9 +85,32 @@ public class ShopPayController {
 	
 	@RequestMapping("hosPay")
 	@ResponseBody
-	public int hosPay(HosPay hosPay) {
+	public int hosPay(HosPay hosPay, HttpSession session) {
 		
 		int result = shopPayService.hosPay(hosPay);
+		
+		// 알림 내역에 인서트
+		Client client = (Client) session.getAttribute("client");
+		
+		String revNum = hosPay.getHos_rnum();
+		String cl_num = client.getNickname();
+		String bp_id = noticeService.getbp_idforPay(revNum);
+		
+		if(bp_id!=null && !bp_id.equals("")) {
+			Notice notice = new Notice();
+			notice.setNotReceiver(cl_num);
+			notice.setNotPublisher(bp_id);
+			notice.setRefNum(revNum);
+			
+			int insertNotice = 0;
+			insertNotice = noticeService.inReservaion(notice);
+			
+			if(insertNotice==1) {
+				System.out.println("알림 인서트 성공!");
+			}else {
+				System.out.println("알림 인서트 실패ㅠㅠ");
+			}
+		}
 		return result;
 	}
 	

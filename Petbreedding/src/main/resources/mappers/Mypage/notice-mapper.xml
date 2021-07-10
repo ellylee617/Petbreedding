@@ -13,6 +13,7 @@
 		<result column="SHOP_NUM" property="shopNum"/>
 		<result column="SHOP_NAME" property="shopName"/>
 		<result column="SHOP_IMG" property="shopImg"/>
+		<result column="BO_NUM" property="boNum"/>
 		<result column="BO_TITLE" property="boTitle"/>
 		<result column="QNA_TITLE" property="qnaTitle"/>
 		<result column="NOTICE_TIME" property="notTime"/>
@@ -71,6 +72,10 @@
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a3', 
 		#{notReceiver}, #{notPublisher}, null, '0', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
+	
+	<select id="getOrigClNum" resultType="String">
+		SELECT CL_NUM FROM BOARD WHERE BO_NUM = #{boNum}
+	</select>
 	
 	<insert id="inBoard">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a4', 
