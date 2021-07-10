@@ -130,7 +130,7 @@
                             <i class="fas fa-star rate"></i>
                             <i class="fas fa-star rate"></i>
                             <i class="far fa-star rate"></i>
-                            <span class="rateScore">4.42/5.0</span>
+                            <span class="rateScore">${revValAvg}/5.00</span>
                         </div>
                         <div class="reviewOpt">
                             <input type="checkbox" id="checkPhoto"><label for="checkPhoto">사진리뷰만 보기</label>

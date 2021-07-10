@@ -195,3 +195,9 @@
 .select .text img{
 	width: 100px;
 }
+
+#reviewDone{
+	background-color: var(--hover-color);
+	cursor: default;
+	
+}

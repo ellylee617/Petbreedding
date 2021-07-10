@@ -148,7 +148,10 @@ $("#searchDate").on("click",function(){
 		            	 "<button onClick='modalOn("+param_har_num+", "+param_har_name+"); return true;' type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
 		            	 +"</td>";
 		            }else{
-		            	td+= "<td>"+res_status+"</td>";
+		            	 td += "<td>"+res_status+"</td>";
+//		            	 td += "<td>"+res_status+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+//		            	 "<button type='button' id='reviewDone' class='basicBtn review'>작성완료</button>"
+//		            	 +"</td>";
 		            }
 		            td += "</tr>";
 

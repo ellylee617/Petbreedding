@@ -40,6 +40,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<Review> reviewSelectList(String bp_id) {
 		List<Review> reviewList = null;
+		
 		try {
 			System.out.println("[세훈] @리뷰 조회 서비스 bp_id : " + bp_id);
 			reviewList = reviewDao.reviewSelectList(bp_id);
@@ -119,6 +120,21 @@ public class ReviewServiceImpl implements ReviewService {
 		}
 		
 		return revcount;
+	}
+
+	@Override
+	public String getRevValAvg(String bp_id) {
+		String revAvgResult = null;
+		System.out.println("[세훈] @리뷰 평균 조회 서비스 bp_id : " + bp_id);
+		
+		try {
+			revAvgResult = reviewDao.getRevValAvg(bp_id);
+			System.out.println("[세훈] @리뷰 평균 조회 서비스 revAvgResult : " + revAvgResult);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return revAvgResult;
 	}
 
 
