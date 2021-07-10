@@ -64,248 +64,246 @@ public class shopController {
 	private LikesService likeService;
 	
 	// 사업장 리스트
-	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
-	public ModelAndView shopList(
-			ModelAndView mv
-			,Pagination page
-			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
-			, @RequestParam(value="keyword", defaultValue="") String keyword
-			,@RequestParam(name="selectlocCon",defaultValue="") String selectLocCon
-			,@RequestParam(name="selectChooseLoc",defaultValue="") String selectChooseLoc
-			, @RequestParam Long shopType
-			, HttpServletRequest request
-			) throws Exception {
-		
-		System.out.println("검색한 키워드는?"+ keyword);
-		System.out.println("선택한 시·도는?"+selectLocCon);
-		System.out.println("선택한 시·군·구는?"+selectChooseLoc);
-		
-		
-		// shopType 0은 미용실, 1은 동물병원
-
-		if (shopType == 0) {
-
-			int harShopType = 0;
-			
-			// 미용실 페이징 
-			int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
-			
-				page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-				page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
-				page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), selectLocCon, selectChooseLoc);
-				
-				mv.addObject("paging", page);
-			
-			
-				List<HairSalon> newHarList = shopService.selectHarListNew(page); // 최신순
-				List<HairSalon> revHarList = shopService.selectHarListRev(page); // 별점순 
-				List<HairSalon> likesHarList = shopService.selectHarListLikes(page); // 인기순
-			
-			
-			
-			System.out.println("미용실 리스트: 최신순 : " + newHarList);
-			System.out.println("미용실 리스트: 별점순: " + revHarList);
-			System.out.println("미용실 리스트: 인기순: " + likesHarList);
-			
-			
-			// 미용실 리스트 - 거리순
-			// TODO 
-			
-			
-			
-			// 찜한 숫자 가져오기
-			// + 별점 출력 
-			String har_num = null;
-			String bpId = null;
-			List<String> list = new ArrayList<String>();
-			List<String> countList = new ArrayList<String>();
-			
-			// 최신순
-			for(int i =0; i<newHarList.size(); i++) {
-				har_num = newHarList.get(i).getHarNum();
-				bpId = newHarList.get(i).getBpId();
-				String count = likeService.countSalon(har_num); //찜
-//				String revVal = shopService.selectRevVal(bpId);	// 평균 별점
-					
-				String countRev = shopService.selectCountReview(bpId); //리뷰건수
-				countList.add(countRev);
-//				mv.addObject("revVal", revVal);
-				mv.addObject("countRev", countList);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
-			
-			// 별점순
-			for(int i =0; i<revHarList.size(); i++) {
-				har_num = revHarList.get(i).getHarNum();
-				bpId = revHarList.get(i).getBpId();
-				String count = likeService.countSalon(har_num);
+//	@RequestMapping(value = "/shopList", method = RequestMethod.GET)
+//	public ModelAndView shopList(
+//			ModelAndView mv
+//			,Pagination page
+//			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+//			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+//			, @RequestParam(value="keyword", defaultValue="") String keyword
+//			,@RequestParam(name="selectlocCon",defaultValue="") String selectLocCon
+//			,@RequestParam(name="selectChooseLoc",defaultValue="") String selectChooseLoc
+//			, @RequestParam Long shopType
+//			, HttpServletRequest request
+//			) throws Exception {
+//		
+//		System.out.println("검색한 키워드는?"+ keyword);
+//		System.out.println("선택한 시·도는?"+selectLocCon);
+//		System.out.println("선택한 시·군·구는?"+selectChooseLoc);
+//		
+//		
+//		// shopType 0은 미용실, 1은 동물병원
+//
+//		if (shopType == 0) {
+//
+//			int harShopType = 0;
+//			
+//			// 미용실 페이징 
+//			int total = shopService.countHarList();	// 등록된 미용실 총 갯수 
+//			
+//				page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+//				
+//				mv.addObject("paging", page);
+//			
+//			
+//				List<HairSalon> newHarList = shopService.selectHarListNew(page); // 최신순
+//				List<HairSalon> revHarList = shopService.selectHarListRev(page); // 별점순 
+//				List<HairSalon> likesHarList = shopService.selectHarListLikes(page); // 인기순
+//			
+//			
+//			
+//			System.out.println("미용실 리스트: 최신순 : " + newHarList);
+//			System.out.println("미용실 리스트: 별점순: " + revHarList);
+//			System.out.println("미용실 리스트: 인기순: " + likesHarList);
+//			
+//			
+//			// 미용실 리스트 - 거리순
+//			// TODO 
+//			
+//			
+//			
+//			// 찜한 숫자 가져오기
+//			// + 별점 출력 
+//			String har_num = null;
+//			String bpId = null;
+//			List<String> list = new ArrayList<String>();
+//			List<String> countList = new ArrayList<String>();
+//			
+//			// 최신순
+//			for(int i =0; i<newHarList.size(); i++) {
+//				har_num = newHarList.get(i).getHarNum();
+//				bpId = newHarList.get(i).getBpId();
+//				String count = likeService.countSalon(har_num); //찜
+////				String revVal = shopService.selectRevVal(bpId);	// 평균 별점
+//					
+//				String countRev = shopService.selectCountReview(bpId); //리뷰건수
+//				countList.add(countRev);
+////				mv.addObject("revVal", revVal);
+//				mv.addObject("countRev", countList);
+//				System.out.println("************count*****"+count);
+//				list.add(count);
+//				mv.addObject("count", list);
+//			}
+//			
+//			// 별점순
+//			for(int i =0; i<revHarList.size(); i++) {
+//				har_num = revHarList.get(i).getHarNum();
+//				bpId = revHarList.get(i).getBpId();
+//				String count = likeService.countSalon(har_num);
+////				String revVal = shopService.selectRevVal(bpId);
+//					
+//				String countRev = shopService.selectCountReview(bpId);
+//				countList.add(countRev);
+////				mv.addObject("revVal", revVal);
+//				mv.addObject("countRev", countList);
+//				System.out.println("************count*****"+count);
+//				list.add(count);
+//				mv.addObject("count", list);
+//			}
+//			
+//			// TODO:인기순
+//			for(int i =0; i<likesHarList.size(); i++) {
+//				har_num = likesHarList.get(i).getHarNum();
+//				System.out.println("미용실 번호는????"+har_num);
+//				bpId = likesHarList.get(i).getBpId();
+//				String count = likeService.countSalon(har_num);
+////				String revVal = shopService.selectRevVal(bpId);
+//				String countRev = shopService.selectCountReview(bpId);
+//				countList.add(countRev);
+////				mv.addObject("revVal", revVal);
+//				mv.addObject("countRev", countList);
+//				System.out.println("************count*****"+count);
+//				list.add(count);
+//				mv.addObject("count", list);
+//			}
+//			
+//			/*
+//			 * List<String> list = new ArrayList<String>(); 
+//			 * System.out.println("~~~~~~~~~~~~~harNum ~~~~~~~~~"+list);
+//			 * HashMap<String,String> salonCount = likeService.countSalon(list);
+//			 * System.out.println("!!!!!!!salonList!!!!!!!!! "+ salonCount);
+//			 */
+////			List<HairSalonImg> harImgList = shopService.selectHarImgList();
+//
+//			List<HairSalon> ultra = shopService.selectCtaHarList();
+//			
+//			List<String> ctaCountList = new ArrayList<String>();
+//			List<String> list2 = new ArrayList<String>();
+//			for(int i =0; i<ultra.size(); i++) {
+//				har_num = ultra.get(i).getHarNum();
+//				bpId = ultra.get(i).getBpId();
+//				String count = likeService.countSalon(har_num);
+//				String ctaCountRev = shopService.selectCountCtaReview(bpId); //리뷰건수
+//				
+//				ctaCountList.add(ctaCountRev);
+//				mv.addObject("ctaCountRev", ctaCountList);
+//				System.out.println("************count*****"+count);
+//				list2.add(count);
+//				mv.addObject("count2", list2);
+//				
+//				System.out.println("울트라콜 미용실 리스트 (평균 별점 포함):"+ultra);
+//			}
+//			
+//			List<HairSalon> harReviewList = shopService.selectHarListRev(page);
+//			System.out.println("미용실 리뷰 리스트:: " + harReviewList);
+//			mv.addObject("reviewList", harReviewList);
+//			
+//			
+//			mv.addObject("shopType", harShopType);
+//			mv.addObject("newHarList", newHarList);
+//			mv.addObject("likesHarList", likesHarList);
+//			mv.addObject("revHarList", revHarList);
+//			mv.addObject("paging", page);
+//			mv.addObject("cta", ultra);
+//			mv.setViewName("/user/uShop/shopList");
+//
+//
+//		} else {
+//
+//			int hosShopType = 1;
+//			
+//			// 동물병원 페이징 
+//			int total = shopService.countHosList();	// 등록된 미용실 총 갯수 
+//			
+//			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+//			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
+//			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), selectLocCon, selectChooseLoc);			
+//			
+//			mv.addObject("paging", page);
+//
+//			
+//			//찜한 숫자 가져오기
+//			// +별점 출력 
+//			String hos_num = null;
+//			String bpId = null;
+//			List<String> list = new ArrayList<String>();
+//			List<String> countList = new ArrayList<String>();
+//			
+//			
+//			// 최신순
+//			List<Hospital> newHosList = shopService.selectHosListNew(page);
+//			System.out.println("동물병원 리스트 - 최신순 : " + newHosList);
+//			
+//			for(int i =0; i<newHosList.size(); i++) {
+//				hos_num = newHosList.get(i).getHosNum();
+//				bpId = newHosList.get(i).getHosNum();
+//				String count = likeService.countHos(hos_num);
 //				String revVal = shopService.selectRevVal(bpId);
-					
-				String countRev = shopService.selectCountReview(bpId);
-				countList.add(countRev);
+//				String countRev = shopService.selectCountReview(bpId);
+//				countList.add(countRev);
 //				mv.addObject("revVal", revVal);
-				mv.addObject("countRev", countList);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
-			
-			// TODO:인기순
-			for(int i =0; i<likesHarList.size(); i++) {
-				har_num = likesHarList.get(i).getHarNum();
-				System.out.println("미용실 번호는????"+har_num);
-				bpId = likesHarList.get(i).getBpId();
-				String count = likeService.countSalon(har_num);
+//				mv.addObject("countRev", countRev);
+//				System.out.println("************count*****"+count);
+//				list.add(count);
+//				mv.addObject("count", list);
+//			}
+//			
+//			
+//			// TODO: 거리순
+//			
+//			// TODO: 별점순 
+//			List<Hospital> revHosList = shopService.selectHosListRev(page);
+//			System.out.println("동물병원 리스트 - 별점순 :"+revHosList);
+//			
+//			for(int i =0; i<revHosList.size(); i++) {
+//				hos_num = revHosList.get(i).getHosNum();
+//				bpId = revHosList.get(i).getHosNum();
+//				String count = likeService.countHos(hos_num);
 //				String revVal = shopService.selectRevVal(bpId);
-				String countRev = shopService.selectCountReview(bpId);
-				countList.add(countRev);
+//				String countRev = shopService.selectCountReview(bpId);
+//				countList.add(countRev);
 //				mv.addObject("revVal", revVal);
-				mv.addObject("countRev", countList);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
-			
-			/*
-			 * List<String> list = new ArrayList<String>(); 
-			 * System.out.println("~~~~~~~~~~~~~harNum ~~~~~~~~~"+list);
-			 * HashMap<String,String> salonCount = likeService.countSalon(list);
-			 * System.out.println("!!!!!!!salonList!!!!!!!!! "+ salonCount);
-			 */
-//			List<HairSalonImg> harImgList = shopService.selectHarImgList();
-
-			List<HairSalon> ultra = shopService.selectCtaHarList();
-			
-			List<String> ctaCountList = new ArrayList<String>();
-			List<String> list2 = new ArrayList<String>();
-			for(int i =0; i<ultra.size(); i++) {
-				har_num = ultra.get(i).getHarNum();
-				bpId = ultra.get(i).getBpId();
-				String count = likeService.countSalon(har_num);
-				String ctaCountRev = shopService.selectCountCtaReview(bpId); //리뷰건수
-				
-				ctaCountList.add(ctaCountRev);
-				mv.addObject("ctaCountRev", ctaCountList);
-				System.out.println("************count*****"+count);
-				list2.add(count);
-				mv.addObject("count2", list2);
-				
-				System.out.println("울트라콜 미용실 리스트 (평균 별점 포함):"+ultra);
-			}
-			
-			List<HairSalon> harReviewList = shopService.selectHarListRev(page);
-			System.out.println("미용실 리뷰 리스트:: " + harReviewList);
-			mv.addObject("reviewList", harReviewList);
-			
-			
-			mv.addObject("shopType", harShopType);
-			mv.addObject("newHarList", newHarList);
-			mv.addObject("likesHarList", likesHarList);
-			mv.addObject("revHarList", revHarList);
-			mv.addObject("paging", page);
-			mv.addObject("cta", ultra);
-			mv.setViewName("/user/uShop/shopList");
-
-
-		} else {
-
-			int hosShopType = 1;
-			
-			// 동물병원 페이징 
-			int total = shopService.countHosList();	// 등록된 미용실 총 갯수 
-			
-			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), keyword);
-			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), selectLocCon, selectChooseLoc);			
-			
-			mv.addObject("paging", page);
-
-			
-			//찜한 숫자 가져오기
-			// +별점 출력 
-			String hos_num = null;
-			String bpId = null;
-			List<String> list = new ArrayList<String>();
-			List<String> countList = new ArrayList<String>();
-			
-			
-			// 최신순
-			List<Hospital> newHosList = shopService.selectHosListNew(page);
-			System.out.println("동물병원 리스트 - 최신순 : " + newHosList);
-			
-			for(int i =0; i<newHosList.size(); i++) {
-				hos_num = newHosList.get(i).getHosNum();
-				bpId = newHosList.get(i).getHosNum();
-				String count = likeService.countHos(hos_num);
-				String revVal = shopService.selectRevVal(bpId);
-				String countRev = shopService.selectCountReview(bpId);
-				countList.add(countRev);
-				mv.addObject("revVal", revVal);
-				mv.addObject("countRev", countRev);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
-			
-			
-			// TODO: 거리순
-			
-			// TODO: 별점순 
-			List<Hospital> revHosList = shopService.selectHosListRev(page);
-			System.out.println("동물병원 리스트 - 별점순 :"+revHosList);
-			
-			for(int i =0; i<revHosList.size(); i++) {
-				hos_num = revHosList.get(i).getHosNum();
-				bpId = revHosList.get(i).getHosNum();
-				String count = likeService.countHos(hos_num);
-				String revVal = shopService.selectRevVal(bpId);
-				String countRev = shopService.selectCountReview(bpId);
-				countList.add(countRev);
-				mv.addObject("revVal", revVal);
-				mv.addObject("countRev", countRev);
-				System.out.println("************count*****"+count);
-				list.add(count);
-				mv.addObject("count", list);
-			}
-			
-			//울트라
-			List<Hospital> ultra2 = shopService.selectCtaHosList();
-			
-			for(int i=0; i<ultra2.size(); i++) {
-				hos_num = ultra2.get(i).getHosNum();
-				bpId = ultra2.get(i).getBpId();
-				String count =  likeService.countHos(hos_num);
-				String ctaCountRev =  shopService.selectCountCtaReview(bpId);
-				
-				countList.add(ctaCountRev);
-				mv.addObject("ctaCountRev",countList);
-				System.out.println("--------병원 count-----"+count);
-				
-				list.add(count);
-				mv.addObject("count2", list);
-				
-				System.out.println("울트라콜 병원 리스트(평균 별점 포함)" + ultra2);
-			}
-
-			
-			mv.addObject("shopType", hosShopType);
-//			mv.addObject("shopList", hosList);
-			mv.addObject("newHosList", newHosList);
-			mv.addObject("revHosList", revHosList);
-			mv.addObject("paging", page);
-			mv.addObject("cta2", ultra2);
-			mv.setViewName("/user/uShop/shopList");
-
-
-		}
-
-		return mv;
+//				mv.addObject("countRev", countRev);
+//				System.out.println("************count*****"+count);
+//				list.add(count);
+//				mv.addObject("count", list);
+//			}
+//			
+//			//울트라
+//			List<Hospital> ultra2 = shopService.selectCtaHosList();
+//			
+//			for(int i=0; i<ultra2.size(); i++) {
+//				hos_num = ultra2.get(i).getHosNum();
+//				bpId = ultra2.get(i).getBpId();
+//				String count =  likeService.countHos(hos_num);
+//				String ctaCountRev =  shopService.selectCountCtaReview(bpId);
+//				
+//				countList.add(ctaCountRev);
+//				mv.addObject("ctaCountRev",countList);
+//				System.out.println("--------병원 count-----"+count);
+//				
+//				list.add(count);
+//				mv.addObject("count2", list);
+//				
+//				System.out.println("울트라콜 병원 리스트(평균 별점 포함)" + ultra2);
+//			}
+//
+//			
+//			mv.addObject("shopType", hosShopType);
+////			mv.addObject("shopList", hosList);
+//			mv.addObject("newHosList", newHosList);
+//			mv.addObject("revHosList", revHosList);
+//			mv.addObject("paging", page);
+//			mv.addObject("cta2", ultra2);
+//			mv.setViewName("/user/uShop/shopList");
+//
+//
+//		}
+//
+//		return mv;
 //		return "/user/uShop/shopList";
-
-	}
+//
+//	}
 
 //	@RequestMapping(value = "/salonList", method = RequestMethod.GET)	// *********** TODO "/shopList"에 합쳐줘야 됨!!*******
 //	public ModelAndView salonList(Locale locale, ModelAndView mv) {

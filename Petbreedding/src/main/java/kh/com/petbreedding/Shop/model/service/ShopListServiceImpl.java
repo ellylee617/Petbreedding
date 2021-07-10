@@ -1,6 +1,8 @@
 package kh.com.petbreedding.Shop.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,7 @@ public class ShopListServiceImpl implements ShopListService {
 		public String selectShopRevCount(String bp_id) {
 			System.out.println("shopListService selectShopRevVal() 실행");
 			String revCount = "";
-			revCount = shopListDao.selectShopRevAvg(bp_id);
+			revCount = shopListDao.selectShopRevCount(bp_id);
 			return revCount;
 		}
 	
@@ -84,6 +86,23 @@ public class ShopListServiceImpl implements ShopListService {
 			List<HairSalon> list = null;
 			try {
 				list = shopListDao.selectAllHarListRev(page);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+
+		
+		
+	// 미용실 위치 검색
+		
+		// 미용실 위치 검색 최신순 정렬
+		@Override
+		public List<HairSalon> selectHarListLocNew(HashMap map) {
+			System.out.println("shopListService selectHarListLocNew() 실행");
+			List<HairSalon> list = null;
+			try {
+				list = shopListDao.selectHarListLocNew(map);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

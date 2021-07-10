@@ -1,6 +1,8 @@
 package kh.com.petbreedding.Shop.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,29 +35,39 @@ public class ShopListDao {
 	
 		// 미용실 전체 리스트
 		
-		// 미용실 전체 리스트 카운팅
-		public int countALLHarList() {
-			System.out.println("~~ ShopListDao 진입 ~~");
-			return sqlSession.selectOne("shopList.countALLHarList");
-		};
+			// 미용실 전체 리스트 카운팅
+			public int countALLHarList() {
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectOne("shopList.countALLHarList");
+			};
+			
+			// 미용실 전체 리스트 최신순 정렬 
+			public  List<HairSalon> selectAllHarListNew(Pagination page){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectAllHarListNew", page);
+			}
+			
+			// 미용실 전체 리스트 인기순 정렬
+			public List<HairSalon> selectAllHarListLike(Pagination page){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectAllHarListLike", page);
+			}
+			
+			// 미용실 전체 리스트 별점순 정렬
+			public List<HairSalon> selectAllHarListRev(Pagination page){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectAllHarListRev", page);
+			}
 		
-		// 미용실 전체 리스트 최신순 정렬 
-		public  List<HairSalon> selectAllHarListNew(Pagination page){
-			System.out.println("~~ ShopListDao 진입 ~~");
-			return sqlSession.selectList("shopList.selectAllHarListNew", page);
-		}
+		// 미용실 위치(주소) 검색
+			
+			// 미용실 위치 검색 최신순 정렬
+			public  List<HairSalon> selectHarListLocNew(HashMap map){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectHarListLocNew", map);
+			}
 		
-		// 미용실 전체 리스트 인기순 정렬
-		public List<HairSalon> selectAllHarListLike(Pagination page){
-			System.out.println("~~ ShopListDao 진입 ~~");
-			return sqlSession.selectList("shopList.selectAllHarListLike", page);
-		}
 		
-		// 미용실 전체 리스트 별점순 정렬
-		public List<HairSalon> selectAllHarListRev(Pagination page){
-			System.out.println("~~ ShopListDao 진입 ~~");
-			return sqlSession.selectList("shopList.selectAllHarListRev", page);
-		}
 	
 
 }

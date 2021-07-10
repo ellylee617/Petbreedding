@@ -129,5 +129,27 @@
 			WHERE #{start}<= R AND R <= #{end}
 				]]>
 		</select>
-
+		
+		<!-- 미용실 주소(위치) 검색 -->
+		
+		<!-- 최신순 정렬 -->
+		<select id="selectHarListLocNew" parameterType="hashMap" resultMap="HairSalon">
+		<![CDATA[
+		SELECT  C.*
+				FROM(
+				    SELECT B.* 
+				    FROM(
+				        SELECT ROWNUM R , A.*
+				        FROM(
+				            select * 
+				            from hair_salon
+		                    where hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+				            order by substr(har_num, -3) DESC
+				        )A
+				    )B
+				) C
+				WHERE #{start}<= R AND R <= #{end}
+		]]>
+		</select>
+		
 </mapper>

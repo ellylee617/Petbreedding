@@ -1,6 +1,8 @@
 package kh.com.petbreedding.Shop.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
 import kh.com.petbreedding.common.model.vo.Pagination;
@@ -29,4 +31,11 @@ public interface ShopListService {
 		
 		// 미용실 전체 리스트 별점순 정렬 
 		public List<HairSalon> selectAllHarListRev(Pagination page);
+		
+		
+	// 미용실 위치 검색
+		
+		// 미용실 위치 검색 최신순 정렬
+		public  List<HairSalon> selectHarListLocNew(HashMap map);
+		
 }
