@@ -122,7 +122,7 @@
                 </div><!--store_menu_article-->
                 
                 <div class="store_review_article ">
-                    <p>예약자 리뷰<span>(5)</span></p>
+                    <p>예약자 리뷰<span>(${revCount})</span></p>
                     <div class="reviewsBox">
                         <div class="avgStar">
                             <i class="fas fa-star rate"></i>
@@ -190,6 +190,8 @@
    	 <script type="text/javascript">
 		 var bpId = '${shopInfo.bpId}';
 		 var path = '${path}';
+		 var shopName = '${shopInfo.shopName }';
+		 console.log(shopName);
 		 reviewInit(bpId, path);
 		 
 		 
@@ -276,7 +278,7 @@
 										+ "<p>"+item.revComment.revcCont+"</p>"
 										+ "</div>"
 										+ "<div class='replyInfo'>"
-										+ "<span>쿨펫미용실</span>"
+										+ "<span>"+shopName+"</span>"
 										+ "<span class='replyDate'>"+item.revComment.revcDate+"</span>"
 										+ "</div>"
 										+ "</div>";
