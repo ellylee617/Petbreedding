@@ -62,7 +62,7 @@ public class ShopListDao {
 		// 미용실 위치(주소) 검색
 			
 			// 미용실 위치 검색 최신순 정렬
-			public  List<HairSalon> selectHarListLocNew(HashMap map){
+			public  List<HairSalon> selectHarListLocNew(Map<String,Object> map){
 				System.out.println("~~ ShopListDao 진입 ~~");
 				return sqlSession.selectList("shopList.selectHarListLocNew", map);
 			}

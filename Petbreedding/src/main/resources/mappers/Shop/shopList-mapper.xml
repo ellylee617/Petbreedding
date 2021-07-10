@@ -130,10 +130,13 @@
 				]]>
 		</select>
 		
+		
+		
+		
 		<!-- 미용실 주소(위치) 검색 -->
 		
 		<!-- 최신순 정렬 -->
-		<select id="selectHarListLocNew" parameterType="hashMap" resultMap="HairSalon">
+		<select id="selectHarListLocNew" parameterType="hashmap" resultMap="HairSalon">
 		<![CDATA[
 		SELECT  C.*
 				FROM(

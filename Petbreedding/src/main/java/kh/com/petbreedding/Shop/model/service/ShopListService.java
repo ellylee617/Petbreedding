@@ -36,6 +36,6 @@ public interface ShopListService {
 	// 미용실 위치 검색
 		
 		// 미용실 위치 검색 최신순 정렬
-		public  List<HairSalon> selectHarListLocNew(HashMap map);
+		public  List<HairSalon> selectHarListLocNew(Map<String,Object> map);
 		
 }

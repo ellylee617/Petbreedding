@@ -98,7 +98,7 @@ public class ShopListServiceImpl implements ShopListService {
 		
 		// 미용실 위치 검색 최신순 정렬
 		@Override
-		public List<HairSalon> selectHarListLocNew(HashMap map) {
+		public List<HairSalon> selectHarListLocNew(Map<String,Object> map) {
 			System.out.println("shopListService selectHarListLocNew() 실행");
 			List<HairSalon> list = null;
 			try {

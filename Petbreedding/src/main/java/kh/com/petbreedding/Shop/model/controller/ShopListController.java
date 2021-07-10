@@ -171,7 +171,20 @@ public class ShopListController {
 			
 		// 미용실 위치 검색 최신순 정렬
 			
-		HashMap map1 = new HashMap();
+			Map<String,Object> map1 = new HashMap<String,Object>();
+			
+			// 검색 결과 카운팅
+		 	// TODO !!!!!!!!!!!! 코드 수정해야됨!!!!!!!!!!!
+			int total1 = shopListService.countALLHarList();
+			Pagination page1 = null;
+			page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			mv.addObject("loc_new_paging", page1);
+			int start1 = page1.getStart();
+			int end1 = page1.getEnd();
+			map1.put("start", start1);
+			map1.put("end", end1);
+			
+		
 		
 		System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
 			
@@ -215,16 +228,7 @@ public class ShopListController {
 			}
 				
 		 
-			// 검색 결과 카운팅
-		 	// TODO !!!!!!!!!!!! 코드 수정해야됨!!!!!!!!!!!
-			int total1 = shopListService.countALLHarList();
-			Pagination page1 = null;
-			page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-			mv.addObject("loc_new_paging", page1);
-			int start1 = page1.getStart();
-			int end1 = page1.getEnd();
-			map1.put("start", start1);
-			map1.put("end", end1);
+			
 			
 			
 			
