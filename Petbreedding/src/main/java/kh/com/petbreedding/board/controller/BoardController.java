@@ -115,17 +115,17 @@ public class BoardController {
 			,int type
 			,Client cl
 			,HttpServletRequest req
-			,HttpSession session
+//			,HttpSession session
 			) {
 		
-		cl = (Client) session.getAttribute("client"); 
-		
-		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
-			System.out.println("로그인 안했음");
-			md.addAttribute("msg", "로그인이 필요합니다");
-			md.addAttribute("url","/uLogin");
-			return "common/redirect"; 
-		 }
+//		cl = (Client) session.getAttribute("client"); 
+//		
+//		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
+//			System.out.println("로그인 안했음");
+//			md.addAttribute("msg", "로그인이 필요합니다");
+//			md.addAttribute("url","/uLogin");
+//			return "common/redirect"; 
+//		 }
 		
 		String boNum = req.getParameter("boUpdBoNum");
 		String boTitle = req.getParameter("boUpdBoTitle");
@@ -141,6 +141,22 @@ public class BoardController {
 		return "/user/uBoard/bwrite";
 	}
 
+	// 게시글 수정
+	@RequestMapping(value = "/bupdateFrm")
+	public ModelAndView bUpdate(
+			ModelAndView md, String boNum, String boTitle, String boCont
+			) {
+		
+		md.addObject("boUpdBoNum", boNum);
+		md.addObject("boUpdBoTitle", boTitle);
+		md.addObject("boUpdBoCont", boCont);
+		md.setViewName("/user/uBoard/bUpdate");
+		
+		return md;
+	}
+	
+	
+	
 	@RequestMapping(value = "/bwrite")
 	public String bwrite(
 			Model md
@@ -159,27 +175,25 @@ public class BoardController {
 		String cl_nickName = cl.getNickname();
 		String boTitle = req.getParameter("boTitle");
 		String bo_content = req.getParameter("boContent");
-		
-		System.out.println("[세훈] @글 등록 컨트롤러 clNum : " + cl_num);
-		System.out.println("[세훈] @글 등록 컨트롤러 clNickName : " + cl_nickName);
-		System.out.println("[세훈] @글 등록 컨트롤러 boTitle : " + boTitle);
-		System.out.println("[세훈] @글 등록 컨트롤러 bo_content : " + bo_content);
-		
+			
 		Board board = new Board();
 		board.setClNum(cl_num);
 		board.setClNickName(cl_nickName);
 		board.setBoTitle(boTitle);
 		board.setBoCont(bo_content);
 		String src = "";
+		
 		//이미지 경로 찾아오기
 		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
 		Matcher matcher = pattern.matcher(bo_content);
 		while(matcher.find()){
-            System.out.println("*****************img경로***************** "+ matcher.group(1));
+			System.out.println("img추출하러왔어용");
             src = matcher.group(1);
         }
-		
-		if(src != null || src != "") { 
+		System.out.println("!!!!!!! src : "+ src);
+		if(src == null || src == "" ) { 
+			System.out.println("이미지는 없습니다.");
+		} else {
 			try { 
 				URL imgURL = new URL(src);
 				String extension = src.substring(src.lastIndexOf(".")+1); 
@@ -191,53 +205,24 @@ public class BoardController {
 					file.mkdirs(); 
 				}
 				ImageIO.write(image, extension, file); 
-				System.out.println("이미지 업로드완료!");
 				board.setBoImg(src); 
 			} 
 			catch (Exception e) { 
 				e.printStackTrace(); 
 			}
-		} 
-		
-		// 파일업로드
-		
-//		  MultipartFile mf = req.getFile("src"); // 업로드 파라미터 
-//		  if(mf != null) {
-//			  
-//		  String path = req.getRealPath("/resources/uploadFile/fboard"); // 자징될 위치
-//		  UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성 
-//		  String fileName =mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장 
-//		  String saveName = uuid.toString() + "_" + fileName; // 저장될 이름 
-//		  File uploadFile = new File(path + "//" + saveName); // 복사될 위치
-//		 
-//		  try { 
-//			  mf.transferTo(uploadFile); 
-//		  } catch (IOException e) {
-//		  e.printStackTrace(); }
-//		  
-//		  board.setBoImg(saveName);
-//		  
-//		  System.out.println("[세훈] @글 등록 컨트롤러 saveName : " + saveName); 
-//		  }
-		 
-				
-		
-		  System.out.println("[세훈] @글 등록 컨트롤러 board : " + board.toString());
+		}
 		 
 		  int result = boardService.insertBoard(board);
 		  
 			if(result > 0) {
-				System.out.println("자유게시판 글 등록 성공");
 				md.addAttribute("msg", "자유게시판 글 등록 성공");
 				md.addAttribute("url","/fboardlist");
 			} else {
-				System.out.println("공지사항 등록 실패");
 				md.addAttribute("msg", "자유게시판 글 등록 실패");
 				md.addAttribute("url","/fboardlist");
 			}
 			
 			return "common/redirect";	
-//		return "/user/uBoard/fboardList";
 	}
 	
 	//	자유게시판 글 수정
@@ -389,7 +374,6 @@ public class BoardController {
 		
 		System.out.println("[세훈] @게시판 댓글 삭제 컨트롤러 co_num : " + co_num);
 		System.out.println("[세훈] @게시판 댓글 삭제 컨트롤러 bo_num : " + bo_num);
-		
 		int bocDelResult = bCommentService.bCommentDelete(co_num, bo_num);
 		
 		if(bocDelResult > 0) {
@@ -442,7 +426,7 @@ public class BoardController {
 		List<Review> rList = new ArrayList<Review>();
 		
 		if(rList != null) {
-			rList = reviewService.reviewSelectList(bp_id);
+			rList = reviewService.revRevcSelectList(bp_id);
 			Gson jobj = new GsonBuilder().create();
 			rvJson = jobj.toJson(rList);
 		}
@@ -487,27 +471,33 @@ public class BoardController {
 		rv.setRevVal(revVal);
 
 		// 파일업로드
+		String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
 		MultipartFile mf = req.getFile("reviewImg"); // 업로드 파라미터
-		if (mf != null) {
-
-			String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
+		
+		if(!mf.isEmpty()) {
+			
+			System.out.println(mf);
 			UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
-			String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
-			String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
+			String originalfileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
+			String saveName = uuid.toString() + "_" + originalfileName; // 저장될 이름
 			File uploadFile = new File(path + "//" + saveName); // 복사될 위치
-
 			try {
 				mf.transferTo(uploadFile);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
+			
 			rv.setRevImg(saveName);
-
+			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
+		} else {
+			String saveName = "none";
+			rv.setRevImg(saveName);
 			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
 		}
 
-		System.out.println("[세훈 ]" + rv.toString());
+
+
+		System.out.println("[세훈 ] 리뷰 등록 컨트롤러 rv : " + rv.toString());
 		int result = reviewService.insertReview(rv, har_num, har_name);
 
 		if(result > 0) {
@@ -522,7 +512,6 @@ public class BoardController {
 		
 		return "common/redirect";
 
-//		return "redirect:/mypage?cl_num=CL1";
 	}
 	
 	//내가 쓴 글
@@ -533,7 +522,6 @@ public class BoardController {
 			) {
 		
 		int total = boardService.myBoardCount(cl_num);
-		
 		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -548,28 +536,44 @@ public class BoardController {
 		
 		return "/user/uMyPage/myboard";
 	}
-
+	// 내가 쓴 글 삭제
+	@RequestMapping(value = "/myBoarddelete")
+	@ResponseBody
+	public int myBoardDelete( @RequestParam(value = "arr[]") List<String> list) {
+		
+		int result = boardService.myBoardDelete(list);
+		return result;
+	}
+	
 	//내가 쓴 댓글
 	@RequestMapping(value = "/myreply", method = RequestMethod.GET)
 	public String myreply(String cl_num, Model model,Pagination page
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			, @RequestParam(value="cntPerPage", defaultValue ="10") String cntPerPage
 			) {
 		
-		int total = boardService.myBoardCMCount(cl_num);
+		int total = bCommentService.myBoardCMCount(cl_num);
 		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("cl_num", cl_num);
 		map.put("start", Integer.toString(page.getStart()));
 		map.put("end", Integer.toString(page.getEnd()));
 		
-		List<B_comment> list = boardService.myBoardCMList(map);
+		List<B_comment> list = bCommentService.myBoardCMList(map);
 		model.addAttribute("paging", page);
 		model.addAttribute("myList", list);
-		
+
 		return "/user/uMyPage/myreply";
 	}
 	
+	// 내가 쓴 댓글 삭제
+	@RequestMapping(value = "/mycdelete")
+	@ResponseBody
+	public int myCommentDelete( @RequestParam(value = "arr[]") List<String> list) {
+		
+		int result = bCommentService.myCommentDelete(list);
+		return result;
+	}
 
 	// 유저 공지사항 리스트 조회
 	@RequestMapping(value = "/UcustomerService", method = RequestMethod.GET)

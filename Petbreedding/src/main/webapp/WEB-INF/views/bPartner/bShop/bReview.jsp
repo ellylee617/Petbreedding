@@ -22,7 +22,7 @@
 		<section class="section">
 			<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
-				<h2>리뷰 목록 (총 32개)</h2>
+				<h2>리뷰 목록 (총 ${brvCount}개)</h2>
 				<br>
 				<table>
 				
@@ -107,18 +107,6 @@
 	var closeBtn = modal.querySelector(".modal_close_btn")
 	var path = '${pageContext.request.contextPath}';
 	
-// 	for (var i = 0; i < btnReply.length; i++) {
-// 		btnReply[i].addEventListener("click", function() {
-// 			var bpId = $(this).attr("id");
-// 			console.log(bpId);
-// 			console.log(path);
-			
-// 			modalInit(bpId, path);
-			
-// 			modal.style.display = "flex";
-// 		});
-// 	}
-
 	$(".btnReply").on("click", function() {
 		var revNum = $(this).attr("name");
 		console.log(revNum);
@@ -126,32 +114,6 @@
 		modalInit(revNum, path);
 		modal.style.display = "flex";
 	});
-
-	
-// 	<div id="modalRetxt">
-// 		<img class="txtImg" src="${path}/resources/images/5.png">&nbsp;&nbsp;4.0
-// 		<br>
-// 		<p id="reTitle">잘 잘라줘요</p>
-// 		<br>
-// 		<p>또비 언니</p>
-// 		<p id="reDate">2021-05-31 방문</p>
-// 	</div>
-// 	<div id="modalReImg">
-// 		<img id="modalReImg" src="http://ipsumimage.appspot.com/100x100">
-// 	</div>
-// 	<br>
-// 	<br> <span>판매자 답글 작성</span>
-// 	<form id="brevRegFrm">
-// 		<div class="replysection">
-// 			<div class="wraptextarea">
-// 				<textarea name="revcCont" rows="4" cols="35"></textarea>
-// 			</div>
-// 			<button id="brevRegBtn" class="basicBtn brevRegBtn">답글 작성</button>
-// 			<input type="hidden" id="revNumVal" name="revNumVal">
-// 			<input type="hidden" id="revBpIdVal" name="revBpIdVal">
-// 		</div>
-// 	</form>
-	
 	
 	function modalInit(revNum, path) {
 		$.ajax({

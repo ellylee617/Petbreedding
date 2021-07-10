@@ -20,6 +20,5 @@ public interface BoardService {
 	
 	public int myBoardCount(String cl_num); //내가쓴 글 갯수
 	public List<Board> myBoardList(Map<String, String> map); //내가 쓴 글 조회
-	public int myBoardCMCount(String cl_num);//내가쓴 댓글 갯수
-	public List<B_comment> myBoardCMList(Map<String, String> map);//내가 쓴 댓글 조회
+	public int myBoardDelete(List<String> list ); //내가 쓴 댓글 삭제
 }

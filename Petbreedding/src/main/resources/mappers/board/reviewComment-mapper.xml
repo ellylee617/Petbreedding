@@ -16,14 +16,12 @@
 		<result column="REV_NUM" property="revNum"/>
 		<result column="REVC_CONT" property="revcCont"/>
 		<result column="REVC_DATE" property="revcDate"/>
-		<result column="DEPTH" property="depth"/>
 	</resultMap>
 	
 	<insert id="reviewCommentInsert" parameterType="ReviewComment">
 		INSERT INTO REVIEW_COMMENT VALUES(
 			'REVC000'||SEQ_REVIEW_COMMENT.NEXTVAL, #{bpId}, #{revNum},
-			#{revcCont}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), 1
+			#{revcCont}, TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 		)
-	</insert>
-	
+	</insert>	
 </mapper>

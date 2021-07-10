@@ -72,14 +72,9 @@ public class BoardDao {
 			return sqlSession.selectList("Board.myBoardList", map);
 		}
 		
-		//내가 쓴 댓글 개수 
-		public int myBoardCMCount(String cl_num) {
-			return sqlSession.selectOne("boardComment.myBoardCMCount", cl_num);
-		}
-		
-		//내가 쓴 댓글 조회
-		public List<B_comment> myBoardCMList(Map<String, String> map){
-			return sqlSession.selectList("boardComment.myBoardCMList", map);
+		//내가 쓴 글 삭제 
+		public int myBoardDelete(List<String> list) {
+			return sqlSession.delete("Board.myBoardDelete", list);
 		}
 		
 }

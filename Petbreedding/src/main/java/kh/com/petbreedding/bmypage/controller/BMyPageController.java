@@ -806,9 +806,12 @@ public class BMyPageController {
 		List<Review> brvList =  new ArrayList<Review>();
 		
 		brvList = reviewService.reviewSelectList(bp_id);
+		int brvCount = reviewService.getRevCount(bp_id);
+		
 		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 brvList : " + brvList);
 		
 		md.addAttribute("brvList", brvList);
+		md.addAttribute("brvCount", brvCount);
 		
 		return "/bPartner/bShop/bReview";
 	}

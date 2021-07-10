@@ -406,6 +406,14 @@ public class shopController {
 			}
 
 		}
+		
+		String revValAvg = reviewService.getRevValAvg(bpId);
+		int revCount = reviewService.getRevCount(bpId);
+		
+		System.out.println("[세훈] @shop 상세페이지 컨트롤러 revValAvg : " + revValAvg);
+		System.out.println("[세훈] @shop 상세페이지 컨트롤러 revCount : " + revCount);
+		mv.addObject("revValAvg", revValAvg);
+		mv.addObject("revCount", revCount);
 
 		mv.setViewName("/user/uShop/shopInfoRead");
 

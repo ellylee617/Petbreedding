@@ -15,13 +15,13 @@ public class Review {
 	private String revDate;
 	private int revVal;
 	private int comntChk;
-	private int depth;
+	private ReviewComment revComment;
 	
 	@Override
 	public String toString() {
 		return "Review [revNum=" + revNum + ", bpId=" + bpId + ", clNum=" + clNum + ", clNickName=" + clNickName
 				+ ", revCont=" + revCont + ", revImg=" + revImg + ", revDate=" + revDate + ", revVal=" + revVal
-				+ ", comntChk=" + comntChk + ", depth=" + depth + "]";
+				+ ", comntChk=" + comntChk + ", revComment=" + revComment + "]";
 	}
 
 	public String getRevNum() {
@@ -96,12 +96,12 @@ public class Review {
 		this.comntChk = comntChk;
 	}
 
-	public int getDepth() {
-		return depth;
+	public ReviewComment getRevComment() {
+		return revComment;
 	}
 
-	public void setDepth(int depth) {
-		this.depth = depth;
+	public void setRevComment(ReviewComment revComment) {
+		this.revComment = revComment;
 	}
 	
 	
