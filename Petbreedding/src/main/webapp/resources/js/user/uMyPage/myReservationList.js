@@ -132,7 +132,7 @@ $("#searchDate").on("click",function(){
 		            	res_status = "이용완료";
 		            	
 		            }else if($res_status == 3){
-		            	res_status = "결제취소";
+		            	res_status = "이용취소";
 		            }
 		            var param = "'"+$har_rnum+"'";  // 예약번호
 		            var param_har_num = '"'+$har_num+'"';  // 미용실번호

@@ -58,7 +58,7 @@
 	 </update>
 	 
 	 <update id="updateBoard" parameterType="Board">
-	 	UPDATE BOARD SET BO_TITLE = #{boTitle}, BO_CONT = #{boCont}, BO_IMG = #{boImg} WHERE BO_NUM #{boNum}
+	 	UPDATE BOARD SET BO_TITLE = #{boTitle}, BO_CONT = #{boCont}, BO_IMG = #{boImg} WHERE BO_NUM = #{boNum}
 	 </update>
 	 
 	  <!-- 게시글 삭제 -->

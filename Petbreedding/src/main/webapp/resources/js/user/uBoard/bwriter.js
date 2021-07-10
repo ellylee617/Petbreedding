@@ -15,7 +15,8 @@ ClassicEditor
 
 $("#successbtn").on("click",function(){
 	var setForm = $("#editor").text();
-	alert("setForm" + setForm);
-	CKEDITOR.instances.editor.setData(setForm);
-	
+});
+
+$("#browseBtn").on("click",function(){
+	history.back();
 });

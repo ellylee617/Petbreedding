@@ -31,7 +31,7 @@
 	                <textarea name="boContent" id="editor">${boUpdBoCont}</textarea>
 	            </div> 
 				<div id="btnBox">
-		            <input type="button" value="취소" id="successbtn" class="basicBtn">
+		            <input type="button" value="취소" id="browseBtn" class="basicBtn">
 		            <input type="submit" value="글수정" id="successbtn" class="basicBtn">
 		            <input type="hidden" name="boUpdBoNum" value="${boUpdBoNum}">
 	        	</div>    

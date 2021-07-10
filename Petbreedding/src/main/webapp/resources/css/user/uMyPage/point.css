@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
 .mcontent {
-	position: relative;
+    width: 870px;
+    position: relative;
+    float: left;
+    padding-left:0px;
 }
 
 .point {

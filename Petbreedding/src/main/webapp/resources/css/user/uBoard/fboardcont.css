@@ -28,8 +28,12 @@
 .bcon > div > figure > img{
 	width : 300px;
 }
-
-
+#boNone{
+	display:none;
+}
+#form1 > img {
+	display:none;
+}
 
 .bcon .img{
     clear: both;
@@ -53,16 +57,19 @@
     float: left;
 }
 .backbtn, .modifybtn, .delbtn{
-    width:90px;
-    height: 30px;
-    border-radius: 10px;
+    width: 90px;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
 .modifybtn, .delbtn{
     float: right;
     margin-left: 20px;
 }
-
+.rArea{
+	display:none;
+}
 .replyArea {
 	display: flex;
 	justify-content: space-between;
@@ -71,7 +78,7 @@
 }
 
 .replyNickName {
-	margin-right: 100px;
+	width:200px;
 }
 
 .replyUserInfo {
@@ -80,12 +87,7 @@
 
 .replyTime {
 	margin-bottom: 0px;
-}
-
-.replyUpdDel {
-	display: flex;
-    justify-content: space-evenly;
-    margin: 0px;
+    width: 150px;
 }
 
 .reply{
@@ -94,12 +96,16 @@
     height:100%;
     clear: both;
 }
+/* 작성한 댓글 */
+.replyCon{
+	width:400px;
+}
+/* 댓글 input 박스 */
 .replycon{
 	width: 900px;
     margin: 0 auto;
     padding-bottom: 20px;
     overflow: hidden;
-    display: flex;
     justify-content: center;
 	
 }
@@ -108,11 +114,15 @@
     height: 50px;
     float: left;
 }
-
+/* 댓글 수정 삭제 버튼 */
 .fboCommentUpdBtn {
+	float:left;
 	cursor: pointer;
+    margin-right: 20px;
+    margin-left: 30px;
 }
 .fboCommentDelBtn {
+	float:left;
 	cursor: pointer;
 }
 
@@ -145,10 +155,12 @@
 #replyUpdCont {
 	width: 68%;
 }
-
+.btnBox{
+	margin : 20px;
+}
 
 /* MODAL */
-#my_modal {
+.cModal {
     display: none;
     width: 500px;
     height: 200px;
@@ -157,23 +169,23 @@
     border: 1px solid #888;
     border-radius: 3px;
 }
-#my_modal h1{
+.cModal h1{
     text-align: center;
 }
-#my_modal p {
+.cModal p {
     text-align: center;
 }
-#my_modal #closeBtn{
+.cModal #closeBtn{
     cursor: pointer;
 }
 
-#my_modal .modal_close_btn {
+.cModal .modal_close_btn {
     position: absolute;
     top: 10px;
     right: 10px;
 }
 
-#my_modal button {
+.cModal button {
     width: 200px;
     padding: 15px;
     margin-top: 20px;
@@ -184,131 +196,23 @@
     border-radius: 10px;
     font-size: 16px;
 }
-#goTOPay{
+.yesBtn{
     border: none;
     color: var(--font-color);
     background-color: var(--button-color);
 }
-#goTOPay:hover{
+.yesBtn:hover{
     background-color: var(--hover-color);
 }
-#nextTime{
+.closeBtn{
     background-color: var(--font-color);
     border: 1px solid var(--button-color);
 }
-#nextTime:hover{
+.closeBtn:hover{
     border: 1px solid var(--hover-color);
 }
 
-
-
-/* MODAL COMMENT */
-#my_modal_comment {
-    display: none;
-    width: 500px;
-    height: 200px;
-    padding: 20px 60px;
-    background-color: #fefefe;
-    border: 1px solid #888;
-    border-radius: 3px;
-}
-#my_modal_comment h1{
-    text-align: center;
-}
-#my_modal_comment p {
-    text-align: center;
-}
-#my_modal_comment #closeBtnComment{
-    cursor: pointer;
-}
-
-#my_modal_comment .modal_close_btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-#my_modal_comment button {
-    width: 200px;
-    padding: 15px;
-    margin-top: 20px;
-    margin-left: 30px;
-    
-    cursor: pointer;
-    outline: none;
-    border-radius: 10px;
-    font-size: 16px;
-}
-#goTOPay_comment{
-    border: none;
-    color: var(--font-color);
-    background-color: var(--button-color);
-}
-#goTOPay_comment:hover{
-    background-color: var(--hover-color);
-}
-#nextTime_comment{
-    background-color: var(--font-color);
-    border: 1px solid var(--button-color);
-}
-#nextTime_comment:hover{
-    border: 1px solid var(--hover-color);
-}
-
-
-/* MODAL COMMENT UPDATE */
-#my_modal_updComment {
-    display: none;
-    width: 500px;
-    height: 200px;
-    padding: 20px 60px;
-    background-color: #fefefe;
-    border: 1px solid #888;
-    border-radius: 3px;
-}
-#my_modal_updComment h1{
-    text-align: center;
-}
-#my_modal_updComment p {
-    text-align: center;
-}
-#my_modal_updComment #closeBtnUpdComment{
-    cursor: pointer;
-}
-
-#my_modal_updComment .modal_close_btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-#my_modal_updComment button {
-    width: 200px;
-    padding: 15px;
-    margin-top: 20px;
-    margin-left: 30px;
-    
-    cursor: pointer;
-    outline: none;
-    border-radius: 10px;
-    font-size: 16px;
-}
-#goTOPay_updComment{
-    border: none;
-    color: var(--font-color);
-    background-color: var(--button-color);
-}
-#goTOPay_updComment:hover{
-    background-color: var(--hover-color);
-}
-#nextTime_updComment{
-    background-color: var(--font-color);
-    border: 1px solid var(--button-color);
-}
-#nextTime_updComment:hover{
-    border: 1px solid var(--hover-color);
-}
-
+/* 컨텐츠 수정 */
 #replyUpdCont {
     width: 100%;
     height: 51px;
@@ -318,3 +222,15 @@
 	margin-top: 12px;
     margin-bottom: 14px;
 }
+/* 더보기 */
+.moreBox{
+	width: 120px;
+	margin: 0 auto;
+}
+#moreBtn{
+    width: 120px;
+    height: 40px;
+    font-family: "GmarketM";
+    border-radius: 10px;
+}
+

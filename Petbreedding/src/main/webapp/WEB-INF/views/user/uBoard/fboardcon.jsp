@@ -20,6 +20,7 @@
 	<div class="wrapper">
 		<jsp:include page="../../common/header.jsp" />
 		<section class="section">
+			<input type="hidden" value="${client.cl_num }" id="cl_num">
 			<div class="bheader">
 
 				<c:if test="${empty board}">
@@ -27,7 +28,7 @@
 				</c:if>
 
 					
-					<div class="title">${board.boTitle}</div>
+					<div class="title"><h2>${board.boTitle}</h2></div>
 							
 					<div class="writer">작성자 : ${board.clNickName}</div>
 					<div class="regdate">작성일 : ${board.boDate}</div>
@@ -39,12 +40,18 @@
 			<div class="bcon">
 				<div class="con">${board.boCont}</div>
 				
-				<button class="backbtn basicBtn" onClick="location.href='fboardlist'">목록</button>
-				<button id="fboardDelBtn" class="delbtn basicBtn">삭제</button>
-				<button id="fboardUpdBtn" class="modifybtn basicBtn">수정</button>
-				<input type="hidden" id="boUpdBoNum" value="${board.boNum}">
-				<input type="hidden" id="boUpdBoTitle" value="${board.boTitle}">
-				
+				<div class="btnBox">
+					<button class="backbtn basicBtn" onClick="history.back()">목록</button>
+					<c:if test="${board.clNum eq client.cl_num }">
+						<button id="fboardDelBtn" class="delbtn basicBtn">삭제</button>
+						<button id="fboardUpdBtn" class="modifybtn basicBtn">수정</button>
+					</c:if>
+					<form id="form1">
+						<input type="hidden" id="boUpdBoNum" name="boNum" value="${board.boNum}">
+						<input type="hidden" id="boUpdBoTitle" name="boTitle" value="${board.boTitle}">
+						<input type="hidden" id="boNone" name="boCont" value='${board.boCont}'>
+					</form>						
+				</div>
 			</div>
 			<div class="reply">
 				<p>댓글(${board.bocChk})</p>
@@ -62,40 +69,42 @@
 				
 				
 			</div>
-
+	        <!--TOPBTN-->
+        	<a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
+			
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 		
 		<!-- MODAL POSTING -->
-		 <div id="my_modal">
+		 <div id="my_modal" class="cModal">
 		    <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
 		    <div id="locCon">
 		        <h1>삭제하시겠습니까?</h1>
-		        <button id="goTODel" name="${board.boNum}">바로 삭제할게요</button>
-		        <button id="nextTime">다음에 할게요</button>
+		        <button id="goTODel" name="${board.boNum}"  class="yesBtn">네</button>
+		        <button id="nextTime" class="closeBtn">아니오</button>
 		    </div>
 		</div>
 		
 		
 		<!-- MODAL COMMENT -->
-		<div id="my_modal_comment">
+		<div id="my_modal_comment" class="cModal">
 		   <a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnComment"></i></a>
 		   <div id="locCon_comment">
 		       <h1>삭제하시겠습니까?</h1>
-		       <button id="goTOPay_comment">바로 삭제할게요</button>
-		        <button id="nextTime_comment">다음에 할게요</button>
+		       <button id="goTOPay_comment" class="yesBtn">네</button>
+		        <button id="nextTime_comment" class="closeBtn">아니오</button>
 		        <input type="hidden" id="coIdVar">
 		    </div>
 		</div>
 		
 		<!-- MODAL COMMENT UPDATE -->
-		<div id="my_modal_updComment">
+		<div id="my_modal_updComment" class="cModal">
 			<a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnUpdComment"></i></a>
 			<div id="locCon_updComment">
 				<h1 class="bocUpdTitle">댓글 수정</h1>
 				<input type="text" id="replyUpdCont" name="getBocCont">
-				<button id="goTOPay_updComment">수정</button>
-				<button id="nextTime_updComment">취소</button>
+				<button id="goTOPay_updComment" class="yesBtn">수정</button>
+				<button id="nextTime_updComment" class="closeBtn">취소</button>
 				<input type="hidden" id="coIdVar">
 		    </div>
 		</div>
@@ -104,5 +113,6 @@
 	
 	<script type="text/javascript" src="${path}/resources/js/user/uBoard/fComment.js"></script>
 	<script type="text/javascript" src="${path}/resources/js/user/uBoard/fboardcon.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
 </body>
 </html>

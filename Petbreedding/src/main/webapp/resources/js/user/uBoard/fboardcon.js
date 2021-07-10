@@ -1,25 +1,34 @@
-/**
- * 
- */
 
 $("#fboardUpdBtn").on("click", function() {
 	
 	console.log("눌렀음");
+	var form = document.getElementById("form1");
 	var boNum = $("#boUpdBoNum").val();
 	var boTitle = $("#boUpdBoTitle").val();
 	var boCont = $(".con").html();
-	$.ajax({
-		url : "bupdateFrm",
-		type: "post",
-		data:{
-			boNum : boNum,
-			boTitle : boTitle,
-			boCont : boCont
-		},
-		success:function(data){
-			location.href="bupdateFrm";
-		}
-	});
+	var str = "";
+//	str += "<input type='hidden' name='boNum' value='"+boNum+"'>";
+//	str += "<input type='hidden' name='boTitle' value='"+boTitle+"'>";
+	str += "<input type='hidden' name='boCont' value='"+boCont+"'>";
+//	console.log(str);
+    form.setAttribute("charset", "UTF-8");
+    form.setAttribute("method", "Post");  //Post 방식
+    form.setAttribute("action", "bupdateFrm"); //요청 보낼 주소
+    form.append(str);
+	form.submit();
+	
+//	$.ajax({
+//		url : "bupdateFrm",
+//		type: "post",
+//		data:{
+//			boNum : boNum,
+//			boTitle : boTitle,
+//			boCont : boCont
+//		},
+//		success:function(data){
+//			location.href="bupdateFrm";
+//		}
+//	});
 });
 
 $("#fboardDelBtn").on("click", function() {
@@ -33,12 +42,6 @@ $("#goTODel").on("click", function() {
 	location.href = "/petbreedding/bdelete?bo_num="+boardNumVar+"";
 });
 
-//$("#goTOPay_comment").on("click", function() {
-//	var CoNumVar = $(this).attr("name");
-//	console.log(CoNumVar);
-//	location.href = "/petbreedding/bcdelete?co_num="+CoNumVar+"";
-//});
-
 // 모달
 
 function modal(id) {
@@ -47,6 +50,7 @@ function modal(id) {
 
 	// 모달 div 뒤에 희끄무레한 레이어
 	var bg = document.createElement('div');
+	bg.className = 'bg';
 	bg.setStyle({
 		position : 'fixed',
 		zIndex : zIndex,
