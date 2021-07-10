@@ -220,9 +220,15 @@
                 <!-- 미용실 -->
             <c:if test="${shopType eq 0}">
             <h1>미용실</h1>
+            <c:if test="${empty harListLocNew}">
             <div class="nowLocation">
                 <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
+            </c:if>
+            <c:if test="${!empty harListLocNew}">
+            <div class="nowLocation">
+                <span> ${map1.searchLoc1 } > ${map1.searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>            </div>
+            </c:if>
             
             <hr id="storeLine">
             <div class="selectOpt">

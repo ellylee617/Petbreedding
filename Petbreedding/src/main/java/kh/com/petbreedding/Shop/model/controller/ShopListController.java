@@ -195,7 +195,7 @@ public class ShopListController {
 //		 map.put("keyword", keyword);
 		 
 		 System.out.println("map 정보 보여줘 !!!!!!!!"+map1);
-		 
+		 mv.addObject("map1", map1);
 		 
 		 List<HairSalon> harListLocNew = shopListService.selectHarListLocNew(map1);
 		 System.out.println("위치로 검색한 미용실 최신순으로 정렬해줘!!!:"+harListLocNew);
