@@ -24,17 +24,47 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// 상세페이지 리뷰, 댓글 조회
 	@Override
-	public List<Review> revRevcSelectList(String bp_id) {
-		List<Review> revRevcList = null;
+	public List<Review> revRevcSelectListUpToDate(String bp_id) {
+		List<Review> revRevcListUpd = null;
 		try {
 			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
-			revRevcList = reviewDao.revRevcSelectList(bp_id);
+			revRevcListUpd = reviewDao.revRevcSelectListUpToDate(bp_id);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 reviewList : " + revRevcList);
-		return revRevcList;
+		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 revRevcListUpd : " + revRevcListUpd);
+		return revRevcListUpd;
+	}
+	
+	//	상세페이지 리뷰, 댓글 평점 높은 순
+	@Override
+	public List<Review> revRevcSelectListDesc(String bp_id) {
+		List<Review> revRevcListDesc = null;
+		try {
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
+			revRevcListDesc = reviewDao.revRevcSelectListDesc(bp_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 revRevcListDesc : " + revRevcListDesc);
+		return revRevcListDesc;
+	}
+
+	//	상세페이지 리뷰, 댓글 평점 낯은 순
+	@Override
+	public List<Review> revRevcSelectListAsc(String bp_id) {
+		List<Review> revRevcListAsc = null;
+		try {
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
+			revRevcListAsc = reviewDao.revRevcSelectListAsc(bp_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 reviewList : " + revRevcListAsc);
+		return revRevcListAsc;
 	}
 	
 	@Override
@@ -136,6 +166,8 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return revAvgResult;
 	}
+
+
 
 
 

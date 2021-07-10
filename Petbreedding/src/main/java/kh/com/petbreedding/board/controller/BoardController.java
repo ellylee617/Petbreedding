@@ -415,10 +415,12 @@ public class BoardController {
 			HttpServletRequest req
 			,HttpServletResponse res
 			,String bp_id
+			, int type
 			) throws IOException {
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("application/json; charset=UTF-8");
 		System.out.println("[세훈] @리뷰 조회 컨트롤러 bp_id : " + bp_id);
+		System.out.println("[세훈] @리뷰 조회 컨트롤러 type : " + type);
 		
 		PrintWriter out = res.getWriter();
 		String rvJson = "";
@@ -426,9 +428,19 @@ public class BoardController {
 		List<Review> rList = new ArrayList<Review>();
 		
 		if(rList != null) {
-			rList = reviewService.revRevcSelectList(bp_id);
-			Gson jobj = new GsonBuilder().create();
-			rvJson = jobj.toJson(rList);
+			if(type == 1) {
+				rList = reviewService.revRevcSelectListDesc(bp_id);
+				Gson jobj = new GsonBuilder().create();
+				rvJson = jobj.toJson(rList);
+			} else if(type == 2) {
+				rList = reviewService.revRevcSelectListAsc(bp_id);
+				Gson jobj = new GsonBuilder().create();
+				rvJson = jobj.toJson(rList);
+			} else {
+				rList = reviewService.revRevcSelectListUpToDate(bp_id);
+				Gson jobj = new GsonBuilder().create();
+				rvJson = jobj.toJson(rList);
+			}
 		}
 
 		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 bocJson : " + rvJson);

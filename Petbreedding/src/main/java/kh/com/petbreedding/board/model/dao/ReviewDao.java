@@ -20,9 +20,17 @@ public class ReviewDao {
 		return sqlSession.selectOne("Review.getRevNumFromSeq");
 	}
 	
-	// 상세페이지 리뷰, 댓글 조회
-	public List<Review> revRevcSelectList(String bp_id) {
-		return sqlSession.selectList("Review.revRevcSelectList", bp_id);
+	// 상세페이지 리뷰, 댓글 조회 최신순
+	public List<Review> revRevcSelectListUpToDate(String bp_id) {
+		return sqlSession.selectList("Review.revRevcSelectListUpToDate", bp_id);
+	}
+	// 상세페이지 리뷰, 댓글 조회 별점 높은 순
+	public List<Review> revRevcSelectListDesc(String bp_id) {
+		return sqlSession.selectList("Review.revRevcSelectListDescStar", bp_id);
+	}
+	// 상세페이지 리뷰, 댓글 조회 별점 낮은 순
+	public List<Review> revRevcSelectListAsc(String bp_id) {
+		return sqlSession.selectList("Review.revRevcSelectListAscStar", bp_id);
 	}
 	
 	// 사업자 리뷰 조회

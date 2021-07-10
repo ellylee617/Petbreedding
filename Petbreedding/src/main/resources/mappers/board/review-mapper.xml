@@ -46,13 +46,36 @@
 		WHERE BP_ID = #{bpId}
 	</select>
 	
-	<!-- 상세페이지에서 리뷰와 댓글 조회 -->
-	<select id="revRevcSelectList" parameterType="string" resultMap="ReviewMap">
+	<!-- 상세페이지에서 리뷰와 댓글 조회 최신 순-->
+	<select id="revRevcSelectListUpToDate" parameterType="string" resultMap="ReviewMap">
 		<![CDATA[
 			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
 			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
 			ON r.REV_NUM = c.REV_NUM
 			WHERE r.BP_ID = #{bpId}
+			ORDER BY r.REV_NUM DESC
+		 ]]>
+	</select>
+	
+	<!-- 상세페이지에서 리뷰와 댓글 조회 별점 높은 순-->
+	<select id="revRevcSelectListDescStar" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
+			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
+			ON r.REV_NUM = c.REV_NUM
+			WHERE r.BP_ID = #{bpId}
+			ORDER BY r.REV_VAL DESC, r.REV_NUM DESC
+		 ]]>
+	</select>
+	
+	<!-- 상세페이지에서 리뷰와 댓글 조회 별점 낮은 순-->
+	<select id="revRevcSelectListAscStar" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
+			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
+			ON r.REV_NUM = c.REV_NUM
+			WHERE r.BP_ID = #{bpId}
+			ORDER BY r.REV_VAL ASC, r.REV_NUM DESC
 		 ]]>
 	</select>
 	
