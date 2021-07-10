@@ -67,8 +67,15 @@ function onMessage(evt) {
 };
 	
 function onClose() {
-	// appendMessage("연결을 끊었습니다.");
 	console.log('close');
+//	var chatId = $("#chatId").val();
+//	var user = $("#user").val();
+//	var cl_num = $("#cl_num").val();
+//	var bp_id = $("#bp_id").val();
+//	if(user!='user'){
+//		location.href = "/petbreedding/insertNoticeforChat.do?mReceiver="
+//			+cl_num+"&chatId="+chatId+"&notPublisher="+bp_id;	
+//	}
 };
 
 

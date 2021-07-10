@@ -19,12 +19,45 @@ import kh.com.petbreedding.Chat.model.vo.ChatList;
 import kh.com.petbreedding.Chat.model.vo.ChatMessage;
 import kh.com.petbreedding.Chat.model.vo.ChatRoom;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 
 @Controller
 public class ChatController {
 
 	@Autowired
 	private ChatService chService;
+	
+	@Autowired
+	private NoticeService noticeService;
+	
+//	@RequestMapping("/insertNoticeforChat.do")
+//	public void insertNoticeforChat(HttpServletRequest req) {
+//				
+//		String chatId = req.getParameter("chatId");
+//		String mReceiver = req.getParameter("mReceiver");
+//		String notPublisher = req.getParameter("notPublisher");
+//		
+//		ChatMessage cm = new ChatMessage();
+//		cm.setmReceiver(mReceiver);
+//		cm.setChatId(chatId);
+//		
+//		int unreadCount = chService.getUnreadCount(cm);
+//		
+//		Notice notice = new Notice();
+//		notice.setNotReceiver(mReceiver);
+//		notice.setNotPublisher(notPublisher);
+//		
+//		if(unreadCount>0) {
+//			int result = noticeService.inUnreadChat(notice);
+//			if(result==1) {
+//				System.out.println("알림 인서트 성공");
+//			}else {
+//				System.out.println("알림 인서트 실패ㅠㅠ");
+//			}
+//		}
+//		
+//	}
 
 	@RequestMapping("/chat")
 	public ModelAndView chat(ModelAndView mv, @RequestParam(value = "chatId", required = false) String chatId,
@@ -286,7 +319,7 @@ public class ChatController {
 		ChatMessage cm = new ChatMessage();
 		cm.setmReceiver(mReceiver);
 		cm.setChatId(chatId);
-		unreadList = chService.getUnreadCount(cm);
+		unreadList = chService.getUnreadCountList(cm);
 		
 		if(unreadList!=null) {
 			//안 읽은 메시지가 있다면
