@@ -240,12 +240,14 @@ public class ClientInfoCotroller {
 		return "/user/uMyPage/myAskDetail";
 	}
 
+	// 1:1 문의 등록 폼
 	@RequestMapping(value = "/maWriteForm")
 	public String maWriteForm(Model md, String user_num) {
 		md.addAttribute("user_num", user_num);
 		return "/user/uMyPage/myAskRegister";
 	}
 
+	// 1:1 문의 등록
 	@RequestMapping(value = "/maWrite")
 	public String maWrite(Model md, HttpSession session, MultipartHttpServletRequest req, HttpServletResponse res,
 			Client cl) throws Exception {
@@ -267,7 +269,7 @@ public class ClientInfoCotroller {
 
 		// 파일업로드
 		MultipartFile mf = req.getFile("myAskImg"); // 업로드 파라미터
-		if (mf != null) {
+		if (!mf.isEmpty()) {
 
 			String path = req.getRealPath("/resources/uploadFile/myAsk"); // 자징될 위치
 			UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
@@ -284,6 +286,9 @@ public class ClientInfoCotroller {
 			myAsk.setQnaImg(saveName);
 
 			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
+		} else {
+			String saveName = "none";
+			myAsk.setQnaImg(saveName);
 		}
 
 		System.out.println("[세훈 ]" + myAsk.toString());

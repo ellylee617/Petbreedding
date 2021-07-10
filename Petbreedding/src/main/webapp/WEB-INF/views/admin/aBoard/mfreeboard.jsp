@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/admin/mAside.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/admin/aBoard/mfreeboard.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
@@ -35,12 +36,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="checkTR">
-									<td class="inputBox"><input type="checkbox" name="board"></td>
-									<td>살찌면 뒷목살도 접히나요?</td>
-									<td>저희 강아지가 뒷목살이 접히는데..</td>
-									<td>3</td>
-								</tr>
+							<c:if test="${empty myList}">
+					            <tr>
+					              	<td colspan="4">작성하신 글이 없습니다.</td>
+					            </tr>
+	            			</c:if>
+							<c:if test="${!empty myList}">
+								<c:forEach items="${myList}" var="myList" varStatus="status">
+									<tr class="checkTR">
+										<td class="inputBox"><input type="checkbox" name="board" value="${myList.boNum }"></td>
+										<td class="bTitle goDetail">${myList.boTitle }</td>
+										<td>${myList.boDate }</td>
+										<td>${myList.boView }</td>
+									</tr>
+								</c:forEach>
+							</c:if>
 							</tbody>
 						</table>
 					</div>
@@ -49,14 +59,30 @@
 							<a href="#">삭제</a>
 						</button>
 					</div>
-					<div class="page_wrap">
-						<div class="page_nation">
-							<a class="arrow prev" href="#">이전</a> <a href="#" class="active">1</a>
-							<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-							<a href="#">6</a> <a href="#">7</a> <a href="#">8</a> <a href="#">9</a>
-							<a href="#">10</a> <a class="arrow next" href="#">다음</a>
-						</div>
-					</div>
+					
+		            <!-- 페이징 시작-->
+		            <div class="page_wrap">
+		               <div class="page_nation">
+		                  <c:if test="${paging.startPage != 1 }">
+		                     <a class="arrow prev" href="${path}/mfreeboard?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+		                  </c:if>
+		                  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+		                     <c:choose>
+		                        <c:when test="${p == paging.nowPage }">
+		                           <b>${p}</b>
+		                        </c:when>
+		                        <c:when test="${p != paging.nowPage }">
+		                           <a href="${path}/mfreeboard?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+		                        </c:when>
+		                     </c:choose>
+		                  </c:forEach>
+		                  <c:if test="${paging.endPage != paging.lastPage}">
+		                     <a class="arrow next" href="${path}/mfreeboard?${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+		                  </c:if>
+		               </div>
+		            </div>
+		            <!-- 페이징 끝! -->
+					
 				</div>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />

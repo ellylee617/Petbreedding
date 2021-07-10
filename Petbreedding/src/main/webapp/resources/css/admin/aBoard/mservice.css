@@ -123,6 +123,10 @@
 	
 }
 
+.goDetailRow {
+	cursor: pointer;
+}
+
 /**MBOARDCON*/
 .conwrap{
     margin-left: 30px;
