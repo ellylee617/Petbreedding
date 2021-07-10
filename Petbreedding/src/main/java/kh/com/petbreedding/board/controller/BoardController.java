@@ -39,6 +39,8 @@ import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.vo.Pagination;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 import kh.com.petbreedding.board.model.service.BCommentService;
 import kh.com.petbreedding.board.model.service.BoardService;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
@@ -58,6 +60,9 @@ public class BoardController {
 
 	@Autowired
 	private BCommentService bCommentService;
+	
+	@Autowired
+	private NoticeService noticeService;
 
 	public final int LIMIT = 5;
 
@@ -341,31 +346,51 @@ public class BoardController {
 	}
 
 	// 게시판 댓글 달기
-	@RequestMapping(value = "/bocWrite")
-	public void bocWrite(Model md, HttpServletRequest req, HttpServletResponse res, HttpSession ses, Client cl) {
-		cl = (Client) ses.getAttribute("client");
-		String cl_nickName = cl.getNickname();
-		String cl_num = cl.getCl_num();
-		String bo_num = req.getParameter("getBoNum");
-		String co_cont = req.getParameter("getBocCont");
+		@RequestMapping(value = "/bocWrite")
+		public void bocWrite(Model md, HttpServletRequest req, HttpServletResponse res, HttpSession ses, Client cl) {
+			cl = (Client) ses.getAttribute("client");
+			String cl_nickName = cl.getNickname();
+			String cl_num = cl.getCl_num();
+			String bo_num = req.getParameter("getBoNum");
+			String co_cont = req.getParameter("getBocCont");
 
-		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bo_num : " + bo_num);
-		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 boc_cont : " + co_cont);
-		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_num : " + cl_num);
-		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_nickName : " + cl_nickName);
+			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bo_num : " + bo_num);
+			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 boc_cont : " + co_cont);
+			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_num : " + cl_num);
+			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_nickName : " + cl_nickName);
 
-		if (co_cont != null && co_cont != "" && bo_num != null && bo_num != "") {
-			B_comment bComment = new B_comment();
+			if (co_cont != null && co_cont != "" && bo_num != null && bo_num != "") {
+				B_comment bComment = new B_comment();
 
-			bComment.setClNum(cl_num);
-			bComment.setClNickName(cl_nickName);
-			bComment.setBoNum(bo_num);
-			bComment.setCoCont(co_cont.replaceAll("\n", "<br>"));
+				bComment.setClNum(cl_num);
+				bComment.setClNickName(cl_nickName);
+				bComment.setBoNum(bo_num);
+				bComment.setCoCont(co_cont.replaceAll("\n", "<br>"));
 
-			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bComment : " + bComment.toString());
-			bCommentService.bCommentInsert(bComment);
+				System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bComment : " + bComment.toString());
+				bCommentService.bCommentInsert(bComment);
+			}
+			
+			// 알림 인서트
+			// 댓글 작성자 말고 글번호로 댓글이 작성된 글의 글쓴이를 찾아옴
+			String origClNum = "";
+			origClNum = noticeService.getOrigClNum(bo_num);
+			System.out.println("origClNum" + origClNum);
+			
+			// insert를 위한 notice vo에 필요한 값들 set해주기
+			Notice notice = new Notice();
+			notice.setNotReceiver(origClNum);
+			notice.setRefNum(bo_num); // 여기서는 참고번호가 글번호
+			
+			int result = 0;
+			result = noticeService.inBoard(notice);
+			
+			if(result==1) {
+				System.out.println("댓글 작성시 알림 인서트 성공!");
+			}else {
+				System.out.println("알림 인서트 실패");
+			}
 		}
-	}
 	
 	// 게시판 댓글 삭제
 	@RequestMapping(value = "/bcdelete")
