@@ -72,7 +72,7 @@
 							<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 								<c:choose>
 									<c:when test="${p == paging.nowPage }">
-										<b>${p }</b>
+										<b>${p}</b>
 									</c:when>
 									<c:when test="${p != paging.nowPage }">
 										<a href="${path}/mfreeboard?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
