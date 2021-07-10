@@ -1,7 +1,7 @@
 var boNum = $("#boUpdBoNum").val();
-var closeBtn = $("#closeModalBtn");
-
-function commentListInit(boNum) {
+var closeBtn = $("#closeBtnUpdComment");
+var cl_num = $("#cl_num").val();
+$(function(){
 	$.ajax({
 		url: 'bocList'
 		,type: 'get'
@@ -17,44 +17,66 @@ function commentListInit(boNum) {
 			if(jsonLength > 0) {
 				
 				$.each(json, function(index, item) {
-					div += "<div class='replyArea'>"
-						+ "<div class='replyUserInfo'>"
-						+ "<p class='replyNickName'>"+item.clNickName+"</p>"
-						+ "<p class='replyCon'>"+item.coCont+"</p>"
-						+ "</div>"
-						+ "<div>"
-						+ "<p class='replyTime'>"+item.coDate+"</p>"
-						+ "<div class='replyUpdDel'>"
-						+ "<p name='"+item.coNum+"' class='fboCommentUpdBtn'>수정</p>"
-						+ "<p id='"+item.coNum+"' class='fboCommentDelBtn'>삭제</p>"
-						+ "</div>"
-						+ "</div>"
-						+ "</div>";
+					div += "<div class='rArea'>";
+					div += "<div class='replyArea'>";
+					div += "<div class='replyUserInfo'>";
+					div += "<p class='replyNickName'>"+item.clNickName+"</p>";
+					div += "<p class='replyCon'>"+item.coCont+"</p>";
+					div += "</div>";
+					div +=  "<div>";
+					div += "<p class='replyTime'>"+item.coDate+"</p>";
+					if(item.clNum == cl_num){
+						div +=  "<div class='replyUpdDel'>";
+						div +=  "<p name='"+item.coNum+"' class='fboCommentUpdBtn'>수정</p>";
+						div += "<p id='"+item.coNum+"' class='fboCommentDelBtn'>삭제</p>";
+						div +=  "</div>";
+					}
+					div += "</div>";
+					div += "</div>";
+					div += "</div>";
 						
 				});
 				
+				$("#replyContainer").html(div);
+				
+				
+				//리스트 잘라서 5개만 보여주기
+				$(".rArea").slice(0,5).show();
+		          //총 데이터 갯수가 5개가 초과하면 더보기 버튼 추가
+	            var moreBtn = "";
+	            moreBtn += "<div class='moreBox'>";
+	            moreBtn += "<button class='basicBtn' id='moreBtn'> 더보기</button>";
+	            moreBtn += "</div>";
+	            if(jsonLength > 5 ){
+						$("#replyContainer").append(moreBtn);				
+					} 
+				
+				//	댓글 삭제 버튼 클릭
+				$(".fboCommentDelBtn").click(function() {
+					console.log("댓글 삭제 클릭 됨");
+					var coIdVar = $(this).attr("id");	//	클릭된 행의 id
+					$("#goTOPay_comment").attr("name", coIdVar);
+					getCommentModal();
+				});
+				
+				//	댓글 수정 버튼 클릭
+				$(".fboCommentUpdBtn").click(function() {
+					console.log("댓글 수정 클릭 됨")
+					var coIdVar = $(this).attr("name");	//	클릭된 행의 id
+					var replyCon = $(this).parent().parent().prev().find('.replyCon').text();
+					$("#replyUpdCont").val(replyCon);
+					$("#goTOPay_updComment").attr("name", coIdVar);
+					console.log("replyCon : "+ replyCon);
+					getUpdCommentModal();
+				});
+				
+			}else {
+				div += "<div class='replyArea'>"
+				div	+= "<p>작성된 댓글이 없습니다.</p>";
+				div	+= "</div>";
 			}
 			
-			$("#replyContainer").html(div);
-			
-			//	댓글 삭제 버튼 클릭
-			$(".fboCommentDelBtn").click(function() {
-				console.log("댓글 삭제 클릭 됨");
-				var coIdVar = $(this).attr("id");	//	클릭된 행의 id
-				$("#goTOPay_comment").attr("name", coIdVar);
-				getCommentModal();
-			});
-			
-			//	댓글 수정 버튼 클릭
-			$(".fboCommentUpdBtn").click(function() {
-				console.log("댓글 수정 클릭 됨")
-				var coIdVar = $(this).attr("name");	//	클릭된 행의 id
-				var replyCon = $(this).find('.replyCon').val();
-				console.log(replyCon);
-				$("#goTOPay_updComment").attr("name", coIdVar);
-				getUpdCommentModal();
-			});
-			
+
 			
 		}
 		
@@ -66,7 +88,23 @@ function commentListInit(boNum) {
 		}
 		
 	});
-}
+});
+	
+//더보기
+$(document).on("click","#moreBtn",function(){
+	
+	console.log("들어왔슈");
+	hiddenLikes = $(".rArea").filter(function(){
+		return $(this).css('display') == 'none';
+	});
+	count = hiddenLikes.length;
+	if(count == 0){
+		$("#moreBtn").css("display","none");
+		alert("더 이상 항목이 없습니다.");
+	}else{
+		$(hiddenLikes).slice(0,5).show();
+	}
+});
 
 $("#bocSubmitBtn").click(function() {
 	var queryString = $("#bocFrm").serialize();
@@ -77,8 +115,8 @@ $("#bocSubmitBtn").click(function() {
 		,type: 'post'
 		,data: queryString
 		,success: function() {
-			commentListInit(boNum);
-			$("#replyCont").val("").focus();
+//			commentListInit(boNum);
+			location.reload();
 		}
 		,error : function(request, status, error) {
 			alert("code: " + request.status + "\n"
@@ -90,7 +128,7 @@ $("#bocSubmitBtn").click(function() {
 	});
 });
 
-
+//자유 게시판 댓글 삭제
 $("#goTOPay_comment").bind("click", function() {
 	var CoNumVar = $(this).attr("name");
 	console.log(CoNumVar);
@@ -100,18 +138,19 @@ $("#goTOPay_comment").bind("click", function() {
 		,type: "get"
 		,data: {co_num : CoNumVar, bo_num : boNum}
 		,success: function() {
-			commentListInit(boNum);
+//			commentListInit(boNum);
+			location.reload();
 		}
 		,error : function(request, status, error) {
 			alert("code: " + request.status + "\n"
 					+ "message: "
 					+ request.responseText + "\n"
 					+ "error: " + error);
+			closeModal();
 		}
 	});
 	
-	// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
-	closeModal();
+	
 
 });
 
@@ -120,16 +159,13 @@ $("#goTOPay_comment").bind("click", function() {
 $("#goTOPay_updComment").bind("click", function() {
 	var CoNumVar = $(this).attr("name");
 	var updContText = $("#replyUpdCont").val();
-	console.log(CoNumVar);
-	
 	$.ajax({
 		url: "bcupdate"
 		,type: "get"
 		,data: {co_num : CoNumVar, contVal : updContText}
 		,success: function() {
-			$("#replyUpdCont").val("");
-			commentListInit(boNum);
-			
+//			commentListInit(boNum);
+			location.reload();
 		}
 		,error : function(request, status, error) {
 			alert("code: " + request.status + "\n"
@@ -138,14 +174,10 @@ $("#goTOPay_updComment").bind("click", function() {
 					+ "error: " + error);
 		}
 	});
-	
-	// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
-	closeModal();
 
 });
 
-// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
-function closeModal() {
-	console.log("닫기 버튼 함수 들어옴")
-	closeBtn.click();
-}
+$(".closeBtn").on("click",function(){
+	$(".bg").remove();
+	$(".cModal").css("display","none");
+});

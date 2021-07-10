@@ -151,7 +151,9 @@ public class BoardController {
 	public ModelAndView bUpdate(
 			ModelAndView md, String boNum, String boTitle, String boCont
 			) {
-		
+		System.out.println("boNum : "+ boNum);
+		System.out.println("boTitle : "+ boTitle);
+		System.out.println("boCont : "+ boCont);
 		md.addObject("boUpdBoNum", boNum);
 		md.addObject("boUpdBoTitle", boTitle);
 		md.addObject("boUpdBoCont", boCont);

@@ -39,13 +39,13 @@
 						&nbsp;이용 완료					
 					</c:if>
 					<c:if test="${myRev.res_status eq 3}">
-						&nbsp;결제 취소						
+						&nbsp;이용 취소						
 					</c:if>
 					</c:forEach>
                 </div>
                 <div class="rborder">
                 	<c:forEach items="${myRev}" var="myRev">
-                    <span id="rOrderNum">주문번호 202106101234</span>
+                    <span id="rOrderNum">예약번호 ${myRev.har_rnum }</span>
                     <br><br>
                     <span class="rOrderTitle">${myRev.har_name }</span>
                     <br><br>

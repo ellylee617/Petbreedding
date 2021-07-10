@@ -27,6 +27,7 @@
 	<!-- [고객] 해당 해당 자유 게시판의 댓글 조회 (JSON) -->
 	<select id="bCommentSelectListC" parameterType="string" resultMap="boardCommentMap">
 		SELECT * FROM BOARD_COMMENT WHERE BO_NUM = #{boNum}
+		ORDER BY SUBSTR(CO_NUM,-2) DESC
 	</select>
 	
 	<!-- 자유게시판 댓글 시퀀스 더미 테이블을 이용해 가져오기 -->
