@@ -189,7 +189,7 @@
      <script type="text/javascript" src="${path}/resources/js/common/map.js"></script>
    	 <script type="text/javascript">
 		 var bpId = '${shopInfo.bpId}';
-		 var path = '${path}';
+		 var path = '${pageContext.request.contextPath}';
 		 var shopName = '${shopInfo.shopName }';
 		 console.log(shopName);
 		 reviewInit(bpId, path);
@@ -216,6 +216,7 @@
 							
 							$.each(json, function(index, item) {
 								var revVal = item.revVal;
+								console.log(item.revImg);
 								div += "<div class='review'>"
 									+ "<div class='reviewWord'>"
 									+ "<div class='star_img'>";
@@ -260,9 +261,9 @@
 									// 고객 닉네임, 방문날짜 끝
 									+ "</div>";
 									// reviewWord 끝
-								if(item.revImg = null) {
+								if(item.revImg == "none") {
 								div += "<div class='review_imgBox'>"
-									+ "<img class='review_img' src='"+path+"/resources/images/logo.png'>"
+									+ "<img class='review_img' src='"+path+"/resources/images/logoForChat.png'>"
 									+ "</div>"
 									+ "</div>";
 								} else {

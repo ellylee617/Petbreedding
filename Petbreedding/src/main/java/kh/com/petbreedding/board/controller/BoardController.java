@@ -471,27 +471,33 @@ public class BoardController {
 		rv.setRevVal(revVal);
 
 		// 파일업로드
+		String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
 		MultipartFile mf = req.getFile("reviewImg"); // 업로드 파라미터
-		if (mf != null) {
-
-			String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
+		
+		if(!mf.isEmpty()) {
+			
+			System.out.println(mf);
 			UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
-			String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
-			String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
+			String originalfileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
+			String saveName = uuid.toString() + "_" + originalfileName; // 저장될 이름
 			File uploadFile = new File(path + "//" + saveName); // 복사될 위치
-
 			try {
 				mf.transferTo(uploadFile);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
+			
 			rv.setRevImg(saveName);
-
+			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
+		} else {
+			String saveName = "none";
+			rv.setRevImg(saveName);
 			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
 		}
 
-		System.out.println("[세훈 ]" + rv.toString());
+
+
+		System.out.println("[세훈 ] 리뷰 등록 컨트롤러 rv : " + rv.toString());
 		int result = reviewService.insertReview(rv, har_num, har_name);
 
 		if(result > 0) {
