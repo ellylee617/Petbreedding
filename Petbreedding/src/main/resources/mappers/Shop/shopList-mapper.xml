@@ -6,7 +6,7 @@
 	
 		<!-- 사업장 평균  별점 -->
 		<select id="selectShopRevAvg" parameterType="string" resultType="string">
-			SELECT AVG(REV_VAL) AVG_REV_VAL
+			select round(avg(rev_val),2)
 			FROM(
 				   SELECT B.BP_ID, R.REV_VAL
 				   FROM business_partner B
@@ -115,7 +115,7 @@
 			            SELECT HAR.*, BR.avg_rev_val
 			            FROM HAIR_SALON HAR
 			            left JOIN (
-			                SELECT b.bp_id, avg(R.REV_VAL) avg_rev_val
+			                SELECT b.bp_id, round(avg(R.REV_VAL),2) avg_rev_val
 			                 FROM business_partner B
 			                LEFT JOIN review R
 			                ON (b.bp_id = r.bp_id)
@@ -135,7 +135,7 @@
 		
 		<!-- 미용실 주소(위치) 검색 -->
 			
-					<!-- 최신순 정렬 카운팅 -->
+					<!-- 위치 검색 결과 카운팅 -->
 					<select id="countHarListLocNew" parameterType="hashmap" resultType="int">
 					<![CDATA[
 							    SELECT count(*) 
@@ -189,7 +189,7 @@
 		                            ON (h.har_num = l.har_num)
 		                            GROUP BY h.har_num
 		                    ) HL
-		                    ON HAR.har_num = HL.har_num AND hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+		                    ON HAR.har_num = HL.har_num AND HAR.har_addr LIKE #{searchLoc1} || '%' AND HAR.har_addr LIKE '%' ||  #{searchLoc2} || '%'
 		                    ORDER BY LIKES DESC NULLS LAST
 		                     )A
 					    )B

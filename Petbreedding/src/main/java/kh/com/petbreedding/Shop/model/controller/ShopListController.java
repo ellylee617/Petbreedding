@@ -115,6 +115,8 @@ public class ShopListController {
 				
 				String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
 				avgList2.add(revAvg);
+				System.out.println("평균 별점 보여줘!!!!!!!!!!"+revAvg);
+				System.out.println(avgList2);
 				mv.addObject("like_revAvg", avgList2);
 				
 				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
@@ -169,11 +171,10 @@ public class ShopListController {
 		
 		
 			
-		// 미용실 위치 검색 최신순 정렬
+			System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
+			
 			
 			Map<String,Object> map1 = new HashMap<String,Object>();
-			
-			System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
 			 map1.put("searchLoc1", searchLoc1);
 			 map1.put("searchLoc2", searchLoc2);
 			 
@@ -182,7 +183,7 @@ public class ShopListController {
 				System.out.println("미용실 검색 결과 개수는?"+total1);
 				Pagination page1 = null;
 				page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-				mv.addObject("loc_new_paging", page1);
+				mv.addObject("loc_paging", page1);
 				int start1 = page1.getStart();
 				int end1 = page1.getEnd();
 				map1.put("start", start1);
@@ -190,7 +191,8 @@ public class ShopListController {
 				mv.addObject("map1", map1);
 				System.out.println("map 정보 보여줘 !!!!!!!!"+map1);
 		
-		 
+				
+		// 미용실 위치 검색 최신순 정렬		 
 		 List<HairSalon> harListLocNew = shopListService.selectHarListLocNew(map1);
 		 System.out.println("위치로 검색한 미용실 최신순으로 정렬해줘!!!:"+harListLocNew);
 		 mv.addObject("harListLocNew", harListLocNew);
@@ -225,13 +227,33 @@ public class ShopListController {
 
 			// 미용실 위치 검색 결과 인기순 정렬 
 				
-		 
+			 List<HairSalon> harListLocLike = shopListService.selectHarListLocLike(map1);
+			 System.out.println("위치로 검색한 미용실 인기순으로 정렬해줘!!!:"+harListLocLike);
+			 mv.addObject("harListLocLike", harListLocLike);
 			
+				List<String> countList2 = new ArrayList<String>();
+				List<String> avgList2 = new ArrayList<String>();
+				List<String> revCountList2 = new ArrayList<String>();
 			
-			
-			
-			
-			
+				for(int i =0; i<harListLocLike.size(); i++) {
+					
+					// 찜한 숫자 가져오기
+					// + 별점 출력 
+					har_num = harListLocLike.get(i).getHarNum();
+					bpId = harListLocLike.get(i).getBpId();
+					
+					String count = likeService.countSalon(har_num); //찜
+					countList2.add(count);
+					mv.addObject("loc_like_count", countList2);
+					
+					String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
+					avgList2.add(revAvg);
+					mv.addObject("loc_like_revAvg", avgList2);
+					
+					String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+					revCountList2.add(revCount);
+					mv.addObject("loc_like_revCount", revCountList2);
+				}
 		}
 		
 		mv.setViewName("/user/uShop/shopList");
