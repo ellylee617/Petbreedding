@@ -1,15 +1,42 @@
 
 $(document).ready(function(){
+	
+
+	
+	// 위치 검색
+	$("#newLocRadio").click(function(){
+		$("#harListLocNew").show();
+		$("#harListLocLike").hide();
+//		$("#harListLockRev").hide();
+	});
+
+	$("#likeLocRadio").click(function(){
+		$("#harListLocNew").hide();
+		$("#harListLocLike").show();
+//		$("#harListLockRev").hide();
+	});
+
+	$("#revLocRadio").click(function(){
+		$("#harListLocNew").hide();
+		$("#harListLocLike").hide();
+//		$("#harListLockRev").show();
+	});
+	
+	
+	// 전체 리스트
 	$("#newRadio").click(function(){
 		$("#newList").show();
 		$("#likeList").hide();
 		$("#revList").hide();
 	});
 
-	$("#distanceRadio").click(function(){
+	$("#likeRadio").click(function(){
 		$("#newList").hide();
 		$("#likeList").show();
 		$("#revList").hide();
+		
+		$("#harListLocNew").hide();
+		$("#harListLocLike").show();
 	});
 
 	$("#revRadio").click(function(){

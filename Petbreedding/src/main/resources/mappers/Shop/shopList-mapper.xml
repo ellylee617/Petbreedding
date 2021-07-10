@@ -189,7 +189,8 @@
 		                            ON (h.har_num = l.har_num)
 		                            GROUP BY h.har_num
 		                    ) HL
-		                    ON HAR.har_num = HL.har_num AND HAR.har_addr LIKE #{searchLoc1} || '%' AND HAR.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+		                    ON HAR.har_num = HL.har_num 
+							WHERE HAR.har_addr LIKE #{searchLoc1} || '%' AND HAR.har_addr LIKE '%' ||  #{searchLoc2} || '%'
 		                    ORDER BY LIKES DESC NULLS LAST
 		                     )A
 					    )B

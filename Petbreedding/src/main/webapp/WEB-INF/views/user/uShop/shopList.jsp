@@ -250,28 +250,32 @@
             </c:if>
             <c:if test="${!empty harListLocNew}">
             <div class="nowLocation">
-                <span> ${map1.searchLoc1 } > ${map1.searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>            </div>
+                <span> ${map1.searchLoc1 } > ${map1.searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+			</div>
             </c:if>
             
             
             
-            <hr id="storeLine">
-            <div class="selectOpt">
-                <input type="radio" checked id="newRadio" name="selectOpt"><label for="newRadio">최신순</label>
-                <input type="radio" id="distanceRadio"  name="selectOpt" ><label for="distanceRadio">인기순</label>
-                 <input type="radio" id="revRadio" name="selectOpt"><label for="revRadio">별점순</label>
-            </div>
-            
-
-           
            
            
            <!-- 미용실 위치 검색 결과  --> 
+           
+           
+           
 			<!-- 미용실 위치 검색 최신순 정렬 -->
 			
 			
+			<c:if test="${!empty harListLocNew }">
 			
-			<div id="harListLocNew" style="display: none;">
+			
+			<hr id="storeLine">
+            <div class="selectOpt">
+                <input type="radio" checked id="newLocRadio" name="selectOpt"><label for="newLocRadio">최신순</label>
+                <input type="radio" id="likeLocRadio"  name="selectOpt" ><label for="likeLocRadio">인기순</label>
+                 <input type="radio" id="revLocRadio" name="selectOpt"><label for="revLocRadio">별점순</label>
+            </div>
+			
+			<div id="harListLocNew">
 			
 			    <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
@@ -376,7 +380,7 @@
 				            </div>
           			  <!-- 페이징 끝! -->
                </div>
-               
+               </c:if>
                
                
                
@@ -386,6 +390,8 @@
 			
 			
 			<!-- 미용실 위치 검색 인기순 정렬 -->
+			
+			<c:if test="${!empty harListLocLike }">
 			
 			<div id="harListLocLike" style="display: none;">
 			
@@ -442,33 +448,11 @@
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
 	                                    <a href="#">리뷰<small> 
-	                                    <c:if test="${loc_like_revAvg[status.index] ge 0 && loc_like_revAvg[status.index] lt 1}">
-	                                            &nbsp;(${loc_like_revAvg[status.index] })
-	                                       </c:if>
-	                                    <c:if test="${loc_like_revAvg[status.index] ge 1 && loc_like_revAvg[status.index] lt 2}">
+	                                    <c:if test="${!empty loc_like_revAvg[status.index]}">
 	                                            <i class="fas fa-star rate"></i>&nbsp;(${loc_like_revAvg[status.index] })
 	                                       </c:if>
-	                                       <c:if test="${loc_like_revAvg[status.index] ge 2 && loc_like_revAvg[status.index] lt 3}">
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>&nbsp;(${loc_like_revAvg[status.index] })
-	                                       </c:if>
-	                                       <c:if test="${loc_like_revAvg[status.index] ge 3 && loc_like_revAvg[status.index] lt 4}">
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>&nbsp;(${loc_like_revAvg[status.index] })
-	                                       </c:if>
-	                                       <c:if test="${loc_like_revAvg[status.index] ge 4 && loc_like_revAvg[status.index] lt 5}">
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>&nbsp;(${loc_like_revAvg[status.index]})
-	                                       </c:if>
-	                                       <c:if test="${loc_new_revAvg[status.index] eq 5}">
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>
-	                                            <i class="fas fa-star rate"></i>&nbsp;(${loc_like_revAvg[status.index] })
+	                                    <c:if test="${empty loc_like_revAvg[status.index]}">
+	                                            <i class="fas fa-star rate"></i>&nbsp;(0.0)
 	                                       </c:if>
 	                                    <c:if test="${!empty loc_like_revCount[status.index] }">
 	                                       &nbsp;${loc_like_revCount[status.index]}개 
@@ -518,11 +502,33 @@
                
                
                
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               </c:if>
+               
+               
 			
 			
 			
 			
 			
+		<c:if test="${empty  harListLocNew}">
+		
+		
+		<!--  ************** 미용실 전체 리스트 페이지 ************************** -->
+		<hr id="storeLine">
+            <div class="selectOpt">
+                <input type="radio" checked id="newRadio" name="selectOpt"><label for="newRadio">최신순</label>
+                <input type="radio" id="likeRadio"  name="selectOpt" ><label for="likeRadio">인기순</label>
+                 <input type="radio" id="revRadio" name="selectOpt"><label for="revRadio">별점순</label>
+            </div>
 		
 		
            <!-- 미용실 최신순 정렬 -->
@@ -725,23 +731,13 @@
           			  <!-- 페이징 끝! -->
           		</div>
           		
-          		
+          	</c:if>	
             
             
    
             
             
-            
-            
-  		</c:if>
-        </section>
-   
-      <jsp:include page="../../common/footer.jsp" />   
-      
-      
-      
-      
-       <!-- MODAL -->
+        <!-- MODAL -->
        <form action="${path}/shopList/search">
         <div id="my_modal">
             <p>주소 검색</p>
@@ -781,9 +777,19 @@
 	        <input type="hidden" name="shopType" value="0">
 	        </c:if>
         
-     	</form> 
+     	</form>     
+            
+  		</c:if>
+        </section>
+   
+      <jsp:include page="../../common/footer.jsp" />   
+      
       
    </div>
+   
+
+   
+   
    
     <!-- script -->
      <script type="text/javascript" src="${path}/resources/js/user/uShop/shopList.js"></script>
