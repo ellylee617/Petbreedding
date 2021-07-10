@@ -60,30 +60,31 @@
 						</button>
 					</div>
 					
-		            <!-- 페이징 시작-->
-		            <div class="page_wrap">
-		               <div class="page_nation">
-		                  <c:if test="${paging.startPage != 1 }">
-		                     <a class="arrow prev" href="${path}/mfreeboard?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
-		                  </c:if>
-		                  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-		                     <c:choose>
-		                        <c:when test="${p == paging.nowPage }">
-		                           <b>${p}</b>
-		                        </c:when>
-		                        <c:when test="${p != paging.nowPage }">
-		                           <a href="${path}/mfreeboard?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
-		                        </c:when>
-		                     </c:choose>
-		                  </c:forEach>
-		                  <c:if test="${paging.endPage != paging.lastPage}">
-		                     <a class="arrow next" href="${path}/mfreeboard?${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
-		                  </c:if>
-		               </div>
-		            </div>
-		            <!-- 페이징 끝! -->
 					
 				</div>
+				
+				    <!-- 페이징 시작-->
+					<div class="page_wrap">
+						<div class="page_nation">
+							<c:if test="${paging.startPage != 1 }">
+								<a class="arrow prev" href="${path}/mfreeboard?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+							</c:if>
+							<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+								<c:choose>
+									<c:when test="${p == paging.nowPage }">
+										<b>${p }</b>
+									</c:when>
+									<c:when test="${p != paging.nowPage }">
+										<a href="${path}/mfreeboard?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${paging.endPage != paging.lastPage}">
+								<a class="arrow next" href="${path}/mfreeboard?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+							</c:if>
+						</div>
+					</div>
+					<!-- 페이징 끝! -->
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
