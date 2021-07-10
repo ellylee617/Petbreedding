@@ -173,29 +173,23 @@ public class ShopListController {
 			
 			Map<String,Object> map1 = new HashMap<String,Object>();
 			
+			System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
+			 map1.put("searchLoc1", searchLoc1);
+			 map1.put("searchLoc2", searchLoc2);
+			 
 			// 검색 결과 카운팅
-		 	// TODO !!!!!!!!!!!! 코드 수정해야됨!!!!!!!!!!!
-			int total1 = shopListService.countALLHarList();
-			Pagination page1 = null;
-			page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-			mv.addObject("loc_new_paging", page1);
-			int start1 = page1.getStart();
-			int end1 = page1.getEnd();
-			map1.put("start", start1);
-			map1.put("end", end1);
-			
+				int total1 = shopListService.countHarListLocNew(map1); 
+				System.out.println("미용실 검색 결과 개수는?"+total1);
+				Pagination page1 = null;
+				page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+				mv.addObject("loc_new_paging", page1);
+				int start1 = page1.getStart();
+				int end1 = page1.getEnd();
+				map1.put("start", start1);
+				map1.put("end", end1);
+				mv.addObject("map1", map1);
+				System.out.println("map 정보 보여줘 !!!!!!!!"+map1);
 		
-		
-		System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
-			
-		
-		 map1.put("searchLoc1", searchLoc1);
-		 map1.put("searchLoc2", searchLoc2);
-
-//		 map.put("keyword", keyword);
-		 
-		 System.out.println("map 정보 보여줘 !!!!!!!!"+map1);
-		 mv.addObject("map1", map1);
 		 
 		 List<HairSalon> harListLocNew = shopListService.selectHarListLocNew(map1);
 		 System.out.println("위치로 검색한 미용실 최신순으로 정렬해줘!!!:"+harListLocNew);
@@ -226,6 +220,10 @@ public class ShopListController {
 				revCountList.add(revCount);
 				mv.addObject("loc_new_revCount", revCountList);
 			}
+			
+			
+
+			// 미용실 위치 검색 결과 인기순 정렬 
 				
 		 
 			

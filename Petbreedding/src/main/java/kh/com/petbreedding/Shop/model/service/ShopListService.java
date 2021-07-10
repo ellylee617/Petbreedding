@@ -35,7 +35,14 @@ public interface ShopListService {
 		
 	// 미용실 위치 검색
 		
+		// 카운팅
+			//  미용실 위치 검색 최신순 카운팅
+			public  int countHarListLocNew(Map<String,Object> map);
+		
 		// 미용실 위치 검색 최신순 정렬
 		public  List<HairSalon> selectHarListLocNew(Map<String,Object> map);
+		// 미용실 위치 검색 최신순 정렬
+		public  List<HairSalon> selectHarListLocLike(Map<String,Object> map);
+		
 		
 }

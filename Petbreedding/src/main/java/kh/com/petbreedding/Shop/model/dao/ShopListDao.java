@@ -61,10 +61,23 @@ public class ShopListDao {
 		
 		// 미용실 위치(주소) 검색
 			
+			// 카운팅
+				// 미용실 위치 검색 최신순 카운팅
+				public  int countHarListLocNew(Map<String,Object> map){
+					System.out.println("~~ ShopListDao 진입 ~~");
+					return sqlSession.selectOne("shopList.countHarListLocNew", map);
+				}
+			
+			
 			// 미용실 위치 검색 최신순 정렬
 			public  List<HairSalon> selectHarListLocNew(Map<String,Object> map){
 				System.out.println("~~ ShopListDao 진입 ~~");
 				return sqlSession.selectList("shopList.selectHarListLocNew", map);
+			}
+			// 미용실 위치 검색 인기순 정렬
+			public  List<HairSalon> selectHarListLocLike(Map<String,Object> map){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectHarListLocLike", map);
 			}
 		
 		

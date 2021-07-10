@@ -134,25 +134,70 @@
 		
 		
 		<!-- 미용실 주소(위치) 검색 -->
+			
+					<!-- 최신순 정렬 카운팅 -->
+					<select id="countHarListLocNew" parameterType="hashmap" resultType="int">
+					<![CDATA[
+							    SELECT count(*) 
+							    FROM(
+							        SELECT ROWNUM R , A.*
+							        FROM(
+							            select * 
+							            from hair_salon
+					                    where hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+							            order by substr(har_num, -3) DESC
+							        )A
+							    )
+					]]>
+					</select>
 		
-		<!-- 최신순 정렬 -->
-		<select id="selectHarListLocNew" parameterType="hashmap" resultMap="HairSalon">
-		<![CDATA[
-		SELECT  C.*
-				FROM(
-				    SELECT B.* 
-				    FROM(
-				        SELECT ROWNUM R , A.*
-				        FROM(
-				            select * 
-				            from hair_salon
-		                    where hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
-				            order by substr(har_num, -3) DESC
-				        )A
-				    )B
-				) C
-				WHERE #{start}<= R AND R <= #{end}
-		]]>
-		</select>
+			<!-- 최신순 정렬 -->
+			<select id="selectHarListLocNew" parameterType="hashmap" resultMap="HairSalon">
+			<![CDATA[
+			SELECT  C.*
+					FROM(
+					    SELECT B.* 
+					    FROM(
+					        SELECT ROWNUM R , A.*
+					        FROM(
+					            select * 
+					            from hair_salon
+			                    where hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+					            order by substr(har_num, -3) DESC
+					        )A
+					    )B
+					) C
+					WHERE #{start}<= R AND R <= #{end}
+			]]>
+			</select>
+								
+			<!-- 인기순 정렬 -->
+			<select id="selectHarListLocLike" parameterType="hashmap" resultMap="HairSalon">
+			<![CDATA[
+				SELECT  C.*
+					FROM(
+					    SELECT B.* 
+					    FROM(
+					        SELECT ROWNUM R , A.*
+		                    FROM(
+		                	SELECT har.*, hl.likes
+		                    FROM hair_salon HAR
+		                    LEFT JOIN
+		                        (SELECT h.har_num, COUNT(*) LIKES
+		                            FROM hair_salon H
+		                            JOIN likes L
+		                            ON (h.har_num = l.har_num)
+		                            GROUP BY h.har_num
+		                    ) HL
+		                    ON HAR.har_num = HL.har_num AND hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+		                    ORDER BY LIKES DESC NULLS LAST
+		                     )A
+					    )B
+					) C
+					WHERE #{start}<= R AND R <= #{end}			
+			]]>
+			</select>
+			
+			<!-- 별점순 정렬 -->
 		
 </mapper>

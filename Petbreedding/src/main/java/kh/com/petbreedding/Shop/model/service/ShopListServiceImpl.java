@@ -96,6 +96,20 @@ public class ShopListServiceImpl implements ShopListService {
 		
 	// 미용실 위치 검색
 		
+		// 카운팅
+			//  미용실 위치 검색 최신순 카운팅
+			@Override
+			public int countHarListLocNew(Map<String,Object> map) {
+				System.out.println("shopListService countHarListLocNew() 실행");
+				int total = 0;
+				try {
+					total = shopListDao.countHarListLocNew(map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return total;
+			}
+		
 		// 미용실 위치 검색 최신순 정렬
 		@Override
 		public List<HairSalon> selectHarListLocNew(Map<String,Object> map) {
@@ -103,6 +117,18 @@ public class ShopListServiceImpl implements ShopListService {
 			List<HairSalon> list = null;
 			try {
 				list = shopListDao.selectHarListLocNew(map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+		// 미용실 위치 검색 인기순 정렬
+		@Override
+		public List<HairSalon> selectHarListLocLike(Map<String,Object> map) {
+			System.out.println("shopListService selectHarListLocLike() 실행");
+			List<HairSalon> list = null;
+			try {
+				list = shopListDao.selectHarListLocLike(map);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
