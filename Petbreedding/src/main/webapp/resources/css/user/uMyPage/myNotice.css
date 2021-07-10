@@ -32,10 +32,11 @@
 	padding-left: 20px;
 }
 .imgWrap{
-	width: 150px;
+	max-width: 100px;
 	height: 100px;
 	text-align: center;
 	display: inline-block;
+	overflow: hidden;
 }
 .imgWrap img{
 	height: 100px;

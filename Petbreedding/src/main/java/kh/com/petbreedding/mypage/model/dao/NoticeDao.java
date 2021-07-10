@@ -43,6 +43,11 @@ public class NoticeDao {
 	public int inUnreadChat(Notice notice) {
 		return sqlSession.insert("notice.inUnreadChat", notice);
 	}
+	
+	// 글번호로 글 작성자 찾기
+	public String getOrigClNum(String boNum) {
+		return sqlSession.selectOne("notice.getOrigClNum", boNum);
+	}
 
 	// 내 글에 댓글이 달렸을 시
 	public int inBoard(Notice notice) {

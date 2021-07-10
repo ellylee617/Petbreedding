@@ -79,7 +79,7 @@
 				</div>
 				<div class="conWrap">
 					<div class="imgWrap">
-					<img src="${path}/resources/images/logo.png">
+					<img src="${path}/resources/images/logo-square.png">
 					</div>
 					<div class="shopNameWrap">${n.boTitle }</div>&nbsp;&nbsp;<div class="msgWrap">에 새 댓글이 있습니다.</div>
 					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
@@ -94,7 +94,7 @@
 				</div>
 				<div class="conWrap">
 					<div class="imgWrap">
-					<img src="${path}/resources/images/logo.png">
+					<img src="${path}/resources/images/logo-square.png">
 					</div>
 					<div class="shopNameWrap">${n.qnaTitle }</div>&nbsp;&nbsp;<div class="msgWrap">문의하신 문의글에 대한 답변입니다.</div>
 					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
@@ -109,7 +109,7 @@
 				</div>
 				<div class="conWrap">
 					<div class="imgWrap">
-					<img src="${path}/resources/images/logo.png">
+					<img src="${path}/resources/images/logo-square.png">
 					</div>
 					<div class="shopNameWrap">${n.refNum }</div><div class="msgWrap">건에 대해 포인트를 사용했습니다.</div>
 					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
@@ -124,7 +124,7 @@
 				</div>
 				<div class="conWrap">
 					<div class="imgWrap">
-					<img src="${path}/resources/images/logo.png">
+					<img src="${path}/resources/images/logo-square.png">
 					</div>
 					<div class="shopNameWrap">${n.refNum }</div>&nbsp;&nbsp;<div class="msgWrap">건에 대해 포인트가 적립되었습니다.</div>
 					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>

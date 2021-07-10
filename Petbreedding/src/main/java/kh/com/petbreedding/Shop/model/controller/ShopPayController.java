@@ -38,7 +38,7 @@ public class ShopPayController {
 		Client client = (Client) session.getAttribute("client");
 		
 		String revNum = harPay.getHar_rnum();
-		String cl_num = client.getNickname();
+		String cl_num = client.getCl_num();
 		String bp_id = noticeService.getbp_idforPay(revNum);
 		
 		if(bp_id!=null && !bp_id.equals("")) {
@@ -48,7 +48,7 @@ public class ShopPayController {
 			notice.setRefNum(revNum);
 			
 			int insertNotice = 0;
-			insertNotice = noticeService.inReservaion(notice);
+			insertNotice = noticeService.inPay(notice);
 			
 			if(insertNotice==1) {
 				System.out.println("알림 인서트 성공!");
@@ -93,17 +93,18 @@ public class ShopPayController {
 		Client client = (Client) session.getAttribute("client");
 		
 		String revNum = hosPay.getHos_rnum();
-		String cl_num = client.getNickname();
+		String cl_num = client.getCl_num();
 		String bp_id = noticeService.getbp_idforPay(revNum);
 		
 		if(bp_id!=null && !bp_id.equals("")) {
+			System.out.println("비피아이디 잘 가져와서 들어왔죠?");
 			Notice notice = new Notice();
 			notice.setNotReceiver(cl_num);
 			notice.setNotPublisher(bp_id);
 			notice.setRefNum(revNum);
-			
+						
 			int insertNotice = 0;
-			insertNotice = noticeService.inReservaion(notice);
+			insertNotice = noticeService.inPay(notice);
 			
 			if(insertNotice==1) {
 				System.out.println("알림 인서트 성공!");

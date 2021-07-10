@@ -169,4 +169,16 @@ public class NoticeServiceImpl implements NoticeService {
 		return bp_id;
 	}
 
+	@Override
+	public String getOrigClNum(String boNum) {
+		String origClNum = "";
+		
+		try {
+			origClNum = noticeDao.getOrigClNum(boNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return origClNum;
+	}
+
 }

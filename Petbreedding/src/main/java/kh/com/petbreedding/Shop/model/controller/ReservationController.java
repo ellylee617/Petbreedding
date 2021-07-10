@@ -74,7 +74,7 @@ public class ReservationController {
 			Notice notice = new Notice();
 			notice.setNotReceiver(cl_num);
 			notice.setNotPublisher(bp_id);
-			notice.setRefNum(result);
+			notice.setRefNum("HAR000"+result);
 			
 			int insertNotice = 0;
 			insertNotice = noticeService.inReservaion(notice);
@@ -173,7 +173,7 @@ public class ReservationController {
 			Notice notice = new Notice();
 			notice.setNotReceiver(cl_num);
 			notice.setNotPublisher(bp_id);
-			notice.setRefNum(result);
+			notice.setRefNum("HOS000"+result);
 			
 			int insertNotice = 0;
 			insertNotice = noticeService.inReservaion(notice);
