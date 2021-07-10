@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shopList">
+
+	<!-- 사업장 공통  -->
+	
+		<!-- 사업장 평균  별점 -->
+		<select id="selectShopRevAvg" parameterType="string" resultType="string">
+			SELECT AVG(REV_VAL) AVG_REV_VAL
+			FROM(
+				   SELECT B.BP_ID, R.REV_VAL
+				   FROM business_partner B
+				   INNER JOIN review R
+				   ON (b.bp_id = r.bp_id)
+				)  
+				group by BP_ID
+				HAVING BP_ID = #{bpId}
+		</select>
+	
+		<!-- 사업장별 등록된 리뷰 갯수 -->
+		<select id="selectShopRevCount" parameterType="string" resultType="string">
+		SELECT count(*)
+		FROM(
+		      SELECT B.BP_ID, R.REV_VAL
+		      FROM business_partner B
+		      INNER JOIN review R
+		      ON (b.bp_id = r.bp_id)
+			)  
+		group by BP_ID
+		HAVING BP_ID = #{bpId}
+		</select>
+	
+	<!-- 미용실 -->
+	
+		<!-- HAR_SARLON 테이블  -->
+		<resultMap type="HairSalon" id="HairSalon">
+			<id column="HAR_NUM" property="harNum"/>
+			<result column="BP_ID" property="bpId"/>
+			<result column="HAR_NAME" property="shopName"/>
+			<result column="HAR_ADDR" property="shopAddr"/>
+			<result column="HAR_TEL" property="shopTel"/>
+			<result column="HOPEN_TIME" property="shopTime"/>
+			<result column="HAR_MINFO" property="shopMInfo"/>
+			<result column="HAR_MIMG" property="shopMImg"/>
+			
+			<result column="LIKES" property="likes"/>
+			<result column="AVG_REV_VAL" property="avgRevVal"/>
+		</resultMap>
+		
+		
+	<!-- 미용실 전체 리스트  -->
+	
+		<!-- 미용실 전체 리스트 카운팅 -->
+		<select id="countALLHarList" resultType="int">
+			SELECT COUNT(*) FROM HAIR_SALON
+		</select>
+		
+		
+		<!-- 미용실 전체 리스트 최신순 정렬 -->
+		<select id="selectAllHarListNew"  parameterType="page" resultMap="HairSalon">
+		<![CDATA[
+		SELECT  C.*
+		FROM(
+		    SELECT B.* 
+		    FROM(
+		        SELECT ROWNUM R , A.*
+		        FROM(
+		            select * 
+		            from hair_salon
+		            order by substr(har_num, -3) DESC
+		        )A
+		    )B
+		) C
+		WHERE #{start}<= R AND R <= #{end}
+		
+			]]>
+		</select>
+		
+		<!-- 미용실 전체 리스트 인기순 정렬 (찜 순으로) -->
+		<select id="selectAllHarListLike" parameterType="page" resultMap="HairSalon">
+			<![CDATA[
+		SELECT  C.*
+			FROM(
+			    SELECT B.* 
+			    FROM(
+			        SELECT ROWNUM R , A.*
+                    FROM(
+                	SELECT har.*, hl.likes
+                    FROM hair_salon HAR
+                    LEFT JOIN
+                        (SELECT h.har_num, COUNT(*) LIKES
+                            FROM hair_salon H
+                            JOIN likes L
+                            ON (h.har_num = l.har_num)
+                            GROUP BY h.har_num
+                    ) HL
+                    ON HAR.har_num = HL.har_num
+                    ORDER BY LIKES DESC NULLS LAST
+                     )A
+			    )B
+			) C
+			WHERE #{start}<= R AND R <= #{end}
+				]]>
+		</select>
+
+		<!-- 미용실 전체 리스트 별점순 정렬 -->
+		<select id="selectAllHarListRev" parameterType="page" resultMap="HairSalon">
+			<![CDATA[
+		SELECT  C.*
+			FROM(
+			    SELECT B.* 
+			    FROM(
+			        SELECT ROWNUM R , A.*
+                    FROM(
+			            SELECT HAR.*, BR.avg_rev_val
+			            FROM HAIR_SALON HAR
+			            left JOIN (
+			                SELECT b.bp_id, avg(R.REV_VAL) avg_rev_val
+			                 FROM business_partner B
+			                LEFT JOIN review R
+			                ON (b.bp_id = r.bp_id)
+			                group by b.bp_id
+			            )  BR
+			             ON (har.bp_id = br.bp_id)
+			            ORDER BY avg_rev_val DESC NULLS LAST
+                     )A
+			    )B
+			) C
+			WHERE #{start}<= R AND R <= #{end}
+				]]>
+		</select>
+
+</mapper>

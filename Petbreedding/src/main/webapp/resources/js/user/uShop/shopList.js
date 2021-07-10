@@ -20,9 +20,6 @@ $(document).ready(function(){
 
 });
 
-
-
-
 function modal(id) {
     var zIndex = 9999;
     var modal = document.getElementById(id);
