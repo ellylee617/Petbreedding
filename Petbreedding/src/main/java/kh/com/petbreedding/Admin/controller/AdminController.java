@@ -40,6 +40,8 @@ import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.board.model.vo.MyAskComment;
 import kh.com.petbreedding.common.model.vo.Pagination;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 
 @Controller
 public class AdminController {
@@ -58,6 +60,9 @@ public class AdminController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private NoticeService noticeService;
 	
 	public final int LIMIT = 5;
 	
@@ -266,6 +271,24 @@ public class AdminController {
 			System.out.println("[세훈] @문의 댓글 달기 컨트롤러 maComment : " + maComment.toString());
 			myAskCommentService.myAskCommentInsert(maComment);
 			
+		}
+		// 알림 인서트
+		String cl_num = noticeService.getclNumInQna(qna_num);
+		System.out.println("qna 댓글에 clnum 찾아오기" + cl_num);
+		
+		Notice notice = new Notice();
+		
+		notice.setNotReceiver(cl_num);
+		notice.setRefNum(qna_num);
+		
+		int result = 0;
+		
+		result = noticeService.inQna(notice);
+		
+		if(result == 1) {
+			System.out.println("알림 인서트 성공!");
+		}else {
+			System.out.println("알림 인서트 실패");
 		}
 	}
 	
@@ -481,6 +504,8 @@ public class AdminController {
 	public String mfreeboard(
 			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,HttpSession session
+			,Admin ad
 			,Pagination page
 			,Model md
 			) {
@@ -500,7 +525,16 @@ public class AdminController {
 		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 page : " + page);
 		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 list : " + list);
 		
-		return "/admin/aBoard/mfreeboard";
+		ad = (Admin) session.getAttribute("admin");
+		if(ad != null) {
+			String userType = "ad";
+			md.addAttribute("userType", userType);
+			return "/admin/aBoard/mfreeboard";
+		} else {
+			md.addAttribute("msg", "로그인이 필요합니다");
+			md.addAttribute("url","/mLogin");
+			return "common/redirect";
+		}
 	}
 
 	// 게시글 관리 (자유게시판 내용)
