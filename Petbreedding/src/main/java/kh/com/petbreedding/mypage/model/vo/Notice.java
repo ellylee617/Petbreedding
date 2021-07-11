@@ -19,14 +19,7 @@ public class Notice {
 	private String qnaTitle;
 	private String notTime;
 	private String revNum;
-	private String boNum;
 	
-	public String getBoNum() {
-		return boNum;
-	}
-	public void setBoNum(String boNum) {
-		this.boNum = boNum;
-	}
 	public String getRevNum() {
 		return revNum;
 	}
