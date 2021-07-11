@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Repository("shopListDao")
@@ -30,14 +31,30 @@ public class ShopListDao {
 			System.out.println("~~ ShopListDao 진입 ~~");
 			return sqlSession.selectOne("shopList.selectShopRevCount", bp_id);
 		};
-	
-	// 미용실 
+		
+		
+	// 울트라콜 매장 
+		
+		// 울트라콜 동물병원 출력
+		public List<Hospital> selectCtaHos(){
+			System.out.println("~~ ShopListDao 진입 ~~");
+			return sqlSession.selectList("shopList.selectCtaHos");
+			
+		}
 		
 		// 울트라콜 미용실 출력
 		public List<HairSalon> selectCtaHar() {
 			System.out.println("~~ ShopListDao 진입 ~~");
 			return sqlSession.selectList("shopList.selectCtaHar");
 		}
+		
+		
+		
+		
+		
+	
+	// 미용실 
+		
 		
 		// 미용실 위치 설정 및 키워드 검색
 			

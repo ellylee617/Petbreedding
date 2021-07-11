@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.petbreedding.Shop.model.service.ShopListService;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.common.model.service.LikesService;
 import kh.com.petbreedding.common.model.vo.Pagination;
@@ -176,6 +177,48 @@ public class ShopListController {
 				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
 				revCountList3.add(revCount);
 				mv.addObject("rev_revCount", revCountList3);
+			}
+			
+			
+		} 
+		
+		
+		// shopType 0은 미용실, 1은 동물병원
+		
+		if(shopType==1) {
+			
+			String hos_num = null;
+			String bpId = null;
+			
+			List<String> ctaCountList = new ArrayList<String>();
+			List<String> ctaAvgList = new ArrayList<String>();
+			List<String> ctaRevCountList = new ArrayList<String>();
+			
+			// 울트라콜 동물병원 리스트 
+			List<Hospital> ctaHos = shopListService.selectCtaHos();
+			System.out.println("잔여수 높은 순으로 정렬된 울트라 동물병원 리스트 보여줘~~ "+ctaHos);
+			mv.addObject("ctaHos", ctaHos);
+			
+			for(int i =0; i<ctaHos.size(); i++) {
+				
+				hos_num = ctaHos.get(i).getHosNum();
+				bpId = ctaHos.get(i).getBpId();
+				
+				//찜한 숫자
+				String count = likeService.countSalon(hos_num);
+				ctaCountList.add(count);
+				mv.addObject("cta_count", ctaCountList);
+				
+				//별점 평균
+				String revAvg = shopListService.selectShopRevAvg(bpId);	
+				ctaAvgList.add(revAvg);
+				System.out.println();
+				mv.addObject("cta_revAvg", ctaAvgList);
+				
+				//리뷰 숫자 
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				ctaRevCountList.add(revCount);
+				mv.addObject("cta_revCount", ctaRevCountList);
 			}
 			
 			

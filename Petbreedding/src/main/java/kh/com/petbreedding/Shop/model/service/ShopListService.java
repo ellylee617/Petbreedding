@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.common.model.vo.Pagination;
 
 public interface ShopListService {
@@ -22,6 +23,9 @@ public interface ShopListService {
 		
 		// 울트라콜 미용실 리스트
 		public List<HairSalon> selectCtaHar(); 
+		
+		// 울트라콜 동물병원 리스트
+		public List<Hospital> selectCtaHos();
 		
 		
 	// 미용실

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.Shop.model.dao.ShopListDao;
 import kh.com.petbreedding.bmypage.model.vo.HairSalon;
+import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Service("shopListService")
@@ -53,6 +54,21 @@ public class ShopListServiceImpl implements ShopListService {
 				}
 				return list;
 			}
+			
+			// 울트라콜 동물병원 리스트
+			@Override
+			public List<Hospital> selectCtaHos() {
+				System.out.println("shopListService selectCtaHos() 실행");
+				List<Hospital> list = null;
+				try {
+					list = shopListDao.selectCtaHos();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return list;
+			}
+
+			
 		
 		// 미용실
 		
@@ -194,6 +210,7 @@ public class ShopListServiceImpl implements ShopListService {
 			return list;
 		}
 
+	
 		
 
 		

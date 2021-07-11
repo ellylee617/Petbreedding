@@ -30,7 +30,58 @@
 		HAVING BP_ID = #{bpId}
 		</select>
 	
-	<!-- 미용실 -->
+
+		
+		
+	<!-- 울트라콜 매장 -->	
+	
+	
+		<!-- 울트라콜 병원 잔여수 높은 순으로 출력 -->
+		<select id="selectCtaHos" resultMap="Hospital">
+			select hospital.*, my_cta.cta_number
+			from hospital join my_cta
+			on hospital.bp_id = my_cta.bp_id
+			order by my_cta.cta_number desc
+		</select>
+	
+	
+	
+			<!-- 울트라콜 미용실 잔여수 높은 순으로 출력 -->
+		<select id="selectCtaHar" resultMap="HairSalon">
+		select hair_salon.*, my_cta.cta_number
+		from hair_salon join my_cta
+		on hair_salon.bp_id = my_cta.bp_id
+		order by my_cta.cta_number desc
+		</select>
+	
+	
+	
+	
+	
+	
+	
+			
+		<!-- 동물병원 -->
+	
+		<resultMap type="Hospital" id="Hospital">
+			<id column="HOS_NUM" property="hosNum"/>
+			<result column="BP_ID" property="bpId"/>
+			<result column="HOS_NAME" property="shopName"/>
+			<result column="HOS_ADDR" property="shopAddr"/>
+			<result column="HOS_TEL" property="shopTel"/>
+			<result column="OPEN_TIME" property="shopTime"/>
+			<result column="HOS_MINFO" property="shopMInfo"/>
+			<result column="HOS_MIMG" property="shopMImg"/>
+			
+			<result column="LIKES" property="likes"/>
+			<result column="AVG_REV_VAL" property="avgRevVal"/>
+		</resultMap>
+	
+	
+	
+	
+	
+		<!-- 미용실 -->
 	
 		<!-- HAR_SARLON 테이블  -->
 		<resultMap type="HairSalon" id="HairSalon">
@@ -47,14 +98,12 @@
 			<result column="AVG_REV_VAL" property="avgRevVal"/>
 		</resultMap>
 		
+
+	
 		
-		<!-- 울트라콜 미용실 잔여수 높은 순으로 출력 -->
-		<select id="selectCtaHar" resultMap="HairSalon">
-		select hair_salon.*, my_cta.cta_number
-		from hair_salon join my_cta
-		on hair_salon.bp_id = my_cta.bp_id
-		order by my_cta.cta_number desc
-		</select>
+		
+		
+
 	
 		<!-- 미용실 키워드+위치 검색 (최신순으로 정렬만!)-->
 		
