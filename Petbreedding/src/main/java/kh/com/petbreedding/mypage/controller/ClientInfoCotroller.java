@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.board.model.service.MyAskCommentService;
@@ -250,8 +251,11 @@ public class ClientInfoCotroller {
 	// 1:1 문의 등록
 	@RequestMapping(value = "/maWrite")
 	public String maWrite(Model md, HttpSession session, MultipartHttpServletRequest req, HttpServletResponse res,
-			Client cl) throws Exception {
+			Client cl, BPartner bP) throws Exception {
 
+		cl = (Client) session.getAttribute("client");
+		bP = (BPartner) session.getAttribute("bP");
+		
 		res.setContentType("text/html; charset=utf-8");
 
 		String user_num = req.getParameter("user_num");
@@ -295,13 +299,25 @@ public class ClientInfoCotroller {
 		int result = myAskService.MyAskInsert(myAsk);
 
 		if (result > 0) {
-			System.out.println("문의 등록 성공");
-			md.addAttribute("msg", "문의 등록 성공");
-			md.addAttribute("url", "/mypage/ask?user_num=" + user_num + "");
+			if(cl != null) {
+				System.out.println("문의 등록 성공");
+				md.addAttribute("msg", "문의 등록 성공");
+				md.addAttribute("url", "/mypage/ask?user_num=" + user_num + "");
+			} else {
+				System.out.println("문의 등록 성공");
+				md.addAttribute("msg", "문의 등록 성공");
+				md.addAttribute("url", "/bQna?user_num=" + user_num + "");
+			}
 		} else {
-			System.out.println("문의 등록 실패");
-			md.addAttribute("msg", "문의 등록 실패");
-			md.addAttribute("url", "/mypage/ask?user_num=" + user_num + "");
+			if(cl != null) {
+				System.out.println("문의 등록 실패");
+				md.addAttribute("msg", "문의 등록 실패");
+				md.addAttribute("url", "/uLogin");
+			} else {
+				System.out.println("문의 등록 실패");
+				md.addAttribute("msg", "문의 등록 실패");
+				md.addAttribute("url", "/bLogin");
+			}
 		}
 
 		return "common/redirect";

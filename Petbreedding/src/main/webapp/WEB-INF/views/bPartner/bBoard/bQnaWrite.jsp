@@ -37,10 +37,11 @@ $(document).ready(function(){
 			<div class="bContent">
 			<form action="/petbreedding/maWrite" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="user_num" value="${user_num}">
+				<input type="hidden" name="userType" value="2">
 	            
 	                <div class="qnatitle">
 	            		<h1 id="h1">제목</h1>
-	                   <input id="title" type="text" name="myAskTitle" placeholder="글 제목을 입력해주세요">
+	                   <input id="title" type="text" class="myAskTitle" name="myAskTitle" placeholder="글 제목을 입력해주세요">
 	                </div>
 	            <div class="qnacontent">
 	                <h1 id="h2">내용</h1>
@@ -56,6 +57,5 @@ $(document).ready(function(){
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
-
 </body>
 </html>

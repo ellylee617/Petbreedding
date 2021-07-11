@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petbreedding::펫브리띵</title>
+<title>Insert title here</title>
 <link href="${path}/resources/css/common/reset.css" rel="stylesheet"	type="text/css">
-<link href="${path}/resources/css/common/header.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet"	type="text/css">
-<link href="${path}/resources/css/user/myPageAside.css" rel="stylesheet"	type="text/css">	
+<link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/user/uMyPage/myAskDetail.css" rel="stylesheet"	type="text/css">
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"></script>
 </head>
 <body>
 	<div class="wrapper">
-		<jsp:include page="../../common/header.jsp" />
+		<jsp:include page="../bheader.jsp" />
 		<section class="section">
-			<jsp:include page="../myPageAside.jsp" />
-			<div class="mcontent">
+			<jsp:include page="../bAside.jsp" />
+			<div class="bContent">
 			<table class="asktbl">
 				<tr>
 					<th colspan="2">${myAskDetail.qnaCont }</th>
@@ -39,7 +39,7 @@
 					</c:choose>
 				</tr>
 			</table>
-                <a href="ask?user_num=${myAskDetail.userNum}"><button class="basicBtn" style="margin-right:20px;">목록</button></a>
+                <a href="bQna?user_num=${myAskDetail.userNum}"><button class="basicBtn" style="margin-right:20px;">목록</button></a>
         <br><br><br><br>
         <table class="reponsetbl">
         	<tr>
