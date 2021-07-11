@@ -481,6 +481,8 @@ public class AdminController {
 	public String mfreeboard(
 			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,HttpSession session
+			,Admin ad
 			,Pagination page
 			,Model md
 			) {
@@ -500,7 +502,16 @@ public class AdminController {
 		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 page : " + page);
 		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 list : " + list);
 		
-		return "/admin/aBoard/mfreeboard";
+		ad = (Admin) session.getAttribute("admin");
+		if(ad != null) {
+			String userType = "ad";
+			md.addAttribute("userType", userType);
+			return "/admin/aBoard/mfreeboard";
+		} else {
+			md.addAttribute("msg", "로그인이 필요합니다");
+			md.addAttribute("url","/mLogin");
+			return "common/redirect";
+		}
 	}
 
 	// 게시글 관리 (자유게시판 내용)

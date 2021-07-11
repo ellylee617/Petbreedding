@@ -99,16 +99,20 @@ public class BoardController {
 	// 게시글 상세
 	@RequestMapping(value = "/fboardcon", method = RequestMethod.GET)
 	public ModelAndView fboardcon(ModelAndView mv, @RequestParam(name = "boNum") String boNum,
-			@RequestParam(name = "page", defaultValue = "1") int page) {
+			@RequestParam(name = "page", defaultValue = "1") int page, String userType) {
 
 		int currentPage = page;
+		System.out.println("[세훈] @자유 게시글 상세 컨트롤러 userType : " + userType);
 		Board board = boardService.selectBoardDetail(0, boNum);
 		System.out.println("[세훈] @자유 게시글 상세 컨트롤러 board : " + board);
 
 		mv.setViewName("/user/uBoard/fboardcon");
-
+		
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("board", board);
+		if(userType != null && userType != "") {
+			mv.addObject("userType", userType);
+		}
 
 		return mv;
 	}
