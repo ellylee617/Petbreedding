@@ -242,20 +242,117 @@
             <c:if test="${shopType eq 0}">
             
             <h1>미용실</h1>
-            <c:if test="${empty harListLocNew}">
             
+            <c:if test="${!empty keyword}">
+            <div class="nowLocation">
+                <span>
+                <i class="fas fa-map-marked-alt" style="color: #ff9914;"></i> ${searchLoc1 } ${searchLoc2 } 
+				<br><br>
+				<i class="fas fa-store" style="color: #4dbbff;" ></i> ${keyword }
+				</span>
+            </div>
+            </c:if>
+            
+            <c:if test="${empty keyword}">
+            <c:if test="${empty harListLocNew}">
             <div class="nowLocation">
                 <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
             </c:if>
+            </c:if>
+            
+            <c:if test="${empty keyword}">
             <c:if test="${!empty harListLocNew}">
             <div class="nowLocation">
                 <span> ${map1.searchLoc1 } > ${map1.searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
 			</div>
             </c:if>
+            </c:if>
             
             
+            <!-- 미용실 위치 설정 및 키워드 검색 결과 -->
             
+            <c:if test="${!empty keywordHarListNew }">
+            
+            <hr id="storeLine">
+			
+			<div id="keywordHarListNew">
+			
+			
+			<div class="storeS">
+            <c:forEach items="${keywordHarListNew}" var="item" varStatus="status" >
+                <ul>
+                    <div class="Store">                      
+                       <li class="storeList">
+                       
+                            <div class="storeList_inner">
+                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
+                                <div class="storeList_etc_area">
+                                    <a href="#">리뷰<small> 
+                                    <c:if test="${!empty keyword_new_revAvg[status.index]}">
+                                            <i class="fas fa-star rate"></i>&nbsp;${keyword_new_revAvg[status.index] }
+                                    </c:if>
+                                    <c:if test="${empty keyword_new_revAvg[status.index]}">
+                                            <i class="fas fa-star rate"></i>&nbsp;0.0
+                                    </c:if>
+                                    <c:if test="${!empty keyword_new_revCount[status.index] }">
+                                       &nbsp;(${keyword_new_revCount[status.index]}+)
+                                    </c:if>
+                                    <c:if test="${empty keyword_new_revCount[status.index]}">
+                                    &nbsp;(0)
+                                    </c:if>
+                                    </small>
+                                    </a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                  <a href="#">찜하기 <small> ${keyword_new_count[status.index]}</small></a>
+                                </div>
+                                 <form class="frmShopInfo" >
+                                 <div class="storeList_button">
+                                    <a href="shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                </div>
+                               </form>
+                            </div>                                                            
+                        </li>
+                    </div>
+                </ul>
+                </c:forEach>
+                </div>
+                           <!-- 페이징 시작-->
+				            <div class="page_wrap">
+				               <div class="page_nation">
+				                  <c:if test="${keyword_paging.startPage != 1 }">
+				                     <a class="arrow prev" href="${path}/shopList/all?shopType=${shopType}&nowPage=${keyword_paging.startPage - 1 }&cntPerPage=${keyword_paging.cntPerPage}">이전</a> 
+				                  </c:if>
+				                  <c:forEach begin="${keyword_paging.startPage }" end="${keyword_paging.endPage }" var="p">
+				                     <c:choose>
+				                        <c:when test="${p == keyword_paging.nowPage }">
+				                           <b>${p }</b>
+				                        </c:when>
+				                        <c:when test="${p != keyword_paging.nowPage }">
+				                           <a href="${path}/shopList/all?shopType=${shopType}&nowPage=${p }&cntPerPage=${keyword_paging.cntPerPage}">${p}</a>
+				                        </c:when>
+				                     </c:choose>
+				                  </c:forEach>
+				                  <c:if test="${keyword_paging.endPage != keyword_paging.lastPage}">
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${keyword_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
+				                  </c:if>
+				               </div>
+				            </div>
+          			  <!-- 페이징 끝! -->
+               </div>
+           
+           
+           
+           
+           
+           
+           
+            </c:if>
+           
+           
+           
            
            
            <!-- 미용실 위치 검색 결과  --> 
@@ -560,7 +657,7 @@
                                             <i class="fas fa-star rate"></i>&nbsp;${item.avgRevVal }
                                     </c:if>
                                     <c:if test="${empty item.avgRevVal}">
-                                            <i class="fas fa-star rate"></i>&nbsp;(0.0)
+                                            <i class="fas fa-star rate"></i>&nbsp; 0.0
                                     </c:if>
                                     <c:if test="${!empty loc_rev_revCount[status.index] }">
                                        &nbsp;(${loc_rev_revCount[status.index]}+)
@@ -623,7 +720,7 @@
 			
 			
 			
-			
+		<c:if test="${empty  keywordHarListNew}">
 		<c:if test="${empty  harListLocNew}">
 		
 		
@@ -657,10 +754,10 @@
 	                                     <i class="fas fa-star rate"></i>&nbsp;0.0
 	                                    </c:if>
 	                                    <c:if test="${!empty new_revCount[status.index] }">
-	                                       &nbsp;${new_revCount[status.index]}개 
+	                                       &nbsp;(${new_revCount[status.index]}+)
 	                                    </c:if>
 	                                    <c:if test="${empty new_revCount[status.index]}">
-	                                    &nbsp;0개 
+	                                    &nbsp;(0)
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
@@ -725,10 +822,10 @@
 	                                     <i class="fas fa-star rate"></i>&nbsp;0.0
 	                                    </c:if>
 	                                    <c:if test="${!empty like_revCount[status.index] }">
-	                                       &nbsp;${like_revCount[status.index]}개 
+	                                       &nbsp;(${like_revCount[status.index]}+)
 	                                    </c:if>
 	                                    <c:if test="${empty like_revCount[status.index]}">
-	                                    &nbsp;0개 
+	                                    &nbsp;(0)
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
@@ -784,17 +881,17 @@
                                 <div class="storeList_etc_area">
                                     <a href="#">리뷰<small> 
                                     <c:if test="${!empty item.avgRevVal}">
-                                            <i class="fas fa-star rate"></i>&nbsp;(${item.avgRevVal})
+                                            <i class="fas fa-star rate"></i>&nbsp;${item.avgRevVal}
                                        </c:if>
                                     <c:if test="${empty item.avgRevVal}">
                                             <i class="fas fa-star rate"></i>&nbsp;0.0
                                        </c:if>
                                     
                                     <c:if test="${!empty rev_revCount[status.index] }">
-                                       &nbsp;${rev_revCount[status.index]}개 
+                                       &nbsp;(${rev_revCount[status.index]}+)
                                     </c:if>
                                     <c:if test="${empty rev_revCount[status.index]}">
-                                    &nbsp;0개 
+                                    &nbsp;(0)
                                     </c:if>
                                     </small>
                                     </a>
@@ -837,7 +934,7 @@
           		</div>
           		
           	</c:if>	
-            
+            </c:if>	
             
    
             

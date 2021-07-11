@@ -32,7 +32,22 @@ public class ShopListDao {
 		};
 	
 	// 미용실 
-	
+		
+		// 미용실 위치 설정 및 키워드 검색
+			
+			// 위치 및 키워드 결과 리스트 카운팅
+			public int countKeywordHarList() {
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectOne("shopList.countKeywordHarList");
+			}
+			
+			// 위치 및 키워드 결과 리스트 최신순 정렬
+			public List<HairSalon> selectKeywordHarListNew(Map<String,Object> map) {
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectKeywordHarListNew",map);
+			}
+		
+		
 		// 미용실 전체 리스트
 		
 			// 미용실 전체 리스트 카운팅

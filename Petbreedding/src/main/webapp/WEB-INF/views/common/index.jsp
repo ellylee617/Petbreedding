@@ -32,7 +32,7 @@
                        <input type="radio" name="tabmenu" checked id="tabmenu1" class="Tmenu">
                        <label for="tabmenu1">동물병원</label>
                         <div class="tabCon">
-                        <form action="shopList" method="get">
+                        <form action="shopList/serch" method="get">
                        <div class="nowLocation" id="nowLocation1">
                			 <span> 위치를 선택해 주세요. </span> <span></span> <span></span> <a href="#" id="Loc1"><i class="fas fa-map-marker-alt loc" ></i></a>
             			</div>
@@ -49,7 +49,7 @@
                        <input type="radio" name="tabmenu" id="tabmenu2"  class="Tmenu">
                        <label for="tabmenu2">미용실</label>
                         <div class="tabCon">
-                        <form action="shopList" method="get">
+                        <form action="shopList/search" method="get">
 	                       <div class="nowLocation" id="nowLocation0">
 	               			 <span> 위치를 선택해 주세요. </span> <span></span> <span></span> <a href="#" id="Loc2"><i class="fas fa-map-marker-alt loc" ></i></a>
 	            			</div>

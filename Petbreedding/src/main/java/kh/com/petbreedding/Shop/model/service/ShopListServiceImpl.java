@@ -38,6 +38,37 @@ public class ShopListServiceImpl implements ShopListService {
 			return revCount;
 		}
 	
+		// 미용실
+		
+		// 미용실 위치 설정 및 키워드 검색
+			
+			// 위치 설정 및 키워드 검색 결과 리스트 카운팅
+			@Override
+			public int countKeywordHarList() {
+				System.out.println("shopListService countKeywordHarList() 실행");
+				int result = -1;
+				try {
+					result = shopListDao.countKeywordHarList();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+			
+			@Override
+			// 위치 설정 및 키워드 검색 결과 리스트 최신순 정렬
+			public List<HairSalon> selectKeywordHarListNew(Map<String,Object> map){
+				System.out.println("shopListService selectKeywordHarListNew() 실행");
+				List<HairSalon> list = null;
+				try {
+					list = shopListDao.selectKeywordHarListNew(map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return list;
+			}
+			
+			
 	// 미용실 전체 리스트
 	
 		// 미용실 전체 리스트 카운팅

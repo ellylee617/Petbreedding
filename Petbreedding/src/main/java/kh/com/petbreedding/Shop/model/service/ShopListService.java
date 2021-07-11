@@ -17,7 +17,16 @@ public interface ShopListService {
 		// 사업장별 등록된 리뷰 갯수
 		public String selectShopRevCount(String bp_id);
 		
-
+	// 미용실
+		
+	// 미용실 위치 설정 및 키워드 검색
+		
+		// 위치 설정 및 키워드 검색 결과 리스트 카운팅
+		public int countKeywordHarList();
+		
+		// 위치 설정 및 키워드 검색 결과 리스트 최신순 정렬
+		public List<HairSalon> selectKeywordHarListNew(Map<String,Object> map);
+		
 	// 미용실 전체 리스트
 	
 		// 미용실 전체 리스트 카운팅
