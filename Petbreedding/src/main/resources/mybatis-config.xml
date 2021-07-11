@@ -72,11 +72,8 @@
 		<mapper resource="mappers/board/boardComment-mapper.xml"/>
 		<mapper resource="mappers/Mypage/notice-mapper.xml"/>
 		<mapper resource="mappers/board/reviewComment-mapper.xml"/>
-<<<<<<< HEAD
 		<mapper resource="mappers/board/oftenQna-mapper.xml"/>
-=======
 		<mapper resource="mappers/admin/chart.xml"/>
->>>>>>> f8b88fc482dfd58c8a110bea29b121b2320c4337
 	</mappers>
 	
 </configuration>
