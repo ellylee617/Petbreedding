@@ -43,7 +43,7 @@ function currentDay(){
 $(function(){
 	$("td:contains('예약완료')").css("background-color","var(--button-color)");
 	$("td:contains('결제완료')").css("background-color","var(--hover-color)");
-	$("td:contains('결제취소')").css("background-color","var(--trhover-color)").css("color","var(--main-color)");
+	$("td:contains('이용취소')").css("background-color","var(--trhover-color)").css("color","var(--main-color)");
 	currentDay();
 });
 
@@ -58,7 +58,7 @@ function change() {
 	var res = $("#choDate").val();
 	console.log(res);
 	
-	if(resId == 0 || resId == 1 || resId == 2){
+	if(resId == 0 || resId == 1 || resId == 3){
 	$.ajax({
 	    url:"bReservationkind",
 	    data:{res_status: resId,
@@ -85,8 +85,8 @@ function change() {
 		        	 if (resId == 1){
 		        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
 		        	}
-		        	 if (resId == 2){
-		        		html += "<td class='status' style='background:#a5e6fc; color:#000'>결제취소<span class='noneDis'>,</span></td>";
+		        	 if (resId == 3){
+		        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
 		        	}
 		        	
 		        	html += "<td class='resTime'>"+data[i].res_date+"</td>";
@@ -104,7 +104,7 @@ function change() {
 	    console.log("ajax 처리 실패");
 	    }
 	    });
-	  }else if(resId == 3){
+	  }else if(resId == 4){
 		  console.log("전체목록조회지롱");
 		  $.ajax({
 			    url:"bReservationdate",
@@ -129,8 +129,8 @@ function change() {
 			        	 if (data[j].res_status == 1){
 			        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
 			        	}
-			        	 if (data[j].res_status == 2){
-			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>결제취소<span class='noneDis'>,</span></td>";
+			        	 if (data[j].res_status == 3){
+			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
 			        	}
 			        	
 			        	html += "<td class='resTime'>"+data[j].res_date+"</td>";
@@ -198,8 +198,8 @@ function changeHos() {
 		        	 if (hosId == 1){
 		        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
 		        	}
-		        	 if (hosId == 2){
-		        		html += "<td class='status' style='background:#a5e6fc; color:#000'>결제취소<span class='noneDis'>,</span></td>";
+		        	 if (hosId == 3){
+		        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
 		        	}
 		        	
 		        	html += "<td class='resTime'>"+data[i].hos_date+"</td>";
@@ -217,7 +217,7 @@ function changeHos() {
 	    console.log("ajax 처리 실패");
 	    }
 	    });
-	  }else if(hosId == 3){
+	  }else if(hosId == 4){
 		  console.log("전체목록조회지롱");
 		  $.ajax({
 			    url:"bHosReservationdate",
@@ -242,7 +242,7 @@ function changeHos() {
 			        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
 			        	}
 			        	 if (data[j].hos_status == 2){
-			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>결제취소<span class='noneDis'>,</span></td>";
+			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
 			        	}
 			        	
 			        	html += "<td class='resTime'>"+data[j].hos_date+"</td>";

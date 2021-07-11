@@ -10,11 +10,12 @@
 		<result  column="CL_TEL" property="tel"/>
 		<result  column="NAVERLOGIN" property="naverlogin"/>
 		<result  column="KAKAOLOGIN" property="kakaologin"/>
+		<result column="REG_DATE" property="reg_date"/>
 	</resultMap>
 	
 	<!-- 사용자 회원가입 -->
 	<insert id="insertClient" parameterType="Client">
-			INSERT INTO client VALUES('CL000' || SEQ_CLIENT.NEXTVAL, #{email},#{password},#{nickname},#{name},#{tel},#{naverlogin},#{kakaologin})	
+			INSERT INTO client VALUES('CL000' || SEQ_CLIENT.NEXTVAL, #{email},#{password},#{nickname},#{name},#{tel},#{naverlogin},#{kakaologin}, default)	
 	</insert>
 	
 

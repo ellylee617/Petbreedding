@@ -38,11 +38,18 @@
 					</div>
 				</div>
 				<div class="resBox">
+				              <!-- 
+             	 0- 예약완료
+				1 결제완료
+				2 이용완료
+				3 결제취소
+              
+               -->
 						<select id="resselect" onchange="change()">
-							<option value="3" name="res_status" selected>전체</option>
+							<option value="4" name="res_status" selected>전체</option>
 							<option value="0" name="res_status">예약완료</option>
-							<option value="1" name="res_status">결제완료</option>
-							<option value="2" name="res_status">결제취소</option>
+							<option value="1" name="res_status">이용완료</option>
+							<option value="3" name="res_status">결제취소</option>
 						</select>
 
 						<hr>
@@ -59,14 +66,13 @@
 													<c:when test="${rev.res_status == 1}">
 														<td class="status">결제완료<span class="noneDis">,</span></td>
 													</c:when>
-													<c:when test="${rev.res_status == 2}">
-														<td class="status">결제취소<span class="noneDis">,</span></td>
+													<c:when test="${rev.res_status == 3}">
+														<td class="status">이용취소<span class="noneDis">,</span></td>
 													</c:when>
 												</c:choose>
 												<td class="resTime">${rev.res_date}</td>
 												<td class="resName">${rev.name}</td>
 												<td class="resInfo"><a href="bReservationDetail?har_rnum=${rev.har_rnum}">상세보기</a></td>
-												<td class="ff">${rev.har_rnum}</td>
 											</tr>
 										</c:forEach>
 									</table>
@@ -84,10 +90,10 @@
 					</div>
 				<div class="resBox">
 						<select id="hosselect" onchange="changeHos()">
-							<option value="3" name="hos_status" selected>전체</option>
+							<option value="4" name="hos_status" selected>전체</option>
 							<option value="0" name="hos_status">예약완료</option>
 							<option value="1" name="hos_status">결제완료</option>
-							<option value="2" name="hos_status">결제취소</option>
+							<option value="3" name="hos_status">결제취소</option>
 						</select>
 
 						<hr>
@@ -104,8 +110,8 @@
 													<c:when test="${rev.hos_status == 1}">
 														<td class="status">결제완료<span class="noneDis">,</span></td>
 													</c:when>
-													<c:when test="${rev.hos_status == 2}">
-														<td class="status">결제취소<span class="noneDis">,</span></td>
+													<c:when test="${rev.hos_status == 3}">
+														<td class="status">이용취소<span class="noneDis">,</span></td>
 													</c:when>
 												</c:choose>
 												<td class="resTime">${rev.hos_date}</td>

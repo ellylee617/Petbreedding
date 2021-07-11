@@ -67,7 +67,7 @@ $("#goTOCancle").on("click",function(){
 		success : function(data){
 			if(data != null){
 				console.log(data);
-				alert("정상적으로 결제취소 되었습니다.");
+				alert("정상적으로 이용 취소 되었습니다.");
 				location = "bReservation";
 				
 			}else{
@@ -77,6 +77,7 @@ $("#goTOCancle").on("click",function(){
 		
 	});
 })
+
 
 // 병원 결제취소
 $(".goTOCancle").on("click",function(){
@@ -90,7 +91,7 @@ $(".goTOCancle").on("click",function(){
 		success : function(data){
 			if(data != null){
 				console.log(data);
-				alert("정상적으로 결제취소 되었습니다.");
+				alert("정상적으로 이용취소 되었습니다.");
 				location = "bReservation";
 				
 			}else{

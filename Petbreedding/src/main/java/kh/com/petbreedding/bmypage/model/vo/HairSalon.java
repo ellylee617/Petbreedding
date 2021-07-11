@@ -31,7 +31,14 @@ public class HairSalon {
 	private double avgRevVal;
 	private int likes;
 	
+	private int cta_number;
 	
+	
+
+
+
+
+
 
 
 	@Override
@@ -40,7 +47,29 @@ public class HairSalon {
 				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", shopMImg="
 				+ shopMImg + ", style=" + style + ", shopImgList=" + shopImgList + ", shopDayOffList=" + shopDayOffList
 				+ ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu=" + thu + ", fri=" + fri + ", sat=" + sat
-				+ ", sun=" + sun + ", avgRevVal=" + avgRevVal + ", likes=" + likes + "]";
+				+ ", sun=" + sun + ", avgRevVal=" + avgRevVal + ", likes=" + likes + ", cta_number=" + cta_number + "]";
+	}
+
+
+
+
+
+
+
+
+	public int getCta_number() {
+		return cta_number;
+	}
+
+
+
+
+
+
+
+
+	public void setCta_number(int cta_number) {
+		this.cta_number = cta_number;
 	}
 
 

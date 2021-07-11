@@ -25,10 +25,17 @@ public class Hospital {
 	private String sun;
 	
 	private double avgRevVal;
+	private int cta_number;
+	
+	
 
 
 
 	
+
+
+
+
 
 
 
@@ -39,7 +46,21 @@ public class Hospital {
 		return "Hospital [hosNum=" + hosNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
 				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", shopMImg="
 				+ shopMImg + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu=" + thu + ", fri=" + fri
-				+ ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + "]";
+				+ ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + ", cta_number=" + cta_number + "]";
+	}
+
+
+
+
+	public int getCta_number() {
+		return cta_number;
+	}
+
+
+
+
+	public void setCta_number(int cta_number) {
+		this.cta_number = cta_number;
 	}
 
 

@@ -50,7 +50,8 @@
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
                      <c:forEach var="hos" items="${cta2}" varStatus="status">
-	                    <div class="ultraStore">                     
+                     <c:if test="${hos.cta_number > 0}">
+                     	   <div class="ultraStore">                     
 	                        <li class="ultraList">
 	                            <div class="ultraList_inner">
 	                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${hos.shopMImg }" width="150px" height="100"></a></div>
@@ -67,6 +68,7 @@
 	                            </div>                                                            
 	                        </li>
 	                    </div>
+	                    </c:if>
                     </c:forEach>
                 </ul>
             </div>
@@ -261,6 +263,7 @@
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
                    <c:forEach var="cta" items="${cta}" varStatus="status">
+                   <c:if test="${cta.cta_number > 0}">
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
@@ -315,6 +318,7 @@
                             </div>                                                            
                         </li>
                    </div>
+                   </c:if>
             </c:forEach>
                 </ul>
             </div>
