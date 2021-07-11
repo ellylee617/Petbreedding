@@ -48,6 +48,41 @@ public class ShopListController {
 		
 		if (shopType == 0) {
 			
+			String har_num = null;
+			String bpId = null;
+			
+			List<String> ctaCountList = new ArrayList<String>();
+			List<String> ctaAvgList = new ArrayList<String>();
+			List<String> ctaRevCountList = new ArrayList<String>();
+			
+			// 울트라콜 미용실 리스트 
+			List<HairSalon> ctaHar = shopListService.selectCtaHar();
+			System.out.println("잔여수 높은 순으로 정렬된 울트라 미용실 리스트 보여줘~~ "+ctaHar);
+			mv.addObject("ctaHar", ctaHar);
+			
+			for(int i =0; i<ctaHar.size(); i++) {
+				
+				har_num = ctaHar.get(i).getHarNum();
+				bpId = ctaHar.get(i).getBpId();
+				
+				//찜한 숫자
+				String count = likeService.countSalon(har_num);
+				ctaCountList.add(count);
+				mv.addObject("cta_count", ctaCountList);
+				
+				//별점 평균
+				String revAvg = shopListService.selectShopRevAvg(bpId);	
+				ctaAvgList.add(revAvg);
+				System.out.println();
+				mv.addObject("cta_revAvg", ctaAvgList);
+				
+				//리뷰 숫자 
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				ctaRevCountList.add(revCount);
+				mv.addObject("cta_revCount", ctaRevCountList);
+			}
+			
+			
 			
 			// 미용실 전체 리스트 카운팅
 			int total = shopListService.countALLHarList();
@@ -67,8 +102,7 @@ public class ShopListController {
 			
 			
 			
-			String har_num = null;
-			String bpId = null;
+			
 			List<String> countList = new ArrayList<String>();
 			List<String> avgList = new ArrayList<String>();
 			List<String> revCountList = new ArrayList<String>();
@@ -169,6 +203,41 @@ public class ShopListController {
 		// 미용실(0)
 		
 		if(shopType==0) {
+			
+			String har_num = null;
+			String bpId = null;
+			
+			List<String> ctaCountList = new ArrayList<String>();
+			List<String> ctaAvgList = new ArrayList<String>();
+			List<String> ctaRevCountList = new ArrayList<String>();
+			
+			// 울트라콜 미용실 리스트 
+			List<HairSalon> ctaHar = shopListService.selectCtaHar();
+			System.out.println("잔여수 높은 순으로 정렬된 울트라 미용실 리스트 보여줘~~ "+ctaHar);
+			mv.addObject("ctaHar", ctaHar);
+			
+			for(int i =0; i<ctaHar.size(); i++) {
+				
+				har_num = ctaHar.get(i).getHarNum();
+				bpId = ctaHar.get(i).getBpId();
+				
+				//찜한 숫자
+				String count = likeService.countSalon(har_num);
+				ctaCountList.add(count);
+				mv.addObject("cta_count", ctaCountList);
+				
+				//별점 평균
+				String revAvg = shopListService.selectShopRevAvg(bpId);	
+				ctaAvgList.add(revAvg);
+				System.out.println();
+				mv.addObject("cta_revAvg", ctaAvgList);
+				
+				//리뷰 숫자 
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				ctaRevCountList.add(revCount);
+				mv.addObject("cta_revCount", ctaRevCountList);
+			}
+			
 		
 			// 키워드+위치 검색한 경우 
 			 if(!keyword.equals("")) {
@@ -206,8 +275,6 @@ public class ShopListController {
 				 System.out.println("위치로 검색한 미용실 최신순으로 정렬해줘!!!:"+keywordHarListNew);
 				 mv.addObject("keywordHarListNew", keywordHarListNew);
 				 
-				 	String har_num = null;
-					String bpId = null;
 					List<String> countList1 = new ArrayList<String>();
 					List<String> avgList1 = new ArrayList<String>();
 					List<String> revCountList1 = new ArrayList<String>();
@@ -266,8 +333,6 @@ public class ShopListController {
 			 System.out.println("위치로 검색한 미용실 최신순으로 정렬해줘!!!:"+harListLocNew);
 			 mv.addObject("harListLocNew", harListLocNew);
 			 
-			 	String har_num = null;
-				String bpId = null;
 				List<String> countList = new ArrayList<String>();
 				List<String> avgList = new ArrayList<String>();
 				List<String> revCountList = new ArrayList<String>();

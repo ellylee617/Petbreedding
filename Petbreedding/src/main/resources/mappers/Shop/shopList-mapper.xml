@@ -47,8 +47,16 @@
 			<result column="AVG_REV_VAL" property="avgRevVal"/>
 		</resultMap>
 		
+		
+		<!-- 울트라콜 미용실 잔여수 높은 순으로 출력 -->
+		<select id="selectCtaHar" resultMap="HairSalon">
+		select hair_salon.*, my_cta.cta_number
+		from hair_salon join my_cta
+		on hair_salon.bp_id = my_cta.bp_id
+		order by my_cta.cta_number desc
+		</select>
 	
-	<!-- 미용실 키워드+위치 검색 (최신순으로 정렬만!)-->
+		<!-- 미용실 키워드+위치 검색 (최신순으로 정렬만!)-->
 		
 			<!-- 검색 결과 카운팅 -->
 			<select id="countKeywordHarList" resultType="int">

@@ -33,6 +33,12 @@ public class ShopListDao {
 	
 	// 미용실 
 		
+		// 울트라콜 미용실 출력
+		public List<HairSalon> selectCtaHar() {
+			System.out.println("~~ ShopListDao 진입 ~~");
+			return sqlSession.selectList("shopList.selectCtaHar");
+		}
+		
 		// 미용실 위치 설정 및 키워드 검색
 			
 			// 위치 및 키워드 결과 리스트 카운팅

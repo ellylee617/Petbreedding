@@ -16,6 +16,13 @@ public interface ShopListService {
 		
 		// 사업장별 등록된 리뷰 갯수
 		public String selectShopRevCount(String bp_id);
+	
+		
+	// 울트라콜
+		
+		// 울트라콜 미용실 리스트
+		public List<HairSalon> selectCtaHar(); 
+		
 		
 	// 미용실
 		

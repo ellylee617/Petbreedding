@@ -38,6 +38,22 @@ public class ShopListServiceImpl implements ShopListService {
 			return revCount;
 		}
 	
+		
+		// 울트라콜
+		
+			// 울트라콜 미용실 리스트
+			@Override
+			public List<HairSalon> selectCtaHar() {
+				System.out.println("shopListService selectCtaHar() 실행");
+				List<HairSalon> list = null;
+				try {
+					list = shopListDao.selectCtaHar();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return list;
+			}
+		
 		// 미용실
 		
 		// 미용실 위치 설정 및 키워드 검색
@@ -177,6 +193,8 @@ public class ShopListServiceImpl implements ShopListService {
 			}
 			return list;
 		}
+
+		
 
 		
 
