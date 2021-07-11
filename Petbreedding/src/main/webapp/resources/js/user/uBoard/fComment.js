@@ -115,7 +115,6 @@ $("#bocSubmitBtn").click(function() {
 		,type: 'post'
 		,data: queryString
 		,success: function() {
-//			commentListInit(boNum);
 			location.reload();
 		}
 		,error : function(request, status, error) {

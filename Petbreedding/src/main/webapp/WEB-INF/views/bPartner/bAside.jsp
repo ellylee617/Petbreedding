@@ -27,19 +27,22 @@
 			</c:if>
 
 			<a href="${pageContext.request.contextPath}/bMenu"><li class="menu" id="menuOP">
-            <c:if test="${bP.bp_type==0}">
-                <i class="fas fa-bars"></i>
-                <p>스타일 관리</p>
-            </c:if>
-           	<c:if test="${bP.bp_type==1}">
-                <i class="fas fa-stethoscope"></i>
-                <p>진료 종류<br>관리</p>
-            </c:if>
-            </li></a>
-            <li class="menu">
-                <i class="fas fa-comments"></i>
-                <a href="${pageContext.request.contextPath}/bchatlist"><p>채팅관리</p>
-            </li>
+	            <c:if test="${bP.bp_type==0}">
+	                <i class="fas fa-bars"></i>
+	                <p>스타일 관리</p>
+	            </c:if>
+	           	<c:if test="${bP.bp_type==1}">
+	                <i class="fas fa-stethoscope"></i>
+	                <p>진료 종류<br>관리</p>
+	            </c:if>
+	            </li>
+            </a>
+            <a href="${pageContext.request.contextPath}/bchatlist">
+	            <li class="menu">
+	                <i class="fas fa-comments"></i>
+	                <p>채팅관리</p>
+	            </li>
+            </a>
             <a href="${pageContext.request.contextPath}/bCalculate"><li class="menu" id="bCal">
                 <i class="fas fa-chart-bar"></i>
                 <p>매출관리</p>
@@ -78,9 +81,9 @@
                 </div>
                 <div class="bmp"> 
                     <p>고객센터</p>
-                    <a href="UcustomerService"><li class="bs">공지사항</li></a>
-                    <li class="bs">자주묻는 질문</li>
-                    <a href="bQna?user_num=${bP.bp_Id}"><li class="bs">내 문의 내역</li></a>
+                    <a href="${pageContext.request.contextPath}/bNotice"><li class="bs">공지사항</li></a>
+                    <a href="${pageContext.request.contextPath}/bFAQ"><li class="bs">자주묻는 질문</li></a>
+                    <a href="${pageContext.request.contextPath}/bQna?user_num=${bP.bp_Id}"><li class="bs">내 문의 내역</li></a>
                     <a href="bQna/writeFrm?user_num=${bP.bp_Id}"><li class="bs">1:1 문의하기</li></a>
                 </div>
                 <div class="bmp"> 

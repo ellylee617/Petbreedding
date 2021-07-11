@@ -81,6 +81,8 @@ public class BoardController {
 		
 		if (keyword != null && !keyword.equals("")) {
 			boardList = boardService.searchList(keyword);
+			total = boardList.size();
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 			mv.addObject("boardList", boardList);
 		} else {
 			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
@@ -146,7 +148,7 @@ public class BoardController {
 		return "/user/uBoard/bwrite";
 	}
 
-	// 게시글 수정
+	// 게시글 수정페이지
 	@RequestMapping(value = "/bupdateFrm")
 	public ModelAndView bUpdate(
 			ModelAndView md, String boNum, String boTitle, String boCont

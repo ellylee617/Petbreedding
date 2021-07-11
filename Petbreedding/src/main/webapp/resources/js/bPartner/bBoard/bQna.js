@@ -3,7 +3,7 @@
  */
 
 $(function() {
-	var userNum = "${user_num}";
+	var userNum = $("#bpId").val();
 	console.log(userNum);
 	$(".pointline").click(function() {
 		var idVar = $(this).attr("id");

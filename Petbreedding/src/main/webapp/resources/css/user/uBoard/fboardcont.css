@@ -127,7 +127,7 @@
 }
 
 
-#bocSubmitBtn, #bocUpdateBtn{
+#bocSubmitBtn, #bocUpdateBtn, #bocNoneBtn{
     width: 9%;
     float: left;
     border-radius: 10px;

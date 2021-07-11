@@ -1,54 +1,60 @@
 @charset "UTF-8";
 
+/* 페이지마다 변경되는 항목 */
+.bContent{
+	width: 750px;
+	text-align: center;
+	margin: 0;
+	float:left;
+}
+.bAside{
+	width:350px;
+}
+#bMyPage{
+	color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+#bMyPage a{
+	display:block;
+	color: var(--font-color);
+}
+#bMyPageM{
+	display: inline-block;
+}
 .section{
-	height: 1000px;
+	padding-bottom: 150px;
 }
 
+
+.qnatitle, .qnacontent,.qnaFile{
+	width : 600px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	text-align: left;
+}
 
 #h1{
-	padding-top: 10px;
-	margin: 0px;
-	width: 10%;
-	float: left;
+	font-size:20px;
+	padding-right: 50px;
 }
-
-#h2{
-	padding-top: 10px;
-	margin: 0px;
-	width: 10%;
-	float: left;
-}
-
-#mServiceTitle{
-	width: 472px;
-	height: 40px;
+#title {
+	width: 500px;
+	padding: 10px;
 }
 
 #content{
-	width: 50%;	
-	height: 500px;
-	box-sizing: border-box;
+    width: 600px;
+    height: 500px;
+    box-sizing: border-box;
+    margin-top: 20px;
 }
-
-.qnatitle{
-	width: 100%;
-	position: absolute;
-	top:20%;
-	left: 15%;
+#realInput {
+	margin-top: 10px;
+	margin-left : 30px;
 }
-
-.qnacontent{
-	width: 100%;
-	position: absolute;
-	top:25%;
-	left: 15%;
-}
-
-.qanbtn{
-	width: 80%;
-	position: absolute;
-	top:60%;
-	left: 40%;
+.qnabtn{
+	width: 600px;
+	margin: 20px auto;
 }
 
 .msTitle{

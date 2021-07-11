@@ -23,14 +23,35 @@
 		<result column="ANN_TYPE" property="annType"/>
 	</resultMap>
 	
+	<!-- 전체 공지사항 조회 -->
 	<select id="CustomerServiceSelectListA" parameterType="CustomerService" resultMap="CustomerServiceMap">
 		SELECT * FROM ANNOUNCEMENT
 	</select>
-	
+	<!-- 일반회원공지사항 -->
 	<select id="CustomerServiceSelectListC" parameterType="CustomerService" resultMap="CustomerServiceMap">
 		SELECT * FROM ANNOUNCEMENT WHERE ANN_TYPE = 0 OR ANN_TYPE = 1
 	</select>
 	
+	<!-- 사업자회원공지사항 -->
+	<select id="CustomerServiceSelectListB" parameterType="map" resultMap="CustomerServiceMap">
+		<![CDATA[
+		SELECT * 
+		FROM(
+		    SELECT ROWNUM R, A.* 
+		    FROM ANNOUNCEMENT A
+		    WHERE ANN_TYPE = 0 OR ANN_TYPE = 2
+		    order by substr(ann_num,-2)DESC
+		)
+		WHERE #{start}<= R AND R<=#{end}
+		]]>
+	</select>
+	<!-- 사업자 공지사항 개수 -->
+	<select id="ListBCount" resultType="int">
+		 SELECT COUNT(*) FROM ANNOUNCEMENT A
+		 WHERE ANN_TYPE = 0 OR ANN_TYPE = 2
+	</select>
+	
+	<!-- 공지사항 상세조회 -->
 	<select id="CustomerServiceSelectOne" parameterType="string" resultMap="CustomerServiceMap">
 		SELECT * FROM ANNOUNCEMENT WHERE ANN_NUM = #{annNum}
 	</select>

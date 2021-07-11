@@ -58,8 +58,14 @@
 				
 				<form id="bocFrm">
 					<div class="replycon">
-						<input type="text" id="replyCont" name="getBocCont">
-						<input type="button" id="bocSubmitBtn" class="basicBtn" value="등록">
+						<c:if test="${empty client }">
+							<input type="text" id="replyCont" placeholder="로그인 후 입력 가능합니다." readonly name="getBocCont">
+							<input type="button" id="bocNoneBtn" class="basicBtn" value="등록">
+						</c:if>
+						<c:if test="${!empty client }">
+							<input type="text" id="replyCont" name="getBocCont">
+							<input type="button" id="bocSubmitBtn" class="basicBtn" value="등록">
+						</c:if>
 						<input type="button" id="bocUpdateBtn" class="basicBtn" value="수정">
 						<input type="hidden" value="${board.boNum}" name="getBoNum">
 					</div>

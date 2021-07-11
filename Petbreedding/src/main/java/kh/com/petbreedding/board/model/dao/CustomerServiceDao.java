@@ -1,6 +1,7 @@
 package kh.com.petbreedding.board.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,14 @@ public class CustomerServiceDao {
 	//	공지사항 리스트 조회
 	public List<CustomerService> CustomerServiceSelectListC() {
 		return sqlSession.selectList("CustomerService.CustomerServiceSelectListC");
+	}
+	//사업자 공지사랑 리스트
+	public List<CustomerService> CustomerServiceSelectListB(Map<String, String> paging) {
+		return sqlSession.selectList("CustomerService.CustomerServiceSelectListB",paging);
+	}
+	//사업자 공지사항 리스트 개수 조회
+	public int ListBCount() {
+		return sqlSession.selectOne("CustomerService.ListBCount");
 	}
 	public List<CustomerService> CustomerServiceSelectListA() {
 		return sqlSession.selectList("CustomerService.CustomerServiceSelectListA");

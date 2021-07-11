@@ -8,47 +8,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Petbreedding::펫브리띵 사장님</title>
-<link href="${path}/resources/css/common/reset.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/common/footer.css" rel="stylesheet"
-	type="text/css">
-<link href="${path}/resources/css/bPartner/bBoard/bQnaWrite.css" rel="stylesheet"
-	type="text/css">
-<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/bPartner/bBoard/bQnaWrite.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script>
-$(document).ready(function(){
-    $("#browseBtn").bind("click", function() {
-        insertImg();
-    });
-    
-    function insertImg() {
-        $("#realInput").trigger("click");
-    }
-});    
-</script>
 </head>
 <body>
 	<div class="wrapper">
-			<jsp:include page="../bheader.jsp" />
+		<jsp:include page="../bheader.jsp" />
 		<section class="section">
+			<jsp:include page="../bAside.jsp" />
 			<div class="bContent">
 			<form action="/petbreedding/maWrite" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="user_num" value="${user_num}">
-	            
-	                <div class="qnatitle">
-	            		<h1 id="h1">제목</h1>
-	                   <input id="title" type="text" name="myAskTitle" placeholder="글 제목을 입력해주세요">
-	                </div>
+                <div class="qnatitle">
+            		<label id="h1">제목</label>
+                   <input id="title" type="text" name="myAskTitle" placeholder="글 제목을 입력해주세요">
+                </div>
+                <div class="qnaFile">
+					<label>첨부파일</label>	            
+	            	<input type="file" id="realInput" name="myAskImg" accept=".jpg, .png" >
+	            </div>
 	            <div class="qnacontent">
-	                <h1 id="h2">내용</h1>
 	                <textarea id="content" placeholder="1:1문의내용을 작성해주세요" name="myAskCont"></textarea>
-	            </div> 
-	            <div class="qanbtn">
-					<input type="file" id="realInput" name="myAskImg" accept=".jpg, .png" style='display:none'>
-		            <input type="button" value="이미지 등록" id="browseBtn" class="basicBtn">
+	            </div>
+	            
+	            <div class="qnabtn">
 		            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
 	            </div>
 			</form>
@@ -56,6 +44,6 @@ $(document).ready(function(){
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
-
+	<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 </body>
 </html>

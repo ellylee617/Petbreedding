@@ -7,28 +7,13 @@ $("#fboardUpdBtn").on("click", function() {
 	var boTitle = $("#boUpdBoTitle").val();
 	var boCont = $(".con").html();
 	var str = "";
-//	str += "<input type='hidden' name='boNum' value='"+boNum+"'>";
-//	str += "<input type='hidden' name='boTitle' value='"+boTitle+"'>";
 	str += "<input type='hidden' name='boCont' value='"+boCont+"'>";
-//	console.log(str);
     form.setAttribute("charset", "UTF-8");
     form.setAttribute("method", "Post");  //Post 방식
     form.setAttribute("action", "bupdateFrm"); //요청 보낼 주소
     form.append(str);
 	form.submit();
 	
-//	$.ajax({
-//		url : "bupdateFrm",
-//		type: "post",
-//		data:{
-//			boNum : boNum,
-//			boTitle : boTitle,
-//			boCont : boCont
-//		},
-//		success:function(data){
-//			location.href="bupdateFrm";
-//		}
-//	});
 });
 
 $("#fboardDelBtn").on("click", function() {

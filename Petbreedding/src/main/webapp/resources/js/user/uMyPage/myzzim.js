@@ -15,7 +15,7 @@ $(function(){
 			var html = "";
 			
 			$(".zzimlist").empty();
-			if(data != null){
+			if(data.length > 0){
 
 				for(var i in data){
 					
@@ -59,9 +59,7 @@ $(function(){
 				} 
 			
 			}else{
-				html += "<div class='subdiv'>";
-				html += "<h1 id='notice'>찜한 매장이 없습니다.</h1>";
-				html += "</div>";
+				html += "<br><h3 id='notice'>찜한 매장이 없습니다.</h3>";
 				$(".zzimlist").append(html);
 				html = "";
 			}

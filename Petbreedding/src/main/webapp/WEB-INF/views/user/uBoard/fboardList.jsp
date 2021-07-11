@@ -14,14 +14,7 @@
 <link href="${path}/resources/css/user/uBoard/freeboard.css" rel="stylesheet" type="text/css" >
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-	function searchBoard() {
-		$("#searchBoardFrm").attr('action', 'fboardlist')
-		$("#searchBoardFrm").attr('method', 'get')
-		$("#searchBoardFrm").submit();
-		
-	}
-</script>
+
 </head>
 <body>
 	<div class="wrapper">    
@@ -39,23 +32,17 @@
 			            </span>
 		        	</div><br><br>
 	            </form>
-	        <!-- <form action="qnalist" method="get">
-	            
-				<select id="searchType" name="searchType">
-					<option value="1">전체</option>
-					<option value="2">작성자</option>
-					<option value="3">글내용</option>
-				</select> <input type='search' id="search" name="search"
-					placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp질문을 검색하세요.">
-				<button type=submit id="btnsearch"> <i class="fas fa-search"></i></button>
-	           
-			</form> -->
 	        </div>
-	        
+	        <c:if test="${empty client }">
+   				<div class="goLogin write">
+			  	 <a href="uLogin"><button class="writebtn basicBtn">글쓰기</button></a>
+				</div>
+	        </c:if>
+	        <c:if test="${!empty client }">
 			<div class="write">
 			   <a href="bwriteFrm?type=1"><button class="writebtn basicBtn">글쓰기</button></a>
 			</div> 
-	        
+	        </c:if>
 			<c:if test="${listCount eq 0}">
 				<h1>게시글이 없습니다.</h1>
 			</c:if>
@@ -66,7 +53,7 @@
 		            	<div class="subdiv">
 		            		<c:choose>
 		            			<c:when test="${blist.boImg eq null}">
-			            	    	<div class="img"><a href="#"><img class="imgSize" src="http://placehold.it/150x100"></a></div>
+			            	    	<div class="img"><a href="#"><img class="imgSize" src="${path }/resources/images/logo-square.png" width="150px" heigth="100px"></a></div>
 			            	    </c:when>
 		            			<c:otherwise>
 			            	    	<div class="img"><a href="#"><img class="imgSize" src="${blist.boImg}"></a></div>
@@ -110,7 +97,17 @@
 			<!-- 페이징 끝! -->
 			</section>
 		<jsp:include page="../../common/footer.jsp" />
-		
+		<script type="text/javascript">
+			function searchBoard() {
+				$("#searchBoardFrm").attr('action', 'fboardlist')
+				$("#searchBoardFrm").attr('method', 'get')
+				$("#searchBoardFrm").submit();
+				
+			}
+			$(".goLogin").on("click",function(){
+				alert("로그인 후 이용가능합니다.");
+			});
+		</script>
     </div>
 </body>
 </html>
