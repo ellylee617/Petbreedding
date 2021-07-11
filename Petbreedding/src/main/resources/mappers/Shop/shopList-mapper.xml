@@ -143,6 +143,36 @@
 						WHERE #{start}<= R AND R <= #{end}			
 				]]>
 				</select>
+				
+				<!-- 동물병원 위치 검색 별점순 정렬 -->
+				<select id="selectHosListLocRev" parameterType="hashmap" resultMap="Hospital">
+				<![CDATA[
+					SELECT  C.*
+						FROM(
+						    SELECT B.* 
+						    FROM(
+						        SELECT ROWNUM R , A.*
+			                    FROM(
+							            SELECT HOS.*, BR.avg_rev_val
+							            FROM HOSPITAL HOS
+							            left JOIN (
+							                SELECT b.bp_id, round(avg(R.REV_VAL),2) avg_rev_val
+							                 FROM business_partner B
+							                LEFT JOIN review R
+							                ON (b.bp_id = r.bp_id)
+							                group by b.bp_id
+							            )  BR
+							             ON (hos.bp_id = br.bp_id)
+							             WHERE HOS.hos_addr LIKE #{searchLoc1} || '%' AND HOS.hos_addr LIKE '%' ||  #{searchLoc2} || '%'
+							            ORDER BY avg_rev_val DESC NULLS LAST
+			                     )A
+						    )B
+						) C
+						WHERE #{start}<= R AND R <= #{end}
+						]]>
+			</select>
+			
+
 			
 		<!-- 동물병원 전체 리스트 -->
 	
@@ -223,6 +253,7 @@
 			WHERE #{start}<= R AND R <= #{end}
 			]]>
 		</select>
+		
 		
 		<!-- 미용실 -->
 	

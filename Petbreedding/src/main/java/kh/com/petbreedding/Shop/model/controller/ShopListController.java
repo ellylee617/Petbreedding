@@ -566,7 +566,7 @@ public class ShopListController {
 			
 			// 울트라콜 동물병원 리스트 
 			List<Hospital> ctaHos = shopListService.selectCtaHos();
-			System.out.println("잔여수 높은 순으로 정렬된 동물병원 미용실 리스트 보여줘~~ "+ctaHos);
+			System.out.println("잔여수 높은 순으로 정렬된 동물병원 리스트 보여줘~~ "+ctaHos);
 			mv.addObject("ctaHos", ctaHos);
 			
 			for(int i =0; i<ctaHos.size(); i++) {
@@ -575,7 +575,7 @@ public class ShopListController {
 				bpId = ctaHos.get(i).getBpId();
 				
 				//찜한 숫자
-				String count = likeService.countSalon(hos_num);
+				String count = likeService.countHos(hos_num);
 				ctaCountList.add(count);
 				mv.addObject("cta_count", ctaCountList);
 				
@@ -636,7 +636,7 @@ public class ShopListController {
 								hos_num = hosListLocNew.get(i).getHosNum();
 								bpId = hosListLocNew.get(i).getBpId();
 								
-								String count = likeService.countSalon(hos_num); //찜
+								String count = likeService.countHos(hos_num);//찜 수
 								countList.add(count);
 								mv.addObject("loc_new_count", countList);
 								
@@ -649,15 +649,15 @@ public class ShopListController {
 								mv.addObject("loc_new_revCount", revCountList);
 							}
 							
-							// 미용실 위치 검색 결과 인기순 정렬 
+							// 동물병원 위치 검색 결과 인기순 정렬 
 							
 							 List<Hospital> hosListLocLike = shopListService.selectHosListLocLike(map1);
 							 System.out.println("위치로 검색한 동물병원 인기순으로 정렬해줘!!!:"+hosListLocLike);
 							 mv.addObject("hosListLocLike", hosListLocLike);
 							
-								List<String> countList3 = new ArrayList<String>();
-								List<String> avgList3 = new ArrayList<String>();
-								List<String> revCountList3 = new ArrayList<String>();
+								List<String> countList2 = new ArrayList<String>();
+								List<String> avgList2 = new ArrayList<String>();
+								List<String> revCountList2 = new ArrayList<String>();
 							
 								for(int i =0; i<hosListLocLike.size(); i++) {
 									
@@ -666,20 +666,44 @@ public class ShopListController {
 									hos_num = hosListLocLike.get(i).getHosNum();
 									bpId = hosListLocLike.get(i).getBpId();
 									
-									String count = likeService.countSalon(hos_num); //찜
-									countList3.add(count);
-									mv.addObject("loc_like_count", countList3);
+									String count = likeService.countHos(hos_num);//찜 수
+									countList2.add(count);
+									mv.addObject("loc_like_count", countList2);
 									
 									String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
-									avgList3.add(revAvg);
-									mv.addObject("loc_like_revAvg", avgList3);
+									avgList2.add(revAvg);
+									mv.addObject("loc_like_revAvg", avgList2);
+									
+									String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+									revCountList2.add(revCount);
+									mv.addObject("loc_like_revCount", revCountList2);
+								}
+							
+								// 동물병원 위치 검색 결과 별점순 정렬
+								List<Hospital> hosListLocRev = shopListService.selectHosListLocRev(map1);
+								System.out.println("위치로 검색한 동물병원 별점순으로 정렬해줘!!!!"+hosListLocRev);
+								mv.addObject("hosListLocRev", hosListLocRev);
+								
+								List<String> countList3 = new ArrayList<String>();
+								List<String> revCountList3 = new ArrayList<String>();
+								
+								for(int i =0; i<hosListLocRev.size(); i++) {
+									
+									// 찜한 숫자 가져오기
+									// + 별점 출력 
+									hos_num = hosListLocRev.get(i).getHosNum();
+									bpId = hosListLocRev.get(i).getBpId();
+									
+									String count = likeService.countHos(hos_num);//찜 수
+									countList3.add(count);
+									mv.addObject("loc_rev_count", countList3);
+									System.out.println("찜수 리스트 보여줘**********"+countList3);
 									
 									String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
 									revCountList3.add(revCount);
-									mv.addObject("loc_like_revCount", revCountList3);
+									System.out.println("리뷰 개수 리스트 보여주ㅝ*****"+revCountList3);
+									mv.addObject("loc_rev_revCount", revCountList3);
 								}
-							
-							
 			
 						}
 			

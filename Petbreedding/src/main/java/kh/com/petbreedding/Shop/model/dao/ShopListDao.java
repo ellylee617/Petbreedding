@@ -98,6 +98,11 @@ public class ShopListDao {
 						System.out.println("~~ ShopListDao 진입 ~~");
 						return sqlSession.selectList("shopList.selectHosListLocLike",map);
 					}
+					// 동물병원 위치 검색 별점순 정렬
+					public List<Hospital> selectHosListLocRev(Map<String,Object> map) {
+						System.out.println("~~ ShopListDao 진입 ~~");
+						return sqlSession.selectList("shopList.selectHosListLocLike",map);
+					}
 					
 			
 		

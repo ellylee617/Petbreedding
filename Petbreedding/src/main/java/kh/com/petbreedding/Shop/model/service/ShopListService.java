@@ -52,6 +52,8 @@ public interface ShopListService {
 			public List<Hospital> selectHosListLocNew(Map<String,Object> map);
 			// 동물병원 위치 검색 인기순정렬
 			public List<Hospital> selectHosListLocLike(Map<String,Object> map);
+			// 동물병원 위치 검색 별점순 정렬
+			public List<Hospital> selectHosListLocRev(Map<String,Object> map);
 			
 			
 		
