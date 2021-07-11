@@ -28,6 +28,24 @@ public interface ShopListService {
 		public List<Hospital> selectCtaHos();
 		
 		
+	
+		
+		
+	// 동물병원
+		
+		
+		// 동물병원 전체 리스트
+		
+			// 동물병원 전체 리스트 카운팅
+			public int countAllHosList();
+			// 동물병원 전체 리스트 최신순 정렬 
+			public  List<Hospital> selectAllHosListNew(Pagination page);
+			// 동물병원 전체 리스트 최신순 정렬 
+			public  List<Hospital> selectAllHosListLike(Pagination page);
+			// 동물병원 전체 리스트 별점순 정렬
+			public  List<Hospital> selectAllHosListRev(Pagination page);
+			
+		
 	// 미용실
 		
 	// 미용실 위치 설정 및 키워드 검색

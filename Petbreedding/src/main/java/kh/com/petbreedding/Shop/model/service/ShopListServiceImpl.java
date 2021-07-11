@@ -69,6 +69,60 @@ public class ShopListServiceImpl implements ShopListService {
 			}
 
 			
+		// 동물병원
+			// 동물병원 전체 리스트 카운팅
+			@Override
+			public int countAllHosList() {
+				System.out.println("shopListService countAllHosList() 실행");
+				int result = -1;
+				try {
+					result = shopListDao.countAllHosList();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+			
+			// 동물병원 전체 리스트 최신순 정렬 
+			@Override
+			public  List<Hospital> selectAllHosListNew(Pagination page){
+				System.out.println("shopListService selectAllHosListNew() 실행");
+				List<Hospital> list = null;
+				try {
+					list = shopListDao.selectAllHosListNew(page);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return list;
+			}
+			
+			// 동물병원 전체 리스트 인기순 정렬
+			@Override
+			public List<Hospital> selectAllHosListLike(Pagination page) {
+				System.out.println("shopListService selectAllHosListLike() 실행");
+				List<Hospital> list = null;
+				try {
+					list = shopListDao.selectAllHosListLike(page);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return list;
+			}
+			
+			// 동물병원 전체 리스트 별점순 정렬
+			@Override
+			public List<Hospital> selectAllHosListRev(Pagination page) {
+				System.out.println("shopListService selectAllHosListRev() 실행");
+				List<Hospital> list = null;
+				try {
+					list = shopListDao.selectAllHosListRev(page);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return list;
+			}
+						
+			
 		
 		// 미용실
 		
@@ -209,6 +263,10 @@ public class ShopListServiceImpl implements ShopListService {
 			}
 			return list;
 		}
+
+		
+
+
 
 	
 		

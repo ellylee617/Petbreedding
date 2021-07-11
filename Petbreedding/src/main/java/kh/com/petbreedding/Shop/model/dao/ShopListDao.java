@@ -49,7 +49,36 @@ public class ShopListDao {
 		}
 		
 		
+	// 동물병원 
 		
+		// 동물병원 전체 리스트
+		
+			// 동물병원 전체 리스트 카운팅
+			public int countAllHosList() {
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectOne("shopList.countAllHosList");
+			};
+		
+			// 동물병원 전체 리스트 최신순 정렬
+					
+			public  List<Hospital> selectAllHosListNew(Pagination page){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectAllHosListNew", page);
+			}
+			// 동물병원 전체 리스트 인기순 정렬
+			
+			public  List<Hospital> selectAllHosListLike(Pagination page){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectAllHosListLike", page);
+			}
+			// 동물병원 전체 리스트 별점순 정렬
+			
+			public  List<Hospital> selectAllHosListRev(Pagination page){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectAllHosListRev", page);
+			}
+			
+			
 		
 		
 	

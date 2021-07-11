@@ -25,10 +25,8 @@ public class Hospital {
 	private String sun;
 	
 	private double avgRevVal;
+	private int likes;
 
-
-
-	
 
 
 
@@ -39,7 +37,21 @@ public class Hospital {
 		return "Hospital [hosNum=" + hosNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
 				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", shopMImg="
 				+ shopMImg + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu=" + thu + ", fri=" + fri
-				+ ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + "]";
+				+ ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + ", likes=" + likes + "]";
+	}
+
+
+
+
+	public int getLikes() {
+		return likes;
+	}
+
+
+
+
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 
 

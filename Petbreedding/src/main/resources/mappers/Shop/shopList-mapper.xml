@@ -78,9 +78,86 @@
 		</resultMap>
 	
 	
+		<!-- 동물병원 전체 리스트 -->
 	
-	
-	
+			<!-- 동물병원 전체 리스트 카운팅 -->
+			<select id="countAllHosList" resultType="int">
+				SELECT COUNT(*) FROM HOSPITAL
+			</select>
+			
+			<!-- 동물병원 전체 리스트 - 최신순 정렬 -->
+			<select id="selectAllHosListNew"  parameterType="page" resultMap="Hospital">
+			<![CDATA[
+				SELECT  C.*
+				FROM(
+				    SELECT B.* 
+				    FROM(
+				        SELECT ROWNUM R , A.*
+				        FROM(
+				            select * 
+				             from hospital
+	             			order by substr(hos_num, -3) DESC
+				        )A
+				    )B
+				) C
+				WHERE #{start}<= R AND R <= #{end}
+				]]>
+			</select>
+		
+			<!-- 동물병원 전체 리스트 인기순 정렬 (찜) -->
+			<select id="selectAllHosListLike" parameterType="page" resultMap="Hospital">
+			<![CDATA[
+			SELECT  C.*
+				FROM(
+				    SELECT B.* 
+				    FROM(
+				        SELECT ROWNUM R , A.*
+	                    FROM(
+	                	SELECT hos.*, hl.likes
+	                    FROM hospital HOS
+	                    LEFT JOIN
+	                        (SELECT h.hos_num, COUNT(*) LIKES
+	                            FROM hospital H
+	                            JOIN likes L
+	                            ON (h.hos_num = l.hos_num)
+	                            GROUP BY h.hos_num
+	                    ) HL
+	                    ON hos.hos_num = HL.hos_num
+	                    ORDER BY LIKES DESC NULLS LAST
+	                     )A
+				    )B
+				) C
+				WHERE #{start}<= R AND R <= #{end}
+				]]>
+		</select>
+		
+		<!-- 동물병원 전체 리스트 별점순 정렬 -->
+		<select id="selectAllHosListRev" parameterType="page" resultMap="Hospital">
+		<![CDATA[
+		SELECT  C.*
+			FROM(
+			    SELECT B.* 
+			    FROM(
+			        SELECT ROWNUM R , A.*
+                    FROM(
+			            SELECT HOS.*, BR.avg_rev_val
+			            FROM HOSPITAL HOS
+			            left JOIN (
+			                SELECT b.bp_id, round(avg(R.REV_VAL),2) avg_rev_val
+			                 FROM business_partner B
+			                LEFT JOIN review R
+			                ON (b.bp_id = r.bp_id)
+			                group by b.bp_id
+			            )  BR
+			             ON (hos.bp_id = br.bp_id)
+			            ORDER BY avg_rev_val DESC NULLS LAST
+                     )A
+			    )B
+			) C
+			WHERE #{start}<= R AND R <= #{end}
+			]]>
+		</select>
+		
 		<!-- 미용실 -->
 	
 		<!-- HAR_SARLON 테이블  -->
