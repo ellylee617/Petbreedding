@@ -39,7 +39,7 @@
 					</c:choose>
 				</tr>
 			</table>
-                <a href="bQna?user_num=${myAskDetail.userNum}"><button class="basicBtn" style="margin-right:20px;">목록</button></a>
+                <button class="basicBtn" style="margin-right:20px;" onclick="history.back()">목록</button>
         <br><br><br><br>
         <table class="reponsetbl">
         	<tr>

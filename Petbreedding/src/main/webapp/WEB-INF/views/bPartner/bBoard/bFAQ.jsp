@@ -11,7 +11,7 @@
 <link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css">
-<link href="${path}/resources/css/bPartner/bBoard/bNotice.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/bPartner/bBoard/bFAQ.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -29,7 +29,7 @@
 							<span class="down"><i class="fas fa-angle-down"></i></span>
 							<span class="up" ><i class="fas fa-angle-up"></i></span>
 							<br>
-							${list.of_title }
+							<span class="subject">${list.of_title }</span>
 						</div>
 						<div class="content">
 							<br>
