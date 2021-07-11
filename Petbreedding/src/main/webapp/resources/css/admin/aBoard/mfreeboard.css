@@ -19,8 +19,6 @@
 }
 
 
-
-
 .myboardhead{
     margin-bottom: 50px;
 }
@@ -71,6 +69,11 @@
 .basicBtn a{
     color: #fff;
     font-family: "GmarketM"
+}
+
+/* 목록 행 (row)*/
+.checkTR {
+	cursor: pointer;
 }
 
 /*   PAGING 공통으로 쓸거면 빼고 사용해도 될 것 같음 */

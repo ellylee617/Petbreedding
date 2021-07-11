@@ -41,12 +41,17 @@ import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
+<<<<<<< HEAD
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
+=======
+import kh.com.petbreedding.board.model.service.MyAskCommentService;
+>>>>>>> f3e2a7fce70b870158177883c4f700a6438789b0
 import kh.com.petbreedding.board.model.service.MyAskService;
 import kh.com.petbreedding.board.model.service.ReviewCommentService;
 import kh.com.petbreedding.board.model.service.ReviewService;
 import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
+import kh.com.petbreedding.board.model.vo.MyAskComment;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.board.model.vo.ReviewComment;
 import kh.com.petbreedding.common.model.vo.Pagination;
@@ -62,6 +67,9 @@ public class BMyPageController {
 
 	@Autowired
 	private MyAskService myAskService;
+	
+	@Autowired
+	private MyAskCommentService myAskCommentService;
 	
 	@Autowired
 	private ReviewService reviewService;
@@ -133,6 +141,27 @@ public class BMyPageController {
 		md.addAttribute("user_num", user_num);
 
 		return "/bPartner/bBoard/bQna";
+	}
+	
+	// 사장님 마이 페이지 1:1 문의 자세히 보기
+	@RequestMapping("/bQnaDetail")
+	public String askDetail(HttpSession session, String qna_num, Model md) {
+
+		System.out.println("[세훈] @일대일 문의  상세 컨트롤러 qna_num : " + qna_num);
+
+		MyAsk myAskDetail = new MyAsk();
+		MyAskComment maComment = new MyAskComment();
+
+		myAskDetail = myAskService.MyAskSelectDetail(qna_num);
+		maComment = myAskCommentService.myAskCommentSelectOneCB(qna_num);
+
+		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 myAskDetail : " + myAskDetail);
+		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 maComment : " + maComment);
+
+		md.addAttribute("myAskDetail", myAskDetail);
+		md.addAttribute("maComment", maComment);
+
+		return "/bPartner/bBoard/bQnaDetail";
 	}
 
 	// 사장님 마이 페이지 1:1문의하기

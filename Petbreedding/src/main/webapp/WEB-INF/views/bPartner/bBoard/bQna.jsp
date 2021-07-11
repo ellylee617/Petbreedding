@@ -23,7 +23,7 @@
 			<div class="bContent">
 				<input type="hidden" id="bpId" value="${bP.bp_Id}">
 				<h1>1:1 문의 내역</h1>
-					<button id="myAskBtn" class="basicBtn">1:1문의하기</button>
+					<button id="myAskBtn" class="basicBtn" name="${user_num}">1:1문의하기</button>
 				<table class="asktable">
 					<br>
 					<br>

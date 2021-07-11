@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
 import kh.com.petbreedding.Shop.model.vo.HospitalReservation;
 import kh.com.petbreedding.board.model.service.MyAskCommentService;
@@ -117,8 +118,28 @@ public class ClientInfoCotroller {
 	// 미용실 예약 취소
 	@RequestMapping("/cancleRev")
 	@ResponseBody
-	public int cancleRev(String har_rnum) {
+	public int cancleRev(String har_rnum, HttpSession session) {
 		int result = clientInfoService.cancleRev(har_rnum);
+
+		// 알림 인서트
+		Client client = (Client) session.getAttribute("client");
+		String cl_num = client.getCl_num();
+		String bp_id = noticeService.getbp_idforPay(har_rnum);
+
+		Notice notice = new Notice();
+		notice.setNotReceiver(cl_num);
+		notice.setNotPublisher(bp_id);
+		notice.setRefNum(har_rnum);
+
+		int noticeResult = 0;
+		noticeResult = noticeService.inCancleRev(notice);
+
+		if (noticeResult == 1) {
+			System.out.println("예약 취소 알림 인서트 성공");
+		} else {
+			System.out.println("예약 취소 알림 인서트 실패");
+		}
+
 		return result;
 	}
 
@@ -135,10 +156,30 @@ public class ClientInfoCotroller {
 	// 동물병원 예약 취소
 	@RequestMapping("/cancleRev2")
 	@ResponseBody
-	public int cancleRev2(String hos_rnum) {
+	public int cancleRev2(String hos_rnum, HttpSession session) {
 		int result = clientInfoService.cancleRev2(hos_rnum);
+
+		// 알림 인서트
+		Client client = (Client) session.getAttribute("client");
+		String cl_num = client.getCl_num();
+		String bp_id = noticeService.getbp_idforPay(hos_rnum);
+
+		Notice notice = new Notice();
+		notice.setNotReceiver(cl_num);
+		notice.setNotPublisher(bp_id);
+		notice.setRefNum(hos_rnum);
+
+		int noticeResult = 0;
+		noticeResult = noticeService.inCancleRev(notice);
+
+		if (noticeResult == 1) {
+			System.out.println("예약 취소 알림 인서트 성공");
+		} else {
+			System.out.println("예약 취소 알림 인서트 실패");
+		}
 		return result;
 	}
+
 
 	// 포인트내역
 	@RequestMapping("/point")
@@ -250,8 +291,11 @@ public class ClientInfoCotroller {
 	// 1:1 문의 등록
 	@RequestMapping(value = "/maWrite")
 	public String maWrite(Model md, HttpSession session, MultipartHttpServletRequest req, HttpServletResponse res,
-			Client cl) throws Exception {
+			Client cl, BPartner bP) throws Exception {
 
+		cl = (Client) session.getAttribute("client");
+		bP = (BPartner) session.getAttribute("bP");
+		
 		res.setContentType("text/html; charset=utf-8");
 
 		String user_num = req.getParameter("user_num");
@@ -295,13 +339,25 @@ public class ClientInfoCotroller {
 		int result = myAskService.MyAskInsert(myAsk);
 
 		if (result > 0) {
-			System.out.println("문의 등록 성공");
-			md.addAttribute("msg", "문의 등록 성공");
-			md.addAttribute("url", "/mypage/ask?user_num=" + user_num + "");
+			if(cl != null) {
+				System.out.println("문의 등록 성공");
+				md.addAttribute("msg", "문의 등록 성공");
+				md.addAttribute("url", "/mypage/ask?user_num=" + user_num + "");
+			} else {
+				System.out.println("문의 등록 성공");
+				md.addAttribute("msg", "문의 등록 성공");
+				md.addAttribute("url", "/bQna?user_num=" + user_num + "");
+			}
 		} else {
-			System.out.println("문의 등록 실패");
-			md.addAttribute("msg", "문의 등록 실패");
-			md.addAttribute("url", "/mypage/ask?user_num=" + user_num + "");
+			if(cl != null) {
+				System.out.println("문의 등록 실패");
+				md.addAttribute("msg", "문의 등록 실패");
+				md.addAttribute("url", "/uLogin");
+			} else {
+				System.out.println("문의 등록 실패");
+				md.addAttribute("msg", "문의 등록 실패");
+				md.addAttribute("url", "/bLogin");
+			}
 		}
 
 		return "common/redirect";

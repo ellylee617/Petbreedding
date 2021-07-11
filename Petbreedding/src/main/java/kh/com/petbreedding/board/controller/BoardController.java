@@ -101,16 +101,20 @@ public class BoardController {
 	// 게시글 상세
 	@RequestMapping(value = "/fboardcon", method = RequestMethod.GET)
 	public ModelAndView fboardcon(ModelAndView mv, @RequestParam(name = "boNum") String boNum,
-			@RequestParam(name = "page", defaultValue = "1") int page) {
+			@RequestParam(name = "page", defaultValue = "1") int page, String userType) {
 
 		int currentPage = page;
+		System.out.println("[세훈] @자유 게시글 상세 컨트롤러 userType : " + userType);
 		Board board = boardService.selectBoardDetail(0, boNum);
 		System.out.println("[세훈] @자유 게시글 상세 컨트롤러 board : " + board);
 
 		mv.setViewName("/user/uBoard/fboardcon");
-
+		
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("board", board);
+		if(userType != null && userType != "") {
+			mv.addObject("userType", userType);
+		}
 
 		return mv;
 	}
@@ -350,51 +354,51 @@ public class BoardController {
 	}
 
 	// 게시판 댓글 달기
-		@RequestMapping(value = "/bocWrite")
-		public void bocWrite(Model md, HttpServletRequest req, HttpServletResponse res, HttpSession ses, Client cl) {
-			cl = (Client) ses.getAttribute("client");
-			String cl_nickName = cl.getNickname();
-			String cl_num = cl.getCl_num();
-			String bo_num = req.getParameter("getBoNum");
-			String co_cont = req.getParameter("getBocCont");
+	@RequestMapping(value = "/bocWrite")
+	public void bocWrite(Model md, HttpServletRequest req, HttpServletResponse res, HttpSession ses, Client cl) {
+		cl = (Client) ses.getAttribute("client");
+		String cl_nickName = cl.getNickname();
+		String cl_num = cl.getCl_num();
+		String bo_num = req.getParameter("getBoNum");
+		String co_cont = req.getParameter("getBocCont");
 
-			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bo_num : " + bo_num);
-			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 boc_cont : " + co_cont);
-			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_num : " + cl_num);
-			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_nickName : " + cl_nickName);
+		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bo_num : " + bo_num);
+		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 boc_cont : " + co_cont);
+		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_num : " + cl_num);
+		System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 cl_nickName : " + cl_nickName);
 
-			if (co_cont != null && co_cont != "" && bo_num != null && bo_num != "") {
-				B_comment bComment = new B_comment();
+		if (co_cont != null && co_cont != "" && bo_num != null && bo_num != "") {
+			B_comment bComment = new B_comment();
 
-				bComment.setClNum(cl_num);
-				bComment.setClNickName(cl_nickName);
-				bComment.setBoNum(bo_num);
-				bComment.setCoCont(co_cont.replaceAll("\n", "<br>"));
+			bComment.setClNum(cl_num);
+			bComment.setClNickName(cl_nickName);
+			bComment.setBoNum(bo_num);
+			bComment.setCoCont(co_cont.replaceAll("\n", "<br>"));
 
-				System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bComment : " + bComment.toString());
-				bCommentService.bCommentInsert(bComment);
-			}
-			
-			// 알림 인서트
-			// 댓글 작성자 말고 글번호로 댓글이 작성된 글의 글쓴이를 찾아옴
-			String origClNum = "";
-			origClNum = noticeService.getOrigClNum(bo_num);
-			System.out.println("origClNum" + origClNum);
-			
-			// insert를 위한 notice vo에 필요한 값들 set해주기
-			Notice notice = new Notice();
-			notice.setNotReceiver(origClNum);
-			notice.setRefNum(bo_num); // 여기서는 참고번호가 글번호
-			
-			int result = 0;
-			result = noticeService.inBoard(notice);
-			
-			if(result==1) {
-				System.out.println("댓글 작성시 알림 인서트 성공!");
-			}else {
-				System.out.println("알림 인서트 실패");
-			}
+			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bComment : " + bComment.toString());
+			bCommentService.bCommentInsert(bComment);
 		}
+
+		// 알림 인서트
+		// 댓글 작성자 말고 글번호로 댓글이 작성된 글의 글쓴이를 찾아옴
+		String origClNum = "";
+		origClNum = noticeService.getOrigClNum(bo_num);
+		System.out.println("origClNum" + origClNum);
+
+		// insert를 위한 notice vo에 필요한 값들 set해주기
+		Notice notice = new Notice();
+		notice.setNotReceiver(origClNum);
+		notice.setRefNum(bo_num); // 여기서는 참고번호가 글번호
+
+		int result = 0;
+		result = noticeService.inBoard(notice);
+
+		if (result == 1) {
+			System.out.println("댓글 작성시 알림 인서트 성공!");
+		} else {
+			System.out.println("알림 인서트 실패");
+		}
+	}
 	
 	// 게시판 댓글 삭제
 	@RequestMapping(value = "/bcdelete")
@@ -549,6 +553,19 @@ public class BoardController {
 			System.out.println("리뷰 등록 실패");
 			md.addAttribute("msg", "리뷰 등록 실패");
 			md.addAttribute("url","/mypage?cl_num="+cl_num+"");
+		}
+		
+		// 알림인서트
+		Notice notice = new Notice();
+		notice.setNotReceiver(cl_num);
+		notice.setRefNum(har_name);
+
+		int noticeResult = 0;
+		noticeResult = noticeService.inPointSave(notice);
+		if (noticeResult == 1) {
+			System.out.println("리뷰 등록 시 알림 인서트 성공");
+		} else {
+			System.out.println("알림 인서트 실패");
 		}
 		
 		return "common/redirect";

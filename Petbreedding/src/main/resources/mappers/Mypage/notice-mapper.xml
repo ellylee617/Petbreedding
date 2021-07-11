@@ -9,11 +9,9 @@
 		<result column="REFERENCE_NUM" property="refNum"/>
 		<result column="REFERENCE_CLASS" property="refClass"/>
 		<result column="READ_STATE" property="readState"/>
-		<result column="RESERVATION_NUM" property="revNum"/>
 		<result column="SHOP_NUM" property="shopNum"/>
 		<result column="SHOP_NAME" property="shopName"/>
 		<result column="SHOP_IMG" property="shopImg"/>
-		<result column="BO_NUM" property="boNum"/>
 		<result column="BO_TITLE" property="boTitle"/>
 		<result column="QNA_TITLE" property="qnaTitle"/>
 		<result column="NOTICE_TIME" property="notTime"/>
@@ -57,7 +55,7 @@
 		(SELECT A.HOS_RNUM AS RESERVATION_NUM, HOS_NUM
 		FROM
 		(SELECT HOS_RNUM, HOS_NUM FROM HOS_RESERVATION UNION SELECT HAR_RNUM, HAR_NUM FROM HAR_RESERVATION) A
-		WHERE A.HOS_RNUM = #{revNum})B
+		WHERE A.HOS_RNUM = #{refNum})B
 		INNER JOIN
 		(SELECT HOS_NUM, BP_ID FROM HOSPITAL UNION SELECT HAR_NUM, BP_ID FROM HAIR_SALON)C
 		ON B.HOS_NUM = C.HOS_NUM
@@ -79,13 +77,17 @@
 	</insert>
 	
 	<select id="getOrigClNum" resultType="string">
-		SELECT CL_NUM FROM BOARD WHERE BO_NUM = #{boNum}
+		SELECT CL_NUM FROM BOARD WHERE BO_NUM = #{refNum}
 	</select>
 	
 	<insert id="inBoard">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a4', 
 		#{notReceiver}, null, #{refNum}, '2', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
+	
+	<select id="getclNumInQna" resultType="string">
+		SELECT USER_NUM FROM QNA_BOARD WHERE QNA_NUM=#{refNum}
+	</select>
 	
 	<insert id="inQna">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a5', 
@@ -94,12 +96,17 @@
 		
 	<insert id="inPointSave">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a6', 
-		#{notReceiver}, null, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, null, #{refNum}, '4', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<insert id="inPointUsing">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a7', 
-		#{notReceiver}, null, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, null, #{refNum}, '4', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+	</insert>
+	
+	<insert id="inCancleRev">
+		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a8', 
+		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<update id="updateReadState">

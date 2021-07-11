@@ -24,6 +24,7 @@
 			<div class="bContent">
 			<form action="/petbreedding/maWrite" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="user_num" value="${user_num}">
+<<<<<<< HEAD
                 <div class="qnatitle">
             		<label id="h1">제목</label>
                    <input id="title" type="text" name="myAskTitle" placeholder="글 제목을 입력해주세요">
@@ -32,6 +33,14 @@
 					<label>첨부파일</label>	            
 	            	<input type="file" id="realInput" name="myAskImg" accept=".jpg, .png" >
 	            </div>
+=======
+				<input type="hidden" name="userType" value="2">
+	            
+	                <div class="qnatitle">
+	            		<h1 id="h1">제목</h1>
+	                   <input id="title" type="text" class="myAskTitle" name="myAskTitle" placeholder="글 제목을 입력해주세요">
+	                </div>
+>>>>>>> f3e2a7fce70b870158177883c4f700a6438789b0
 	            <div class="qnacontent">
 	                <textarea id="content" placeholder="1:1문의내용을 작성해주세요" name="myAskCont"></textarea>
 	            </div>
@@ -44,6 +53,9 @@
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
+<<<<<<< HEAD
 	<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
+=======
+>>>>>>> f3e2a7fce70b870158177883c4f700a6438789b0
 </body>
 </html>
