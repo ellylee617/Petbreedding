@@ -117,8 +117,28 @@ public class ClientInfoCotroller {
 	// 미용실 예약 취소
 	@RequestMapping("/cancleRev")
 	@ResponseBody
-	public int cancleRev(String har_rnum) {
+	public int cancleRev(String har_rnum, HttpSession session) {
 		int result = clientInfoService.cancleRev(har_rnum);
+
+		// 알림 인서트
+		Client client = (Client) session.getAttribute("client");
+		String cl_num = client.getCl_num();
+		String bp_id = noticeService.getbp_idforPay(har_rnum);
+
+		Notice notice = new Notice();
+		notice.setNotReceiver(cl_num);
+		notice.setNotPublisher(bp_id);
+		notice.setRefNum(har_rnum);
+
+		int noticeResult = 0;
+		noticeResult = noticeService.inCancleRev(notice);
+
+		if (noticeResult == 1) {
+			System.out.println("예약 취소 알림 인서트 성공");
+		} else {
+			System.out.println("예약 취소 알림 인서트 실패");
+		}
+
 		return result;
 	}
 
@@ -135,10 +155,30 @@ public class ClientInfoCotroller {
 	// 동물병원 예약 취소
 	@RequestMapping("/cancleRev2")
 	@ResponseBody
-	public int cancleRev2(String hos_rnum) {
+	public int cancleRev2(String hos_rnum, HttpSession session) {
 		int result = clientInfoService.cancleRev2(hos_rnum);
+
+		// 알림 인서트
+		Client client = (Client) session.getAttribute("client");
+		String cl_num = client.getCl_num();
+		String bp_id = noticeService.getbp_idforPay(hos_rnum);
+
+		Notice notice = new Notice();
+		notice.setNotReceiver(cl_num);
+		notice.setNotPublisher(bp_id);
+		notice.setRefNum(hos_rnum);
+
+		int noticeResult = 0;
+		noticeResult = noticeService.inCancleRev(notice);
+
+		if (noticeResult == 1) {
+			System.out.println("예약 취소 알림 인서트 성공");
+		} else {
+			System.out.println("예약 취소 알림 인서트 실패");
+		}
 		return result;
 	}
+
 
 	// 포인트내역
 	@RequestMapping("/point")
