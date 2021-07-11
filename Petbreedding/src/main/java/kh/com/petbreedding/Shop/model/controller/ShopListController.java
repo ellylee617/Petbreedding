@@ -205,7 +205,7 @@ public class ShopListController {
 				bpId = ctaHos.get(i).getBpId();
 				
 				//찜한 숫자
-				String count = likeService.countSalon(hos_num);
+				String count = likeService.countHos(hos_num);
 				ctaCountList.add(count);
 				mv.addObject("cta_count", ctaCountList);
 				
@@ -244,7 +244,7 @@ public class ShopListController {
 				hos_num = allHosListNew.get(i).getHosNum();
 				bpId = allHosListNew.get(i).getBpId();
 				
-				String count = likeService.countSalon(hos_num); //찜
+				String count = likeService.countHos(hos_num); //찜
 				countList1.add(count);
 				mv.addObject("new_count", countList1);
 				
@@ -260,7 +260,7 @@ public class ShopListController {
 			}
 			
 			List<Hospital> allHosListLike = shopListService.selectAllHosListLike(page);
-			System.out.println("미용실 전체 리스트 - 인기순 정렬 :: " + allHosListLike);
+			System.out.println("동물병원 전체 리스트 - 인기순 정렬 :: " + allHosListLike);
 			mv.addObject("allHosListLike", allHosListLike);
 			List<String> countList2 = new ArrayList<String>();
 			List<String> avgList2 = new ArrayList<String>();
@@ -298,7 +298,7 @@ public class ShopListController {
 				hos_num = allHosListRev.get(i).getHosNum();
 				bpId = allHosListRev.get(i).getBpId();
 				
-				String count = likeService.countSalon(hos_num); //찜
+				String count = likeService.countHos(hos_num);
 				countList3.add(count);
 				mv.addObject("rev_count", countList3);
 				
@@ -329,6 +329,8 @@ public class ShopListController {
 			, HttpServletRequest request
 			) throws Exception{
 		
+		
+		System.out.println("shopType은???"+shopType);
 		
 		// 미용실(0)
 		
@@ -550,11 +552,112 @@ public class ShopListController {
 			
 		}
 		
+		
+		// 동물병원(1)
+		if(shopType==1) {
+			
+			String hos_num = null;
+			String bpId = null;
+			
+			
+			List<String> ctaCountList = new ArrayList<String>();
+			List<String> ctaAvgList = new ArrayList<String>();
+			List<String> ctaRevCountList = new ArrayList<String>();
+			
+			// 울트라콜 동물병원 리스트 
+			List<Hospital> ctaHos = shopListService.selectCtaHos();
+			System.out.println("잔여수 높은 순으로 정렬된 동물병원 미용실 리스트 보여줘~~ "+ctaHos);
+			mv.addObject("ctaHos", ctaHos);
+			
+			for(int i =0; i<ctaHos.size(); i++) {
+				
+				hos_num = ctaHos.get(i).getHosNum();
+				bpId = ctaHos.get(i).getBpId();
+				
+				//찜한 숫자
+				String count = likeService.countSalon(hos_num);
+				ctaCountList.add(count);
+				mv.addObject("cta_count", ctaCountList);
+				
+				//별점 평균
+				String revAvg = shopListService.selectShopRevAvg(bpId);	
+				ctaAvgList.add(revAvg);
+				System.out.println();
+				mv.addObject("cta_revAvg", ctaAvgList);
+				
+				//리뷰 숫자 
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				ctaRevCountList.add(revCount);
+				mv.addObject("cta_revCount", ctaRevCountList);
+			}
+			
+			
+			
+			// 위치만 설정한 경우
+			
+						if(keyword.equals("")) {
+							System.out.println("위치만 설정함!!!!!!!");
+							System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
+							
+							
+							Map<String,Object> map1 = new HashMap<String,Object>();
+							 map1.put("searchLoc1", searchLoc1);
+							 map1.put("searchLoc2", searchLoc2);
+							 mv.addObject("searchLoc1", searchLoc1);
+							 mv.addObject("searchLoc2", searchLoc2);
+							 
+							// 검색 결과 카운팅
+								int total1 = shopListService.countHosListLocNew(map1); 
+								System.out.println("동물병원 검색 결과 개수는?"+total1);
+								Pagination page1 = null;
+								page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+								mv.addObject("loc_paging", page1);
+								int start1 = page1.getStart();
+								int end1 = page1.getEnd();
+								map1.put("start", start1);
+								map1.put("end", end1);
+								mv.addObject("map1", map1);
+								System.out.println("map 정보 보여줘 !!!!!!!!"+map1);
+						
+								
+						// 동물병원 위치 검색 최신순 정렬		 
+						 List<Hospital> hosListLocNew = shopListService.selectHosListLocNew(map1);
+						 System.out.println("위치로 검색한 동물병원 최신순으로 정렬해줘!!!:"+hosListLocNew);
+						 mv.addObject("hosListLocNew", hosListLocNew);
+						 
+							List<String> countList = new ArrayList<String>();
+							List<String> avgList = new ArrayList<String>();
+							List<String> revCountList = new ArrayList<String>();
+							
+							for(int i =0; i<hosListLocNew.size(); i++) {
+					
+								// 찜한 숫자 가져오기
+								// + 별점 출력 
+								hos_num = hosListLocNew.get(i).getHosNum();
+								bpId = hosListLocNew.get(i).getBpId();
+								
+								String count = likeService.countSalon(hos_num); //찜
+								countList.add(count);
+								mv.addObject("loc_new_count", countList);
+								
+								String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
+								avgList.add(revAvg);
+								mv.addObject("loc_new_revAvg", avgList);
+								
+								String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+								revCountList.add(revCount);
+								mv.addObject("loc_new_revCount", revCountList);
+							}
+			
+						}
+			
+			
+			
+		}
+		
 		mv.setViewName("/user/uShop/shopList");
 		return mv;
 		
-		 
-		 
 		 
 		
 	}

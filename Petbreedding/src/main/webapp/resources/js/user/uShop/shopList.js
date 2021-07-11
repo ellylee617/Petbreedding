@@ -8,18 +8,31 @@ $(document).ready(function(){
 		$("#harListLocNew").show();
 		$("#harListLocLike").hide();
 		$("#harListLocRev").hide();
+		
+		$("#hosListLocNew").show();
+		$("#hosListLocLike").hide();
+		$("#hosListLocRev").hide();
+		
 	});
 
 	$("#likeLocRadio").click(function(){
 		$("#harListLocNew").hide();
 		$("#harListLocLike").show();
 		$("#harListLocRev").hide();
+		
+		$("#hosListLocNew").hide();
+		$("#hosListLocLike").show();
+		$("#hosListLocRev").hide();
 	});
 
 	$("#revLocRadio").click(function(){
 		$("#harListLocNew").hide();
 		$("#harListLocLike").hide();
 		$("#harListLocRev").show();
+		
+		$("#hosListLocNew").hide();
+		$("#hosListLocLike").hide();
+		$("#hosListLocRev").show();
 	});
 	
 	
@@ -35,8 +48,6 @@ $(document).ready(function(){
 		$("#likeList").show();
 		$("#revList").hide();
 		
-		$("#harListLocNew").hide();
-		$("#harListLocLike").show();
 	});
 
 	$("#revRadio").click(function(){

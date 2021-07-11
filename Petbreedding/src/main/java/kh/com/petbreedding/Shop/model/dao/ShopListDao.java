@@ -53,6 +53,7 @@ public class ShopListDao {
 		
 		// 동물병원 전체 리스트
 		
+		
 			// 동물병원 전체 리스트 카운팅
 			public int countAllHosList() {
 				System.out.println("~~ ShopListDao 진입 ~~");
@@ -78,6 +79,20 @@ public class ShopListDao {
 				return sqlSession.selectList("shopList.selectAllHosListRev", page);
 			}
 			
+			// 동물병원 위치(주소) 검색
+			
+					// 동물병원 위치 검색카운팅
+					public  int countHosListLocNew(Map<String,Object> map){
+						System.out.println("~~ ShopListDao 진입 ~~");
+						return sqlSession.selectOne("shopList.countHosListLocNew", map);
+					}
+					
+					// 동물병원 위치 검색 최신순 정렬
+					public List<Hospital> selectHosListLocNew(Map<String,Object> map) {
+						System.out.println("~~ ShopListDao 진입 ~~");
+						return sqlSession.selectList("shopList.selectHosListLocNew",map);
+					}
+						
 			
 		
 		

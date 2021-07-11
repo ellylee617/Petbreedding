@@ -70,6 +70,38 @@ public class ShopListServiceImpl implements ShopListService {
 
 			
 		// 동물병원
+			
+			// 동물병원 위치 검색
+			
+				// 동물병원 위치 검색 리스트 카운팅
+				@Override
+				public int countHosListLocNew(Map<String, Object> map) {
+					System.out.println("shopListService countHosListLocNew() 실행");
+					int result = -1;
+					try {
+						result = shopListDao.countHosListLocNew(map);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return result;
+				}
+				
+				// 동물병원 위치 검색 최신순 정렬
+				@Override
+				public List<Hospital> selectHosListLocNew(Map<String, Object> map) {
+					System.out.println("shopListService selectHosListLocNew() 실행");
+					List<Hospital> list = null;
+					try {
+						list = shopListDao.selectHosListLocNew(map);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return list;
+				}
+				
+				
+				
+				
 			// 동물병원 전체 리스트 카운팅
 			@Override
 			public int countAllHosList() {
@@ -263,6 +295,10 @@ public class ShopListServiceImpl implements ShopListService {
 			}
 			return list;
 		}
+
+		
+
+		
 
 		
 

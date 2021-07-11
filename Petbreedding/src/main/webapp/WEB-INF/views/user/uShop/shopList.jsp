@@ -50,6 +50,137 @@
 			</div>
             </c:if>
             </c:if>
+            
+            
+      
+      <!-- 동물병원 위치 검색 결과 -->
+      
+           
+           
+           
+			<!-- 동물병원 위치 검색 최신순 정렬 -->
+			
+			
+			<c:if test="${!empty hosListLocNew }">
+			
+			
+			<hr id="storeLine">
+            <div class="selectOpt">
+                <input type="radio" checked id="newLocRadio" name="selectOpt"><label for="newLocRadio">최신순</label>
+                <input type="radio" id="likeLocRadio"  name="selectOpt" ><label for="likeLocRadio">인기순</label>
+                 <input type="radio" id="revLocRadio" name="selectOpt"><label for="revLocRadio">별점순</label>
+            </div>
+			
+			 <div class="ultraS">
+                <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
+                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
+                <ul>
+                   <c:forEach var="cta" items="${ctaHos}" varStatus="status">
+                    <div class="ultraStore">                     
+                        <li class="ultraList">
+                            <div class="ultraList_inner">
+                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
+                                <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
+                                <div class="ultraList_etc_area">
+                                    <a href="#">리뷰<small> 
+                                    <c:if test="${!empty cta_revAvg[status.index]}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta_revAvg[status.index]})
+                                       </c:if>
+                                    <c:if test="${empty cta_revAvg[status.index]}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(0.0)
+                                       </c:if>
+                                    <c:if test="${!empty cta_revCount[status.index] }">
+                                       &nbsp;(${cta_revCount[status.index]}+)
+                                    </c:if>
+                                    <c:if test="${empty cta_revCount[status.index]}">
+                                    &nbsp;(0)
+                                    </c:if>
+                                    </small>
+                                    </a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                    <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
+                                </div>
+                                <div class="ultraList_button">
+                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                </div>
+                            </div>                                                            
+                        </li>
+                   </div>
+            </c:forEach>
+                </ul>
+            </div>
+			
+			<div id="hosListLocNew">
+			<div class="storeS">
+            <c:forEach items="${hosListLocNew}" var="item" varStatus="status" >
+                <ul>
+                    <div class="Store">                      
+                       <li class="storeList">
+                       
+                            <div class="storeList_inner">
+                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
+                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
+                                <div class="storeList_etc_area">
+                                    <a href="#">리뷰<small> 
+                                    <c:if test="${!empty loc_new_revAvg[status.index]}">
+                                            <i class="fas fa-star rate"></i>&nbsp;${loc_new_revAvg[status.index] }
+                                    </c:if>
+                                    <c:if test="${empty loc_new_revAvg[status.index]}">
+                                            <i class="fas fa-star rate"></i>&nbsp;0.0
+                                    </c:if>
+                                    <c:if test="${!empty loc_new_revCount[status.index] }">
+                                       &nbsp;(${loc_new_revCount[status.index]}+)
+                                    </c:if>
+                                    <c:if test="${empty loc_new_revCount[status.index]}">
+                                    &nbsp;(0)
+                                    </c:if>
+                                    </small>
+                                    </a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                  <a href="#">찜하기 <small> ${loc_new_count[status.index]}</small></a>
+                                </div>
+                                 <form class="frmShopInfo" >
+                                 <div class="storeList_button">
+                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                </div>
+                               </form>
+                            </div>                                                            
+                        </li>
+                    </div>
+                </ul>
+                </c:forEach>
+                </div>
+                           <!-- 페이징 시작-->
+				            <div class="page_wrap">
+				               <div class="page_nation">
+				                  <c:if test="${loc_paging.startPage != 1 }">
+				                     <a class="arrow prev" href="${path}/shopList/all?shopType=${shopType}&nowPage=${loc_paging.startPage - 1 }&cntPerPage=${loc_paging.cntPerPage}">이전</a> 
+				                  </c:if>
+				                  <c:forEach begin="${loc_paging.startPage }" end="${loc_paging.endPage }" var="p">
+				                     <c:choose>
+				                        <c:when test="${p == loc_paging.nowPage }">
+				                           <b>${p }</b>
+				                        </c:when>
+				                        <c:when test="${p != loc_paging.nowPage }">
+				                           <a href="${path}/shopList/all?shopType=${shopType}&nowPage=${p }&cntPerPage=${loc_paging.cntPerPage}">${p}</a>
+				                        </c:when>
+				                     </c:choose>
+				                  </c:forEach>
+				                  <c:if test="${loc_paging.endPage != loc_paging.lastPage}">
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
+				                  </c:if>
+				               </div>
+				            </div>
+          			  <!-- 페이징 끝! -->
+               </div>
+               </c:if>
+               
+               
+               
+               
+               
       
       
 		<c:if test="${empty  keywordHosListNew}">
@@ -245,7 +376,7 @@
 	           
 	           
 	           
-	                       <!-- 동물병원 별점순 정렬 -->
+	        <!-- 동물병원 별점순 정렬 -->
             <div  id="revList" style="display: none;">
             	
              <div class="storeS" >
@@ -517,7 +648,7 @@
                 </ul>
             </div>
 			
-			<div id="harListLocNew">
+			<div id="harListLocNew" class="listLocNew">
 			
 			
 			<div class="storeS">
@@ -596,7 +727,7 @@
 			
 			<c:if test="${!empty harListLocLike }">
 			
-			<div id="harListLocLike" style="display: none;">
+			<div id="harListLocLike" class="listLocLike" style="display: none;">
 			
 				
 				<div class="storeS">
@@ -665,47 +796,8 @@
                
                
                <!-- 미용실 위치 검색 별점순 정렬 -->
-			<div id="harListLocRev" style="display: none;">
+			<div id="harListLocRev" class="listLocRev" style="display: none;">
 			
-			    <div class="ultraS">
-                <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
-                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
-                <ul>
-                   <c:forEach var="cta" items="${cta}" varStatus="status">
-                    <div class="ultraStore">                     
-                        <li class="ultraList">
-                            <div class="ultraList_inner">
-                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
-                                <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
-                                <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
-                                <div class="ultraList_etc_area">
-                                    <a href="#">리뷰<small> 
-                                    <c:if test="${!empty cta.avgRevVal}">
-                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
-                                       </c:if>
-                                    <c:if test="${empty cta.avgRevVal}">
-                                            <i class="fas fa-star rate"></i>&nbsp;(0.0)
-                                       </c:if>
-                                    <c:if test="${!empty ctaCountRev[status.index] }">
-                                       &nbsp;${ctaCountRev[status.index]}개 
-                                    </c:if>
-                                    <c:if test="${empty ctaCountRev[status.index]}">
-                                    &nbsp;0개 
-                                    </c:if>
-                                    </small>
-                                    </a>
-                                    <a href="#">구매건수<small>999+</small></a>
-                                    <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
-                                </div>
-                                <div class="ultraList_button">
-                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
-                                </div>
-                            </div>                                                            
-                        </li>
-                   </div>
-            </c:forEach>
-                </ul>
-            </div>
 			
 			<div class="storeS">
             <c:forEach items="${harListLocRev}" var="item" varStatus="status" >
@@ -843,7 +935,7 @@
 		<c:if test="${!empty allShopListNew }">
 		
            <!-- 미용실 최신순 정렬 -->
-           <div id="newList">
+           <div id="newList" class="newList">
            
                        
 	           <div class="storeS">
@@ -913,7 +1005,7 @@
 
             
             <!-- 미용실 인기순 정렬 -->
-            <div id="likeList" style="display: none;">
+            <div id="likeList" class="likeList" style="display: none;">
             			    
 	            <div class="storeS" >
 	              <c:forEach items="${allShopListLike}" var="item" varStatus="status" >
@@ -979,7 +1071,7 @@
                     </div>
             
             <!-- 미용실 별점순 정렬 -->
-            <div  id="revList" style="display: none;">
+            <div  id="revList" class="revList" style="display: none;">
             	
              <div class="storeS" >
                <c:forEach items="${allHarListRev}" var="item" varStatus="status" >
