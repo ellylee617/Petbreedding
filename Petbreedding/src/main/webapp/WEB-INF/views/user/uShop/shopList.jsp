@@ -254,7 +254,7 @@
             </c:if>
             
             <c:if test="${empty keyword}">
-            <c:if test="${empty harListLocNew}">
+            <c:if test="${empty searchLoc1}">
             <div class="nowLocation">
                 <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
@@ -262,13 +262,12 @@
             </c:if>
             
             <c:if test="${empty keyword}">
-            <c:if test="${!empty harListLocNew}">
+            <c:if test="${!empty searchLoc1}">
             <div class="nowLocation">
-                <span> ${map1.searchLoc1 } > ${map1.searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+                <span> ${searchLoc1 } > ${searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
 			</div>
             </c:if>
             </c:if>
-            
             
             <!-- 미용실 위치 설정 및 키워드 검색 결과 -->
             
@@ -353,8 +352,6 @@
            
            
            
-           
-           
            <!-- 미용실 위치 검색 결과  --> 
            
            
@@ -374,7 +371,7 @@
 			
 			<div id="harListLocNew">
 			
-			    <div class="ultraS">
+			   <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
@@ -386,7 +383,7 @@
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
                                 <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
                                 <div class="ultraList_etc_area">
-                                     <a href="#">리뷰<small> 
+                                    <a href="#">리뷰<small> 
                                     <c:if test="${!empty cta.avgRevVal}">
                                             <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
                                        </c:if>
@@ -493,7 +490,7 @@
 			<div id="harListLocLike" style="display: none;">
 			
 			
-				 <div class="ultraS">
+				<div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
@@ -505,7 +502,7 @@
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
                                 <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
                                 <div class="ultraList_etc_area">
-                                     <a href="#">리뷰<small> 
+                                    <a href="#">리뷰<small> 
                                     <c:if test="${!empty cta.avgRevVal}">
                                             <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
                                        </c:if>
@@ -732,9 +729,51 @@
                  <input type="radio" id="revRadio" name="selectOpt"><label for="revRadio">별점순</label>
             </div>
 		
+		<c:if test="${!empty allShopListNew }">
 		
            <!-- 미용실 최신순 정렬 -->
            <div id="newList">
+           
+			    <div class="ultraS">
+                <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
+                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
+                <ul>
+                   <c:forEach var="cta" items="${cta}" varStatus="status">
+                    <div class="ultraStore">                     
+                        <li class="ultraList">
+                            <div class="ultraList_inner">
+                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
+                                <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
+                                <div class="ultraList_etc_area">
+                                    <a href="#">리뷰<small> 
+                                    <c:if test="${!empty cta.avgRevVal}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+                                       </c:if>
+                                    <c:if test="${empty cta.avgRevVal}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(0.0)
+                                       </c:if>
+                                    <c:if test="${!empty ctaCountRev[status.index] }">
+                                       &nbsp;${ctaCountRev[status.index]}개 
+                                    </c:if>
+                                    <c:if test="${empty ctaCountRev[status.index]}">
+                                    &nbsp;0개 
+                                    </c:if>
+                                    </small>
+                                    </a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                    <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
+                                </div>
+                                <div class="ultraList_button">
+                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                </div>
+                            </div>                                                            
+                        </li>
+                   </div>
+            </c:forEach>
+                </ul>
+            </div>
+                       
 	           <div class="storeS">
 	            <c:forEach items="${allShopListNew}" var="item" varStatus="status" >
 	                <ul>
@@ -803,6 +842,45 @@
             
             <!-- 미용실 인기순 정렬 -->
             <div id="likeList" style="display: none;">
+            			    <div class="ultraS">
+                <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
+                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
+                <ul>
+                   <c:forEach var="cta" items="${cta}" varStatus="status">
+                    <div class="ultraStore">                     
+                        <li class="ultraList">
+                            <div class="ultraList_inner">
+                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
+                                <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
+                                <div class="ultraList_etc_area">
+                                    <a href="#">리뷰<small> 
+                                    <c:if test="${!empty cta.avgRevVal}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+                                       </c:if>
+                                    <c:if test="${empty cta.avgRevVal}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(0.0)
+                                       </c:if>
+                                    <c:if test="${!empty ctaCountRev[status.index] }">
+                                       &nbsp;${ctaCountRev[status.index]}개 
+                                    </c:if>
+                                    <c:if test="${empty ctaCountRev[status.index]}">
+                                    &nbsp;0개 
+                                    </c:if>
+                                    </small>
+                                    </a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                    <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
+                                </div>
+                                <div class="ultraList_button">
+                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                </div>
+                            </div>                                                            
+                        </li>
+                   </div>
+            </c:forEach>
+                </ul>
+            </div>
 	            <div class="storeS" >
 	              <c:forEach items="${allShopListLike}" var="item" varStatus="status" >
 	                <ul>
@@ -868,6 +946,45 @@
             
             <!-- 미용실 별점순 정렬 -->
             <div  id="revList" style="display: none;">
+            	<div class="ultraS">
+                <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
+                <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
+                <ul>
+                   <c:forEach var="cta" items="${cta}" varStatus="status">
+                    <div class="ultraStore">                     
+                        <li class="ultraList">
+                            <div class="ultraList_inner">
+                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
+                                <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
+                                <div class="ultraList_etc_area">
+                                    <a href="#">리뷰<small> 
+                                    <c:if test="${!empty cta.avgRevVal}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(${cta.avgRevVal})
+                                       </c:if>
+                                    <c:if test="${empty cta.avgRevVal}">
+                                            <i class="fas fa-star rate"></i>&nbsp;(0.0)
+                                       </c:if>
+                                    <c:if test="${!empty ctaCountRev[status.index] }">
+                                       &nbsp;${ctaCountRev[status.index]}개 
+                                    </c:if>
+                                    <c:if test="${empty ctaCountRev[status.index]}">
+                                    &nbsp;0개 
+                                    </c:if>
+                                    </small>
+                                    </a>
+                                    <a href="#">구매건수<small>999+</small></a>
+                                    <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
+                                </div>
+                                <div class="ultraList_button">
+                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                </div>
+                            </div>                                                            
+                        </li>
+                   </div>
+            </c:forEach>
+                </ul>
+            </div>
              <div class="storeS" >
                <c:forEach items="${allHarListRev}" var="item" varStatus="status" >
                 <ul>
@@ -934,6 +1051,8 @@
           		</div>
           		
           	</c:if>	
+          	
+          	</c:if>
             </c:if>	
             
    

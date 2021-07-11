@@ -171,7 +171,8 @@ public class ShopListController {
 		if(shopType==0) {
 		
 			// 키워드+위치 검색한 경우 
-			 if(keyword!="") {
+			 if(!keyword.equals("")) {
+				 System.out.println("위치 설정+키워드 검색!!!");
 				 System.out.println("설정한 주소는????"+searchLoc1+searchLoc2);
 				 System.out.println("검색한 키워드는????"+keyword);
 				 mv.addObject("keyword", keyword);
@@ -235,13 +236,16 @@ public class ShopListController {
 			 }
 			
 			// 위치만 설정한 경우
-			if(keyword=="") {
+			if(keyword.equals("")) {
+				System.out.println("위치만 설정함!!!!!!!");
 				System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
 				
 				
 				Map<String,Object> map1 = new HashMap<String,Object>();
 				 map1.put("searchLoc1", searchLoc1);
 				 map1.put("searchLoc2", searchLoc2);
+				 mv.addObject("searchLoc1", searchLoc1);
+				 mv.addObject("searchLoc2", searchLoc2);
 				 
 				// 검색 결과 카운팅
 					int total1 = shopListService.countHarListLocNew(map1); 
