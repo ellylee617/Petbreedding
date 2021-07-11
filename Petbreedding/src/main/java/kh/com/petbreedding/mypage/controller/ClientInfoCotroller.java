@@ -183,8 +183,14 @@ public class ClientInfoCotroller {
 
 	// 포인트내역
 	@RequestMapping("/point")
-	public String point(String cl_num, Model md) {
-
+	public String point(String cl_num, Model md, HttpSession session) {
+		
+		// 알림 내역 페이지에서 넘어왔을 시
+		if(cl_num==null||cl_num.equals("")) {
+			Client client = (Client) session.getAttribute("client");
+			cl_num = client.getCl_num();
+		}
+		
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(cl_num);
 
@@ -261,12 +267,13 @@ public class ClientInfoCotroller {
 		int total = myAskService.clBpListCount(user_num);
 		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		System.out.println("[세훈] @일대일 문의 컨트롤러 user_num : " + user_num);
+
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userNum", user_num);
 		map.put("start", Integer.toString(page.getStart()));
 		map.put("end", Integer.toString(page.getEnd()));
-		
+
 		List<MyAsk> myAskList = myAskService.MyAskSelectList(map);
 		
 		md.addAttribute("paging", page);
