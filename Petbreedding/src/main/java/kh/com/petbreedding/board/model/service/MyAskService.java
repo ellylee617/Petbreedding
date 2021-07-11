@@ -11,7 +11,9 @@ public interface MyAskService {
 	public int listCount();
 	public int clBpListCount(String user_num);
 	public List<MyAsk> MyAskSelectList(Map<String, Object> map);
-	public List<MyAsk> MyAskSelectListM(int currentPage, int limit);
+	public List<MyAsk> MyAskSelectListM(Map<String, String> map);
+	public List<MyAsk> MyAskSelectListClBpM(Map<String, String> map);
+	public List<MyAsk> MyAskSelectListClBpAllM(Map<String, String> map);
 	public MyAsk MyAskSelectDetail(String qna_num);
 	public int MyAskInsert(MyAsk myAsk);
 	public int MyAskDelete(String qna_num);

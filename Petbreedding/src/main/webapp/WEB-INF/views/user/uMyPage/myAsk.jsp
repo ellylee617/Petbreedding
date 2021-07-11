@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/user/myPageAside.css"	rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/user/uMyPage/myAsk.css" rel="stylesheet"	type="text/css">
+<link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
@@ -70,6 +71,29 @@
 
 				</table>
 			</div>
+			
+		    <!-- 페이징 시작-->
+			<div class="page_wrap">
+				<div class="page_nation">
+					<c:if test="${paging.startPage != 1 }">
+						<a class="arrow prev" href="${path}/mypage/ask?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&user_num=${user_num}">이전</a> 
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a href="${path}/mypage/ask?nowPage=${p }&cntPerPage=${paging.cntPerPage}&user_num=${user_num}">${p}</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<a class="arrow next" href="${path}/mypage/ask?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&user_num=${user_num}">다음</a>
+					</c:if>
+				</div>
+			</div>
+			<!-- 페이징 끝! -->		
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>

@@ -30,11 +30,16 @@ public class MyAskDao {
 		return sqlSession.selectOne("MyAsk.clBpListCount", user_num);
 	}
 	
-	public List<MyAsk> MyAskSelectListM(int currentPage, int limit) {
-		int startRow = (currentPage -1) * limit;
-		RowBounds row = new RowBounds(startRow, limit);
-		
-		return sqlSession.selectList("MyAsk.MyAskSelectListM", null, row);
+	public List<MyAsk> MyAskSelectListM(Map<String, String> map) {
+		return sqlSession.selectList("MyAsk.MyAskSelectListM", map);
+	}
+	
+	public List<MyAsk> MyAskSelectListClBpAllM(Map<String, String> map) {
+		return sqlSession.selectList("MyAsk.MyAskSelectListClBpAllM", map);
+	}
+	
+	public List<MyAsk> MyAskSelectListClBpM(Map<String, String> map) {
+		return sqlSession.selectList("MyAsk.MyAskSelectListClBpM", map);
 	}
 	
 	public MyAsk MyAskSelectOne(String qna_num) {

@@ -56,17 +56,44 @@ public class MyAskServiceImpl implements MyAskService {
 	}
 	
 	@Override
-	public List<MyAsk> MyAskSelectListM(int currentPage, int limit) {
-		List<MyAsk> result = null;
+	public List<MyAsk> MyAskSelectListM(Map<String, String> map) {
+		List<MyAsk> resultM = null;
 		
 		try {
-			result = myAskDao.MyAskSelectListM(currentPage, limit);
-			System.out.println("[세훈] @일대일 문의 서비스M result : " + result);
+			resultM = myAskDao.MyAskSelectListM(map);
+			System.out.println("[세훈] @일대일 문의 서비스M result : " + resultM);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return resultM;
 	}
+	
+	@Override
+	public List<MyAsk> MyAskSelectListClBpM(Map<String, String> map) {
+		List<MyAsk> resultClBp = null;
+		
+		try {
+			resultClBp = myAskDao.MyAskSelectListClBpM(map);
+			System.out.println("[세훈] @일대일 문의 서비스ClBpM resultClBp : " + resultClBp);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return resultClBp;
+	}
+	
+	@Override
+	public List<MyAsk> MyAskSelectListClBpAllM(Map<String, String> map) {
+		List<MyAsk> resultClBpAll = null;
+		
+		try {
+			resultClBpAll = myAskDao.MyAskSelectListClBpAllM(map);
+			System.out.println("[세훈] @일대일 문의 서비스ClBpM resultClBp : " + resultClBpAll);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return resultClBpAll;
+	}
+	
 
 	@Override
 	public MyAsk MyAskSelectDetail(String qna_num) {
@@ -119,8 +146,6 @@ public class MyAskServiceImpl implements MyAskService {
 		
 		return maDelResult;
 	}
-
-
 
 
 }

@@ -448,7 +448,7 @@ public class BoardController {
 			HttpServletRequest req
 			,HttpServletResponse res
 			,String bp_id
-			, int type
+			,int type
 			) throws IOException {
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("application/json; charset=UTF-8");

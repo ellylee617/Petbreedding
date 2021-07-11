@@ -55,8 +55,48 @@
 		]]>
 	</select>
 	
-	<select id="MyAskSelectListM" parameterType="MyAsk" resultMap="MyAskMap">
-		SELECT * FROM QNA_BOARD
+	<select id="MyAskSelectListM" parameterType="map" resultMap="MyAskMap">
+	 	<![CDATA[
+		 	SELECT B.*
+			FROM (
+			    SELECT ROWNUM R, A.*
+			    FROM(
+			        SELECT * FROM QNA_BOARD 
+			        ORDER BY SUBSTR(QNA_NUM,-3) DESC
+			    ) A
+			)B
+			WHERE R>= #{start} AND R<=#{end}
+		]]>
+	</select>
+	
+	<select id="MyAskSelectListClBpM" parameterType="map" resultMap="MyAskMap">
+	 	<![CDATA[
+		 	SELECT B.*
+			FROM (
+			    SELECT ROWNUM R, A.*
+			    FROM(
+			        SELECT * FROM QNA_BOARD
+			        WHERE QNA_TYPE = #{qnaType} AND QNAR_CHK = #{qnaChk}
+			        ORDER BY SUBSTR(QNA_NUM,-3) DESC
+			    ) A
+			)B
+			WHERE R>= #{start} AND R<=#{end}
+		]]>
+	</select>
+	
+		<select id="MyAskSelectListClBpAllM" parameterType="map" resultMap="MyAskMap">
+	 	<![CDATA[
+		 	SELECT B.*
+			FROM (
+			    SELECT ROWNUM R, A.*
+			    FROM(
+			        SELECT * FROM QNA_BOARD
+			        WHERE QNAR_CHK = #{qnaChk}
+			        ORDER BY SUBSTR(QNA_NUM,-3) DESC
+			    ) A
+			)B
+			WHERE R>= #{start} AND R<=#{end}
+		]]>
 	</select>
 	
 	<select id="MyAskSelectOne" parameterType="string" resultMap="MyAskMap">

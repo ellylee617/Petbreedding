@@ -38,7 +38,7 @@
 				
 				<div class="conimg">
 					<c:choose>
-						<c:when test="${mAsk.qnaImg eq none}">
+						<c:when test="${mAsk.qnaImg eq 'none'}">
 						    <img src="http://placehold.it/400x300">
 						</c:when>
 						<c:otherwise>
