@@ -63,8 +63,27 @@ public class ShopPayController {
 	//결제시 포인트 사용
 	@RequestMapping("myPoint")
 	@ResponseBody
-	public int myPointUpdate(MyPoint myPoint) {
+	public int myPointUpdate(MyPoint myPoint, HttpSession session) {
 		int result = myPointService.myPointUpdate(myPoint);
+		
+		// 알림 내역에 인서트
+		Client client = (Client) session.getAttribute("client");
+		String cl_num = client.getCl_num();
+		String shopName = myPoint.getExpFrom();
+		
+		Notice notice = new Notice();
+		notice.setNotReceiver(cl_num);
+		notice.setRefNum(shopName);
+		
+		int noticeResult = 0;
+		
+		noticeResult = noticeService.inPointUsing(notice);
+		
+		if(noticeResult==1) {
+			System.out.println("알림 인서트 성공");
+		} else {
+			System.out.println("알림 인서트 실패");
+		}
 		
 		return result;
 	}
