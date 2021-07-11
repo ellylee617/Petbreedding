@@ -211,6 +211,7 @@ select  C.*
 			) TABLE1
 			JOIN my_cta TABLE2
 			ON TABLE1.BP_ID = TABLE2.BP_ID
+			order by table2.cta_number DESC
 			</select>
 		 	
 		 	<!-- 울트라콜 사업장 평균 별점 -->
@@ -430,6 +431,7 @@ select  C.*
 			) TABLE1
 			JOIN my_cta TABLE2
 			ON TABLE1.BP_ID = TABLE2.BP_ID
+			ORDER BY table2.cta_number DESC
 		</select>
 	
 	<!-- 동물병원 전체 리스트 -->

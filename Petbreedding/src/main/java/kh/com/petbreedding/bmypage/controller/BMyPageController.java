@@ -87,7 +87,7 @@ public class BMyPageController {
 	}
 
 	// 사장님 마이 페이지 공지사항
-	@RequestMapping(value = "/bNotice", method = RequestMethod.GET)
+	@RequestMapping(value = "/bNotice")
 	public String bNotice(Locale locale, Model model) {
 
 		// TODO Auto-generated method stub

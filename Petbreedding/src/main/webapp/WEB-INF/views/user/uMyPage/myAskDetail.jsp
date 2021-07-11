@@ -30,7 +30,7 @@
 				</tr>
 				<tr class="asktblImg">
 					<c:choose>
-						<c:when test="${myAskDetail.qnaImg eq null}">
+						<c:when test="${myAskDetail.qnaImg eq none}">
 							<td colspan="2"><img src="http://placehold.it/500x300"></td>
 						</c:when>
 						<c:otherwise>

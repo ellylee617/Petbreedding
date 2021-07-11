@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +30,7 @@ import com.google.gson.GsonBuilder;
 import kh.com.petbreedding.Admin.model.service.AdminService;
 import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.board.model.service.BoardService;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
@@ -52,6 +55,9 @@ public class AdminController {
 	
 	@Autowired
 	private MyAskCommentService myAskCommentService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	public final int LIMIT = 5;
 	
@@ -472,7 +478,28 @@ public class AdminController {
 
 	// 게시글 관리 (자유게시판 목록)
 	@RequestMapping(value = "/mfreeboard")
-	public String mfreeboard(Locale locale, Model model) {
+	public String mfreeboard(
+			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,Pagination page
+			,Model md
+			) {
+		
+		int total = boardService.listCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<Board> list = boardService.selectBoardList(page);
+		
+		md.addAttribute("paging", page);
+		md.addAttribute("myList", list);
+		
+		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 page : " + page);
+		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 list : " + list);
+		
 		return "/admin/aBoard/mfreeboard";
 	}
 

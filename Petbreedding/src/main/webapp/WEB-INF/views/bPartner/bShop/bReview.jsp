@@ -135,7 +135,7 @@
 							+ "<p id='reDate'>"+data.revDate+" 방문</p>"
 							+ "</div>"
 							+ "<div id='modalReImg'>"
-							+ "<img id='modalReImg' src='http://ipsumimage.appspot.com/100x100'>"
+							+ "<img id='modalReImg' src='"+path+"/resources/uploadFile/review/"+data.revImg+"' style='width:100px; height:100px;'>"
 							+ "</div>"
 							+ "<br>"
 							+ "<br>"
