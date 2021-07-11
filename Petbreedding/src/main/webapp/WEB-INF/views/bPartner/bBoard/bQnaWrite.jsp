@@ -33,11 +33,6 @@
 	            	<input type="file" id="realInput" name="myAskImg" accept=".jpg, .png" >
 	            </div>
 				<input type="hidden" name="userType" value="2">
-	            
-	                <div class="qnatitle">
-	            		<h1 id="h1">제목</h1>
-	                   <input id="title" type="text" class="myAskTitle" name="myAskTitle" placeholder="글 제목을 입력해주세요">
-	                </div>
 	            <div class="qnacontent">
 	                <textarea id="content" placeholder="1:1문의내용을 작성해주세요" name="myAskCont"></textarea>
 	            </div>

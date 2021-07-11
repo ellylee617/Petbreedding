@@ -36,6 +36,7 @@ import com.google.gson.GsonBuilder;
 import kh.com.petbreedding.board.model.vo.B_comment;
 import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.CustomerService;
+import kh.com.petbreedding.board.model.vo.OftenQna;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.common.model.vo.Pagination;
@@ -44,6 +45,7 @@ import kh.com.petbreedding.mypage.model.vo.Notice;
 import kh.com.petbreedding.board.model.service.BCommentService;
 import kh.com.petbreedding.board.model.service.BoardService;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
+import kh.com.petbreedding.board.model.service.OftenQnaService;
 import kh.com.petbreedding.board.model.service.ReviewService;
 
 @Controller
@@ -63,7 +65,10 @@ public class BoardController {
 	
 	@Autowired
 	private NoticeService noticeService;
-
+	
+	@Autowired
+	private OftenQnaService oftenQnaService;
+	
 	public final int LIMIT = 5;
 
 	// 게시글 목록 + 페이징 + 검색
@@ -646,11 +651,29 @@ public class BoardController {
 		return "/user/uBoard/UcustomerService";
 	}
 
+	
+	//자주묻는 질문 조회
 	@RequestMapping(value = "/oftenqna", method = RequestMethod.GET)
-	public String oftenqna(Locale locale, Model model) {
+	public String oftenqna(Locale locale, Model model, Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		int total = oftenQnaService.COftenCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<OftenQna> list = oftenQnaService.COftenQna(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("paging", page);
 		return "/user/uBoard/oftenqna";
 	}
 
+	
+	
+	
 	@RequestMapping(value = "/mypet", method = RequestMethod.GET)
 	public String mypet(Locale locale, Model model) {
 		return "/user/uMyPage/mypet";
