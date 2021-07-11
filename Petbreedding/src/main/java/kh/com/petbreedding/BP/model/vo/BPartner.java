@@ -13,6 +13,8 @@ public class BPartner {
 	private int bp_aprve;		//사업자 승인여부( 0 : false / 1: true)
 	private int bp_delete;		//사업자 제휴취소여부( 0 : false / 1: true)
 	private int bp_reg;			//사업장 등록 여부 (0:false / 1:true)	
+	private String reg_date;  	//사업자 가입날짜
+	
 
 	
 	@Override
@@ -20,9 +22,8 @@ public class BPartner {
 		return "BPartner [bp_Id=" + bp_Id + ", bp_pwd=" + bp_pwd + ", bp_name=" + bp_name + ", bp_tel=" + bp_tel
 				+ ", bp_bank=" + bp_bank + ", bp_acnt=" + bp_acnt + ", bp_email=" + bp_email + ", bp_num=" + bp_num
 				+ ", bp_type=" + bp_type + ", bp_aprve=" + bp_aprve + ", bp_delete=" + bp_delete + ", bp_reg=" + bp_reg
-				+ "]";
+				+ ", reg_date=" + reg_date + "]";
 	}
-	
 	public int getBp_reg() {
 		return bp_reg;
 	}
@@ -97,8 +98,12 @@ public class BPartner {
 	public void setBp_delete(int bp_delete) {
 		this.bp_delete = bp_delete;
 	}
-	
-	
+	public String getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
+	}
 	
 }
 

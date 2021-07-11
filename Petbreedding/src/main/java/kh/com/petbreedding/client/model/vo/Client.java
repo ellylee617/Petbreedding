@@ -10,11 +10,15 @@ public class Client {
 	private String tel;
 	private String naverlogin;
 	private String kakaologin;
+	private String reg_date;
 	
+
+
 	@Override
 	public String toString() {
 		return "Client [email=" + email + ", password=" + password + ", cl_num=" + cl_num + ", nickname=" + nickname
-				+ ", name=" + name + ", tel=" + tel + "]";
+				+ ", name=" + name + ", tel=" + tel + ", naverlogin=" + naverlogin + ", kakaologin=" + kakaologin
+				+ ", reg_date=" + reg_date + "]";
 	}
 
 	public String getEmail() {
@@ -79,6 +83,14 @@ public class Client {
 
 	public void setKakaologin(String kakaologin) {
 		this.kakaologin = kakaologin;
+	}
+
+	public String getReg_date() {
+		return reg_date;
+	}
+
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
 	}
 
 	
