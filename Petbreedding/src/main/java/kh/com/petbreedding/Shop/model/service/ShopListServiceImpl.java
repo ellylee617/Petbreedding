@@ -99,6 +99,19 @@ public class ShopListServiceImpl implements ShopListService {
 					return list;
 				}
 				
+				// 동물병원 위치 검색 인기순 정렬
+				@Override
+				public List<Hospital> selectHosListLocLike(Map<String, Object> map) {
+					System.out.println("shopListService selectHosListLocLike() 실행");
+					List<Hospital> list = null;
+					try {
+						list = shopListDao.selectHosListLocLike(map);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return list;
+				}
+				
 				
 				
 				

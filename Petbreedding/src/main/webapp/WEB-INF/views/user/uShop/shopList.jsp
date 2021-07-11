@@ -179,12 +179,88 @@
                
                
                
+               <!-- 동물병원 위치검색 인기순 정렬 -->
                
+               <c:if test="${!empty hosListLocLike }">
+			
+			<div id="hosListLocLike" class="listLocLike" style="display: none;">
+			
+				
+				<div class="storeS">
+	            <c:forEach items="${hosListLocLike}" var="item" varStatus="status" >
+	                <ul>
+	                    <div class="Store">                      
+	                       <li class="storeList">
+	                       
+	                            <div class="storeList_inner">
+	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
+	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
+	                                <div class="storeList_etc_area">
+	                                    <a href="#">리뷰<small> 
+	                                    <c:if test="${!empty loc_like_revAvg[status.index]}">
+	                                            <i class="fas fa-star rate"></i>&nbsp;${loc_like_revAvg[status.index] }
+	                                       </c:if>
+	                                    <c:if test="${empty loc_like_revAvg[status.index]}">
+	                                            <i class="fas fa-star rate"></i>&nbsp;0.0
+	                                       </c:if>
+	                                    <c:if test="${!empty loc_like_revCount[status.index] }">
+	                                       &nbsp;(${loc_like_revCount[status.index]}+)
+	                                    </c:if>
+	                                    <c:if test="${empty loc_like_revCount[status.index]}">
+	                                    &nbsp;(0)
+	                                    </c:if>
+	                                    </small>
+	                                    </a>
+	                                    <a href="#">구매건수<small>999+</small></a>
+	                                  <a href="#">찜하기 <small> ${loc_like_count[status.index]}</small></a>
+	                                </div>
+	                                 <form class="frmShopInfo" >
+	                                 <div class="storeList_button">
+	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+	                                </div>
+	                               </form>
+	                            </div>                                                            
+	                        </li>
+	                    </div>
+	                </ul>
+	                </c:forEach>
+	                </div>
+                           <!-- 페이징 시작-->
+				            <div class="page_wrap">
+				               <div class="page_nation">
+				                  <c:if test="${loc_paging.startPage != 1 }">
+				                     <a class="arrow prev" href="${path}/shopList/all?shopType=${shopType}&nowPage=${loc_paging.startPage - 1 }&cntPerPage=${loc_paging.cntPerPage}">이전</a> 
+				                  </c:if>
+				                  <c:forEach begin="${loc_paging.startPage }" end="${loc_paging.endPage }" var="p">
+				                     <c:choose>
+				                        <c:when test="${p == loc_paging.nowPage }">
+				                           <b>${p }</b>
+				                        </c:when>
+				                        <c:when test="${p != loc_paging.nowPage }">
+				                           <a href="${path}/shopList/all?shopType=${shopType}&nowPage=${p }&cntPerPage=${loc_paging.cntPerPage}">${p}</a>
+				                        </c:when>
+				                     </c:choose>
+				                  </c:forEach>
+				                  <c:if test="${loc_paging.endPage != loc_paging.lastPage}">
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
+				                  </c:if>
+				               </div>
+				            </div>
+          			  <!-- 페이징 끝! -->
+               </div>
+               
+               </c:if>
+				<!-- 동물병원 위치 검색 인기순 정렬 완료 -->               
                
       
       
 		<c:if test="${empty  keywordHosListNew}">
 		<c:if test="${empty  hosListLocNew}">
+		<!-- 동물병원 위치 검색 정렬 완료 -->
+		
+		
+		
 		
 		<!-- ************* 동물병원 전체 리스트 **************** -->
 				<hr id="storeLine">

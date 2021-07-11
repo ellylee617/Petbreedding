@@ -115,6 +115,34 @@
 							WHERE #{start}<= R AND R <= #{end}
 					]]>
 				</select>
+				
+				<!-- 동물병원 위치 검색 인기순 정렬 -->
+				<select id="selectHosListLocLike" parameterType="hashmap" resultMap="Hospital">
+				<![CDATA[
+					SELECT  C.*
+						FROM(
+						    SELECT B.* 
+						    FROM(
+						        SELECT ROWNUM R , A.*
+			                    FROM(
+				                	SELECT hos.*, hl.likes
+				                    FROM hospital HOS
+				                    LEFT JOIN
+				                        (SELECT h.hos_num, COUNT(*) LIKES
+				                            FROM hospital H
+				                            JOIN likes L
+				                            ON (h.hos_num = l.hos_num)
+				                            GROUP BY h.hos_num
+				                    ) HL
+				                    ON HOS.hos_num = HL.hos_num 
+									WHERE HOS.hos_addr LIKE #{searchLoc1} || '%' AND HOS.hos_addr LIKE '%' ||  #{searchLoc2} || '%'
+				                    ORDER BY LIKES DESC NULLS LAST
+			                     )A
+						    )B
+						) C
+						WHERE #{start}<= R AND R <= #{end}			
+				]]>
+				</select>
 			
 		<!-- 동물병원 전체 리스트 -->
 	

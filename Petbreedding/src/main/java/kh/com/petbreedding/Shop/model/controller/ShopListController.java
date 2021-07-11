@@ -648,6 +648,38 @@ public class ShopListController {
 								revCountList.add(revCount);
 								mv.addObject("loc_new_revCount", revCountList);
 							}
+							
+							// 미용실 위치 검색 결과 인기순 정렬 
+							
+							 List<Hospital> hosListLocLike = shopListService.selectHosListLocLike(map1);
+							 System.out.println("위치로 검색한 동물병원 인기순으로 정렬해줘!!!:"+hosListLocLike);
+							 mv.addObject("hosListLocLike", hosListLocLike);
+							
+								List<String> countList3 = new ArrayList<String>();
+								List<String> avgList3 = new ArrayList<String>();
+								List<String> revCountList3 = new ArrayList<String>();
+							
+								for(int i =0; i<hosListLocLike.size(); i++) {
+									
+									// 찜한 숫자 가져오기
+									// + 별점 출력 
+									hos_num = hosListLocLike.get(i).getHosNum();
+									bpId = hosListLocLike.get(i).getBpId();
+									
+									String count = likeService.countSalon(hos_num); //찜
+									countList3.add(count);
+									mv.addObject("loc_like_count", countList3);
+									
+									String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
+									avgList3.add(revAvg);
+									mv.addObject("loc_like_revAvg", avgList3);
+									
+									String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+									revCountList3.add(revCount);
+									mv.addObject("loc_like_revCount", revCountList3);
+								}
+							
+							
 			
 						}
 			

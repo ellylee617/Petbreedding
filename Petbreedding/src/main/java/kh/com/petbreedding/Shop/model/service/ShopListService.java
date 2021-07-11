@@ -50,6 +50,10 @@ public interface ShopListService {
 			public  int countHosListLocNew(Map<String,Object> map);
 			// 동물병원 위치 검색 최신순 정렬
 			public List<Hospital> selectHosListLocNew(Map<String,Object> map);
+			// 동물병원 위치 검색 인기순정렬
+			public List<Hospital> selectHosListLocLike(Map<String,Object> map);
+			
+			
 		
 	// 미용실
 		
