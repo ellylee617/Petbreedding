@@ -1,6 +1,8 @@
 var boNum = $("#boUpdBoNum").val();
 var closeBtn = $("#closeBtnUpdComment");
 var cl_num = $("#cl_num").val();
+var userType = $("#userType").val();
+console.log(userType);
 $(function(){
 	$.ajax({
 		url: 'bocList'
@@ -29,6 +31,11 @@ $(function(){
 						div +=  "<div class='replyUpdDel'>";
 						div +=  "<p name='"+item.coNum+"' class='fboCommentUpdBtn'>수정</p>";
 						div += "<p id='"+item.coNum+"' class='fboCommentDelBtn'>삭제</p>";
+						div +=  "</div>";
+					}
+					else if(userType != "" && userType != null) {
+						div +=  "<div class='replyUpdDel adDelBox'>";
+						div += "<p id='"+item.coNum+"' class='fboCommentDelBtn adDelComment'>삭제</p>";
 						div +=  "</div>";
 					}
 					div += "</div>";

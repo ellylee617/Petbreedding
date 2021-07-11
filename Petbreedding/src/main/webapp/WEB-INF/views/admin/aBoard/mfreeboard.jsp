@@ -55,9 +55,8 @@
 						</table>
 					</div>
 					<div class="myboardrow">
-						<button class="basicBtn" id="basicBtn">
-							<a href="#">삭제</a>
-						</button>
+						<button class="basicBtn" id="deleteBoard">삭제</button>
+						<input type="hidden" id="userType" value="${userType}">
 					</div>
 					
 					
@@ -90,6 +89,6 @@
 	</div>
 	<!-- script -->
 	<script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
-<%-- 	<script src="${path}/resources/js/user/uBoard/service.js"></script> --%>
+	<script type="text/javascript" src="${path}/resources/js/admin/aBoard/mfreeboard.js"></script>
 </body>
 </html>

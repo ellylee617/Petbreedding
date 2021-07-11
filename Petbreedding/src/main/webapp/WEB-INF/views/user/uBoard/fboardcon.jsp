@@ -21,6 +21,7 @@
 		<jsp:include page="../../common/header.jsp" />
 		<section class="section">
 			<input type="hidden" value="${client.cl_num }" id="cl_num">
+			<input type="hidden" value="${userType}" id="userType">
 			<div class="bheader">
 
 				<c:if test="${empty board}">
