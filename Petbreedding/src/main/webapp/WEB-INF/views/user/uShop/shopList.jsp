@@ -52,7 +52,7 @@
 	                                    <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
 	                                </div>
 	                                <div class="ultraList_button">
-	                                    <a href="shopPage?bpId=${hos.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+	                                    <a href="../shopPage?bpId=${hos.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
 	                                </div>
 	                            </div>                                                            
 	                        </li>
@@ -113,7 +113,7 @@
                                        <a href="#">구매건수<small>999+</small></a>
                                        <a href="#">찜하기 <small> ${count[status.index]}</small></a>
                                    </div>
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                              </div>
                         </li>
                      </div>                                                            
@@ -180,7 +180,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${item.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -309,7 +309,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -400,7 +400,7 @@
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -443,7 +443,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -522,7 +522,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -590,7 +590,7 @@
                                     <a href="#">찜하기 <small> ${count2[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -630,7 +630,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -720,7 +720,7 @@
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=${shopType}"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -765,7 +765,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -834,7 +834,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -901,7 +901,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
