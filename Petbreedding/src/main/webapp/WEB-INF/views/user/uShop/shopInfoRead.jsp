@@ -143,16 +143,6 @@
                         <hr> 
                         <div class="reviews">
 							<div id="reviewArea"></div>
-<!--                             <div class="reply"> -->
-<!--                                 <div class="replyCon"> -->
-<!--                                     <p>또비언니님 찾아주셔서 감사합니다.</p> -->
-<!--                                     <p>다음에 더 좋은 서비스로 보답하겠습니다.</p> -->
-<!--                                 </div> -->
-<!--                                 <div class="replyInfo"> -->
-<!--                                     <span>쿨펫미용실</span> -->
-<!--                                     <span class="replyDate">2021-05-31 오전 11:30</span> -->
-<!--                                 </div> -->
-<!--                             </div> -->
                         </div>                                    
                     </div>            
                 </div> <!--store_review_article-->

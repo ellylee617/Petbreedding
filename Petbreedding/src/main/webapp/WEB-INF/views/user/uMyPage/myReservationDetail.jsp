@@ -12,6 +12,10 @@
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/user/myPageAside.css"	rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/user/uMyPage/myReservationDetail.css"	rel="stylesheet" type="text/css">
+
+<!-- 지도 api -->
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffd90e8fd83a8d1b7acd8b168a81415f&libraries=services"></script>
+
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"></script>
 </head>
 <body>
@@ -124,13 +128,17 @@
                 <div class="rborder dmap">
                     <p class="rOrderTitle">오시는 길</p>
                     <br>
-                    <div class="map">지도공간~!</div>
+                    <div class="mapFrame">
+                        <div id="map" class="mapBox map">
+                            </div>
+                        </div>
                     <div class="rText">
                     	<c:forEach items="${myRev}" var="myRev">
                         <p class="rTextBold">업체명</p>
                         <p>${myRev.hairSalon.shopName }</p>
-                        <p class="rTextBold">주소</p>
+                        <p class="rTextBold" >주소</p>
                         <p>${myRev.hairSalon.shopAddr }</p>
+                        <input type="hidden" id="shopAddr" value="${myRev.hairSalon.shopAddr }">
                         <p class="rTextBold">전화번호</p>
                         <p>${myRev.hairSalon.shopTel }</p>
                         </c:forEach>
@@ -156,5 +164,6 @@
     
     <!-- script -->
     <script src="${path}/resources/js/user/uMyPage/myReservationDetail.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/common/map.js"></script>
 </body>
 </html>
