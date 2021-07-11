@@ -31,21 +31,21 @@
 							<span>구매자 정보</span>
 						</div>
 						<div class="mt15">
-							<span>구매자명</span> <span id="name" >${bP.bp_name}</span>
+							<span class="info">구매자명  </span> <span id="name" >${bP.bp_name}</span>
 							<input type="hidden" id="BP_ID" value="${bP.bp_Id}"/>
 						</div>
 						<div class="mt15">
-							<span>연락처</span> <span id="tel">${bP.bp_tel}</span>
+							<span class="info">연락처 </span> <span id="tel">${bP.bp_tel}</span>
 						</div>
 						<div class="mt15">
-							<span>이메일</span> <span id="email">${bP.bp_email}</span>
+							<span class="info">이메일  </span> <span id="email">${bP.bp_email}</span>
 						</div>
 					</div>
 
 					<main>
 						<div>
 							<div class="container spaceBw">
-								<span>결제 상품</span> <span id="CM_TYPE">${vo.CM_TYPE}</span>
+								<span>결제 상품</span> <span id="CM_TYPE">${vo.CM_TYPE} 회 이용권</span>
 								<input type="hidden" id="CM_CODE" value="${vo.CM_CODE}"/>
 							</div>
 

@@ -106,7 +106,7 @@
                 </div>
                 <div class="btnBox">
                     <button class="chatBtn basicBtn">1:1 채팅하기</button>
-                    <button class="cancleBtn basicBtn" id="cancleBtn">취소하기</button>
+                    <button class="cancleBtn basicBtn" id="cancleBtn">이용 취소하기</button>
                 </div>
               
                 
