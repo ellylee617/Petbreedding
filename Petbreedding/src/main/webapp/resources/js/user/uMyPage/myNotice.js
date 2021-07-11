@@ -1,3 +1,26 @@
+// 알림 클릭 이벤트
+function connectWindow(innotCon, inRefNum) {
+	var notCon = innotCon
+	var RefNum = inRefNum;
+	if(notCon=='a1'||notCon=='a2'||notCon=='a8'){
+		if(RefNum.indexOf("hos")!=-1){
+			location.href ="/petbreedding/revdetail2?hos_rnum="+RefNum;
+		}else{
+			location.href ="/petbreedding/revdetail?har_rnum="+RefNum;
+		}
+	}
+	if(notCon=='a4'){
+		location.href="/petbreedding/fboardcon?boNum="+RefNum;
+	}
+	if(notCon=='a5'){
+		location.href="/petbreedding/mypage/askdetail?qna_num="+RefNum;
+	}
+	if(notCon=='a6'||notCon=='a7'){
+		location.href="/petbreedding/point";
+	}
+	
+}
+
 // 알림 삭제
 function deleteNotice(inNotNum) {
 	event.stopPropagation();

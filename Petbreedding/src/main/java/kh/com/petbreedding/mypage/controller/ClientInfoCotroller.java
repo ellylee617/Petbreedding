@@ -183,8 +183,14 @@ public class ClientInfoCotroller {
 
 	// 포인트내역
 	@RequestMapping("/point")
-	public String point(String cl_num, Model md) {
-
+	public String point(String cl_num, Model md, HttpSession session) {
+		
+		// 알림 내역 페이지에서 넘어왔을 시
+		if(cl_num==null||cl_num.equals("")) {
+			Client client = (Client) session.getAttribute("client");
+			cl_num = client.getCl_num();
+		}
+		
 		MyPoint myPoint = new MyPoint();
 		myPoint.setClNum(cl_num);
 
@@ -249,6 +255,11 @@ public class ClientInfoCotroller {
 
 	// 1:1 문의 내역
 	@RequestMapping("/mypage/ask")
+<<<<<<< HEAD
+	public String ask(HttpSession session, String user_num, Model md, Pagination page,
+			@RequestParam(value = "nowPage", defaultValue = "1") String nowPage,
+			@RequestParam(value = "cntPerPage", defaultValue = "5") String cntPerPage) {
+=======
 	public String ask(
 			HttpSession session
 			,String user_num
@@ -257,18 +268,29 @@ public class ClientInfoCotroller {
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			) {
+>>>>>>> 833c4c2ab5536e5cfd64b94bc7cdbc69dcbbb49b
 
 		int total = myAskService.clBpListCount(user_num);
 		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		System.out.println("[세훈] @일대일 문의 컨트롤러 user_num : " + user_num);
+<<<<<<< HEAD
+
+=======
 		
+>>>>>>> 833c4c2ab5536e5cfd64b94bc7cdbc69dcbbb49b
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userNum", user_num);
 		map.put("start", Integer.toString(page.getStart()));
 		map.put("end", Integer.toString(page.getEnd()));
+<<<<<<< HEAD
+
+		List<MyAsk> myAskList = myAskService.MyAskSelectList(map);
+
+=======
 		
 		List<MyAsk> myAskList = myAskService.MyAskSelectList(map);
 		
+>>>>>>> 833c4c2ab5536e5cfd64b94bc7cdbc69dcbbb49b
 		md.addAttribute("paging", page);
 		md.addAttribute("myAskList", myAskList);
 		md.addAttribute("user_num", user_num);
