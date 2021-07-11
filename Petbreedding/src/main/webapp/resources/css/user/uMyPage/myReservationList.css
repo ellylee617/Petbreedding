@@ -135,13 +135,18 @@
 	position: relative;
 	background-color: var(--font-color);
 }
-
+#fileName{
+    font-size: 14px;
+    margin-left: 10px;
+}
 .modalRe-Win textarea {
 	resize: none;
 	overflow-y: auto;
 	border: 1px solid #aaa;
 }
-
+#revCont{
+	width: 310px;
+}
 .modal_close_btn {
 	float: right;
 }
@@ -152,7 +157,11 @@
 }
 
 .btnReCom {
-	float: right;
+    float: right;
+    width: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    height:40px ;
 }
 /* 셀렉트 영역 스타일 */
 .select {
