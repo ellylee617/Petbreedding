@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chart">
+
+<!-- 멤버 전체수 -->
+<select id="memberCount" resultType="int">
+	 select count(*) from client 
+</select>
+
+<!-- 사업자수 전체수 -->
+<select id="bpCount" resultType="int">
+select count(*) from business_partner
+</select>
+
+<!-- 멤버 월별 차트 -->
+<select id="memberMonth" resultType="int" parameterType="string">
+	select count(*) from client where reg_date = #{reg_date}
+</select>
+
+<!-- 사용자 월별 차트 -->
+<select id="bpMonth" resultType="int" parameterType="string">
+	select count(*) from business_partner where reg_date = #{reg_date}
+
+</select>
+</mapper>

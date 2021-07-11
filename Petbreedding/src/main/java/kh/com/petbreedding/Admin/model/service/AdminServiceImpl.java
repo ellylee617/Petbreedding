@@ -111,5 +111,71 @@ public class AdminServiceImpl implements AdminService{
 		return result;
 	}
 
+	@Override
+	public int getMemberCount() {
+		int result = 0;
+			try {
+				result =  aDao.getMemberCount();
+			if(result > 0) {
+				System.out.println("회원수 차트조회 들어옴");
+			}else {
+				System.out.println("=====회원수 차트조회 실패=======");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getBpCount() {
+		int result = 0;
+	try {
+		result =  aDao.getBpCount();
+		if(result > 0 ) {
+			System.out.println("사업자수 차트조회 들어옴");
+		}else {
+			System.out.println("=====사업자수 차트조회 실패======");
+		}
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+		
+		return result;
+	}
+
+	@Override
+	public int getMemChart(String reg_date) {
+		int result = 0;
+		try {
+			result = aDao.getMemChart(reg_date);
+			
+			if(result > 0) {
+				System.out.println("멤버 날짜별 차트 들어옴");
+			}else {
+				System.out.println("*****멤버 날짜별 차트조회 실패****");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getBpChart(String reg_date) {
+		int result = 0;
+		try {
+			result = aDao.getBpChart(reg_date);
+			if(result > 0) {
+				System.out.println("사업자 날짜별 차트 들어옴");
+			}else {
+				System.out.println("*****사업자 날짜별 차트조회 들어옴****");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 
 }

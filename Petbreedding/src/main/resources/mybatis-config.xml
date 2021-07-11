@@ -71,6 +71,7 @@
 		<mapper resource="mappers/board/boardComment-mapper.xml"/>
 		<mapper resource="mappers/Mypage/notice-mapper.xml"/>
 		<mapper resource="mappers/board/reviewComment-mapper.xml"/>
+		<mapper resource="mappers/admin/chart.xml"/>
 	</mappers>
 	
 </configuration>
