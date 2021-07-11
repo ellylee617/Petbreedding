@@ -41,11 +41,8 @@ import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
-<<<<<<< HEAD
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
-=======
 import kh.com.petbreedding.board.model.service.MyAskCommentService;
->>>>>>> f3e2a7fce70b870158177883c4f700a6438789b0
 import kh.com.petbreedding.board.model.service.MyAskService;
 import kh.com.petbreedding.board.model.service.ReviewCommentService;
 import kh.com.petbreedding.board.model.service.ReviewService;

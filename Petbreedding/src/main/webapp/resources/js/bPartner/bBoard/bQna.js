@@ -3,11 +3,8 @@
  */
 
 $(function() {
-<<<<<<< HEAD
 	var userNum = $("#bpId").val();
 	console.log(userNum);
-=======
->>>>>>> f3e2a7fce70b870158177883c4f700a6438789b0
 	$(".pointline").click(function() {
 		var idVar = $(this).attr("id");
 		console.log(idVar);
