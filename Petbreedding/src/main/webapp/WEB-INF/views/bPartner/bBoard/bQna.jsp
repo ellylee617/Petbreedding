@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/bPartner/bheader.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bBoard/bQna.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
 <script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
@@ -52,6 +53,29 @@
 
 				</table>
 			</div>
+			
+			<!-- 페이징 시작-->
+			<div class="page_wrap">
+				<div class="page_nation">
+					<c:if test="${paging.startPage != 1 }">
+						<a class="arrow prev" href="${path}/fboardlist?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a href="${path}/fboardlist?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<a class="arrow next" href="${path}/fboardlist?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+					</c:if>
+				</div>
+			</div>
+			<!-- 페이징 끝! -->
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>

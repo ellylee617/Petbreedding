@@ -32,7 +32,7 @@
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
 				</div>
-				<div class="conWrap">
+				<div class="conWrap" onClick="connectWindow('${n.notCon}', '${n.refNum}');">
 					<div class="imgWrap">
 					<img src="${path}/resources/uploadFile/shop/${n.shopImg}">
 					</div>
@@ -47,7 +47,7 @@
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
 				</div>
-				<div class="conWrap">
+				<div class="conWrap" onClick="connectWindow('${n.notCon}', '${n.refNum}');">
 					<div class="imgWrap">
 					<img src="${path}/resources/uploadFile/shop/${n.shopImg}">
 					</div>
@@ -77,7 +77,7 @@
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
 				</div>
-				<div class="conWrap">
+				<div class="conWrap" onClick="connectWindow('${n.notCon}', '${n.refNum}');">
 					<div class="imgWrap">
 					<img src="${path}/resources/images/logo-square.png">
 					</div>
@@ -92,7 +92,7 @@
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
 				</div>
-				<div class="conWrap">
+				<div class="conWrap" onClick="connectWindow('${n.notCon}', '${n.refNum}');">
 					<div class="imgWrap">
 					<img src="${path}/resources/images/logo-square.png">
 					</div>
@@ -107,11 +107,11 @@
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div>&nbsp;&nbsp;<div class="dateWrap">${n.notTime }</div>
 				</div>
-				<div class="conWrap">
+				<div class="conWrap" onClick="connectWindow('${n.notCon}', '${n.refNum}');">
 					<div class="imgWrap">
 					<img src="${path}/resources/images/logo-square.png">
 					</div>
-					<div class="shopNameWrap">${n.refNum }</div><div class="msgWrap"> 에 대해 포인트가 적립되었습니다.</div>
+					<div class="shopNameWrap">${n.refNum }</div>&nbsp;&nbsp;<div class="msgWrap"> 리뷰 작성으로 포인트가 적립되었습니다.</div>
 					<a class="cancleM" onClick="deleteNotice('${n.notNum}');"><i class="far fa-times-circle"></i></a>
 				</div>
 			</div>
@@ -122,7 +122,7 @@
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
 				</div>
-				<div class="conWrap">
+				<div class="conWrap" onClick="connectWindow('${n.notCon}', '${n.refNum}');">
 					<div class="imgWrap">
 					<img src="${path}/resources/images/logo-square.png">
 					</div>
@@ -137,7 +137,7 @@
 				<div class="topWrap">
 				<div class="clockWrap"><i class="far fa-clock"></i></div><div class="dateWrap">${n.notTime }</div>
 				</div>
-				<div class="conWrap">
+				<div class="conWrap" onClick="connectWindow('${n.notCon}', '${n.refNum}');">
 					<div class="imgWrap">
 					<img src="${path}/resources/uploadFile/shop/${n.shopImg}">
 					</div>

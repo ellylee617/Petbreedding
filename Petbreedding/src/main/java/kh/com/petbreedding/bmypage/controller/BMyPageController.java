@@ -44,11 +44,14 @@ import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.service.OftenQnaService;
 import kh.com.petbreedding.board.model.service.ReviewCommentService;
 import kh.com.petbreedding.board.model.service.ReviewService;
+import kh.com.petbreedding.board.model.vo.B_comment;
 import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.board.model.vo.MyAskComment;
+import kh.com.petbreedding.board.model.vo.OftenQna;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.board.model.vo.ReviewComment;
 import kh.com.petbreedding.common.model.vo.Pagination;
@@ -77,11 +80,12 @@ public class BMyPageController {
 	@Autowired
 	private CustomerServiceService customerServiceService;
 	
+	@Autowired
+	private OftenQnaService oftenQnaService;
+	
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
 	public String bMyPageUpdate(Locale locale, Model model) {
-
-		// TODO Auto-generated method stub
 		return "/bPartner/bMyPage/bMyPageUpdate";
 	}
 
@@ -119,8 +123,23 @@ public class BMyPageController {
 
 	// 사장님 마이 페이지 자주 묻는 질문
 	@RequestMapping(value = "/bFAQ", method = RequestMethod.GET)
-	public String bFAQ(Locale locale, Model model) {
-
+	public String bFAQ(Locale locale, Model model,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="10") String cntPerPage
+			) {
+		
+		int total = oftenQnaService.BOftenCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<OftenQna> list = oftenQnaService.BOftenQna(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("paging", page);
+		
+		
 		return "/bPartner/bBoard/bFAQ";
 	}
 
@@ -130,11 +149,17 @@ public class BMyPageController {
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			) {
-
+		int total = myAskService.clBpListCount(user_num);
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNum", user_num);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
 		
-//		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
-//		md.addAttribute("bQnaList", myAskList);
+		List<MyAsk> myAskList = myAskService.MyAskSelectList(map);
+		md.addAttribute("paging", page);
+		md.addAttribute("bQnaList", myAskList);
 		md.addAttribute("user_num", user_num);
 
 		return "/bPartner/bBoard/bQna";

@@ -57,6 +57,24 @@ public class AdminDao {
 		return sqlSession.update("mWait.backBP", list);
 	}
 	
+	//사용자 수 
+	public int getMemberCount() {
+		return sqlSession.selectOne("chart.memberCount");
+	}
+	
+	//사업자수 
+	public int getBpCount() {
+		return sqlSession.selectOne("chart.bpCount");
+	}
+	
+	//사용자 수 차트
+	public int getMemChart(String reg_date) {
+		return sqlSession.selectOne("chart.memberMonth", reg_date);
+	}
+	//사업자 수 차트
+	public int getBpChart(String reg_date) {
+		return sqlSession.selectOne("chart.bpMonth", reg_date);
+	}
 }	
 	
 	

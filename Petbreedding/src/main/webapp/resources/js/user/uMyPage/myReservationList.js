@@ -3,9 +3,12 @@ var modalReWin = document.getElementById("modalRe-Win");
 var btnReWr = document.getElementById("btnReWr")
 var selectedEle = document.getElementById("selectedVal");
 
+
 $(function(){
 	currentDay();
 	$("#searchDate").trigger("click");
+	
+	
 });
 function currentDay(){
     var now = new Date();
@@ -23,13 +26,20 @@ function currentDay(){
     $("#end").val(today);
 }
 
-$("#imgUpBtn").bind("click", function() {
-    insertImg();
+$("#imgUpBtn").on("click", function() {
+	$("#reviewImg").trigger("click");
 });
 
+$("#reviewImg").on("change",function(){
+	var fileName = $("#reviewImg").val();
+    $("#imgUpBtn i").append("<small id='fileName'>" +fileName +"</small>");
+});
 function insertImg() {
-    $("#reviewImg").trigger("click");
+    
 }
+
+
+
 
 function onClickSelect (e) {
 	const isActive = e.currentTarget.className.indexOf("active") !== -1;
@@ -161,9 +171,6 @@ $("#searchDate").on("click",function(){
 		            $(".resInfoBox").click(function() {
 		            	var idVar = $(this).attr("id");	//	클릭된 행의 id
 		            	var th = $(this).find('.btnReWr');	//	클릭된 행의 리뷰 작성 버튼
-		            	
-		            	console.log(th);
-		            	console.log('콘솔로그');
 		            	
 		            	if(th.length < 1) {	//	버튼이 있는 행은 길이가 1, 없는 행은 길이가 0이므로 1보다 작으면 goDetail 함수를 실행해서 상세페이지로 이동
 		            		goDetail(idVar);

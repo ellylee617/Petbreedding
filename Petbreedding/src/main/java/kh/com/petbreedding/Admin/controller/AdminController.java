@@ -1,13 +1,12 @@
 package kh.com.petbreedding.Admin.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +29,6 @@ import com.google.gson.GsonBuilder;
 import kh.com.petbreedding.Admin.model.service.AdminService;
 import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
-import kh.com.petbreedding.board.model.service.BoardService;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
 import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
@@ -40,8 +38,6 @@ import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.board.model.vo.MyAskComment;
 import kh.com.petbreedding.common.model.vo.Pagination;
-import kh.com.petbreedding.mypage.model.service.NoticeService;
-import kh.com.petbreedding.mypage.model.vo.Notice;
 
 @Controller
 public class AdminController {
@@ -58,18 +54,55 @@ public class AdminController {
 	@Autowired
 	private MyAskCommentService myAskCommentService;
 	
-	@Autowired
-	private BoardService boardService;
-	
-	@Autowired
-	private NoticeService noticeService;
-	
 	public final int LIMIT = 5;
 	
 
-	//관리자 회원관리
+	//관리자 회원관리 (차트)
 		@RequestMapping(value = "/mClient", method = RequestMethod.GET)
 		public String mClient(Locale locale, Model model) {
+			
+
+			int total = 0;
+			int total2 = 0;
+			
+			total = adminService.getMemberCount();
+			total2 = adminService.getBpCount();
+
+			//reg_date 구하기 
+			  String[] regArr = new String[12];
+		        String reg_date = "";
+
+		        for(int i=0; i < regArr.length; i++){
+		           if(i < 9){
+		        	   reg_date +=  "20210" + (i+1);
+		           
+		           }else{
+		        	   reg_date += "2021" + (i+1);
+		          
+		           }
+		            regArr[i] = reg_date;
+		            reg_date = "";
+		            System.out.println(regArr[i]);
+		        }
+		      
+		      //사용자 날짜별 카운트
+		      int[] cntArr = new int[12];
+		      for(int i=0; i<cntArr.length; i++) {
+		    	  System.out.println("카운트 들어옴!");
+		    	  cntArr[i] = adminService.getMemChart(regArr[i]);
+		      }
+		      //사업자 날짜별 카운트
+		      int[] bpcntArr = new int[12];
+		      for(int i=0; i < bpcntArr.length; i++) {
+		    	  bpcntArr[i] = adminService.getBpChart(regArr[i]);
+		      }
+		      
+			
+			model.addAttribute("total" , total);
+			model.addAttribute("total2", total2);
+			model.addAttribute("chart", regArr);
+			model.addAttribute("cnt", cntArr);
+			model.addAttribute("cnt2", bpcntArr);
 			return "/admin/aSales/mClient";
 		}
 		
@@ -325,24 +358,6 @@ public class AdminController {
 			myAskCommentService.myAskCommentInsert(maComment);
 			
 		}
-		// 알림 인서트
-		String cl_num = noticeService.getclNumInQna(qna_num);
-		System.out.println("qna 댓글에 clnum 찾아오기" + cl_num);
-		
-		Notice notice = new Notice();
-		
-		notice.setNotReceiver(cl_num);
-		notice.setRefNum(qna_num);
-		
-		int result = 0;
-		
-		result = noticeService.inQna(notice);
-		
-		if(result == 1) {
-			System.out.println("알림 인서트 성공!");
-		}else {
-			System.out.println("알림 인서트 실패");
-		}
 	}
 	
 	// 게시판 댓글 수정
@@ -554,40 +569,8 @@ public class AdminController {
 
 	// 게시글 관리 (자유게시판 목록)
 	@RequestMapping(value = "/mfreeboard")
-	public String mfreeboard(
-			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
-			,HttpSession session
-			,Admin ad
-			,Pagination page
-			,Model md
-			) {
-		
-		int total = boardService.listCount();
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("start", Integer.toString(page.getStart()));
-		map.put("end", Integer.toString(page.getEnd()));
-		
-		List<Board> list = boardService.selectBoardList(page);
-		
-		md.addAttribute("paging", page);
-		md.addAttribute("myList", list);
-		
-		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 page : " + page);
-		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 list : " + list);
-		
-		ad = (Admin) session.getAttribute("admin");
-		if(ad != null) {
-			String userType = "ad";
-			md.addAttribute("userType", userType);
-			return "/admin/aBoard/mfreeboard";
-		} else {
-			md.addAttribute("msg", "로그인이 필요합니다");
-			md.addAttribute("url","/mLogin");
-			return "common/redirect";
-		}
+	public String mfreeboard(Locale locale, Model model) {
+		return "/admin/aBoard/mfreeboard";
 	}
 
 	// 게시글 관리 (자유게시판 내용)
@@ -596,5 +579,8 @@ public class AdminController {
 	public String mfreecon(Locale locale, Model model) {
 		return "/admin/aBoard/mfreecon";
 	}
+	
+	
+	
 
 }

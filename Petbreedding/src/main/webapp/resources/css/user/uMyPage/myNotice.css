@@ -80,8 +80,8 @@
 .modal {
 	display: none;
 	position: absolute;
-	top: 50%;
-	left: 45%;
+	top: 60%;
+	left: 40%;
 	width: 300px;
 	padding: 30px 80px 50px 80px;
 	background: white;
