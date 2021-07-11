@@ -134,6 +134,18 @@ public class ShopListServiceImpl implements ShopListService {
 			}
 			return list;
 		}
+		// 미용실 위치 검색 별점순 정렬 
+		@Override
+		public List<HairSalon> selectHarListLocRev(Map<String, Object> map) {
+			System.out.println("shopListService selectHarListLocRev() 실행");
+			List<HairSalon> list = null;
+			try {
+				list = shopListDao.selectHarListLocRev(map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
 
 		
 

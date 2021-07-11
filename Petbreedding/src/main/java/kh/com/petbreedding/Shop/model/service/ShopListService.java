@@ -43,6 +43,8 @@ public interface ShopListService {
 		public  List<HairSalon> selectHarListLocNew(Map<String,Object> map);
 		// 미용실 위치 검색 인기순 정렬
 		public  List<HairSalon> selectHarListLocLike(Map<String,Object> map);
+		// 미용실 위치 검색 인기순 정렬
+		public  List<HairSalon> selectHarListLocRev(Map<String,Object> map);
 		
 		
 }

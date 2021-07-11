@@ -254,6 +254,33 @@ public class ShopListController {
 					revCountList2.add(revCount);
 					mv.addObject("loc_like_revCount", revCountList2);
 				}
+				
+				
+			// 미용실 위치 검색 결과 별점순 정렬
+			List<HairSalon> harListLocRev = shopListService.selectHarListLocRev(map1);
+			System.out.println("위치로 검색한 미용실 별점순으로 정렬해줘!!!!"+harListLocRev);
+			mv.addObject("harListLocRev", harListLocRev);
+			
+			List<String> countList3 = new ArrayList<String>();
+			List<String> revCountList3 = new ArrayList<String>();
+			
+			for(int i =0; i<harListLocRev.size(); i++) {
+				
+				// 찜한 숫자 가져오기
+				// + 별점 출력 
+				har_num = harListLocRev.get(i).getHarNum();
+				bpId = harListLocRev.get(i).getBpId();
+				
+				String count = likeService.countSalon(har_num); //찜
+				countList3.add(count);
+				mv.addObject("loc_rev_count", countList3);
+				System.out.println("찜수 리스트 보여줘**********"+countList3);
+				
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				revCountList3.add(revCount);
+				System.out.println("리뷰 개수 리스트 보여주ㅝ*****"+revCountList3);
+				mv.addObject("loc_rev_revCount", revCountList3);
+			}
 		}
 		
 		mv.setViewName("/user/uShop/shopList");

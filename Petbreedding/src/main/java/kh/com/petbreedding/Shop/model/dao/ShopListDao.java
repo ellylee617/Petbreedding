@@ -79,6 +79,11 @@ public class ShopListDao {
 				System.out.println("~~ ShopListDao 진입 ~~");
 				return sqlSession.selectList("shopList.selectHarListLocLike", map);
 			}
+			// 미용실 위치 검색 별점순 정렬
+			public  List<HairSalon> selectHarListLocRev(Map<String,Object> map){
+				System.out.println("~~ ShopListDao 진입 ~~");
+				return sqlSession.selectList("shopList.selectHarListLocRev", map);
+			}
 		
 		
 	

@@ -7,19 +7,19 @@ $(document).ready(function(){
 	$("#newLocRadio").click(function(){
 		$("#harListLocNew").show();
 		$("#harListLocLike").hide();
-//		$("#harListLockRev").hide();
+		$("#harListLocRev").hide();
 	});
 
 	$("#likeLocRadio").click(function(){
 		$("#harListLocNew").hide();
 		$("#harListLocLike").show();
-//		$("#harListLockRev").hide();
+		$("#harListLocRev").hide();
 	});
 
 	$("#revLocRadio").click(function(){
 		$("#harListLocNew").hide();
 		$("#harListLocLike").hide();
-//		$("#harListLockRev").show();
+		$("#harListLocRev").show();
 	});
 	
 	

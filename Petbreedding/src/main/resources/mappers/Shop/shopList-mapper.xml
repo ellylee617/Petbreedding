@@ -180,18 +180,18 @@
 					    FROM(
 					        SELECT ROWNUM R , A.*
 		                    FROM(
-		                	SELECT har.*, hl.likes
-		                    FROM hair_salon HAR
-		                    LEFT JOIN
-		                        (SELECT h.har_num, COUNT(*) LIKES
-		                            FROM hair_salon H
-		                            JOIN likes L
-		                            ON (h.har_num = l.har_num)
-		                            GROUP BY h.har_num
-		                    ) HL
-		                    ON HAR.har_num = HL.har_num 
-							WHERE HAR.har_addr LIKE #{searchLoc1} || '%' AND HAR.har_addr LIKE '%' ||  #{searchLoc2} || '%'
-		                    ORDER BY LIKES DESC NULLS LAST
+			                	SELECT har.*, hl.likes
+			                    FROM hair_salon HAR
+			                    LEFT JOIN
+			                        (SELECT h.har_num, COUNT(*) LIKES
+			                            FROM hair_salon H
+			                            JOIN likes L
+			                            ON (h.har_num = l.har_num)
+			                            GROUP BY h.har_num
+			                    ) HL
+			                    ON HAR.har_num = HL.har_num 
+								WHERE HAR.har_addr LIKE #{searchLoc1} || '%' AND HAR.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+			                    ORDER BY LIKES DESC NULLS LAST
 		                     )A
 					    )B
 					) C
@@ -200,5 +200,30 @@
 			</select>
 			
 			<!-- 별점순 정렬 -->
-		
+			<select id="selectHarListLocRev" parameterType="hashmap" resultMap="HairSalon">
+			<![CDATA[
+				SELECT  C.*
+					FROM(
+					    SELECT B.* 
+					    FROM(
+					        SELECT ROWNUM R , A.*
+		                    FROM(
+						            SELECT HAR.*, BR.avg_rev_val
+						            FROM HAIR_SALON HAR
+						            left JOIN (
+						                SELECT b.bp_id, round(avg(R.REV_VAL),2) avg_rev_val
+						                 FROM business_partner B
+						                LEFT JOIN review R
+						                ON (b.bp_id = r.bp_id)
+						                group by b.bp_id
+						            )  BR
+						             ON (har.bp_id = br.bp_id)
+						             WHERE HAR.har_addr LIKE #{searchLoc1} || '%' AND HAR.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+						            ORDER BY avg_rev_val DESC NULLS LAST
+		                     )A
+					    )B
+					) C
+					WHERE #{start}<= R AND R <= #{end}
+					]]>
+			</select>
 </mapper>
