@@ -249,10 +249,27 @@ public class ClientInfoCotroller {
 
 	// 1:1 문의 내역
 	@RequestMapping("/mypage/ask")
-	public String ask(HttpSession session, String user_num, Model md) {
+	public String ask(
+			HttpSession session
+			,String user_num
+			,Model md
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
 
+		int total = myAskService.clBpListCount(user_num);
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		System.out.println("[세훈] @일대일 문의 컨트롤러 user_num : " + user_num);
-		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNum", user_num);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<MyAsk> myAskList = myAskService.MyAskSelectList(map);
+		
+		md.addAttribute("paging", page);
 		md.addAttribute("myAskList", myAskList);
 		md.addAttribute("user_num", user_num);
 		System.out.println("[세훈] @일대일 문의 컨트롤러 myAskList : " + myAskList);

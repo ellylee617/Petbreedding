@@ -1,6 +1,7 @@
 package kh.com.petbreedding.board.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -19,9 +20,14 @@ public class MyAskDao {
 		return sqlSession.selectOne("MyAsk.listCount");
 	}
 	
-	public List<MyAsk> MyAskSelectList(String user_num) {
+	// 고객, 사업자 문의 리스트 조회
+	public List<MyAsk> MyAskSelectList(Map<String, Object> map) {
 		System.out.println("[세훈] @일대일 문의 다오 진입");
-		return sqlSession.selectList("MyAsk.MyAskSelectList", user_num);
+		return sqlSession.selectList("MyAsk.MyAskSelectList", map);
+	}
+	
+	public int clBpListCount(String user_num) {
+		return sqlSession.selectOne("MyAsk.clBpListCount", user_num);
 	}
 	
 	public List<MyAsk> MyAskSelectListM(int currentPage, int limit) {

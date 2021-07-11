@@ -133,8 +133,8 @@ public class BMyPageController {
 
 		
 		
-		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
-		md.addAttribute("bQnaList", myAskList);
+//		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
+//		md.addAttribute("bQnaList", myAskList);
 		md.addAttribute("user_num", user_num);
 
 		return "/bPartner/bBoard/bQna";
