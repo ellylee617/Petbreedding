@@ -117,14 +117,17 @@ public class ShopListController {
 				
 				String count = likeService.countSalon(har_num); //찜
 				countList.add(count);
+				System.out.println("미용실 최신순 정렬 찜 정보 보여줘~~"+countList);
 				mv.addObject("new_count", countList);
 				
 				String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
 				avgList.add(revAvg);
+				System.out.println("미용실 최신순 정렬 평균 별점 정보 보여줘~~"+avgList);
 				mv.addObject("new_revAvg", avgList);
 				
 				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
 				revCountList.add(revCount);
+				System.out.println("미용실 최신순 정렬 리뷰 건수 정보 보여줘~~"+revCountList);
 				mv.addObject("new_revCount", revCountList);
 				
 				

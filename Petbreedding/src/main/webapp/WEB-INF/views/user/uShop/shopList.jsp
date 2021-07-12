@@ -165,7 +165,7 @@
 		                                    </c:if>
 		                                    </small>
 		                                    </a>
-		                                  <a href="#">찜하기 <small> ${item.likes}</small></a>
+		                                  <a href="#">찜하기 <small> ${new_count[status.index]}</small></a>
 		                                </div>
 		                                 <form class="frmShopInfo" >
 		                                 <div class="storeList_button">
@@ -624,7 +624,7 @@
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
-	                                  <a href="#">찜하기 <small> ${item.likes}</small></a>
+	                                  <a href="#">찜하기 <small> ${new_count[status.index]}</small></a>
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
