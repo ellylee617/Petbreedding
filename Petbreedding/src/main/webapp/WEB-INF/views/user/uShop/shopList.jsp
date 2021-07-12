@@ -87,7 +87,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                   <a href="#">찜하기 <small> ${keyword_new_count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
@@ -176,7 +175,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
@@ -217,7 +215,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                   <a href="#">찜하기 <small> ${loc_new_count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
@@ -291,7 +288,6 @@
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
-	                                    <a href="#">구매건수<small>999+</small></a>
 	                                  <a href="#">찜하기 <small> ${loc_like_count[status.index]}</small></a>
 	                                </div>
 	                                 <form class="frmShopInfo" >
@@ -365,7 +361,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                   <a href="#">찜하기 <small> ${loc_rev_count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
@@ -453,7 +448,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
@@ -504,7 +498,6 @@
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
-	                                    <a href="#">구매건수<small>999+</small></a>
 	                                  <a href="#">찜하기 <small> ${item.likes}</small></a>
 	                                </div>
 	                                 <form class="frmShopInfo" >
@@ -572,7 +565,6 @@
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
-	                                    <a href="#">구매건수<small>999+</small></a>
 	                                  <a href="#">찜하기 <small> ${item.likes}</small></a>
 	                                </div>
 	                                 <form class="frmShopInfo" >
@@ -641,7 +633,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                   <a href="#">찜하기 <small> ${rev_count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
@@ -778,7 +769,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                   <a href="#">찜하기 <small> ${keyword_new_count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
@@ -870,7 +860,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
@@ -913,7 +902,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                   <a href="#">찜하기 <small> ${loc_new_count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
@@ -992,7 +980,6 @@
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
-	                                    <a href="#">구매건수<small>999+</small></a>
 	                                  <a href="#">찜하기 <small> ${loc_like_count[status.index]}</small></a>
 	                                </div>
 	                                 <form class="frmShopInfo" >
@@ -1061,7 +1048,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                   <a href="#">찜하기 <small> ${loc_rev_count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
@@ -1152,7 +1138,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
@@ -1202,7 +1187,6 @@
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
-	                                    <a href="#">구매건수<small>999+</small></a>
 	                                  <a href="#">찜하기 <small> ${item.likes}</small></a>
 	                                </div>
 	                                 <form class="frmShopInfo" >
@@ -1271,7 +1255,6 @@
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
-	                                    <a href="#">구매건수<small>999+</small></a>
 	                                  <a href="#">찜하기 <small> ${item.likes}</small></a>
 	                                </div>
 	                                 <form class="frmShopInfo" >
@@ -1338,7 +1321,6 @@
                                     </c:if>
                                     </small>
                                     </a>
-                                    <a href="#">구매건수<small>999+</small></a>
                                   <a href="#">찜하기 <small> ${rev_count[status.index]}</small></a>
                                 </div>
                                  <form class="frmShopInfo" >
