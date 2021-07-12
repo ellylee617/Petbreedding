@@ -211,27 +211,7 @@ public class ShopListController {
 				
 			}
 			
-//			
-//			
-//			
-//			List<Hospital> allHosListRev = shopListService.selectAllHosListRev(page);
-//			System.out.println("동물병원 전체 리스트 - 별점순 정렬::"+allHosListRev);
-//			mv.addObject("allHosListRev", allHosListRev);
-//			List<String> countList3 = new ArrayList<String>();
-//			List<String> revCountList3 = new ArrayList<String>();
-//			
-//			for(int i=0; i<allHosListRev.size();i++) {
-//				hos_num = allHosListRev.get(i).getHosNum();
-//				bpId = allHosListRev.get(i).getBpId();
-//				
-//				String count = likeService.countHos(hos_num);
-//				countList3.add(count);
-//				mv.addObject("rev_count", countList3);
-//				
-//				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
-//				revCountList3.add(revCount);
-//				mv.addObject("rev_revCount", revCountList3);
-//			}
+
 			
 			
 			
@@ -245,7 +225,7 @@ public class ShopListController {
 	
 	//사업장 전체 리스트 - 인기순 정렬
 	// 미용실 작업완료 ~!
-	// 동물병원 작업중 ~~~
+	// 동물병원 작업완료~~!
 	@RequestMapping(value = "/shopList/all/likes", method = RequestMethod.GET)
 	public ModelAndView allShopListLikes(
 			ModelAndView mv
@@ -409,11 +389,10 @@ public class ShopListController {
 	
 	// 사업장 전체 리스트 - 별점순 정렬
 	// 미용실 작업완료
-	// TODO: 동물병원 
+	// 동물병원 작업중~~~~
 	@RequestMapping(value = "/shopList/all/review", method = RequestMethod.GET)
 	public ModelAndView allShopListRev(
 			ModelAndView mv
-			,Pagination page
 			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			,@RequestParam Long shopType
@@ -421,7 +400,7 @@ public class ShopListController {
 			) throws Exception {
 		
 		
-	if (shopType == 0) {
+			if (shopType == 0) {
 			
 			String har_num = null;
 			String bpId = null;
@@ -486,8 +465,73 @@ public class ShopListController {
 				mv.addObject("rev_revCount", revCountList3);
 			}
 			
+			}//미용실 끝
 			
-		}
+			// 동물병원 시작 
+			if(shopType==1) {	
+				
+				String hos_num = null;
+				String bpId = null;
+				
+				List<String> ctaCountList = new ArrayList<String>();
+				List<String> ctaAvgList = new ArrayList<String>();
+				List<String> ctaRevCountList = new ArrayList<String>();
+				
+				// 울트라콜 동물병원 리스트 
+				List<Hospital> ctaHos = shopListService.selectCtaHos();
+				System.out.println("잔여수 높은 순으로 정렬된 울트라 동물병원 리스트 보여줘~~ "+ctaHos);
+				mv.addObject("ctaHos", ctaHos);
+				
+				for(int i =0; i<ctaHos.size(); i++) {
+					
+					hos_num = ctaHos.get(i).getHosNum();
+					bpId = ctaHos.get(i).getBpId();
+					
+					//찜한 숫자
+					String count = likeService.countHos(hos_num);
+					ctaCountList.add(count);
+					mv.addObject("cta_count", ctaCountList);
+					
+					//별점 평균
+					String revAvg = shopListService.selectShopRevAvg(bpId);	
+					ctaAvgList.add(revAvg);
+					System.out.println();
+					mv.addObject("cta_revAvg", ctaAvgList);
+					
+					//리뷰 숫자 
+					String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+					ctaRevCountList.add(revCount);
+					mv.addObject("cta_revCount", ctaRevCountList);
+				}
+				
+				
+					// 동물병원 전체 리스트 카운팅
+							int total = shopListService.countAllHosList();
+							Pagination page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+							mv.addObject("all_rev_page", page);
+				
+							
+							List<Hospital> allHosListRev = shopListService.selectAllHosListRev(page);
+							System.out.println("동물병원 전체 리스트 - 별점순 정렬::"+allHosListRev);
+							mv.addObject("allHosListRev", allHosListRev);
+							List<String> countList3 = new ArrayList<String>();
+							List<String> revCountList3 = new ArrayList<String>();
+							
+							for(int i=0; i<allHosListRev.size();i++) {
+								hos_num = allHosListRev.get(i).getHosNum();
+								bpId = allHosListRev.get(i).getBpId();
+								
+								String count = likeService.countHos(hos_num);
+								countList3.add(count);
+								mv.addObject("rev_count", countList3);
+								
+								String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+								revCountList3.add(revCount);
+								mv.addObject("rev_revCount", revCountList3);
+							}
+			} // 동물병원 끝
+			
+			
 				
 				mv.setViewName("/user/uShop/shopList");
 				return mv;
