@@ -14,22 +14,10 @@
 <link href="${path}/resources/css/user/uBoard/qna.css" rel="stylesheet" type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-    $("#browseBtn").bind("click", function() {
-        insertImg();
-    });
-    
-    function insertImg() {
-        $("#realInput").trigger("click");
-    }
-});    
-</script>
 </head>
 <body>
 	<div class="wrapper">
 		<jsp:include page="../../common/header.jsp" />
-		 <center>
         <section class="section">
         	<form action="maWrite" method="post" enctype="multipart/form-data">
         		<input type="hidden" name="user_num" value="${user_num}">
@@ -43,11 +31,9 @@ $(document).ready(function(){
 	                <textarea placeholder="1:1문의내용을 작성해주세요" name="myAskCont"></textarea>
 	            </div> 
 	            
-	            <div>
-	            	
-				</div>
+	            <div id="imgsrcBox"></div> <!-- 이미지 링크가 들어갈 곳 -->
 				
-				<div>
+				<div class="btnBox">
 					<input type="file" id="realInput" name="myAskImg" accept=".jpg, .png" style='display:none'>
 		            <input type="button" value="이미지 등록" id="browseBtn" class="basicBtn">
 		            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
@@ -55,6 +41,21 @@ $(document).ready(function(){
                 
             </form>
         </section>
-        </center>   
 		<jsp:include page="../../common/footer.jsp" />
 		</div>
+		<script type="text/javascript">
+			    $("#browseBtn").on("click", function() {
+			    	$("#realInput").trigger("click");
+			    });
+			    
+			    $("#realInput").on("change",function(){
+			    	var fileName = $("#realInput").val();
+			        $("#imgsrcBox").append("<small id='fileName'> 첨부 이미지 명 : " +fileName +"</small>");
+			    });
+		</script>
+</body>
+</html>		
+		
+		
+		
+		

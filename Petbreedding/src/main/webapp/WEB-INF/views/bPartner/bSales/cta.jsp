@@ -27,14 +27,16 @@
 			            <p class="viewText fs20">울트라콜</p>
 		                <span class="viewText views fs20">잔여 조회수</span>
 		                <c:choose>
-		                <c:when test="${cta.CTA_NUMBER == 0} ">
-		                0회
-		                </c:when>
 		                <c:when test="${cta.CTA_NUMBER > 0}">
 		                <span class="viewText views fs24">
-		                ${cta.CTA_NUMBER} 회
+		                		${cta.CTA_NUMBER} 회
 		                </span>
 		                </c:when>
+		                <c:otherwise>
+		                		<span class="viewText views fs24">
+		                		0회
+		                		</span>
+		                </c:otherwise>
 		            </c:choose>
 		            </div>
 		            <article class="aContainer">

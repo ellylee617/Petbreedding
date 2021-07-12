@@ -72,7 +72,7 @@
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
 	<!-- script -->
-	<script type="text/javascript" src="${path}/resources/js/bPartner/bBoard/bNotice.js"></script>
 	<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/bPartner/bBoard/bNotice.js"></script>
 </body>
 </html>
