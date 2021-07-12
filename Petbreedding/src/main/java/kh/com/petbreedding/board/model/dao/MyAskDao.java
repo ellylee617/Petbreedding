@@ -16,8 +16,19 @@ public class MyAskDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//	기본 전체 개수 조회
 	public int listCount() {
 		return sqlSession.selectOne("MyAsk.listCount");
+	}
+	
+	//	전체 셀렉창 눌렀을 때 개수 조회
+	public int listCountAll(int qnaChk) {
+		return sqlSession.selectOne("MyAsk.listCountAll", qnaChk);
+	}
+	
+	//	사업자, 고객 셀렉창 눌렀을 때 개수 조회
+	public int listCountClBp(MyAsk myAsk) {
+		return sqlSession.selectOne("MyAsk.listCountClBp", myAsk);
 	}
 	
 	// 고객, 사업자 문의 리스트 조회

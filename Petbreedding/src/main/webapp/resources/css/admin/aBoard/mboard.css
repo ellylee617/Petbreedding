@@ -336,3 +336,11 @@
 	margin-top: 12px;
     margin-bottom: 14px;
 }
+
+.mTr {
+	cursor: pointer;
+}
+
+.clickNum {
+	cursor: pointer;
+}

@@ -54,7 +54,7 @@ public class AdminController {
 	
 	@Autowired NoticeService noticeService;
 	
-	public final int LIMIT = 5;
+	public static final int LIMIT = 5;
 	
 	//관리자 회원관리 (차트)
 	@RequestMapping(value = "/mClient", method = RequestMethod.GET)
@@ -264,50 +264,73 @@ public class AdminController {
 	@RequestMapping(value = "/mboardAjax", produces="text/plain;charset=UTF-8")
 	public String mboardAjax(
 			Pagination page
-			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+//			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+//			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			,HttpServletResponse res
 			,HttpServletRequest req
 			,int qnaType
 			,int qnaChk
-			,Model md
+			,int p
 			) throws IOException {
 		
 		res.setCharacterEncoding("UTF-8");
 		
-//		String qnaType = req.getParameter("qnaType");
-//		String qnaChk = req.getParameter("qnaChk");
-		
 		System.out.println("[세훈] @관리자 문의 사항 목록 qnaType : " + qnaType);
 		System.out.println("[세훈] @관리자 문의 사항 목록 qnaChk : " + qnaChk);
-		
-		int total = myAskService.listCount();
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		System.out.println("[세훈] @관리자 문의 사항 목록 qnaChk : " + p);
 		
 		String myAskJson = "";
-		Map<String, String> map = new HashMap<String, String>();
-		List<MyAsk> myAskList = new ArrayList<MyAsk>();
-		map.put("start", Integer.toString(page.getStart()));
-		map.put("end", Integer.toString(page.getEnd()));
-		
 		
 		if(qnaType == 0) {
+			//	qnaChk 타입에 맞는 1:1 문의 개수 확인
+			int total = myAskService.listCountAll(qnaChk);
+			System.out.println("[세훈] @관리자 문의 사항 목록 전체 선택 total : " + total);
+			page = new Pagination(total, p, LIMIT);
+			
+			Map<String, String> map = new HashMap<String, String>();
+			List<MyAsk> myAskList = new ArrayList<MyAsk>();
+			
+			map.put("start", Integer.toString(page.getStart()));
+			map.put("end", Integer.toString(page.getEnd()));
 			map.put("qnaChk", Integer.toString(qnaChk));
 			myAskList = myAskService.MyAskSelectListClBpAllM(map);
+			
+			Map<String, Object> mapResult = new HashMap<String, Object>();
+			mapResult.put("paging", page);
+			mapResult.put("list", myAskList);
+			
 			Gson jobj = new GsonBuilder().create();
-			myAskJson = jobj.toJson(myAskList);
+			myAskJson = jobj.toJson(mapResult);
 			System.out.println("[세훈] @관리자 문의 사항 리스트 myAskJson : " + myAskJson.toString());
 			
 		} else {
+			MyAsk myAsk = new MyAsk();
+			myAsk.setQnaType(qnaType);
+			myAsk.setQnaChk(qnaChk);
+			
+//			qnaType, qnaChk 타입에 맞는 1:1 문의 개수 확인
+			int total = myAskService.listCountClBp(myAsk);
+			System.out.println("[세훈] @관리자 문의 사항 목록 고객, 사업자 선택 total : " + total);
+			page = new Pagination(total, p, LIMIT);
+			
+			Map<String, String> map = new HashMap<String, String>();
+			List<MyAsk> myAskList = new ArrayList<MyAsk>();
+			map.put("start", Integer.toString(page.getStart()));
+			map.put("end", Integer.toString(page.getEnd()));
+			
 			map.put("qnaType", Integer.toString(qnaType));
 			map.put("qnaChk", Integer.toString(qnaChk));
 			myAskList = myAskService.MyAskSelectListClBpM(map);
+			
+			Map<String, Object> mapResult = new HashMap<String, Object>();
+			mapResult.put("paging", page);
+			mapResult.put("list", myAskList);
+			
 			Gson jobj = new GsonBuilder().create();
-			myAskJson = jobj.toJson(myAskList);
+			myAskJson = jobj.toJson(mapResult);
 			System.out.println("[세훈] @관리자 문의 사항 리스트 myAskJson : " + myAskJson.toString());
 		}
 		
-		md.addAttribute("paging", page);
 		return myAskJson;
 	}
 	// 게시글 관리 (문의게시판 글상세)

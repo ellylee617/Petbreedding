@@ -112,13 +112,13 @@
 	  </section>
 	<jsp:include page="../../common/footer.jsp" />
 	</div>
-
+	
+<script type="text/javascript">
+var paging = '${paging}';
+console.log(paging);
+</script>
 <script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
 <script type="text/javascript" src="${path}/resources/js/admin/aBoard/mBoard.js"></script>
-
-<script type="text/javascript">
-
-</script>
 </body>
 </html>
 	

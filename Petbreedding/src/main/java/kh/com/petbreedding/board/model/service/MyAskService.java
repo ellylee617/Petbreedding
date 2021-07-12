@@ -9,6 +9,8 @@ import kh.com.petbreedding.board.model.vo.MyAsk;
 
 public interface MyAskService {
 	public int listCount();
+	public int listCountClBp(MyAsk myAsk);
+	public int listCountAll(int qnaChk);
 	public int clBpListCount(String user_num);
 	public List<MyAsk> MyAskSelectList(Map<String, Object> map);
 	public List<MyAsk> MyAskSelectListM(Map<String, String> map);
