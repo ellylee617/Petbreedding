@@ -59,6 +59,7 @@ DROP SEQUENCE SEQ_HOSPITAL;
 DROP SEQUENCE SEQ_HOS_RESERVATION;
 DROP SEQUENCE SEQ_HOS_PAY;
 DROP SEQUENCE SEQ_MEDICAL_TYPE;
+DROP SEQUENCE SEQ_JOIN;
 
 --------------------------------------------------------------------------------------------------
 
@@ -310,6 +311,13 @@ CREATE SEQUENCE SEQ_MEDICAL_TYPE
     NOCYCLE
     NOCACHE;
 
+CREATE SEQUENCE SEQ_JOIN
+    INCREMENT BY 1 
+    START WITH 1
+    NOMAXVALUE
+    NOMINVALUE
+    NOCYCLE
+    NOCACHE;
 
 -----------------------------------------------------------------------------------------------
 

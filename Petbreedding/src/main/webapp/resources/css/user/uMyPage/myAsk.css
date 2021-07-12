@@ -36,3 +36,7 @@
     asktable: var(--font-color);
     cursor: default;
 }
+
+#myAskBtn {
+	width: 93px;
+}

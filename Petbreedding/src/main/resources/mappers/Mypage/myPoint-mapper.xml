@@ -34,6 +34,7 @@
 		<result column="CURR_POINT" property="currPoint"/>
 	</resultMap>
 	
+	
 	<!-- 내 포인트 사용 목록  -->
 	<select id="myPointSelectList" parameterType="MyPoint" resultMap="MyPointMap">
 		<![CDATA[
@@ -57,6 +58,13 @@
 	
 <!-- 	INSERT INTO MYPOINT VALUES('CL1', 'PO2', SEQ_MYPOINT.NEXTVAL, TO_CHAR(SYSDATE, 'YYYYMMDD'), '취소', '미용실3', 'HAP1', 1000, 1000); -->
 
+	<!-- 포인트 초기화 -->
+	<insert id="myPointInit" parameterType="MyPoint">
+		INSERT INTO MYPOINT VALUES(
+		#{clNum}, #{pointNum}, SEQ_MYPOINT.NEXTVAL, TO_CHAR(SYSDATE, 'YYYY-MM-DD'),
+		#{expType}, #{expFrom}, #{expId}, #{expPoint}, #{currPoint}
+		)
+	</insert>
 
 	<!-- 포인트 적립-->
 	<insert id="myPointInsert" parameterType="MyPoint">

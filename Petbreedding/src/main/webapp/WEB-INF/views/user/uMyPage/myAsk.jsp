@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Petbreedding::펫브리띵</title>
-<link href="${path}/resources/css/common/reset.css" rel="stylesheet"	type="text/css">
-<link href="${path}/resources/css/common/header.css" rel="stylesheet"	type="text/css">
-<link href="${path}/resources/css/common/footer.css" rel="stylesheet"	type="text/css">
+<link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/user/myPageAside.css"	rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/user/uMyPage/myAsk.css" rel="stylesheet"	type="text/css">
 <link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
-<script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/aca84cf3fb.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
