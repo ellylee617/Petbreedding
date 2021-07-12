@@ -71,6 +71,39 @@ public class ShopListServiceImpl implements ShopListService {
 			
 		// 동물병원
 			
+			
+			
+			
+			// 동물병원 위치 설정 및 키워드 검색
+			
+						// 위치 설정 및 키워드 검색 결과 리스트 카운팅
+						@Override
+						public int countKeywordHosList() {
+							System.out.println("shopListService countKeywordHosList() 실행");
+							int result = -1;
+							try {
+								result = shopListDao.countKeywordHosList();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							return result;
+						}
+						
+						@Override
+						// 위치 설정 및 키워드 검색 결과 리스트 최신순 정렬
+						public List<Hospital> selectKeywordHosListNew(Map<String,Object> map){
+							System.out.println("shopListService selectKeywordHosListNew() 실행");
+							List<Hospital> list = null;
+							try {
+								list = shopListDao.selectKeywordHosListNew(map);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							return list;
+						}
+						
+						
+			
 			// 동물병원 위치 검색
 			
 				// 동물병원 위치 검색 리스트 카운팅
