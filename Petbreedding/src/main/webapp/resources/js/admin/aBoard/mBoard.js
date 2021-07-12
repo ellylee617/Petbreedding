@@ -17,7 +17,7 @@ $("#selectQnaType").on("change", function() {
 	console.log(qnaType);
 	console.log(qnaChk);
 	
-	mboardInit(qnaType, qnaChk);
+	mboardInit(qnaType, qnaChk, 1);
 });
 
 $("#selectQnaChk").on("change", function() {
@@ -28,7 +28,7 @@ $("#selectQnaChk").on("change", function() {
 	console.log(qnaType);
 	console.log(qnaChk);
 	
-	mboardInit(qnaType, qnaChk);
+	mboardInit(qnaType, qnaChk, 1);
 });
 
 
@@ -37,20 +37,19 @@ function goDetail(value){
 	location.href = "/petbreedding/mboardcon?qna_num="+value+"";
 }
 
-
-function mboardInit(qnaType, qnaChk) {
+function mboardInit(qnaType, qnaChk, p) {
 	console.log("ajax 함수 진입")
 	console.log(qnaType);
 	console.log(qnaChk);
 	
 	$("#myAskBox").hide();
-	$("#page_wrap").hide();
+	$("#page_nation").hide();
 	
 	
 	$.ajax({
 		url: "mboardAjax"
 		,type: "get"
-		,data: {qnaType: qnaType, qnaChk : qnaChk}
+		,data: {qnaType: qnaType, qnaChk : qnaChk, p : p}
 		,dataType: "json"
 		,success: function(json) {
 			var div = "";
@@ -58,18 +57,12 @@ function mboardInit(qnaType, qnaChk) {
 			var jsonLength = Object.keys(json).length;
 			
 			console.log(json);
-			console.log(jsonLength);
+			console.log(p);
+			console.log(paging);
 			
-//			if(jsonLength > 0) {
 				
-				
-				$.each(json, function(index, item) {
+				$.each(json.list, function(index, item) {
 					
-					var length = item.length;
-					console.log(length);
-//					console.log(item[length]);
-//					for(var i = 0; i < length; i++) {
-						
 						div += "<tr id='"+item.qnaNum+"' class='mTr'>";
 						
 						if(item.qnaType == 1) {
@@ -88,20 +81,47 @@ function mboardInit(qnaType, qnaChk) {
 							div += "<td><button class='basicBtn' id='successBtn'>답변완료</button></td>";
 						}
 						
-//						page += "<div id='page_nation' class='page_nation'>";
-//						
-//						if(item.paging.startPage != 1) {
-//							page += "<a class='arrow prev' href='/petbreedding/mboard?nowPage="+item.paging.startPage+"&cntPerPage="+item.paging.cntPerPage+"'>이전</a>"
-//						}
-						
-						
-//					}
-						 
 				});
 				
+				page += "<div id='page_nation' class='page_nation'>";
+				
+				if(json.paging.startPage != 1) {
+					page += "<a class='arrow prev clickNum'>이전</a>";
+				}
+				
+				for(var i = json.paging.startPage; i <=  json.paging.endPage; i++) {
+					if(i == json.paging.nowPage) {
+						page += "<b>"+i+"</b>";
+					} else if(i != json.paging.nowPage) {
+						page += "<a class='clickNum'>"+i+"</a>";
+					}
+				}
+				
+				if(json.paging.endPage != json.paging.lastPage) {
+					page += "<a class='arrow next clickNum'>다음</a>";
+				}
+				
+				page += "</div>"
+					 + "</div>";
+				
+				
 				$("#myAskBoxAjax").html(div);
-//			} else {
-//			}
+				$("#page_nation_ajax").html(page);
+				
+				
+				$(".clickNum").on("click", function() {
+					var p = $(this).text();
+					console.log(p);
+					mboardInit(qnaType, qnaChk, p);
+				});
+				
+				$(".mTr").click(function() {
+					var idVar = $(this).attr("id");
+					console.log(idVar);
+					goDetail(idVar);
+				});
+				
+			
 			
 		}
 	

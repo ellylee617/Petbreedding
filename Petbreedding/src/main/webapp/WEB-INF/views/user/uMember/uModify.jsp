@@ -23,6 +23,7 @@
 			<div class="uContent">
             <h1 class="updTitle">회원 정보 수정</h1>
             <form action="" id="updFrm" class="updFrm">
+            	<input type="hidden" value="${client.cl_num}" name="cl_num" id="cl_num" />
                 <table>
 					<tr>
 						<td><span>이메일</span></td>

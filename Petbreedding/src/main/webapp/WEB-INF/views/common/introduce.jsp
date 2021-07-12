@@ -12,31 +12,39 @@
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/introduce.css" rel="stylesheet" type="text/css" >
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </head>
 <body>
+<script type="text/javascript">
+	AOS.init(); 
+</script>
 	<div class="wrapper">    
 		<jsp:include page="header.jsp" />
 		<section class="section">
            <div id="content">
-           		<div class="con" id="petbreedding">
+           		<div class="con" id="petbreedding" data-aos="fade-down" data-aos-duration="2000">
            			<img src="${path}/resources/images/logo.png">
            			<h1>반려동물 병원, 미용실 예약 플랫폼 '펫브리띵'입니다.</h1>
            		</div>
-       			<div class="con" id="petIntro">
+       			<div class="con" id="petIntro" data-aos="fade-down" data-aos-duration="2000">
            			<h1>기획 목적</h1>
            			<p>동물병원, 애견미용샵 등의 서비스를 제공하는 플랫폼들이 파편화되어 있습니다.</p>
            			<p>그로인해, 사용자들이 이곳 저곳 찾아서 예약하고 정보를 찾아야하는 불편함이 있습니다.</p>
            			<p>그래서 자주 이용하는 병원 및 미용서비스를 한 곳에서 예약할 수 있는 플랫폼을 만들고 싶었습니다.</p>
            		</div>
-		        <div class="con" id="petIntro">
+		        <div class="con" id="petIntro" data-aos="fade-down" data-aos-duration="2000">
            			<h1>설계의 주안점</h1>
            			<p>첫번째, </p>
            			<p>두번째, </p>
            			<p>세번째, </p>
            		</div>
-           		<div class="con"  id="dev">
+           		<div class="con"  id="dev" data-aos="fade-down" data-aos-duration="2000">
            			<h1>만든 이</h1>
            			<div id="mem1">
            				<div class="member">
@@ -65,40 +73,12 @@
            			</div>
            		</div>
            </div>
+           <!--TOPBTN-->
+        	<a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
         </section>
         <jsp:include page="footer.jsp" />
 	</div>
-	<script type="text/javascript">
-	var animation = function () {
-		  var items, winH;
-		 
-		  var initModule = function () {
-		    items = document.querySelectorAll(".con");
-		    winH = window.innerHeight;
-		    _addEventHandlers();
-		  }
-		 
-		  var _addEventHandlers = function () {
-		    window.addEventListener("scroll", _checkPosition);
-		    window.addEventListener("load", _checkPosition);
-		    window.addEventListener("resize", initModule);
-		  };
-		 
-		  var _checkPosition = function () {
-		    for (var i = 0; i < items.length; i++) {
-		      var posFromTop = items[i].getBoundingClientRect().top;
-		      if (winH > posFromTop) {
-		        items[i].classList.add("active");
-		      }
-		    }
-		  }
-		 
-		  return {
-		    init: initModule
-		  }
-		}
-		 
-		animation().init();
-	</script>
+	
+	<script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
 </body>
 </html>

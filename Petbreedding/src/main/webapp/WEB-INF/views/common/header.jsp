@@ -32,9 +32,10 @@
         <nav class="mainMenu1">
 			<ul>
                 <li><a href="${pageContext.request.contextPath}/introduction">소개</a></li>
+
                 <li><a href="${pageContext.request.contextPath}/shopList/all?shopType=1">동물병원</a></li>
                 <li><a href="${pageContext.request.contextPath}/shopList/all?shopType=0">미용실</a></li>
-                <li><a href="mbtipet">멍비티아이</a></li>
+              <li><a href="mbtipet">멍비티아이</a></li>
             </ul>
         </nav>
         <nav class="mainMenu2">
