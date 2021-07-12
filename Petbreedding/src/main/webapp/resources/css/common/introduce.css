@@ -1,0 +1,39 @@
+@charset "UTF-8";
+#petbreedding{
+	padding: 200px;
+	heigth: 400px;
+}
+#petIntro{
+	padding: 100px;
+	height:200px;
+}
+#dev{
+	height:800px;
+	width:1130px;
+}
+.con {
+	text-align:center;
+    animation: fade-in 2s;
+    -webkit-animation: fade-in 2s; /* Safari and Chrome */
+}
+@keyframes fade-in {
+    from {opacity: 0; transform: scale(.7,.7)}
+    to {opacity: 1;}
+}
+#mem1 {
+	width: 900px;
+	margin: 0 auto;
+	overflow:hidden;
+}
+#mem2{
+	width: 600px;
+	margin: 0 auto;
+	overflow:hidden;
+}
+.member {
+	width: 300px;
+	float:left;
+}
+.member img{
+	width: 300px;
+}
