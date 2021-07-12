@@ -717,7 +717,7 @@
             </div>
             </c:if>
             
-            <c:if test="${empty keyword && empty searchLoc1} ">
+            <c:if test="${empty searchLoc1}">
             <div class="nowLocation">
                 <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
@@ -835,11 +835,7 @@
             </div>
             </c:if>
             
-            <c:if test="${empty keywordHarListNew}">
-            <hr>
-            <br><br><br>
-            <h1 style="text-align: center;">검색 결과가 없습니다.</h1>
-            </c:if>
+            
             
         	
         	<c:if test="${empty keyword}">
@@ -885,7 +881,10 @@
            </c:if> 
             
             
-            
+            <c:if test="${empty keywordHarListNew && empty allShopListNew && empty allShopListLike && empty allHarListRev && empty harListLocRev && empty harListLocLike && empty harListLocNew}">
+            <br><br><br>
+            <h1 style="text-align: center;">검색 결과가 없습니다.</h1>
+            </c:if>
             
 		<c:if test="${!empty allShopListNew }">
 		
