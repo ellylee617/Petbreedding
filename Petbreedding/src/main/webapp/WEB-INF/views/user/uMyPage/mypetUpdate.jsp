@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Petbreedding::펫브리띵</title>
 <link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >

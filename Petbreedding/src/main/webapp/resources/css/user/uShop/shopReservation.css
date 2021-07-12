@@ -37,12 +37,15 @@
     cursor: pointer;
 }
 .dog_name{
+	padding-top: 20px;
+	border-top: 1px solid var(--border-color);
     text-align: center;
 }
 .dog_img_area{
     width: 160px;
     height: 100px;
     position: relative;
+    padding-top: 10px;
 }
 .chooseDog{border: 2px solid var(--hover-color);}
 .normalDog{border: 2px solid var(--border-color)!important;}

@@ -112,13 +112,12 @@ a {
 
 .notice{
 	position: fixed;
-    top: 80%;
+    bottom: 0;
     right: 0;
     margin-top: auto;
     z-index: 99999;
-    margin-right: 20px;
     border: 1px solid #aaa;
-    padding: 20px;
+    padding: 10px;
     background-color: var(--font-color);
     width: 330px;
     animation: noticeAni 5s ease-in 1 forwards;

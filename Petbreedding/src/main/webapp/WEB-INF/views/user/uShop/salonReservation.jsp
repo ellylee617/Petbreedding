@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petverything::펫브리띵</title>
+<title>Petbreedding::펫브리띵</title>
 <link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
@@ -57,7 +57,7 @@
                 	<c:forEach items="${pet}" var="pet">
                 		<div class="dog_box">
                         <div class="dog_img_area">
-                            <img src="${path}/resources/uploadFile/mypet/${pet.pet_img}" width="160" height="100">
+                            <img src="${path}/resources/uploadFile/mypet/${pet.pet_img}" width="160" height="100" onerror="this.src='${path}/resources/images/logoForChat.png'">
                         </div>
                         <input type="hidden" class="petNum" value="${pet.pet_num}" />
                         <p class="dog_name">${pet.pet_name }</p>
