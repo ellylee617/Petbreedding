@@ -75,7 +75,7 @@
 	WHERE BP_ID = #{BP_ID}
 	</update>
 	
-	<!-- 울트라콜 충전된 매장 상단 노출  -->
+	<!-- 울트라콜 충전된 미용실 상단 노출  -->
 	<select id="ctashop" resultMap="HairSalon">
 	select hair_salon.*, my_cta.cta_number
 	from hair_salon join my_cta
