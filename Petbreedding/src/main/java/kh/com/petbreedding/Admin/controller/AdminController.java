@@ -1,17 +1,16 @@
 package kh.com.petbreedding.Admin.controller;
-
 import java.io.IOException;
-
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import kh.com.petbreedding.Admin.model.service.AdminService;
 import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
@@ -38,7 +35,8 @@ import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.board.model.vo.MyAskComment;
 import kh.com.petbreedding.common.model.vo.Pagination;
-
+import kh.com.petbreedding.mypage.model.service.NoticeService;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 @Controller
 public class AdminController {
 	
@@ -54,24 +52,22 @@ public class AdminController {
 	@Autowired
 	private MyAskCommentService myAskCommentService;
 	
+	@Autowired NoticeService noticeService;
+	
 	public final int LIMIT = 5;
 	
-
 	//관리자 회원관리 (차트)
 		@RequestMapping(value = "/mClient", method = RequestMethod.GET)
 		public String mClient(Locale locale, Model model) {
 			
-
 			int total = 0;
 			int total2 = 0;
 			
 			total = adminService.getMemberCount();
 			total2 = adminService.getBpCount();
-
 			//reg_date 구하기 
 			  String[] regArr = new String[12];
 		        String reg_date = "";
-
 		        for(int i=0; i < regArr.length; i++){
 		           if(i < 9){
 		        	   reg_date +=  "20210" + (i+1);
@@ -111,7 +107,6 @@ public class AdminController {
 	public String mSales(Locale locale, Model model) {
 		return "/admin/aSales/mSales";
 	}
-
 	// 사업장관리 - 제휴 승인 목록조회
 	@RequestMapping(value = "/mwaitList", method = RequestMethod.GET)
 	public String waitList( Model model,Pagination page,
@@ -152,7 +147,6 @@ public class AdminController {
 	public String mCancel( Model model,Pagination page,
 			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage) {
-
 		int total = adminService.countMdelete();
 		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		List<BPartner> list = adminService.deleteList(page);
@@ -161,7 +155,6 @@ public class AdminController {
 		
 		return "/admin/aShop/mCancelPartner";
 	}
-
 	//제휴 취소 승인
 	@RequestMapping(value = "/deleteBP", method = RequestMethod.POST)
 	@ResponseBody
@@ -258,7 +251,6 @@ public class AdminController {
 		md.addAttribute("paging", page);
 		return myAskJson;
 	}
-
 	// 게시글 관리 (문의게시판 글상세)
 	@RequestMapping(value = "/mboardcon")
 	public String mboardcon(
@@ -358,6 +350,24 @@ public class AdminController {
 			myAskCommentService.myAskCommentInsert(maComment);
 			
 		}
+		// 알림 인서트
+		String cl_num = noticeService.getclNumInQna(qna_num);
+		System.out.println("qna 댓글에 clnum 찾아오기" + cl_num);
+
+		Notice notice = new Notice();
+
+		notice.setNotReceiver(cl_num);
+		notice.setRefNum(qna_num);
+
+		int result = 0;
+
+		result = noticeService.inQna(notice);
+
+		if (result == 1) {
+			System.out.println("알림 인서트 성공!");
+		} else {
+			System.out.println("알림 인서트 실패");
+		}
 	}
 	
 	// 게시판 댓글 수정
@@ -400,7 +410,6 @@ public class AdminController {
 		
 	}
 	
-
 	// 게시글 관리 (공지사항게시판 목록)
 	@RequestMapping(value = "/mservice")
 	public String mservice(Model md) {
@@ -430,7 +439,6 @@ public class AdminController {
 		return "/admin/aBoard/mserviceDetail";
 		
 	}
-
 	// 게시글 관리 (공지사항게시판 내용)
 	@RequestMapping(value = "/mservicecon", method = RequestMethod.GET)
 	public String mservicecon(Locale locale, Model model) {
@@ -566,13 +574,11 @@ public class AdminController {
 		
 		return "redirect:/mservice";
 	}
-
 	// 게시글 관리 (자유게시판 목록)
 	@RequestMapping(value = "/mfreeboard")
 	public String mfreeboard(Locale locale, Model model) {
 		return "/admin/aBoard/mfreeboard";
 	}
-
 	// 게시글 관리 (자유게시판 내용)
 	// ?? 해당 파일이 없어요?
 	@RequestMapping(value = "/mfreecon", method = RequestMethod.GET)
@@ -582,5 +588,4 @@ public class AdminController {
 	
 	
 	
-
 }
