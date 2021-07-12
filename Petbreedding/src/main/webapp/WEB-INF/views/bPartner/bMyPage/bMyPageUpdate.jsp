@@ -26,6 +26,7 @@
 			<div class="bContent">
 				<h1>내 정보 수정</h1>
 				<form class="updateFrm">
+					<input type="hidden" name="bp_Id" value="${bP.bp_Id}"> 
 					<label>이메일</label> 
 					<input type="text" class="inputBox" name="bp_email" value="${bP.bp_email }" readonly>
 					

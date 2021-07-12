@@ -74,7 +74,8 @@ function change() {
 	        console.log(bp_id);
 	        console.log("성공");
 	        
-		        $.each(data,function(i){
+	        if(data.length > 0){
+        		$.each(data,function(i){
 		        	
 		        	html += "<tr>";
 		        	console.log("상테:" + resId);
@@ -98,11 +99,21 @@ function change() {
 		        $("#revtable").empty();
 		        $("#revtable").append(html);
 		        html = "";
+	        }else {
+	        	html += "<tr>";
+	        	html += "<td colspan='3' style='width:100%'>해당 날짜의 예약관련 정보가 없습니다.</td>";
+	        	html += "</tr>";
+	        	
+	        	 $("#revtable").empty();
+		        $("#revtable").append(html);
+		        html = "";
+	        }
+		        
 	        
 	    },
 	    error:function(jqxhr, textStatus, errorThrown){
-	    console.log("ajax 처리 실패");
-	    }
+		    console.log("ajax 처리 실패");
+		    }
 	    });
 	  }else if(resId == 4){
 		  console.log("전체목록조회지롱");
@@ -112,45 +123,51 @@ function change() {
 			    data:{
 			    	bp_id : bp_id,
 			    	res_date : res
-			    	
-			    	
+
 			    },
 			    dataType:"json",
 			    success:function(data){
 			    	console.log(data);
-			    	for(var j=0; j<data.length; j++){
-			    		console.log(data[j].res_status);
+			    	
+			    	if(data.length > 0){
+			    		for(var j=0; j<data.length; j++){
+				    		console.log(data[j].res_status);
+				    		html += "<tr>";
+				        	console.log("상테:" + resId);
+				        	if (data[j].res_status == 0){
+				        		html += "<td class='status' style='background:#4dbbff'>예약완료<span class='noneDis'>,</span></td>";
+				        	
+				        	}
+				        	 if (data[j].res_status == 1){
+				        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
+				        	}
+				        	 if (data[j].res_status == 3){
+				        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
+				        	}
+				        	
+				        	html += "<td class='resTime'>"+data[j].res_date+"</td>";
+				        	html += "<td class='resName'>"+data[j].name+"</td>";
+				        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
+				        	html += "</tr>"
+				        		console.log("받아온 상태:"+ data[j].res_status);
+				        		console.log("예약번호 : " + data[j].har_rnum);
+				        };
+				        $("#revtable").empty();
+				        $("#revtable").append(html);
+				        html = "";
+			    	}else{
 			    		html += "<tr>";
-			        	console.log("상테:" + resId);
-			        	if (data[j].res_status == 0){
-			        		html += "<td class='status' style='background:#4dbbff'>예약완료<span class='noneDis'>,</span></td>";
+			        	html += "<td colspan='3' style='width:100%'>해당 날짜의 예약관련 정보가 없습니다.</td>";
+			        	html += "</tr>";
 			        	
-			        	}
-			        	 if (data[j].res_status == 1){
-			        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
-			        	}
-			        	 if (data[j].res_status == 3){
-			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
-			        	}
-			        	
-			        	html += "<td class='resTime'>"+data[j].res_date+"</td>";
-			        	html += "<td class='resName'>"+data[j].name+"</td>";
-			        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
-			        	html += "</tr>"
-			        		console.log("받아온 상태:"+ data[j].res_status);
-			        		console.log("예약번호 : " + data[j].har_rnum);
-			        };
-			        $("#revtable").empty();
-			        $("#revtable").append(html);
-			        html = "";
-			        console.log(resId);
-			        console.log(res);
-			        console.log(bp_id);
-			        console.log(data);
-			        console.log("성공2");
+			        	 $("#revtable").empty();
+				        $("#revtable").append(html);
+				        html = "";
+			    	}
+			    	
 			    },
 			    error:function(jqxhr, textStatus, errorThrown){
-			    console.log("ajax 처리 실패");
+			    	console.log("ajax 처리 실패");
 			    }
 			    });
 	  }
@@ -166,10 +183,8 @@ function search() {
 function changeHos() {
 	var hosselect = document.getElementById("hosselect");
 	var hosId = hosselect.options[hosselect.selectedIndex].value;
-	console.log(hosId);
 	
 	var res = $("#choDate").val();
-	console.log(res);
 	
 	if(hosId == 0 || hosId == 1 || hosId == 2){
 	$.ajax({
@@ -182,11 +197,8 @@ function changeHos() {
 	    dataType:"json",
 	    success:function(data){
 	    	
-	        console.log(hosId);
-	        console.log(res);
-	        console.log(bp_id);
-	        console.log("성공");
 	        
+	        if(data.length > 0){
 		        $.each(data,function(i){
 		        	
 		        	html += "<tr>";
@@ -211,6 +223,15 @@ function changeHos() {
 		        $("#revtable").empty();
 		        $("#revtable").append(html);
 		        html = "";
+	        }else{
+	    		html += "<tr>";
+	        	html += "<td colspan='3' style='width:100%'>해당 날짜의 예약관련 정보가 없습니다.</td>";
+	        	html += "</tr>";
+	        	
+	        	 $("#revtable").empty();
+		        $("#revtable").append(html);
+		        html = "";
+	    	}
 	        
 	    },
 	    error:function(jqxhr, textStatus, errorThrown){
@@ -229,32 +250,43 @@ function changeHos() {
 			    },
 			    dataType:"json",
 			    success:function(data){
-			    	console.log(data);
-			    	for(var j=0; j<data.length; j++){
-			    		console.log(data[j].hos_status);
+			    	
+			    	if(data.length > 0){
+				    	for(var j=0; j<data.length; j++){
+				    		console.log(data[j].hos_status);
+				    		html += "<tr>";
+				        	console.log("상태:" + hosId);
+				        	if (data[j].hos_status == 0){
+				        		html += "<td class='status' style='background:#4dbbff'>예약완료<span class='noneDis'>,</span></td>";
+				        	
+				        	}
+				        	 if (data[j].hos_status == 1){
+				        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
+				        	}
+				        	 if (data[j].hos_status == 2){
+				        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
+				        	}
+				        	
+				        	html += "<td class='resTime'>"+data[j].hos_date+"</td>";
+				        	html += "<td class='resName'>"+data[j].name+"</td>";
+				        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?hos_rnum='+data[j].hos_rnum +">상세보기</a></td>";
+				        	html += "</tr>"
+				        		console.log("받아온 상태:"+ data[j].hos_status);
+				        };
+				        $("#revtable").empty();
+				        $("#revtable").append(html);
+				        html = "";
+			        
+			    	}else{
 			    		html += "<tr>";
-			        	console.log("상태:" + hosId);
-			        	if (data[j].hos_status == 0){
-			        		html += "<td class='status' style='background:#4dbbff'>예약완료<span class='noneDis'>,</span></td>";
+			        	html += "<td colspan='3' style='width:100%'>해당 날짜의 예약관련 정보가 없습니다.</td>";
+			        	html += "</tr>";
 			        	
-			        	}
-			        	 if (data[j].hos_status == 1){
-			        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
-			        	}
-			        	 if (data[j].hos_status == 2){
-			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
-			        	}
-			        	
-			        	html += "<td class='resTime'>"+data[j].hos_date+"</td>";
-			        	html += "<td class='resName'>"+data[j].name+"</td>";
-			        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?hos_rnum='+data[j].hos_rnum +">상세보기</a></td>";
-			        	html += "</tr>"
-			        		console.log("받아온 상태:"+ data[j].hos_status);
-			        };
-			        $("#revtable").empty();
-			        $("#revtable").append(html);
-			        html = "";
-			        console.log("성공2");
+			        	 $("#revtable").empty();
+				        $("#revtable").append(html);
+				        html = "";
+			    	}
+			    	
 			    },
 			    error:function(jqxhr, textStatus, errorThrown){
 			    console.log("ajax 처리 실패");

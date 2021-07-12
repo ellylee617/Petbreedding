@@ -15,7 +15,7 @@
   <update id="modifyBP" parameterType="BPartner" statementType="PREPARED" >
   	UPDATE business_partner 
   	SET BP_NAME = #{bp_name}, BP_PWD = #{bp_pwd}, BP_TEL = #{bp_tel},BP_BANK = #{bp_bank}, BP_ACNT = #{bp_acnt}
-  	WHERE BP_EMAIL = #{bp_email}
+  	WHERE BP_EMAIL = #{bp_email} AND BP_ID = #{bp_Id}
   </update>
   
   

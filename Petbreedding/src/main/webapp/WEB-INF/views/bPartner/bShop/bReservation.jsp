@@ -38,13 +38,6 @@
 					</div>
 				</div>
 				<div class="resBox">
-				              <!-- 
-             	 0- 예약완료
-				1 결제완료
-				2 이용완료
-				3 결제취소
-              
-               -->
 						<select id="resselect" onchange="change()">
 							<option value="4" name="res_status" selected>전체</option>
 							<option value="0" name="res_status">예약완료</option>
@@ -54,9 +47,9 @@
 
 						<hr>
 						<div class="resList">
-								<!-- tr forEach -->
 								<input type="hidden" value="${bP.bp_Id}" id="bp_id" />
 									<table id="revtable">
+										<c:if test="${!empty list }">
 										<c:forEach var="rev" items="${list }">
 											<tr>
 												<c:choose>
@@ -75,6 +68,12 @@
 												<td class="resInfo"><a href="bReservationDetail?har_rnum=${rev.har_rnum}">상세보기</a></td>
 											</tr>
 										</c:forEach>
+										</c:if>
+										<c:if test="${empty list }">
+											<tr>
+												<td colspan="3" style="width:100%">해당 날짜의 예약관련 정보가 없습니다.</td>
+											</tr>
+										</c:if>
 									</table>
 						</div>
 				</div>
@@ -98,27 +97,36 @@
 
 						<hr>
 						<div class="resList">
+
 								<!-- tr forEach -->
 								<input type="hidden" value="${bP.bp_Id}" id="bp_id" />
 									<table id="revtable">
-										<c:forEach var="rev" items="${list }">
+									
+										<c:if test="${!empty list }">
+											<c:forEach var="rev" items="${list }">
+												<tr>
+													<c:choose>
+														<c:when test="${rev.hos_status == 0}">
+															<td class="status" id ="status">예약완료<span class="noneDis">,</span></td>
+														</c:when>
+														<c:when test="${rev.hos_status == 1}">
+															<td class="status">결제완료<span class="noneDis">,</span></td>
+														</c:when>
+														<c:when test="${rev.hos_status == 3}">
+															<td class="status">이용취소<span class="noneDis">,</span></td>
+														</c:when>
+													</c:choose>
+													<td class="resTime">${rev.hos_date}</td>
+													<td class="resName">${rev.name}</td>
+													<td class="resInfo"><a href="bReservationDetail?hos_rnum=${rev.hos_rnum}">상세보기</a></td>
+												</tr>
+											</c:forEach>
+										</c:if>
+										<c:if test="${empty list }">
 											<tr>
-												<c:choose>
-													<c:when test="${rev.hos_status == 0}">
-														<td class="status" id ="status">예약완료<span class="noneDis">,</span></td>
-													</c:when>
-													<c:when test="${rev.hos_status == 1}">
-														<td class="status">결제완료<span class="noneDis">,</span></td>
-													</c:when>
-													<c:when test="${rev.hos_status == 3}">
-														<td class="status">이용취소<span class="noneDis">,</span></td>
-													</c:when>
-												</c:choose>
-												<td class="resTime">${rev.hos_date}</td>
-												<td class="resName">${rev.name}</td>
-												<td class="resInfo"><a href="bReservationDetail?hos_rnum=${rev.hos_rnum}">상세보기</a></td>
+												<td colspan="3" style="width:100%">해당 날짜의 예약관련 정보가 없습니다.</td>
 											</tr>
-										</c:forEach>
+										</c:if>
 									</table>
 						</div>
 				</div>
