@@ -34,9 +34,7 @@ $("#reviewImg").on("change",function(){
 	var fileName = $("#reviewImg").val();
     $("#imgUpBtn i").append("<small id='fileName'>" +fileName +"</small>");
 });
-function insertImg() {
-    
-}
+
 
 
 

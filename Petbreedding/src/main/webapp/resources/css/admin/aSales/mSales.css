@@ -39,12 +39,14 @@
 }
 
 .box{
-    width: 400px;
-    height: 200px;
+	width: 400px;
+    overflow: hidden;
+    padding: 10px;
     border: 1px solid var(--border-color);
-    margin-left: 20px;
 }
-
+.box figure{
+	margin: 0;
+}
 .graphBox{
     margin-top: 40px;
     width: 400px;

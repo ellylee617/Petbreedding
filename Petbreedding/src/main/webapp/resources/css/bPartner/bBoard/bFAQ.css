@@ -6,6 +6,7 @@
 	text-align: center;
 	margin: 0;
 	float:left;
+	height: 606px;
 }
 .bAside{
 	width:350px;
@@ -20,10 +21,15 @@
 }
 #bMyPageM{
 	display: inline-block;
+	height: 606px;
 }
 .section{
 	padding-bottom: 150px;
 }
+.page_wrap{
+	margin-top: 50px;
+}
+
 
 .fa-angle-down {
 	font-size: 20px;

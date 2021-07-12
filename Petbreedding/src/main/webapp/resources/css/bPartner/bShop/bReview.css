@@ -1,7 +1,27 @@
 @charset "UTF-8";
 
+/* 페이지마다 변경되는 항목 */
 .bContent{
-	margin-bottom: 100px
+	width: 750px;
+	margin: 0;
+	float:left;
+}
+.bAside{
+	width:350px;
+}
+#bMyPage{
+	color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+#bMyPage a{
+	display:block;
+	color: var(--font-color);
+}
+#bMyPageM{
+	display: inline-block;
+}
+.section{
+	padding-bottom: 150px;
 }
 
 /* 리뷰 관리 테이블 */

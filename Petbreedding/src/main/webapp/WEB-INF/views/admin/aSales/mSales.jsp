@@ -224,7 +224,6 @@ Highcharts.chart('container5', {
 	      ['헤어살롱', ${har}],
 	     
 	      ['병원', ${hos}],
-	      
 	    ]
 	  }]
 	});
@@ -283,8 +282,7 @@ Highcharts.chart('container5', {
 	</div>
 
 	<!-- script -->
-	<script type="text/javascript"
-		src="${path}/resources/js/admin/mAside.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/admin/mAside.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
 	<script src="https://code.highcharts.com/highcharts-more.js"></script>

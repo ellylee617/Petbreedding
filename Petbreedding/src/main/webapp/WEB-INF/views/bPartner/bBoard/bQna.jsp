@@ -35,6 +35,7 @@
 						<th>작성일</th>
 						<th>답변여부</th>
 					</tr>
+					<c:if test="${!empty bQnaList }">
 					<c:forEach items="${bQnaList}" var="list">
 					<tr id="${list.qnaNum}" class="pointline">
 						<td>${list.qnaNum}</td>
@@ -50,35 +51,41 @@
 						</c:choose>
 					</tr>
 					</c:forEach>
-
+					</c:if>
+					<c:if test="${empty bQnaList }">
+						<tr class="pointline">
+							<td colspan='4'>문의하신 내역이 없습니다.</td>
+						</tr>
+					</c:if>
 				</table>
-			</div>
-			
-			<!-- 페이징 시작-->
-			<div class="page_wrap">
-				<div class="page_nation">
-					<c:if test="${paging.startPage != 1 }">
-						<a class="arrow prev" href="${path}/fboardlist?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
-					</c:if>
-					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-						<c:choose>
-							<c:when test="${p == paging.nowPage }">
-								<b>${p }</b>
-							</c:when>
-							<c:when test="${p != paging.nowPage }">
-								<a href="${path}/fboardlist?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
-							</c:when>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${paging.endPage != paging.lastPage}">
-						<a class="arrow next" href="${path}/fboardlist?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
-					</c:if>
+				
+				<!-- 페이징 시작-->
+				<div class="page_wrap">
+					<div class="page_nation">
+						<c:if test="${paging.startPage != 1 }">
+							<a class="arrow prev" href="${path}/bQna?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&user_num=${user_num}">이전</a> 
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a href="${path}/bQna?nowPage=${p }&cntPerPage=${paging.cntPerPage}&user_num=${user_num}">${p}</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a class="arrow next" href="${path}/bQna?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&user_num=${user_num}">다음</a>
+						</c:if>
+					</div>
 				</div>
+				<!-- 페이징 끝! -->
 			</div>
-			<!-- 페이징 끝! -->
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 	</div>
+	
 	<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 	<script type="text/javascript" src="${path}/resources/js/bPartner/bBoard/bQna.js"></script>
 </body>

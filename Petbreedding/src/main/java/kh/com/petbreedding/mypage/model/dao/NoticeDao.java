@@ -18,6 +18,11 @@ public class NoticeDao {
 	public int notificationRead(String notReceiver) {
 		return sqlSession.selectOne("notice.notificationRead", notReceiver);
 	}
+	
+	// 안 읽은 알림 리스트 가져오기
+	public List<Notice> unreadNotList(String notReceiver){
+		return sqlSession.selectList("notice.unreadNotList", notReceiver);
+	}
 
 	// 알림 목록 가져오기
 	public List<Notice> getNoticeList(String notReceiver) {
