@@ -34,10 +34,10 @@
 }
 .totalpay_info h4{float: left;}
 .totalpay_info div{float: right;}
-.totalpay_info div p {text-align: right;}
-.totalpay_info div p span{padding-left: 50px;}
-.totalpay_info .usePoint{
-    padding-left: 100px !important;
+.totalpay_info div p {text-align: left;}
+.money{float:right;}
+#totalPrice,#payMoney{
+	padding-left: 100px;
 }
 /*결제방법선택*/
 .paymethod{

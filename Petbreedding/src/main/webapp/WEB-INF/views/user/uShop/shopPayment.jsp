@@ -75,7 +75,8 @@
                             	<td id="nowPoint">0P</td>
                             </c:if>
                             <c:if test="${!empty point and (point ne -1)}">
-                            	<td id="nowPoint">${point }P</td>
+                            	<td id="nowPoint">${point }</td>
+                            	<td><span>P</span></td>
                             </c:if>
                             <td><input type="text" id="pointArea" value="0"><input type="checkbox" id="pointAll"><label for="pointAll">모두 사용</label></td>
                         </tr>                        
@@ -85,12 +86,13 @@
                      <h4>결제 금액</h4>
                      <div >
                         <p>총 상품 금액 
-	                        <span id="totalPrice">
+                        	<span class="money">원</span>
+	                        <span id="totalPrice" class="money">
 	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice }" />
-							</span>원
+							</span>
 						</p>
-                        <p>포인트 사용<span class="usePoint">0원</span></p>
-                        <p >총 결제 금액 <span id="payMoney"></span>원</p>
+                        <p>포인트 사용<span class="money">P</span><span class="usePoint money" >0</span></p>
+                        <p >총 결제 금액 <span class="money">원</span><span id="payMoney" class="money"></span></p>
                      </div>                              
                  </div>
                  <div class="agreeInfo infoBox">
