@@ -406,10 +406,25 @@ public class ClientInfoCotroller {
 		List<Notice> list = null;
 
 		Client client = (Client) session.getAttribute("client");
-
+		String cl_num = "";
 		if (session != null) {
-			String cl_num = client.getCl_num();
+			cl_num = client.getCl_num();
 			list = noticeService.getNoticeList(cl_num);
+		}
+		
+		// 안 읽은 알림 업데이트 하기
+		List<Notice> unreadList = noticeService.unreadNotList(cl_num);
+		if(unreadList!=null) {
+			for(int i=0; i<unreadList.size(); i++) {
+				String notNum = unreadList.get(i).getNotNum();
+				int result = 0;
+				result = noticeService.updateReadState(notNum);
+				if(result==1) {
+					System.out.println("안 읽은 알림 읽기 처리!");
+				}else {
+					System.out.println("안 읽은 알림 읽기 처리 실패");
+				}
+			}
 		}
 
 		mv.addObject("noticeList", list);
