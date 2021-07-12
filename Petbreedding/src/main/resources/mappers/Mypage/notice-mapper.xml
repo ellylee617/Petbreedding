@@ -16,7 +16,11 @@
 		<result column="QNA_TITLE" property="qnaTitle"/>
 		<result column="NOTICE_TIME" property="notTime"/>
 	</resultMap>
-	
+
+	<select id="notificationRead" resultType="int">
+		SELECT COUNT(NOTICE_NUM) FROM NOTICE WHERE NOTICE_RECEIVER = #{notReceiver} AND READ_STATE = 0
+	</select>
+
 	<select id="getNoticeList" resultMap="notice">
 		SELECT G.*, H.QNA_TITLE
 		FROM

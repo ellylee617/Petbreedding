@@ -44,6 +44,5 @@
             </ul>
         </nav>
     </div>
-
-    
 </header> 
+<script type="text/javascript" src="${path}/resources/js/common/notification.js"></script>

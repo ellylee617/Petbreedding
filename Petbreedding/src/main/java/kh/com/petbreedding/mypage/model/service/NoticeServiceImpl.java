@@ -206,4 +206,16 @@ public class NoticeServiceImpl implements NoticeService {
 		return cl_num;
 	}
 
+	@Override
+	public int notificationRead(String notReceiver) {
+		int result = 0;
+		
+		try {
+			result = noticeDao.notificationRead(notReceiver);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

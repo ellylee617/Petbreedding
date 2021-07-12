@@ -420,13 +420,9 @@ public class ClientInfoCotroller {
 	// 알림 삭제
 	@RequestMapping("/notdelete.do")
 	@ResponseBody
-	public int noticeDelete(HttpServletRequest req) {
+	public int noticeDelete(String notNum) {
 
 		int result = 0;
-
-		String notNum = req.getParameter("notNum");
-		System.out.println("notNum" + notNum);
-
 		result = noticeService.deleteNotice(notNum);
 
 		if (result == 1) {
@@ -436,6 +432,28 @@ public class ClientInfoCotroller {
 			System.out.println("알림 삭제 실패!");
 		}
 
+		return result;
+	}
+	
+	// 쌓인 알림 갯수 읽어오기
+	@RequestMapping("/notification.do")
+	@ResponseBody
+	public int noticeRead(HttpSession session) {
+
+		int result = 0;
+
+			Client client = (Client) session.getAttribute("client");
+			String cl_num = "";
+			if (client != null) {
+			cl_num = client.getCl_num();
+			result = noticeService.notificationRead(cl_num);
+			
+			if (result!=0) {
+				System.out.println("알림 카운트 읽어오기 완료!");
+			} else {
+				System.out.println("알림 카운트 읽어오기 실패!");
+			}
+		}
 		return result;
 	}
 

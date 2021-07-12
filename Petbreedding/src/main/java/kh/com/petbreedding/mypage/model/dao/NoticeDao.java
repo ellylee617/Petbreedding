@@ -13,6 +13,11 @@ public class NoticeDao {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	// 쌓인 알림 갯수 알아오기
+	public int notificationRead(String notReceiver) {
+		return sqlSession.selectOne("notice.notificationRead", notReceiver);
+	}
 
 	// 알림 목록 가져오기
 	public List<Notice> getNoticeList(String notReceiver) {
