@@ -264,8 +264,6 @@ public class AdminController {
 	@RequestMapping(value = "/mboardAjax", produces="text/plain;charset=UTF-8")
 	public String mboardAjax(
 			Pagination page
-//			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-//			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			,HttpServletResponse res
 			,HttpServletRequest req
 			,int qnaType
@@ -494,15 +492,102 @@ public class AdminController {
 	
 	// 게시글 관리 (공지사항게시판 목록)
 	@RequestMapping(value = "/mservice")
-	public String mservice(Model md) {
+	public String mservice(
+			Model md
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
 		
-		List<CustomerService> cusList = customerServiceService.CustomerServiceSelectListA();
+		int total = customerServiceService.CustomerServiceListCount();
+		System.out.println("[세훈] @관리자 공지사항 목록 전체리스트 total : " + total);
 		
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<CustomerService> cusList = customerServiceService.CustomerServiceSelectListA(map);
+		System.out.println("[세훈] @관리자 공지사항 목록 전체리스트 cusList : " + cusList);
+		
+		md.addAttribute("paging", page);
 		md.addAttribute("cusList", cusList);
 		
 		return "/admin/aBoard/mservice";
 	}
 	
+	
+	// 게시글 관리 (공지사항 목록 ajax)
+	@ResponseBody
+	@RequestMapping(value = "/mserviceAjax", produces="text/plain;charset=UTF-8")
+	public String mserviceAjax(
+			Pagination page
+			,HttpServletResponse res
+			,HttpServletRequest req
+			,int annType
+			,int p
+			) throws IOException {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		System.out.println("[세훈] @관리자 공지사항 목록 annType : " + annType);
+		System.out.println("[세훈] @관리자 공지사항 목록 p : " + p);
+		
+		String myServiceJson = "";
+		
+//		if(annType == 0) {
+//			//	annType이 0이면 공지사항 전체 조회
+//			int total = customerServiceService.CustomerServiceListCount();
+//			System.out.println("[세훈] @관리자 공지사항 목록 전체 선택 total : " + total);
+//			page = new Pagination(total, p, LIMIT);
+//			
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			List<CustomerService> mserviceList = new ArrayList<CustomerService>();
+//			
+//			map.put("start", Integer.toString(page.getStart()));
+//			map.put("end", Integer.toString(page.getEnd()));
+//			mserviceList = customerServiceService.CustomerServiceSelectListA(map);
+//			
+//			Map<String, Object> mapResult = new HashMap<String, Object>();
+//			mapResult.put("paging", page);
+//			mapResult.put("list", mserviceList);
+//			
+//			Gson jobj = new GsonBuilder().create();
+//			myServiceJson = jobj.toJson(mapResult);
+//			System.out.println("[세훈] @관리자 공지사항 전체 리스트 myAskJson : " + myServiceJson.toString());
+//			
+//		} else {
+			
+//			annType 타입에 맞는 공지사항 조회
+			int total = customerServiceService.CustomerServiceListCountS(annType);
+			System.out.println("[세훈] @관리자 공지사항 목록 고객, 사업자 선택 total : " + total);
+			page = new Pagination(total, p, LIMIT);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<CustomerService> mserviceList = new ArrayList<CustomerService>();
+			
+			map.put("start", Integer.toString(page.getStart()));
+			map.put("end", Integer.toString(page.getEnd()));
+			map.put("annType", Integer.toString(annType));
+			
+			mserviceList = customerServiceService.CustomerServiceSelectListS(map);
+			
+			Map<String, Object> mapResult = new HashMap<String, Object>();
+			mapResult.put("paging", page);
+			mapResult.put("list", mserviceList);
+			
+			Gson jobj = new GsonBuilder().create();
+			myServiceJson = jobj.toJson(mapResult);
+			System.out.println("[세훈] @관리자 공지사항 리스트 annType 선택 myAskJson : " + myServiceJson.toString());
+//		}
+		
+		return myServiceJson;
+	}
+	
+	
+	//	문의 게시판 상세 페이지 조회
 	@RequestMapping(value = "/mserviceDetail")
 	public String mserviceDetail(
 			Model md

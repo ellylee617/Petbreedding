@@ -84,7 +84,9 @@
 }
 
 .selectBox {
-	width: 119px;
+	margin-left: 26px;
+    margin-bottom: 19px;
+	width: 499px;
     height: 40px;
 }
 
