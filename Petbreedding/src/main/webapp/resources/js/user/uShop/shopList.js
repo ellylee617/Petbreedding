@@ -19,13 +19,13 @@ var orderBy = getParameters('orderBy');
 console.log('정렬 기준은???'+orderBy);
 
 if(orderBy=='new'){
-	$("input:radio[name='selectOpt']:radio[value='최신순']").attr("checked",true);
+	$("input:radio[name='selectOpt']:radio[value='new']").attr("checked",true);
 } 
 if(orderBy=='like'){
-	$("input:radio[name='selectOpt']:radio[value='인기순']").attr("checked",true);
+	$("input:radio[name='selectOpt']:radio[value='like']").attr("checked",true);
 } 
 if(orderBy=='rev'){
-	$("input:radio[name='selectOpt']:radio[value='별점순']").attr("checked",true);
+	$("input:radio[name='selectOpt']:radio[value='rev']").attr("checked",true);
 } 
 
 
