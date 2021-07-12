@@ -91,7 +91,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -178,7 +178,7 @@
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=1"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${cta.bpId }&shopType=1"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -219,7 +219,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -292,7 +292,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
+	                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -365,7 +365,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -451,7 +451,7 @@
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=1"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${cta.bpId }&shopType=1"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -502,7 +502,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
+	                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -569,7 +569,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
+	                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -637,7 +637,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=1"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -773,7 +773,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -828,7 +828,7 @@
 			
 			<hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="newLocRadio" name="selectOpt"><label for="newLocRadio">최신순</label>
+                <input type="radio" checked id="newLocRadio" name="selectOpt" ><label for="newLocRadio">최신순</label>
                 <input type="radio" id="likeLocRadio"  name="selectOpt" ><label for="likeLocRadio">인기순</label>
                  <input type="radio" id="revLocRadio" name="selectOpt"><label for="revLocRadio">별점순</label>
             </div>
@@ -863,7 +863,7 @@
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${cta.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -906,7 +906,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -984,7 +984,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+	                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -1052,7 +1052,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -1107,9 +1107,9 @@
 		<!--  ************** 미용실 전체 리스트 페이지 ************************** -->
 		<hr id="storeLine">
             <div class="selectOpt">
-                <input type="radio" checked id="newRadio" name="selectOpt"><label for="newRadio">최신순</label>
-                <input type="radio" id="likeRadio"  name="selectOpt" ><label for="likeRadio">인기순</label>
-                 <input type="radio" id="revRadio" name="selectOpt"><label for="revRadio">별점순</label>
+                <input type="radio" id="newRadio" name="selectOpt" value="최신순"   onclick="window.location.href='${path}/shopList/all/new?shopType=${shopType}&orderBy=new';"><label for="newRadio">최신순</label>
+                <input type="radio" id="likeRadio"  name="selectOpt" value="인기순"   onclick="window.location.href='${path}/shopList/all/likes?shopType=${shopType}&orderBy=like';"><label for="likeRadio">인기순</label>
+                 <input type="radio" id="revRadio" name="selectOpt"value="별점순" onclick="window.location.href='${path}/shopList/all/review?shopType=${shopType}&orderBy=rev';"><label for="revRadio">별점순</label>
             </div>
 			 <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
@@ -1141,7 +1141,7 @@
                                     <a href="#">찜하기 <small> ${cta_count[status.index]}</small></a>
                                 </div>
                                 <div class="ultraList_button">
-                                    <a href="../shopPage?bpId=${cta.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${cta.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                             </div>                                                            
                         </li>
@@ -1157,7 +1157,7 @@
             
 		<c:if test="${!empty allShopListNew }">
 		
-           <!-- 미용실 최신순 정렬 -->
+           <!-- 미용실 전체 리스트 최신순 정렬 -->
            <div id="newList" class="newList">
            
                        
@@ -1191,7 +1191,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+	                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -1203,31 +1203,36 @@
 	                        <!-- 페이징 시작-->
 				            <div class="page_wrap">
 				               <div class="page_nation">
-				                  <c:if test="${paging.startPage != 1 }">
-				                     <a class="arrow prev" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+				                  <c:if test="${all_new_paging.startPage != 1 }">
+				                     <a class="arrow prev" href="${path}/shopList/all/new?shopType=${shopType}&nowPage=${all_new_paging.startPage - 1 }&cntPerPage=${all_new_paging.cntPerPage}&orderBy=new">이전</a> 
 				                  </c:if>
-				                  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+				                  <c:forEach begin="${all_new_paging.startPage }" end="${all_new_paging.endPage }" var="p">
 				                     <c:choose>
-				                        <c:when test="${p == paging.nowPage }">
+				                        <c:when test="${p == all_new_paging.nowPage }">
 				                           <b>${p }</b>
 				                        </c:when>
-				                        <c:when test="${p != paging.nowPage }">
-				                           <a href="${path}/shopList/all?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+				                        <c:when test="${p != all_new_paging.nowPage }">
+				                           <a href="${path}/shopList/all/new?shopType=${shopType}&nowPage=${p }&cntPerPage=${all_new_paging.cntPerPage}&orderBy=new">${p}</a>
 				                        </c:when>
 				                     </c:choose>
 				                  </c:forEach>
-				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                  <c:if test="${all_new_paging.endPage != all_new_paging.lastPage}">
+				                     <a class="arrow next" href="${path}/shopList/all/new?shopType=${shopType}&nowPage=${all_new_paging.endPage+1 }&cntPerPage=${all_new_paging.cntPerPage}&orderBy=new">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
           			  <!-- 페이징 끝! -->
 	           </div>
-
+	</c:if>
 
             
+            
+            
             <!-- 미용실 인기순 정렬 -->
-            <div id="likeList" class="likeList" style="display: none;">
+            
+            <c:if test="${!empty allShopListLike }">
+            
+            <div id="likeList" class="likeList">
             			    
 	            <div class="storeS" >
 	              <c:forEach items="${allShopListLike}" var="item" varStatus="status" >
@@ -1259,7 +1264,7 @@
 	                                </div>
 	                                 <form class="frmShopInfo" >
 	                                 <div class="storeList_button">
-	                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+	                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
 	                                </div>
 	                               </form>
 	                            </div>                                                            
@@ -1270,29 +1275,39 @@
 	          			                 <!-- 페이징 시작-->
 				            <div class="page_wrap">
 				               <div class="page_nation">
-				                  <c:if test="${paging.startPage != 1 }">
-				                     <a class="arrow prev" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+				                  <c:if test="${all_likes_page.startPage != 1 }">
+				                     <a class="arrow prev" href="${path}/shopList/all/likes?shopType=${shopType}&nowPage=${all_likes_page.startPage - 1 }&cntPerPage=${all_likes_page.cntPerPage}&orderBy=like">이전</a> 
 				                  </c:if>
-				                  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+				                  <c:forEach begin="${all_likes_page.startPage }" end="${all_likes_page.endPage }" var="p">
 				                     <c:choose>
-				                        <c:when test="${p == paging.nowPage }">
+				                        <c:when test="${p == all_likes_page.nowPage }">
 				                           <b>${p }</b>
 				                        </c:when>
-				                        <c:when test="${p != paging.nowPage }">
-				                           <a href="${path}/shopList/all?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+				                        <c:when test="${p != all_likes_page.nowPage }">
+				                           <a href="${path}/shopList/all/likes?shopType=${shopType}&nowPage=${p }&cntPerPage=${all_likes_page.cntPerPage}&orderBy=like">${p}</a>
 				                        </c:when>
 				                     </c:choose>
 				                  </c:forEach>
-				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                  <c:if test="${all_likes_page.endPage != all_likes_page.lastPage}">
+				                     <a class="arrow next" href="${path}/shopList/all/likes?shopType=${shopType}&nowPage=${all_likes_page.endPage+1 }&cntPerPage=${all_likes_page.cntPerPage}&orderBy=like">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
           			  <!-- 페이징 끝! -->
                     </div>
+                    
+                    </c:if>
+                    
+                    <!-- 미용실 인기순 정렬 끝 -->
+                    
+                    
+                    
             
             <!-- 미용실 별점순 정렬 -->
-            <div  id="revList" class="revList" style="display: none;">
+            
+            <c:if test="${!empty allHarListRev }">
+            
+            <div  id="revList" class="revList">
             	
              <div class="storeS" >
                <c:forEach items="${allHarListRev}" var="item" varStatus="status" >
@@ -1325,7 +1340,7 @@
                                 </div>
                                  <form class="frmShopInfo" >
                                  <div class="storeList_button">
-                                    <a href="../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
+                                    <a href="../../shopPage?bpId=${item.bpId }&shopType=0"  class="goList">정보보기</a>
                                 </div>
                                </form>
                             </div>                                                            
@@ -1337,29 +1352,33 @@
                 <!-- 페이징 시작-->
 				            <div class="page_wrap">
 				               <div class="page_nation">
-				                  <c:if test="${paging.startPage != 1 }">
-				                     <a class="arrow prev" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+				                  <c:if test="${all_rev_page.startPage != 1 }">
+				                     <a class="arrow prev" href="${path}/shopList/all/review?shopType=${shopType}&nowPage=${all_rev_page.startPage - 1 }&cntPerPage=${all_rev_page.cntPerPage}&orderBy=rev">이전</a> 
 				                  </c:if>
-				                  <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+				                  <c:forEach begin="${all_rev_page.startPage }" end="${all_rev_page.endPage }" var="p">
 				                     <c:choose>
-				                        <c:when test="${p == paging.nowPage }">
+				                        <c:when test="${p == all_rev_page.nowPage }">
 				                           <b>${p }</b>
 				                        </c:when>
-				                        <c:when test="${p != paging.nowPage }">
-				                           <a href="${path}/shopList/all?shopType=${shopType}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+				                        <c:when test="${p != all_rev_page.nowPage }">
+				                           <a href="${path}/shopList/all/review?shopType=${shopType}&nowPage=${p }&cntPerPage=${all_rev_page.cntPerPage}&orderBy=rev">${p}</a>
 				                        </c:when>
 				                     </c:choose>
 				                  </c:forEach>
-				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                  <c:if test="${all_rev_page.endPage != all_rev_page.lastPage}">
+				                     <a class="arrow next" href="${path}/shopList/all/review?shopType=${shopType}&nowPage=${all_rev_page.endPage+1 }&cntPerPage=${all_rev_page.cntPerPage}&orderBy=rev">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
           			  <!-- 페이징 끝! -->
           		</div>
           		
-          	</c:if>	
-          	
+          		<!-- 미용실 별점순 정렬 끝 -->
+          		</c:if>
+          		
+          		
+          		
+          		
           	</c:if>
             </c:if>	
             

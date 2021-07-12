@@ -34,8 +34,9 @@ public class ShopListController {
 	private ReviewService reviewService;
 	
 	
-	// 사업장 전체 리스트  정렬
-	@RequestMapping(value = "/shopList/all", method = RequestMethod.GET)
+	// 사업장 전체 리스트  - 최신순 정렬
+	// 쪼개기 작업중..~ 
+	@RequestMapping(value = "/shopList/all/new", method = RequestMethod.GET)
 	public ModelAndView allShopList(
 			ModelAndView mv
 			,Pagination page
@@ -89,19 +90,16 @@ public class ShopListController {
 			int total = shopListService.countALLHarList();
 			
 			
-			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-			mv.addObject("paging", page);
 			
 			
-			List<HairSalon> allHarListNew = shopListService.selectAllHarListNew(page);
+			// 미용실 전체 리스트 - 최신순 정렬 페이징 
+			Pagination all_new_page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			System.out.println("미용실 전체 리스트 - 최신순 정렬 페이징 정보 보여줘 ~~~~~~"+all_new_page);
+			mv.addObject("all_new_paging", all_new_page);
+			
+			List<HairSalon> allHarListNew = shopListService.selectAllHarListNew(all_new_page);
 			System.out.println("미용실 전체 리스트 - 최신순 정렬 :: " + allHarListNew);
-			
-			
-			
-			
 			mv.addObject("allShopListNew", allHarListNew);
-			
-			
 			
 			
 			List<String> countList = new ArrayList<String>();
@@ -132,52 +130,26 @@ public class ShopListController {
 				
 			}
 			
-			List<HairSalon> allHarListLike = shopListService.selectAllHarListLike(page);
-			System.out.println("미용실 전체 리스트 - 인기순 정렬 :: " + allHarListLike);
-			mv.addObject("allShopListLike", allHarListLike);
-			List<String> countList2 = new ArrayList<String>();
-			List<String> avgList2 = new ArrayList<String>();
-			List<String> revCountList2 = new ArrayList<String>();
+
 			
-			for(int i =0; i<allHarListLike.size(); i++) {
-				
-				har_num = allHarListLike.get(i).getHarNum();
-				bpId = allHarListLike.get(i).getBpId();
-				
-				String count = likeService.countSalon(har_num); //찜
-				countList2.add(count);
-				mv.addObject("like_count", countList2);
-				
-				String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
-				avgList2.add(revAvg);
-				System.out.println("평균 별점 보여줘!!!!!!!!!!"+revAvg);
-				System.out.println(avgList2);
-				mv.addObject("like_revAvg", avgList2);
-				
-				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
-				revCountList2.add(revCount);
-				mv.addObject("like_revCount", revCountList2);
-				
-			}
-			
-			List<HairSalon> allHarListRev = shopListService.selectAllHarListRev(page);
-			System.out.println("미용실 전체 리스트 - 별점순 정렬::"+allHarListRev);
-			mv.addObject("allHarListRev", allHarListRev);
-			List<String> countList3 = new ArrayList<String>();
-			List<String> revCountList3 = new ArrayList<String>();
-			
-			for(int i=0; i<allHarListRev.size();i++) {
-				har_num = allHarListRev.get(i).getHarNum();
-				bpId = allHarListRev.get(i).getBpId();
-				
-				String count = likeService.countSalon(har_num); //찜
-				countList3.add(count);
-				mv.addObject("rev_count", countList3);
-				
-				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
-				revCountList3.add(revCount);
-				mv.addObject("rev_revCount", revCountList3);
-			}
+//			List<HairSalon> allHarListRev = shopListService.selectAllHarListRev(page);
+//			System.out.println("미용실 전체 리스트 - 별점순 정렬::"+allHarListRev);
+//			mv.addObject("allHarListRev", allHarListRev);
+//			List<String> countList3 = new ArrayList<String>();
+//			List<String> revCountList3 = new ArrayList<String>();
+//			
+//			for(int i=0; i<allHarListRev.size();i++) {
+//				har_num = allHarListRev.get(i).getHarNum();
+//				bpId = allHarListRev.get(i).getBpId();
+//				
+//				String count = likeService.countSalon(har_num); //찜
+//				countList3.add(count);
+//				mv.addObject("rev_count", countList3);
+//				
+//				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+//				revCountList3.add(revCount);
+//				mv.addObject("rev_revCount", revCountList3);
+//			}
 			
 			
 		} 
@@ -316,6 +288,189 @@ public class ShopListController {
 		
 	}
 	
+	
+	//사업장 전체 리스트 - 인기순 정렬
+	// 미용실 작업완료 ~!
+	// TODO: 동물병원 
+	@RequestMapping(value = "/shopList/all/likes", method = RequestMethod.GET)
+	public ModelAndView allShopListLikes(
+			ModelAndView mv
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,@RequestParam Long shopType
+			, HttpServletRequest request
+			) throws Exception {
+		
+		
+		if (shopType == 0) {
+			
+			String har_num = null;
+			String bpId = null;
+			
+			List<String> ctaCountList = new ArrayList<String>();
+			List<String> ctaAvgList = new ArrayList<String>();
+			List<String> ctaRevCountList = new ArrayList<String>();
+			
+			// 울트라콜 미용실 리스트 
+			List<HairSalon> ctaHar = shopListService.selectCtaHar();
+			System.out.println("잔여수 높은 순으로 정렬된 울트라 미용실 리스트 보여줘~~ "+ctaHar);
+			mv.addObject("ctaHar", ctaHar);
+			
+			for(int i =0; i<ctaHar.size(); i++) {
+				
+				har_num = ctaHar.get(i).getHarNum();
+				bpId = ctaHar.get(i).getBpId();
+				
+				//찜한 숫자
+				String count = likeService.countSalon(har_num);
+				ctaCountList.add(count);
+				mv.addObject("cta_count", ctaCountList);
+				
+				//별점 평균
+				String revAvg = shopListService.selectShopRevAvg(bpId);	
+				ctaAvgList.add(revAvg);
+				System.out.println();
+				mv.addObject("cta_revAvg", ctaAvgList);
+				
+				//리뷰 숫자 
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				ctaRevCountList.add(revCount);
+				mv.addObject("cta_revCount", ctaRevCountList);
+			}
+			
+			
+			
+			// 미용실 전체 리스트 카운팅
+			int total = shopListService.countALLHarList();
+			
+			// 미용실 전체 리스트 - 인기순 정렬 페이징 
+			Pagination all_likes_page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			System.out.println("미용실 전체 리스트 - 인기순 정렬 페이징 정보 보여줘 ~~~~~~"+all_likes_page);
+			mv.addObject("all_likes_page", all_likes_page);
+			
+			List<HairSalon> allHarListLike = shopListService.selectAllHarListLike(all_likes_page);
+			System.out.println("미용실 전체 리스트 - 인기순 정렬 :: " + allHarListLike);
+			mv.addObject("allShopListLike", allHarListLike);
+			List<String> countList2 = new ArrayList<String>();
+			List<String> avgList2 = new ArrayList<String>();
+			List<String> revCountList2 = new ArrayList<String>();
+			
+			for(int i =0; i<allHarListLike.size(); i++) {
+				
+				har_num = allHarListLike.get(i).getHarNum();
+				bpId = allHarListLike.get(i).getBpId();
+				
+				String count = likeService.countSalon(har_num); //찜
+				countList2.add(count);
+				mv.addObject("like_count", countList2);
+				
+				String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
+				avgList2.add(revAvg);
+				System.out.println("평균 별점 보여줘!!!!!!!!!!"+revAvg);
+				System.out.println(avgList2);
+				mv.addObject("like_revAvg", avgList2);
+				
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				revCountList2.add(revCount);
+				mv.addObject("like_revCount", revCountList2);
+				
+				
+		}
+		}
+				mv.setViewName("/user/uShop/shopList");
+				return mv;
+		
+	}
+	
+	// 사업장 전체 리스트 - 별점순 정렬
+	// 미용실 작업중~~~
+	// TODO: 동물병원 
+	@RequestMapping(value = "/shopList/all/review", method = RequestMethod.GET)
+	public ModelAndView allShopListRev(
+			ModelAndView mv
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,@RequestParam Long shopType
+			, HttpServletRequest request
+			) throws Exception {
+		
+		
+	if (shopType == 0) {
+			
+			String har_num = null;
+			String bpId = null;
+			
+			List<String> ctaCountList = new ArrayList<String>();
+			List<String> ctaAvgList = new ArrayList<String>();
+			List<String> ctaRevCountList = new ArrayList<String>();
+			
+			// 울트라콜 미용실 리스트 
+			List<HairSalon> ctaHar = shopListService.selectCtaHar();
+			System.out.println("잔여수 높은 순으로 정렬된 울트라 미용실 리스트 보여줘~~ "+ctaHar);
+			mv.addObject("ctaHar", ctaHar);
+			
+			for(int i =0; i<ctaHar.size(); i++) {
+				
+				har_num = ctaHar.get(i).getHarNum();
+				bpId = ctaHar.get(i).getBpId();
+				
+				//찜한 숫자
+				String count = likeService.countSalon(har_num);
+				ctaCountList.add(count);
+				mv.addObject("cta_count", ctaCountList);
+				
+				//별점 평균
+				String revAvg = shopListService.selectShopRevAvg(bpId);	
+				ctaAvgList.add(revAvg);
+				System.out.println();
+				mv.addObject("cta_revAvg", ctaAvgList);
+				
+				//리뷰 숫자 
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				ctaRevCountList.add(revCount);
+				mv.addObject("cta_revCount", ctaRevCountList);
+			}
+			
+			
+			
+			// 미용실 전체 리스트 카운팅
+			int total = shopListService.countALLHarList();
+			
+			Pagination all_rev_page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			System.out.println("미용실 전체 리스트 - 별점순 정렬 페이징 정보 보여줘 ~~~~~~"+all_rev_page);
+			mv.addObject("all_rev_page", all_rev_page);
+			
+			
+			List<HairSalon> allHarListRev = shopListService.selectAllHarListRev(all_rev_page);
+			System.out.println("미용실 전체 리스트 - 별점순 정렬::"+allHarListRev);
+			mv.addObject("allHarListRev", allHarListRev);
+			List<String> countList3 = new ArrayList<String>();
+			List<String> revCountList3 = new ArrayList<String>();
+			
+			for(int i=0; i<allHarListRev.size();i++) {
+				har_num = allHarListRev.get(i).getHarNum();
+				bpId = allHarListRev.get(i).getBpId();
+				
+				String count = likeService.countSalon(har_num); //찜
+				countList3.add(count);
+				mv.addObject("rev_count", countList3);
+				
+				String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+				revCountList3.add(revCount);
+				mv.addObject("rev_revCount", revCountList3);
+			}
+			
+			
+		}
+				
+				mv.setViewName("/user/uShop/shopList");
+				return mv;
+		
+	}
+	
+	// 사업장 검색 리스트 정렬
 	// 사업장 검색 결과 정렬
 	@RequestMapping(value = "/shopList/search", method = RequestMethod.GET)
 	public ModelAndView searchShopList(

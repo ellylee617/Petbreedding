@@ -1,62 +1,97 @@
+var getParameters = function (paramName) {
+	// 리턴값을 위한 변수 선언 
+	var returnValue;
+	// 현재 URL 가져오기
+	var url = location.href; 
+	// get 파라미터 값을 가져올 수 있는 ? 를 기점으로 slice 한 후 split 으로 나눔 
+	var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+	// 나누어진 값의 비교를 통해 paramName 으로 요청된 데이터의 값만 return 
+	for (var i = 0; i < parameters.length; i++) {
+		var varName = parameters[i].split('=')[0]; 
+		if (varName.toUpperCase() == paramName.toUpperCase()) {
+			returnValue = parameters[i].split('=')[1]; return decodeURIComponent(returnValue); 
+			} 
+		}
+}
 
-$(document).ready(function(){
-	
 
-	
-	// 위치 검색
-	$("#newLocRadio").click(function(){
-		$("#harListLocNew").show();
-		$("#harListLocLike").hide();
-		$("#harListLocRev").hide();
-		
-		$("#hosListLocNew").show();
-		$("#hosListLocLike").hide();
-		$("#hosListLocRev").hide();
-		
-	});
+var orderBy = getParameters('orderBy');
+console.log('정렬 기준은???'+orderBy);
 
-	$("#likeLocRadio").click(function(){
-		$("#harListLocNew").hide();
-		$("#harListLocLike").show();
-		$("#harListLocRev").hide();
-		
-		$("#hosListLocNew").hide();
-		$("#hosListLocLike").show();
-		$("#hosListLocRev").hide();
-	});
+if(orderBy=='new'){
+	$("input:radio[name='selectOpt']:radio[value='최신순']").attr("checked",true);
+} 
+if(orderBy=='like'){
+	$("input:radio[name='selectOpt']:radio[value='인기순']").attr("checked",true);
+} 
+if(orderBy=='rev'){
+	$("input:radio[name='selectOpt']:radio[value='별점순']").attr("checked",true);
+} 
 
-	$("#revLocRadio").click(function(){
-		$("#harListLocNew").hide();
-		$("#harListLocLike").hide();
-		$("#harListLocRev").show();
-		
-		$("#hosListLocNew").hide();
-		$("#hosListLocLike").hide();
-		$("#hosListLocRev").show();
-	});
-	
-	
-	// 전체 리스트
-	$("#newRadio").click(function(){
-		$("#newList").show();
-		$("#likeList").hide();
-		$("#revList").hide();
-	});
 
-	$("#likeRadio").click(function(){
-		$("#newList").hide();
-		$("#likeList").show();
-		$("#revList").hide();
-		
-	});
 
-	$("#revRadio").click(function(){
-		$("#newList").hide();
-		$("#likeList").hide();
-		$("#revList").show();
-	});
-
-});
+// $(document).ready(function(){
+//	
+//	
+// // 위치 검색
+// $("#newLocRadio").click(function(){
+// $("#harListLocNew").show();
+// $("#harListLocLike").hide();
+// $("#harListLocRev").hide();
+//		
+// $("#hosListLocNew").show();
+// $("#hosListLocLike").hide();
+// $("#hosListLocRev").hide();
+//		
+// });
+//
+// $("#likeLocRadio").click(function(){
+// $("#harListLocNew").hide();
+// $("#harListLocLike").show();
+// $("#harListLocRev").hide();
+//		
+// $("#hosListLocNew").hide();
+// $("#hosListLocLike").show();
+// $("#hosListLocRev").hide();
+// });
+//
+// $("#revLocRadio").click(function(){
+// $("#harListLocNew").hide();
+// $("#harListLocLike").hide();
+// $("#harListLocRev").show();
+//		
+// $("#hosListLocNew").hide();
+// $("#hosListLocLike").hide();
+// $("#hosListLocRev").show();
+// });
+//	
+//	
+// // 전체 리스트
+// $("#newRadio").click(function(){
+//		
+//		
+// $("#newList").show();
+// $("#likeList").hide();
+// $("#revList").hide();
+// });
+//	
+//	
+//	
+//
+// $("#likeRadio").click(function(){
+// $("#newList").hide();
+// $("#likeList").show();
+// $("#revList").hide();
+//		
+// });
+//
+// $("#revRadio").click(function(){
+// $("#newList").hide();
+// $("#likeList").hide();
+// $("#revList").show();
+// });
+//
+// });
 
 function modal(id) {
     var zIndex = 9999;
@@ -111,7 +146,7 @@ document.getElementById('Loc').addEventListener('click', function () {
     modal('my_modal');
 });
 
-//시.도 선택후 시.군.구 선택창
+// 시.도 선택후 시.군.구 선택창
 function categoryChange(e) {
 	
 	console.log(e);
