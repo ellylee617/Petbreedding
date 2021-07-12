@@ -12,7 +12,8 @@
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css//user/uShop/shopInfoRead.css" rel="stylesheet" type="text/css" >
-<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
+<link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
+<script src="https://kit.fontawesome.com/aca84cf3fb.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- 지도 api -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffd90e8fd83a8d1b7acd8b168a81415f&libraries=services"></script>
@@ -143,7 +144,15 @@
                         <hr> 
                         <div class="reviews">
 							<div id="reviewArea"></div>
-                        </div>                                    
+                        </div>
+                        
+                    	<!-- 페이징 시작-->
+						<div id="page_wrap" class="page_wrap">
+							<div id="page_nation" class="page_nation">
+							</div>
+						</div>
+						<!-- 페이징 끝! -->
+                                                            
                     </div>            
                 </div> <!--store_review_article-->
                 <div class="store_map_article ">
@@ -182,11 +191,13 @@
 		 var path = '${pageContext.request.contextPath}';
 		 var shopName = '${shopInfo.shopName }';
 		 var type = 0;
+		 var p = 1;
 		 
 		 console.log(shopName);
 		 console.log(type);
+		 console.log(p);
 		 
-		 reviewInit(bpId, path, type);
+		 reviewInit(bpId, path, type, p);
 	 </script>
 </body>
 </html>

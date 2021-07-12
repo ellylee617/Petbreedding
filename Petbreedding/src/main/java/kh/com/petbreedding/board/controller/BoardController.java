@@ -69,8 +69,8 @@ public class BoardController {
 	@Autowired
 	private OftenQnaService oftenQnaService;
 	
-	public final int LIMIT = 5;
-
+	public static final int LIMIT = 5;
+	
 	// 게시글 목록 + 페이징 + 검색
 	@RequestMapping(value = "/fboardlist")
 	// TODO 병원 번호, 미용실 번호 GET 방식으로 들고 들어와서 파라미터로 넣어줘야함 -
@@ -448,17 +448,26 @@ public class BoardController {
 	}
 	
 	//	리뷰 조회
+	@ResponseBody
 	@RequestMapping(value = "/rList")
 	public void rList(
 			HttpServletRequest req
 			,HttpServletResponse res
 			,String bp_id
 			,int type
+			,int p
+			,Pagination page
 			) throws IOException {
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("application/json; charset=UTF-8");
+		
 		System.out.println("[세훈] @리뷰 조회 컨트롤러 bp_id : " + bp_id);
 		System.out.println("[세훈] @리뷰 조회 컨트롤러 type : " + type);
+		System.out.println("[세훈] @리뷰 조회 컨트롤러 p : " + p);
+		
+		int total = reviewService.getRevCount(bp_id);
+		System.out.println("[세훈] @리뷰 조회 컨트롤러 total : " + total);
+		page = new Pagination(total, p, LIMIT);
 		
 		PrintWriter out = res.getWriter();
 		String rvJson = "";
@@ -467,17 +476,52 @@ public class BoardController {
 		
 		if(rList != null) {
 			if(type == 1) {
-				rList = reviewService.revRevcSelectListDesc(bp_id);
+				Map<String, String> map = new HashMap<String, String>();
+				
+				map.put("start", Integer.toString(page.getStart()));
+				map.put("end", Integer.toString(page.getEnd()));
+				map.put("bpId", bp_id);
+				
+				rList = reviewService.revRevcSelectListDesc(map);
+				
+				Map<String, Object> mapResult = new HashMap<String, Object>();
+				mapResult.put("paging", page);
+				mapResult.put("list", rList);
+				
 				Gson jobj = new GsonBuilder().create();
-				rvJson = jobj.toJson(rList);
+				rvJson = jobj.toJson(mapResult);
+				
 			} else if(type == 2) {
-				rList = reviewService.revRevcSelectListAsc(bp_id);
+				Map<String, String> map = new HashMap<String, String>();
+				
+				map.put("start", Integer.toString(page.getStart()));
+				map.put("end", Integer.toString(page.getEnd()));
+				map.put("bpId", bp_id);
+				
+				rList = reviewService.revRevcSelectListAsc(map);
+				
+				Map<String, Object> mapResult = new HashMap<String, Object>();
+				mapResult.put("paging", page);
+				mapResult.put("list", rList);
+				
 				Gson jobj = new GsonBuilder().create();
-				rvJson = jobj.toJson(rList);
+				rvJson = jobj.toJson(mapResult);
+				
 			} else {
-				rList = reviewService.revRevcSelectListUpToDate(bp_id);
+				Map<String, String> map = new HashMap<String, String>();
+				
+				map.put("start", Integer.toString(page.getStart()));
+				map.put("end", Integer.toString(page.getEnd()));
+				map.put("bpId", bp_id);
+				
+				rList = reviewService.revRevcSelectListUpToDate(map);
+				
+				Map<String, Object> mapResult = new HashMap<String, Object>();
+				mapResult.put("paging", page);
+				mapResult.put("list", rList);
+				
 				Gson jobj = new GsonBuilder().create();
-				rvJson = jobj.toJson(rList);
+				rvJson = jobj.toJson(mapResult);
 			}
 		}
 
@@ -486,6 +530,7 @@ public class BoardController {
 		out.println(rvJson);
 		out.flush();
 		out.close();
+//		return rvJson;
 	}
 	
 

@@ -47,35 +47,56 @@
 	</select>
 	
 	<!-- 상세페이지에서 리뷰와 댓글 조회 최신 순-->
-	<select id="revRevcSelectListUpToDate" parameterType="string" resultMap="ReviewMap">
+	<select id="revRevcSelectListUpToDate" parameterType="map" resultMap="ReviewMap">
 		<![CDATA[
-			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
+            SELECT B.*
+            FROM (
+            SELECT ROWNUM R, A.*
+            FROM (
+            SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
 			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
 			ON r.REV_NUM = c.REV_NUM
 			WHERE r.BP_ID = #{bpId}
-			ORDER BY r.REV_NUM DESC
+            ORDER BY SUBSTR(r.REV_NUM, -3) DESC
+            ) A
+            ) B
+            WHERE R>= #{start} AND R<=#{end}
 		 ]]>
 	</select>
 	
 	<!-- 상세페이지에서 리뷰와 댓글 조회 별점 높은 순-->
-	<select id="revRevcSelectListDescStar" parameterType="string" resultMap="ReviewMap">
+	<select id="revRevcSelectListDescStar" parameterType="map" resultMap="ReviewMap">
 		<![CDATA[
+            SELECT B.*
+            FROM (
+            SELECT ROWNUM R, A.*
+            FROM (
 			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
 			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
 			ON r.REV_NUM = c.REV_NUM
 			WHERE r.BP_ID = #{bpId}
-			ORDER BY r.REV_VAL DESC, r.REV_NUM DESC
+			ORDER BY SUBSTR(r.REV_VAL, -3) DESC, SUBSTR(r.REV_NUM, -3) DESC
+            ) A
+            ) B
+            WHERE R>= #{start} AND R<=#{end}
 		 ]]>
 	</select>
 	
 	<!-- 상세페이지에서 리뷰와 댓글 조회 별점 낮은 순-->
-	<select id="revRevcSelectListAscStar" parameterType="string" resultMap="ReviewMap">
+	<select id="revRevcSelectListAscStar" parameterType="map" resultMap="ReviewMap">
 		<![CDATA[
+            SELECT B.*
+            FROM (
+            SELECT ROWNUM R, A.*
+            FROM (
 			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
 			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
 			ON r.REV_NUM = c.REV_NUM
 			WHERE r.BP_ID = #{bpId}
-			ORDER BY r.REV_VAL ASC, r.REV_NUM DESC
+			ORDER BY SUBSTR(r.REV_VAL, -1) ASC, SUBSTR(r.REV_NUM, -1) DESC
+            ) A
+            ) B
+            WHERE R>= #{start} AND R<=#{end}
 		 ]]>
 	</select>
 	
