@@ -117,7 +117,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${keyword_paging.endPage != keyword_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${keyword_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&=nowPage${keyword_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -245,7 +245,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${loc_paging.endPage != loc_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -318,7 +318,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${loc_paging.endPage != loc_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -391,7 +391,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${loc_paging.endPage != loc_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -528,7 +528,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -594,7 +594,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -663,7 +663,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -799,7 +799,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${keyword_paging.endPage != keyword_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${keyword_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${keyword_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -932,7 +932,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${loc_paging.endPage != loc_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -1010,7 +1010,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${loc_paging.endPage != loc_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -1078,7 +1078,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${loc_paging.endPage != loc_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${loc_paging.endPage+1 }&cntPerPage=${loc_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -1217,7 +1217,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -1284,7 +1284,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -1351,7 +1351,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${paging.endPage != paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
