@@ -75,6 +75,31 @@ public class AdminDao {
 	public int getBpChart(String reg_date) {
 		return sqlSession.selectOne("chart.bpMonth", reg_date);
 	}
+	
+	//총 매출
+	public int getAllPrice(String pay_date) {
+		return sqlSession.selectOne("chart.allPayPrice",pay_date);
+	}
+	//순 매출
+	public int getRealPrice(String pay_date) {
+		return sqlSession.selectOne("chart.realPayPrice", pay_date);
+	}
+	//울트라콜 점유율
+	public int getUltraAll() {
+		return sqlSession.selectOne("chart.ultraAll");
+	}
+	//사업장 점유율
+	public int getBpAll() {
+		return sqlSession.selectOne("chart.bpAll");
+	}
+	//미용실 울트라 점유율
+	public int getHarUltra() {
+		return sqlSession.selectOne("chart.HarUltra");
+	}
+	//병원 울트라 점유율
+	public int getHosUltra() {
+		return sqlSession.selectOne("chart.HosUltra");
+	}
 }	
 	
 	

@@ -25,4 +25,14 @@ public interface AdminService {
 	
 	public int getMemChart(String reg_date);
 	public int getBpChart(String reg_date);
+	
+	public int getAllPrice(String pay_date);
+	public int getRealPrice(String pay_date);
+	
+	public int getUltraAll();
+	public int getBpAll();
+	
+	public int getHarUltra();
+	public int getHosUltra();
+	
 }
