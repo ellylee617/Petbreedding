@@ -177,5 +177,104 @@ public class AdminServiceImpl implements AdminService{
 		return result;
 	}
 
+	@Override
+	public int getAllPrice(String pay_date) {
+
+		int result = 0;
+		try {
+			result = aDao.getAllPrice(pay_date);
+			if(result >  0) {
+				System.out.println("총 매출액 들어옴");
+			}else {
+				System.out.println("총 매출액 조회 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int getRealPrice(String pay_date) {
+		int result = 0;
+		try {
+			result = aDao.getRealPrice(pay_date);
+			if(result > 0) {
+				System.out.println("순매출액 들어옴");
+			}else {
+				System.out.println("순 매출액 조회 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getUltraAll() {
+		int result = 0;
+		try {
+			result = aDao.getUltraAll();
+			if(result > 0) {
+				System.out.println("울트라콜 점유율 들어옴");
+			}else {
+				System.out.println("울트라콜 점유율 조회 실페");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getBpAll() {
+		int result = 0;
+		try {
+			result = aDao.getBpAll();
+			if(result > 0) {
+				System.out.println("사업장 점유율 들어옴");
+			}else {
+				System.out.println("사업장 점유율 조회 실페");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getHarUltra() {
+		int result = 0;
+		try {
+			result = aDao.getHarUltra();
+			if(result > 0) {
+				System.out.println("미용실 울트라 점유율 들어옴");
+			}else {
+				System.out.println("미용실 울트라 점유율 조회 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getHosUltra() {
+		int result = 0;
+		try {
+			result = aDao.getHosUltra();
+			if(result>0) {
+				System.out.println("병원 울트라 점유율 들어옴");
+			}else {
+				System.out.println("병원 울트라 점유율 조회 실패");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 
 }

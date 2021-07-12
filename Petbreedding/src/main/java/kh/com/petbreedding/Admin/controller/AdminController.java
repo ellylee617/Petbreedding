@@ -57,56 +57,115 @@ public class AdminController {
 	public final int LIMIT = 5;
 	
 	//관리자 회원관리 (차트)
-		@RequestMapping(value = "/mClient", method = RequestMethod.GET)
-		public String mClient(Locale locale, Model model) {
-			
-			int total = 0;
-			int total2 = 0;
-			
-			total = adminService.getMemberCount();
-			total2 = adminService.getBpCount();
-			//reg_date 구하기 
+	@RequestMapping(value = "/mClient", method = RequestMethod.GET)
+	public String mClient(Locale locale, Model model) {
+		
+
+		int total = 0;
+		int total2 = 0;
+		
+		total = adminService.getMemberCount();
+		total2 = adminService.getBpCount();
+
+		//reg_date 구하기 
+		  String[] regArr = new String[12];
+	        String reg_date = "";
+
+	        for(int i=0; i < regArr.length; i++){
+	           if(i < 9){
+	        	   reg_date +=  "20210" + (i+1);
+	           
+	           }else{
+	        	   reg_date += "2021" + (i+1);
+	          
+	           }
+	            regArr[i] = reg_date;
+	            reg_date = "";
+	            System.out.println(regArr[i]);
+	        }
+	      
+	      //사용자 날짜별 카운트
+	      int[] cntArr = new int[12];
+	      for(int i=0; i<cntArr.length; i++) {
+	    	  System.out.println("카운트 들어옴!");
+	    	  cntArr[i] = adminService.getMemChart(regArr[i]);
+	      }
+	      //사업자 날짜별 카운트
+	      int[] bpcntArr = new int[12];
+	      for(int i=0; i < bpcntArr.length; i++) {
+	    	  bpcntArr[i] = adminService.getBpChart(regArr[i]);
+	      }
+	      
+		
+		model.addAttribute("total" , total);
+		model.addAttribute("total2", total2);
+		model.addAttribute("chart", regArr);
+		model.addAttribute("cnt", cntArr);
+		model.addAttribute("cnt2", bpcntArr);
+		return "/admin/aSales/mClient";
+	}
+		//관리자 매출관리
+		@RequestMapping(value = "/mSales", method = RequestMethod.GET)
+		public String mSales(Locale locale, Model model) {
+			//최근 6개월 pay_date 구하기 
 			  String[] regArr = new String[12];
-		        String reg_date = "";
+		        String pay_date = "";
+
 		        for(int i=0; i < regArr.length; i++){
-		           if(i < 9){
-		        	   reg_date +=  "20210" + (i+1);
-		           
-		           }else{
-		        	   reg_date += "2021" + (i+1);
+		        	if(i<9) {
+		        	pay_date +=  "2021-0" + (i+1);
+		        	}else {
+		        	pay_date += "2021-" + (i+1); 
+		        	}
 		          
-		           }
-		            regArr[i] = reg_date;
-		            reg_date = "";
+		            regArr[i] = pay_date;
+		            pay_date = "";
 		            System.out.println(regArr[i]);
 		        }
-		      
-		      //사용자 날짜별 카운트
-		      int[] cntArr = new int[12];
-		      for(int i=0; i<cntArr.length; i++) {
-		    	  System.out.println("카운트 들어옴!");
-		    	  cntArr[i] = adminService.getMemChart(regArr[i]);
-		      }
-		      //사업자 날짜별 카운트
-		      int[] bpcntArr = new int[12];
-		      for(int i=0; i < bpcntArr.length; i++) {
-		    	  bpcntArr[i] = adminService.getBpChart(regArr[i]);
-		      }
-		      
-			
-			model.addAttribute("total" , total);
-			model.addAttribute("total2", total2);
-			model.addAttribute("chart", regArr);
-			model.addAttribute("cnt", cntArr);
-			model.addAttribute("cnt2", bpcntArr);
-			return "/admin/aSales/mClient";
+		  
+		        //매출엑
+		        int[] cntArr = new int[6];
+			      for(int i=0; i<cntArr.length; i++) {
+			    	  System.out.println("카운트 들어옴!~~~~~~~~~~~~");
+			    	  cntArr[i] = adminService.getAllPrice(regArr[i]);
+			      }
+			   //순이익 
+			     int[] realArr = new int[6];
+			     for(int i=0; i< realArr.length; i++) {
+			    	 System.out.println("순 매출액 차트 들어옴");
+			    	 realArr[i] = adminService.getRealPrice(regArr[i]);
+			     }
+			     
+			   //연간 매출액
+			     
+			    int[] yearArr = new int[12];
+			    for(int i=0; i<yearArr.length; i++) {
+			    	System.out.println("연간매출액 차트 들어옴");
+			    	yearArr[i] = adminService.getAllPrice(regArr[i]);
+			    }
+		        
+			    //울트라 점유율 
+			    int ultra = adminService.getUltraAll();
+			    
+			    //사업장 점유율
+			    int bp = adminService.getBpAll();
+			   
+			    //미용실 울트라 점유율
+			    int harUltra = adminService.getHarUltra();
+			    
+			    //병원 울트라 점유율
+			    int hosUltra = adminService.getHosUltra();
+			    
+			 model.addAttribute("chart", regArr);
+			 model.addAttribute("cnt", cntArr);
+			 model.addAttribute("real",realArr);
+			 model.addAttribute("year", yearArr);
+			 model.addAttribute("ultra", ultra);
+			 model.addAttribute("bp", bp);
+			 model.addAttribute("har", harUltra);
+			 model.addAttribute("hos", hosUltra);
+			return "/admin/aSales/mSales";
 		}
-		
-	//관리자 매출관리
-	@RequestMapping(value = "/mSales", method = RequestMethod.GET)
-	public String mSales(Locale locale, Model model) {
-		return "/admin/aSales/mSales";
-	}
 	// 사업장관리 - 제휴 승인 목록조회
 	@RequestMapping(value = "/mwaitList", method = RequestMethod.GET)
 	public String waitList( Model model,Pagination page,
