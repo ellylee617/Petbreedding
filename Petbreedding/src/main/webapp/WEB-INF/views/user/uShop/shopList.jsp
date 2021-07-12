@@ -152,6 +152,7 @@
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
+<<<<<<< HEAD
                    <c:forEach var="cta" items="${ctaHos}" varStatus="status">
                     <div class="ultraStore">                     
                         <li class="ultraList">
@@ -289,6 +290,18 @@
 	                                    </c:if>
 	                                    </small>
 	                                    </a>
+=======
+                     <c:forEach var="hos" items="${cta2}" varStatus="status">
+                     <c:if test="${hos.cta_number > 0}">
+                     	   <div class="ultraStore">                     
+	                        <li class="ultraList">
+	                            <div class="ultraList_inner">
+	                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${hos.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="ultraList_title_area"><a href="#">${hos.shopName}</a></div>
+	                                <div class="ultraList_info_area"><a href="#">${hos.shopMInfo}</a></div>
+	                                <div class="ultraList_etc_area">
+	                                    <a href="#">리뷰<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><small>999+</small></a>
+>>>>>>> 3b1ae78b37f9c26bde348d2219711ecb35575b8b
 	                                    <a href="#">구매건수<small>999+</small></a>
 	                                  <a href="#">찜하기 <small> ${loc_like_count[status.index]}</small></a>
 	                                </div>
@@ -300,6 +313,7 @@
 	                            </div>                                                            
 	                        </li>
 	                    </div>
+<<<<<<< HEAD
 	                </ul>
 	                </c:forEach>
 	                </div>
@@ -339,6 +353,18 @@
 			
 			<div class="storeS">
             <c:forEach items="${hosListLocRev}" var="item" varStatus="status" >
+=======
+	                    </c:if>
+                    </c:forEach>
+                </ul>
+            </div>
+            </c:if>
+            
+            
+            <!-- 동물병원 최신순 정렬 -->
+            <div id="newList" class="storeS">
+               <c:forEach items="${newHosList}" var="item" varStatus="status">
+>>>>>>> 3b1ae78b37f9c26bde348d2219711ecb35575b8b
                 <ul>
                     <div class="Store">                      
                        <li class="storeList">
@@ -843,7 +869,12 @@
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <!-- TODO: 울트라콜 몇 개 보여줄지 정해야 됨 -->
                 <ul>
+<<<<<<< HEAD
                    <c:forEach var="cta" items="${ctaHar}" varStatus="status">
+=======
+                   <c:forEach var="cta" items="${cta}" varStatus="status">
+                   <c:if test="${cta.cta_number > 0}">
+>>>>>>> 3b1ae78b37f9c26bde348d2219711ecb35575b8b
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
@@ -875,6 +906,7 @@
                             </div>                                                            
                         </li>
                    </div>
+                   </c:if>
             </c:forEach>
                 </ul>
             </div>

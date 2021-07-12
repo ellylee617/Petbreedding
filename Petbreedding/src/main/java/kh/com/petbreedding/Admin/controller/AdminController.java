@@ -1,6 +1,7 @@
 package kh.com.petbreedding.Admin.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -56,9 +57,52 @@ public class AdminController {
 	public final int LIMIT = 5;
 	
 
-	//관리자 회원관리
+	//관리자 회원관리 (차트)
 		@RequestMapping(value = "/mClient", method = RequestMethod.GET)
 		public String mClient(Locale locale, Model model) {
+			
+
+			int total = 0;
+			int total2 = 0;
+			
+			total = adminService.getMemberCount();
+			total2 = adminService.getBpCount();
+
+			//reg_date 구하기 
+			  String[] regArr = new String[12];
+		        String reg_date = "";
+
+		        for(int i=0; i < regArr.length; i++){
+		           if(i < 9){
+		        	   reg_date +=  "20210" + (i+1);
+		           
+		           }else{
+		        	   reg_date += "2021" + (i+1);
+		          
+		           }
+		            regArr[i] = reg_date;
+		            reg_date = "";
+		            System.out.println(regArr[i]);
+		        }
+		      
+		      //사용자 날짜별 카운트
+		      int[] cntArr = new int[12];
+		      for(int i=0; i<cntArr.length; i++) {
+		    	  System.out.println("카운트 들어옴!");
+		    	  cntArr[i] = adminService.getMemChart(regArr[i]);
+		      }
+		      //사업자 날짜별 카운트
+		      int[] bpcntArr = new int[12];
+		      for(int i=0; i < bpcntArr.length; i++) {
+		    	  bpcntArr[i] = adminService.getBpChart(regArr[i]);
+		      }
+		      
+			
+			model.addAttribute("total" , total);
+			model.addAttribute("total2", total2);
+			model.addAttribute("chart", regArr);
+			model.addAttribute("cnt", cntArr);
+			model.addAttribute("cnt2", bpcntArr);
 			return "/admin/aSales/mClient";
 		}
 		
@@ -138,28 +182,81 @@ public class AdminController {
 		return result;
 	}
 	
+	
 	// 게시글 관리 (문의게시판 목록)
-	@RequestMapping(value = "/mboard", method = RequestMethod.GET)
+	@RequestMapping(value = "/mboard")
 	public String mboard(
 			Model md
-			,@RequestParam(name = "page", defaultValue = "1") int page
-			) {
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) throws IOException {
 		
-		int currentPage = page;
-		// 한 페이지당 출력할 목록 갯수
-		int listCount = myAskService.listCount();
-		int maxPage = (int) ((double) listCount / LIMIT + 0.9);
+		int total = myAskService.listCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
-		List<MyAsk> myAskList = null;
-		myAskList = myAskService.MyAskSelectListM(currentPage, LIMIT);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<MyAsk> myAskList = myAskService.MyAskSelectListM(map);
+		
+		md.addAttribute("paging", page);
 		md.addAttribute("myAskList", myAskList);
-		md.addAttribute("currentPage", currentPage);
-		md.addAttribute("listCount", listCount);
-		md.addAttribute("maxPage", maxPage);
-		
-		System.out.println("[세훈] @관리자 문의 사항 리스트 : " + myAskList.toString());
 		
 		return "/admin/aBoard/mboard";
+	}
+	
+	// 게시글 관리 (문의게시판 목록 ajax)
+	@ResponseBody
+	@RequestMapping(value = "/mboardAjax", produces="text/plain;charset=UTF-8")
+	public String mboardAjax(
+			Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,HttpServletResponse res
+			,HttpServletRequest req
+			,int qnaType
+			,int qnaChk
+			,Model md
+			) throws IOException {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+//		String qnaType = req.getParameter("qnaType");
+//		String qnaChk = req.getParameter("qnaChk");
+		
+		System.out.println("[세훈] @관리자 문의 사항 목록 qnaType : " + qnaType);
+		System.out.println("[세훈] @관리자 문의 사항 목록 qnaChk : " + qnaChk);
+		
+		int total = myAskService.listCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		String myAskJson = "";
+		Map<String, String> map = new HashMap<String, String>();
+		List<MyAsk> myAskList = new ArrayList<MyAsk>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		
+		if(qnaType == 0) {
+			map.put("qnaChk", Integer.toString(qnaChk));
+			myAskList = myAskService.MyAskSelectListClBpAllM(map);
+			Gson jobj = new GsonBuilder().create();
+			myAskJson = jobj.toJson(myAskList);
+			System.out.println("[세훈] @관리자 문의 사항 리스트 myAskJson : " + myAskJson.toString());
+			
+		} else {
+			map.put("qnaType", Integer.toString(qnaType));
+			map.put("qnaChk", Integer.toString(qnaChk));
+			myAskList = myAskService.MyAskSelectListClBpM(map);
+			Gson jobj = new GsonBuilder().create();
+			myAskJson = jobj.toJson(myAskList);
+			System.out.println("[세훈] @관리자 문의 사항 리스트 myAskJson : " + myAskJson.toString());
+		}
+		
+		md.addAttribute("paging", page);
+		return myAskJson;
 	}
 
 	// 게시글 관리 (문의게시판 글상세)
@@ -482,5 +579,8 @@ public class AdminController {
 	public String mfreecon(Locale locale, Model model) {
 		return "/admin/aBoard/mfreecon";
 	}
+	
+	
+	
 
 }

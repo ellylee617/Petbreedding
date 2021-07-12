@@ -1,6 +1,7 @@
 package kh.com.petbreedding.board.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -19,16 +20,26 @@ public class MyAskDao {
 		return sqlSession.selectOne("MyAsk.listCount");
 	}
 	
-	public List<MyAsk> MyAskSelectList(String user_num) {
+	// 고객, 사업자 문의 리스트 조회
+	public List<MyAsk> MyAskSelectList(Map<String, Object> map) {
 		System.out.println("[세훈] @일대일 문의 다오 진입");
-		return sqlSession.selectList("MyAsk.MyAskSelectList", user_num);
+		return sqlSession.selectList("MyAsk.MyAskSelectList", map);
 	}
 	
-	public List<MyAsk> MyAskSelectListM(int currentPage, int limit) {
-		int startRow = (currentPage -1) * limit;
-		RowBounds row = new RowBounds(startRow, limit);
-		
-		return sqlSession.selectList("MyAsk.MyAskSelectListM", null, row);
+	public int clBpListCount(String user_num) {
+		return sqlSession.selectOne("MyAsk.clBpListCount", user_num);
+	}
+	
+	public List<MyAsk> MyAskSelectListM(Map<String, String> map) {
+		return sqlSession.selectList("MyAsk.MyAskSelectListM", map);
+	}
+	
+	public List<MyAsk> MyAskSelectListClBpAllM(Map<String, String> map) {
+		return sqlSession.selectList("MyAsk.MyAskSelectListClBpAllM", map);
+	}
+	
+	public List<MyAsk> MyAskSelectListClBpM(Map<String, String> map) {
+		return sqlSession.selectList("MyAsk.MyAskSelectListClBpM", map);
 	}
 	
 	public MyAsk MyAskSelectOne(String qna_num) {

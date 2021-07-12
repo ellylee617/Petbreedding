@@ -14,14 +14,24 @@
 		<result column="BOC_CHK" property="bocChk"/>
 	</resultMap>
 	
+	
 	<!-- 게시글 전체 개수 조회 -->
 	<select id="listCount" resultType="int">
 	 	SELECT count(*) FROM BOARD
 	 </select>
 	
-	<select id="selectBoardList" parameterType="Board" resultMap="BoardMap">
-		    SELECT * FROM BOARD 
-    		ORDER BY SUBSTR(BO_NUM, -3) DESC
+	<select id="selectBoardList" parameterType="page" resultMap="BoardMap">
+			<![CDATA[
+				SELECT B.*
+				FROM (
+				    SELECT ROWNUM R, A.*
+				    FROM (
+				        SELECT * FROM BOARD 
+				        ORDER BY SUBSTR(BO_NUM, -3) DESC
+				    ) A
+				)B
+				WHERE  R>= #{start} AND R <=#{end}
+			]]>
 	</select>
 	
 	<select id="selectOneBoard" parameterType="Board" resultMap="BoardMap">
@@ -48,7 +58,7 @@
 	 </update>
 	 
 	 <update id="updateBoard" parameterType="Board">
-	 	UPDATE BOARD SET BO_TITLE = #{boTitle}, BO_CONT = #{boCont}, BO_IMG = #{boImg} WHERE BO_NUM #{boNum}
+	 	UPDATE BOARD SET BO_TITLE = #{boTitle}, BO_CONT = #{boCont}, BO_IMG = #{boImg} WHERE BO_NUM = #{boNum}
 	 </update>
 	 
 	  <!-- 게시글 삭제 -->
@@ -56,6 +66,35 @@
 	 	DELETE FROM BOARD WHERE BO_NUM = #{boNum}
 	 </delete>
 	 
+	 
+	 
+	 <!-- 내가 쓴 글 개수 -->
+	 <select id="myBoardCount" parameterType="string" resultType="int">
+	 	SELECT count(*) FROM BOARD WHERE CL_NUM = #{cl_num}
+	 </select>
+	 <!-- 내가 쓴 글 조회 -->
+	 <select id="myBoardList" parameterType="map" resultMap="BoardMap">
+	 	<![CDATA[
+		 	SELECT B.*
+			FROM (
+			    SELECT ROWNUM R, A.*
+			    FROM(
+			        SELECT * FROM BOARD 
+			        WHERE CL_NUM = #{cl_num}
+			        ORDER BY SUBSTR(BO_NUM,-3) DESC
+			    ) A
+			)B
+			WHERE R>= #{start} AND R<=#{end}
+		]]>
+	 </select>
+	 <!-- 내가 쓴 댓글 삭제 -->
+	 <delete id="myBoardDelete">
+	 	DELETE FROM BOARD
+	 	WHERE BO_NUM = ANY
+	 	<foreach collection="list" item="value" open="(" close=")" separator=",">
+		 	#{value}  		
+		</foreach>
+	 </delete>
 	 
 	
 </mapper>

@@ -12,10 +12,9 @@
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/user/myPageAside.css" rel="stylesheet" type="text/css" >
-<link href="${path}/resources/css/user/uMypage/myboard.css" rel="stylesheet" type="text/css" >
+<link href="${path}/resources/css/user/uMyPage/myboard.css" rel="stylesheet" type="text/css" >
 <link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script src="${path}/resources/js/user/uBoard/service.js"></script>    
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
@@ -28,51 +27,62 @@
         <table class="myboard">
             <thead>
             <tr>
-              <th scope="cols" width="200px"><input type="checkbox"  value='selectall'
+              <th scope="cols" width="250px"><input type="checkbox"  value='selectall'
                 onclick='selectAll(this)'>전체선택</th>
-              <th scope="cols"  width="1200px">제목</th>
-              <th scope="cols" width="600px"></th>
-              <th scope="cols" width="200px">작성일</th>
+              <th scope="cols"  width="1000px">댓글 내용</th>
+              <th scope="cols" width="300px"></th>
+              <th scope="cols" width="600px">작성일</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td><input type="checkbox" name="board"></td>
-              <td>살찌면 뒷목살도 접히나요?</td>
-              <td><a href="#">원문보기▶</a></td>
-              <td>2021-06-11</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" name="board"></td>
-                <td>살찌면 뒷목살도 접히나요?</td>
-                <td><a href="#">원문보기▶</a></td>
-                <td>2021-06-11</td>
-              </tr>
+            <c:if test="${empty myList}">
+		            <tr>
+		              	<td colspan="4">작성하신 댓글이 없습니다.</td>
+		            </tr>
+	        </c:if>
+	        <c:if test="${!empty myList}">
+		            <c:forEach items="${myList}" var="myList">
+		            	<tr>
+			              <td class="chBtn"><input type="checkbox" name="board" value="${myList.coNum }"></td>
+			              <td class="bTitle">${myList.coCont }</td>
+			              <td><a href='${path }/fboardcon?boNum=${myList.boNum }'>원문보기▶</a></td>
+			              <td>${myList.coDate }</td>
+			            </tr>
+		            </c:forEach>
+            </c:if>
             </tbody>
           </table>
         </div>
       <div class="myboardrow">
-            <button class="basicBtn" ><a href="#">삭제</a></button>
+            <button class="basicBtn" id="deleteCM">삭제</button>
         </div>
-        <div class="page_wrap">
-            <div class="page_nation">
-               <a class="arrow prev" href="#">이전</a>
-               <a href="#" class="active">1</a>
-               <a href="#">2</a>
-               <a href="#">3</a>
-               <a href="#">4</a>
-               <a href="#">5</a>
-               <a href="#">6</a>
-               <a href="#">7</a>
-               <a href="#">8</a>
-               <a href="#">9</a>
-               <a href="#">10</a>
-               <a class="arrow next" href="#">다음</a>
-            </div>
-         </div>
+ 		<!-- 페이징 시작-->
+		<div class="page_wrap">
+			<div class="page_nation">
+				<c:if test="${paging.startPage != 1 }">
+					<a class="arrow prev" href="${path}/myreply?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&cl_num=${client.cl_num}">이전</a> 
+				</c:if>
+				<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<b>${p }</b>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<a href="${path}/myreply?nowPage=${p }&cntPerPage=${paging.cntPerPage}&cl_num=${client.cl_num}">${p}</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${paging.endPage != paging.lastPage}">
+					<a class="arrow next" href="${path}/myreply?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&cl_num=${client.cl_num}">다음</a>
+				</c:if>
+			</div>
+		</div>
+		<!-- 페이징 끝! -->
     </section>
    
    <jsp:include page="../../common/footer.jsp" />
     </div>
+    
+    <script src="${path}/resources/js/user/uBoard/service.js"></script> 
 </body>
 </html>

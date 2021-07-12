@@ -23,9 +23,9 @@
 //	$("#revNumVal").attr("value", rev_num);
 //});
 
-$(".brevRegBtn").on("click", function() {
-	console.log("frm 서밋 함수는 들어옴")
-	$("#brevRegFrm").attr("action", "brwrite");
-	$("#brevRegFrm").attr("method", "post");
-	$("#brevRegFrm").submit();
-});
+//$(".brevRegBtn").on("click", function() {
+//	console.log("frm 서밋 함수는 들어옴")
+//	$("#brevRegFrm").attr("action", "brwrite");
+//	$("#brevRegFrm").attr("method", "post");
+//	$("#brevRegFrm").submit();
+//});

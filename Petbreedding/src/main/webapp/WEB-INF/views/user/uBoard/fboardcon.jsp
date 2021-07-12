@@ -20,16 +20,17 @@
 	<div class="wrapper">
 		<jsp:include page="../../common/header.jsp" />
 		<section class="section">
+			<input type="hidden" value="${client.cl_num }" id="cl_num">
+			<input type="hidden" value="${userType}" id="userType">
 			<div class="bheader">
 
 				<c:if test="${empty board}">
 					<h1>정보를 찾을 수 없습니다.</h1>
 				</c:if>
 
-
-					<div class="title">
-						<p>${board.boTitle}</p>
-					</div>												
+					
+					<div class="title"><h2>${board.boTitle}</h2></div>
+							
 					<div class="writer">작성자 : ${board.clNickName}</div>
 					<div class="regdate">작성일 : ${board.boDate}</div>
 					<div class="count">조회수: ${board.boView}</div>
@@ -38,23 +39,19 @@
 
 
 			<div class="bcon">
-
-			<!-- 이미지는 bo_cont 안에도 이미 포함되어 있으므로 img를 불러올 필요 없음 -->
-						
-				<div class="con">
+				<div class="con">${board.boCont}</div>
 				
-					<p>${board.boCont}</p>
-
-					<button class="backbtn basicBtn" onClick="location.href='fboardlist'">목록</button>
-					<form id="boUpdFrm">
+				<div class="btnBox">
+					<button class="backbtn basicBtn" onClick="history.back()">목록</button>
+					<c:if test="${board.clNum eq client.cl_num }">
+						<button id="fboardDelBtn" class="delbtn basicBtn">삭제</button>
 						<button id="fboardUpdBtn" class="modifybtn basicBtn">수정</button>
-						<input type="hidden" name="boUpdBoNum" value="${board.boNum}">
-						<input type="hidden" name="boUpdBoTitle" value="${board.boTitle}">
-						<!-- board.boCont 안에 html 태그가 있어서 화면에 표시되는듯 -->
-						<input type="hidden" name="boUpdBoCont" value="${board.boCont}">
-					</form>
-					<button id="fboardDelBtn" class="delbtn basicBtn">삭제</button>
-				
+					</c:if>
+					<form id="form1">
+						<input type="hidden" id="boUpdBoNum" name="boNum" value="${board.boNum}">
+						<input type="hidden" id="boUpdBoTitle" name="boTitle" value="${board.boTitle}">
+						<input type="hidden" id="boNone" name="boCont" value='${board.boCont}'>
+					</form>						
 				</div>
 			</div>
 			<div class="reply">
@@ -62,219 +59,67 @@
 				
 				<form id="bocFrm">
 					<div class="replycon">
-						<input type="text" id="replyCont" name="getBocCont">
-						<input type="button" id="bocSubmitBtn" class="basicBtn" value="등록">
+						<c:if test="${empty client }">
+							<input type="text" id="replyCont" placeholder="로그인 후 입력 가능합니다." readonly name="getBocCont">
+							<input type="button" id="bocNoneBtn" class="basicBtn" value="등록">
+						</c:if>
+						<c:if test="${!empty client }">
+							<input type="text" id="replyCont" name="getBocCont">
+							<input type="button" id="bocSubmitBtn" class="basicBtn" value="등록">
+						</c:if>
+						<input type="button" id="bocUpdateBtn" class="basicBtn" value="수정">
 						<input type="hidden" value="${board.boNum}" name="getBoNum">
 					</div>
 				</form>
-				<!--AJAX로 댓글 구현 -->
 				
 				<div id="replyContainer"></div>
 				
 				
 			</div>
-
+	        <!--TOPBTN-->
+        	<a id="MOVE_TOP_BTN" href="#"><i class="fas fa-arrow-up"></i></a>
+			
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
 		
 		<!-- MODAL POSTING -->
-		 <div id="my_modal">
+		 <div id="my_modal" class="cModal">
 		    <a class="modal_close_btn"><i class="fas fa-times" id="closeBtn"></i></a>
 		    <div id="locCon">
 		        <h1>삭제하시겠습니까?</h1>
-		        <button id="goTOPay" name="${board.boNum}">바로 삭제할게요</button>
-		        <button id="nextTime">다음에 할게요</button>
+		        <button id="goTODel" name="${board.boNum}"  class="yesBtn">네</button>
+		        <button id="nextTime" class="closeBtn">아니오</button>
 		    </div>
 		</div>
 		
 		
 		<!-- MODAL COMMENT -->
-		<div id="my_modal_comment">
+		<div id="my_modal_comment" class="cModal">
 		   <a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnComment"></i></a>
 		   <div id="locCon_comment">
 		       <h1>삭제하시겠습니까?</h1>
-		       <button id="goTOPay_comment">바로 삭제할게요</button>
-		        <button id="nextTime_comment">다음에 할게요</button>
+		       <button id="goTOPay_comment" class="yesBtn">네</button>
+		        <button id="nextTime_comment" class="closeBtn">아니오</button>
 		        <input type="hidden" id="coIdVar">
 		    </div>
 		</div>
 		
 		<!-- MODAL COMMENT UPDATE -->
-		<div id="my_modal_updComment">
+		<div id="my_modal_updComment" class="cModal">
 			<a class="modal_close_btn" id="closeModalBtn"><i class="fas fa-times" id="closeBtnUpdComment"></i></a>
 			<div id="locCon_updComment">
-				<h1 class="bocUpdTitle">수정하시겠습니까?</h1>
+				<h1 class="bocUpdTitle">댓글 수정</h1>
 				<input type="text" id="replyUpdCont" name="getBocCont">
-				<button id="goTOPay_updComment">바로 수정할게요</button>
-				<button id="nextTime_updComment">다음에 할게요</button>
+				<button id="goTOPay_updComment" class="yesBtn">수정</button>
+				<button id="nextTime_updComment" class="closeBtn">취소</button>
 				<input type="hidden" id="coIdVar">
 		    </div>
 		</div>
 
 	</div>
 	
-	<script type="text/javascript">
-		var boNum = '${board.boNum}';
-		var closeBtn = $("#closeModalBtn");
-		
-		//	TODO	세션 고객 번호랑 댓글 고객 번호가 같으면 수정, 삭제 표시 -----------------------------------------------------------------------------------------------   
-		var clSession = "<%=session.getAttribute("client") %>";
-		console.log(clSession);
-		console.log(boNum);
-		commentListInit(boNum);	//	로딩이 되면 해당 보드의 댓글을 한 번 초기화 
-	
-		function commentListInit(boNum) {
-			$.ajax({
-				url: 'bocList'
-				,type: 'get'
-				,contentType : "application/json; charset:UTF-8"
-				,data: {boNum: boNum}
-				,dataType: 'json'
-				,success: function(json) {
-					var div = "";
-					var bocMoal = "";
-					var jsonLength = Object.keys(json).length;
-					console.log(json);
-					console.log(jsonLength);
-					if(jsonLength > 0) {
-						
-						$.each(json, function(index, item) {
-							div += "<div class='replyArea'>"
-								+ "<div class='replyUserInfo'>"
-								+ "<p class='replyNickName'>"+item.clNickName+"</p>"
-								+ "<p>"+item.coCont+"</p>"
-								+ "</div>"
-								+ "<div>"
-								+ "<p class='replyTime'>"+item.coDate+"</p>"
-								+ "<div class='replyUpdDel'>"
-								+ "<p name='"+item.coNum+"' class='fboCommentUpdBtn'>수정</p>"
-								+ "<p id='"+item.coNum+"' class='fboCommentDelBtn'>삭제</p>"
-								+ "</div>"
-								+ "</div>"
-								+ "</div>";
-								
-						});
-						
-					} else {
-						
-					}
-					
-					$("#replyContainer").html(div);
-					
-					//	댓글 삭제 버튼 클릭
-					$(".fboCommentDelBtn").click(function() {
-						console.log("댓글 삭제 클릭 됨")
-						var coIdVar = $(this).attr("id");	//	클릭된 행의 id
-						$("#goTOPay_comment").attr("name", coIdVar);
-						getCommentModal();
-					});
-					
-					//	댓글 수정 버튼 클릭
-					$(".fboCommentUpdBtn").click(function() {
-						console.log("댓글 수정 클릭 됨")
-						var coIdVar = $(this).attr("name");	//	클릭된 행의 id
-						console.log(coIdVar);
-						$("#goTOPay_updComment").attr("name", coIdVar);
-						getUpdCommentModal();
-					});
-					
-					
-				}
-				
-				,error : function(request, status, error) {
-					alert("code: " + request.status + "\n"
-							+ "message: "
-							+ request.responseText + "\n"
-							+ "error: " + error);
-				}
-				
-			});
-		}
-		
-		$("#bocSubmitBtn").click(function() {
-			var queryString = $("#bocFrm").serialize();
-			console.log(queryString);
-			
-			$.ajax({
-				url: 'bocWrite'
-				,type: 'post'
-				,data: queryString
-				,success: function() {
-					commentListInit(boNum);
-					$("#replyCont").val("").focus();
-				}
-				,error : function(request, status, error) {
-					alert("code: " + request.status + "\n"
-							+ "message: "
-							+ request.responseText + "\n"
-							+ "error: " + error);
-				}
-				
-			});
-		});
-		
-		
-		$("#goTOPay_comment").bind("click", function() {
-			var CoNumVar = $(this).attr("name");
-			console.log(CoNumVar);
-			
-			$.ajax({
-				url: "bcdelete"
-				,type: "get"
-				,data: {co_num : CoNumVar, bo_num : boNum}
-				,success: function() {
-					commentListInit(boNum);
-				}
-				,error : function(request, status, error) {
-					alert("code: " + request.status + "\n"
-							+ "message: "
-							+ request.responseText + "\n"
-							+ "error: " + error);
-				}
-			});
-			
-			// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
-			closeModal();
-
-		});
-		
-		
-		//	자유 게시판 댓글 수정
-		$("#goTOPay_updComment").bind("click", function() {
-			var CoNumVar = $(this).attr("name");
-			var updContText = $("#replyUpdCont").val();
-			console.log(CoNumVar);
-			
-			$.ajax({
-				url: "bcupdate"
-				,type: "get"
-				,data: {co_num : CoNumVar, contVal : updContText}
-				,success: function() {
-					$("#replyUpdCont").val("");
-					commentListInit(boNum);
-					
-				}
-				,error : function(request, status, error) {
-					alert("code: " + request.status + "\n"
-							+ "message: "
-							+ request.responseText + "\n"
-							+ "error: " + error);
-				}
-			});
-			
-			// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
-			closeModal();
-
-		});
-		
-		// TODO	삭제 버튼 클릭하면 모달창 자동 닫기 기능 해야함 (지금 동작 X)
-	    function closeModal() {
-	    	console.log("닫기 버튼 함수 들어옴")
-	    	closeBtn.click();
-	    }
-		
-	</script>
-	
+	<script type="text/javascript" src="${path}/resources/js/user/uBoard/fComment.js"></script>
 	<script type="text/javascript" src="${path}/resources/js/user/uBoard/fboardcon.js"></script>
+	<script type="text/javascript" src="${path}/resources/js/common/topBtn.js"></script>
 </body>
 </html>

@@ -18,13 +18,14 @@
 <body>
 <input type="hidden" id="rid" value="${id }">
 <input type="hidden" id="chatId" value="${chatId }">
+<input type="hidden" id="user" value="${user }">
 	<div class="closebtn">
 			<a href="#" onclick="javascript:top.window.close()">닫기</a>
 	</div>
 	<div class="col-12 row justify-content-center align-items-center my-5 ">
 		<img src="${path}/resources/images/logo-resize.png" class="img-fluid" />
 	</div>
-	<c:if test="${user == 'user'}">
+	<c:if test="${user eq 'user'}">
 	<% Client client = (Client)session.getAttribute("client");
 		String email = client.getEmail(); %>
 	<div class="col-12 bInfo">

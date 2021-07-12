@@ -22,10 +22,55 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	private MyPointDao myPointDao;
 
+	// 상세페이지 리뷰, 댓글 조회
+	@Override
+	public List<Review> revRevcSelectListUpToDate(String bp_id) {
+		List<Review> revRevcListUpd = null;
+		try {
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
+			revRevcListUpd = reviewDao.revRevcSelectListUpToDate(bp_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 revRevcListUpd : " + revRevcListUpd);
+		return revRevcListUpd;
+	}
+	
+	//	상세페이지 리뷰, 댓글 평점 높은 순
+	@Override
+	public List<Review> revRevcSelectListDesc(String bp_id) {
+		List<Review> revRevcListDesc = null;
+		try {
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
+			revRevcListDesc = reviewDao.revRevcSelectListDesc(bp_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 revRevcListDesc : " + revRevcListDesc);
+		return revRevcListDesc;
+	}
+
+	//	상세페이지 리뷰, 댓글 평점 낯은 순
+	@Override
+	public List<Review> revRevcSelectListAsc(String bp_id) {
+		List<Review> revRevcListAsc = null;
+		try {
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
+			revRevcListAsc = reviewDao.revRevcSelectListAsc(bp_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 reviewList : " + revRevcListAsc);
+		return revRevcListAsc;
+	}
 	
 	@Override
 	public List<Review> reviewSelectList(String bp_id) {
 		List<Review> reviewList = null;
+		
 		try {
 			System.out.println("[세훈] @리뷰 조회 서비스 bp_id : " + bp_id);
 			reviewList = reviewDao.reviewSelectList(bp_id);
@@ -93,7 +138,35 @@ public class ReviewServiceImpl implements ReviewService {
 		return result;
 	}
 
-	
+	//	사업자 리뷰 개수 받아오기
+	@Override
+	public int getRevCount(String bp_id) {
+		int revcount = -1;
+		
+		try {
+			revcount = reviewDao.getRevCount(bp_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return revcount;
+	}
+
+	@Override
+	public String getRevValAvg(String bp_id) {
+		String revAvgResult = null;
+		System.out.println("[세훈] @리뷰 평균 조회 서비스 bp_id : " + bp_id);
+		
+		try {
+			revAvgResult = reviewDao.getRevValAvg(bp_id);
+			System.out.println("[세훈] @리뷰 평균 조회 서비스 revAvgResult : " + revAvgResult);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return revAvgResult;
+	}
+
 
 
 

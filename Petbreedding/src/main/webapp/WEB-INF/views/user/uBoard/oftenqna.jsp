@@ -12,6 +12,7 @@
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/user/uBoard/service.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${path}/resources/js/user/uBoard/service.js"></script>
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -42,23 +43,43 @@
             <h1>자주 묻는 질문</h1>
             <hr>
             <div id="Accordion_wrap">
-                
-                <!--for문으로 나중에 기능 구현하고 돌리기-->
-                <div class="que2">
-                 <span>예약 후 취소는 어떻게 하나요?</span>
+                <c:forEach items="${list }" var="list">
+                	<div class="que2">
+                 <span>${list.of_title }</span>
                 </div>
                 <div class="anw2">
-                 <span>
-                    
-                       예약 확정이 된 후에는 해당 업체와 연락 후 취소가 가능합니다. 
-
-                    
-
-                 </span>
+	                 <span>${list.of_cont }</span>
                 </div>
-                 
+                </c:forEach>
            </div>
+           
+           <!-- 페이징 시작-->
+			<div class="page_wrap">
+				<div class="page_nation">
+					<c:if test="${paging.startPage != 1 }">
+						<a class="arrow prev" href="${path}/fboardlist?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a href="${path}/fboardlist?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<a class="arrow next" href="${path}/fboardlist?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+					</c:if>
+				</div>
+			</div>
+			<!-- 페이징 끝! -->  
         </div>
+        
+        
+        
+        
         </section>
 
        

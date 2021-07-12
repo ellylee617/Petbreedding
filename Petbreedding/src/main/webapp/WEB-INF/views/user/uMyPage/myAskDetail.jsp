@@ -30,8 +30,8 @@
 				</tr>
 				<tr class="asktblImg">
 					<c:choose>
-						<c:when test="${myAskDetail.qnaImg eq null}">
-							<td colspan="2"><img src="http://placehold.it/500x300"></td>
+						<c:when test="${myAskDetail.qnaImg eq 'none'}">
+							<td colspan="2"><img src="${path}/resources/images/logo.png" style="width:500px; height:300px;"></td>
 						</c:when>
 						<c:otherwise>
 							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg}" class="myAskImg"></td>

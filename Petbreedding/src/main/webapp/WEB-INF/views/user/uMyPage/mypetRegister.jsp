@@ -26,7 +26,7 @@
 
 		<section class="section">
 			<jsp:include page="../myPageAside.jsp" />
-			<form action="${path}/Mypage/addmypet" method="POST" id="petInfoFrm"
+			<form action="${path}/addmypet" method="POST" id="petInfoFrm"
 				class="petInfo_container" enctype="multipart/form-data">
 				<input type="hidden" name="cl_num" value="${client.cl_num}">
 
@@ -37,7 +37,7 @@
 								<div class="imgBox">
 								</div>
 								<input type="file" id="realInput" name="pet_img"
-									class="image_inputType_file" value="파일선택" ccept="image/*"
+									class="image_inputType_file" value="파일선택" accept="image/*"
 									onchange="setThumbnail(event);" multiple>
 							</div> <i id="browseBtn" class="fas fa-plus"></i>
 						</td>

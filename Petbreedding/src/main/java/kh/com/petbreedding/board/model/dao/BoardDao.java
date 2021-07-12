@@ -2,13 +2,16 @@ package kh.com.petbreedding.board.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.com.petbreedding.board.model.vo.B_comment;
 import kh.com.petbreedding.board.model.vo.Board;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Repository("boardDao")
 public class BoardDao {
@@ -45,10 +48,8 @@ public class BoardDao {
 		} 
 		
 		// 게시글 리스트 조회
-		public List<Board> selectBoardList(int currentPage, int limit) {
-			int startRow = (currentPage -1) * limit;
-			RowBounds row = new RowBounds(startRow, limit);
-			return sqlSession.selectList("Board.selectBoardList", null, row);
+		public List<Board> selectBoardList(Pagination page) {
+			return sqlSession.selectList("Board.selectBoardList", page);
 		}
 		
 		 // 게시글 검색 조회
@@ -61,4 +62,19 @@ public class BoardDao {
 			 return sqlSession.update("Board.addReadCount", bo_num);
 		}
 
+		//내가 쓴 글 개수 
+		public int myBoardCount(String cl_num) {
+			return sqlSession.selectOne("Board.myBoardCount", cl_num);
+		}
+		
+		//내가 쓴 글 조회
+		public List<Board> myBoardList(Map<String, String> map){
+			return sqlSession.selectList("Board.myBoardList", map);
+		}
+		
+		//내가 쓴 글 삭제 
+		public int myBoardDelete(List<String> list) {
+			return sqlSession.delete("Board.myBoardDelete", list);
+		}
+		
 }

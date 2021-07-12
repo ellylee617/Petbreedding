@@ -37,6 +37,7 @@
                 <li class="bs"><a href="mfreeboard">자유게시판</a></li>
                 <li class="bs"><a href="mservice">공지사항게시판</a></li>
                 <li class="bs"><a href="mboard">문의게시판</a></li>
+                <li class="bs"><a href="${pageContext.request.contextPath}/oftenQna">자주묻는질문 관리</a></li>
             </ul>
         </div>
     </div> 

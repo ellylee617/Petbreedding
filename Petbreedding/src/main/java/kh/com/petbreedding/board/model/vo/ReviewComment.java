@@ -17,61 +17,42 @@ public class ReviewComment {
 	private String revNum;
 	private String revcCont;
 	private String revcDate;
-	private int depth;
-	
 	@Override
 	public String toString() {
 		return "ReviewComment [revcNum=" + revcNum + ", bpId=" + bpId + ", revNum=" + revNum + ", revcCont=" + revcCont
-				+ ", revcDate=" + revcDate + ", depth=" + depth + "]";
+				+ ", revcDate=" + revcDate + "]";
 	}
-
 	public String getRevcNum() {
 		return revcNum;
 	}
-
 	public void setRevcNum(String revcNum) {
 		this.revcNum = revcNum;
 	}
-
 	public String getBpId() {
 		return bpId;
 	}
-
 	public void setBpId(String bpId) {
 		this.bpId = bpId;
 	}
-
 	public String getRevNum() {
 		return revNum;
 	}
-
 	public void setRevNum(String revNum) {
 		this.revNum = revNum;
 	}
-
 	public String getRevcCont() {
 		return revcCont;
 	}
-
 	public void setRevcCont(String revcCont) {
 		this.revcCont = revcCont;
 	}
-
 	public String getRevcDate() {
 		return revcDate;
 	}
-
 	public void setRevcDate(String revcDate) {
 		this.revcDate = revcDate;
 	}
-
-	public int getDepth() {
-		return depth;
-	}
-
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
+	
 	
 	
 }

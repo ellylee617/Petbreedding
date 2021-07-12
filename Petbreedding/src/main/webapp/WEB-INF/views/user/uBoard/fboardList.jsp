@@ -14,14 +14,7 @@
 <link href="${path}/resources/css/user/uBoard/freeboard.css" rel="stylesheet" type="text/css" >
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-	function searchBoard() {
-		$("#searchBoardFrm").attr('action', 'fboardlist')
-		$("#searchBoardFrm").attr('method', 'get')
-		$("#searchBoardFrm").submit();
-		
-	}
-</script>
+
 </head>
 <body>
 	<div class="wrapper">    
@@ -39,36 +32,28 @@
 			            </span>
 		        	</div><br><br>
 	            </form>
-	        <!-- <form action="qnalist" method="get">
-	            
-				<select id="searchType" name="searchType">
-					<option value="1">전체</option>
-					<option value="2">작성자</option>
-					<option value="3">글내용</option>
-				</select> <input type='search' id="search" name="search"
-					placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp질문을 검색하세요.">
-				<button type=submit id="btnsearch"> <i class="fas fa-search"></i></button>
-	           
-			</form> -->
 	        </div>
-	        
+	        <c:if test="${empty client }">
+   				<div class="goLogin write">
+			  	 <a href="uLogin"><button class="writebtn basicBtn">글쓰기</button></a>
+				</div>
+	        </c:if>
+	        <c:if test="${!empty client }">
 			<div class="write">
 			   <a href="bwriteFrm?type=1"><button class="writebtn basicBtn">글쓰기</button></a>
 			</div> 
-	        
+	        </c:if>
 			<c:if test="${listCount eq 0}">
 				<h1>게시글이 없습니다.</h1>
 			</c:if>
 			
 			<c:if test="${listCount ne 0}">
-				
 				<c:forEach items="${boardList }" var="blist">
 					<div class="boardlist">
 		            	<div class="subdiv">
-		            		
 		            		<c:choose>
 		            			<c:when test="${blist.boImg eq null}">
-			            	    	<div class="img"><a href="#"><img class="imgSize" src="http://placehold.it/150x100"></a></div>
+			            	    	<div class="img"><a href="#"><img class="imgSize" src="${path }/resources/images/logo-square.png" width="150px" heigth="100px"></a></div>
 			            	    </c:when>
 		            			<c:otherwise>
 			            	    	<div class="img"><a href="#"><img class="imgSize" src="${blist.boImg}"></a></div>
@@ -83,85 +68,46 @@
 			                <div class="regdate"><a href="fboardcon">${blist.boDate}</a></div>
 			                <div class="count"><a href="fboardcon">${blist.boView}</a></div>
 		                </div>
-		                
 		            </div>
 				</c:forEach>
 			
 			</c:if>
 			
-			 <!-- 앞 페이지 번호 처리 -->
-			 	<div class="page_wrap">
-			 		<div class="page_nation">
-			 		
-			 			<c:set var="firstPage" value=""/>
-					 	<c:if test="${currentPage <= 1}">
-					 		<span class="arrow prev">이전</span>
-					 		<span class="active">1</span>
-						</c:if>
-						
-						<c:if test="${currentPage > 1}">
-							<c:url var="blistST" value="fboardlist">
-								<c:param name="page" value="${currentPage-1}" />
-							</c:url>
-							<a class="arrow prev" href="${blistST}">이전</a>
-						</c:if>
-						
-						<!-- 끝 페이지 번호 처리 -->
-						<c:set var="endPage" value="${maxPage}" />
-						<c:forEach var="p" begin="${startPage+1}" end="${endPage}">
-						
-							<c:if test="${p eq currentPage}">
-								${p}
-							</c:if>
-							
-							<c:if test="${p ne currentPage}">
-								<c:url var="blistchk" value="fboardlist">
-									<c:param name="page" value="${p}" />
-								</c:url>
-								<a href="${blistchk}">${p}</a>
-							</c:if>
-						</c:forEach>
-						
-						<c:if test="${currentPage >= maxPage}">
-							<span class="active">2</span>
-							<span class="arrow next">다음</span>
-						</c:if>
-						
-						<c:if test="${currentPage < maxPage}">
-							<c:url var="blistEND" value="fboardlist">
-								<c:param name="page" value="${currentPage+1}" />
-							</c:url>
-							<a class="arrow next" href="${blistEND}">다음</a>
-						</c:if>
-					</div>	
+			<!-- 페이징 시작-->
+			<div class="page_wrap">
+				<div class="page_nation">
+					<c:if test="${paging.startPage != 1 }">
+						<a class="arrow prev" href="${path}/fboardlist?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a href="${path}/fboardlist?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<a class="arrow next" href="${path}/fboardlist?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+					</c:if>
 				</div>
-			 	
-			
-	       	
-				          
-				<!-- 
-				<div class="page_wrap">
-				    <div class="page_nation">
-				       <a class="arrow prev" href="#">이전</a>
-				       <a href="#" class="active">1</a>
-				       <a href="#">2</a>
-				       <a href="#">3</a>
-				       <a href="#">4</a>
-				       <a href="#">5</a>
-				       <a href="#">6</a>
-				       <a href="#">7</a>
-				       <a href="#">8</a>
-				       <a href="#">9</a>
-				       <a href="#">10</a>
-				       <a class="arrow next" href="#">다음</a>
-				    </div>
-				 </div>
-				  -->
-	                
-             
+			</div>
+			<!-- 페이징 끝! -->
 			</section>
 		<jsp:include page="../../common/footer.jsp" />
-		
+		<script type="text/javascript">
+			function searchBoard() {
+				$("#searchBoardFrm").attr('action', 'fboardlist')
+				$("#searchBoardFrm").attr('method', 'get')
+				$("#searchBoardFrm").submit();
+				
+			}
+			$(".goLogin").on("click",function(){
+				alert("로그인 후 이용가능합니다.");
+			});
+		</script>
     </div>
 </body>
 </html>

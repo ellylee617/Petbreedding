@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,11 +36,16 @@ import com.google.gson.GsonBuilder;
 import kh.com.petbreedding.board.model.vo.B_comment;
 import kh.com.petbreedding.board.model.vo.Board;
 import kh.com.petbreedding.board.model.vo.CustomerService;
+import kh.com.petbreedding.board.model.vo.OftenQna;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.common.model.vo.Pagination;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 import kh.com.petbreedding.board.model.service.BCommentService;
 import kh.com.petbreedding.board.model.service.BoardService;
 import kh.com.petbreedding.board.model.service.CustomerServiceService;
+import kh.com.petbreedding.board.model.service.OftenQnaService;
 import kh.com.petbreedding.board.model.service.ReviewService;
 
 @Controller
@@ -55,34 +62,40 @@ public class BoardController {
 
 	@Autowired
 	private BCommentService bCommentService;
-
+	
+	@Autowired
+	private NoticeService noticeService;
+	
+	@Autowired
+	private OftenQnaService oftenQnaService;
+	
 	public final int LIMIT = 5;
 
 	// 게시글 목록 + 페이징 + 검색
 	@RequestMapping(value = "/fboardlist")
 	// TODO 병원 번호, 미용실 번호 GET 방식으로 들고 들어와서 파라미터로 넣어줘야함 -
 	// @RequestParam(name="harNum") String harNum
-	public ModelAndView fboardlist(ModelAndView mv, HttpServletRequest req,
-			@RequestParam(name = "page", defaultValue = "1") int page,
-			@RequestParam(name = "keyword", required = false) String keyword) {
+	public ModelAndView fboardlist(ModelAndView mv, HttpServletRequest req, Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,@RequestParam(name = "keyword", required = false) String keyword) {
 
-		int currentPage = page;
-		// 한 페이지당 출력할 목록 갯수
-		int listCount = boardService.listCount();
-		int maxPage = (int) ((double) listCount / LIMIT + 0.9);
 		List<Board> boardList = null;
-
+		int total = boardService.listCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
 		if (keyword != null && !keyword.equals("")) {
 			boardList = boardService.searchList(keyword);
+			total = boardList.size();
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 			mv.addObject("boardList", boardList);
 		} else {
-			boardList = boardService.selectBoardList(currentPage, LIMIT);
+			page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			boardList = boardService.selectBoardList(page);
 			mv.addObject("boardList", boardList);
 		}
-
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("maxPage", maxPage);
-		mv.addObject("listCount", listCount);
+		
+		mv.addObject("paging", page);
 
 		System.out.println("[세훈] @컨트롤러 boardList : " + boardList.toString());
 		mv.setViewName("/user/uBoard/fboardList");
@@ -93,16 +106,20 @@ public class BoardController {
 	// 게시글 상세
 	@RequestMapping(value = "/fboardcon", method = RequestMethod.GET)
 	public ModelAndView fboardcon(ModelAndView mv, @RequestParam(name = "boNum") String boNum,
-			@RequestParam(name = "page", defaultValue = "1") int page) {
+			@RequestParam(name = "page", defaultValue = "1") int page, String userType) {
 
 		int currentPage = page;
+		System.out.println("[세훈] @자유 게시글 상세 컨트롤러 userType : " + userType);
 		Board board = boardService.selectBoardDetail(0, boNum);
 		System.out.println("[세훈] @자유 게시글 상세 컨트롤러 board : " + board);
 
 		mv.setViewName("/user/uBoard/fboardcon");
-
+		
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("board", board);
+		if(userType != null && userType != "") {
+			mv.addObject("userType", userType);
+		}
 
 		return mv;
 	}
@@ -112,8 +129,20 @@ public class BoardController {
 	public String bWrite(
 			Model md
 			,int type
+			,Client cl
 			,HttpServletRequest req
+//			,HttpSession session
 			) {
+		
+//		cl = (Client) session.getAttribute("client"); 
+//		
+//		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
+//			System.out.println("로그인 안했음");
+//			md.addAttribute("msg", "로그인이 필요합니다");
+//			md.addAttribute("url","/uLogin");
+//			return "common/redirect"; 
+//		 }
+		
 		String boNum = req.getParameter("boUpdBoNum");
 		String boTitle = req.getParameter("boUpdBoTitle");
 		String boCont = req.getParameter("boUpdBoCont");
@@ -128,6 +157,24 @@ public class BoardController {
 		return "/user/uBoard/bwrite";
 	}
 
+	// 게시글 수정페이지
+	@RequestMapping(value = "/bupdateFrm")
+	public ModelAndView bUpdate(
+			ModelAndView md, String boNum, String boTitle, String boCont
+			) {
+		System.out.println("boNum : "+ boNum);
+		System.out.println("boTitle : "+ boTitle);
+		System.out.println("boCont : "+ boCont);
+		md.addObject("boUpdBoNum", boNum);
+		md.addObject("boUpdBoTitle", boTitle);
+		md.addObject("boUpdBoCont", boCont);
+		md.setViewName("/user/uBoard/bUpdate");
+		
+		return md;
+	}
+	
+	
+	
 	@RequestMapping(value = "/bwrite")
 	public String bwrite(
 			Model md
@@ -140,36 +187,31 @@ public class BoardController {
 		
 		
 		 cl = (Client) session.getAttribute("client"); 
-		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
-			 return "redirect:/"; 
-		 }
 		 
 		
 		String cl_num = cl.getCl_num();
 		String cl_nickName = cl.getNickname();
 		String boTitle = req.getParameter("boTitle");
 		String bo_content = req.getParameter("boContent");
-		
-		System.out.println("[세훈] @글 등록 컨트롤러 clNum : " + cl_num);
-		System.out.println("[세훈] @글 등록 컨트롤러 clNickName : " + cl_nickName);
-		System.out.println("[세훈] @글 등록 컨트롤러 boTitle : " + boTitle);
-		System.out.println("[세훈] @글 등록 컨트롤러 bo_content : " + bo_content);
-		
+			
 		Board board = new Board();
 		board.setClNum(cl_num);
 		board.setClNickName(cl_nickName);
 		board.setBoTitle(boTitle);
 		board.setBoCont(bo_content);
 		String src = "";
+		
 		//이미지 경로 찾아오기
 		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
 		Matcher matcher = pattern.matcher(bo_content);
 		while(matcher.find()){
-            System.out.println("*****************img경로***************** "+ matcher.group(1));
+			System.out.println("img추출하러왔어용");
             src = matcher.group(1);
         }
-		
-		if(src != null || src != "") { 
+		System.out.println("!!!!!!! src : "+ src);
+		if(src == null || src == "" ) { 
+			System.out.println("이미지는 없습니다.");
+		} else {
 			try { 
 				URL imgURL = new URL(src);
 				String extension = src.substring(src.lastIndexOf(".")+1); 
@@ -181,53 +223,24 @@ public class BoardController {
 					file.mkdirs(); 
 				}
 				ImageIO.write(image, extension, file); 
-				System.out.println("이미지 업로드완료!");
 				board.setBoImg(src); 
 			} 
 			catch (Exception e) { 
 				e.printStackTrace(); 
 			}
-		} 
-		
-		// 파일업로드
-		
-//		  MultipartFile mf = req.getFile("src"); // 업로드 파라미터 
-//		  if(mf != null) {
-//			  
-//		  String path = req.getRealPath("/resources/uploadFile/fboard"); // 자징될 위치
-//		  UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성 
-//		  String fileName =mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장 
-//		  String saveName = uuid.toString() + "_" + fileName; // 저장될 이름 
-//		  File uploadFile = new File(path + "//" + saveName); // 복사될 위치
-//		 
-//		  try { 
-//			  mf.transferTo(uploadFile); 
-//		  } catch (IOException e) {
-//		  e.printStackTrace(); }
-//		  
-//		  board.setBoImg(saveName);
-//		  
-//		  System.out.println("[세훈] @글 등록 컨트롤러 saveName : " + saveName); 
-//		  }
-		 
-				
-		
-		  System.out.println("[세훈] @글 등록 컨트롤러 board : " + board.toString());
+		}
 		 
 		  int result = boardService.insertBoard(board);
 		  
 			if(result > 0) {
-				System.out.println("자유게시판 글 등록 성공");
 				md.addAttribute("msg", "자유게시판 글 등록 성공");
 				md.addAttribute("url","/fboardlist");
 			} else {
-				System.out.println("공지사항 등록 실패");
 				md.addAttribute("msg", "자유게시판 글 등록 실패");
 				md.addAttribute("url","/fboardlist");
 			}
 			
 			return "common/redirect";	
-//		return "/user/uBoard/fboardList";
 	}
 	
 	//	자유게시판 글 수정
@@ -235,27 +248,16 @@ public class BoardController {
 	@RequestMapping(value = "/bupdate")
 	public String bupdate(
 			Model md
-			,Client cl
+			,String cl_num
 			,MultipartHttpServletRequest req
 			,HttpServletResponse res
 			,HttpSession session
 			) {
 		res.setContentType("text/html; charset=utf-8");
-		
-		
-		 cl = (Client) session.getAttribute("client"); 
-		 if(cl==null) { //TODO: 로그인 안됐다는경고.또는 이동 위치 변경 
-			 return "redirect:/"; 
-		 }
-		 
-		
+
 		String boTitle = req.getParameter("boTitle");
 		String bo_content = req.getParameter("boContent");
 		String bo_num = req.getParameter("boUpdBoNum");
-		
-		System.out.println("[세훈] @글 수정 컨트롤러 boTitle : " + boTitle);
-		System.out.println("[세훈] @글 수정 컨트롤러 bo_content : " + bo_content);
-		System.out.println("[세훈] @글 수정 컨트롤러 bo_num : " + bo_num);
 		
 		Board board = new Board();
 		board.setBoTitle(boTitle);
@@ -381,6 +383,26 @@ public class BoardController {
 			System.out.println("[세훈] @게시판 댓글 등록 컨트롤러 bComment : " + bComment.toString());
 			bCommentService.bCommentInsert(bComment);
 		}
+
+		// 알림 인서트
+		// 댓글 작성자 말고 글번호로 댓글이 작성된 글의 글쓴이를 찾아옴
+		String origClNum = "";
+		origClNum = noticeService.getOrigClNum(bo_num);
+		System.out.println("origClNum" + origClNum);
+
+		// insert를 위한 notice vo에 필요한 값들 set해주기
+		Notice notice = new Notice();
+		notice.setNotReceiver(origClNum);
+		notice.setRefNum(bo_num); // 여기서는 참고번호가 글번호
+
+		int result = 0;
+		result = noticeService.inBoard(notice);
+
+		if (result == 1) {
+			System.out.println("댓글 작성시 알림 인서트 성공!");
+		} else {
+			System.out.println("알림 인서트 실패");
+		}
 	}
 	
 	// 게시판 댓글 삭제
@@ -390,7 +412,6 @@ public class BoardController {
 		
 		System.out.println("[세훈] @게시판 댓글 삭제 컨트롤러 co_num : " + co_num);
 		System.out.println("[세훈] @게시판 댓글 삭제 컨트롤러 bo_num : " + bo_num);
-		
 		int bocDelResult = bCommentService.bCommentDelete(co_num, bo_num);
 		
 		if(bocDelResult > 0) {
@@ -432,10 +453,12 @@ public class BoardController {
 			HttpServletRequest req
 			,HttpServletResponse res
 			,String bp_id
+			,int type
 			) throws IOException {
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("application/json; charset=UTF-8");
 		System.out.println("[세훈] @리뷰 조회 컨트롤러 bp_id : " + bp_id);
+		System.out.println("[세훈] @리뷰 조회 컨트롤러 type : " + type);
 		
 		PrintWriter out = res.getWriter();
 		String rvJson = "";
@@ -443,9 +466,19 @@ public class BoardController {
 		List<Review> rList = new ArrayList<Review>();
 		
 		if(rList != null) {
-			rList = reviewService.reviewSelectList(bp_id);
-			Gson jobj = new GsonBuilder().create();
-			rvJson = jobj.toJson(rList);
+			if(type == 1) {
+				rList = reviewService.revRevcSelectListDesc(bp_id);
+				Gson jobj = new GsonBuilder().create();
+				rvJson = jobj.toJson(rList);
+			} else if(type == 2) {
+				rList = reviewService.revRevcSelectListAsc(bp_id);
+				Gson jobj = new GsonBuilder().create();
+				rvJson = jobj.toJson(rList);
+			} else {
+				rList = reviewService.revRevcSelectListUpToDate(bp_id);
+				Gson jobj = new GsonBuilder().create();
+				rvJson = jobj.toJson(rList);
+			}
 		}
 
 		System.out.println("[세훈] @게시판 댓글 조회 컨트롤러 bocJson : " + rvJson);
@@ -468,10 +501,7 @@ public class BoardController {
 		res.setContentType("text/html; charset=utf-8");
 		System.out.println("리뷰 등록 컨트롤러 진입");
 		cl = (Client) session.getAttribute("client");
-		if (cl == null) {
-			// TODO: 로그인 안됐다는 경고.또는 이동 위치 변경
-			return "redirect:/";
-		}
+
 		String cl_num = cl.getCl_num();
 		String clNickName = cl.getNickname();
 		String har_num = req.getParameter("har_num");
@@ -491,27 +521,33 @@ public class BoardController {
 		rv.setRevVal(revVal);
 
 		// 파일업로드
+		String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
 		MultipartFile mf = req.getFile("reviewImg"); // 업로드 파라미터
-		if (mf != null) {
-
-			String path = req.getRealPath("/resources/uploadFile/review"); // 자징될 위치
+		
+		if(!mf.isEmpty()) {
+			
+			System.out.println(mf);
 			UUID uuid = UUID.randomUUID(); // 랜덤 숫자 생성
-			String fileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
-			String saveName = uuid.toString() + "_" + fileName; // 저장될 이름
+			String originalfileName = mf.getOriginalFilename(); // 업로드 파일 원본 이름 저장
+			String saveName = uuid.toString() + "_" + originalfileName; // 저장될 이름
 			File uploadFile = new File(path + "//" + saveName); // 복사될 위치
-
 			try {
 				mf.transferTo(uploadFile);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
+			
 			rv.setRevImg(saveName);
-
+			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
+		} else {
+			String saveName = "none";
+			rv.setRevImg(saveName);
 			System.out.println("[세훈] 리뷰 이미지 경로 : " + saveName);
 		}
 
-		System.out.println("[세훈 ]" + rv.toString());
+
+
+		System.out.println("[세훈 ] 리뷰 등록 컨트롤러 rv : " + rv.toString());
 		int result = reviewService.insertReview(rv, har_num, har_name);
 
 		if(result > 0) {
@@ -524,9 +560,82 @@ public class BoardController {
 			md.addAttribute("url","/mypage?cl_num="+cl_num+"");
 		}
 		
+		// 알림인서트
+		Notice notice = new Notice();
+		notice.setNotReceiver(cl_num);
+		notice.setRefNum(har_name);
+
+		int noticeResult = 0;
+		noticeResult = noticeService.inPointSave(notice);
+		if (noticeResult == 1) {
+			System.out.println("리뷰 등록 시 알림 인서트 성공");
+		} else {
+			System.out.println("알림 인서트 실패");
+		}
+		
 		return "common/redirect";
 
-//		return "redirect:/mypage?cl_num=CL1";
+	}
+	
+	//내가 쓴 글
+	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
+	public String myboard(String cl_num, Model model,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		
+		int total = boardService.myBoardCount(cl_num);
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("cl_num", cl_num);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<Board> list = boardService.myBoardList(map); 
+		
+		model.addAttribute("paging", page);
+		model.addAttribute("myList", list);
+		
+		return "/user/uMyPage/myboard";
+	}
+	// 내가 쓴 글 삭제
+	@RequestMapping(value = "/myBoarddelete")
+	@ResponseBody
+	public int myBoardDelete( @RequestParam(value = "arr[]") List<String> list) {
+		
+		int result = boardService.myBoardDelete(list);
+		return result;
+	}
+	
+	//내가 쓴 댓글
+	@RequestMapping(value = "/myreply", method = RequestMethod.GET)
+	public String myreply(String cl_num, Model model,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="10") String cntPerPage
+			) {
+		
+		int total = bCommentService.myBoardCMCount(cl_num);
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("cl_num", cl_num);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<B_comment> list = bCommentService.myBoardCMList(map);
+		model.addAttribute("paging", page);
+		model.addAttribute("myList", list);
+
+		return "/user/uMyPage/myreply";
+	}
+	
+	// 내가 쓴 댓글 삭제
+	@RequestMapping(value = "/mycdelete")
+	@ResponseBody
+	public int myCommentDelete( @RequestParam(value = "arr[]") List<String> list) {
+		
+		int result = bCommentService.myCommentDelete(list);
+		return result;
 	}
 
 	// 유저 공지사항 리스트 조회
@@ -542,11 +651,29 @@ public class BoardController {
 		return "/user/uBoard/UcustomerService";
 	}
 
+	
+	//자주묻는 질문 조회
 	@RequestMapping(value = "/oftenqna", method = RequestMethod.GET)
-	public String oftenqna(Locale locale, Model model) {
+	public String oftenqna(Locale locale, Model model, Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		int total = oftenQnaService.COftenCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<OftenQna> list = oftenQnaService.COftenQna(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("paging", page);
 		return "/user/uBoard/oftenqna";
 	}
 
+	
+	
+	
 	@RequestMapping(value = "/mypet", method = RequestMethod.GET)
 	public String mypet(Locale locale, Model model) {
 		return "/user/uMyPage/mypet";
@@ -557,14 +684,5 @@ public class BoardController {
 		return "/user/uMyPage/mypetRegister";
 	}
 
-	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
-	public String myboard(Locale locale, Model model) {
-		return "/user/uMyPage/myboard";
-	}
-
-	@RequestMapping(value = "/myreply", method = RequestMethod.GET)
-	public String myreply(Locale locale, Model model) {
-		return "/user/uMyPage/myreply";
-	}
 
 }

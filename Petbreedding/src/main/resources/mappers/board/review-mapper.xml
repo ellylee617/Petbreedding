@@ -12,32 +12,15 @@
 		<result column="REV_DATE" property="revDate"/>
 		<result column="REV_VAL" property="revVal"/>
 		<result column="CMNT_CHK" property="comntChk"/>
-		<result column="DEPTH" property="depth"/>
+		<association property="revComment" column="revNum" javaType="ReviewComment" columnPrefix="co_">
+			<id column="REV_NUM" property="revNum"/>
+			<result column="REVC_NUM" property="revcNum"/>
+			<result column="BP_ID" property="bpId"/>
+			<result column="REVC_CONT" property="revcCont"/>
+			<result column="REVC_DATE" property="revcDate"/>
+		</association>
 	</resultMap>
 	
-	
-	<select id="reviewSelectList" parameterType="string" resultMap="ReviewMap">
-		<![CDATA[
-			SELECT * FROM REVIEW WHERE BP_ID = #{bpId}
-		 ]]>
-	</select>
-	
-	<select id="reviewSelectOne" parameterType="string" resultMap="ReviewMap">
-		<![CDATA[
-			SELECT * FROM REVIEW WHERE REV_NUM = #{revNum}
-		 ]]>
-	</select>
-	
-	<insert id="insertReview" parameterType="Review">
-		<![CDATA[
-			INSERT INTO REVIEW VALUES(
-			#{revNum}, #{bpId},
-			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
-			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}, 0, 0
-			)
-		]]>
- 	</insert>
- 	
  	<!-- 리뷰 시퀀스 값 가져오기 -->
  	<select id="getRevNumFromSeq" resultType="string">
 		<![CDATA[
@@ -45,7 +28,78 @@
 		]]>
  	</select>
  	
-
+ 	<!-- 리뷰 개수 카운트 -->
+ 	<select id="getRevCount" parameterType="string" resultType="int">
+ 		SELECT COUNT(*) FROM REVIEW WHERE BP_ID = #{bpId}
+ 	</select>
+	
+	<!-- 리뷰 댓글 달기 모달창 리뷰 정보 조회 -->
+	<select id="reviewSelectOne" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT * FROM REVIEW WHERE REV_NUM = #{revNum}
+		 ]]>
+	</select>
+	
+	<!-- 리뷰 평균 값 조회 -->
+	<select id="getRevValAvg" parameterType="string" resultType="string">
+		SELECT TO_CHAR(TRUNC(AVG(REV_VAL), 2), 'FM9.00') FROM REVIEW
+		WHERE BP_ID = #{bpId}
+	</select>
+	
+	<!-- 상세페이지에서 리뷰와 댓글 조회 최신 순-->
+	<select id="revRevcSelectListUpToDate" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
+			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
+			ON r.REV_NUM = c.REV_NUM
+			WHERE r.BP_ID = #{bpId}
+			ORDER BY r.REV_NUM DESC
+		 ]]>
+	</select>
+	
+	<!-- 상세페이지에서 리뷰와 댓글 조회 별점 높은 순-->
+	<select id="revRevcSelectListDescStar" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
+			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
+			ON r.REV_NUM = c.REV_NUM
+			WHERE r.BP_ID = #{bpId}
+			ORDER BY r.REV_VAL DESC, r.REV_NUM DESC
+		 ]]>
+	</select>
+	
+	<!-- 상세페이지에서 리뷰와 댓글 조회 별점 낮은 순-->
+	<select id="revRevcSelectListAscStar" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT r.*, c.REV_NUM as co_REV_NUM, c.REVC_NUM as co_REVC_NUM, c.BP_ID as co_BP_ID, c.REVC_CONT as co_REVC_CONT, c.REVC_DATE as co_REVC_DATE
+			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
+			ON r.REV_NUM = c.REV_NUM
+			WHERE r.BP_ID = #{bpId}
+			ORDER BY r.REV_VAL ASC, r.REV_NUM DESC
+		 ]]>
+	</select>
+	
+	<!-- 사업자 관리 페이지에서 리뷰 조회 -->
+	<select id="reviewSelectList" parameterType="string" resultMap="ReviewMap">
+		<![CDATA[
+			SELECT * FROM REVIEW WHERE BP_ID = #{bpId}
+		 ]]>
+	</select>
+	
+	<!-- 리뷰 등록 -->
+	<insert id="insertReview" parameterType="Review">
+		<![CDATA[
+			INSERT INTO REVIEW VALUES(
+			#{revNum}, #{bpId},
+			#{clNum}, #{clNickName}, #{revCont}, #{revImg},
+			TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{revVal}, 0
+			)
+		]]>
+ 	</insert>
  	
- 	
+ 	<!-- 리뷰 댓글 여부 업데이트 -->
+	<update id="updateCmntChk" parameterType="string">
+		UPDATE REVIEW SET CMNT_CHK = 1 WHERE REV_NUM = #{revNum}
+	</update>
+	
 </mapper>

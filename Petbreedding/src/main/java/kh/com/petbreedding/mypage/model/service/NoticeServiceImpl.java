@@ -116,6 +116,19 @@ public class NoticeServiceImpl implements NoticeService {
 
 		return result;
 	}
+	
+	@Override
+	public int inCancleRev(Notice notice) {
+		int result = 0;
+
+		try {
+			result = noticeDao.inCancleRev(notice);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 	@Override
 	public int updateReadState(String notNum) {
@@ -141,6 +154,56 @@ public class NoticeServiceImpl implements NoticeService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public String getbp_id(String shopNum) {
+		String bp_id = "";
+		
+		try {
+			bp_id = noticeDao.getbp_id(shopNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bp_id;
+	}
+
+	@Override
+	public String getbp_idforPay(String refNum) {
+		String bp_id = "";
+		
+		try {
+			bp_id = noticeDao.getbp_idforPay(refNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bp_id;
+	}
+
+	@Override
+	public String getOrigClNum(String refNum) {
+		String origClNum = "";
+		
+		try {
+			origClNum = noticeDao.getOrigClNum(refNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return origClNum;
+	}
+
+	@Override
+	public String getclNumInQna(String refNum) {
+		String cl_num = "";
+		
+		try {
+			cl_num = noticeDao.getclNumInQna(refNum);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return cl_num;
 	}
 
 }

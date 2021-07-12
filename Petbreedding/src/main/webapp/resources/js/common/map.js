@@ -12,7 +12,6 @@ var geocoder = new kakao.maps.services.Geocoder();
 
 
 var shopAddr = $("#shopAddr").val();
-console.log("매장 주소:"+shopAddr);
 
 
 //주소로 좌표를 검색합니다

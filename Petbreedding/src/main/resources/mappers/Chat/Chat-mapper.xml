@@ -270,8 +270,12 @@
         WHERE M.INVISIBLE_BP = 0
 	</select>
 	
-	<select id="getUnreadCount" resultMap="chatmessage">
+	<select id="getUnreadCountList" resultMap="chatmessage">
 		SELECT * FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{mReceiver} AND CHATROOM_ID = #{chatId} AND UNREAD_COUNT = 1
+	</select>
+	
+	<select id="getUnreadCount" resultType="int">
+		SELECT count(MESSAGE_ID) FROM CHATMESSAGE WHERE MESSAGE_RECEIVER=#{mReceiver} AND CHATROOM_ID = #{chatId} AND UNREAD_COUNT = 1
 	</select>
 	
 	<select id="getAllCount" resultType="int">

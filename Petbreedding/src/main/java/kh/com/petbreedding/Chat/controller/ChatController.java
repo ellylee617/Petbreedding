@@ -19,23 +19,55 @@ import kh.com.petbreedding.Chat.model.vo.ChatList;
 import kh.com.petbreedding.Chat.model.vo.ChatMessage;
 import kh.com.petbreedding.Chat.model.vo.ChatRoom;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 
 @Controller
 public class ChatController {
 
 	@Autowired
 	private ChatService chService;
+	
+	@Autowired
+	private NoticeService noticeService;
+	
+//	@RequestMapping("/insertNoticeforChat.do")
+//	public void insertNoticeforChat(HttpServletRequest req) {
+//				
+//		String chatId = req.getParameter("chatId");
+//		String mReceiver = req.getParameter("mReceiver");
+//		String notPublisher = req.getParameter("notPublisher");
+//		
+//		ChatMessage cm = new ChatMessage();
+//		cm.setmReceiver(mReceiver);
+//		cm.setChatId(chatId);
+//		
+//		int unreadCount = chService.getUnreadCount(cm);
+//		
+//		Notice notice = new Notice();
+//		notice.setNotReceiver(mReceiver);
+//		notice.setNotPublisher(notPublisher);
+//		
+//		if(unreadCount>0) {
+//			int result = noticeService.inUnreadChat(notice);
+//			if(result==1) {
+//				System.out.println("알림 인서트 성공");
+//			}else {
+//				System.out.println("알림 인서트 실패ㅠㅠ");
+//			}
+//		}
+//		
+//	}
 
 	@RequestMapping("/chat")
 	public ModelAndView chat(ModelAndView mv, @RequestParam(value = "chatId", required = false) String chatId,
 			@RequestParam(value = "shopName", required = false) String shopName,			
 			@RequestParam(value = "bp_id", required = false) String bp_id, 
 			@RequestParam(value = "bp_type", required = false) String bptype, 
-			HttpServletRequest req) {
+			HttpSession session) {
 			
 		List<ChatMessage> list = null;
 		
-		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("client");
 		
 		String nickName = "";
@@ -112,11 +144,10 @@ public class ChatController {
 			@RequestParam(value = "nickName", required = false) String nickName,
 			@RequestParam(value = "shopName", required = false) String shopName,
 			@RequestParam(value = "cl_num", required = false) String cl_num, 
-			HttpServletRequest req) {
+			HttpSession session) {
 		
 		List<ChatMessage> list = null;
 		
-		HttpSession session = req.getSession();
 		BPartner bpartner = (BPartner) session.getAttribute("bP");
 		
 		String id = "";
@@ -183,12 +214,11 @@ public class ChatController {
 	}
 
 	@RequestMapping("/chatlist")
-	public ModelAndView chatlist(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView chatlist(ModelAndView mv, HttpSession session) {
 		List<ChatList> list = null;
 		List<ChatList> unreadList = null;
 		int countUnread = 0;
 		
-		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("client");
 		
 		// 로그인 되어있다면 세선에셔 cl_num 받아와 
@@ -207,12 +237,11 @@ public class ChatController {
 	}
 
 	@RequestMapping("/bchatlist")
-	public ModelAndView bchatlist(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView bchatlist(ModelAndView mv, HttpSession session) {
 		List<ChatList> list = null;
 		List<ChatList> unreadList = null;
 		int countUnread = 0;
 		
-		HttpSession session = req.getSession();
 		BPartner bpartner = (BPartner) session.getAttribute("bP");
 		
 		// 로그인 되어있다면 세선에셔 bp_id 받아와
@@ -232,7 +261,7 @@ public class ChatController {
 	
 	@RequestMapping("/chatdelete.do")
 	@ResponseBody
-	public int chatdelete(ModelAndView mv, HttpServletRequest req) {
+	public int chatdelete(HttpServletRequest req) {
 		
 		List<ChatMessage> list = null;
 		int result = 0;
@@ -258,7 +287,7 @@ public class ChatController {
 	
 	@RequestMapping("/bchatdelete.do")
 	@ResponseBody
-	public int bchatdelete(ModelAndView mv, HttpServletRequest req) {
+	public int bchatdelete(HttpServletRequest req) {
 		
 		List<ChatMessage> list = null;
 		int result = 0;
@@ -290,7 +319,7 @@ public class ChatController {
 		ChatMessage cm = new ChatMessage();
 		cm.setmReceiver(mReceiver);
 		cm.setChatId(chatId);
-		unreadList = chService.getUnreadCount(cm);
+		unreadList = chService.getUnreadCountList(cm);
 		
 		if(unreadList!=null) {
 			//안 읽은 메시지가 있다면

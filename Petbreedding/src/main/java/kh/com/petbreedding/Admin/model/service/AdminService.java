@@ -16,4 +16,13 @@ public interface AdminService {
 	public List<BPartner> deleteList(Pagination page);
 	public int deleteBP(List<String> list);
 	public int backBP(List<String> list);
+	
+	
+	//차트
+	public int getMemberCount();
+	public int getBpCount();
+	
+	
+	public int getMemChart(String reg_date);
+	public int getBpChart(String reg_date);
 }

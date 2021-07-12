@@ -138,21 +138,10 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public List<ChatMessage> getUnreadCount(ChatMessage cm) {
+	public List<ChatMessage> getUnreadCountList(ChatMessage cm) {
 		List<ChatMessage> result = null;
 		try {
-			result = chDao.getUnreadCount(cm);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	@Override
-	public List<ChatMessage> getUnreadCountbp_id(ChatMessage cm) {
-		List<ChatMessage> result = null;
-		try {
-			result = chDao.getUnreadCountbp_id(cm);
+			result = chDao.getUnreadCountList(cm);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -208,6 +197,17 @@ public class ChatServiceImpl implements ChatService{
 		int result = 0;
 		try {
 			result = chDao.updateInvisibleBp(mId);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getUnreadCount(ChatMessage cm) {
+		int result = 0;
+		try {
+			result = chDao.getUnreadCount(cm);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

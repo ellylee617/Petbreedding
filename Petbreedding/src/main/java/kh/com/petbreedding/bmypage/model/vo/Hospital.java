@@ -25,7 +25,17 @@ public class Hospital {
 	private String sun;
 	
 	private double avgRevVal;
+<<<<<<< HEAD
 	private int likes;
+=======
+	private int cta_number;
+	
+	
+>>>>>>> 3b1ae78b37f9c26bde348d2219711ecb35575b8b
+
+
+
+
 
 
 
@@ -37,21 +47,35 @@ public class Hospital {
 		return "Hospital [hosNum=" + hosNum + ", bpId=" + bpId + ", shopName=" + shopName + ", shopAddr=" + shopAddr
 				+ ", shopTel=" + shopTel + ", shopTime=" + shopTime + ", shopMInfo=" + shopMInfo + ", shopMImg="
 				+ shopMImg + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", thu=" + thu + ", fri=" + fri
+<<<<<<< HEAD
 				+ ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + ", likes=" + likes + "]";
+=======
+				+ ", sat=" + sat + ", sun=" + sun + ", avgRevVal=" + avgRevVal + ", cta_number=" + cta_number + "]";
+>>>>>>> 3b1ae78b37f9c26bde348d2219711ecb35575b8b
 	}
 
 
 
 
+<<<<<<< HEAD
 	public int getLikes() {
 		return likes;
+=======
+	public int getCta_number() {
+		return cta_number;
+>>>>>>> 3b1ae78b37f9c26bde348d2219711ecb35575b8b
 	}
 
 
 
 
+<<<<<<< HEAD
 	public void setLikes(int likes) {
 		this.likes = likes;
+=======
+	public void setCta_number(int cta_number) {
+		this.cta_number = cta_number;
+>>>>>>> 3b1ae78b37f9c26bde348d2219711ecb35575b8b
 	}
 
 

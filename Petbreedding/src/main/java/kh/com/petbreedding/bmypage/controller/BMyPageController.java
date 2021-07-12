@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import kh.com.petbreedding.BP.model.vo.BPartner;
 import kh.com.petbreedding.bmypage.model.service.BInfoService;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
@@ -37,12 +41,20 @@ import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
+import kh.com.petbreedding.board.model.service.CustomerServiceService;
+import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.service.OftenQnaService;
 import kh.com.petbreedding.board.model.service.ReviewCommentService;
 import kh.com.petbreedding.board.model.service.ReviewService;
+import kh.com.petbreedding.board.model.vo.B_comment;
+import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
+import kh.com.petbreedding.board.model.vo.MyAskComment;
+import kh.com.petbreedding.board.model.vo.OftenQna;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.board.model.vo.ReviewComment;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Controller
 public class BMyPageController {
@@ -57,16 +69,23 @@ public class BMyPageController {
 	private MyAskService myAskService;
 	
 	@Autowired
+	private MyAskCommentService myAskCommentService;
+	
+	@Autowired
 	private ReviewService reviewService;
 	
 	@Autowired
 	private ReviewCommentService reviewCommentService;
 
+	@Autowired
+	private CustomerServiceService customerServiceService;
+	
+	@Autowired
+	private OftenQnaService oftenQnaService;
+	
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
 	public String bMyPageUpdate(Locale locale, Model model) {
-
-		// TODO Auto-generated method stub
 		return "/bPartner/bMyPage/bMyPageUpdate";
 	}
 
@@ -83,31 +102,88 @@ public class BMyPageController {
 	}
 
 	// 사장님 마이 페이지 공지사항
-	@RequestMapping(value = "/bNotice", method = RequestMethod.GET)
-	public String bNotice(Locale locale, Model model) {
-
-		// TODO Auto-generated method stub
+	@RequestMapping(value = "/bNotice")
+	public String bNotice(Locale locale, Model model, Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		
+		int total = customerServiceService.ListBCount();
+		
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> paging = new HashMap<String, String>();
+		paging.put("start", Integer.toString(page.getStart()));
+		paging.put("end", Integer.toString(page.getEnd()));
+		List<CustomerService> list = customerServiceService.CustomerServiceSelectListB(paging);
+		
+		model.addAttribute("paging", page);
+		model.addAttribute("notice", list);
 		return "/bPartner/bBoard/bNotice";
 	}
 
 	// 사장님 마이 페이지 자주 묻는 질문
 	@RequestMapping(value = "/bFAQ", method = RequestMethod.GET)
-	public String bFAQ(Locale locale, Model model) {
-
+	public String bFAQ(Locale locale, Model model,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="10") String cntPerPage
+			) {
+		
+		int total = oftenQnaService.BOftenCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<OftenQna> list = oftenQnaService.BOftenQna(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("paging", page);
+		
+		
 		return "/bPartner/bBoard/bFAQ";
 	}
 
 	// 사장님 마이 페이지 1:1문의 내역
 	@RequestMapping(value = "/bQna")
-	public String bQna(Model md, String user_num) {
-
-		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 user_num : " + user_num);
-		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
+	public String bQna(Model md, String user_num, Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		int total = myAskService.clBpListCount(user_num);
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNum", user_num);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<MyAsk> myAskList = myAskService.MyAskSelectList(map);
+		md.addAttribute("paging", page);
 		md.addAttribute("bQnaList", myAskList);
 		md.addAttribute("user_num", user_num);
-		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 myAskList : " + myAskList);
 
 		return "/bPartner/bBoard/bQna";
+	}
+	
+	// 사장님 마이 페이지 1:1 문의 자세히 보기
+	@RequestMapping("/bQnaDetail")
+	public String askDetail(HttpSession session, String qna_num, Model md) {
+
+		System.out.println("[세훈] @일대일 문의  상세 컨트롤러 qna_num : " + qna_num);
+
+		MyAsk myAskDetail = new MyAsk();
+		MyAskComment maComment = new MyAskComment();
+
+		myAskDetail = myAskService.MyAskSelectDetail(qna_num);
+		maComment = myAskCommentService.myAskCommentSelectOneCB(qna_num);
+
+		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 myAskDetail : " + myAskDetail);
+		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 maComment : " + maComment);
+
+		md.addAttribute("myAskDetail", myAskDetail);
+		md.addAttribute("maComment", maComment);
+
+		return "/bPartner/bBoard/bQnaDetail";
 	}
 
 	// 사장님 마이 페이지 1:1문의하기
@@ -791,7 +867,9 @@ public class BMyPageController {
 		bP = (BPartner) ses.getAttribute("bP");
 		
 		if(bP == null) {
-			return "redirect:/";
+			md.addAttribute("msg", "로그인이 필요합니다");
+			md.addAttribute("url", "/bLogin");
+			return "common/redirect";
 		}
 		
 		String bp_id = bP.getBp_Id();
@@ -800,48 +878,51 @@ public class BMyPageController {
 		List<Review> brvList =  new ArrayList<Review>();
 		
 		brvList = reviewService.reviewSelectList(bp_id);
+		int brvCount = reviewService.getRevCount(bp_id);
+		
 		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 brvList : " + brvList);
 		
 		md.addAttribute("brvList", brvList);
+		md.addAttribute("brvCount", brvCount);
 		
 		return "/bPartner/bShop/bReview";
 	}
 	
 	
 	//	사업자 리뷰  모달
-	@RequestMapping(value = "/brmodal")
-	public void brModal(
+	@ResponseBody
+	@RequestMapping(value = "/brmodal", produces="text/plain;charset=UTF-8")
+	public String brModal(
 			String rev_num
 			,HttpServletRequest req
 			,HttpServletResponse res
 			) {
 		
+		res.setCharacterEncoding("UTF-8");
+		
 		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rev_num : " + rev_num);
 		Review rv = new Review();
 		rv = reviewService.reviewSelectOne(rev_num);
 		
+		
+		Gson gson = new GsonBuilder().create();
+		String jsonOutPut = gson.toJson(rv);
+		
 		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rv : " + rv.toString());
 		
-		PrintWriter out = null;
 		
-		try {
-			out = res.getWriter();
-			out.println(rv);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			out.flush();
-			out.close();
-		}
-		
+		return jsonOutPut;
 	}
 	
 	//	사업자 리뷰 댓글 등록
 	@RequestMapping(value = "/brwrite")
-	public void brWrite(
+	public String brWrite(
 			HttpServletRequest req
+			,HttpServletResponse res
 			,Model md
 			) {
+		
+		res.setCharacterEncoding("UTF-8");
 		
 		String bp_id = req.getParameter("revBpIdVal");
 		String rev_num = req.getParameter("revNumVal");
@@ -859,20 +940,21 @@ public class BMyPageController {
 		
 		
 		int revcResult = reviewCommentService.reviewCommentInsert(revCmnt);
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 revcResult : " + revcResult);
+		
 		
 		if(revcResult > 0) {
-			System.out.println("리뷰 댓글 등록 성공");
-			md.addAttribute("msg", "리뷰 댓글 등록 성공");
+			System.out.println("사업자 리뷰 댓글 등록 성공");
+			md.addAttribute("msg", "사업자 리뷰 댓글 등록 성공");
 			md.addAttribute("url","/bReview");
 		} else {
-			System.out.println("리뷰 댓글 등록 실패");
-			md.addAttribute("msg", "리뷰 댓글 등록 실패");
+			System.out.println("사업자 리뷰 댓글 실패");
+			md.addAttribute("msg", "사업자 리뷰 댓글 등록 실패");
 			md.addAttribute("url","/bReview");
 		}
 		
+		return "common/redirect";
 		
-		
-//		return "common/redirect";
 	}
 
 }

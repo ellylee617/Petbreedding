@@ -18,6 +18,16 @@ public class NoticeDao {
 	public List<Notice> getNoticeList(String notReceiver) {
 		return sqlSession.selectList("notice.getNoticeList", notReceiver);
 	}
+	
+	// bp_id 찾기(예약에서)
+	public String getbp_id(String shopNum) {
+		return sqlSession.selectOne("notice.getbp_id", shopNum);
+	}
+	
+	// bp_id 찾기(결제에서)
+	public String getbp_idforPay(String refNum) {
+		return sqlSession.selectOne("notice.getbp_idforPay", refNum);
+	}
 
 	// 예약시
 	public int inReservaion(Notice notice) {
@@ -33,10 +43,20 @@ public class NoticeDao {
 	public int inUnreadChat(Notice notice) {
 		return sqlSession.insert("notice.inUnreadChat", notice);
 	}
+	
+	// 글번호로 글 작성자 찾기
+	public String getOrigClNum(String refNum) {
+		return sqlSession.selectOne("notice.getOrigClNum", refNum);
+	}
 
 	// 내 글에 댓글이 달렸을 시
 	public int inBoard(Notice notice) {
 		return sqlSession.insert("notice.inBoard", notice);
+	}
+	
+	// QNA 글 번호로 글 작성자 찾기
+	public String getclNumInQna(String refNum) {
+		return sqlSession.selectOne("notice.getclNumInQna", refNum);
 	}
 
 	// 내 문의에 답변이 왔을 시
@@ -52,6 +72,11 @@ public class NoticeDao {
 	// 포인트 사용 시
 	public int inPointUsing(Notice notice) {
 		return sqlSession.insert("notice.inPointUsing", notice);
+	}
+	
+	// 예약 취소시
+	public int inCancleRev(Notice notice) {
+		return sqlSession.insert("notice.inCancleRev", notice);
 	}
 
 	// 알림 페이지에 들어가면 읽음으로 처리

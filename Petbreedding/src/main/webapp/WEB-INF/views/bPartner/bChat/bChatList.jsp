@@ -12,7 +12,7 @@
 <link href="${path}/resources/css/bPartner/bAside.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/user/uMyPage/myChatList.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/bPartner/bChat/bChatList.css" rel="stylesheet" type="text/css">
-<script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/aca84cf3fb.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
@@ -58,7 +58,7 @@
 								<td rowspan="2"><img src="${path}/resources/images/logoForChat.png"></td>
 								<td>${u.nickName }</td>
 								<td>${u.mSendTime }</td>
-								<td rowspan="2"><a class="cancleM"><i class="far fa-times-circle"></i></a></td>
+								<td rowspan="2"><a class="cancleM" onClick="deleteChat('${r.chatId }');"><i class="far fa-times-circle"></i></a></td>
 							</tr>
 							<tr>
 								<td>${u.mContent }</td>

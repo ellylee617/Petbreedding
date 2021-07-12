@@ -72,13 +72,8 @@ public class ChatDao {
 	}
 
 	// 해당 채팅방의 내가 안 읽은 메시지 리스트(client)
-	public List<ChatMessage> getUnreadCount(ChatMessage cm) throws Exception {
-		return sqlSession.selectList("Chat.getUnreadCount", cm);
-	}
-
-	// 해당 채팅방의 내가 안 읽은 메시지 리스트(bPartner)
-	public List<ChatMessage> getUnreadCountbp_id(ChatMessage cm) throws Exception {
-		return sqlSession.selectList("Chat.getUnreadCountbp_id", cm);
+	public List<ChatMessage> getUnreadCountList(ChatMessage cm) throws Exception {
+		return sqlSession.selectList("Chat.getUnreadCountList", cm);
 	}
 
 	// 채팅방 입장 시 안 읽은 메시지 -> 읽은 메시지로 업데이트
@@ -89,6 +84,11 @@ public class ChatDao {
 	// 총 내가 안 읽은 메시지의 수 카운트
 	public int getAllCount(String mReceiver) throws Exception {
 		return sqlSession.selectOne("Chat.getAllCount", mReceiver);
+	}
+	
+	// 해당 채팅방에서 읽지 않은 메시지 수
+	public int getUnreadCount(ChatMessage cm) throws Exception {
+		return sqlSession.selectOne("Chat.getUnreadCount", cm);
 	}
 
 	// 채팅 리스트에서 채팅 삭제 시 DB 삭제는 하지 않고 리스트에만 보이지 않게 하기 위해

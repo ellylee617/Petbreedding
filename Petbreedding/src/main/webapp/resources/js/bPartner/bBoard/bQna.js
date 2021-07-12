@@ -3,7 +3,7 @@
  */
 
 $(function() {
-	var userNum = "${user_num}";
+	var userNum = $("#bpId").val();
 	console.log(userNum);
 	$(".pointline").click(function() {
 		var idVar = $(this).attr("id");
@@ -12,6 +12,7 @@ $(function() {
 	});
 	
 	$("#myAskBtn").click(function() {
+		var userNum = $(this).attr("name");
 		console.log(userNum);
 		location.href = "/petbreedding/bQna/writeFrm?user_num="+userNum+"";
 	});
@@ -20,5 +21,5 @@ $(function() {
 
 function goDetail(value){
 	console.log(value);
-	location.href = "/petbreedding/mypage/askdetail?qna_num="+value+"";
+	location.href = "/petbreedding/bQnaDetail?qna_num="+value+"";
 }

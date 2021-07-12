@@ -32,10 +32,11 @@
 	padding-left: 20px;
 }
 .imgWrap{
-	width: 150px;
+	max-width: 100px;
 	height: 100px;
 	text-align: center;
 	display: inline-block;
+	overflow: hidden;
 }
 .imgWrap img{
 	height: 100px;
@@ -52,7 +53,6 @@
 	text-overflow: ellipsis;
 }
 .msgWrap{
-	width : 20%;
 	display: inline-block;
 	position: absolute;
 }
@@ -80,8 +80,8 @@
 .modal {
 	display: none;
 	position: absolute;
-	top: 50%;
-	left: 45%;
+	top: 60%;
+	left: 40%;
 	width: 300px;
 	padding: 30px 80px 50px 80px;
 	background: white;
@@ -117,3 +117,10 @@
 	width: 100px;
 }
 
+/* 알림 리스트 없을 때 */
+.textWrapNolist {
+    margin-top: 280px;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 600;
+}

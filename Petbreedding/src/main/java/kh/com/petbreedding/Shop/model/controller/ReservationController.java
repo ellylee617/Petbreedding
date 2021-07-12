@@ -23,7 +23,9 @@ import kh.com.petbreedding.bmypage.model.vo.Style;
 import kh.com.petbreedding.client.model.vo.Client;
 import kh.com.petbreedding.mypage.model.service.ClientInfoService;
 import kh.com.petbreedding.mypage.model.service.MyPointService;
+import kh.com.petbreedding.mypage.model.service.NoticeService;
 import kh.com.petbreedding.mypage.model.vo.MyPet;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 
 @Controller
 public class ReservationController {
@@ -37,6 +39,9 @@ public class ReservationController {
 	@Autowired
 	private MyPointService myPointService;
 	
+	@Autowired
+	private NoticeService noticeService;
+	
 	//미용실 예약하기
 	@RequestMapping(value = "shopReservation", method = RequestMethod.GET)
 	public String revList(Locale locale, String har_num, Model model, String cl_num) {
@@ -44,7 +49,7 @@ public class ReservationController {
 		List<Style> list = revService.revList(har_num);
 		List<MyPet> list2 = revService.revList2(cl_num);
 		List<Style> list3 = revService.revList3(har_num);
-		
+				
 		model.addAttribute("style", list);
 		model.addAttribute("pet", list2);
 		model.addAttribute("style2", list3);
@@ -60,7 +65,27 @@ public class ReservationController {
 		
 		revService.insertHairRev(hrv);
 		String result = hrv.getHar_rnum();
-
+		
+		// 알림 내역에 인서트
+		String cl_num = hrv.getCl_num();
+		String bp_id = noticeService.getbp_id(hrv.getHar_num());
+		
+		if(bp_id!=null && !bp_id.equals("")) {
+			Notice notice = new Notice();
+			notice.setNotReceiver(cl_num);
+			notice.setNotPublisher(bp_id);
+			notice.setRefNum("HAR000"+result);
+			
+			int insertNotice = 0;
+			insertNotice = noticeService.inReservaion(notice);
+			
+			if(insertNotice==1) {
+				System.out.println("알림 인서트 성공!");
+			}else {
+				System.out.println("알림 인서트 실패ㅠㅠ");
+			}
+		}
+		
 		return result;
 	}
 	
@@ -139,6 +164,27 @@ public class ReservationController {
 		
 		revService.insertHosRev(hos);
 		String result = hos.getHos_rnum();
+		
+		// 알림 내역에 인서트
+		String cl_num = hos.getCl_num();
+		String bp_id = noticeService.getbp_id(hos.getHos_num());
+		
+		if(bp_id!=null && !bp_id.equals("")) {
+			Notice notice = new Notice();
+			notice.setNotReceiver(cl_num);
+			notice.setNotPublisher(bp_id);
+			notice.setRefNum("HOS000"+result);
+			
+			int insertNotice = 0;
+			insertNotice = noticeService.inReservaion(notice);
+			
+			if(insertNotice==1) {
+				System.out.println("알림 인서트 성공!");
+			}else {
+				System.out.println("알림 인서트 실패ㅠㅠ");
+			}
+		}
+				
 		return result;
 	}
 	
