@@ -58,7 +58,7 @@
             
             <hr id="storeLine">
 			
-			<div id="keywordHarListNew">
+			<div id="keywordHosListNew">
 			
 			
 			<div class="storeS">
@@ -717,20 +717,16 @@
             </div>
             </c:if>
             
-            <c:if test="${empty keyword}">
-            <c:if test="${empty searchLoc1}">
+            <c:if test="${empty keyword && empty searchLoc1} ">
             <div class="nowLocation">
                 <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
             </div>
             </c:if>
-            </c:if>
             
-            <c:if test="${empty keyword}">
-            <c:if test="${!empty searchLoc1}">
+            <c:if test="${empty keyword && !empty searchLoc1}">
             <div class="nowLocation">
                 <span> ${searchLoc1 } > ${searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
 			</div>
-            </c:if>
             </c:if>
             
             <!-- 미용실 위치 설정 및 키워드 검색 결과 -->
@@ -782,23 +778,24 @@
                 </c:forEach>
                 </div>
                            <!-- 페이징 시작-->
+                           
 				            <div class="page_wrap">
 				               <div class="page_nation">
-				                  <c:if test="${keyword_paging.startPage != 1 }">
-				                     <a class="arrow prev" href="${path}/shopList/all?shopType=${shopType}&nowPage=${keyword_paging.startPage - 1 }&cntPerPage=${keyword_paging.cntPerPage}">이전</a> 
+				                  <c:if test="${keyword_new_paging.startPage != 1 }">
+				                     <a class="arrow prev" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${keyword_new_paging.startPage - 1 }&cntPerPage=${keyword_new_paging.cntPerPage}&keyword=${keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">이전</a> 
 				                  </c:if>
-				                  <c:forEach begin="${keyword_paging.startPage }" end="${keyword_paging.endPage }" var="p">
+				                  <c:forEach begin="${keyword_new_paging.startPage }" end="${keyword_new_paging.endPage }" var="p">
 				                     <c:choose>
-				                        <c:when test="${p == keyword_paging.nowPage }">
+				                        <c:when test="${p == keyword_new_paging.nowPage }">
 				                           <b>${p }</b>
 				                        </c:when>
-				                        <c:when test="${p != keyword_paging.nowPage }">
-				                           <a href="${path}/shopList/all?shopType=${shopType}&nowPage=${p }&cntPerPage=${keyword_paging.cntPerPage}">${p}</a>
+				                        <c:when test="${p != keyword_new_paging.nowPage }">
+				                           <a href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${p }&cntPerPage=${keyword_new_paging.cntPerPage}&keyword=${keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">${p}</a>
 				                        </c:when>
 				                     </c:choose>
 				                  </c:forEach>
-				                  <c:if test="${keyword_paging.endPage != keyword_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/all?shopType=${shopType}&nowPage=${keyword_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
+				                  <c:if test="${keyword_new_paging.endPage != keyword_new_paging.lastPage}">
+				                     <a class="arrow next" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${keyword_new_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -820,7 +817,7 @@
 		
 		
 		<!--  ************** 미용실 전체 리스트 페이지 ************************** -->
-		<c:if test="${empty  keywordHarListNew && empty  harListLocNew && empty  harListLocLike && empty harListLocRev}">
+		<c:if test="${empty  keywordHarListNew && empty  harListLocNew && empty  harListLocLike && empty harListLocRev && empty keyword}">
 		<hr id="storeLine">
             <div class="selectOpt">
                 <input type="radio" id="newRadio" name="selectOpt" value="new"  onclick="window.location.href='${path}/shopList/all/new?shopType=${shopType}&orderBy=new';"><label for="newRadio">최신순</label>
@@ -837,7 +834,15 @@
                  <input type="radio" id="revLocRadio" name="selectOpt" value="rev" onclick="window.location.href='${path}/shopList/search/rev?selectlocCon=${searchLoc1 }&selectChooseLoc=${searchLoc2 }&shopType=0&orderBy=rev'"><label for="revLocRadio">별점순</label>
             </div>
             </c:if>
-        
+            
+            <c:if test="${empty keywordHarListNew}">
+            <hr>
+            <br><br><br>
+            <h1 style="text-align: center;">검색 결과가 없습니다.</h1>
+            </c:if>
+            
+        	
+        	<c:if test="${empty keyword}">
 			 <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <ul>
@@ -877,7 +882,7 @@
             </c:forEach>
                 </ul>
             </div>
-            
+           </c:if> 
             
             
             

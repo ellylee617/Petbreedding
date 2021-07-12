@@ -507,71 +507,9 @@ public class ShopListController {
 			}
 			
 		
-			// 키워드+위치 검색한 경우 
-			 if(!keyword.equals("")) {
-				 System.out.println("위치 설정+키워드 검색!!!");
-				 System.out.println("설정한 주소는????"+searchLoc1+searchLoc2);
-				 System.out.println("검색한 키워드는????"+keyword);
-				 mv.addObject("keyword", keyword);
-				 mv.addObject("searchLoc1", searchLoc1);
-				 mv.addObject("searchLoc2", searchLoc2);
-				 
-				 Map<String,Object> map1 = new HashMap<String,Object>();
-				 map1.put("searchLoc1", searchLoc1);
-				 map1.put("searchLoc2", searchLoc2);
-				 map1.put("keyword", keyword);
-				 
-				 
-				 // 검색 결과 카운팅
-				 
-				 int total1 = shopListService.countKeywordHarList();
-				 System.out.println("검색된 미용실은 몇 개???"+total1);
-				 
-				 Pagination page1 = null;
-				 page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-				 mv.addObject("keyword_new_paging", page1);
-				 
-				 int start1 = page1.getStart();
-				 int end1 = page1.getEnd();
-				 map1.put("start", start1);
-				 map1.put("end", end1);
-				 System.out.println("위치 키워드 페이징 map 정보 보여줘~~"+map1);
-				 
-				 
-				 // 키워드 위치 검색 미용실 최신순 정렬
-				 List<HairSalon> keywordHarListNew = shopListService.selectKeywordHarListNew(map1);
-				 System.out.println("위치로 검색한 미용실 최신순으로 정렬해줘!!!:"+keywordHarListNew);
-				 mv.addObject("keywordHarListNew", keywordHarListNew);
-				 
-					List<String> countList1 = new ArrayList<String>();
-					List<String> avgList1 = new ArrayList<String>();
-					List<String> revCountList1 = new ArrayList<String>();
-					
-					for(int i =0; i<keywordHarListNew.size(); i++) {
 			
-						// 찜한 숫자 가져오기
-						// + 별점 출력 
-						har_num = keywordHarListNew.get(i).getHarNum();
-						bpId = keywordHarListNew.get(i).getBpId();
-						
-						String count = likeService.countSalon(har_num); //찜
-						countList1.add(count);
-						mv.addObject("keyword_new_count", countList1);
-						
-						String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
-						avgList1.add(revAvg);
-						mv.addObject("keyword_new_revAvg", avgList1);
-						
-						String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
-						revCountList1.add(revCount);
-						mv.addObject("keyword_new_revCount", revCountList1);
-					}
-					
-					
-			 }
 			
 			// 위치만 설정한 경우
-			if(keyword.equals("")) {
 				System.out.println("위치만 설정함!!!!!!!");
 				System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
 				
@@ -629,7 +567,6 @@ public class ShopListController {
 			}
 			
 			
-		}
 		
 		
 		// 동물병원(1)
@@ -672,72 +609,8 @@ public class ShopListController {
 			
 			
 			
-			// 키워드+위치 검색한 경우 
-			 if(!keyword.equals("")) {
-				 System.out.println("위치 설정+키워드 검색!!!");
-				 System.out.println("설정한 주소는????"+searchLoc1+searchLoc2);
-				 System.out.println("검색한 키워드는????"+keyword);
-				 mv.addObject("keyword", keyword);
-				 mv.addObject("searchLoc1", searchLoc1);
-				 mv.addObject("searchLoc2", searchLoc2);
-				 
-				 Map<String,Object> map1 = new HashMap<String,Object>();
-				 map1.put("searchLoc1", searchLoc1);
-				 map1.put("searchLoc2", searchLoc2);
-				 map1.put("keyword", keyword);
-				 
-				 
-				 // 검색 결과 카운팅
-				 
-				 int total1 = shopListService.countKeywordHosList();
-				 System.out.println("검색된 동물병원은 몇 개???"+total1);
-				 
-				 Pagination page1 = null;
-				 page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-				 mv.addObject("keyword_paging", page1);
-				 
-				 int start1 = page1.getStart();
-				 int end1 = page1.getEnd();
-				 map1.put("start", start1);
-				 map1.put("end", end1);
-				 System.out.println("위치 키워드 페이징 map 정보 보여줘~~"+map1);
-				 
-				 
-				 // 키워드 위치 검색 동물병원 최신순 정렬
-				 List<Hospital> keywordHosListNew = shopListService.selectKeywordHosListNew(map1);
-				 System.out.println("키워드랑 위치로 검색한 동물병원 최신순으로 정렬해줘!!!:"+keywordHosListNew);
-				 mv.addObject("keywordHarListNew", keywordHosListNew);
-				 
-					List<String> countList1 = new ArrayList<String>();
-					List<String> avgList1 = new ArrayList<String>();
-					List<String> revCountList1 = new ArrayList<String>();
-					
-					for(int i =0; i<keywordHosListNew.size(); i++) {
 			
-						// 찜한 숫자 가져오기
-						// + 별점 출력 
-						hos_num = keywordHosListNew.get(i).getHosNum();
-						bpId = keywordHosListNew.get(i).getBpId();
-						
-						String count = likeService.countHos(hos_num); //찜
-						countList1.add(count);
-						mv.addObject("keyword_new_count", countList1);
-						
-						String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
-						avgList1.add(revAvg);
-						mv.addObject("keyword_new_revAvg", avgList1);
-						
-						String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
-						revCountList1.add(revCount);
-						mv.addObject("keyword_new_revCount", revCountList1);
-					}
-					
-					
-			 }
 			
-			// 위치만 설정한 경우
-			
-						if(keyword.equals("")) {
 							System.out.println("위치만 설정함!!!!!!!");
 							System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
 							
@@ -847,7 +720,6 @@ public class ShopListController {
 									mv.addObject("loc_rev_revCount", revCountList3);
 								}
 			
-						}
 			
 			
 			
@@ -871,7 +743,6 @@ public class ShopListController {
 			,@RequestParam(value="shopType") Long shopType
 			,@RequestParam (value="selectlocCon", defaultValue="") String searchLoc1
 			,@RequestParam (value="selectChooseLoc", defaultValue="") String searchLoc2
-			,@RequestParam(value="keyword", defaultValue="") String keyword
 			, HttpServletRequest request
 			) throws Exception {
 		
@@ -915,15 +786,8 @@ public class ShopListController {
 					mv.addObject("cta_revCount", ctaRevCountList);
 				}
 				
-				// 키워드+위치 검색한 경우 
-				 if(!keyword.equals("")) {
-					 
-					 
-				 
-				 }
 				 
 				// 위치만 설정한 경우
-					if(keyword.equals("")) {
 						System.out.println("위치만 설정함!!!!!!!");
 						System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
 						
@@ -977,7 +841,6 @@ public class ShopListController {
 								revCountList2.add(revCount);
 								mv.addObject("loc_like_revCount", revCountList2);
 							}
-				 }
 			}
 		
 		
@@ -989,7 +852,7 @@ public class ShopListController {
 
 
 	
-	
+	// 사업장 검색 리스트 정렬 - 별점순 
 	@RequestMapping(value = "/shopList/search/rev", method = RequestMethod.GET)
 	public ModelAndView searchReviewShopList(
 			ModelAndView mv
@@ -1108,4 +971,154 @@ public class ShopListController {
 	}
 
 
+	// 사업장 검색 - 위치 + 키워드 
+	// 미용실 작업중
+	// TODO: 동물병원 
+	@RequestMapping(value = "/shopList/search/keyword", method = RequestMethod.GET)
+	public ModelAndView searchKewordShopList(
+			ModelAndView mv
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			,@RequestParam(value="shopType") Long shopType
+			,@RequestParam (value="selectlocCon", defaultValue="") String searchLoc1
+			,@RequestParam (value="selectChooseLoc", defaultValue="") String searchLoc2
+			,@RequestParam(value="keyword", defaultValue="") String keyword
+			, HttpServletRequest request) throws Exception {
+		
+			
+		if(shopType==0) {
+			
+			// 키워드+위치 검색한 경우 
+			 if(!keyword.equals("")) {
+				 System.out.println("위치 설정+키워드 검색!!!");
+				 System.out.println("설정한 주소는????"+searchLoc1+searchLoc2);
+				 System.out.println("검색한 키워드는????"+keyword);
+				 mv.addObject("keyword", keyword);
+				 mv.addObject("searchLoc1", searchLoc1);
+				 mv.addObject("searchLoc2", searchLoc2);
+				 
+				 Map<String,Object> map1 = new HashMap<String,Object>();
+				 map1.put("searchLoc1", searchLoc1);
+				 map1.put("searchLoc2", searchLoc2);
+				 map1.put("keyword", keyword);
+				 
+				 
+				 // 검색 결과 카운팅
+				 
+				 int total1 = shopListService.countKeywordHarList(map1);
+				 System.out.println("검색된 미용실은 몇 개???"+total1);
+				 
+				 Pagination page1 = null;
+				 page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+				 System.out.println("페이지 객체 정보는????"+page1);
+				 mv.addObject("keyword_new_paging", page1);
+				 
+				 int start1 = page1.getStart();
+				 int end1 = page1.getEnd();
+				 map1.put("start", start1);
+				 map1.put("end", end1);
+				 System.out.println("위치 키워드 페이징 map 정보 보여줘~~"+map1);
+				 
+				 
+				 // 키워드 위치 검색 미용실 최신순 정렬
+				 List<HairSalon> keywordHarListNew = shopListService.selectKeywordHarListNew(map1);
+				 System.out.println("위치로 검색한 미용실 최신순으로 정렬해줘!!!:"+keywordHarListNew);
+				 mv.addObject("keywordHarListNew", keywordHarListNew);
+				 
+					List<String> countList1 = new ArrayList<String>();
+					List<String> avgList1 = new ArrayList<String>();
+					List<String> revCountList1 = new ArrayList<String>();
+					
+					for(int i =0; i<keywordHarListNew.size(); i++) {
+			
+						// 찜한 숫자 가져오기
+						// + 별점 출력 
+						String har_num = keywordHarListNew.get(i).getHarNum();
+						String bpId = keywordHarListNew.get(i).getBpId();
+						
+						String count = likeService.countSalon(har_num); //찜
+						countList1.add(count);
+						mv.addObject("keyword_new_count", countList1);
+						
+						String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
+						avgList1.add(revAvg);
+						mv.addObject("keyword_new_revAvg", avgList1);
+						
+						String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+						revCountList1.add(revCount);
+						mv.addObject("keyword_new_revCount", revCountList1);
+					}
+					
+					
+			 }
+		}
+		
+		if(shopType==1) {
+			// 키워드+위치 검색한 경우 
+			 if(!keyword.equals("")) {
+				 System.out.println("위치 설정+키워드 검색!!!");
+				 System.out.println("설정한 주소는????"+searchLoc1+searchLoc2);
+				 System.out.println("검색한 키워드는????"+keyword);
+				 mv.addObject("searchLoc1", searchLoc1);
+				 mv.addObject("searchLoc2", searchLoc2);
+				 
+				 Map<String,Object> map1 = new HashMap<String,Object>();
+				 map1.put("searchLoc1", searchLoc1);
+				 map1.put("searchLoc2", searchLoc2);
+				 
+				 
+				 // 검색 결과 카운팅
+				 
+				 int total1 = shopListService.countKeywordHosList();
+				 System.out.println("검색된 동물병원은 몇 개???"+total1);
+				 
+				 Pagination page1 = null;
+				 page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+				 mv.addObject("keyword_paging", page1);
+				 
+				 int start1 = page1.getStart();
+				 int end1 = page1.getEnd();
+				 map1.put("start", start1);
+				 map1.put("end", end1);
+				 System.out.println("위치 키워드 페이징 map 정보 보여줘~~"+map1);
+				 
+				 
+				 // 키워드 위치 검색 동물병원 최신순 정렬
+				 List<Hospital> keywordHosListNew = shopListService.selectKeywordHosListNew(map1);
+				 System.out.println("키워드랑 위치로 검색한 동물병원 최신순으로 정렬해줘!!!:"+keywordHosListNew);
+				 mv.addObject("keywordHarListNew", keywordHosListNew);
+				 
+					List<String> countList1 = new ArrayList<String>();
+					List<String> avgList1 = new ArrayList<String>();
+					List<String> revCountList1 = new ArrayList<String>();
+					
+					for(int i =0; i<keywordHosListNew.size(); i++) {
+			
+						// 찜한 숫자 가져오기
+						// + 별점 출력 
+						String hos_num = keywordHosListNew.get(i).getHosNum();
+						String bpId = keywordHosListNew.get(i).getBpId();
+						
+						String count = likeService.countHos(hos_num); //찜
+						countList1.add(count);
+						mv.addObject("keyword_new_count", countList1);
+						
+						String revAvg = shopListService.selectShopRevAvg(bpId);	// 평균 별점
+						avgList1.add(revAvg);
+						mv.addObject("keyword_new_revAvg", avgList1);
+						
+						String revCount = shopListService.selectShopRevCount(bpId); //리뷰건수
+						revCountList1.add(revCount);
+						mv.addObject("keyword_new_revCount", revCountList1);
+					}
+					
+					
+			 }
+		}
+		
+		
+				mv.setViewName("/user/uShop/shopList");
+				return mv;
+	}
 } //컨트롤러 끝 ~! 
+

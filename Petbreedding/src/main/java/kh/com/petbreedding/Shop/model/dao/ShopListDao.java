@@ -129,9 +129,9 @@ public class ShopListDao {
 		// 미용실 위치 설정 및 키워드 검색
 			
 			// 위치 및 키워드 결과 리스트 카운팅
-			public int countKeywordHarList() {
+			public int countKeywordHarList(Map<String,Object> map) {
 				System.out.println("~~ ShopListDao 진입 ~~");
-				return sqlSession.selectOne("shopList.countKeywordHarList");
+				return sqlSession.selectOne("shopList.countKeywordHarList",map);
 			}
 			
 			// 위치 및 키워드 결과 리스트 최신순 정렬

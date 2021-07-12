@@ -282,7 +282,7 @@
 		<!-- 미용실 키워드+위치 검색 (최신순으로 정렬만!)-->
 		
 			<!-- 검색 결과 카운팅 -->
-			<select id="countKeywordHarList" resultType="int">
+			<select id="countKeywordHarList" parameterType="hashmap" resultType="int">
 			<![CDATA[
 	 		SELECT count(*) 
 					FROM(
@@ -290,7 +290,7 @@
 						FROM(
 							select * 
 							from hair_salon
-						    where hair_salon.har_name LIKE #{keyword} AND hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+						    where hair_salon.har_name LIKE '%' || #{keyword} || '%' AND hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
 							order by substr(har_num, -3) DESC
 						)A
 			)

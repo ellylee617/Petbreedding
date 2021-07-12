@@ -221,11 +221,11 @@ public class ShopListServiceImpl implements ShopListService {
 			
 			// 위치 설정 및 키워드 검색 결과 리스트 카운팅
 			@Override
-			public int countKeywordHarList() {
+			public int countKeywordHarList(Map<String,Object> map) {
 				System.out.println("shopListService countKeywordHarList() 실행");
 				int result = -1;
 				try {
-					result = shopListDao.countKeywordHarList();
+					result = shopListDao.countKeywordHarList(map);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
