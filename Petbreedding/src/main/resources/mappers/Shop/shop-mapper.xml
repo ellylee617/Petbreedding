@@ -3,7 +3,7 @@
 <mapper namespace="Shop">
 	
 	
-	<!-- 미용실 -->
+		<!-- 미용실 -->
 	
 	
 		<!-- HAR_SARLON 테이블  -->
@@ -64,48 +64,41 @@
 			WHERE BP_ID = #{bpId}		
 		</update>
 		
+		
+		<!-- 전체 미용실 리스트  -->
+		
 		<!-- 미용실 리스트 갯수 출력 -->
 		<select id="countHarList" resultType="int">
 			SELECT COUNT(*) FROM HAIR_SALON
 		</select>
 		
 		
-		<!-- 미용실 리스트 : 최신순  -->
-		<!-- 사업장 이름으로 검색기능 추가 완료 -->
-		<!-- 주소 검색 기능 추가 완료 -->
-		<!-- !!페이징 작업 수정해야됨!! -->
+		<!-- 수정중 -->
+		<!-- 최신순  -->
+		
 		<select id="selectHarListNew" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
-			SELECT B.*
-			FROM(
-            
-				SELECT ROWNUM R, A.*
-				FROM (
-						SELECT *
-				        FROM
-				        (SELECT *
-				        FROM HAIR_SALON HAR
-				        INNER JOIN (SELECT BP_ID, AVG(REV_VAL) AVG_REV_VAL
-				        FROM(
-				            SELECT B.BP_ID, R.REV_VAL
-				            FROM business_partner B
-				            LEFT JOIN review R
-				            ON (b.bp_id = r.bp_id)
-				        )  
-				        group by BP_ID) BR
-						 ON (har.bp_id = br.bp_id AND har.har_name LIKE '%' ||  #{keyword} || '%' AND har.har_addr LIKE #{locCon} || '%' AND har.har_addr LIKE '%' ||  #{chooseLoc} || '%' )) HARBP
-				                    ) A
-			        ORDER BY HAR_NUM ASC
-						) B
-			WHERE #{start} <= R AND R <=#{end}
+		SELECT  C.*
+		FROM(
+		    SELECT B.* 
+		    FROM(
+		        
+		        SELECT ROWNUM R , A.*
+		        FROM(
+		            select * 
+		            from hair_salon
+		            order by substr(har_num, -3) DESC
+		        )A
+		    )B
+		) C
+		WHERE #{start}<= R AND R <= #{end}
+		
 			]]>
 		</select>
 		
+		<!-- TODO -->
+		<!-- 별점순 정렬-->
 
-		<!-- 미용실 리스트 : 별점순  selectHarListRev-->
-		<!-- 검색 기능 추가완료 -->
-		<!-- 주소 검색 추가 완료 -->
-		<!-- !!페이징 작업 수정해야됨!! -->
 		<select id="selectHarListRev" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
 			SELECT B.*
@@ -133,13 +126,11 @@
 		</select>
 		
 		<!-- TODO -->
-		<!-- 미용실 리스트 : 인기순(찜)  selectHarListLikes-->
-		<!-- 검색 기능 -->
-		<!-- 주소 검색 -->
-		<!-- 페이징 작업 수정중!!! -->
+		<!-- 인기순 정렬-->
+		
 		<select id="selectHarListLikes" parameterType="page" resultMap="HairSalon">
 		<![CDATA[
-select  C.*
+	select  C.*
 			from(		
 	    SELECT ROWNUM R, B.*
 			FROM(
@@ -192,7 +183,6 @@ select  C.*
 				HAVING BP_ID = #{bpId}
 		 	</select>
 		 	
-		 	<!-- TODO -->
 		 	
 		 	<!-- 울트라콜 미용실 리스트 출력 (평균 별점 포함) -->
 		 	<select id="selectCtaHarList" resultMap="HairSalon">
@@ -257,7 +247,6 @@ select  C.*
 		HAVING BP_ID = #{bpId}
 		</select>
 		
-		<!-- 미용실 울트라콜 리스트 : 리뷰 건수 -->
 		
 		
 		
@@ -277,10 +266,18 @@ select  C.*
 			]]>
 		</select>
 		
-			
+		<!-- TODO -->	
+		<!-- 미용실 키워드 & 위치 검색  -->
+		<!-- 최신순 정렬 -->
+		<!-- 인기순 정렬 -->
+		<!-- 별점순 정렬 -->
 		
 		
-
+		
+		
+		<!-- 미용실 등록/수정 부분 -->
+		
+		
 		
 		<!-- 미용실 기본 정보 기입 -->
 		<insert id="insertHarInfo" parameterType="HairSalon">

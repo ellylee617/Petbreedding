@@ -1,15 +1,53 @@
 
 $(document).ready(function(){
+	
+
+	
+	// 위치 검색
+	$("#newLocRadio").click(function(){
+		$("#harListLocNew").show();
+		$("#harListLocLike").hide();
+		$("#harListLocRev").hide();
+		
+		$("#hosListLocNew").show();
+		$("#hosListLocLike").hide();
+		$("#hosListLocRev").hide();
+		
+	});
+
+	$("#likeLocRadio").click(function(){
+		$("#harListLocNew").hide();
+		$("#harListLocLike").show();
+		$("#harListLocRev").hide();
+		
+		$("#hosListLocNew").hide();
+		$("#hosListLocLike").show();
+		$("#hosListLocRev").hide();
+	});
+
+	$("#revLocRadio").click(function(){
+		$("#harListLocNew").hide();
+		$("#harListLocLike").hide();
+		$("#harListLocRev").show();
+		
+		$("#hosListLocNew").hide();
+		$("#hosListLocLike").hide();
+		$("#hosListLocRev").show();
+	});
+	
+	
+	// 전체 리스트
 	$("#newRadio").click(function(){
 		$("#newList").show();
 		$("#likeList").hide();
 		$("#revList").hide();
 	});
 
-	$("#distanceRadio").click(function(){
+	$("#likeRadio").click(function(){
 		$("#newList").hide();
 		$("#likeList").show();
 		$("#revList").hide();
+		
 	});
 
 	$("#revRadio").click(function(){
@@ -19,9 +57,6 @@ $(document).ready(function(){
 	});
 
 });
-
-
-
 
 function modal(id) {
     var zIndex = 9999;
