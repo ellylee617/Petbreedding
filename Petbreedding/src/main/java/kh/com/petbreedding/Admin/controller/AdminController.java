@@ -399,24 +399,6 @@ public class AdminController {
 		out.flush();
 		out.close();
 		
-		// 알림 인서트
-		String cl_num = noticeService.getclNumInQna(qna_num);
-		System.out.println("qna 댓글에 clnum 찾아오기" + cl_num);
-
-		Notice notice = new Notice();
-
-		notice.setNotReceiver(cl_num);
-		notice.setRefNum(qna_num);
-
-		int resultNotice = 0;
-
-		resultNotice = noticeService.inQna(notice);
-
-		if (resultNotice == 1) {
-			System.out.println("알림 인서트 성공!");
-		} else {
-			System.out.println("알림 인서트 실패");
-		}
 	}
 	
 	// 게시글 관리 (문의 게시판 댓글 달기)
