@@ -46,12 +46,20 @@ import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
+import kh.com.petbreedding.board.model.service.CustomerServiceService;
+import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
+import kh.com.petbreedding.board.model.service.OftenQnaService;
 import kh.com.petbreedding.board.model.service.ReviewCommentService;
 import kh.com.petbreedding.board.model.service.ReviewService;
+import kh.com.petbreedding.board.model.vo.B_comment;
+import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
+import kh.com.petbreedding.board.model.vo.MyAskComment;
+import kh.com.petbreedding.board.model.vo.OftenQna;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.board.model.vo.ReviewComment;
+import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Controller
 public class BMyPageController {
@@ -66,14 +74,20 @@ public class BMyPageController {
 	private MyAskService myAskService;
 	
 	@Autowired
+	private MyAskCommentService myAskCommentService;
+	
+	@Autowired
 	private ReviewService reviewService;
 	
 	@Autowired
 	private ReviewCommentService reviewCommentService;
+
+	@Autowired
+	private CustomerServiceService customerServiceService;
 	
 	@Autowired
-	private ShopPayService shopPayService;
-
+	private OftenQnaService oftenQnaService;
+	
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
 	public String bMyPageUpdate(Locale locale, Model model) {
@@ -95,32 +109,89 @@ public class BMyPageController {
 	}
 
 	// 사장님 마이 페이지 공지사항
-	@RequestMapping(value = "/bNotice", method = RequestMethod.GET)
-	public String bNotice(Locale locale, Model model) {
-
-		// TODO Auto-generated method stub
+	@RequestMapping(value = "/bNotice")
+	public String bNotice(Locale locale, Model model, Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		
+		int total = customerServiceService.ListBCount();
+		
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> paging = new HashMap<String, String>();
+		paging.put("start", Integer.toString(page.getStart()));
+		paging.put("end", Integer.toString(page.getEnd()));
+		List<CustomerService> list = customerServiceService.CustomerServiceSelectListB(paging);
+		
+		model.addAttribute("paging", page);
+		model.addAttribute("notice", list);
 		return "/bPartner/bBoard/bNotice";
 	}
 
 	// 사장님 마이 페이지 자주 묻는 질문
 	@RequestMapping(value = "/bFAQ", method = RequestMethod.GET)
-	public String bFAQ(Locale locale, Model model) {
-
+	public String bFAQ(Locale locale, Model model,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="10") String cntPerPage
+			) {
+		
+		int total = oftenQnaService.BOftenCount();
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<OftenQna> list = oftenQnaService.BOftenQna(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("paging", page);
+		
+		
 		return "/bPartner/bBoard/bFAQ";
 	}
 
 	// 사장님 마이 페이지 1:1문의 내역
 	@RequestMapping(value = "/bQna")
-	public String bQna(Model md, String user_num) {
-
-		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 user_num : " + user_num);
-		//TODO
-//		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
-//		md.addAttribute("bQnaList", myAskList);
+	public String bQna(Model md, String user_num, Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
+		int total = myAskService.clBpListCount(user_num);
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNum", user_num);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<MyAsk> myAskList = myAskService.MyAskSelectList(map);
+		md.addAttribute("paging", page);
+		md.addAttribute("bQnaList", myAskList);
 		md.addAttribute("user_num", user_num);
-//		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 myAskList : " + myAskList);
+		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 myAskList : " + myAskList);
 
 		return "/bPartner/bBoard/bQna";
+	}
+	
+	// 사장님 마이 페이지 1:1 문의 자세히 보기
+	@RequestMapping("/bQnaDetail")
+	public String askDetail(HttpSession session, String qna_num, Model md) {
+
+		System.out.println("[세훈] @일대일 문의  상세 컨트롤러 qna_num : " + qna_num);
+
+		MyAsk myAskDetail = new MyAsk();
+		MyAskComment maComment = new MyAskComment();
+
+		myAskDetail = myAskService.MyAskSelectDetail(qna_num);
+		maComment = myAskCommentService.myAskCommentSelectOneCB(qna_num);
+
+		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 myAskDetail : " + myAskDetail);
+		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 maComment : " + maComment);
+
+		md.addAttribute("myAskDetail", myAskDetail);
+		md.addAttribute("maComment", maComment);
+
+		return "/bPartner/bBoard/bQnaDetail";
 	}
 
 	// 사장님 마이 페이지 1:1문의하기
