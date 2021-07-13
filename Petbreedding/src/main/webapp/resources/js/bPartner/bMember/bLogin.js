@@ -24,7 +24,9 @@ $("#loginBtn").on("click", function() {
 				$("#errorText").text("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
 			} else if (data == "/bReservation") {
 				location.href = "/petbreedding/bReservation";
-			} else {
+			} else if (data == "/bWait"){
+				location.href = "/petbreedding/bWait";
+			}else {
 				alert("에러");
 			}
 		},
@@ -52,7 +54,9 @@ $("#bPwd").keydown(function (key) {
     				$("#errorText").text("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
     			} else if (data == "/bReservation") {
     				location.href = "/petbreedding/bReservation";
-    			} else {
+    			} else if (data == "/bWait"){
+    				location.href = "/petbreedding/bWait";
+    			}else {
     				alert("에러");
     			}
     		},

@@ -60,8 +60,6 @@ public class LoginController {
 	}
 	
 	
-
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	//  로그인 페이지로 이동
@@ -118,7 +116,11 @@ public class LoginController {
 			return "/";
 		}	
 	}
-	
+	// 사장님 제휴문의 대기 페이지로 이동
+	@RequestMapping(value = "/bWait")
+	public String bWait(Locale locale, Model model) {
+		return "/bPartner/bMember/bWait";
+	}
 	
 	// 사업자 로그인 처리
 	@RequestMapping("/member/doLoginB")
@@ -127,23 +129,22 @@ public class LoginController {
 		
 		BPartner result = loginService.blogin(bP);
 		session = req.getSession();
-		String path = "";
 		
 		if(result == null) {
 			System.out.println("로그인 실패");
 			session.setAttribute("bP", null);
-			path = "/bLogin";
+			return "/bLogin";
 		}else {
 			System.out.println("로그인 성공!");
 			session.setAttribute("bP", result);
-			path = "/bReservation";
+			int bp_aprve = result.getBp_aprve();
 			
-//			if(result.getBp_type() == 0) {
-//			}else if(result.getBp_type() == 1){
-//				path = "/bReservation2";
-//			}
+			if(bp_aprve == 1) {
+				return "/bReservation";
+			}else {
+				return "/bWait";
+			}
 		}
-		return path;
 	}
 	
 	// 관리자 로그인 처리
