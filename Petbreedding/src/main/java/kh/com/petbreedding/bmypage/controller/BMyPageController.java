@@ -416,12 +416,37 @@ public class BMyPageController {
 		}else if(bp.getBp_type() == 1) {
 			Hospital hos = shopService.selectHosInfo(bpId);
 			String hos_num = hos.getHosNum();
+			pay_date = shopPayService.payYear();
+			
+			System.out.println("사업장 번호" + hos_num);
 			
 			//결제금액 
 			int hosPrice = shopPayService.hosAllPrice(hos_num);
-			model.addAttribute("hos", hosPrice);
+			
+			
+			//최근 12개월 날짜 구하기
+			String[] regArr = new String[12];
+			for(int i=0; i<regArr.length; i++) {
+				regArr[i] = "";
+				regArr[i] += pay_date.get(i);
+				System.out.println("날짜" + regArr[i]);
+			}
+			
+			//최근 12개월 매출액 구하기
+			List<HosPay> list2 = null;
+			String[] hosArr = new String[12];
+			int[] hosInt = new int[hosArr.length];
+			list2 = shopPayService.HosYearPrice(hos_num);
+			for(int i=0; i<list2.size(); i++) {
+				hosArr[i] = "";
+				hosArr[i] += list2.get(i);
+				hosInt[i] = Integer.parseInt(hosArr[i]);
+				System.out.println(hosInt[i]);
+			}
 			 
-		   		
+		   	model.addAttribute("year2", hosInt);
+		   	model.addAttribute("month2", regArr);
+		   	model.addAttribute("hos", hosPrice);
 			return "/bPartner/bSales/bcalculate";
 		}
 

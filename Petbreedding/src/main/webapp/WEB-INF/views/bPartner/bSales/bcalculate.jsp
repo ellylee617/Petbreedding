@@ -6,41 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.highcharts-figure, .highcharts-data-table table {
-  min-width: 360px; 
-  max-width: 800px;
-  margin: 1em auto;
-}
 
-.highcharts-data-table table {
-	font-family: Verdana, sans-serif;
-	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
-	margin: 10px auto;
-	text-align: center;
-	width: 100%;
-	max-width: 500px;
-}
-.highcharts-data-table caption {
-  padding: 1em 0;
-  font-size: 1.2em;
-  color: #555;
-}
-.highcharts-data-table th {
-	font-weight: 600;
-  padding: 0.5em;
-}
-.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-  padding: 0.5em;
-}
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-  background: #f8f8f8;
-}
-.highcharts-data-table tr:hover {
-  background: #f1f7ff;
-}
-</style>
 <meta charset="UTF-8">
 
 <title>Insert title here</title>
@@ -91,37 +57,6 @@ $(document).ready(function() {
 	  }]
 	});
 	
-	//병원 차트
-	Highcharts.chart('container2', {
-		  chart: {
-		    type: 'line'
-		  },
-		  title: {
-		    text: ''
-		  },
-		 
-		  xAxis: {
-		    categories: ['${month[11]}', '${month[10]}', '${month[9]}', '${month[8]}', '${month[7]}', '${month[6]}', '${month[5]}', '${month[4]}', '${month[3]}', '${month[2]}', '${month[1]}', '${month[0]}']
-		  },
-		  yAxis: {
-		    title: {
-		      text: '원'
-		    }
-		  },
-		  plotOptions: {
-		    line: {
-		      dataLabels: {
-		        enabled: true
-		      },
-		      enableMouseTracking: false
-		    }
-		  },
-		  series: [{
-			  colorByPoint: true,
-			  name: '최근 1년 매출액',
-		    data: [${hosmonth[11]}, ${hosmonth[10]}, ${hosmonth[9]}, ${hosmonth[8]}, ${hosmonth[7]}, ${hosmonth[6]}, ${hosmonth[5]}, ${hosmonth[4]},${hosmonth[3]}, ${hosmonth[2]},${hosmonth[1]},${year[0]}]
-		  }]
-		});
 });
 </script>
 	<div class="wrapper">
@@ -153,6 +88,7 @@ $(document).ready(function() {
 	    <div class="calrow">
 	    <h1><fmt:formatNumber value="${hos}" type="number"/>원</h1>
 	    <div class="calbtn">
+	
 	    </div>
 					    
 	    <figure class="highcharts-figure2">
@@ -168,6 +104,42 @@ $(document).ready(function() {
 	 </section>
 	<jsp:include page="../../common/footer.jsp" />
 	</div>
+	
+	<script type="text/javascript">
+	//병원 차트
+	$(document).ready(function() {
+	Highcharts.chart('container2', {
+		  chart: {
+		    type: 'line'
+		  },
+		  title: {
+		    text: ''
+		  },
+		 
+		  xAxis: {
+		    categories: ['${month2[11]}', '${month2[10]}', '${month2[9]}', '${month2[8]}', '${month2[7]}', '${month2[6]}', '${month2[5]}', '${month2[4]}', '${month2[3]}', '${month2[2]}', '${month2[1]}', '${month2[0]}']
+		  },
+		  yAxis: {
+		    title: {
+		      text: '원'
+		    }
+		  },
+		  plotOptions: {
+		    line: {
+		      dataLabels: {
+		        enabled: true
+		      },
+		      enableMouseTracking: false
+		    }
+		  },
+		  series: [{
+			  colorByPoint: true,
+			  name: '최근 1년 매출액',
+		    data: [${year2[11]}, ${year2[10]}, ${year2[9]}, ${year2[8]}, ${year2[7]}, ${year2[6]}, ${year2[5]}, ${year2[4]},${year2[3]}, ${year2[2]},${year2[1]},${year2[0]}]
+		  }]
+		});
+	});
+	</script>
 
 <script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
