@@ -37,6 +37,29 @@ public class ShopPayDao {
 		return sqlSession.update("shopPay.hosRevUp", hos_rnum);
 	}
 	
+	//병원 매출관리
+	public int hosAllPrice(String hos_num) {
+		return sqlSession.selectOne("shopPay.HosAllPrice", hos_num);
+	}
+	
+	//미용실 매출관리(이번달 매출)
+	public int harAllPrice(String har_num) {
+		return sqlSession.selectOne("shopPay.HarAllPrice", har_num);
+	}
+	
+	//미용실 1년차트
+	public List<HarPay> HarsixPrice(String har_num) {
+		return sqlSession.selectList("shopPay.HarsixPrice", har_num);
+	}
+	
+	//병원 1년차트
+	public List<HosPay> HosYearPrice(String hos_num){
+		return sqlSession.selectList("shopPay.hosYearPrice", hos_num);
+	}
+	//최근 1년 날짜 구하기
+	public List<HarPay> payYear() {
+		return sqlSession.selectList("shopPay.yearMonth");
+	}
 	
 	public void updateRevByScheduled(){
 		try {

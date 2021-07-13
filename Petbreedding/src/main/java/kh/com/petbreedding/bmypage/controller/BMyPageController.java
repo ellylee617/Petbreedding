@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +32,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.Shop.model.service.ShopPayService;
+import kh.com.petbreedding.Shop.model.vo.HairShopReservation;
+import kh.com.petbreedding.Shop.model.vo.HarPay;
+import kh.com.petbreedding.Shop.model.vo.HosPay;
 import kh.com.petbreedding.bmypage.model.service.BInfoService;
 import kh.com.petbreedding.bmypage.model.service.ShopService;
 import kh.com.petbreedding.bmypage.model.vo.HairDayOff;
@@ -41,20 +46,12 @@ import kh.com.petbreedding.bmypage.model.vo.Hospital;
 import kh.com.petbreedding.bmypage.model.vo.HospitalImg;
 import kh.com.petbreedding.bmypage.model.vo.MedicalType;
 import kh.com.petbreedding.bmypage.model.vo.Style;
-import kh.com.petbreedding.board.model.service.CustomerServiceService;
-import kh.com.petbreedding.board.model.service.MyAskCommentService;
 import kh.com.petbreedding.board.model.service.MyAskService;
-import kh.com.petbreedding.board.model.service.OftenQnaService;
 import kh.com.petbreedding.board.model.service.ReviewCommentService;
 import kh.com.petbreedding.board.model.service.ReviewService;
-import kh.com.petbreedding.board.model.vo.B_comment;
-import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
-import kh.com.petbreedding.board.model.vo.MyAskComment;
-import kh.com.petbreedding.board.model.vo.OftenQna;
 import kh.com.petbreedding.board.model.vo.Review;
 import kh.com.petbreedding.board.model.vo.ReviewComment;
-import kh.com.petbreedding.common.model.vo.Pagination;
 
 @Controller
 public class BMyPageController {
@@ -69,23 +66,19 @@ public class BMyPageController {
 	private MyAskService myAskService;
 	
 	@Autowired
-	private MyAskCommentService myAskCommentService;
-	
-	@Autowired
 	private ReviewService reviewService;
 	
 	@Autowired
 	private ReviewCommentService reviewCommentService;
+	
+	@Autowired
+	private ShopPayService shopPayService;
 
-	@Autowired
-	private CustomerServiceService customerServiceService;
-	
-	@Autowired
-	private OftenQnaService oftenQnaService;
-	
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
 	public String bMyPageUpdate(Locale locale, Model model) {
+
+		// TODO Auto-generated method stub
 		return "/bPartner/bMyPage/bMyPageUpdate";
 	}
 
@@ -102,88 +95,31 @@ public class BMyPageController {
 	}
 
 	// 사장님 마이 페이지 공지사항
-	@RequestMapping(value = "/bNotice")
-	public String bNotice(Locale locale, Model model, Pagination page
-			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
-			) {
-		
-		int total = customerServiceService.ListBCount();
-		
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		Map<String, String> paging = new HashMap<String, String>();
-		paging.put("start", Integer.toString(page.getStart()));
-		paging.put("end", Integer.toString(page.getEnd()));
-		List<CustomerService> list = customerServiceService.CustomerServiceSelectListB(paging);
-		
-		model.addAttribute("paging", page);
-		model.addAttribute("notice", list);
+	@RequestMapping(value = "/bNotice", method = RequestMethod.GET)
+	public String bNotice(Locale locale, Model model) {
+
+		// TODO Auto-generated method stub
 		return "/bPartner/bBoard/bNotice";
 	}
 
 	// 사장님 마이 페이지 자주 묻는 질문
 	@RequestMapping(value = "/bFAQ", method = RequestMethod.GET)
-	public String bFAQ(Locale locale, Model model,Pagination page
-			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			, @RequestParam(value="cntPerPage", defaultValue ="10") String cntPerPage
-			) {
-		
-		int total = oftenQnaService.BOftenCount();
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("start", Integer.toString(page.getStart()));
-		map.put("end", Integer.toString(page.getEnd()));
-		
-		List<OftenQna> list = oftenQnaService.BOftenQna(map);
-		
-		model.addAttribute("list", list);
-		model.addAttribute("paging", page);
-		
-		
+	public String bFAQ(Locale locale, Model model) {
+
 		return "/bPartner/bBoard/bFAQ";
 	}
 
 	// 사장님 마이 페이지 1:1문의 내역
 	@RequestMapping(value = "/bQna")
-	public String bQna(Model md, String user_num, Pagination page
-			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
-			) {
-		int total = myAskService.clBpListCount(user_num);
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userNum", user_num);
-		map.put("start", Integer.toString(page.getStart()));
-		map.put("end", Integer.toString(page.getEnd()));
-		
-		List<MyAsk> myAskList = myAskService.MyAskSelectList(map);
-		md.addAttribute("paging", page);
+	public String bQna(Model md, String user_num) {
+
+		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 user_num : " + user_num);
+		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
 		md.addAttribute("bQnaList", myAskList);
 		md.addAttribute("user_num", user_num);
+		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 myAskList : " + myAskList);
 
 		return "/bPartner/bBoard/bQna";
-	}
-	
-	// 사장님 마이 페이지 1:1 문의 자세히 보기
-	@RequestMapping("/bQnaDetail")
-	public String askDetail(HttpSession session, String qna_num, Model md) {
-
-		System.out.println("[세훈] @일대일 문의  상세 컨트롤러 qna_num : " + qna_num);
-
-		MyAsk myAskDetail = new MyAsk();
-		MyAskComment maComment = new MyAskComment();
-
-		myAskDetail = myAskService.MyAskSelectDetail(qna_num);
-		maComment = myAskCommentService.myAskCommentSelectOneCB(qna_num);
-
-		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 myAskDetail : " + myAskDetail);
-		System.out.println("[세훈] @일대일 문의 상세 컨트롤러 maComment : " + maComment);
-
-		md.addAttribute("myAskDetail", myAskDetail);
-		md.addAttribute("maComment", maComment);
-
-		return "/bPartner/bBoard/bQnaDetail";
 	}
 
 	// 사장님 마이 페이지 1:1문의하기
@@ -424,10 +360,74 @@ public class BMyPageController {
 
 	// 사장님 매출관리
 	@RequestMapping(value = "/bCalculate", method = RequestMethod.GET)
-	public String bCalculate(Locale locale, Model model) {
+	public String bCalculate(HttpServletResponse res, HttpSession session,
+			Model model,
+			HosPay hospay,
+			HairSalon harVO
+			) {
+		// 세션에 있는 로그인 정보 가져오기
+		BPartner bp = (BPartner) session.getAttribute("bP");
+		String bpId = bp.getBp_Id();
+		
+	
+		
+		
+		List<HarPay> list= null;
+		List<HarPay> pay_date = null;
+		String month = "";
+		
+		
+		System.out.println("로그인한 사업주 ID::" + bpId);
+		//이번달 총 매출액
+		if(bp.getBp_type() == 0) {
+			
+			HairSalon har = shopService.selectHarInfo(bpId);
+			String harnum = har.getHarNum();
+			System.out.println("사업장 번호" + harnum);
+			int harPrice = shopPayService.harAllPrice(harnum);
+			list =  shopPayService.HarsixPrice(harnum); 
+			pay_date = shopPayService.payYear();
+			String[] arr = new String[12]; 
+			
+			//최근 12개월 날짜 구하기
+			String[] regArr = new String[12];
+			for(int i=0; i<regArr.length; i++) {
+				regArr[i] = "";
+				regArr[i] += pay_date.get(i);
+				System.out.println("날짜" + regArr[i]);
+			}
+			
+			//최근 12개월간 매출액 
+			int intArr[] = new int[arr.length];
+			for(int i=0; i<list.size(); i++) {
+				arr[i] = "";
+				arr[i] += list.get(i);
+				intArr[i] = Integer.parseInt(arr[i]);
+				System.out.println(arr[i]);
+			}
+			model.addAttribute("year", intArr);
+//			
+			
+			model.addAttribute("month", regArr);
+			model.addAttribute("har", harPrice);
+			
+			return "/bPartner/bSales/bcalculate";
+		}else if(bp.getBp_type() == 1) {
+			Hospital hos = shopService.selectHosInfo(bpId);
+			String hos_num = hos.getHosNum();
+			
+			//결제금액 
+			int hosPrice = shopPayService.hosAllPrice(hos_num);
+			model.addAttribute("hos", hosPrice);
+			 
+		   		
+			return "/bPartner/bSales/bcalculate";
+		}
 
-		// TODO Auto-generated method stub
+        //1년 
+     
 		return "/bPartner/bSales/bcalculate";
+		
 	}
 
 	// 사장님 사업장 관리 - 사업자 등록 페이지 이동
@@ -624,6 +624,8 @@ public class BMyPageController {
 
 		
 
+		System.out.println("!! 사업장 등록 완료 !!");
+
 		// TODO:alert 추가하기
 		mv.setViewName("/bPartner/bShop/bShopInfo");
 		
@@ -667,6 +669,7 @@ public class BMyPageController {
 	public ModelAndView bShopUpdateDo(HttpServletRequest req, HairSalon harVO, Hospital hosVO,
 			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest mulitreq) {
 
+		System.out.println("***** 사업장 수정 컨트롤러 실행 *****");
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -681,6 +684,7 @@ public class BMyPageController {
 
 		// 미용실 번호 가져오기
 		String harNum = req.getParameter("harNum");
+		System.out.println("미용실 번호::" + harNum);
 
 		// 미용실 VO new 생성
 		HairDayOff harVO2 = new HairDayOff();
@@ -688,6 +692,7 @@ public class BMyPageController {
 
 		// 동물병원 번호 가져오기
 		String hosNum = req.getParameter("hosNum");
+		System.out.println("동물병원 번호:" + hosNum);
 
 		// 동물병원 VO new 생성
 		HosDayOff hosVO2 = new HosDayOff();
@@ -715,6 +720,7 @@ public class BMyPageController {
 			}
 			
 			harVO.setShopMImg(originalfileName);
+			System.out.println("수정할 미용실 정보:"+harVO);
 			
 			shopService.updateHarInfo(harVO);
 			
@@ -733,6 +739,8 @@ public class BMyPageController {
 			for (String dayoff : dayOffList) {
 				harVO2.setHarNumDayOff(harNum);
 				harVO2.setShopDayOff(dayoff);
+				System.out.println("수정할 미용실 번호::" + harNum);
+				System.out.println("LIST 타입 변환중~~ dayoff 값::" + dayoff);
 				harVO2.toString();
 				shopService.insertNewHarDayOff(harVO2);
 
@@ -759,6 +767,7 @@ public class BMyPageController {
 			}
 			
 			hosVO.setShopMImg(originalfileName);
+			System.out.println("수정할 동물병원 정보:"+hosVO);
 			shopService.updateHosInfo(hosVO);
 			
 			mv.addObject("vo", hosVO);
@@ -772,10 +781,13 @@ public class BMyPageController {
 
 			// 동물병원 주휴일 수정
 			// 1:월요일 ~ 7:일요일
+			System.out.println("동물병원 주휴일 LIST::" + dayOffList);
 
 			for (String dayoff : dayOffList) {
 				hosVO2.setHosNumDayOff(hosNum);
 				hosVO2.setShopDayOff(dayoff);
+				System.out.println("수정할 동물병원 번호::" + hosNum);
+				System.out.println("LIST 타입 변환중~~ dayoff 값::" + dayoff);
 				hosVO2.toString();
 
 				shopService.insertNewHosDayOff(hosVO2);
@@ -837,6 +849,7 @@ public class BMyPageController {
 			}
 
 		}
+		System.out.println("!! 사업장 수정 완료 !!");
 		
 		mv.setViewName("/bPartner/bShop/bShopInfo");
 		
@@ -849,10 +862,7 @@ public class BMyPageController {
 			Model md
 			,HttpSession ses
 			,BPartner bP
-			,Pagination page
-			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
-			){
+			) {
 		
 		bP = (BPartner) ses.getAttribute("bP");
 		
@@ -863,19 +873,16 @@ public class BMyPageController {
 		}
 		
 		String bp_id = bP.getBp_Id();
-
+		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 bp_id : " + bp_id);
+		
+		List<Review> brvList =  new ArrayList<Review>();
+		
+		brvList = reviewService.reviewSelectList(bp_id);
 		int brvCount = reviewService.getRevCount(bp_id);
-		page = new Pagination(brvCount, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("bpId", bp_id);
-		map.put("start", Integer.toString(page.getStart()));
-		map.put("end", Integer.toString(page.getEnd()));
-		List<Review> brvList = reviewService.reviewSelectList(map);
-		
+		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 brvList : " + brvList);
 		
 		md.addAttribute("brvList", brvList);
-		md.addAttribute("paging", page);
 		md.addAttribute("brvCount", brvCount);
 		
 		return "/bPartner/bShop/bReview";
@@ -893,12 +900,15 @@ public class BMyPageController {
 		
 		res.setCharacterEncoding("UTF-8");
 		
+		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rev_num : " + rev_num);
 		Review rv = new Review();
 		rv = reviewService.reviewSelectOne(rev_num);
 		
 		
 		Gson gson = new GsonBuilder().create();
 		String jsonOutPut = gson.toJson(rv);
+		
+		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rv : " + rv.toString());
 		
 		
 		return jsonOutPut;
@@ -918,6 +928,10 @@ public class BMyPageController {
 		String rev_num = req.getParameter("revNumVal");
 		String revc_cont = req.getParameter("revcCont");
 		
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 bp_id : " + bp_id);
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 rev_num : " + rev_num);
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 revcCont : " + revc_cont);
+		
 		ReviewComment revCmnt = new ReviewComment();
 		
 		revCmnt.setBpId(bp_id);
@@ -926,12 +940,15 @@ public class BMyPageController {
 		
 		
 		int revcResult = reviewCommentService.reviewCommentInsert(revCmnt);
+		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 revcResult : " + revcResult);
 		
 		
 		if(revcResult > 0) {
+			System.out.println("사업자 리뷰 댓글 등록 성공");
 			md.addAttribute("msg", "사업자 리뷰 댓글 등록 성공");
 			md.addAttribute("url","/bReview");
 		} else {
+			System.out.println("사업자 리뷰 댓글 실패");
 			md.addAttribute("msg", "사업자 리뷰 댓글 등록 실패");
 			md.addAttribute("url","/bReview");
 		}

@@ -7,11 +7,21 @@ public class HosPay {
 	private String pay_date;
 	private int pay_price;
 	private int total_price;
+	private String bp_id;
+	
+	
+	
+	
 	@Override
 	public String toString() {
-		return "HosPay [pay_num=" + pay_num + ", hos_rnum=" + hos_rnum+ ", card_num="
-				+ card_num + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", total_price=" + total_price
-				+ "]";
+		return "HosPay [pay_num=" + pay_num + ", hos_rnum=" + hos_rnum + ", card_num=" + card_num + ", pay_date="
+				+ pay_date + ", pay_price=" + pay_price + ", total_price=" + total_price + ", bp_id=" + bp_id + "]";
+	}
+	public String getBp_id() {
+		return bp_id;
+	}
+	public void setBp_id(String bp_id) {
+		this.bp_id = bp_id;
 	}
 	public String getPay_num() {
 		return pay_num;
