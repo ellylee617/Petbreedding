@@ -165,15 +165,16 @@
 
 	<!-- 병원 매출관리 -->
 	<select id="HosAllPrice" resultType="int" parameterType="string">
-		 select sum(b.total_price)
-    from (select hos_rnum from hos_reservation
-    where hos_num = #{hos_num}) A
-    JOIN
-    (select hos_rnum, total_price, to_char(to_date(pay_date), 'yyyy-mm')
-    from hos_pay
-    where to_char(to_date(pay_date), 'yyyy-mm') = to_char(to_date(sysdate), 'yyyy-mm')
-    order by to_char(to_date(pay_date), 'yyyy-mm') desc)b
-    on a.hos_rnum = b.hos_rnum
+		select sum(b.total_price)
+		from (select hos_rnum from hos_reservation
+		where hos_num = #{hos_num}) A
+		JOIN
+		(select hos_rnum, total_price, to_char(to_date(pay_date), 'yyyy-mm')
+		from hos_pay
+		where to_char(to_date(pay_date), 'yyyy-mm') = to_char(to_date(sysdate),
+		'yyyy-mm')
+		order by to_char(to_date(pay_date), 'yyyy-mm') desc)b
+		on a.hos_rnum = b.hos_rnum
 	</select>
 
 	<!-- 미용실 매출관리 -->
@@ -197,22 +198,26 @@
 
 	<!-- 최근 12개월 미용실 매출 차트 -->
 	<select id="HarsixPrice" resultType="int" parameterType="string">
-		SELECT sum(B.total_price)
+		select
+		sum(TOTAL_PRICE)
+		from (
+		SELECT b.*
 		FROM
-		(SELECT HAR_RNUM FROM har_reservation
-		WHERE
-		har_num = #{har_num})A
+		(SELECT HAR_NUM, HAR_RNUM FROM HAR_RESERVATION
+		WHERE HAR_NUM = #{har_num})A
 		JOIN
-		(SELECT HAR_RNUM, total_price,
-		to_char(to_date(pay_date), 'YYYY-MM')
-		FROM har_pay
+		(SELECT HAR_RNUM, TOTAL_PRICE, to_char(to_date(pay_date), 'YYYY-MM') as
+		totalpay
+		FROM HAR_PAY
 		WHERE <![CDATA[to_char(to_date(pay_date), 'YYYY-MM') >=
 		to_char(add_months(sysdate, -12), 'yyyy-mm')]]>
 		and <![CDATA[to_char(to_date(pay_date), 'YYYY-MM') <=
 		to_char(last_day(sysdate), 'yyyy-mm')]]>
 		order by to_char(to_date(pay_date), 'YYYY-MM') DESC)B
-		ON A.HAR_RNUM =
-		B.HAR_RNUM
+		ON A.HAR_RNUM = B.HAR_RNUM
+		) c
+		GROUP BY TOTALPAY
+		order by  TOTALPAY desc
 	</select>
 
 	<!-- 최근 12개월 날짜 -->
@@ -226,24 +231,29 @@
 		order by to_char(to_date(pay_date), 'YYYY-MM') DESC
 
 	</select>
-	
+
 	<!-- 최근 12개월 병원 매출 -->
-	<select id="hosYearPrice" resultType="int" parameterType="string">
-		SELECT sum(B.total_price)
+	<select id="hosYearPrice" resultType="int"
+		parameterType="string">
+			select
+		sum(TOTAL_PRICE)
+		from (
+		SELECT b.*
 		FROM
-		(SELECT HOS_RNUM FROM hOS_reservation
-		WHERE
-		hos_num = #{hos_num})A
+		(SELECT HOS_NUM, HOS_RNUM FROM HOS_RESERVATION
+		WHERE HOS_NUM = #{hos_num})A
 		JOIN
-		(SELECT HOS_RNUM, total_price,
-		to_char(to_date(pay_date), 'YYYY-MM')
-		FROM hos_pay
+		(SELECT HOS_RNUM, TOTAL_PRICE, to_char(to_date(pay_date), 'YYYY-MM') as
+		totalpay
+		FROM HOS_PAY
 		WHERE <![CDATA[to_char(to_date(pay_date), 'YYYY-MM') >=
 		to_char(add_months(sysdate, -12), 'yyyy-mm')]]>
 		and <![CDATA[to_char(to_date(pay_date), 'YYYY-MM') <=
 		to_char(last_day(sysdate), 'yyyy-mm')]]>
 		order by to_char(to_date(pay_date), 'YYYY-MM') DESC)B
-		ON A.HOS_RNUM =
-		B.HOS_RNUM
+		ON A.HOS_RNUM = B.HOS_RNUM
+		) c
+		GROUP BY TOTALPAY
+		order by  TOTALPAY desc
 	</select>
 </mapper>
