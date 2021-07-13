@@ -98,8 +98,11 @@ public class ReviewServiceImpl implements ReviewService {
 
 	//	리뷰 등록
 	@Override
-	public int insertReview(Review rv, String har_num, String har_name) {
+	public int insertReview(Review rv, String har_num, String har_name, String har_rnum) {
 		int result = -1;
+		int resultPoint = -1;
+		int resChk = -1;
+		
 		String clNum = rv.getClNum();
 		System.out.println("[세훈] @리뷰 등록 서비스 clNum : " + clNum);
 		int reviewPoint = 300;
@@ -112,9 +115,30 @@ public class ReviewServiceImpl implements ReviewService {
 			rv.setBpId(bp_id);
 			String rev_num = reviewDao.getRevNumFromSeq();
 			rv.setRevNum(rev_num);
-			
-			
 			result = reviewDao.insertReview(rv);
+			
+			if(har_rnum.contains("HOS")) {
+				String hos_rnum = har_rnum;
+				System.out.println("[세훈] @리뷰 등록 서비스 hos_rnum : " + hos_rnum);
+				resChk = reviewDao.updateHosResChk(hos_rnum);
+				if(resChk > 0) {
+					System.out.println("병원 리뷰 작성 여부 업데이트 성공");
+				} else {
+					System.out.println("병원 리뷰 작성 여부 업데이트 실패");
+				}
+			} else {
+				System.out.println("미용실 리뷰 작성 들어왔음");
+				System.out.println("[세훈] @리뷰 등록 서비스 har_rnum : " + har_rnum);
+				resChk = reviewDao.updateHarResChk(har_rnum);
+				
+				System.out.println("[세훈] @리뷰 등록 서비스 resChk : " + resChk);
+				if(resChk > 0) {
+					System.out.println("미용실 리뷰 작성 여부 업데이트 성공");
+				} else {
+					System.out.println("미용실 리뷰 작성 여부 업데이트 실패");
+				}
+			}
+			
 			int currPoint = 0;
 			currPoint = myPointDao.CurrPointSelectOne(clNum);
 			System.out.println("[세훈] @리뷰 등록 서비스 currPoint : " + currPoint);
@@ -129,9 +153,16 @@ public class ReviewServiceImpl implements ReviewService {
 			myPoint.setCurrPoint(currPoint);
 			myPoint.setExpPoint(reviewPoint);
 			
-			myPointDao.myPointInsert(myPoint);
+			resultPoint = myPointDao.myPointInsert(myPoint);
+			
+			if(resultPoint > 0) {
+				System.out.println("포인트 적립 성공 (리뷰 작성)");
+			} else {
+				System.out.println("포인트 적립 실패 (리뷰 작성)");
+			}
 			
 			
+			 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

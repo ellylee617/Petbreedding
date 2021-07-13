@@ -551,6 +551,7 @@ public class BoardController {
 		String clNickName = cl.getNickname();
 		String har_num = req.getParameter("har_num");
 		String har_name = req.getParameter("har_name");
+		String har_rnum = req.getParameter("har_rname");
 
 		System.out.println("리퀘스트 겟 파라메타" + req.getParameter("selectedVal"));
 		System.out.println("[세훈] @리뷰 등록 컨트롤러 har_num : " + har_num);
@@ -593,7 +594,7 @@ public class BoardController {
 
 
 		System.out.println("[세훈 ] 리뷰 등록 컨트롤러 rv : " + rv.toString());
-		int result = reviewService.insertReview(rv, har_num, har_name);
+		int result = reviewService.insertReview(rv, har_num, har_name, har_rnum);
 
 		if(result > 0) {
 			System.out.println("리뷰 등록 성공");

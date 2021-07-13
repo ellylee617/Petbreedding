@@ -11,7 +11,7 @@ public interface ReviewService {
 	public List<Review> revRevcSelectListUpToDate(Map<String, String> map); // 상세페이지 리뷰, 댓글 조회 최신순
 	public List<Review> revRevcSelectListDesc(Map<String, String> map); // 상세페이지 리뷰, 댓글 조회 별점 높은 순
 	public List<Review> revRevcSelectListAsc(Map<String, String> map); // 상세페이지 리뷰, 댓글 조회 별점 낮은 순
-	public int insertReview(Review rv, String har_num, String har_name);
+	public int insertReview(Review rv, String har_num, String har_name, String har_rnum);
 	public int getRevCount(String bp_id);	//	사업자 리뷰 개수 받아오기
 	public String getRevValAvg(String bp_id); // 리뷰 평균 값 조회
 }

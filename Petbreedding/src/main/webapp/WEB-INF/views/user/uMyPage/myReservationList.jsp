@@ -80,6 +80,7 @@
 					<input type="file" id="reviewImg" name="reviewImg" multiple="multiple" accept=".jpg, .jpeg, .png" style="display:none">
 					<input type="hidden" name="har_num" id="for_value_har_num" >
 					<input type="hidden" name="har_name" id="for_value_har_name" >
+					<input type="hidden" name="har_rname" id="for_value_har_rnum" >
 					<!-- hidden에 미용실 번호 담음 from js파일 -->
 <%-- 						<input type="hidden" name="harNum" value="${myRev.har_num}"> --%>
 				</div>

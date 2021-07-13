@@ -58,10 +58,11 @@ function onClickOption(e) {
     console.log(typeof(selectedEle.value));
 }
 // modal 창 열기
-function modalOn(har_num, har_name) {
+function modalOn(har_num, har_name, har_rnum) {
 	modal.style.display = "flex";
 	$("#for_value_har_num").val(har_num);	// param == har_num (미용실 번호)
 	$("#for_value_har_name").val(har_name);	// param == har_num (미용실 이름)
+	$("#for_value_har_rnum").val(har_rnum);	// param == har_rnum (예약번호)
 	
 }
 //modal 창 닫기
@@ -146,6 +147,7 @@ $("#searchDate").on("click",function(){
 		            var param = "'"+$har_rnum+"'";  // 예약번호
 		            var param_har_num = '"'+$har_num+'"';  // 미용실번호
 		            var param_har_name = '"'+$har_name+'"';  // 미용실이름
+		            var param_har_rname = '"'+$har_rnum+'"';  // 예약 번호
 		            
 		            var td = "";
 		            //td += '<tr onclick="goDetail('+param+')">'; // 리뷰 작성 버튼과 겹치기 때문에 onClick 보다 우선 순위가 더 낮은 id를 통해 페이지 이동
@@ -156,7 +158,7 @@ $("#searchDate").on("click",function(){
 		            	 td += "<td>"+res_status+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 		            	 
 		            	 if($res_chk == 0) {
-		            		 td += "<button onClick='modalOn("+param_har_num+", "+param_har_name+"); return true;' type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
+		            		 td += "<button onClick='modalOn("+param_har_num+", "+param_har_name+", "+param_har_rname+"); return true;' type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
 			            	 +"</td>";
 		            	 } else {
 		            		 td += "<button type='button' id='reviewDone' class='basicBtn review'>작성완료</button>"

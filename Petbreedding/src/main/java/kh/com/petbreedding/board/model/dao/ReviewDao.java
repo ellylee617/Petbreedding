@@ -66,6 +66,16 @@ public class ReviewDao {
 		return sqlSession.update("Review.updateCmntChk", rev_num);
 	}
 	
+	// 미용실 리뷰 작성 여부 업데이트
+	public int updateHarResChk(String har_rnum) {
+		return sqlSession.update("Review.updateHarResChk", har_rnum);
+	}
+	
+	// 병원 리뷰 작성 여부 업데이트
+	public int updateHosResChk(String hos_rnum) {
+		return sqlSession.update("Review.updateHosResChk", hos_rnum);
+	}
+	
 	// 리뷰 평균 값 조회
 	public String getRevValAvg(String bp_id) {
 		return sqlSession.selectOne("Review.getRevValAvg", bp_id);

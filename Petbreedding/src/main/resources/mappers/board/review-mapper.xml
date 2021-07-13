@@ -21,6 +21,34 @@
 		</association>
 	</resultMap>
 	
+		<!-- 미용실 예약VO -->
+	<resultMap type="HairRev" id="HairRev">
+		<id column="HAR_RNUM" property="har_rnum"/>
+		<result column="CL_NUM" property="cl_num" />
+		<result column="PET_NUM" property="pet_num" />
+		<result column="STYLE_NUM" property="style_num" />
+		<result column="HAR_NUM" property="har_num" />
+		<result column="RES_DATE" property="res_date" />
+		<result column="RES_STATUS" property="res_status" />
+		<result column="RES_TIME" property="res_time" />
+		<result column="STYLE_NUM2" property="style_num2" />
+		<result column="RES_CHK" property="res_chk"/>
+	</resultMap>
+	
+		<!-- 동물병원 예약VO  -->
+	<resultMap type="HosRev" id="HosRev">
+		<id column="HOS_RNUM" property="hos_rnum"/>
+		<result column="CL_NUM" property="cl_num"/>
+		<result column="PET_NUM" property="pet_num" />
+		<result column="MED_NUM" property="med_num"/>
+		<result column="HOS_NUM" property="hos_num"/>
+		<result column="HOS_DATE" property="hos_date"/>
+		<result column="MED_NUM2" property="med_num2"/>
+		<result column="HOS_STATUS" property="hos_status" />
+		<result column="HOS_TIME" property="hos_time"/>
+		<result column="RES_CHK" property="res_chk"/>
+	</resultMap>
+	
  	<!-- 리뷰 시퀀스 값 가져오기 -->
  	<select id="getRevNumFromSeq" resultType="string">
 		<![CDATA[
@@ -127,6 +155,16 @@
  	<!-- 리뷰 댓글 여부 업데이트 -->
 	<update id="updateCmntChk" parameterType="string">
 		UPDATE REVIEW SET CMNT_CHK = 1 WHERE REV_NUM = #{revNum}
+	</update>
+	
+	<!-- 미용실 리뷰 작성 여부 업데이트 -->
+	<update id="updateHarResChk" parameterType="string">
+		UPDATE HAR_RESERVATION SET RES_CHK = 1 WHERE HAR_RNUM = #{har_rnum}
+	</update>
+	
+	<!-- 병원 리뷰 작성 여부 업데이트 -->
+	<update id="updateHosResChk" parameterType="string">
+		UPDATE HOS_RESERVATION SET RES_CHK = 1 WHERE HOS_RNUM = #{hos_rnum}
 	</update>
 	
 </mapper>
