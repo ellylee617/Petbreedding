@@ -172,9 +172,9 @@
             
         	
         	<c:if test="${!empty ctaHos}">
+			 <div class="ultraS">
                    <c:forEach var="cta" items="${ctaHos}" varStatus="status">
                    <c:if test="${cta.cta_number > 0 }">
-			 <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <ul>
                     <div class="ultraStore">                     
@@ -208,9 +208,9 @@
                         </li>
                    </div>
                 </ul>
-            </div>
                    </c:if>
             </c:forEach>
+            </div>
            </c:if> 
             
             
@@ -853,9 +853,9 @@
             
         	
         	<c:if test="${!empty ctaHar}">
+			 <div class="ultraS">
              <c:forEach var="cta" items="${ctaHar}" varStatus="status">
              <c:if test="${cta.cta_number > 0 }">
-			 <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <ul>
                     <div class="ultraStore">                     
@@ -889,9 +889,9 @@
                         </li>
                    </div>
                 </ul>
-            </div>
                    </c:if>
             </c:forEach>
+            </div>
            </c:if> 
             
             
