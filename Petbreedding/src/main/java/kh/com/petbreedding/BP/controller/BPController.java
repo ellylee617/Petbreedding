@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.com.petbreedding.BP.model.service.BPartnerService;
 import kh.com.petbreedding.BP.model.vo.BPartner;
+import kh.com.petbreedding.client.model.service.MessageService;
 
 @Controller
 public class BPController {
@@ -20,7 +21,8 @@ public class BPController {
 	@Autowired
 	private BPartnerService bService;
 	
-	
+//	@Autowired
+//	private MessageService messageService;
 
 	// 사장님회원가입 페이지로 이동
 	@RequestMapping(value = "/bJoin", method = RequestMethod.GET)
@@ -83,7 +85,8 @@ public class BPController {
 	public String sendSms(String bp_tel) {
 		int num = (int)(Math.random() * (9999 - 1000 + 1)) + 1000;
 		String randomNumber = String.valueOf(num);
-		/* messageService.sendMessage(tel, randomNumber); */
+		String tel = bp_tel;
+		MessageService.sendMessage(tel, randomNumber);
 		
 		System.out.println(randomNumber);
 		return randomNumber;
