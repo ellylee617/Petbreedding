@@ -88,6 +88,9 @@ public class BMyPageController {
 	@Autowired
 	private OftenQnaService oftenQnaService;
 	
+	@Autowired
+	private ShopPayService shopPayService;
+	
 	// 사장님 마이 페이지 내정보 수정
 	@RequestMapping(value = "/bMyPageUpdate", method = RequestMethod.GET)
 	public String bMyPageUpdate(Locale locale, Model model) {
@@ -959,9 +962,11 @@ public class BMyPageController {
 			Model md
 			,HttpSession ses
 			,BPartner bP
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			) {
-		
-		bP = (BPartner) ses.getAttribute("bP");
+
 		
 		if(bP == null) {
 			md.addAttribute("msg", "로그인이 필요합니다");
@@ -969,19 +974,29 @@ public class BMyPageController {
 			return "common/redirect";
 		}
 		
+		bP = (BPartner) ses.getAttribute("bP");
 		String bp_id = bP.getBp_Id();
+		
+		int total = reviewService.getRevCount(bp_id);
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		map.put("bpId", bp_id);
+		
 		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 bp_id : " + bp_id);
 		
 		List<Review> brvList =  new ArrayList<Review>();
 		
-		//TODO
-//		brvList = reviewService.reviewSelectList(bp_id);
+		brvList = reviewService.reviewSelectList(map);
 		int brvCount = reviewService.getRevCount(bp_id);
 		
 		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 brvList : " + brvList);
 		
 		md.addAttribute("brvList", brvList);
 		md.addAttribute("brvCount", brvCount);
+		md.addAttribute("paging", page);
 		
 		return "/bPartner/bShop/bReview";
 	}
