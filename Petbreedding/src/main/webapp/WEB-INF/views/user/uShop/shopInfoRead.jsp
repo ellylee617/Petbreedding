@@ -138,7 +138,7 @@
 	                            <i class="fas fa-star rate"></i>
 	                            <i class="fas fa-star rate"></i>
 	                            <i class="fas fa-star rate"></i>
-	                            <i class="fas fa-star-half-alt"></i>
+	                            <i class="fas fa-star-half-alt rate"></i>
                         	</c:if>
                         	<c:if test="${revValAvg < 4.50 and revValAvg >= 4.0}">
                         		<i class="fas fa-star rate"></i>
@@ -151,7 +151,7 @@
                         		<i class="fas fa-star rate"></i>
 	                            <i class="fas fa-star rate"></i>
 	                            <i class="fas fa-star rate"></i>
-	                            <i class="fas fa-star-half-alt"></i>
+	                            <i class="fas fa-star-half-alt rate"></i>
 	                            <i class="far fa-star rate"></i>
                         	</c:if>
                         	<c:if test="${revValAvg < 3.50 and revValAvg >= 3.00}">
@@ -164,7 +164,7 @@
                         	<c:if test="${revValAvg < 3.00 and revValAvg >= 2.50}">
                         		<i class="fas fa-star rate"></i>
 	                            <i class="fas fa-star rate"></i>
-	                            <i class="fas fa-star-half-alt"></i>
+	                            <i class="fas fa-star-half-alt rate"></i>
 	                            <i class="far fa-star rate"></i>
 	                            <i class="far fa-star rate"></i>
                         	</c:if>
@@ -177,7 +177,7 @@
                         	</c:if>
                         	<c:if test="${revValAvg < 2.0 and revValAvg >= 1.50}">
                         		<i class="fas fa-star rate"></i>
-	                            <i class="fas fa-star-half-alt"></i>
+	                            <i class="fas fa-star-half-alt rate"></i>
 	                            <i class="far fa-star rate"></i>
 	                            <i class="far fa-star rate"></i>
 	                            <i class="far fa-star rate"></i>
@@ -190,13 +190,13 @@
 	                            <i class="far fa-star rate"></i>
                         	</c:if>
                         	<c:if test="${revValAvg < 1.00 and revValAvg >= 0.50}">
-                        		<i class="fas fa-star-half-alt"></i>
+                        		<i class="fas fa-star-half-alt rate"></i>
 	                            <i class="far fa-star rate"></i>
 	                            <i class="far fa-star rate"></i>
 	                            <i class="far fa-star rate"></i>
 	                            <i class="far fa-star rate"></i>
                         	</c:if>
-                        	<c:if test="${revValAvg < 0 or empty revValAvg}">
+                        	<c:if test="${empty revValAvg}">
                         		<i class="far fa-star rate"></i>
 	                            <i class="far fa-star rate"></i>
 	                            <i class="far fa-star rate"></i>
