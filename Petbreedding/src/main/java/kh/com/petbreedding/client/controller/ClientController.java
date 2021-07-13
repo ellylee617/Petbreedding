@@ -98,7 +98,7 @@ public class ClientController {
 	@ResponseBody
 	// 회원 탈퇴
 	public int deleteClientDo(String cl_num, HttpSession session) {
-
+		clientService.deltePoint(cl_num);
 		int result = clientService.deleteClient(cl_num);
 		if(result >0) {
 			session.invalidate();		

@@ -111,6 +111,18 @@ public class ClientServiceImpl implements ClientService{
 		return result;
 	}
 
+	@Override
+	public int deltePoint(String cl_num) {
+		int result = -1;
+		try {
+			result = clientDao.deltePoint(cl_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		return result;
+	}
+
 
 
 
