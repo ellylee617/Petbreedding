@@ -29,7 +29,7 @@
 	  <c:forEach var="list" items="${list}">
             <div class="petBox">
 	  			<input type="hidden" value="${list.pet_num}" name="pet_num" id="pet_num"> 
-	            <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150"/>
+	            <img src="${path}/resources/uploadFile/mypet/${list.pet_img}" width="250" height="150" onerror="this.src='${path}/resources/images/logoForChat.png'"  />
 	            <div class="petname"><a href="petdetail">${list.pet_name}</a></div>
 	            <div class="btnwrap">
 	            <a href="mypetupdate?pet_num=${list.pet_num}"><button id="updateBtn" class="btn basicBtn">수정</button></a>

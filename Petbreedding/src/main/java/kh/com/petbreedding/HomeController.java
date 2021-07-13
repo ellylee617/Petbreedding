@@ -44,7 +44,11 @@ public class HomeController {
 		return "/bPartner/bIndex";
 	}
 	
-	
+	//사업자 페이지로 이동
+		@RequestMapping(value = "/introduction", method = RequestMethod.GET)
+		public String introduce(Locale locale, Model model) {
+			return "/common/introduce";
+		}
 	
 	
 }

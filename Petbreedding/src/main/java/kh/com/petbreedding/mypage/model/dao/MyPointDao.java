@@ -25,6 +25,10 @@ public class MyPointDao {
 		return sqlSession.selectOne("MyPoint.CurrPointSelectOne", clNum);
 	}
 	
+	public int myPointInit(MyPoint myPoint) {
+		return sqlSession.insert("MyPoint.myPointInit", myPoint);
+	}
+	
 	public int myPointInsert(MyPoint myPoint) {
 		return sqlSession.insert("MyPoint.myPointInsert", myPoint);
 	}

@@ -55,7 +55,7 @@
 }
 #realInput {
 	margin-top: 10px;
-	margin-left : 30px;
+	margin-left : 26px;
 }
 .qnabtn{
 	width: 600px;
@@ -84,8 +84,14 @@
 }
 
 .selectBox {
-	width: 119px;
-    height: 40px;
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+    -moz-appearance: none; 
+     appearance: none;
+     background: url("/petbreedding/resources/images/arrow.jpg") no-repeat 100% 50%; /* 화살표 모양의 이미지 */
+	padding:10px;
+	margin-left: 26px;
+	margin-bottom : 10px;
+	width: 500px;
 }
 
 .basicBtn{
@@ -94,4 +100,9 @@
     padding: 10px 30px 10px 30px;
     border-radius: 5px;
     margin: 2px;
+}
+
+#qnabtn {
+	display: flex;
+    justify-content: center;
 }

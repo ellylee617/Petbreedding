@@ -24,6 +24,7 @@
 			<div class="mContent">
 			<form action="/petbreedding/oftenQnaWriteDo" method="post">
 				<div class="qnaSelect">
+					<label>고객구분</label>
                 	<select name="oftenQnaType">
                 		<option value="0">전체</option>
                 		<option value="1">회원</option>

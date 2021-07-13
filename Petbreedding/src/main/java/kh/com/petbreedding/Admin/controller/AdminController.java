@@ -1,7 +1,5 @@
 package kh.com.petbreedding.Admin.controller;
-
 import java.io.IOException;
-
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +11,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import kh.com.petbreedding.Admin.model.service.AdminService;
 import kh.com.petbreedding.Admin.model.vo.Admin;
 import kh.com.petbreedding.BP.model.vo.BPartner;
@@ -40,7 +35,8 @@ import kh.com.petbreedding.board.model.vo.CustomerService;
 import kh.com.petbreedding.board.model.vo.MyAsk;
 import kh.com.petbreedding.board.model.vo.MyAskComment;
 import kh.com.petbreedding.common.model.vo.Pagination;
-
+import kh.com.petbreedding.mypage.model.service.NoticeService;
+import kh.com.petbreedding.mypage.model.vo.Notice;
 @Controller
 public class AdminController {
 	
@@ -56,64 +52,120 @@ public class AdminController {
 	@Autowired
 	private MyAskCommentService myAskCommentService;
 	
-	public final int LIMIT = 5;
+	@Autowired NoticeService noticeService;
 	
-
+	public static final int LIMIT = 5;
+	
 	//관리자 회원관리 (차트)
-		@RequestMapping(value = "/mClient", method = RequestMethod.GET)
-		public String mClient(Locale locale, Model model) {
-			
+	@RequestMapping(value = "/mClient", method = RequestMethod.GET)
+	public String mClient(Locale locale, Model model) {
+		
 
-			int total = 0;
-			int total2 = 0;
-			
-			total = adminService.getMemberCount();
-			total2 = adminService.getBpCount();
+		int total = 0;
+		int total2 = 0;
+		
+		total = adminService.getMemberCount();
+		total2 = adminService.getBpCount();
 
-			//reg_date 구하기 
+		//reg_date 구하기 
+		  String[] regArr = new String[12];
+	        String reg_date = "";
+
+	        for(int i=0; i < regArr.length; i++){
+	           if(i < 9){
+	        	   reg_date +=  "20210" + (i+1);
+	           
+	           }else{
+	        	   reg_date += "2021" + (i+1);
+	          
+	           }
+	            regArr[i] = reg_date;
+	            reg_date = "";
+	            System.out.println(regArr[i]);
+	        }
+	      
+	      //사용자 날짜별 카운트
+	      int[] cntArr = new int[12];
+	      for(int i=0; i<cntArr.length; i++) {
+	    	  System.out.println("카운트 들어옴!");
+	    	  cntArr[i] = adminService.getMemChart(regArr[i]);
+	      }
+	      //사업자 날짜별 카운트
+	      int[] bpcntArr = new int[12];
+	      for(int i=0; i < bpcntArr.length; i++) {
+	    	  bpcntArr[i] = adminService.getBpChart(regArr[i]);
+	      }
+	      
+		
+		model.addAttribute("total" , total);
+		model.addAttribute("total2", total2);
+		model.addAttribute("chart", regArr);
+		model.addAttribute("cnt", cntArr);
+		model.addAttribute("cnt2", bpcntArr);
+		return "/admin/aSales/mClient";
+	}
+		//관리자 매출관리
+		@RequestMapping(value = "/mSales", method = RequestMethod.GET)
+		public String mSales(Locale locale, Model model) {
+			//최근 6개월 pay_date 구하기 
 			  String[] regArr = new String[12];
-		        String reg_date = "";
+		        String pay_date = "";
 
 		        for(int i=0; i < regArr.length; i++){
-		           if(i < 9){
-		        	   reg_date +=  "20210" + (i+1);
-		           
-		           }else{
-		        	   reg_date += "2021" + (i+1);
+		        	if(i<9) {
+		        	pay_date +=  "2021-0" + (i+1);
+		        	}else {
+		        	pay_date += "2021-" + (i+1); 
+		        	}
 		          
-		           }
-		            regArr[i] = reg_date;
-		            reg_date = "";
+		            regArr[i] = pay_date;
+		            pay_date = "";
 		            System.out.println(regArr[i]);
 		        }
-		      
-		      //사용자 날짜별 카운트
-		      int[] cntArr = new int[12];
-		      for(int i=0; i<cntArr.length; i++) {
-		    	  System.out.println("카운트 들어옴!");
-		    	  cntArr[i] = adminService.getMemChart(regArr[i]);
-		      }
-		      //사업자 날짜별 카운트
-		      int[] bpcntArr = new int[12];
-		      for(int i=0; i < bpcntArr.length; i++) {
-		    	  bpcntArr[i] = adminService.getBpChart(regArr[i]);
-		      }
-		      
-			
-			model.addAttribute("total" , total);
-			model.addAttribute("total2", total2);
-			model.addAttribute("chart", regArr);
-			model.addAttribute("cnt", cntArr);
-			model.addAttribute("cnt2", bpcntArr);
-			return "/admin/aSales/mClient";
+		  
+		        //매출엑
+		        int[] cntArr = new int[6];
+			      for(int i=0; i<cntArr.length; i++) {
+			    	  System.out.println("카운트 들어옴!~~~~~~~~~~~~");
+			    	  cntArr[i] = adminService.getAllPrice(regArr[i]);
+			      }
+			   //순이익 
+			     int[] realArr = new int[6];
+			     for(int i=0; i< realArr.length; i++) {
+			    	 System.out.println("순 매출액 차트 들어옴");
+			    	 realArr[i] = adminService.getRealPrice(regArr[i]);
+			     }
+			     
+			   //연간 매출액
+			     
+			    int[] yearArr = new int[12];
+			    for(int i=0; i<yearArr.length; i++) {
+			    	System.out.println("연간매출액 차트 들어옴");
+			    	yearArr[i] = adminService.getAllPrice(regArr[i]);
+			    }
+		        
+			    //울트라 점유율 
+			    int ultra = adminService.getUltraAll();
+			    
+			    //사업장 점유율
+			    int bp = adminService.getBpAll();
+			   
+			    //미용실 울트라 점유율
+			    int harUltra = adminService.getHarUltra();
+			    
+			    //병원 울트라 점유율
+			    int hosUltra = adminService.getHosUltra();
+			    
+			 model.addAttribute("chart", regArr);
+			 model.addAttribute("cnt", cntArr);
+			 model.addAttribute("real",realArr);
+			 model.addAttribute("year", yearArr);
+			 model.addAttribute("ultra", ultra);
+			 model.addAttribute("bp", bp);
+			 model.addAttribute("har", harUltra);
+			 model.addAttribute("hos", hosUltra);
+			return "/admin/aSales/mSales";
 		}
-		
-	//관리자 매출관리
-	@RequestMapping(value = "/mSales", method = RequestMethod.GET)
-	public String mSales(Locale locale, Model model) {
-		return "/admin/aSales/mSales";
-	}
-
 	// 사업장관리 - 제휴 승인 목록조회
 	@RequestMapping(value = "/mwaitList", method = RequestMethod.GET)
 	public String waitList( Model model,Pagination page,
@@ -154,7 +206,6 @@ public class AdminController {
 	public String mCancel( Model model,Pagination page,
 			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage) {
-
 		int total = adminService.countMdelete();
 		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		List<BPartner> list = adminService.deleteList(page);
@@ -163,7 +214,6 @@ public class AdminController {
 		
 		return "/admin/aShop/mCancelPartner";
 	}
-
 	//제휴 취소 승인
 	@RequestMapping(value = "/deleteBP", method = RequestMethod.POST)
 	@ResponseBody
@@ -214,53 +264,73 @@ public class AdminController {
 	@RequestMapping(value = "/mboardAjax", produces="text/plain;charset=UTF-8")
 	public String mboardAjax(
 			Pagination page
-			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
-			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
 			,HttpServletResponse res
 			,HttpServletRequest req
 			,int qnaType
 			,int qnaChk
-			,Model md
+			,int p
 			) throws IOException {
 		
 		res.setCharacterEncoding("UTF-8");
 		
-//		String qnaType = req.getParameter("qnaType");
-//		String qnaChk = req.getParameter("qnaChk");
-		
 		System.out.println("[세훈] @관리자 문의 사항 목록 qnaType : " + qnaType);
 		System.out.println("[세훈] @관리자 문의 사항 목록 qnaChk : " + qnaChk);
-		
-		int total = myAskService.listCount();
-		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		System.out.println("[세훈] @관리자 문의 사항 목록 qnaChk : " + p);
 		
 		String myAskJson = "";
-		Map<String, String> map = new HashMap<String, String>();
-		List<MyAsk> myAskList = new ArrayList<MyAsk>();
-		map.put("start", Integer.toString(page.getStart()));
-		map.put("end", Integer.toString(page.getEnd()));
-		
 		
 		if(qnaType == 0) {
+			//	qnaChk 타입에 맞는 1:1 문의 개수 확인
+			int total = myAskService.listCountAll(qnaChk);
+			System.out.println("[세훈] @관리자 문의 사항 목록 전체 선택 total : " + total);
+			page = new Pagination(total, p, LIMIT);
+			
+			Map<String, String> map = new HashMap<String, String>();
+			List<MyAsk> myAskList = new ArrayList<MyAsk>();
+			
+			map.put("start", Integer.toString(page.getStart()));
+			map.put("end", Integer.toString(page.getEnd()));
 			map.put("qnaChk", Integer.toString(qnaChk));
 			myAskList = myAskService.MyAskSelectListClBpAllM(map);
+			
+			Map<String, Object> mapResult = new HashMap<String, Object>();
+			mapResult.put("paging", page);
+			mapResult.put("list", myAskList);
+			
 			Gson jobj = new GsonBuilder().create();
-			myAskJson = jobj.toJson(myAskList);
+			myAskJson = jobj.toJson(mapResult);
 			System.out.println("[세훈] @관리자 문의 사항 리스트 myAskJson : " + myAskJson.toString());
 			
 		} else {
+			MyAsk myAsk = new MyAsk();
+			myAsk.setQnaType(qnaType);
+			myAsk.setQnaChk(qnaChk);
+			
+//			qnaType, qnaChk 타입에 맞는 1:1 문의 개수 확인
+			int total = myAskService.listCountClBp(myAsk);
+			System.out.println("[세훈] @관리자 문의 사항 목록 고객, 사업자 선택 total : " + total);
+			page = new Pagination(total, p, LIMIT);
+			
+			Map<String, String> map = new HashMap<String, String>();
+			List<MyAsk> myAskList = new ArrayList<MyAsk>();
+			map.put("start", Integer.toString(page.getStart()));
+			map.put("end", Integer.toString(page.getEnd()));
+			
 			map.put("qnaType", Integer.toString(qnaType));
 			map.put("qnaChk", Integer.toString(qnaChk));
 			myAskList = myAskService.MyAskSelectListClBpM(map);
+			
+			Map<String, Object> mapResult = new HashMap<String, Object>();
+			mapResult.put("paging", page);
+			mapResult.put("list", myAskList);
+			
 			Gson jobj = new GsonBuilder().create();
-			myAskJson = jobj.toJson(myAskList);
+			myAskJson = jobj.toJson(mapResult);
 			System.out.println("[세훈] @관리자 문의 사항 리스트 myAskJson : " + myAskJson.toString());
 		}
 		
-		md.addAttribute("paging", page);
 		return myAskJson;
 	}
-
 	// 게시글 관리 (문의게시판 글상세)
 	@RequestMapping(value = "/mboardcon")
 	public String mboardcon(
@@ -360,6 +430,24 @@ public class AdminController {
 			myAskCommentService.myAskCommentInsert(maComment);
 			
 		}
+		// 알림 인서트
+		String cl_num = noticeService.getclNumInQna(qna_num);
+		System.out.println("qna 댓글에 clnum 찾아오기" + cl_num);
+
+		Notice notice = new Notice();
+
+		notice.setNotReceiver(cl_num);
+		notice.setRefNum(qna_num);
+
+		int result = 0;
+
+		result = noticeService.inQna(notice);
+
+		if (result == 1) {
+			System.out.println("알림 인서트 성공!");
+		} else {
+			System.out.println("알림 인서트 실패");
+		}
 	}
 	
 	// 게시판 댓글 수정
@@ -402,18 +490,104 @@ public class AdminController {
 		
 	}
 	
-
 	// 게시글 관리 (공지사항게시판 목록)
 	@RequestMapping(value = "/mservice")
-	public String mservice(Model md) {
+	public String mservice(
+			Model md
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			,@RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			) {
 		
-		List<CustomerService> cusList = customerServiceService.CustomerServiceSelectListA();
+		int total = customerServiceService.CustomerServiceListCount();
+		System.out.println("[세훈] @관리자 공지사항 목록 전체리스트 total : " + total);
 		
+		page = new Pagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		
+		List<CustomerService> cusList = customerServiceService.CustomerServiceSelectListA(map);
+		System.out.println("[세훈] @관리자 공지사항 목록 전체리스트 cusList : " + cusList);
+		
+		md.addAttribute("paging", page);
 		md.addAttribute("cusList", cusList);
 		
 		return "/admin/aBoard/mservice";
 	}
 	
+	
+	// 게시글 관리 (공지사항 목록 ajax)
+	@ResponseBody
+	@RequestMapping(value = "/mserviceAjax", produces="text/plain;charset=UTF-8")
+	public String mserviceAjax(
+			Pagination page
+			,HttpServletResponse res
+			,HttpServletRequest req
+			,int annType
+			,int p
+			) throws IOException {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		System.out.println("[세훈] @관리자 공지사항 목록 annType : " + annType);
+		System.out.println("[세훈] @관리자 공지사항 목록 p : " + p);
+		
+		String myServiceJson = "";
+		
+//		if(annType == 0) {
+//			//	annType이 0이면 공지사항 전체 조회
+//			int total = customerServiceService.CustomerServiceListCount();
+//			System.out.println("[세훈] @관리자 공지사항 목록 전체 선택 total : " + total);
+//			page = new Pagination(total, p, LIMIT);
+//			
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			List<CustomerService> mserviceList = new ArrayList<CustomerService>();
+//			
+//			map.put("start", Integer.toString(page.getStart()));
+//			map.put("end", Integer.toString(page.getEnd()));
+//			mserviceList = customerServiceService.CustomerServiceSelectListA(map);
+//			
+//			Map<String, Object> mapResult = new HashMap<String, Object>();
+//			mapResult.put("paging", page);
+//			mapResult.put("list", mserviceList);
+//			
+//			Gson jobj = new GsonBuilder().create();
+//			myServiceJson = jobj.toJson(mapResult);
+//			System.out.println("[세훈] @관리자 공지사항 전체 리스트 myAskJson : " + myServiceJson.toString());
+//			
+//		} else {
+			
+//			annType 타입에 맞는 공지사항 조회
+			int total = customerServiceService.CustomerServiceListCountS(annType);
+			System.out.println("[세훈] @관리자 공지사항 목록 고객, 사업자 선택 total : " + total);
+			page = new Pagination(total, p, LIMIT);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<CustomerService> mserviceList = new ArrayList<CustomerService>();
+			
+			map.put("start", Integer.toString(page.getStart()));
+			map.put("end", Integer.toString(page.getEnd()));
+			map.put("annType", Integer.toString(annType));
+			
+			mserviceList = customerServiceService.CustomerServiceSelectListS(map);
+			
+			Map<String, Object> mapResult = new HashMap<String, Object>();
+			mapResult.put("paging", page);
+			mapResult.put("list", mserviceList);
+			
+			Gson jobj = new GsonBuilder().create();
+			myServiceJson = jobj.toJson(mapResult);
+			System.out.println("[세훈] @관리자 공지사항 리스트 annType 선택 myAskJson : " + myServiceJson.toString());
+//		}
+		
+		return myServiceJson;
+	}
+	
+	
+	//	문의 게시판 상세 페이지 조회
 	@RequestMapping(value = "/mserviceDetail")
 	public String mserviceDetail(
 			Model md
@@ -432,7 +606,6 @@ public class AdminController {
 		return "/admin/aBoard/mserviceDetail";
 		
 	}
-
 	// 게시글 관리 (공지사항게시판 내용)
 	@RequestMapping(value = "/mservicecon", method = RequestMethod.GET)
 	public String mservicecon(Locale locale, Model model) {
@@ -568,13 +741,11 @@ public class AdminController {
 		
 		return "redirect:/mservice";
 	}
-
 	// 게시글 관리 (자유게시판 목록)
 	@RequestMapping(value = "/mfreeboard")
 	public String mfreeboard(Locale locale, Model model) {
 		return "/admin/aBoard/mfreeboard";
 	}
-
 	// 게시글 관리 (자유게시판 내용)
 	// ?? 해당 파일이 없어요?
 	@RequestMapping(value = "/mfreecon", method = RequestMethod.GET)
@@ -584,5 +755,4 @@ public class AdminController {
 	
 	
 	
-
 }

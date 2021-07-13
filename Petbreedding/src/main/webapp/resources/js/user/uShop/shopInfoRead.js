@@ -26,18 +26,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 $("#upToDate").on("click", function() {
 	var type = 0;
-	reviewInit(bpId, path, type);
+	reviewInit(bpId, path, type, 1);
 });
 
 $("#ascendingStar").on("click", function() {
 	var type = 1;
 	
-	reviewInit(bpId, path, type);
+	reviewInit(bpId, path, type, 1);
 });
 $("#descendingStar").on("click", function() {
 	var type = 2;
 	
-	reviewInit(bpId, path, type);
+	reviewInit(bpId, path, type, 1);
 });
 
 
@@ -53,7 +53,7 @@ function openchatwin(inbpId,inshopName,inbpType) {
 }
 
 
-function reviewInit(bpId, path, type) {
+function reviewInit(bpId, path, type, p) {
 	console.log("리뷰 조회 함수 들어옴")
 	console.log(bpId);
 	console.log(path);
@@ -62,17 +62,18 @@ function reviewInit(bpId, path, type) {
 		url: "rList"
 		,type: "get"
 		,contentType : "application/json; charset:UTF-8"
-		,data: {bp_id : bpId, type : type}
+		,data: {bp_id : bpId, type : type, p : p}
 		,dataType: 'json'
 		,success: function(json) {
 			var div = "";
+			var page = "";
 			var jsonLength = Object.keys(json).length;
 			console.log(jsonLength);
 			console.log(json);
 			
 			if(jsonLength > 0) {
 				
-				$.each(json, function(index, item) {
+				$.each(json.list, function(index, item) {
 					var revVal = item.revVal;
 					console.log(item.revImg);
 					div += "<div class='review'>"
@@ -145,22 +146,43 @@ function reviewInit(bpId, path, type) {
 						
 					}
 
-//                         <div class="reply">
-//                         <div class="replyCon">
-//                             <p>또비언니님 찾아주셔서 감사합니다.</p>
-//                             <p>다음에 더 좋은 서비스로 보답하겠습니다.</p>
-//                         </div>
-//                         <div class="replyInfo">
-//                             <span>쿨펫미용실</span>
-//                             <span class="replyDate">2021-05-31 11:30</span>
-//                         </div>
-//                     </div>
 				});
+				
+				//	페이징 시작
+				page += "<div id='page_nation' class='page_nation'>";
+				
+				if(json.paging.startPage != 1) {
+					page += "<a class='arrow prev clickNum'>이전</a>";
+				}
+				
+				for(var i = json.paging.startPage; i <=  json.paging.endPage; i++) {
+					if(i == json.paging.nowPage) {
+						page += "<b>"+i+"</b>";
+					} else if(i != json.paging.nowPage) {
+						page += "<a class='clickNum'>"+i+"</a>";
+					}
+				}
+				
+				if(json.paging.endPage != json.paging.lastPage) {
+					page += "<a class='arrow next clickNum'>다음</a>";
+				}
+				
+				page += "</div>"
+					 + "</div>";
+//				페이징 끝
+				
 			} else {
 				
 			}
 			
 			$("#reviewArea").html(div);
+			$("#page_nation").html(page);
+			
+			$(".clickNum").on("click", function() {
+				var p = $(this).text();
+				console.log(p);
+				reviewInit(bpId, path, type, p);
+			});
 			
 		}
 		,error : function(request, status, error) {

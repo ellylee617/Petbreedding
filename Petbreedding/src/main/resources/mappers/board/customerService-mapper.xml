@@ -23,10 +23,47 @@
 		<result column="ANN_TYPE" property="annType"/>
 	</resultMap>
 	
-	<!-- 전체 공지사항 조회 -->
-	<select id="CustomerServiceSelectListA" parameterType="CustomerService" resultMap="CustomerServiceMap">
-		SELECT * FROM ANNOUNCEMENT
+	<!-- 관리자 공지사항 전체 개수 조회 -->
+	<select id="CustomerServiceListCount" resultType="int">
+		SELECT COUNT(*) FROM ANNOUNCEMENT
 	</select>
+	
+	<!-- 관리자 공지사항 ANN TYPE 선택 개수 조회 -->
+	<select id="CustomerServiceListCountS" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM ANNOUNCEMENT WHERE ANN_TYPE = #{annType}
+	</select>
+	
+	<!-- 전체 공지사항 조회 -->
+	<select id="CustomerServiceSelectListA" parameterType="map" resultMap="CustomerServiceMap">
+	 	<![CDATA[
+		 	SELECT B.*
+			FROM (
+			    SELECT ROWNUM R, A.*
+			    FROM(
+			        SELECT * FROM ANNOUNCEMENT 
+			        ORDER BY SUBSTR(ANN_NUM,-3) DESC
+			    ) A
+			)B
+			WHERE R>= #{start} AND R<=#{end}
+		]]>
+	</select>
+	
+	<!-- 관리자 공지사항 선택 조회 -->
+	<select id="CustomerServiceSelectListS" parameterType="map" resultMap="CustomerServiceMap">
+	 	<![CDATA[
+		 	SELECT B.*
+			FROM (
+			    SELECT ROWNUM R, A.*
+			    FROM(
+			        SELECT * FROM ANNOUNCEMENT 
+			        WHERE ANN_TYPE = #{annType}
+			        ORDER BY SUBSTR(ANN_NUM,-3) DESC
+			    ) A
+			)B
+			WHERE R>= #{start} AND R<=#{end}
+		]]>
+	</select>
+	
 	<!-- 일반회원공지사항 -->
 	<select id="CustomerServiceSelectListC" parameterType="CustomerService" resultMap="CustomerServiceMap">
 		SELECT * FROM ANNOUNCEMENT WHERE ANN_TYPE = 0 OR ANN_TYPE = 1

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import kh.com.petbreedding.client.model.dao.ClientDao;
 import kh.com.petbreedding.client.model.vo.Client;
+import kh.com.petbreedding.mypage.model.dao.MyPointDao;
+import kh.com.petbreedding.mypage.model.vo.MyPoint;
 
 
 @Service("clientService")
@@ -12,12 +14,48 @@ public class ClientServiceImpl implements ClientService{
 
 	@Autowired
 	private ClientDao clientDao;
+	@Autowired
+	private MyPointDao myPointDao;
 	
 	@Override
 	public int insertClient(Client client) {
 		int result = -1;
 		try {
 			result = clientDao.insertClient(client);
+			String seqJoin = clientDao.getJoinSeq();
+			int expPoint = 0;
+			int currPoint = 0;
+			MyPoint myPoint = new MyPoint();
+			String clNum = client.getCl_num();
+			
+			myPoint.setClNum(clNum);
+			myPoint.setPointNum("PO5");
+			myPoint.setExpType("가입");
+			myPoint.setExpFrom("이메일 회원가입");
+			myPoint.setExpId(seqJoin);
+			myPoint.setExpPoint(expPoint);
+			myPoint.setCurrPoint(currPoint);
+			
+			int pointResult = myPointDao.myPointInit(myPoint);
+			
+			if(pointResult > 0) {
+				System.out.println("포인트 초기화 성공");
+			} else {
+				System.out.println("포인트 초기화 실패");
+			}
+			
+			
+//			CL_NUM     NOT NULL VARCHAR2(50) 
+//			POINT_NUM           VARCHAR2(20) 
+//			INDEXS              NUMBER(5)    
+//			EXP_DATE            VARCHAR2(20) 
+//			EXP_TYPE            VARCHAR2(20) 
+//			EXP_FROM            VARCHAR2(50) 
+//			EXP_ID              VARCHAR2(20) 
+//			EXP_POINT           NUMBER(5)    
+//			CURR_POINT NOT NULL NUMBER(7) 
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

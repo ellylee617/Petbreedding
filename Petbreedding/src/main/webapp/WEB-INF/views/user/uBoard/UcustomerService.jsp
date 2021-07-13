@@ -34,7 +34,12 @@
             <div class="inside">
                 <a href="UcustomerService"><p>공지사항</p></a>
                 <a href="oftenqna"><p>자주묻는질문</p></a>
-                <a href="maWriteForm"><p>1:1 문의 작성</p></a>
+                <c:if test="${!empty client }">
+	                <a href="maWriteForm"><p>1:1 문의 작성</p></a>
+                </c:if>
+                <c:if test="${empty client }">
+	                <a href="uLogin"><p>1:1 문의 작성</p></a>
+                </c:if>
                 </div>
         </div>
         </div>

@@ -15,6 +15,28 @@ public class CustomerServiceDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//	관리자 공지사항 전체 개수 조회
+	public int CustomerServiceListCount() {
+		return sqlSession.selectOne("CustomerService.CustomerServiceListCount");
+	}
+	
+	//	관리자 공지사항 ANN_TYPE  선택 개수 조회
+	public int CustomerServiceListCountS(int annType) {
+		System.out.println("[세훈] @관리자 공지사항 목록 고객, 사업자 선택 다오    annType	: " + annType);
+		return sqlSession.selectOne("CustomerService.CustomerServiceListCountS", annType);
+	}
+	
+	//	관리자 공지 리스트 전체 조회
+	public List<CustomerService> CustomerServiceSelectListA(Map<String, Object> map) {
+		return sqlSession.selectList("CustomerService.CustomerServiceSelectListA", map);
+	}
+	
+	//	관리자 ANN_TYPE 선택 리스트 조회
+	public List<CustomerService> CustomerServiceSelectListS(Map<String, Object> map) {
+		return sqlSession.selectList("CustomerService.CustomerServiceSelectListS", map);
+	}
+	
+	
 	//	공지사항 리스트 조회
 	public List<CustomerService> CustomerServiceSelectListC() {
 		return sqlSession.selectList("CustomerService.CustomerServiceSelectListC");
@@ -26,9 +48,6 @@ public class CustomerServiceDao {
 	//사업자 공지사항 리스트 개수 조회
 	public int ListBCount() {
 		return sqlSession.selectOne("CustomerService.ListBCount");
-	}
-	public List<CustomerService> CustomerServiceSelectListA() {
-		return sqlSession.selectList("CustomerService.CustomerServiceSelectListA");
 	}
 	
 	//	공지사항 상세 조회

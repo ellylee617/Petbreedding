@@ -36,6 +36,11 @@
 	<delete id="deleteClient" parameterType="string">
 		DELETE FROM client WHERE CL_NUM = #{cl_num}
 	</delete>
+	
+	<!-- 마이포인트 JOIN SEQ 값 가져오기 -->
+	<select id="getJoinSeq" resultType="string">
+		SELECT 'J'||SEQ_JOIN.NEXTVAL FROM DUAL;
+	</select>
 
 
 </mapper>

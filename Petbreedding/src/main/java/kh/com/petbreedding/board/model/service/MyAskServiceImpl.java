@@ -29,6 +29,33 @@ public class MyAskServiceImpl implements MyAskService {
 	}
 	
 	@Override
+	public int listCountClBp(MyAsk myAsk) {
+		int result = -1;
+		
+		try {
+			result = myAskDao.listCountClBp(myAsk);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int listCountAll(int qnaChk) {
+		int result = -1;
+		
+		try {
+			result = myAskDao.listCountAll(qnaChk);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	
+	@Override
 	public int clBpListCount(String user_num) {
 		int result = -1;
 		
@@ -146,6 +173,8 @@ public class MyAskServiceImpl implements MyAskService {
 		
 		return maDelResult;
 	}
+
+
 
 
 }

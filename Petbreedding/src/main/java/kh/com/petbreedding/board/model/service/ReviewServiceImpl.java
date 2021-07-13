@@ -24,11 +24,11 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// 상세페이지 리뷰, 댓글 조회
 	@Override
-	public List<Review> revRevcSelectListUpToDate(String bp_id) {
+	public List<Review> revRevcSelectListUpToDate(Map<String, String> map) {
 		List<Review> revRevcListUpd = null;
 		try {
-			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
-			revRevcListUpd = reviewDao.revRevcSelectListUpToDate(bp_id);
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + map);
+			revRevcListUpd = reviewDao.revRevcSelectListUpToDate(map);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -39,11 +39,11 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	//	상세페이지 리뷰, 댓글 평점 높은 순
 	@Override
-	public List<Review> revRevcSelectListDesc(String bp_id) {
+	public List<Review> revRevcSelectListDesc(Map<String, String> map) {
 		List<Review> revRevcListDesc = null;
 		try {
-			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
-			revRevcListDesc = reviewDao.revRevcSelectListDesc(bp_id);
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + map);
+			revRevcListDesc = reviewDao.revRevcSelectListDesc(map);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -54,11 +54,11 @@ public class ReviewServiceImpl implements ReviewService {
 
 	//	상세페이지 리뷰, 댓글 평점 낯은 순
 	@Override
-	public List<Review> revRevcSelectListAsc(String bp_id) {
+	public List<Review> revRevcSelectListAsc(Map<String, String> map) {
 		List<Review> revRevcListAsc = null;
 		try {
-			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + bp_id);
-			revRevcListAsc = reviewDao.revRevcSelectListAsc(bp_id);
+			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + map);
+			revRevcListAsc = reviewDao.revRevcSelectListAsc(map);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

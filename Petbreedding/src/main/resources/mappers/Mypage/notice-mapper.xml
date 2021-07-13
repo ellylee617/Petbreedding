@@ -16,7 +16,15 @@
 		<result column="QNA_TITLE" property="qnaTitle"/>
 		<result column="NOTICE_TIME" property="notTime"/>
 	</resultMap>
+
+	<select id="notificationRead" resultType="int">
+		SELECT COUNT(NOTICE_NUM) FROM NOTICE WHERE NOTICE_RECEIVER = #{notReceiver} AND READ_STATE = 0
+	</select>
 	
+	<select id="unreadNotList" resultMap="notice">
+		SELECT NOTICE_NUM FROM NOTICE WHERE NOTICE_RECEIVER = #{notReceiver} AND READ_STATE = 0
+	</select>
+
 	<select id="getNoticeList" resultMap="notice">
 		SELECT G.*, H.QNA_TITLE
 		FROM
@@ -26,7 +34,7 @@
 		FROM
 		(SELECT A.*, B.HOS_RNUM, B.HOS_NUM
 		FROM
-		(SELECT * FROM NOTICE WHERE NOTICE_RECEIVER = #{notReceiver} AND READ_STATE = 0 
+		(SELECT * FROM NOTICE WHERE NOTICE_RECEIVER = #{notReceiver}
 		ORDER BY NOTICE_NUM DESC ) A
 		LEFT OUTER JOIN 
 		(SELECT * FROM HOS_RESERVATION UNION SELECT * FROM HAR_RESERVATION) B

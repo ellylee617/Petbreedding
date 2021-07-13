@@ -30,7 +30,7 @@
 						<th>리뷰 번호</th>
 						<th>상품명</th>
 						<th>구매자 평점</th>
-						<th>리뷰내용</th>
+						<th colspan='2'>리뷰내용</th> 
 					</tr>
 					
 					<c:forEach items="${brvList}" var="brItems">
@@ -135,7 +135,7 @@
 							+ "<p id='reDate'>"+data.revDate+" 방문</p>"
 							+ "</div>"
 							+ "<div id='modalReImg'>"
-							+ "<img id='modalReImg' src='"+path+"/resources/uploadFile/review/"+data.revImg+"' style='width:100px; height:100px;'>"
+							+ "<img id='modalReImgs' src='"+path+"/resources/uploadFile/review/"+data.revImg+"' style='width:100px; height:100px;' onerror='noImage()'>"
 							+ "</div>"
 							+ "<br>"
 							+ "<br>"
@@ -181,8 +181,14 @@
 		modal.style.display = "none";
 	});
 	
+	function noImage() {
+		   $("#modalReImgs").attr("src", "/petbreedding/resources/images/logo-square.png");  
+	}
+	
+	
 	</script>
 	
+	<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 	<script src="${path}/resources/js/bPartner/bShop/bReview.js"></script>
 </body>
 </html>

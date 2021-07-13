@@ -1,5 +1,28 @@
 @charset "UTF-8";
 
+#cta{
+	color: var(--font-color);
+    background-color: var(--bmenu-color);
+}
+#cta a{
+	display:block;
+	color: var(--font-color);
+}
+
+.bContent{
+	width: 1000px;
+	margin-top:0;
+}
+
+.section {
+    padding-bottom: 140px !important;
+}
+
+
+#name {margin-left:50px;}
+#tel,#email{margin-left:65px;}
+
+
 p {
   margin: 0 0 30px 0;
 }

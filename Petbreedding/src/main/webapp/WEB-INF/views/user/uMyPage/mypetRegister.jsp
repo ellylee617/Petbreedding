@@ -45,7 +45,7 @@
 
 					<tr>
 						<td colspan="2"><input type="text" placeholder="이름을 입력해주세요"
-							class="basicTextInput m_20 mt_20" name="pet_name" id="pet_name">
+							class="basicTextInput m_20 mt_21" name="pet_name" id="pet_name">
 							<div class="check_font" id="pet_namechk"></div></td>
 					</tr>
 
@@ -226,18 +226,19 @@
 						<td colspan="2" class="radioBox">
 							<ul class="selectOpt">
 								<input type="radio" id="skin" name="others" value="skin">
-								<li class="otherslist"><label for="skin">피부병</label><br>
-								</li>
+								<li class="otherslist"><label for="skin">피부병</label><br></li>
+								
 								<input type="radio" id="heart" name="others" value="heart">
-								<li class="otherslist"><label for="heart">심장질환</label><br>
-								</li>
-								<input type="radio" id="marking" name="others"
-									value="marking">
+								<li class="otherslist"><label for="heart">심장질환</label><br></li>
+								
+								<input type="radio" id="marking" name="others" value="marking">
 								<li class="otherslist"><label for="marking">마킹</label></li>
-								<input type="radio" id="moutinung" name="others"
-									value="moutinung">
-								<li class="otherslist otherslistL m_10"><label
-									for="moutinung">마운팅</label></li>
+								
+								<input type="radio" id="moutinung" name="others" value="moutinung">
+								<li class="otherslist m_10"><label for="moutinung">마운팅</label></li>
+								
+								<input type="radio" id="none" name="others" value="none">
+								<li class="otherslist otherslistL m_10"><label for="none">없음</label></li>
 							</ul>
 						</td>
 					</tr>

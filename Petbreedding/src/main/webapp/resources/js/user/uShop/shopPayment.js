@@ -28,6 +28,7 @@ $("#pointAll").on("click",function(){
     	$("#pointArea").val(usingPoint).change();   
     }else if($("#pointAll").is(':checked') == false){
     	$("#pointArea").val("0").change();  
+		$(".usePoint").text("0").change();
     }
 });
 
@@ -47,7 +48,7 @@ $("#pointArea").on("propertychange change keyup paste input oninput ",function()
 	const number2 = using.replace(/,/g, "");
 	
 	var nowPoint = $("#nowPoint").text();
-	
+	$(".usePoint").text(using);
 	if(nowPoint >= using){
 		var pay = 0;
 		pay = number - number2;

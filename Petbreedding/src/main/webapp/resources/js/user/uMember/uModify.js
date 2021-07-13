@@ -44,7 +44,6 @@ $("#nickName").blur(function(){
 		type : "post",
 		data : {nickname : nickName},
 		success : function(data){
-			console.log("다녀왔어용");
 			if(data == 1){
 				//1: 중복시
 				$("#nickName_check").text("사용중인 닉네임입니다.");
@@ -137,29 +136,29 @@ function checkHp(){
 $("#modify").on("click",function(){
 	
 	var dataString = $("#updFrm").serialize();
-	console.log(dataString);
-	if($("#pwd").val()!=null || $("#pwd").val() != "" && $("#pwd2").val()!=null || $("#pwd2").val()!=""){
-			$.ajax({
-				url:"mypage/uModify",
-				type:"POST",
-				data: dataString,
-				success: function(data){
-					console.log("data : "+ data);
-					if(data > 0){
-						alert("회원정보 수정이 완료되었습니다.");
-						location.href="/petbreedding/uModify";
-					}else {
-						location.href="/petbreedding/uModify";
-					}
-				},
-				error : function(error){
-					$("#error").text("입력정보를 다시 확인해주세요.");
-					$("#error").css("color","red");
-				}
-			});
-	}else{
-		$("#error").text("모든 정보를 입력하셔야 수정이 가능합니다.");
+	var pwd = $("#pwd").val();
+	var pwd2 = $("#pwdCheck").val();
+	if((pwd == null || pwd == "") && (pwd2 == null || pwd2 == "")){
 		$("#error").css("color","red");
+		$("#error").text("모든 정보를 입력하셔야 수정이 가능합니다.");
+	}else{
+		$.ajax({
+			url:"mypage/uModify",
+			type:"POST",
+			data: dataString,
+			success: function(data){
+				if(data > 0){
+					alert("회원정보 수정이 완료되었습니다.");
+					location.href="/petbreedding/uModify";
+				}else {
+					location.href="/petbreedding/uModify";
+				}
+			},
+			error : function(error){
+				$("#error").text("입력정보를 다시 확인해주세요.");
+				$("#error").css("color","red");
+			}
+		});
 	}
 	
 	return false;

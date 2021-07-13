@@ -36,6 +36,14 @@
 		SELECT COUNT(*) FROM QNA_BOARD
 	</select>
 	
+	<select id="listCountAll" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM QNA_BOARD WHERE QNAR_CHK = #{qnaChk}
+	</select>
+	
+	<select id="listCountClBp" parameterType="MyAsk" resultType="int">
+		SELECT COUNT(*) FROM QNA_BOARD WHERE QNA_TYPE = #{qnaType} AND QNAR_CHK = #{qnaChk}
+	</select>
+	
 	<select id="clBpListCount" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM QNA_BOARD WHERE USER_NUM = #{userNum}
 	</select>

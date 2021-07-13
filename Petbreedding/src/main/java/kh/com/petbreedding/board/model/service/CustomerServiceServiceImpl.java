@@ -15,6 +15,52 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 	@Autowired
 	private CustomerServiceDao customerServiceDao;
 
+	@Override
+	public int CustomerServiceListCount() {
+		int listCountAll = -1;
+		
+		try {
+			listCountAll = customerServiceDao.CustomerServiceListCount();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listCountAll; 
+	}
+	@Override
+	public int CustomerServiceListCountS(int annType) {
+		int listCountSelected = -1;
+		
+		try {
+			listCountSelected = customerServiceDao.CustomerServiceListCountS(annType);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("[세훈] @관리자 공지사항 목록 고객, 사업자 선택 서비스    listCountSelected	: " + listCountSelected);
+		return listCountSelected; 
+	}
+	@Override
+	public List<CustomerService> CustomerServiceSelectListA(Map<String, Object> map) {
+		List<CustomerService> ResultListA = null;
+		
+		try {
+			ResultListA = customerServiceDao.CustomerServiceSelectListA(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ResultListA; 
+	}
+	@Override
+	public List<CustomerService> CustomerServiceSelectListS(Map<String, Object> map) {
+		List<CustomerService> ResultListS = null;
+		
+		try {
+			ResultListS = customerServiceDao.CustomerServiceSelectListS(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ResultListS;
+	}
+	
 	//	공지사항 리스트 조회 (고객)
 	@Override
 	public List<CustomerService> CustomerServiceSelectListC() {
@@ -33,19 +79,6 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 		
 		try {
 			result = customerServiceDao.CustomerServiceSelectListB(paging);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
-	//	공지사항 리스트 조회 (관리자)
-	@Override
-	public List<CustomerService> CustomerServiceSelectListA() {
-		List<CustomerService> result = null;
-		
-		try {
-			result = customerServiceDao.CustomerServiceSelectListA();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -118,10 +151,4 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 		}
 		return result;
 	}
-
-	
-
-
-	
-
 }

@@ -1,6 +1,7 @@
 package kh.com.petbreedding.board.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -21,16 +22,16 @@ public class ReviewDao {
 	}
 	
 	// 상세페이지 리뷰, 댓글 조회 최신순
-	public List<Review> revRevcSelectListUpToDate(String bp_id) {
-		return sqlSession.selectList("Review.revRevcSelectListUpToDate", bp_id);
+	public List<Review> revRevcSelectListUpToDate(Map<String, String> map) {
+		return sqlSession.selectList("Review.revRevcSelectListUpToDate", map);
 	}
 	// 상세페이지 리뷰, 댓글 조회 별점 높은 순
-	public List<Review> revRevcSelectListDesc(String bp_id) {
-		return sqlSession.selectList("Review.revRevcSelectListDescStar", bp_id);
+	public List<Review> revRevcSelectListDesc(Map<String, String> map) {
+		return sqlSession.selectList("Review.revRevcSelectListDescStar", map);
 	}
 	// 상세페이지 리뷰, 댓글 조회 별점 낮은 순
-	public List<Review> revRevcSelectListAsc(String bp_id) {
-		return sqlSession.selectList("Review.revRevcSelectListAscStar", bp_id);
+	public List<Review> revRevcSelectListAsc(Map<String, String> map) {
+		return sqlSession.selectList("Review.revRevcSelectListAscStar", map);
 	}
 	
 	// 사업자 리뷰 조회
