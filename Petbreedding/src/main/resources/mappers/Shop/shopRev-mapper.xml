@@ -30,6 +30,7 @@
 		<result column="RES_STATUS" property="res_status" />
 		<result column="RES_TIME" property="res_time" />
 		<result column="STYLE_NUM2" property="style_num2" />
+		<result column="RES_CHK" property="res_chk"/>
 	</resultMap>
 	
 		
@@ -127,6 +128,7 @@
 		<result column="MED_NUM2" property="med_num2"/>
 		<result column="HOS_STATUS" property="hos_status" />
 		<result column="HOS_TIME" property="hos_time"/>
+		<result column="RES_CHK" property="res_chk"/>
 	</resultMap>
 	
 	<!-- 진료 정보 테이블 -->
@@ -150,7 +152,7 @@
 		<!-- 예약등록 -->
 		<insert id="insertHosRev" parameterType="HosRev">
 			INSERT INTO HOS_RESERVATION 
-			VALUES('HOS000' || SEQ_HOS_RESERVATION.NEXTVAL, #{cl_num},#{pet_num}, #{med_num}, #{hos_num},#{hos_date},null,#{hos_status},#{hos_time})
+			VALUES('HOS000' || SEQ_HOS_RESERVATION.NEXTVAL, #{cl_num},#{pet_num}, #{med_num}, #{hos_num},#{hos_date},null,#{hos_status},#{hos_time},0)
 			
 			<selectKey keyProperty="hos_rnum" resultType="string"  order="AFTER">
 				SELECT SEQ_HOS_RESERVATION.CURRVAL AS HOS_RNUM FROM DUAL

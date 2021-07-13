@@ -14,6 +14,7 @@
 		<result column="RES_TIME" property="res_time" />
 		<result column="STYLE_NUM2" property="style_num2" />
 		<result column="CL_NAME" property="name" />
+		<result column="RES_CHK" property="res_chk"/>
 		<collection property="pet" resultMap="Pet" />
 		<collection property="client" resultMap="Client" />
 		<collection property="style" resultMap="Style" />
@@ -35,6 +36,7 @@
 		<result column="HOS_STATUS" property="hos_status" />
 		<result column="HOS_TIME" property="hos_time"/>
 		<result column="CL_NAME" property="name" />
+		<result column="RES_CHK" property="res_chk"/>
 		<collection property="pet" resultMap="Pet" />
 		<collection property="client" resultMap="Client" />
 		<collection property="medical" resultMap="MedicalType"/>

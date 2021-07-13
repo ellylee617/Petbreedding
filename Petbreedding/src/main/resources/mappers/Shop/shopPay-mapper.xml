@@ -15,6 +15,7 @@
 		<result column="STYLE_NUM2" property="style_num2" />
 		<result column="HAR_NAME" property="har_name" />
 		<result column="RES_DATE2" property="res_date2" />
+		<result column="RES_CHK" property="res_chk"/>
 		<collection property="hairSalon" resultMap="HairSalon" />
 		<collection property="style" resultMap="Style" />
 	</resultMap>
@@ -74,6 +75,7 @@
 		<result column="MED_NUM2" property="med_num2" />
 		<result column="HOS_STATUS" property="hos_status" />
 		<result column="HOS_TIME" property="hos_time" />
+		<result column="RES_CHK" property="res_chk"/>
 		<collection property="hospital" resultMap="Hospital" />
 		<collection property="medical" resultMap="MedicalType" />
 	</resultMap>
