@@ -20,7 +20,7 @@
 
         <section class="section">
         <jsp:include page="../myPageAside.jsp" />
-        <input type="hidden" value="${client. cl_num}" id="cl_num">
+        <input type="hidden" value="${client.cl_num}" id="cl_num">
 			<div class="uContent">
 				<div id="delete">
 		            <div id="locCon">

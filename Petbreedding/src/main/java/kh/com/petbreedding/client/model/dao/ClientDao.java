@@ -34,8 +34,20 @@ public class ClientDao {
 		return sqlSession.delete("ClientMap.deleteClient", cl_num);
 	}
 	
+	public int deltePoint(String cl_num) {
+		return sqlSession.delete("ClientMap.deltePoint", cl_num);
+	}
+	
 	public String getJoinSeq() {
 		return sqlSession.selectOne("ClientMap.getJoinSeq");
+	}
+	
+	public String getClientSeqCurrVal() {
+		return sqlSession.selectOne("ClientMap.getClientSeqCurrVal");
+	}
+	
+	public String getClientSeqNextVal() {
+		return sqlSession.selectOne("ClientMap.getClientSeqNextVal");
 	}
 	
 }

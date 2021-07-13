@@ -21,12 +21,16 @@ public class ClientServiceImpl implements ClientService{
 	public int insertClient(Client client) {
 		int result = -1;
 		try {
+			String cl_num = clientDao.getClientSeqNextVal();
+			client.setCl_num(cl_num);
 			result = clientDao.insertClient(client);
 			String seqJoin = clientDao.getJoinSeq();
 			int expPoint = 0;
 			int currPoint = 0;
 			MyPoint myPoint = new MyPoint();
-			String clNum = client.getCl_num();
+			String clNum = clientDao.getClientSeqCurrVal();
+			System.out.println("[세훈] @클라서비스 포인트 초기화 clNum : " + clNum);
+			
 			
 			myPoint.setClNum(clNum);
 			myPoint.setPointNum("PO5");
@@ -100,6 +104,18 @@ public class ClientServiceImpl implements ClientService{
 		int result = -1;
 		try {
 			result = clientDao.deleteClient(cl_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		return result;
+	}
+
+	@Override
+	public int deltePoint(String cl_num) {
+		int result = -1;
+		try {
+			result = clientDao.deltePoint(cl_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -87,7 +87,7 @@ $("#pet_weight").blur(function() {
 		$("#pet_weightchk").text("몸무게는 숫자로만 입력해주세요.");
 		$("#pet_weightchk").css("color", "red");
 	} else {
-		$("#pet_weightchk").text("나이가 입력되었습니다.");
+		$("#pet_weightchk").text("몸무게가 입력되었습니다.");
 		$("#pet_weightchk").css("color", "green");
 	}
 });

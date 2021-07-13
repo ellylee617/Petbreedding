@@ -23,11 +23,12 @@
                     <p>승인 확인 절차가 진행중입니다. 평균 승인 소요기간은 2-3일 입니다.</p>
                     <p>빠른 시일내로 승인처리 해드리겠습니다. 불편을 드려 죄송합니다.</p>
                     <p>문의 사항은 1577-0123로 연락주시면 빠르게 답변해드리겠습니다.</p>
-                    <button>로그아웃</button>
+                    <button id="logout" onclick="location.href='${path}/blogout'">로그아웃</button>
                 </div>
             </div>
 	</section>
 	<jsp:include page="../../common/footer.jsp" />
 </div>
+
 </body>
 </html>

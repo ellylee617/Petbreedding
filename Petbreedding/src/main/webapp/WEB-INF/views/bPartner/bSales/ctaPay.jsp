@@ -45,7 +45,7 @@
 					<main>
 						<div>
 							<div class="container spaceBw">
-								<span>결제 상품</span> <span id="CM_TYPE">${vo.CM_TYPE} 회 이용권</span>
+								<span>결제 상품</span> <span id="CM_TYPE">${vo.CM_TYPE}</span>
 								<input type="hidden" id="CM_CODE" value="${vo.CM_CODE}"/>
 							</div>
 
