@@ -27,13 +27,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> revRevcSelectListUpToDate(Map<String, String> map) {
 		List<Review> revRevcListUpd = null;
 		try {
-			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + map);
 			revRevcListUpd = reviewDao.revRevcSelectListUpToDate(map);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 revRevcListUpd : " + revRevcListUpd);
 		return revRevcListUpd;
 	}
 	
@@ -42,13 +40,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> revRevcSelectListDesc(Map<String, String> map) {
 		List<Review> revRevcListDesc = null;
 		try {
-			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + map);
 			revRevcListDesc = reviewDao.revRevcSelectListDesc(map);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 revRevcListDesc : " + revRevcListDesc);
 		return revRevcListDesc;
 	}
 
@@ -57,28 +52,24 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> revRevcSelectListAsc(Map<String, String> map) {
 		List<Review> revRevcListAsc = null;
 		try {
-			System.out.println("[세훈] @리뷰, 댓글 조회 서비스 bp_id : " + map);
 			revRevcListAsc = reviewDao.revRevcSelectListAsc(map);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("[세훈] @리뷰, 댓글 조회 서비스 reviewList : " + revRevcListAsc);
 		return revRevcListAsc;
 	}
 	
 	@Override
-	public List<Review> reviewSelectList(String bp_id) {
+	public List<Review> reviewSelectList(Map<String, String> map) {
 		List<Review> reviewList = null;
 		
 		try {
-			System.out.println("[세훈] @리뷰 조회 서비스 bp_id : " + bp_id);
-			reviewList = reviewDao.reviewSelectList(bp_id);
+			reviewList = reviewDao.reviewSelectList(map);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("[세훈] @리뷰 조회 서비스 reviewList : " + reviewList);
 		return reviewList;
 	}
 	
@@ -86,13 +77,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public Review reviewSelectOne(String rev_num) {
 		Review review = null;
 		try {
-			System.out.println("[세훈] @리뷰 조회 서비스 bp_id : " + rev_num);
 			review = reviewDao.reviewSelectOne(rev_num);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("[세훈] @리뷰 조회 서비스 review : " + review);
 		return review;
 	}
 
@@ -100,14 +89,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public int insertReview(Review rv, String har_num, String har_name) {
 		int result = -1;
 		String clNum = rv.getClNum();
-		System.out.println("[세훈] @리뷰 등록 서비스 clNum : " + clNum);
 		int reviewPoint = 300;
 		
 		try {
-			System.out.println("[세훈] @리뷰 등록 서비스 har_num : " + har_num);
 			String bp_id = reviewDao.searchBpId(har_num); 
-			System.out.println("리뷰 등록 가져온 bp_id" + bp_id);
-			System.out.println("리뷰 등록 가져온 rv" + rv);
 			rv.setBpId(bp_id);
 			String rev_num = reviewDao.getRevNumFromSeq();
 			rv.setRevNum(rev_num);
@@ -116,7 +101,6 @@ public class ReviewServiceImpl implements ReviewService {
 			result = reviewDao.insertReview(rv);
 			int currPoint = 0;
 			currPoint = myPointDao.CurrPointSelectOne(clNum);
-			System.out.println("[세훈] @리뷰 등록 서비스 currPoint : " + currPoint);
 			currPoint += reviewPoint;
 			
 			MyPoint myPoint = new MyPoint();
@@ -155,11 +139,9 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public String getRevValAvg(String bp_id) {
 		String revAvgResult = null;
-		System.out.println("[세훈] @리뷰 평균 조회 서비스 bp_id : " + bp_id);
 		
 		try {
 			revAvgResult = reviewDao.getRevValAvg(bp_id);
-			System.out.println("[세훈] @리뷰 평균 조회 서비스 revAvgResult : " + revAvgResult);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

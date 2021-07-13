@@ -12,6 +12,7 @@
 <link type="text/css" rel="stylesheet"	href="${path}/resources/css/common/footer.css">
 <link type="text/css" rel="stylesheet"	href="${path}/resources/css/bPartner/bAside.css">
 <link type="text/css" rel="stylesheet"	href="${path}/resources/css/bPartner/bShop/bReview.css">
+<link href="${path}/resources/css/common/paging.css" rel="stylesheet" type="text/css" >
 <link	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"	rel="stylesheet" />
 <script src="https://kit.fontawesome.com/aca84cf3fb.js"	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -71,13 +72,28 @@
 					
 				</table>
 				<br> <br>
+				<!-- 페이징 시작-->
 				<div class="page_wrap">
 					<div class="page_nation">
-						<a class="arrow prev" href="#">이전</a> <a href="#" class="active">4</a>
-						<a href="#">5</a> <a href="#">6</a> <a href="#">7</a> <a href="#">8</a>
-						<a class="arrow next" href="#">다음</a>
+						<c:if test="${paging.startPage != 1 }">
+							<a class="arrow prev" href="${path}/bReview?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a href="${path}/bReview?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a class="arrow next" href="${path}/bReview?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+						</c:if>
 					</div>
 				</div>
+				<!-- 페이징 끝! -->
 			</div>
 		</section>
 		<jsp:include page="../../common/footer.jsp" />
