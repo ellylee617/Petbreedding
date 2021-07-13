@@ -132,6 +132,7 @@ $("#searchDate").on("click",function(){
 		            var res_status;
 		            var $har_rnum = data[i].har_rnum;
 		            var $har_num = data[i].har_num;
+		            var $res_chk = data[i].res_chk;
 		            if($res_status == 0){
 		            	res_status = "결제대기";
 		            }else if($res_status == 1){
@@ -152,9 +153,17 @@ $("#searchDate").on("click",function(){
 		            td += "<td>"+$res_date+"</td>";
 		            td += "<td>"+$har_name+"</td>";
 		            if(res_status == "이용완료"){
-		            	 td += "<td>"+res_status+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-		            	 "<button onClick='modalOn("+param_har_num+", "+param_har_name+"); return true;' type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
-		            	 +"</td>";
+		            	 td += "<td>"+res_status+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+		            	 
+		            	 if($res_chk == 0) {
+		            		 td += "<button onClick='modalOn("+param_har_num+", "+param_har_name+"); return true;' type='button' class='basicBtn review btnReWr'>리뷰작성</button>"
+			            	 +"</td>";
+		            	 } else {
+		            		 td += "<button type='button' id='reviewDone' class='basicBtn review'>작성완료</button>"
+				            	+"</td>";
+		            	 }
+		            	 
+
 		            }else{
 		            	 td += "<td>"+res_status+"</td>";
 //		            	 td += "<td>"+res_status+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
