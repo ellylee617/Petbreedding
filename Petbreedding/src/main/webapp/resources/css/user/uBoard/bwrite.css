@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .section{
 	width: 800px;
 	margin: 0 auto;
@@ -45,9 +47,12 @@ form{
     margin-left: 30px;
 }
 .btnBox{
-    padding-top: 30px;
 	width: 210px;
 	margin: 0 auto;
+}
+
+#bWriteTitle {
+	width: 534px;
 }
 
 /* CKEDITOR 높이 조정 */

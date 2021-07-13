@@ -39,7 +39,7 @@
 				<div class="conimg">
 					<c:choose>
 						<c:when test="${mAsk.qnaImg eq 'none'}">
-						    <img src="http://placehold.it/400x300">
+						    <div style="width:400px; height:300px;"></div>
 						</c:when>
 						<c:otherwise>
 							<img src="${path}/resources/uploadFile/myAsk/${mAsk.qnaImg}">

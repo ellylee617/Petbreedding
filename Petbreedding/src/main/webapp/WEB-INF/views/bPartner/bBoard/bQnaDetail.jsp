@@ -31,7 +31,7 @@
 				<tr class="asktblImg">
 					<c:choose>
 						<c:when test="${myAskDetail.qnaImg eq 'none'}">
-							<td colspan="2"><img src="${path}/resources/images/logo.png" style="width:500px; height:300px;"></td>
+							<td colspan="2"><div style="width:500px; height:300px;"></div></td>
 						</c:when>
 						<c:otherwise>
 							<td colspan="2"><img src="${path}/resources/uploadFile/myAsk/${myAskDetail.qnaImg}" class="myAskImg"></td>

@@ -766,6 +766,7 @@ public class AdminController {
 	}
 	// 게시글 관리 (자유게시판 목록)
 	@RequestMapping(value = "/mfreeboard")
+<<<<<<< HEAD
 	public String mfreeboard(
 			@RequestParam(value="nowPage", defaultValue ="1") String nowPage
 			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
@@ -788,6 +789,12 @@ public class AdminController {
 		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 page : " + page);
 		System.out.println("[세훈] @관리자 게시판 목록 조회 컨트롤러 list : " + list);
 
+=======
+	public String mfreeboard(Locale locale, Model model) {
+		
+		
+		
+>>>>>>> 1d194fe7cb4dfaf25c5ebe5f4c48798f0f3abf81
 		return "/admin/aBoard/mfreeboard";
 	}
 	// 게시글 관리 (자유게시판 내용)
