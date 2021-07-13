@@ -1321,7 +1321,7 @@ public class ShopListController {
 				 
 				 Pagination page1 = null;
 				 page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-				 mv.addObject("keyword_paging", page1);
+				 mv.addObject("hos_keyword_paging", page1);
 				 
 				 int start1 = page1.getStart();
 				 int end1 = page1.getEnd();
