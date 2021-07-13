@@ -145,7 +145,7 @@ Highcharts.chart('container3', {
 	    text: ''
 	  },
 	  xAxis: {
-	    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	    categories: ['2020-08', '2020-09', '2020-10', '2020-11', '2020-12', '2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', '2021-07']
 	  },
 	  yAxis: {
 	    title: {
@@ -256,7 +256,7 @@ Highcharts.chart('container5', {
 				</div>
 				<div class="tbox">
 					<h4>
-						연간매출액<span>(2021년 1월 ~ 2021년 12월)</span>
+						연간매출액<span>(최근 1년)</span>
 					</h4>
 					<figure class="highcharts-figure3">
  					 <div id="container3"></div>
