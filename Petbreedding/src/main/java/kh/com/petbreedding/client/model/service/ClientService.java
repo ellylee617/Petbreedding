@@ -9,4 +9,5 @@ public interface ClientService {
 	public int checkNickName(String nickname); //닉네임 중복 확인
 	public int checkHp(String tel); //휴대폰번호 중복 확인
 	public int deleteClient(String cl_num); //회원탈퇴
+	public int deltePoint(String cl_num); //포인트 정보 삭제
 }
