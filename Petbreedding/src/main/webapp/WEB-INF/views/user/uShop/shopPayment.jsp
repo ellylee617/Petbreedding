@@ -20,7 +20,7 @@
 <div class="wrapper">    
 		<jsp:include page="../../common/header.jsp" />
 			<section class="section">
-			<p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫미용실</a>></span><span><a href="salonReservation.html">예약하기</a>></span>결제하기</p>
+			<p><span><a href="/">홈</a>></span><span><a onclick="history.back();">예약하기</a>></span>결제하기</p>
             <div class="payContainer">
                 <div class="reservation_info infoBox">
                    <table>

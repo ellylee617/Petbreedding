@@ -20,7 +20,7 @@
 <div class="wrapper">    
 		<jsp:include page="../../common/header.jsp" />
 			<section class="section">
-			<p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫미용실</a>></span><span><a href="salonReservation.html">예약하기</a>></span>결제하기</p>
+			<p><span><a href="/">홈</a>></span><span><a onclick="history.back();">예약하기</a>></span>결제하기</p>
             <div class="payContainer">
                 <div class="reservation_info infoBox">
                    <table>
@@ -64,11 +64,17 @@
                     </table>
                  </div>
                  <div class="usingPoint_info infoBox">
-                    <table>
+                     <table>
                         <tr>
                             <th class="pointInfo">포인트 사용</th>
                             <td>보유 포인트</td>
-                            <td id="nowPoint">${point }</td>
+                            <c:if test="${empty point or point eq -1}">
+                            	<td id="nowPoint">0P</td>
+                            </c:if>
+                            <c:if test="${!empty point and (point ne -1)}">
+                            	<td id="nowPoint">${point }</td>
+                            	<td><span>P</span></td>
+                            </c:if>
                             <td><input type="text" id="pointArea" value="0"><input type="checkbox" id="pointAll"><label for="pointAll">모두 사용</label></td>
                         </tr>                        
                     </table>
@@ -76,16 +82,17 @@
                  <div class="totalpay_info infoBox">
                      <h4>결제 금액</h4>
                      <div >
+                     <c:forEach items="${myRev }" var="myRev">
                         <p>총 상품 금액 
-	                        <span id="totalPrice">
-	                        <c:forEach items="${myRev}" var="myRev">
-	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${myRev.medical.medPrice}" />
-		                    </c:forEach>
-							</span>원
+                        	<span class="money">원</span>
+	                        <span id="totalPrice" class="money">
+	                        	<fmt:formatNumber type="number" maxFractionDigits="3" value="${myRev.medical.medPrice }" />
+							</span>
 						</p>
-                        <p>포인트 사용<span class="usePoint">0원</span></p>
-                        <p >총 결제 금액 <span id="payMoney"></span>원</p>
-                     </div>                              
+                     </c:forEach>                                
+                        <p>포인트 사용<span class="money">P</span><span class="usePoint money" >0</span></p>
+                        <p >총 결제 금액 <span class="money">원</span><span id="payMoney" class="money"></span></p>
+                     </div>
                  </div>
                  <div class="agreeInfo infoBox">
                     <table>

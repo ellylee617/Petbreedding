@@ -48,9 +48,15 @@ $("#pointArea").on("propertychange change keyup paste input oninput ",function()
 	
 	var nowPoint = $("#nowPoint").text();
 	$(".usePoint").text(using);
+
+	nowPoint = nowPoint*1;
+	using = using*1;
+	console.log("using : "+ using);
+	console.log("nowPoint : "+ nowPoint);
 	if(nowPoint < using){
 		alert("보유 포인트보다 더 큰 금액은 입력하실 수 없습니다.");
-		$("#pointArea").val("0");
+		$("#pointArea").val("");
+		$(".usePoint").text("0");
 		$("#pointAll").prop('checked', false);
 		return false;
 	}else{
