@@ -27,10 +27,8 @@
 <div class="wrapper">    
 		<jsp:include page="../../common/header.jsp" />
 			<section class="section">
-            <p><span><a href="index.html">홈</a>></span><span><a href="salon.html">쿨펫미용실</a>></span>예약하기</p>
+            <p><span><a onclick="history.back();">홈</a>></span>예약하기</p>
             
-            <!-- 넘길 정보 -->
-            <!-- TODO -->
             <input type="hidden" value="${client.cl_num}" id="clNum"/> 
             
             <div class="swiper-container" id="checkService">
