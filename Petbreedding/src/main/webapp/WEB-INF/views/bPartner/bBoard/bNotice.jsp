@@ -32,7 +32,7 @@
 							[전체]
 							</c:if>
 							<c:if test="${notice.annType eq 2 }">
-							[일반]
+							[사업자]
 							</c:if>
 							${notice.annTitle } <br>
 							<br> ${notice.annDate }
