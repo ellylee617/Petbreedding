@@ -85,13 +85,10 @@
 			<![CDATA[
 	 		SELECT count(*) 
 					FROM(
-						SELECT ROWNUM R , A.*
-						FROM(
-							select * 
-							from hospital 
-						    where hospital.hos_name LIKE '%' || #{keyword} || '%'  AND hospital.hos_addr LIKE #{searchLoc1} || '%' AND hospital.hos_addr LIKE '%' ||  #{searchLoc2} || '%'
-							order by substr(hos_num, -3) DESC
-						)A
+						select * 
+						from hospital
+				        where hospital.hos_name LIKE '%' || #{keyword} || '%' AND hospital.hos_addr LIKE #{searchLoc1} || '%' AND hospital.hos_addr LIKE '%' ||  #{searchLoc2} || '%'
+						order by substr(hos_num, -3) DESC
 			)
 			]]>
 			</select>
@@ -326,13 +323,11 @@
 			<![CDATA[
 	 		SELECT count(*) 
 					FROM(
-						SELECT ROWNUM R , A.*
-						FROM(
-							select * 
-							from hair_salon
-						    where hair_salon.har_name LIKE '%' || #{keyword} || '%' AND hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
-							order by substr(har_num, -3) DESC
-						)A
+						select * 
+						from hair_salon
+						where hair_salon.har_name LIKE '%' || #{keyword} || '%' AND hair_salon.har_addr LIKE #{searchLoc1} || '%' AND hair_salon.har_addr LIKE '%' ||  #{searchLoc2} || '%'
+						order by substr(har_num, -3) DESC
+
 			)
 			]]>
 			</select>
