@@ -29,7 +29,10 @@
     border-collapse: collapse;
   
 }
-
+#allBtn{
+    text-align: left;
+    padding-left: 17px;
+}
 .myboard td{
  border-bottom: 1px solid #aaa;
  border-top: 1px solid #aaa;

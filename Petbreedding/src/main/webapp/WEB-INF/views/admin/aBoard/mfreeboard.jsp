@@ -28,7 +28,7 @@
 						<table class="myboard">
 							<thead>
 								<tr>
-									<th scope="cols" width="200px"><input type="checkbox"
+									<th scope="cols" width="200px" id="allBtn"><input type="checkbox"
 										value='selectall' onclick='selectAll(this)'>전체</th>
 									<th scope="cols" width="1000px">제목</th>
 									<th scope="cols" width="1000px">내용</th>

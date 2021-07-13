@@ -102,8 +102,8 @@
             	
     		</div>
 		</section>
+		<jsp:include page="../../common/footer.jsp" />
    	</div>
-	<jsp:include page="../../common/footer.jsp" />
 	
 	<script type="text/javascript">
 	var paging = '${paging}';

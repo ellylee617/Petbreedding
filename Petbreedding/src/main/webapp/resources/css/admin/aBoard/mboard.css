@@ -1,3 +1,29 @@
+/*  */
+.mContent{
+    padding-left: 10px !important;
+	margin-bottom: 70px;
+	float: left;
+	width: 780px;
+}
+#mBoardm{
+	display:inline-block;
+}
+.mAside{
+	width: 310px;
+}
+#mBoard{
+	background-color:var(--bmenu-color);
+	color:var(--font-color);
+}
+.page_wrap{
+    margin-top: 30px;
+}
+
+
+
+
+
+
 #mboardSection {
 	padding-bottom: 201px;
 }
