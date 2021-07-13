@@ -103,7 +103,7 @@
 			FROM REVIEW r left outer JOIN REVIEW_COMMENT c
 			ON r.REV_NUM = c.REV_NUM
 			WHERE r.BP_ID = #{bpId}
-			ORDER BY SUBSTR(r.REV_VAL, -3) DESC
+			ORDER BY r.REV_VAL DESC
             ) A
             ) B
             WHERE R>= #{start} AND R<=#{end}
