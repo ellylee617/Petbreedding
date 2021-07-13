@@ -15,7 +15,7 @@
 	
 	<!-- 사용자 회원가입 -->
 	<insert id="insertClient" parameterType="Client">
-			INSERT INTO client VALUES('CL000' || SEQ_CLIENT.NEXTVAL, #{email},#{password},#{nickname},#{name},#{tel},#{naverlogin},#{kakaologin}, default)	
+			INSERT INTO client VALUES(#{cl_num}, #{email},#{password},#{nickname},#{name},#{tel},#{naverlogin},#{kakaologin}, default)	
 	</insert>
 	
 
@@ -39,8 +39,17 @@
 	
 	<!-- 마이포인트 JOIN SEQ 값 가져오기 -->
 	<select id="getJoinSeq" resultType="string">
-		SELECT 'J'||SEQ_JOIN.NEXTVAL FROM DUAL;
+		SELECT 'J'||SEQ_JOIN.NEXTVAL FROM DUAL
 	</select>
-
+	
+	<!-- client seq 다음 값 가져오기 -->
+	<select id="getClientSeqNextVal" resultType="string">
+			SELECT 'CL000'||SEQ_CLIENT.NEXTVAL FROM DUAL
+	</select>
+		
+	<!-- client seq 다음 값 가져오기 -->
+	<select id="getClientSeqCurrVal" resultType="string">
+		SELECT 'CL000'||SEQ_CLIENT.CURRVAL FROM DUAL
+	</select>
 
 </mapper>

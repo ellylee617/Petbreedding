@@ -38,4 +38,12 @@ public class ClientDao {
 		return sqlSession.selectOne("ClientMap.getJoinSeq");
 	}
 	
+	public String getClientSeqCurrVal() {
+		return sqlSession.selectOne("ClientMap.getClientSeqCurrVal");
+	}
+	
+	public String getClientSeqNextVal() {
+		return sqlSession.selectOne("ClientMap.getClientSeqNextVal");
+	}
+	
 }
