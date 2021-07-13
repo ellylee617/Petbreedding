@@ -2,8 +2,6 @@ var mon,tue,wed,thu,fri,sat,sun = null;
 $(function() {
 	var har_num = $(".harNum").val();
 	var hos_num = $(".hosNum").val();
-	console.log("har_num : "+ har_num);
-	console.log("hos_num : "+ hos_num);
 	
 	if(har_num != null){
 		$.ajax({
@@ -86,7 +84,7 @@ function datePick(){
 			return [(day != mon && day != tue && day != wed && day != thu && day != fri && day != sat && day != sun)];
 		}	
 	   	,yearSuffix: '년'
-		,minDate: new Date() //최소 선택일자(sysdate)
+		,minDate: "+1D" //최소 선택일자(sysdate)
 	    ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
 		,onSelect: function(dateText, inst) {
 	        var date = $(this).val();
