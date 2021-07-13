@@ -114,10 +114,11 @@ public class BMyPageController {
 	public String bQna(Model md, String user_num) {
 
 		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 user_num : " + user_num);
-		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
-		md.addAttribute("bQnaList", myAskList);
+		//TODO
+//		List<MyAsk> myAskList = myAskService.MyAskSelectList(user_num);
+//		md.addAttribute("bQnaList", myAskList);
 		md.addAttribute("user_num", user_num);
-		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 myAskList : " + myAskList);
+//		System.out.println("[세훈] @일대일 사장님 문의 컨트롤러 myAskList : " + myAskList);
 
 		return "/bPartner/bBoard/bQna";
 	}
@@ -877,7 +878,8 @@ public class BMyPageController {
 		
 		List<Review> brvList =  new ArrayList<Review>();
 		
-		brvList = reviewService.reviewSelectList(bp_id);
+		//TODO
+//		brvList = reviewService.reviewSelectList(bp_id);
 		int brvCount = reviewService.getRevCount(bp_id);
 		
 		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 brvList : " + brvList);

@@ -73,7 +73,7 @@
 		<!-- 예약등록 -->
 		<insert id="insertHairRev" parameterType="HairRev">
 			INSERT INTO HAR_RESERVATION 
-			VALUES('HAR000' || SEQ_HAR_RESERVATION.NEXTVAL, #{cl_num}, #{pet_num},#{style_num}, #{har_num},#{res_date},#{style_num2},0,#{res_time})
+			VALUES('HAR000' || SEQ_HAR_RESERVATION.NEXTVAL, #{cl_num}, #{pet_num},#{style_num}, #{har_num},#{res_date},#{style_num2},0,#{res_time},0)
 			
 			<selectKey keyProperty="har_rnum" resultType="string"  order="AFTER">
 				SELECT SEQ_HAR_RESERVATION.CURRVAL AS HAR_RNUM FROM DUAL
