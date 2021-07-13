@@ -82,7 +82,7 @@
 						</th>
 					</tr>
 					<tr>
-						<th>매장 사진 (3)</th>
+						<th>매장 사진 (1)</th>
 						<th colspan="2">
 							  <div class="imgContainer">
                                 <div class="imgBox">
