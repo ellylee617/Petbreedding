@@ -37,13 +37,6 @@ public class BPController {
 
 	}
 
-	// 사장님 제휴문의 대기 페이지로 이동
-	@RequestMapping(value = "/bWait", method = RequestMethod.GET)
-	public String bWait(Locale locale, Model model) {
-		return "/bPartner/bMember/bWait";
-
-	}
-
 	//회원가입 처리
 	@RequestMapping(value = "bPartner/bJoin", method = RequestMethod.POST)
 	@ResponseBody

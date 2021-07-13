@@ -26,28 +26,38 @@
       
       <h1>동물병원</h1>
       
-		<c:if test="${!empty keyword && empty searchLoc1 } ">
+      		<!-- 동물병원 위치 및 검색 키워드 표시 -->
+      		
+      			           
+            <c:if test="${!empty keyword}">
             <div class="nowLocation">
                 <span>
+                <c:if test="${!empty searchLoc1 }">
                 <i class="fas fa-map-marked-alt" style="color: #ff9914;"></i> ${searchLoc1 } ${searchLoc2 } 
 				<br><br>
+				</c:if>
+                <c:if test="${empty searchLoc1 }">
+                <i class="fas fa-map-marked-alt" style="color: #ff9914;"></i> 위치를 설정하지 않았습니다.
+				<br><br>
+				</c:if>
 				<i class="fas fa-store" style="color: #4dbbff;" ></i> ${keyword }
 				</span>
             </div>
             </c:if>
             
-            <c:if test="${empty keyword && empty searchLoc1}">
+            <c:if test="${empty keyword}">
             <div class="nowLocation">
-                <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
-            </div>
-            </c:if>
-            
-            <c:if test="${empty keyword && !empty searchLoc1}">
-            <div class="nowLocation">
+            	<c:if test="${!empty searchLoc1 }">
                 <span> ${searchLoc1 } > ${searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+                </c:if>
+                <c:if test="${empty searchLoc1 }">
+                <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+                </c:if>
 			</div>
             </c:if>
             
+
+            <!-- 동물병원 위치 및 검색 키워드 표시 끝~~!! -->
             
              <!-- 동물병원 위치 설정 및 키워드 검색 결과 -->
              
@@ -65,7 +75,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -101,21 +111,21 @@
                            
 				            <div class="page_wrap">
 				               <div class="page_nation">
-				                  <c:if test="${keyword_paging.startPage != 1 }">
-				                     <a class="arrow prev" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${keyword_paging.startPage - 1 }&cntPerPage=${keyword_paging.cntPerPage}&keyword=${keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">이전</a> 
+				                  <c:if test="${hos_keyword_paging.startPage != 1 }">
+				                     <a class="arrow prev" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${hos_keyword_paging.startPage - 1 }&cntPerPage=${hos_keyword_paging.cntPerPage}&keyword=${hos_keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">이전</a> 
 				                  </c:if>
-				                  <c:forEach begin="${keyword_paging.startPage }" end="${keyword_paging.endPage }" var="p">
+				                  <c:forEach begin="${hos_keyword_paging.startPage }" end="${hos_keyword_paging.endPage }" var="p">
 				                     <c:choose>
-				                        <c:when test="${p == keyword_paging.nowPage }">
+				                        <c:when test="${p == hos_keyword_paging.nowPage }">
 				                           <b>${p }</b>
 				                        </c:when>
-				                        <c:when test="${p != keyword_paging.nowPage }">
-				                           <a href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${p }&cntPerPage=${keyword_paging.cntPerPage}&keyword=${keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">${p}</a>
+				                        <c:when test="${p != hos_keyword_paging.nowPage }">
+				                           <a href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${p }&cntPerPage=${hos_keyword_paging.cntPerPage}&keyword=${hos_keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">${p}</a>
 				                        </c:when>
 				                     </c:choose>
 				                  </c:forEach>
-				                  <c:if test="${keyword_paging.endPage != keyword_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${keyword_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
+				                  <c:if test="${hos_keyword_paging.endPage != hos_keyword_paging.lastPage}">
+				                     <a class="arrow next" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${hos_keyword_paging.endPage+1 }&cntPerPage=${hos_keyword_paging.cntPerPage}&keyword=${hos_keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -162,15 +172,15 @@
             
         	
         	<c:if test="${!empty ctaHos}">
+                   <c:forEach var="cta" items="${ctaHos}" varStatus="status">
+                   <c:if test="${cta.cta_number > 0 }">
 			 <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <ul>
-                   <c:forEach var="cta" items="${ctaHos}" varStatus="status">
-                   <c:if test="${cta.cta_number > 0 }">
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
-                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
                                 <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
                                 <div class="ultraList_etc_area">
@@ -197,10 +207,10 @@
                             </div>                                                            
                         </li>
                    </div>
-                   </c:if>
-            </c:forEach>
                 </ul>
             </div>
+                   </c:if>
+            </c:forEach>
            </c:if> 
             
             
@@ -225,7 +235,7 @@
 		                       <li class="storeList">
 		                       
 		                            <div class="storeList_inner">
-		                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+		                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 		                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 		                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 		                                <div class="storeList_etc_area">
@@ -302,7 +312,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -380,7 +390,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -463,7 +473,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -534,7 +544,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -609,7 +619,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -702,27 +712,36 @@
             
             <h1>미용실</h1>
             
-            <c:if test="${!empty keyword}">
-            <div class="nowLocation">
-                <span>
-                <i class="fas fa-map-marked-alt" style="color: #ff9914;"></i> ${searchLoc1 } ${searchLoc2 } 
-				<br><br>
-				<i class="fas fa-store" style="color: #4dbbff;" ></i> ${keyword }
-				</span>
-            </div>
-            </c:if>
+            <!-- 미용실 키워드 검색 및 위치 설정 부분 -->
             
-            <c:if test="${empty searchLoc1}">
-            <div class="nowLocation">
-                <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
-            </div>
-            </c:if>
+	            <c:if test="${!empty keyword}">
+	            <div class="nowLocation">
+	                <span>
+	                <c:if test="${!empty searchLoc1 }">
+	                <i class="fas fa-map-marked-alt" style="color: #ff9914;"></i> ${searchLoc1 } ${searchLoc2 } 
+					<br><br>
+					</c:if>
+	                <c:if test="${empty searchLoc1 }">
+	                <i class="fas fa-map-marked-alt" style="color: #ff9914;"></i> 위치를 설정하지 않았습니다.
+					<br><br>
+					</c:if>
+					<i class="fas fa-store" style="color: #4dbbff;" ></i> ${keyword }
+					</span>
+	            </div>
+	            </c:if>
+	            
+	              <c:if test="${empty keyword}">
+	            <div class="nowLocation">
+	            	<c:if test="${!empty searchLoc1 }">
+	                <span> ${searchLoc1 } > ${searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+	                </c:if>
+	                <c:if test="${empty searchLoc1 }">
+	                <span> 위치를 설정해 주세요 </span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
+	                </c:if>
+				</div>
+	            </c:if>
             
-            <c:if test="${empty keyword && !empty searchLoc1}">
-            <div class="nowLocation">
-                <span> ${searchLoc1 } > ${searchLoc2 }</span><a href="#" id="Loc"><i class="fas fa-map-marker-alt loc" ></i></a>
-			</div>
-            </c:if>
+            <!-- 미용실 키워드 검색 및 위치 설정 부분 끝~~ -->
             
             <!-- 미용실 위치 설정 및 키워드 검색 결과 -->
             
@@ -740,7 +759,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -777,9 +796,9 @@
 				            <div class="page_wrap">
 				               <div class="page_nation">
 				                  <c:if test="${keyword_paging.startPage != 1 }">
-				                     <a class="arrow prev" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${keyword_paging.startPage - 1 }&cntPerPage=${keyword_new_paging.cntPerPage}&keyword=${keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">이전</a> 
+				                     <a class="arrow prev" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${keyword_paging.startPage - 1 }&cntPerPage=${keyword_paging.cntPerPage}&keyword=${keyword }&selectlocCon=${searchLoc1}&selectChooseLoc=${searchLoc2}">이전</a> 
 				                  </c:if>
-				                  <c:forEach begin="${keyword_paging.startPage }" end="${keyword_new_paging.endPage }" var="p">
+				                  <c:forEach begin="${keyword_paging.startPage }" end="${keyword_paging.endPage }" var="p">
 				                     <c:choose>
 				                        <c:when test="${p == keyword_paging.nowPage }">
 				                           <b>${p }</b>
@@ -790,7 +809,7 @@
 				                     </c:choose>
 				                  </c:forEach>
 				                  <c:if test="${keyword_paging.endPage != keyword_paging.lastPage}">
-				                     <a class="arrow next" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${keyword_new_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
+				                     <a class="arrow next" href="${path}/shopList/search/keyword?shopType=${shopType}&nowPage=${keyword_paging.endPage+1 }&cntPerPage=${keyword_paging.cntPerPage}">다음</a>
 				                  </c:if>
 				               </div>
 				            </div>
@@ -834,15 +853,15 @@
             
         	
         	<c:if test="${!empty ctaHar}">
+             <c:forEach var="cta" items="${ctaHar}" varStatus="status">
+             <c:if test="${cta.cta_number > 0 }">
 			 <div class="ultraS">
                 <small id="ultra_ad">울트라콜 광고<i class="fas fa-ad"></i></small>
                 <ul>
-                   <c:forEach var="cta" items="${ctaHar}" varStatus="status">
-                   <c:if test="${cta.cta_number > 0 }">
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
-                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
                                 <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
                                 <div class="ultraList_etc_area">
@@ -869,10 +888,10 @@
                             </div>                                                            
                         </li>
                    </div>
-                   </c:if>
-            </c:forEach>
                 </ul>
             </div>
+                   </c:if>
+            </c:forEach>
            </c:if> 
             
             
@@ -894,7 +913,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -967,7 +986,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -1042,7 +1061,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -1122,7 +1141,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -1200,7 +1219,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -1273,7 +1292,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
