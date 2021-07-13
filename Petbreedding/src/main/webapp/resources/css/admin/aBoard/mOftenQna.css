@@ -18,7 +18,8 @@
 }
 
 
-.myboardhead{
+.myboardhead{.select select
+
     margin-bottom: 50px;
 }
 .myboard {
@@ -37,7 +38,7 @@
     -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
     -moz-appearance: none; 
      appearance: none;
-     background: url("/petbreedding/resources/images/arrow.jpg") no-repeat 120% 50%; /* 화살표 모양의 이미지 */
+     background: url("/petbreedding/resources/images/arrow.jpg") no-repeat 100% 50%; /* 화살표 모양의 이미지 */
      padding:10px;
      width: 80px;
 } 

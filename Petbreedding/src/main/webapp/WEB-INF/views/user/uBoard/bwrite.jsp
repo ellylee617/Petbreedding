@@ -10,7 +10,7 @@
 <link href="${path}/resources/css/common/reset.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/header.css" rel="stylesheet" type="text/css">
 <link href="${path}/resources/css/common/footer.css" rel="stylesheet" type="text/css">
-<link href="${path}/resources/css/user/uBoard/qna.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/user/uBoard/bwrite.css" rel="stylesheet" type="text/css">
 <script src="https:/use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- CKEDITOR -->
@@ -28,12 +28,12 @@
 	           		<form action="bwrite" method="post" enctype="multipart/form-data">
 		   				<div class="qnatitle">
 			              <label>제목</label>
-			              <input type="text" name="boTitle" placeholder="글 제목을 입력해주세요">
+			              <input type="text" name="boTitle" placeholder="글 제목을 입력해주세요" id="bWriteTitle">
 		                </div>
 			            <div class="qnacontent">
 			                <textarea name="boContent" id="editor"></textarea>
 			            </div> 
-						<div id="btnBox">
+						<div id="btnBox" class="btnBox">
 				            <a href="fboardlist"><input type="button" value="취소" id="successbtn" class="basicBtn"></a>
 				            <input type="submit" value="글등록" id="successbtn" class="basicBtn">
 			            </div>    

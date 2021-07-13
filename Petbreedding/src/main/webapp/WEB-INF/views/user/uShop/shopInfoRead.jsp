@@ -211,7 +211,7 @@
                         	</c:if>
                         </div>
                         <div class="reviewOpt">
-                            <input type="checkbox" id="checkPhoto"><label for="checkPhoto">사진리뷰만 보기</label>
+<!--                             <input type="checkbox" id="checkPhoto"><label for="checkPhoto">사진리뷰만 보기</label> 미구현 기능--> 
                             <div class="checkOpts">
                                 <span id="upToDate" class="checkOpt">최신순</span>
                                 <span id="ascendingStar" class="checkOpt">별점 높은 순</span>

@@ -744,6 +744,9 @@ public class AdminController {
 	// 게시글 관리 (자유게시판 목록)
 	@RequestMapping(value = "/mfreeboard")
 	public String mfreeboard(Locale locale, Model model) {
+		
+		
+		
 		return "/admin/aBoard/mfreeboard";
 	}
 	// 게시글 관리 (자유게시판 내용)
