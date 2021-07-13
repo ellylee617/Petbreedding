@@ -35,7 +35,7 @@
 		(SELECT A.*, B.HOS_RNUM, B.HOS_NUM
 		FROM
 		(SELECT * FROM NOTICE WHERE NOTICE_RECEIVER = #{notReceiver}
-		ORDER BY NOTICE_NUM DESC ) A
+		ORDER BY NOTICE_TIME DESC ) A
 		LEFT OUTER JOIN 
 		(SELECT * FROM HOS_RESERVATION UNION SELECT * FROM HAR_RESERVATION) B
 		ON A.REFERENCE_NUM = B.HOS_RNUM) C
@@ -71,17 +71,17 @@
 	
 	<insert id="inReservaion">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a1', 
-		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 	
 	<insert id="inPay">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a2', 
-		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 	
 	<insert id="inUnreadChat">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a3', 
-		#{notReceiver}, #{notPublisher}, null, '0', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, #{notPublisher}, null, '0', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 	
 	<select id="getOrigClNum" resultType="string">
@@ -90,7 +90,7 @@
 	
 	<insert id="inBoard">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a4', 
-		#{notReceiver}, null, #{refNum}, '2', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, null, #{refNum}, '2', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 	
 	<select id="getclNumInQna" resultType="string">
@@ -99,22 +99,22 @@
 	
 	<insert id="inQna">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a5', 
-		#{notReceiver}, null, #{refNum}, '3', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, null, #{refNum}, '3', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 		
 	<insert id="inPointSave">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a6', 
-		#{notReceiver}, null, #{refNum}, '4', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, null, #{refNum}, '4', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 	
 	<insert id="inPointUsing">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a7', 
-		#{notReceiver}, null, #{refNum}, '4', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, null, #{refNum}, '4', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 	
 	<insert id="inCancleRev">
 		INSERT INTO NOTICE VALUES(SEQ_NOTICE.NEXTVAL, 'a8', 
-		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		#{notReceiver}, #{notPublisher}, #{refNum}, '1', 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 	
 	<update id="updateReadState">

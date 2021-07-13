@@ -79,8 +79,8 @@
 /* 알림 삭제 모달 */
 .modal {
 	display: none;
-	position: absolute;
-	top: 60%;
+	position: fixed;
+	top: 40%;
 	left: 40%;
 	width: 300px;
 	padding: 30px 80px 50px 80px;
