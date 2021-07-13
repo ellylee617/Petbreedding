@@ -135,6 +135,10 @@
     color: var(--hover-color);
 }
 
+.clickNum {
+	cursor: pointer;
+}
+
 /*각각 리뷰*/
 .review{
     margin: 50px;
