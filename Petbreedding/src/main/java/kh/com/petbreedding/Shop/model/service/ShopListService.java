@@ -36,7 +36,7 @@ public interface ShopListService {
 		// 동물병원 위치 설정 + 키워드 검색
 		
 				// 동물병원 위치 설정 + 키워드 검색 카운팅
-				public int countKeywordHosList();
+				public int countKeywordHosList(Map<String,Object> map);
 				
 				// 동물병원 위치 설정 + 키워드 검색 최신순 정렬
 				public List<Hospital> selectKeywordHosListNew(Map<String,Object> map);

@@ -78,11 +78,11 @@ public class ShopListServiceImpl implements ShopListService {
 			
 						// 위치 설정 및 키워드 검색 결과 리스트 카운팅
 						@Override
-						public int countKeywordHosList() {
+						public int countKeywordHosList(Map<String,Object> map) {
 							System.out.println("shopListService countKeywordHosList() 실행");
 							int result = -1;
 							try {
-								result = shopListDao.countKeywordHosList();
+								result = shopListDao.countKeywordHosList(map);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}

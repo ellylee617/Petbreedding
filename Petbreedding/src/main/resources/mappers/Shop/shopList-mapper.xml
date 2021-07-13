@@ -78,6 +78,46 @@
 		</resultMap>
 	
 	
+	<!-- 동물병원 키워드+위치 검색 (최신순으로 정렬만!)-->
+		
+			<!-- 검색 결과 카운팅 -->
+			<select id="countKeywordHosList" parameterType="hashmap" resultType="int">
+			<![CDATA[
+	 		SELECT count(*) 
+					FROM(
+						SELECT ROWNUM R , A.*
+						FROM(
+							select * 
+							from hospital 
+						    where hospital.hos_name LIKE '%' || #{keyword} || '%'  AND hospital.hos_addr LIKE #{searchLoc1} || '%' AND hospital.hos_addr LIKE '%' ||  #{searchLoc2} || '%'
+							order by substr(hos_num, -3) DESC
+						)A
+			)
+			]]>
+			</select>
+			
+			<!-- 최신순 정렬 -->
+			<select id="selectKeywordHosListNew" parameterType="hashmap" resultMap="Hospital">
+			<![CDATA[
+				SELECT  C.*
+						FROM(
+						    SELECT B.* 
+						    FROM(
+						        SELECT ROWNUM R , A.*
+						        FROM(
+						            select * 
+						            from hospital
+				                    where hospital.hos_name LIKE '%' || #{keyword} || '%' AND hospital.hos_addr LIKE #{searchLoc1} || '%' AND hospital.hos_addr LIKE '%' ||  #{searchLoc2} || '%'
+						            order by substr(hos_num, -3) DESC
+						        )A
+						    )B
+						) C
+						WHERE #{start}<= R AND R <= #{end}	
+			]]>
+			</select>
+			
+			
+	
 		<!-- 동물병원 주소(위치) 검색 -->
 		
 			<!-- 위치 검색 결과 카운팅 -->

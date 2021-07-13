@@ -55,7 +55,7 @@ public class ShopListDao {
 		// 동물병원 위치 설정 + 키워드 검색
 		
 		// 동물병원 위치 설정 + 키워드 검색 카운팅
-		public int countKeywordHosList() {
+		public int countKeywordHosList(Map<String,Object> map) {
 			System.out.println("~~ ShopListDao 진입 ~~");
 			return sqlSession.selectOne("shopList.countKeywordHosList");
 		};

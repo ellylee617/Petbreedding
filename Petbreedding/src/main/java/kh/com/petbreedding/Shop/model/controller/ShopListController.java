@@ -796,7 +796,7 @@ public class ShopListController {
 	
 	// 사업장 검색 리스트 정렬 - 인기순
 	// 미용실 작업완료
-	// TODO: 동물병원
+	// 동물병원 작업 완료 
 	@RequestMapping(value = "/shopList/search/like", method = RequestMethod.GET)
 	public ModelAndView searchLikeShopList(
 			ModelAndView mv
@@ -1022,7 +1022,6 @@ public class ShopListController {
 			,@RequestParam(value="shopType") Long shopType
 			,@RequestParam (value="selectlocCon", defaultValue="") String searchLoc1
 			,@RequestParam (value="selectChooseLoc", defaultValue="") String searchLoc2
-			,@RequestParam(value="keyword", defaultValue="") String keyword
 			, HttpServletRequest request
 			) throws Exception {
 		
@@ -1068,7 +1067,6 @@ public class ShopListController {
 					
 					 
 					// 위치만 설정한 경우
-						if(keyword.equals("")) {
 							System.out.println("위치만 설정함!!!!!!!");
 							System.out.println("검색한 주소는????"+searchLoc1+searchLoc2);
 							
@@ -1119,7 +1117,6 @@ public class ShopListController {
 						}
 		
 		
-						} // 위치 설정 검색 끝
 						
 				}// 미용실 끝 
 				
@@ -1238,7 +1235,6 @@ public class ShopListController {
 		if(shopType==0) {
 			
 			// 키워드+위치 검색한 경우 
-			 if(!keyword.equals("")) {
 				 System.out.println("위치 설정+키워드 검색!!!");
 				 System.out.println("설정한 주소는????"+searchLoc1+searchLoc2);
 				 System.out.println("검색한 키워드는????"+keyword);
@@ -1252,6 +1248,7 @@ public class ShopListController {
 				 map1.put("keyword", keyword);
 				 
 				 
+				 
 				 // 검색 결과 카운팅
 				 
 				 int total1 = shopListService.countKeywordHarList(map1);
@@ -1260,7 +1257,7 @@ public class ShopListController {
 				 Pagination page1 = null;
 				 page1 = new Pagination(total1, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 				 System.out.println("페이지 객체 정보는????"+page1);
-				 mv.addObject("keyword_new_paging", page1);
+				 mv.addObject("keyword_paging", page1);
 				 
 				 int start1 = page1.getStart();
 				 int end1 = page1.getEnd();
@@ -1299,26 +1296,27 @@ public class ShopListController {
 					}
 					
 					
-			 }
 		}
 		
 		if(shopType==1) {
 			// 키워드+위치 검색한 경우 
-			 if(!keyword.equals("")) {
 				 System.out.println("위치 설정+키워드 검색!!!");
 				 System.out.println("설정한 주소는????"+searchLoc1+searchLoc2);
 				 System.out.println("검색한 키워드는????"+keyword);
 				 mv.addObject("searchLoc1", searchLoc1);
 				 mv.addObject("searchLoc2", searchLoc2);
+				 mv.addObject("keyword", keyword);
 				 
 				 Map<String,Object> map1 = new HashMap<String,Object>();
+				 map1.put("keyword", keyword);
 				 map1.put("searchLoc1", searchLoc1);
 				 map1.put("searchLoc2", searchLoc2);
 				 
+				 System.out.println("map정보 출력!!!!"+map1);
 				 
 				 // 검색 결과 카운팅
 				 
-				 int total1 = shopListService.countKeywordHosList();
+				 int total1 = shopListService.countKeywordHosList(map1);
 				 System.out.println("검색된 동물병원은 몇 개???"+total1);
 				 
 				 Pagination page1 = null;
@@ -1335,7 +1333,7 @@ public class ShopListController {
 				 // 키워드 위치 검색 동물병원 최신순 정렬
 				 List<Hospital> keywordHosListNew = shopListService.selectKeywordHosListNew(map1);
 				 System.out.println("키워드랑 위치로 검색한 동물병원 최신순으로 정렬해줘!!!:"+keywordHosListNew);
-				 mv.addObject("keywordHarListNew", keywordHosListNew);
+				 mv.addObject("keywordHosListNew", keywordHosListNew);
 				 
 					List<String> countList1 = new ArrayList<String>();
 					List<String> avgList1 = new ArrayList<String>();
@@ -1362,7 +1360,6 @@ public class ShopListController {
 					}
 					
 					
-			 }
 		}
 		
 		
