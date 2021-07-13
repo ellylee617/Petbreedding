@@ -65,7 +65,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -170,7 +170,7 @@
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
-                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
                                 <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
                                 <div class="ultraList_etc_area">
@@ -225,7 +225,7 @@
 		                       <li class="storeList">
 		                       
 		                            <div class="storeList_inner">
-		                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+		                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 		                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 		                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 		                                <div class="storeList_etc_area">
@@ -302,7 +302,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -380,7 +380,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -463,7 +463,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -534,7 +534,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -609,7 +609,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -740,7 +740,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -842,7 +842,7 @@
                     <div class="ultraStore">                     
                         <li class="ultraList">
                             <div class="ultraList_inner">
-                                <div class="ultraList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="ultraList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${cta.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="ultraList_title_area"><a href="#">${cta.shopName}</a></div>
                                 <div class="ultraList_info_area"><a href="#">${cta.shopAddr}</a></div>
                                 <div class="ultraList_etc_area">
@@ -894,7 +894,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -967,7 +967,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -1042,7 +1042,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -1122,7 +1122,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
@@ -1200,7 +1200,7 @@
 	                       <li class="storeList">
 	                       
 	                            <div class="storeList_inner">
-	                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+	                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
 	                                <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
 	                                <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
 	                                <div class="storeList_etc_area">
@@ -1273,7 +1273,7 @@
                        <li class="storeList">
                        
                             <div class="storeList_inner">
-                                <div class="storeList_img_area"><a href="#"><img src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
+                                <div class="storeList_img_area"><a href="#"><img  onerror="this.src='${path}/resources/images/logoForChat.png'" src="${path}/resources/uploadFile/shop/${item.shopMImg }" width="150px" height="100"></a></div>
                                 <div class="storeList_title_area"><a href="#">${item.shopName }</a></div>
                                 <div class="storeList_info_area"><a href="#">${item.shopAddr }</a></div>
                                 <div class="storeList_etc_area">
