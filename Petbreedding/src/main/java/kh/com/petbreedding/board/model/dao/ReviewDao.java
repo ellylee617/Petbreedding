@@ -35,14 +35,12 @@ public class ReviewDao {
 	}
 	
 	// 사업자 리뷰 조회
-	public List<Review> reviewSelectList(String bp_id) {
-		System.out.println("[세훈] @리뷰 조회 다오 bp_id : " + bp_id);
-		return sqlSession.selectList("Review.reviewSelectList", bp_id);
+	public List<Review> reviewSelectList(Map<String, String> map) {
+		return sqlSession.selectList("Review.reviewSelectList", map);
 	}
 	
 	// 사업자 리뷰 조회 모달 리뷰 정보 조회
 	public Review reviewSelectOne(String rev_num) {
-		System.out.println("[세훈] @사업자 리뷰 조회 다오 bp_id : " + rev_num);
 		return sqlSession.selectOne("Review.reviewSelectOne", rev_num);
 	}
 	

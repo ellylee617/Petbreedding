@@ -624,8 +624,6 @@ public class BMyPageController {
 
 		
 
-		System.out.println("!! 사업장 등록 완료 !!");
-
 		// TODO:alert 추가하기
 		mv.setViewName("/bPartner/bShop/bShopInfo");
 		
@@ -669,7 +667,6 @@ public class BMyPageController {
 	public ModelAndView bShopUpdateDo(HttpServletRequest req, HairSalon harVO, Hospital hosVO,
 			@RequestParam(value = "shopDayOff") List<String> dayOffList, MultipartHttpServletRequest mulitreq) {
 
-		System.out.println("***** 사업장 수정 컨트롤러 실행 *****");
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -684,7 +681,6 @@ public class BMyPageController {
 
 		// 미용실 번호 가져오기
 		String harNum = req.getParameter("harNum");
-		System.out.println("미용실 번호::" + harNum);
 
 		// 미용실 VO new 생성
 		HairDayOff harVO2 = new HairDayOff();
@@ -692,7 +688,6 @@ public class BMyPageController {
 
 		// 동물병원 번호 가져오기
 		String hosNum = req.getParameter("hosNum");
-		System.out.println("동물병원 번호:" + hosNum);
 
 		// 동물병원 VO new 생성
 		HosDayOff hosVO2 = new HosDayOff();
@@ -720,7 +715,6 @@ public class BMyPageController {
 			}
 			
 			harVO.setShopMImg(originalfileName);
-			System.out.println("수정할 미용실 정보:"+harVO);
 			
 			shopService.updateHarInfo(harVO);
 			
@@ -739,8 +733,6 @@ public class BMyPageController {
 			for (String dayoff : dayOffList) {
 				harVO2.setHarNumDayOff(harNum);
 				harVO2.setShopDayOff(dayoff);
-				System.out.println("수정할 미용실 번호::" + harNum);
-				System.out.println("LIST 타입 변환중~~ dayoff 값::" + dayoff);
 				harVO2.toString();
 				shopService.insertNewHarDayOff(harVO2);
 
@@ -767,7 +759,6 @@ public class BMyPageController {
 			}
 			
 			hosVO.setShopMImg(originalfileName);
-			System.out.println("수정할 동물병원 정보:"+hosVO);
 			shopService.updateHosInfo(hosVO);
 			
 			mv.addObject("vo", hosVO);
@@ -781,13 +772,10 @@ public class BMyPageController {
 
 			// 동물병원 주휴일 수정
 			// 1:월요일 ~ 7:일요일
-			System.out.println("동물병원 주휴일 LIST::" + dayOffList);
 
 			for (String dayoff : dayOffList) {
 				hosVO2.setHosNumDayOff(hosNum);
 				hosVO2.setShopDayOff(dayoff);
-				System.out.println("수정할 동물병원 번호::" + hosNum);
-				System.out.println("LIST 타입 변환중~~ dayoff 값::" + dayoff);
 				hosVO2.toString();
 
 				shopService.insertNewHosDayOff(hosVO2);
@@ -849,7 +837,6 @@ public class BMyPageController {
 			}
 
 		}
-		System.out.println("!! 사업장 수정 완료 !!");
 		
 		mv.setViewName("/bPartner/bShop/bShopInfo");
 		
@@ -862,7 +849,10 @@ public class BMyPageController {
 			Model md
 			,HttpSession ses
 			,BPartner bP
-			) {
+			,Pagination page
+			,@RequestParam(value="nowPage", defaultValue ="1") String nowPage
+			, @RequestParam(value="cntPerPage", defaultValue ="5") String cntPerPage
+			){
 		
 		bP = (BPartner) ses.getAttribute("bP");
 		
@@ -873,16 +863,19 @@ public class BMyPageController {
 		}
 		
 		String bp_id = bP.getBp_Id();
-		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 bp_id : " + bp_id);
-		
-		List<Review> brvList =  new ArrayList<Review>();
-		
-		brvList = reviewService.reviewSelectList(bp_id);
+
 		int brvCount = reviewService.getRevCount(bp_id);
+		page = new Pagination(brvCount, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
-		System.out.println("[세훈] @업체 리뷰 조회 컨트롤러 brvList : " + brvList);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("bpId", bp_id);
+		map.put("start", Integer.toString(page.getStart()));
+		map.put("end", Integer.toString(page.getEnd()));
+		List<Review> brvList = reviewService.reviewSelectList(map);
+		
 		
 		md.addAttribute("brvList", brvList);
+		md.addAttribute("paging", page);
 		md.addAttribute("brvCount", brvCount);
 		
 		return "/bPartner/bShop/bReview";
@@ -900,15 +893,12 @@ public class BMyPageController {
 		
 		res.setCharacterEncoding("UTF-8");
 		
-		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rev_num : " + rev_num);
 		Review rv = new Review();
 		rv = reviewService.reviewSelectOne(rev_num);
 		
 		
 		Gson gson = new GsonBuilder().create();
 		String jsonOutPut = gson.toJson(rv);
-		
-		System.out.println("[세훈] @사업자 리뷰 조회 컨트롤러 rv : " + rv.toString());
 		
 		
 		return jsonOutPut;
@@ -928,10 +918,6 @@ public class BMyPageController {
 		String rev_num = req.getParameter("revNumVal");
 		String revc_cont = req.getParameter("revcCont");
 		
-		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 bp_id : " + bp_id);
-		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 rev_num : " + rev_num);
-		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 revcCont : " + revc_cont);
-		
 		ReviewComment revCmnt = new ReviewComment();
 		
 		revCmnt.setBpId(bp_id);
@@ -940,15 +926,12 @@ public class BMyPageController {
 		
 		
 		int revcResult = reviewCommentService.reviewCommentInsert(revCmnt);
-		System.out.println("[세훈] @사업자 리뷰 댓글  등록 컨트롤러 revcResult : " + revcResult);
 		
 		
 		if(revcResult > 0) {
-			System.out.println("사업자 리뷰 댓글 등록 성공");
 			md.addAttribute("msg", "사업자 리뷰 댓글 등록 성공");
 			md.addAttribute("url","/bReview");
 		} else {
-			System.out.println("사업자 리뷰 댓글 실패");
 			md.addAttribute("msg", "사업자 리뷰 댓글 등록 실패");
 			md.addAttribute("url","/bReview");
 		}

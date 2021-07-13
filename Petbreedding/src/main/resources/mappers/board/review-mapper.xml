@@ -101,9 +101,15 @@
 	</select>
 	
 	<!-- 사업자 관리 페이지에서 리뷰 조회 -->
-	<select id="reviewSelectList" parameterType="string" resultMap="ReviewMap">
+	<select id="reviewSelectList" parameterType="map" resultMap="ReviewMap">
 		<![CDATA[
-			SELECT * FROM REVIEW WHERE BP_ID = #{bpId}
+			SELECT B.* 
+			FROM (
+			    SELECT ROWNUM R, A.* FROM REVIEW A
+			    WHERE BP_ID = #{bpId}
+			    ORDER BY SUBSTR(REV_NUM, -2)DESC
+			) B
+			WHERE #{start}<= R AND R<=#{end}
 		 ]]>
 	</select>
 	

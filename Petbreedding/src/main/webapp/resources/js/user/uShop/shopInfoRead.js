@@ -54,9 +54,6 @@ function openchatwin(inbpId,inshopName,inbpType) {
 
 
 function reviewInit(bpId, path, type, p) {
-	console.log("리뷰 조회 함수 들어옴")
-	console.log(bpId);
-	console.log(path);
 	
 	$.ajax({
 		url: "rList"
@@ -68,14 +65,9 @@ function reviewInit(bpId, path, type, p) {
 			var div = "";
 			var page = "";
 			var jsonLength = Object.keys(json).length;
-			console.log(jsonLength);
-			console.log(json);
-			
-			if(jsonLength > 0) {
-				
+			if(jsonLength > 0 && json.list != null && json.list != "") {
 				$.each(json.list, function(index, item) {
 					var revVal = item.revVal;
-					console.log(item.revImg);
 					div += "<div class='review'>"
 						+ "<div class='reviewWord'>"
 						+ "<div class='star_img'>";
@@ -172,15 +164,16 @@ function reviewInit(bpId, path, type, p) {
 //				페이징 끝
 				
 			} else {
-				
+				div += "<div class='review'>";
+				div += "<p>리뷰가 없습니다.</p>";
+				div += "</div>";
+				page = "";
 			}
-			
 			$("#reviewArea").html(div);
 			$("#page_nation").html(page);
 			
 			$(".clickNum").on("click", function() {
 				var p = $(this).text();
-				console.log(p);
 				reviewInit(bpId, path, type, p);
 			});
 			

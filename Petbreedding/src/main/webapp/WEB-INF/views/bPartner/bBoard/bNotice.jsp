@@ -49,7 +49,7 @@
 				<div class="page_wrap">
 					<div class="page_nation">
 						<c:if test="${paging.startPage != 1 }">
-							<a class="arrow prev" href="${path}/fboardlist?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
+							<a class="arrow prev" href="${path}/bNotice?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">이전</a> 
 						</c:if>
 						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 							<c:choose>
@@ -57,12 +57,12 @@
 									<b>${p }</b>
 								</c:when>
 								<c:when test="${p != paging.nowPage }">
-									<a href="${path}/fboardlist?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+									<a href="${path}/bNotice?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
 								</c:when>
 							</c:choose>
 						</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
-							<a class="arrow next" href="${path}/fboardlist?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
+							<a class="arrow next" href="${path}/bNotice?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">다음</a>
 						</c:if>
 					</div>
 				</div>

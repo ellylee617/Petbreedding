@@ -31,10 +31,9 @@
         <a href="/petbreedding"><img class="logo" src="${pageContext.request.contextPath}/resources/images/logo.png" ></a>            
         <nav class="mainMenu1">
 			<ul>
-                <li><a href="#">소개</a></li>
+                <li><a href="${pageContext.request.contextPath}/introduction">소개</a></li>
                 <li><a href="${pageContext.request.contextPath}/shopList/all/new?shopType=1&orderBy=new">동물병원</a></li>
                 <li><a href="${pageContext.request.contextPath}/shopList/all/new?shopType=0&orderBy=new">미용실</a></li>
-                <li><a href="${pageContext.request.contextPath}/introduction">소개</a></li>
 	            <li><a href="${pageContext.request.contextPath}/mbtipet">멍비티아이</a></li>
             </ul>
         </nav>

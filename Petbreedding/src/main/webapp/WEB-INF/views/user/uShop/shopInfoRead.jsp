@@ -126,12 +126,89 @@
                     <p>예약자 리뷰<span>(${revCount})</span></p>
                     <div class="reviewsBox">
                         <div class="avgStar">
-                            <i class="fas fa-star rate"></i>
-                            <i class="fas fa-star rate"></i>
-                            <i class="fas fa-star rate"></i>
-                            <i class="fas fa-star rate"></i>
-                            <i class="far fa-star rate"></i>
-                            <span class="rateScore">${revValAvg}/5.00</span>
+                        	<c:if test="${revValAvg >= 5.00 }">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 5.00 and revValAvg >= 4.5}">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star-half-alt"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 4.50 and revValAvg >= 4.0}">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 4.00 and revValAvg >= 3.50}">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star-half-alt"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 3.50 and revValAvg >= 3.00}">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 3.00 and revValAvg >= 2.50}">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star-half-alt"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 2.50 and revValAvg >= 2.00}">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 2.0 and revValAvg >= 1.50}">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="fas fa-star-half-alt"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 1.50 and revValAvg >= 1.00}">
+                        		<i class="fas fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 1.00 and revValAvg >= 0.50}">
+                        		<i class="fas fa-star-half-alt"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${revValAvg < 0 or empty revValAvg}">
+                        		<i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+	                            <i class="far fa-star rate"></i>
+                        	</c:if>
+                        	<c:if test="${!empty revValAvg  }">
+	                            <span class="rateScore">${revValAvg}/5.00</span>
+                        	</c:if>
+                        	<c:if test="${empty revValAvg  }">
+	                            <span class="rateScore">0.00/5.00</span>
+                        	</c:if>
                         </div>
                         <div class="reviewOpt">
                             <input type="checkbox" id="checkPhoto"><label for="checkPhoto">사진리뷰만 보기</label>

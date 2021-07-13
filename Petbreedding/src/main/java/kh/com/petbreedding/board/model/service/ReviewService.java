@@ -6,7 +6,7 @@ import java.util.Map;
 import kh.com.petbreedding.board.model.vo.Review;
 
 public interface ReviewService {
-	public List<Review> reviewSelectList(String bpId); // 사업자 리뷰 조회
+	public List<Review> reviewSelectList(Map<String, String> map); // 사업자 리뷰 조회
 	public Review reviewSelectOne(String rev_num); // 사업자  모달 리뷰 조회 
 	public List<Review> revRevcSelectListUpToDate(Map<String, String> map); // 상세페이지 리뷰, 댓글 조회 최신순
 	public List<Review> revRevcSelectListDesc(Map<String, String> map); // 상세페이지 리뷰, 댓글 조회 별점 높은 순
