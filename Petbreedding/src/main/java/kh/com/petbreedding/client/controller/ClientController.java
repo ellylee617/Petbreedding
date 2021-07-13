@@ -30,9 +30,6 @@ public class ClientController {
 	private ClientService clientService;
 	
 	@Autowired
-	private MessageService messageService;
-	
-	@Autowired
 	private ClientInfoService clientInfoService;
 	
 	//이메일 회원가입 페이지로 이동
@@ -101,7 +98,7 @@ public class ClientController {
 	@ResponseBody
 	// 회원 탈퇴
 	public int deleteClientDo(String cl_num, HttpSession session) {
-
+		clientService.deltePoint(cl_num);
 		int result = clientService.deleteClient(cl_num);
 		if(result >0) {
 			session.invalidate();		
@@ -141,7 +138,7 @@ public class ClientController {
 	public String sendSms(String tel) {
 		int num = (int)(Math.random() * (9999 - 1000 + 1)) + 1000;
 		String randomNumber = String.valueOf(num);
-		/* messageService.sendMessage(tel, randomNumber); */
+		MessageService.sendMessage(tel, randomNumber);
 		
 		System.out.println(randomNumber);
 		return randomNumber;

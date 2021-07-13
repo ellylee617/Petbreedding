@@ -145,16 +145,19 @@ function updatePoint(){
 	var cl_num = $("#cl_num").val();
 	var exp_Id = $("#exp_Id").val();
 	
-	$.ajax({
-		url:"myPoint",
-		type:"GET",
-		data:{
-			clNum:cl_num,
-			expFrom : exp_from,
-			expId : exp_Id,
-			expPoint : exp_point
-		}
-	});
+	if(exp_point >0){
+		$.ajax({
+			url:"myPoint",
+			type:"GET",
+			data:{
+				clNum:cl_num,
+				expFrom : exp_from,
+				expId : exp_Id,
+				expPoint : exp_point
+			}
+		});
+	}
+	
 }
 
 
