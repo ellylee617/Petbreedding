@@ -99,7 +99,7 @@
 			(SELECT (CURR_POINT-#{expPoint}) FROM (
 			    SELECT * FROM MYPOINT ORDER BY INDEXS DESC
 			)
-			WHERE CL_NUM = 'CL1'  AND ROWNUM = 1)
+			WHERE CL_NUM = #{clNum}  AND ROWNUM = 1)
 			)
 			
 		]]>
