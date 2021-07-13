@@ -42,23 +42,22 @@ $(function(){
 //포인트 사용시 결제금액 변화
 $("#pointArea").on("propertychange change keyup paste input oninput ",function(){
 	var using = $("#pointArea").val();	
-	
 	// 전체 콤마 제거
 	const number = total.replace(/,/g, "");
 	const number2 = using.replace(/,/g, "");
 	
 	var nowPoint = $("#nowPoint").text();
 	$(".usePoint").text(using);
-	if(nowPoint >= using){
-		var pay = 0;
-		pay = number - number2;
-		pay = pay.toLocaleString();
-		$("#payMoney").text(pay);
-	}else{
+	if(nowPoint < using){
 		alert("보유 포인트보다 더 큰 금액은 입력하실 수 없습니다.");
 		$("#pointArea").val("0");
 		$("#pointAll").prop('checked', false);
 		return false;
+	}else{
+		var pay = 0;
+		pay = number - number2;
+		pay = pay.toLocaleString();
+		$("#payMoney").text(pay);
 	}
 	
 	
