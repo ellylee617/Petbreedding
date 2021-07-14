@@ -59,7 +59,7 @@ function change() {
 	var res = $("#choDate").val();
 	console.log(res);
 	
-	if(resId == 0 || resId == 1 || resId == 3){
+	if(resId == 0 || resId == 1 || resId == 2 || resId == 3){
 	$.ajax({
 	    url:"bReservationkind",
 	    data:{res_status: resId,
