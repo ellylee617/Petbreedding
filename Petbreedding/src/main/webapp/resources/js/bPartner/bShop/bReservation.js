@@ -93,7 +93,7 @@ function change() {
 		        		html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[i].har_rnum +">상세보기</a></td>";
 
 		        	}
-		        	 if (data[j].res_status == 2){
+		        	 if (resId == 2){
 			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용완료<span class='noneDis'>,</span></td>";
 			        		html += "<td class='resTime'>"+data[j].res_date+"</td>";
 				        	html += "<td class='resName'>"+data[j].name+"</td>";
