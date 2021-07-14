@@ -43,6 +43,7 @@ function currentDay(){
 $(function(){
 	$("td:contains('예약완료')").css("background-color","var(--button-color)");
 	$("td:contains('결제완료')").css("background-color","var(--hover-color)");
+	$("td:contains('이용완료')").css("background-color","var(--hover-color)");
 	$("td:contains('이용취소')").css("background-color","var(--trhover-color)").css("color","var(--main-color)");
 	currentDay();
 });
@@ -92,6 +93,12 @@ function change() {
 		        		html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[i].har_rnum +">상세보기</a></td>";
 
 		        	}
+		        	 if (data[j].res_status == 2){
+			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용완료<span class='noneDis'>,</span></td>";
+			        		html += "<td class='resTime'>"+data[j].res_date+"</td>";
+				        	html += "<td class='resName'>"+data[j].name+"</td>";
+				        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
+			        	}
 		        	 if (resId == 3){
 		        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
 		        		html += "<td class='resTime'>"+data[i].res_date+"</td>";

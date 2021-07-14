@@ -57,7 +57,7 @@
     text-align: center;
 }
 .resTime {
-	    width: 100px;
+	    width: 100px!important;
 }
 .status{
     color: var(--font-color);
