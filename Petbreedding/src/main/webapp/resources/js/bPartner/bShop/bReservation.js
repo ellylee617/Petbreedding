@@ -81,18 +81,24 @@ function change() {
 		        	console.log("상테:" + resId);
 		        	if (resId == 0){
 		        		html += "<td class='status' style='background:#4dbbff'>예약완료<span class='noneDis'>,</span></td>";
-		        	
+		        		html += "<td class='resTime'>"+data[i].res_date+"</td>";
+		        		html += "<td class='resName'>"+data[i].name+"</td>";
+		        		html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[i].har_rnum +">상세보기</a></td>";
 		        	}
 		        	 if (resId == 1){
 		        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
+		        		html += "<td class='resTime'>"+data[i].res_date+"</td>";
+		        		html += "<td class='resName'>"+data[i].name+"</td>";
+		        		html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[i].har_rnum +">상세보기</a></td>";
+
 		        	}
 		        	 if (resId == 3){
 		        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
+		        		html += "<td class='resTime'>"+data[i].res_date+"</td>";
+		        		html += "<td class='resName'>"+data[i].name+"</td>";
+		        		html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[i].har_rnum +">상세보기</a></td>";
 		        	}
 		        	
-		        	html += "<td class='resTime'>"+data[i].res_date+"</td>";
-		        	html += "<td class='resName'>"+data[i].name+"</td>";
-		        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[i].har_rnum +">상세보기</a></td>";
 		        	html += "</tr>"
 		        		console.log("받아온 상태:"+ data[i].res_status);
 		        });
@@ -136,18 +142,29 @@ function change() {
 				        	console.log("상테:" + resId);
 				        	if (data[j].res_status == 0){
 				        		html += "<td class='status' style='background:#4dbbff'>예약완료<span class='noneDis'>,</span></td>";
-				        	
+				        		html += "<td class='resTime'>"+data[j].res_date+"</td>";
+					        	html += "<td class='resName'>"+data[j].name+"</td>";
+					        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
 				        	}
 				        	 if (data[j].res_status == 1){
 				        		html += "<td class='status' style='background:#ff9914'>결제완료<span class='noneDis'>,</span></td>";
+				        		html += "<td class='resTime'>"+data[j].res_date+"</td>";
+					        	html += "<td class='resName'>"+data[j].name+"</td>";
+					        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
 				        	}
+				        	 if (data[j].res_status == 2){
+					        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용완료<span class='noneDis'>,</span></td>";
+					        		html += "<td class='resTime'>"+data[j].res_date+"</td>";
+						        	html += "<td class='resName'>"+data[j].name+"</td>";
+						        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
+					        	}
 				        	 if (data[j].res_status == 3){
 				        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
+				        		html += "<td class='resTime'>"+data[j].res_date+"</td>";
+					        	html += "<td class='resName'>"+data[j].name+"</td>";
+					        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
 				        	}
-				        	
-				        	html += "<td class='resTime'>"+data[j].res_date+"</td>";
-				        	html += "<td class='resName'>"+data[j].name+"</td>";
-				        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
+
 				        	html += "</tr>"
 				        		console.log("받아온 상태:"+ data[j].res_status);
 				        		console.log("예약번호 : " + data[j].har_rnum);

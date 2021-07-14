@@ -56,6 +56,9 @@
     margin-right: 10px;
     text-align: center;
 }
+.resTime {
+	    width: 100px;
+}
 .status{
     color: var(--font-color);
     text-align: center;

@@ -55,17 +55,29 @@
 												<c:choose>
 													<c:when test="${rev.res_status == 0}">
 														<td class="status" id ="status">예약완료<span class="noneDis">,</span></td>
+														<td class="resTime">${rev.res_date}</td>
+														<td class="resName">${rev.name}</td>
+														<td class="resInfo"><a href="bReservationDetail?har_rnum=${rev.har_rnum}">상세보기</a></td>
 													</c:when>
 													<c:when test="${rev.res_status == 1}">
 														<td class="status">결제완료<span class="noneDis">,</span></td>
+														<td class="resTime">${rev.res_date}</td>
+														<td class="resName">${rev.name}</td>
+														<td class="resInfo"><a href="bReservationDetail?har_rnum=${rev.har_rnum}">상세보기</a></td>
+													</c:when>
+													<c:when test="${rev.res_status == 2}">
+														<td class="status">이용완료<span class="noneDis">,</span></td>
+														<td class="resTime">${rev.res_date}</td>
+														<td class="resName">${rev.name}</td>
+														<td class="resInfo"><a href="bReservationDetail?har_rnum=${rev.har_rnum}">상세보기</a></td>
 													</c:when>
 													<c:when test="${rev.res_status == 3}">
 														<td class="status">이용취소<span class="noneDis">,</span></td>
+														<td class="resTime">${rev.res_date}</td>
+														<td class="resName">${rev.name}</td>
+														<td class="resInfo"><a href="bReservationDetail?har_rnum=${rev.har_rnum}">상세보기</a></td>
 													</c:when>
 												</c:choose>
-												<td class="resTime">${rev.res_date}</td>
-												<td class="resName">${rev.name}</td>
-												<td class="resInfo"><a href="bReservationDetail?har_rnum=${rev.har_rnum}">상세보기</a></td>
 											</tr>
 										</c:forEach>
 										</c:if>
