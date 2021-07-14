@@ -12,7 +12,8 @@ public class ScheduledRegistration {
 	@Autowired
 	private ShopPayDao shopPayDao;
 
-	@Scheduled(cron = "0 0/10 9-18 * * *")   
+//	@Scheduled(cron = "0 0/10 9-18 * * *")   
+	@Scheduled(cron = "0 0 0 * * *")   
 	public void registration() {
 		System.out.println("[ @Scheduled]registration 시작");
 		shopPayDao.updateRevByScheduled();

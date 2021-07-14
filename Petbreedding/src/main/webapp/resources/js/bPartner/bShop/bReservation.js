@@ -59,7 +59,7 @@ function change() {
 	var res = $("#choDate").val();
 	console.log(res);
 	
-	if(resId == 0 || resId == 1 || resId == 2 || resId == 3){
+	if(resId == 0 || resId == 1 || resId == 3){
 	$.ajax({
 	    url:"bReservationkind",
 	    data:{res_status: resId,
@@ -93,12 +93,6 @@ function change() {
 		        		html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[i].har_rnum +">상세보기</a></td>";
 
 		        	}
-		        	 if (resId == 2){
-			        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용완료<span class='noneDis'>,</span></td>";
-			        		html += "<td class='resTime'>"+data[j].res_date+"</td>";
-				        	html += "<td class='resName'>"+data[j].name+"</td>";
-				        	html += "<td class='resInfo'>" + "<a href=" + 'bReservationDetail?har_rnum='+data[j].har_rnum +">상세보기</a></td>";
-			        	}
 		        	 if (resId == 3){
 		        		html += "<td class='status' style='background:#a5e6fc; color:#000'>이용취소<span class='noneDis'>,</span></td>";
 		        		html += "<td class='resTime'>"+data[i].res_date+"</td>";

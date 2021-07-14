@@ -42,7 +42,6 @@
 							<option value="4" name="res_status" selected>전체</option>
 							<option value="0" name="res_status">예약완료</option>
 							<option value="1" name="res_status">결제완료</option>
-							<option value="2" name="res_status">이용완료</option>
 							<option value="3" name="res_status">결제취소</option>
 						</select>
 
@@ -152,7 +151,7 @@
 
 			<!-- script -->
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 		<script type="text/javascript" src="${path}/resources/js/bPartner/bShop/bReservation.js"></script>
+		<script type="text/javascript" src="${path}/resources/js/bPartner/bAside.js"></script>
 </body>
 </html>
